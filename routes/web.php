@@ -49,7 +49,7 @@ Route::post('admin/logout', 'AdminController@adminLogout')->name('admin/logout')
 Route::get('/', 'PagesController@home'); 
 Route::get('/home', 'PagesController@home')->name('home');
 
-Route::group(['middleware'=>['auth']], function(){ 
+//Route::group(['middleware'=>['auth']], function(){ 
 
 Route::get('/create-listing', 'PagesController@create_event')->name('create-listing'); 
 Route::get('/create-service','PagesController@create_service')->name('create-service');
@@ -60,10 +60,12 @@ Route::post('booking_request', 'PagesController@booking_request')->name('booking
 Route::get('/profile', 'PagesController@profile')->name('profile');
 Route::post('/up_profile', 'PagesController@up_profile')->name('up_profile');
 
-});
+//});
 
 Route::get('/get_suggest/{search}', 'PagesController@getAddress')->name('get_suggest');
-Route::get('search', 'PagesController@search')->name('search');
+Route::post('search', 'PagesController@search')->name('search');
+Route::get('searchResults/{ids}', 'PagesController@searchResults')->name('searchResults');
+
 Route::get('all-events', 'PagesController@all_events')->name('all-events');
 
 Route::get('{/anypath}', 'PagesController@home')->where('path', '.*');

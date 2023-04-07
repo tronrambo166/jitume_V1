@@ -104,6 +104,12 @@ h1 { font-family: revert; font-size: 36px; }
     background-position: center bottom;
 
 }
+
+.service_img{
+	background: url(../images/services.jpg) no-repeat;
+    background-size: 100% 500px;
+    background-position: center bottom;
+}
 .upload-btn-wrapper {
   position: relative;
   overflow: hidden;
@@ -185,6 +191,11 @@ hr{color: #a7a3a3;}
 		padding-left: 20px;padding-right: 20px;
 		}
 		
+		.listing h3,.listing h4,.listing p {font-family: revert;
+    color: #727272;
+}
+.listing a{text-decoration: none;}
+
 		
 		
 		

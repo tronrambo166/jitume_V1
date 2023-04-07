@@ -13,7 +13,7 @@
         <li class="nav-item py-1 px-3">
             <a href="home"><img class="mr-3" src="images/logo.png" width="200px" height="65px" style="margin-left: 58px;"></a>
         </li>
-                    <li class="nav-item py-1 px-3 text-light  "><router-link to="/home" class="font-weight-bold text-light ">Home</router-link></li>
+                    <li class="nav-item py-1 px-3 text-light  "><router-link to="/" class="font-weight-bold text-light ">Home</router-link></li>
 
                     <li class="nav-item py-1 px-3 text-light  "><router-link to="/services" class="font-weight-bold text-light ">Jitume service</router-link></li>
 
@@ -28,7 +28,7 @@
     <div class="col-sm-3">
   <ul>
         <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light ">
-     <a style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" :href="login" ><b>Sign In</b></a>
+     <a data-target="#loginModal" data-toggle="modal" style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
        </li>
     </ul>
         
@@ -57,69 +57,55 @@
  
            </div>
 
-                        <form action="search" method="get" class=" w-100">
+                             <form id="form" @submit.prevent ="search();" class=" w-100" method="post">
                             <div style="width:85%;" class=" mx-auto text-center row py-4 rounded text-center">
 
                             <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3 bg-white">
-                              <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="search" value="" placeholder="What are you looking for?"></div>
+                              <input  required=""  style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div>
 
                               <div style="" class="py-2 col-sm-3 bg-white">
-                              <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="search" value="" placeholder="Location"></div>
+                              <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="search" value=""placeholder="Location">
+
+                          </div>
 
                           <div class="py-2 col-sm-3 bg-white">
                           <div class="dropdown">
-                          <button class="bar w-100 py-2 btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           Category
-                          </button>
 
-                          <div style="height: 300px;margin-top: 305px;overflow-y: scroll;" class="dropdown-menu" aria-labelledby="">
+            <select  name="category" class="border-none form-control">
+            <option class="form-control" disabled="" >Select Category</option>
 
+            <option class="form-control" value="Agriculture" >Agriculture</option>
+           <option value="Sports/Gaming" >Sports/Gaming</option>
+           <option value="Real State" >Real State</option>
+           <option value="Entertainment" >Entertainment </option>
+           <option value="Auto" >Auto</option>
+           <option value="Finance/Accounting Security" >Finance/Accounting Security</option>
+           <option value="Domestic Help">Pets</option>
+           <option value="Domestic Help">Domestic Help</option>
+           <option value="Other" >Other</option> 
 
-                            
+           </select>
 
-                            <p class="font-italic dropdown-item" > <input type="checkbox" name="services[]" value="bouncing castles">
-                         <span class="rz-transition"></span>
-                          <em> Bouncing Castles</em> </p>
-                                <p class="dropdown-item" > <input type="checkbox" name="services[]" value="catering">
-                             <span class="rz-transition"></span>
-                              <em>Catering</em> </p>
-                            <p class="dropdown-item" > <input type="checkbox" name="services[]" value="clowns">
-                            </p>
-
-
-
-                          </div>
                         </div>
                         </div>
-
 
                             <div style="border-radius: 0 35px 35px 0;" class="bg-white col-sm-3 py-2 ">
                                 <button  class="searchListing  float-right" type="submit">Search</button>
                             </div>
 
-                               </div>
-
-
-                            
-
+                               </div>               
 
                             <div class="row" style="">
-                                <div id="result_list" class="text-left" style="display: none;width:41%; z-index: 1000;height: 600px;position: absolute; margin-left: -7px;">
+                                <div id="result_list" class="text-left" style="display: none;width:32%; z-index: 1000;height: 600px;position: absolute; margin-left: 378px;top: 410px;">
                                     
                                 </div>
                             </div>
   
                         </form>
-                        </div>
-
-                       
+                        </div>                
 
                         </div> 
-
-
-                      
-
-                        
+                    
                     </div>
                       </div>
 
@@ -226,65 +212,58 @@
 
 </template>
 
+
 <script>
    
 export default {
     
-    data: () => ({
-    category:{},
-    catIds:[],
-    emptyCat:false,
-    home:true
+  data: () => ({
+  form: new Form({
+  listing_name:'',
+  search:'',
+  categories:''
+  })
     }),
-    methods:{
-     getCats:function(){
-     let t = this; 
-    const response = axios.get('http://localhost/laravel_projects/Vue_eCommerce/public/admin/manage-product').then(function(response){
-    console.log(response.data);
-    t.allcategory=response.data.data;
-   
-    });
-    
-  },
-  
-  
-  removePro(id){
 
-  Swal.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
-}).then((result) => {
-  if (result.isConfirmed) {
-  axios.get('http://localhost/laravel_projects/Vue_eCommerce/public/delpro/'+id).then( (data) =>{
-  console.log(data)
-   toastr.success(data.data.message)
-              }).catch( (error) =>{})
-   this.$store.dispatch("fetchpro")
-  }
-})
-
- 
-
-  }
+  methods:{
+  async search(){
+  const response = await this.form.post('http://localhost/laravel_projects/jitume/public/search');
+  console.log(response.data);
+  toastr.success(response.data.success, { timeout:5000 });
+ //this.$router.push('/manage-category');
+ //this.$router.push({name: 'listingSearch', params: { id: 1 }})
 
   },
-  
 
-     mounted() { 
-     //this.address()
-     //return this.$store.dispatch("fetchpro")
-      },
+search(){
+const form = $('#form');
+var thiss = this;
+var ids='';
 
-     computed:{ 
-      allpro(){  return this.$store.getters.getpro }
-     }
+$.ajax({
+url:'search',
+method:'POST',
+headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+dataType:'json',
+data:form.serialize(),
+    success: function (response) {
+    console.log(response);
 
+    Object.entries(response.results).forEach(entry => {
+           const [index, row] = entry; 
+           ids = ids+row.id+',';      
+          });//console.log(ids);
+
+    //thiss.$router.push({ path: '/listingResults', query: { result: response } })
+    thiss.$router.push({ name: 'listingResults', params: { results: ids}})
+    },
+    error: function (response) {
+    console.log(response);
+      }
+});
+  }
+
+  }
      
-
     }
 </script>

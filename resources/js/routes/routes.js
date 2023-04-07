@@ -1,8 +1,10 @@
 import home from '../components/site/home.vue'
-import products from '../components/site/products.vue'
-import cart from '../components/site/cart.vue'
-import contact from '../components/site/contact.vue'
-import event from '../components/site/event.vue'
+import services from '../components/site/services.vue'
+import applyShow from '../components/site/applyShow.vue'
+import looking_investor from '../components/site/looking_investor.vue'
+import become_provider from '../components/site/become_provider.vue'
+import listingResults from '../components/site/listingResults.vue'
+import listingDetails from '../components/site/listingDetails.vue'
 
 //ADMIN COMPONENTS
 import addcat from '../components/admin/category/addcat.vue'
@@ -13,13 +15,18 @@ import addpro from '../components/admin/products/addpro.vue'
 import manpro from '../components/admin/products/manpro.vue'
 import editpro from '../components/admin/products/editpro.vue'
 
-//Frontend 
+
+//EXPORT
 export const routes=[
 { path:'/', component: home},
 { path:'/home', component: home},
-{ path:'/services', component: products},
-{ path:'/applyShow', component: cart},
-{ path:'/event/:id', component: event},
+{ path:'/services', component: services},
+{ path:'/applyShow', component: applyShow},
+{ path:'/looking_investor', component: looking_investor},
+{ path:'/become_provider', component: become_provider},
+{ path:'/listingResults/:results',name: 'listingResults', component: listingResults},
+{ path:'/listingDetails/:id', component: listingDetails},
+
 
 //ADMIN ROUTES
 {path:'/add-category', component: addcat},

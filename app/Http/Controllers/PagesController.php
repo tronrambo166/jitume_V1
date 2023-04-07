@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use App\Models\Events;
+use App\Models\Listing;
 use App\Models\Services;
 use App\Models\Images;
 use App\Models\User;
@@ -51,33 +51,41 @@ return response()->json(['data'=>$results]);
 
 
 public function search(Request $request){
+$listing_name = $request->listing_name;
 $location = $request->search;
-$services = $request->services;
+$category = $request->category;
 $results = array();
-$total_guests = ($request->adults)+($request->childs);
-//$name = $names[0];$city = $names[1];$country = $names[2];
+//return response()->json(['success' => $category]);
 
-$check_service = Services::where('s_loction',$location)->get();
- //echo '<pre>'; print_r($check_service); echo '<pre>'; exit;
-foreach($services as $serv) {
-foreach($check_service as $service){ $i=0;
- //$cats = explode(',',$service->service_cats);
-     //echo $service->service_cats.' and '.$serv.'//';
-    if (str_contains(strtolower($service->service_cats), $serv) && $service->max_guests >= $total_guests) {
-        foreach($results as $res)
-        if($res->s_name == $service->s_name) $i++;
-        if($i==0)
+$check_listing = Listing::where('location',$location)
+//->where('category',$category)
+->get();
+
+foreach($check_listing as $service){ 
+    if (str_contains(strtolower($service->name), $listing_name)) {
         $results[] = $service;
+} }
+
+foreach($check_listing as $service){ 
+    if (!str_contains(strtolower($service->name), $listing_name)) {
+        $results[] = $service;
+} }
+
+$listings = $results;
+return response()->json(['results'=>$listings, 'success' => "Success"]);
+
 }
- 
-} } //echo '<pre>'; print_r($results); echo '<pre>'; exit;
 
-$events = $results;
-$poster = Images::get();
-
-$service = $services[0];
-return view('events',compact('events','poster','service'));
-
+public function searchResults($ids){
+$results = array();
+$ids = explode(',',$ids); 
+foreach($ids as $id){ 
+    if($id!=''){ 
+    $listing = Listing::where('id',$id)->first();
+    $results[] = $listing;
+}
+}
+return response()->json([ 'data' => $results] );
 }
 
 

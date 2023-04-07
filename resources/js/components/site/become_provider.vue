@@ -12,11 +12,11 @@
             <a href="home"><img class="" src="images/logo_services.png" width="200px" height="65px" style="margin-left: 58px;"></a>
         </li>
         
-         <li class="nav-item py-1 px-3"><router-link to="/home" class="text-secondary ">Home</router-link></li>
+         <li class="nav-item py-1 px-3">
 
-                    <li class="nav-item py-1 px-3 text-secondary"><router-link to="/services" class="text-secondary ">Jitume service</router-link></li>
+                    <li class="nav-item py-1 px-3 text-secondary"><router-link to="/looking_investor" class="text-secondary ">Looking for investors</router-link></li>
 
-                    <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/applyShow" class=" text-secondary">Apply for show
+                    <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/become_provider" class=" text-secondary">Become a provider
                     </router-link></li>
 
                 </ul>
