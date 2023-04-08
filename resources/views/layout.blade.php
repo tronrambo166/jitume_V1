@@ -36,7 +36,7 @@
 
      
 
-<div class="app container-fluid "  >
+<div class="app container-fluid " style="background: white;" >
  
 <!-- Layout -->
     <!--  <div  class="row border_dark p-0" style="">

@@ -106,9 +106,9 @@ h1 { font-family: revert; font-size: 36px; }
 }
 
 .service_img{
-	background: url(../images/services.jpg) no-repeat;
-    background-size: 100% 500px;
-    background-position: center bottom;
+	background: url(../images/service-bg.jpeg) no-repeat;
+    background-size: 100% 530px;
+    background-position: center center;
 }
 .upload-btn-wrapper {
   position: relative;
@@ -195,6 +195,22 @@ hr{color: #a7a3a3;}
     color: #727272;
 }
 .listing a{text-decoration: none;}
+
+
+.buttonListing {
+	width: 85%;
+	margin: auto;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 0 40px;
+    height: 50px;
+    outline: none;
+    background-color: #72c537;
+    border-radius: 35px;
+    border: none;
+    color: white;
+}
+
 
 		
 		

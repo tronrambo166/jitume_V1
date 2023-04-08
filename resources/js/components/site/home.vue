@@ -183,7 +183,7 @@
             <div class="elementor-element elementor-element-052ff25 elementor-widget elementor-widget-image" data-id="052ff25" data-element_type="widget" data-widget_type="image.default">
         <div class="elementor-widget-container">
                 <div class="elementor-image">
-                        <img style="width:486px;height: 462px;" decoding="async" width="579" height="551" src="images/howitworks.jpg" class="attachment-large size-large" alt="" >                           </div>
+                        <img style="width:486px;height: 462px;" decoding="async" width="579" height="551" src="images/home.png" class="attachment-large size-large" alt="" >                           </div>
             </div>
         </div>
             </div>

@@ -9,7 +9,7 @@
        <ul class="navbar-nav py-2 "> 
 
         <li class="nav-item py-1 pl-3 pr-4">
-            <a href="home"><img class="" src="images/logo_services.png" width="200px" height="65px" style="margin-left: 58px;"></a>
+            <a href="home"><img class="" src="images/logo_services.png" width="150px" height="35px" style="margin-left: 58px;"></a>
         </li>
         
          <li class="nav-item py-1 px-3">
@@ -44,46 +44,27 @@
 
 
 <!-- PAGE CONTENT -->
-<div class="my-5 row service_img mx-auto text-center" style="min-height:500px">
+<div class="mb-5 row service_img mx-auto text-center" style="min-height:500px">
   
    <div class=" col-sm-12 text-center" style="">
 
          <div class="py-5"></div>
          <div class="mt-5 mb-4 w-50 mx-auto text-center">   
-         <h2 style="font-size:42px; font-weight: 500px;" class="text-light ">Looking for...
+         <h2 style="font-size: 60px;
+    font-weight: bold;
+    font-style: normal;text-shadow: 3px 3px #2a2a2c ; " class="text-light ">Looking for...
        </h2> 
      </div>
 
                         <form action="search" method="get" class=" w-100">
                             <div style="width:85%;" class=" mx-auto text-center row py-4 rounded text-center">
 
-                            <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3 bg-white">
-                              <input  required=""  style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="search" value="" placeholder="What are you looking for?"></div>
+                              <div style="" class="py-2 col-sm-9 bg-white">
+                              <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;" class=" bg-white form-control d-inline" type="text" name="search" value="" placeholder="Search"></div>
 
-                              <div style="" class="py-2 col-sm-3 bg-white">
-                              <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="search" value="" placeholder="Location"></div>
-
-                          <div class="py-2 col-sm-3 bg-white">
-                          <div class="dropdown">
-
-            <select class="border-none form-control">
-            <option class="form-control" value="Business Planning" >Category</option>
-
-           <option class="form-control" value="Business Planning" >Business Planning</option>
-           <option value="Legal " >Project Management</option>
-           <option value="Business Planning" >Business Planning</option>
-           <option value="IT " >IT </option>
-           <option value="Finance, Accounting & Tax Marketing" >Finance, Accounting & Tax Marketing</option>
-           <option value="Public Relations" >Public Relations</option>
-           <option value="Other" >Other</option>
-
-           </select>
-
-                        </div>
-                        </div>
 
                             <div style="border-radius: 0 35px 35px 0;" class="bg-white col-sm-3 py-2 ">
-                                <button  class="searchListing  float-right" type="submit">Search</button>
+                                <button  class="btn btn-light  float-right" type="submit"><i class="fa fa-search"></i></button>
                             </div>
 
                                </div>               

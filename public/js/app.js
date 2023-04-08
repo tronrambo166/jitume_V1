@@ -6776,6 +6776,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -7081,25 +7105,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -61005,7 +61010,7 @@ var staticRenderFns = [
                           decoding: "async",
                           width: "579",
                           height: "551",
-                          src: "images/howitworks.jpg",
+                          src: "images/home.png",
                           alt: "",
                         },
                       }),
@@ -61160,39 +61165,45 @@ var render = function () {
         _c("div", { staticClass: "grid images_3_of_2 rounded listing px-3" }, [
           _c("img", {
             staticClass: "shadow card",
-            staticStyle: { width: "100%", height: "450px" },
+            staticStyle: { width: "100%", height: "405px" },
             attrs: { src: _vm.form.image, alt: "" },
           }),
           _vm._v(" "),
-          _c(
-            "h3",
-            { staticClass: "mt-2 text-left text-dark font-weight-bold" },
-            [_vm._v(_vm._s(_vm.form.name))]
-          ),
-          _vm._v(" "),
-          _c("div", {}, [
+          _c("div", { staticClass: "pl-2" }, [
+            _c(
+              "h3",
+              { staticClass: "mt-2 text-left text-dark font-weight-bold" },
+              [_vm._v(_vm._s(_vm.form.name))]
+            ),
+            _vm._v(" "),
             _c("p", { staticClass: "my-1" }, [
               _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
               _vm._v(_vm._s(_vm.form.location)),
             ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row my-4" }, [
+            _vm._m(1),
             _vm._v(" "),
-            _c("p", [
-              _c("span", { staticClass: "mt-1 rounded" }, [
-                _c("i", { staticClass: "mr-2 fa fa-phone" }),
-                _vm._v(_vm._s(_vm.form.contact)),
+            _c("div", { staticClass: "Overview", attrs: { id: "Overview" } }, [
+              _c("p", [
+                _c("span", { staticClass: "font-weight-bold" }, [
+                  _vm._v("Details:" + _vm._s(_vm.form.details)),
+                ]),
               ]),
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _c("span", { staticClass: "font-weight-bold" }, [
-                _vm._v("Category:" + _vm._s(_vm.form.category)),
+              _vm._v(" "),
+              _c("p", [
+                _c("span", { staticClass: "mt-1 rounded" }, [
+                  _c("i", { staticClass: "mr-2 fa fa-phone" }),
+                  _vm._v(_vm._s(_vm.form.contact)),
+                ]),
               ]),
             ]),
           ]),
         ]),
       ]),
       _vm._v(" "),
-      _vm._m(1),
+      _vm._m(2),
     ]),
   ])
 }
@@ -61218,9 +61229,58 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-5 m-auto" }, [
-      _c("h3", { staticClass: "d-block m-auto text-center" }, [
-        _vm._v("LOADING..."),
+    return _c("div", { staticClass: "col-sm-12" }, [
+      _c("a", { staticClass: "btn border border-bottom-success" }, [
+        _vm._v("Overview"),
+      ]),
+      _vm._v(" "),
+      _c("a", { staticClass: "btn border border-bottom-success" }, [
+        _vm._v("Add review"),
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-5" }, [
+      _c("div", { staticClass: "card bg-light w-75 mx-auto py-3" }, [
+        _c(
+          "h5",
+          {
+            staticClass:
+              "mx-4 text-secondary shadow border border-light py-2 d-block text-center",
+          },
+          [
+            _vm._v("Seed investors spot open\n              "),
+            _c("i", { staticClass: "ml-1 fa fa-angle-up" }),
+          ]
+        ),
+        _vm._v(" "),
+        _c("button", { staticClass: "buttonListing my-3" }, [
+          _vm._v("Login to book"),
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c(
+          "h5",
+          { staticClass: "border border-light py-2 d-block text-center" },
+          [
+            _vm._v("Commitment to invest fee "),
+            _c("p", { staticClass: "d-inline text-success" }, [_vm._v("2000")]),
+          ]
+        ),
+        _vm._v(" "),
+        _c("button", { staticClass: "buttonListing my-3" }, [
+          _vm._v("Invest with Equipment/Supplies"),
+        ]),
+        _vm._v(" "),
+        _c("button", { staticClass: "buttonListing my-3" }, [
+          _vm._v("Donate with Equipment/Supplies"),
+        ]),
       ]),
     ])
   },
@@ -61662,8 +61722,8 @@ var staticRenderFns = [
           staticStyle: { "margin-left": "58px" },
           attrs: {
             src: "images/logo_services.png",
-            width: "200px",
-            height: "65px",
+            width: "150px",
+            height: "35px",
           },
         }),
       ]),
@@ -61676,7 +61736,7 @@ var staticRenderFns = [
     return _c(
       "div",
       {
-        staticClass: "my-5 row service_img mx-auto text-center",
+        staticClass: "mb-5 row service_img mx-auto text-center",
         staticStyle: { "min-height": "500px" },
       },
       [
@@ -61688,7 +61748,12 @@ var staticRenderFns = [
               "h2",
               {
                 staticClass: "text-light",
-                staticStyle: { "font-size": "42px", "font-weight": "500px" },
+                staticStyle: {
+                  "font-size": "60px",
+                  "font-weight": "bold",
+                  "font-style": "normal",
+                  "text-shadow": "3px 3px #2a2a2c",
+                },
               },
               [_vm._v("Looking for...\n       ")]
             ),
@@ -61709,31 +61774,10 @@ var staticRenderFns = [
                   staticStyle: { width: "85%" },
                 },
                 [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "py-2 col-sm-3 bg-white",
-                      staticStyle: { "border-radius": "35px 0 0 35px" },
-                    },
-                    [
-                      _c("input", {
-                        staticClass: "bar bg-white form-control d-inline",
-                        staticStyle: { border: "none", height: "42px" },
-                        attrs: {
-                          required: "",
-                          type: "text",
-                          name: "search",
-                          value: "",
-                          placeholder: "What are you looking for?",
-                        },
-                      }),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "py-2 col-sm-3 bg-white" }, [
+                  _c("div", { staticClass: "py-2 col-sm-9 bg-white" }, [
                     _c("input", {
-                      staticClass: "bar bg-white form-control d-inline",
-                      staticStyle: { border: "none", height: "42px" },
+                      staticClass: "bg-white form-control d-inline",
+                      staticStyle: { border: "none" },
                       attrs: {
                         id: "searchbox",
                         required: "",
@@ -61741,71 +61785,9 @@ var staticRenderFns = [
                         type: "text",
                         name: "search",
                         value: "",
-                        placeholder: "Location",
+                        placeholder: "Search",
                       },
                     }),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "py-2 col-sm-3 bg-white" }, [
-                    _c("div", { staticClass: "dropdown" }, [
-                      _c(
-                        "select",
-                        { staticClass: "border-none form-control" },
-                        [
-                          _c(
-                            "option",
-                            {
-                              staticClass: "form-control",
-                              attrs: { value: "Business Planning" },
-                            },
-                            [_vm._v("Category")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "option",
-                            {
-                              staticClass: "form-control",
-                              attrs: { value: "Business Planning" },
-                            },
-                            [_vm._v("Business Planning")]
-                          ),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "Legal " } }, [
-                            _vm._v("Project Management"),
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "option",
-                            { attrs: { value: "Business Planning" } },
-                            [_vm._v("Business Planning")]
-                          ),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "IT " } }, [
-                            _vm._v("IT "),
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "option",
-                            {
-                              attrs: {
-                                value: "Finance, Accounting & Tax Marketing",
-                              },
-                            },
-                            [_vm._v("Finance, Accounting & Tax Marketing")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "option",
-                            { attrs: { value: "Public Relations" } },
-                            [_vm._v("Public Relations")]
-                          ),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "Other" } }, [
-                            _vm._v("Other"),
-                          ]),
-                        ]
-                      ),
-                    ]),
                   ]),
                   _vm._v(" "),
                   _c(
@@ -61818,10 +61800,10 @@ var staticRenderFns = [
                       _c(
                         "button",
                         {
-                          staticClass: "searchListing float-right",
+                          staticClass: "btn btn-light float-right",
                           attrs: { type: "submit" },
                         },
-                        [_vm._v("Search")]
+                        [_c("i", { staticClass: "fa fa-search" })]
                       ),
                     ]
                   ),

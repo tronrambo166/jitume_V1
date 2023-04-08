@@ -46,24 +46,48 @@
         <div class="heading row"> 
         <div class="col-sm-7">
              <div class="grid images_3_of_2 rounded listing px-3">
-                <img style="width:100%;height:450px" class="shadow card" 
+                <img style="width:100%;height:405px" class="shadow card" 
                 :src="form.image" alt="" />
                     
-                <h3 class="mt-2 text-left text-dark font-weight-bold ">{{form.name}}</h3>
+                 <div class="pl-2">
+                    <h3 class="mt-2 text-left text-dark font-weight-bold ">{{form.name}}</h3>
         
-                    <div class="">
                         <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{form.location}}</p>
-                    <p><span class="mt-1 rounded"><i class="mr-2 fa fa-phone"></i>{{form.contact}}</span></p>
+                        </div>
 
-                        <p> <span class="font-weight-bold">Category:{{form.category}}</span></p>
-                        
+                        <div class="row my-4">
+                            <div class="col-sm-12">
+                            <a class="btn border border-bottom-success">Overview</a>
+                            <a class="btn border border-bottom-success">Add review</a>
+
+                            <hr>
+                            </div>
+                            
+                      
+                   <div class="Overview" id="Overview">
+                    <p> <span class="font-weight-bold">Details:{{form.details}}</span></p>
+                    <p><span class="mt-1 rounded"><i class="mr-2 fa fa-phone"></i>{{form.contact}}</span></p>
                     </div>
+
+                      
+                          </div>                                  
+
                     </div>
 
          </div> 
 
-         <div class="col-sm-5 m-auto">
-             <h3 class="d-block m-auto text-center">LOADING...</h3>
+         <div class="col-sm-5">
+            <div class="card bg-light w-75 mx-auto py-3">
+             <h5 class="mx-4 text-secondary shadow border border-light py-2 d-block text-center">Seed investors spot open
+                <i class="ml-1 fa fa-angle-up"></i></h5>
+                <button class="buttonListing my-3">Login to book</button>
+                <hr>
+
+                <h5 class="border border-light py-2 d-block text-center">Commitment to invest fee <p class="d-inline text-success">2000</p>
+                </h5>
+                <button class="buttonListing my-3">Invest with Equipment/Supplies</button>
+                <button class="buttonListing my-3">Donate with Equipment/Supplies</button>
+         </div>
          </div>
         
         </div>   
