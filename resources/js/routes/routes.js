@@ -5,6 +5,8 @@ import looking_investor from '../components/site/looking_investor.vue'
 import become_provider from '../components/site/become_provider.vue'
 import listingResults from '../components/site/listingResults.vue'
 import listingDetails from '../components/site/listingDetails.vue'
+import invest_eqp from '../components/site/invest_eqp.vue'
+
 
 //ADMIN COMPONENTS
 import addcat from '../components/admin/category/addcat.vue'
@@ -26,6 +28,8 @@ export const routes=[
 { path:'/become_provider', component: become_provider},
 { path:'/listingResults/:results',name: 'listingResults', component: listingResults},
 { path:'/listingDetails/:id', component: listingDetails},
+{ path:'/invest_eqp/:id', component: invest_eqp},
+{ path:'/invest/:listing_id/:id', component: invest_eqp},
 
 
 //ADMIN ROUTES

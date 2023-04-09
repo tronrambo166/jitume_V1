@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Models\Listing;
 use App\Models\Services;
-use App\Models\Images;
+use App\Models\Equipments;
 use App\Models\User;
 use Session; 
 use Hash;
@@ -18,7 +18,7 @@ class PagesController extends Controller
     //
 
     public function home(){       
-         return  view('home');
+         return view('home')->with('auth_user', auth()->user());
     	
     }
 
@@ -89,28 +89,44 @@ return response()->json([ 'data' => $results] );
 }
 
 
-public function event($id){
-$event = Services::where('id',$id)->first();
-$poster = Images::get();
+public function equipments($id){
 
-$rel_events = Services::where('s_loction',$event->s_loction)->get();
-return view('event',compact('event','poster','rel_events'));
-
+    $Equipment = Equipments::where('listing_id',$id)->get();
+    return response()->json(['data' => $Equipment] );
 }
 
-public function all_events(){
-$events = Events::orderBy('id','DESC')->get();
 
-$poster = Images::get();
-return view('all_events',compact('events','poster'));
+public function invest($listing_id,$id,$amount){
+    $investor = User::where('id',Auth::id())->first();
 
+    $Equipment = Equipments::where('id',$id)->first();
+    Equipments::update([
+        'status' => 'inactive'
+    ]);
+
+    $listing = listing::where('id',$listing_id)->first();
+    $old_amount = $listing->investment_needed;
+    $old_share = $listing->share;
+
+    Equipments::update([
+        'investment_needed' => $old_amount-$amount,
+        'share' => ($amount*$old_share)/$old_amount
+    ]);
+
+        $info=['Name'=>$investor->name, 'email' => $investor->email];
+        $user['to']= $listing->contact_mail;
+        Mail::send('invest_mail', $info, function($msg) use ($user){
+
+            $msg->to($user['to']);
+            $msg->subject('Test Mail');
+
+        });
+
+
+    return response()->json(['data' => 'Success'] );
 }
 
-public function create_event(){
-$events = Events::latest()->get();
-return view('create_event',compact('events'));
 
-}
 
 public function create_service(){
 $events = Events::latest()->get();

@@ -208,8 +208,23 @@ hr{color: #a7a3a3;}
     background-color: #72c537;
     border-radius: 35px;
     border: none;
-    color: white;
+    text-color: white;
 }
+
+.buttonEq {
+	width: 85%;
+	margin: auto;
+    font-size: 15px;
+    font-weight: 600;
+    outline: none;
+    background-color: #72c537;
+    border-radius: 35px;
+    border: none;
+    text-color: white;
+}
+
+.eq tr th{color: #72c537;}
+
 
 
 		

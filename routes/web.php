@@ -65,6 +65,9 @@ Route::post('/up_profile', 'PagesController@up_profile')->name('up_profile');
 Route::get('/get_suggest/{search}', 'PagesController@getAddress')->name('get_suggest');
 Route::post('search', 'PagesController@search')->name('search');
 Route::get('searchResults/{ids}', 'PagesController@searchResults')->name('searchResults');
+Route::get('equipments/{id}', 'PagesController@equipments')->name('equipments');
+Route::get('invest/{listing_id}/{id}/{amount}', 'PagesController@invest')->name('equipments');
+
 
 Route::get('all-events', 'PagesController@all_events')->name('all-events');
 
@@ -89,3 +92,5 @@ Route::get('/clear', function() {
     \Artisan::call('cache:clear');
     dd("Cache is cleared");
 });
+
+Auth::routes();

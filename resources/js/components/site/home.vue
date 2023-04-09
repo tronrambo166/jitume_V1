@@ -27,9 +27,15 @@
     
     <div class="col-sm-3">
   <ul>
-        <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light ">
-     <a data-target="#loginModal" data-toggle="modal" style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
+        <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light "> 
+
+      <a v-if="auth_user" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Logout</b></a>
+          
+      <a v-else data-target="#loginModal" data-toggle="modal" style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
+
        </li>
+                                    
     </ul>
         
         </div> 
@@ -217,15 +223,28 @@
    
 export default {
     
+  props: ['auth_user'],  
   data: () => ({
   form: new Form({
   listing_name:'',
   search:'',
-  categories:''
-  })
+  categories:'',
+  
+  }),
+  checkListing:''
+
     }),
 
+
+created() {
+            console.log(this.auth_user);
+            this.checkListing = sessionStorage.getItem('invest');
+            if(this.checkListing!='')
+              this.$router.push(`listingDetails/${this.checkListing}`)
+        },
+
   methods:{
+
   async search(){
   const response = await this.form.post('http://localhost/laravel_projects/jitume/public/search');
   console.log(response.data);
@@ -263,7 +282,8 @@ data:form.serialize(),
 });
   }
 
-  }
+  },
+
      
     }
 </script>

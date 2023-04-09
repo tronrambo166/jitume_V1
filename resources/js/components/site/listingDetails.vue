@@ -85,8 +85,17 @@
 
                 <h5 class="border border-light py-2 d-block text-center">Commitment to invest fee <p class="d-inline text-success">2000</p>
                 </h5>
-                <button class="buttonListing my-3">Invest with Equipment/Supplies</button>
-                <button class="buttonListing my-3">Donate with Equipment/Supplies</button>
+
+                <div v-if="auth_user" class="eqp-invest">
+                <router-link :to="`/invest_eqp/${form.listing_id}`" class="text-light buttonListing my-3">Invest with Equipment/Supplies</router-link>
+                <router-link :to="`/donate_eqp/${form.listing_id}`" class="text-light buttonListing my-3">Donate with Equipment/Supplies</router-link>
+                </div>
+
+                <div v-else="auth_user" class="eqp-invest">
+                <a @click="make_session(form.listing_id);" href="" data-target="#loginModal" data-toggle="modal" class="text-light buttonEq my-3">Invest with Equipment/Supplies</a>
+                <a href="" data-target="#loginModal" data-toggle="modal" class="text-light buttonListing my-3">Donate with Equipment/Supplies</a>
+                </div>
+
          </div>
          </div>
         
@@ -111,9 +120,11 @@
    
 export default {
     
+   props: ['auth_user'],
    data: () =>({
     form: new Form({
         name:'',
+        listing_id:'',
         details:'',
         location:'',
         contact:'',
@@ -123,6 +134,10 @@ export default {
     details:[] 
     }),
 
+created(){
+if(sessionStorage.getItem('invest')!=null)
+    sessionStorage.setItem('invest','');
+},
     methods:{
 
    getDetails:function(){ 
@@ -135,6 +150,7 @@ export default {
     t.form.contact = data.data.data[0].contact;
     t.form.image = data.data.data[0].image;
     t.form.category = data.data.data[0].category;
+    t.form.listing_id = data.data.data[0].id;
     
     });
     
@@ -143,8 +159,13 @@ export default {
    
         return '../';
 
+        },
+
+  
+  make_session(id){
+            sessionStorage.setItem('invest',id);
         }
-  },
+        },
   
 
      mounted() { 

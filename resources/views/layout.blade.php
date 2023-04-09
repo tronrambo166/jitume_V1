@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE HTML>
 <head>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
@@ -80,7 +79,7 @@
     <div class="row">
 
     <!-- yield('page') -->
-    <router-view></router-view>
+    <router-view :auth_user='@json($auth_user)' ></router-view>
 
      </div>
 
@@ -539,8 +538,12 @@ $("#datepicker2").datepicker({
 
 
                 </div>
-                 <!-- HIDDEN USER REG Card ends-->
+                 <!-- Logout-->
 
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
 
 
 
@@ -552,7 +555,7 @@ $("#datepicker2").datepicker({
 
  <div id="artist_log" class="card-body text-center py-0">
 
-                          <form method="POST" class="" action="">
+                          <form method="POST" class="" action="{{route('login')}}">
                            @csrf
 
                                             <input class=" w-75 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" 
@@ -605,12 +608,11 @@ $("#datepicker2").datepicker({
 
 
   <!-- HIDDEN USER LOG -->
-<div id="user_log" class="collapse card-body text-center py-0">
+  <div id="user_log" class="collapse card-body text-center py-0">
 
                     <form method="POST" class="d-inline form-inline" >
                         @csrf
-
-                                        
+                                  
                                             <input class=" w-75 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" 
                                             value=""    />
                                                                        
@@ -738,7 +740,6 @@ $("#datepicker2").datepicker({
     $('#business_reg').show();
     
     }
-
 
 
 </script>
