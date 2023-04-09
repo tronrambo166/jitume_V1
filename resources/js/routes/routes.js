@@ -6,6 +6,7 @@ import become_provider from '../components/site/become_provider.vue'
 import listingResults from '../components/site/listingResults.vue'
 import listingDetails from '../components/site/listingDetails.vue'
 import invest_eqp from '../components/site/invest_eqp.vue'
+import donate_eqp from '../components/site/donate_eqp.vue'
 
 
 //ADMIN COMPONENTS
@@ -29,6 +30,7 @@ export const routes=[
 { path:'/listingResults/:results',name: 'listingResults', component: listingResults},
 { path:'/listingDetails/:id', component: listingDetails},
 { path:'/invest_eqp/:id', component: invest_eqp},
+{ path:'/donate_eqp/:id', component: donate_eqp},
 { path:'/invest/:listing_id/:id', component: invest_eqp},
 
 

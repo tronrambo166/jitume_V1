@@ -92,8 +92,8 @@
                 </div>
 
                 <div v-else="auth_user" class="eqp-invest">
-                <a @click="make_session(form.listing_id);" href="" data-target="#loginModal" data-toggle="modal" class="text-light buttonEq my-3">Invest with Equipment/Supplies</a>
-                <a href="" data-target="#loginModal" data-toggle="modal" class="text-light buttonListing my-3">Donate with Equipment/Supplies</a>
+                <a @click="make_session(form.listing_id);" href="" data-target="#loginModal" data-toggle="modal" class="py-2 text-light buttonListing my-3">Invest with Equipment/Supplies</a>
+                <a href="" data-target="#loginModal" data-toggle="modal" class="py-2 text-light buttonListing my-3">Donate with Equipment/Supplies</a>
                 </div>
 
          </div>
@@ -136,7 +136,7 @@ export default {
 
 created(){
 if(sessionStorage.getItem('invest')!=null)
-    sessionStorage.setItem('invest','');
+    sessionStorage.clear();
 },
     methods:{
 

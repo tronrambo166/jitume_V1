@@ -66,7 +66,7 @@ Route::get('/get_suggest/{search}', 'PagesController@getAddress')->name('get_sug
 Route::post('search', 'PagesController@search')->name('search');
 Route::get('searchResults/{ids}', 'PagesController@searchResults')->name('searchResults');
 Route::get('equipments/{id}', 'PagesController@equipments')->name('equipments');
-Route::get('invest/{listing_id}/{id}/{amount}', 'PagesController@invest')->name('equipments');
+Route::get('invest/{listing_id}/{id}/{value}/{amount}/{type}', 'PagesController@invest')->name('equipments');
 
 
 Route::get('all-events', 'PagesController@all_events')->name('all-events');

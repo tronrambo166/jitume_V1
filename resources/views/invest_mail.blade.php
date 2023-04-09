@@ -4,19 +4,17 @@
 
 <!--Hidden Cart view-->
 
-        <div class="row  w-75 m-auto border shadow text-center bg-light" style=" box-shadow: 3px 3px 7px 7px grey; width:70%; margin:auto; broder:2px solid black; text-align:center">
-		<div class="container w-75 m-auto" style="width:80%; margin:auto; text-align:center">
-		<h1 class="font-weight-bold py-3" style=" padding-top:30px; padding-bottom:30px; font-weight:bold; text-align:center;" > Rewind Admin</h1>
-		 <br />To reset password just follow the link below!</p>
+        <div class="row  w-75 m-auto border shadow text-center bg-light" style=" box-shadow: 3px 3px 7px 7px grey; width:70%; background: #72c537;border: 1px solid black;">
+		<div class="container w-75 m-auto" style="box-shadow: 3px 3px 7px 7px grey; background: #72c537;width:80%; margin:auto; text-align:center">
+		
+		 <h2 style="color: white;font-family: sans-serif;"> {{$Name}} Wants to @if($type == 'invest') invest 
+		 	@else donate @endif {{$amount}} value of {{$eq_name}}
+		 	<br> Please contact: {{$email}}</h2>
 		
 		
-				<a class="h5 btn btn-danger w-100  " href="http://localhost/laravel_projects/WeEventIt/public/forgot/{{$email}}" 
-				style="text-decoration:none; border-radius:7px;  font-weight:bold; padding-top:15px; padding-bottom:15px; text-align:center; width:100%; background-color:red;"  >
-				<h3 style=" font-family:arial; border-radius:7px;  font-weight:bold; padding-top:15px; padding-bottom:15px; text-align:center; width:100%; background-color:green;
-				 color:white; text-decoration:none; "  >RESET</h3></a>
 				
 				
-				<p style=" color:black; line-height:22px; font-family:arial; padding-top:20px; padding-bottom:20px; text-align:center;" class="py-3 text-center"> All the best! <br />   Rewind Admin.</p>
+				<p style="font-weight: bold; color:black; line-height:22px; font-family:arial; padding-top:20px; padding-bottom:20px; text-align:center;" class="py-3 text-center"> Thanks! <br />   Jitume Admin.</p>
 
 		</div>
 		

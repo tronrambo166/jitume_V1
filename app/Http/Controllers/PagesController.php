@@ -11,6 +11,7 @@ use App\Models\User;
 use Session; 
 use Hash;
 use Auth;
+use Mail;
 
 
 class PagesController extends Controller
@@ -96,34 +97,42 @@ public function equipments($id){
 }
 
 
-public function invest($listing_id,$id,$amount){
+public function invest($listing_id,$id,$amount,$realAmount,$type){
     $investor = User::where('id',Auth::id())->first();
 
     $Equipment = Equipments::where('id',$id)->first();
-    Equipments::update([
+    Equipments::where('id',$id)->update([
         'status' => 'inactive'
     ]);
 
     $listing = listing::where('id',$listing_id)->first();
     $old_amount = $listing->investment_needed;
     $old_share = $listing->share;
+    $new_share = ($amount*$old_share)/$old_amount;
 
-    Equipments::update([
+    if($old_amount<$amount)
+    return response()->json(['response' => '<p class="font-weight-bold text-danger">Error: Value needed is less than given value!</p>'] );
+
+    listing::where('id',$listing_id)->update([
         'investment_needed' => $old_amount-$amount,
-        'share' => ($amount*$old_share)/$old_amount
-    ]);
+        'share' => $old_share-$new_share
+    ]); 
 
-        $info=['Name'=>$investor->name, 'email' => $investor->email];
-        $user['to']= $listing->contact_mail;
+        $info=['eq_name'=>$Equipment->eq_name, 
+            'Name'=>$investor->name,'amount'=>$amount,
+            'email' => $investor->email, 'type'=>$type]; 
+
+        $user['to'] = 'sohaankane@gmail.com';//$listing->contact_mail;
+
         Mail::send('invest_mail', $info, function($msg) use ($user){
-
             $msg->to($user['to']);
-            $msg->subject('Test Mail');
+            $msg->subject('Test Invest Alert!');
+        });  
 
-        });
-
-
-    return response()->json(['data' => 'Success'] );
+    if($type=='donate')
+    return response()->json(['response' => 'Donate request sent successfully!'] );
+    else
+    return response()->json(['response' => 'Invest request sent successfully!'] );
 }
 
 

@@ -11,7 +11,7 @@
        <ul class="navbar-nav py-2 ">
 
         <li class="nav-item py-1 px-3">
-            <a href="home"><img class="mr-3" src="images/logo.png" width="200px" height="65px" style="margin-left: 58px;"></a>
+            <a href="home"><img class="mr-3" src="images/logo.png" width="200px" height="60px" style="margin-left: 58px;"></a>
         </li>
                     <li class="nav-item py-1 px-3 text-light  "><router-link to="/" class="font-weight-bold text-light ">Home</router-link></li>
 
@@ -239,7 +239,7 @@ export default {
 created() {
             console.log(this.auth_user);
             this.checkListing = sessionStorage.getItem('invest');
-            if(this.checkListing!='')
+            if(this.checkListing!=null)
               this.$router.push(`listingDetails/${this.checkListing}`)
         },
 

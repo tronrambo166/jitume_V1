@@ -74,8 +74,8 @@
    
             <td class="text-center">
 
-            <a style="cursor:pointer;" id="invest" v-if="equipment.status == 'active'" @click="Invest(equipment.listing_id,equipment.id,equipment.value,equipment.amount)" class="text-light buttonEq my-2">Invest</a>
-            <button  v-else  disabled class="text-secondary buttonEq my-2">Invest</button>
+            <a style="cursor:pointer;" id="invest" v-if="equipment.status == 'active'" @click="Invest(equipment.listing_id,equipment.id,equipment.value,equipment.amount)" class="text-light buttonEq my-2">Donate</a>
+            <button  v-else  disabled class="text-secondary buttonEq my-2">Donate</button>
 
             </td>
         </tr>
@@ -129,7 +129,7 @@ export default {
 
     Invest(listing_id,id,value,amount){
     var t=this;
-     axios.get('http://localhost/laravel_projects/jitume/public/invest/'+listing_id+'/'+id+'/'+value+'/'+amount+'/invest').then( (data) =>{console.log(data.data.response);
+     axios.get('http://localhost/laravel_projects/jitume/public/invest/'+listing_id+'/'+id+'/'+value+'/'+amount+'/donate').then( (data) =>{console.log(data.data.response);
          toastr.success(data.data.response) 
     });
 
