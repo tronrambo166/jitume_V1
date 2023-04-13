@@ -68,7 +68,7 @@
 
             <div class="content_bottom">
                 <div class="heading">
-                     <h3 class="my-5 bg-light text-center text-secondary">Listings</h3>
+                     <h3 class="my-5 bg-light text-center text-secondary">Services</h3>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -78,11 +78,11 @@
 
              
                 <div v-for="( result, index ) in results" class="listing col-sm-4 my-5">
-                    <router-link :to="`/listingDetails/${result.id}`" class="shadow card border"> <img style="width:332px; height:230px" :src="result.image"   alt=""  /> 
+                    <router-link :to="`/serviceDetails/${result.id}`" class="shadow card border"> <img style="width:332px; height:230px" :src="result.image"   alt=""  /> 
 
                     <h4 class="mt-3 mb-0">{{result.name}} </h4>
-                    <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{result.location}}</p>
-                    <p><span class="mt-1 rounded"><i class="mr-2 fa fa-phone"></i>{{result.contact}}</span></p>
+                    <p class="my-1"><i class="mr-2 fa fa-dollar"></i>{{result.price}} Kshs</p>
+                    <p><span class="mt-1 rounded"><i class="mr-2 fa fa-category"></i>Category: {{result.category}}</span></p>
                     </router-link>
                     
               </div>
@@ -109,7 +109,7 @@ export default {
             let t = this;
             this.ids = this.$route.params.results;
              //this.results = this.ids.split(",");
-            axios.get('http://localhost/laravel_projects/jitume/public/searchResults/'+t.ids).then( (data) =>{
+            axios.get('http://localhost/laravel_projects/jitume/public/ServiceResults/'+t.ids).then( (data) =>{
                 t.results = data.data.data;
                 console.log(data);
               }).catch( (error) =>{})

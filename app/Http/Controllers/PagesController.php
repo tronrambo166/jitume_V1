@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Models\Listing;
 use App\Models\Services;
+use App\Models\Shop;
 use App\Models\Equipments;
 use App\Models\User;
 use Session; 
@@ -14,13 +15,26 @@ use Auth;
 use Mail;
 
 
+
 class PagesController extends Controller
 {
     //
 
-    public function home(){       
-         return view('home')->with('auth_user', auth()->user());
+    public function loginB(Request $request){   
+    $email = $request->email;  
+    $password = $request->password;    
+    $user = User::where('email',$email)->where('business',1)->first();
+    if($user!='')
+    if(password_verify($password, $user->password))    
+    return redirect('business');// view('business.index');
+
+    else Session::put('loginFailed','Incorrect Credentials!');
     	
+    }
+
+ public function home(){       
+         return view('home')->with('auth_user', auth()->user());
+        
     }
 
 
@@ -83,6 +97,45 @@ $ids = explode(',',$ids);
 foreach($ids as $id){ 
     if($id!=''){ 
     $listing = Listing::where('id',$id)->first();
+    $results[] = $listing;
+}
+}
+return response()->json([ 'data' => $results] );
+}
+
+
+public function searchService(Request $request){
+$listing_name = $request->listing_name;
+$location = $request->search;
+$category = $request->category;
+$results = array();
+//return response()->json(['success' => $category]);
+
+$check_listing = Services::where('category',$category)
+//->where('category',$category)
+->get();
+
+foreach($check_listing as $service){ 
+    if (str_contains(strtolower($service->name), $listing_name)) {
+        $results[] = $service;
+} }
+
+foreach($check_listing as $service){ 
+    if (!str_contains(strtolower($service->name), $listing_name)) {
+        $results[] = $service;
+} }
+
+$listings = $results;
+return response()->json(['results'=>$listings, 'success' => "Success"]);
+
+}
+
+public function serviceResults($ids){
+$results = array();
+$ids = explode(',',$ids); 
+foreach($ids as $id){ 
+    if($id!=''){ 
+    $listing = Services::where('id',$id)->first();
     $results[] = $listing;
 }
 }
@@ -266,9 +319,6 @@ Services::create([
 
 }
 
-public function booking_request(Request $request){
-    return $request->all();
-}
 
 public function up_profile(Request $req){
        

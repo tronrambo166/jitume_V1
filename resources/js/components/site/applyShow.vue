@@ -29,9 +29,15 @@
     
     <div class="col-sm-3">
   <ul>
-        <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light ">
-     <router-link style="background: rgb(221 221 221 / 55%);" class=" text-secondary rounded d-inline px-3 py-2 d-inline-block text-center" to="login" ><b>Sign In</b></router-link>
+        <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light "> 
+
+      <a v-if="auth_user" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Logout</b></a>
+          
+      <a v-else data-target="#loginModal" data-toggle="modal" style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
+
        </li>
+                                    
     </ul>
         
         </div> 
@@ -63,7 +69,7 @@
 <script>
    
 export default {
-    
+    props: ['auth_user'],
     data: () => ({
     category:{},
     catIds:[],

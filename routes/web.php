@@ -53,10 +53,8 @@ Route::get('/home', 'PagesController@home')->name('home');
 
 Route::get('/create-listing', 'PagesController@create_event')->name('create-listing'); 
 Route::get('/create-service','PagesController@create_service')->name('create-service');
-Route::post('/create-event', 'PagesController@save_event')->name('create-event-post');
 Route::post('/create-service','PagesController@save_service')->name('create-service-post');
-Route::get('event/{id}', 'PagesController@event')->name('event');
-Route::post('booking_request', 'PagesController@booking_request')->name('booking_request');
+
 Route::get('/profile', 'PagesController@profile')->name('profile');
 Route::post('/up_profile', 'PagesController@up_profile')->name('up_profile');
 
@@ -65,22 +63,36 @@ Route::post('/up_profile', 'PagesController@up_profile')->name('up_profile');
 Route::get('/get_suggest/{search}', 'PagesController@getAddress')->name('get_suggest');
 Route::post('search', 'PagesController@search')->name('search');
 Route::get('searchResults/{ids}', 'PagesController@searchResults')->name('searchResults');
+
+Route::post('searchService', 'PagesController@searchService')->name('searchService');
+Route::get('ServiceResults/{ids}', 'PagesController@ServiceResults')->name('ServiceResults');
+
 Route::get('equipments/{id}', 'PagesController@equipments')->name('equipments');
 Route::get('invest/{listing_id}/{id}/{value}/{amount}/{type}', 'PagesController@invest')->name('equipments');
 
-
-Route::get('all-events', 'PagesController@all_events')->name('all-events');
+//MAIN/BACKEND/VUE
 
 Route::get('{/anypath}', 'PagesController@home')->where('path', '.*');
 //Route::get('admin/{anypath}', 'AdminController@dashboard')->where('path', '.*');
-
-Route::get('/details/{id}', 'AdminController@editpro');
 Route::get('profile/{id}', 'PagesController@profile');
 Route::post('profile/edit/{id}', 'PagesController@updateProfile');
 
 
+
 // LARAVEL ROUTES
 Auth::routes();
+Route::post('loginB', 'PagesController@loginB')->name('loginB'); 
+Route::get('business', 'BusinessController@business')->name('business');
+
+Route::prefix('/business')->group(function(){
+  Route::get('add-listing', 'BusinessController@add_listing')->name('add-listing');
+  Route::post('create-listing', 'BusinessController@save_listing')->name('create-listing');
+  Route::get('listings', 'BusinessController@listings')->name('listings');
+Route::post('add_eqp', 'BusinessController@add_eqp')->name('add_eqp');
+Route::post('up_listing', 'BusinessController@up_listing')->name('up_listing');
+
+});
+
 Route::get('forgot/{remail}', 'testController@forgot')->name('forgot');
 Route::post('send_reset_email', 'testController@send_reset_email')->name('send_reset_email');
 Route::post('reset/{remail}', 'testController@reset')->name('reset');
@@ -94,3 +106,7 @@ Route::get('/clear', function() {
 });
 
 Auth::routes();
+
+// Payment Routes
+Route::get('/stripe', 'checkoutController@goCheckout')->name('stripe');
+Route::post('/stripe', 'checkoutController@stripePost')->name('stripe.post');

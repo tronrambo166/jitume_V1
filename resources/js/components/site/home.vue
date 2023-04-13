@@ -78,7 +78,7 @@
                           <div class="dropdown">
 
             <select  name="category" class="border-none form-control">
-            <option class="form-control" disabled="" >Select Category</option>
+            <option class="form-control" >Select Category</option>
 
             <option class="form-control" value="Agriculture" >Agriculture</option>
            <option value="Sports/Gaming" >Sports/Gaming</option>
@@ -102,7 +102,7 @@
                                </div>               
 
                             <div class="row" style="">
-                                <div id="result_list" class="text-left" style="display: none;width:32%; z-index: 1000;height: 600px;position: absolute; margin-left: 378px;top: 410px;">
+                                <div id="result_list" class="text-left" style="display: none;width:30%; z-index: 1000;height: 600px;position: absolute; margin-left: 394px;top: 410px;">
                                     
                                 </div>
                             </div>

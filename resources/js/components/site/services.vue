@@ -27,11 +27,16 @@
     
     <div class="col-sm-3">
   <ul>
-        <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light ">
-     <router-link style="background: rgb(221 221 221 / 55%);" class=" text-secondary rounded d-inline px-3 py-2 d-inline-block text-center" to="login" ><b>Sign In</b></router-link>
+        <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light "> 
+
+      <a v-if="auth_user" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" style="background: rgb(175 173 173 / 23%); cursor:pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Logout</b></a>
+          
+      <a v-else data-target="#loginModal" data-toggle="modal" style="background: rgb(175 173 173 / 23%);" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
+
        </li>
+                                    
     </ul>
-        
         </div> 
 
        <div class="col-sm-1"> </div>
@@ -56,21 +61,47 @@
        </h2> 
      </div>
 
-                        <form action="search" method="get" class=" w-100">
+                             <form id="form" @submit.prevent ="search();" class=" w-100" method="post">
                             <div style="width:85%;" class=" mx-auto text-center row py-4 rounded text-center">
 
-                              <div style="" class="py-2 col-sm-9 bg-white">
-                              <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;" class=" bg-white form-control d-inline" type="text" name="search" value="" placeholder="Search"></div>
+                            <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3 bg-white">
+                              <input  required=""  style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div>
 
+                              <div style="" class="py-2 col-sm-3 bg-white">
+                              <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="search" value=""placeholder="Location">
+
+                          </div>
+
+                          <div class="py-2 col-sm-3 bg-white">
+                          <div class="dropdown">
+
+           <select  name="category" class="border-none form-control">    
+           <option hidden class="form-control" >Services</option>
+           <option class="form-control" value="Business Planning" >Business Planning</option>
+           <option value="IT" >IT</option>
+           <option value="Legal Project Management" >Legal Project Management</option>
+           <option value="Branding and Design" >Branding and Design </option>
+           <option value="Auto" >Auto</option>
+           <option value="Finance, Accounting & 
+                Tax Marketing" >Finance, Accounting & 
+                Tax Marketing</option>
+           <option value="Tax Marketing">Tax Marketing</option>
+           <option value="Public Relations">Public Relations</option>
+           <option value="Other" >Other</option> 
+
+           </select>
+
+                        </div>
+                        </div>
 
                             <div style="border-radius: 0 35px 35px 0;" class="bg-white col-sm-3 py-2 ">
-                                <button  class="btn btn-light  float-right" type="submit"><i class="fa fa-search"></i></button>
+                                <button  class="searchListing  float-right" type="submit">Search</button>
                             </div>
 
                                </div>               
 
                             <div class="row" style="">
-                                <div id="result_list" class="text-left" style="display: none;width:32%; z-index: 1000;height: 600px;position: absolute; margin-left: 378px;top: 308px;">
+                                <div id="result_list" class="text-left" style="display: none;width:32%; z-index: 1000;height: 600px;position: absolute; margin-left: 378px;top: 330px;">
                                     
                                 </div>
                             </div>
@@ -91,42 +122,44 @@
 <script>
    
 export default {
-    
+    props: ['auth_user'],
     data: () => ({
     res:[],
     emptyCat:false
     }),
     methods:{
-    setRes:function () {
-            this.res = this.$route.query.result.results;
-            console.log(this.res);
-        },
+    
+    search(){
+    const form = $('#form');
+    var thiss = this;
+    var ids='';
 
-  
-  removePro(id){
-  Swal.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
-}).then((result) => {
-  if (result.isConfirmed) {
-  axios.get('http://localhost/laravel_projects/Vue_eCommerce/public/delpro/'+id).then( (data) =>{
-  console.log(data)
-   toastr.success(data.data.message)
-              }).catch( (error) =>{})
-   //this.$store.dispatch("fetchpro")
-  }
-})
-  }
+    $.ajax({
+    url:'searchService',
+    method:'POST',
+    headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+    dataType:'json',
+    data:form.serialize(),
+    success: function (response) {
+    console.log(response);
+
+    Object.entries(response.results).forEach(entry => {
+    const [index, row] = entry; 
+    ids = ids+row.id+',';      
+    });//console.log(ids);
+
+    //thiss.$router.push({ path: '/listingResults', query: { result: response } })
+    thiss.$router.push({ name: 'serviceResults', params: { results: ids}})
+    },
+    error: function (response) {
+    console.log(response);
+    }
+    });
+    }
 
   },
   
 mounted() { 
-this.setRes()
      //return this.$store.dispatch("fetchpro")
       } 
 

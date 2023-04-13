@@ -33,24 +33,29 @@
 </head>
 <body>
 
-     
+    @if(Session::has('loginFailed'))
+        <p class="text-danger font-weight-bold float-right">{{Session::get('loginFailed')}} @php Session::forget('loginFailed'); @endphp</p>@endif
 
-<div class="app container-fluid " style="background: white;" >
- 
-<!-- Layout -->
-    <!--  <div  class="row border_dark p-0" style="">
-     <div class="col-sm-8">
-      
+
+<div class="container-fluid">
+   
+
+ <div  class="row p-0 shadow" style="background: black;">
+
+    <div class="col-sm-3">
+        <ul class="navbar-nav ">
+        <li class="nav-item  px-3">
+            <a href="home"><img class="bg-dark" src="{{asset('images/logo.png')}}" width="150px" height="55px" style=";"></a>
+        </li> </ul> 
+    </div>
+
+     <div class="col-sm-5" style="background: white;">
      <div class="navbar navbar-expand-sm p-0 navy  ">
        <ul class="navbar-nav py-2 ">
 
-        <li class="nav-item py-1 px-3">
-            <a href="home"><img class="" src="images/logo.png" width="200px" height="65px" style="margin-left: 58px;"></a>
-        </li>
-        
-                    <li class="nav-item py-1 px-3 text-light  "><router-link to="/home" class="font-weight-bold text-light nav-link">Jitume service</router-link></li>
+                    <li class="nav-item py-1 px-3 text-secondary  "><router-link to="/home" class="font-weight-bold text-secondary nav-link">Jitume service</router-link></li>
 
-                    <li class="font-weight-bold nav-item py-1 px-3 text-light"><router-link to="/applyShow" class="text-light nav-link">Apply for show
+                    <li class="font-weight-bold nav-item py-1 px-3 text-secondary"><router-link to="/applyShow" class="text-secondary nav-link">Apply for show
                     </router-link></li>
                 </ul>
                  </div>
@@ -58,79 +63,59 @@
 
     
     
-    <div class="col-sm-3">
-   
+    <div class="col-sm-4" style="background: white;">
+              <ul class="myaccount">
+                    <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary ">
+                        <a class="text-secondary" href="">My Account</a>
+                    </li>
 
-              <ul>
-                    <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light ">
+                     <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary ">
+                        <a href="./business/add-listing" style="border-radius: 35px 35px;border: 1px solid green;text-decoration: none;" class="px-3 text-secondary" href="">Add Business</a>
                     </li>
 
                 </ul>     
         </div> 
        <div class="col-sm-1"> </div>
 
-    </div> -->
+    </div>
 
     <!-- Layout -->
 
+
+
     <div class="row">
-        @if(Session::has('loginFailed'))
-        <p class="text-danger font-weight-bold float-right">{{Session::has('loginFailed')}}</p>@endif
+              <div class="bg-dark col-sm-3 sidebar-inner slimscroll" style="min-height:600px">
+                    <div id="sidebar-menu" class="sidebar-menu">
+                        <ul class="sidebar text-light" style="color:white;">
+                           
+                            <li class="{{ Request::is('admin/index_admin') ? 'active' : '' }}"> 
+                                <a class="text-light" href="index_admin"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                            </li>
 
-        @if(Session::has('Stripe_pay'))
-        <p class="text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('Stripe_pay')}} @php Session::forget('Stripe_pay'); @endphp </p>@endif
 
-    <!-- yield('page') -->
-    <router-view :auth_user='@json($auth_user)' ></router-view>
+                            
+                            
+
+                            <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
+                                <a class="text-light" href="./add-listing"><i class=" fe fe-layout"></i> <span>Add Business</span></a>
+                            </li>
+
+                            <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
+                                <a class="text-light" href="./listings"><i class=" fe fe-layout"></i> <span>My Business</span></a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+
+       
+   <div class="col-md-9 bg-white">
+    @if(Session::has('success'))
+        <p class="text-success shadow font-weight-bold float-right">{{Session::get('success')}} @php Session::forget('success'); @endphp </p>@endif
+
+         @yield('page') </div>  
 
      </div>
-
-    
-
-
-    <div style="width:80%;" class="row mx-auto my-5">
-        <div class="col-sm-6">
-            <img src="images/logo_services.png" width="363px" height="110px">
-        </div>
-
-        <div class="col-sm-3">
-            <ul>
-                <li style="list-style-type:none;">
-                    <a class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>My Profile</a>
-                </li>
-
-                <li style="list-style-type:none;">
-                    <a class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>My Listings</a>
-                </li>
-
-                <li style="list-style-type:none;">
-                    <a class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>Bookmarks</a>
-                </li>
-
-                <li style="list-style-type:none;">
-                    <a class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>Add Business</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="col-sm-3">
-             <ul>
-                
-                <h4 class="text-dark">Contact Us</h4>
-               
-
-                <li style="list-style-type:none;">
-                    <a class="footer_txt" href="#">Phone: (123) 123-456</a>
-                </li>
-
-                <li style="list-style-type:none;">
-                    <a class="footer_txt" href="#">E-Mail: info@thedtagency.com</a>
-                </li>
-
-                
-            </ul>
-        </div>
-    </div>
 
 
         <div class=" border border-top-dark w-100">
@@ -165,13 +150,30 @@
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  
+<script type="text/javascript" src="../js/app.js"></script>
 
-<script type="text/javascript">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+       
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+ 
+
+ 
+<!-- DATEPICKER -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <!-- DATEPICKER -->
+  
+ <script type="text/javascript">
     function suggest(search){  $("#result_list").html('');  
         var searchText=search;
 
 $.ajax({
-url:'get_suggest/'+searchText,
+url:'../get_suggest/'+searchText,
 method:'get',
 dataType:'json',
                 success: function (response) {
@@ -223,79 +225,6 @@ dataType:'json',
 
 </script>
  
-<!-- DATEPICKER -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-  <!-- DATEPICKER -->
-  
-  <script>
-$( function() {
-//DATE
-$( "#datepicker" ).datepicker();
-$( "#datepicker3" ).datepicker();
-$( "#datepicker4" ).datepicker();
-$( "#datepickerHome1" ).datepicker();
-$( "#datepickerHome2" ).datepicker();
-
-//Start
-$( "#datepicker" ).datepicker({dateFormat: "yy-mm-dd"});
-var dateFormat = $( "#datepicker" ).datepicker( "option", "dateFormat" );
-$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-//Min Date
-$( "#datepicker" ).datepicker({
-  minDate: new Date()
-});
-var minDate = $( "#datepicker" ).datepicker( "option", "minDate" );
-$( "#datepicker" ).datepicker( "option", "minDate", new Date() );
-
-//End
-$( "#datepicker2" ).datepicker({dateFormat: "yy-mm-dd"});
-var dateFormat = $( "#datepicker2" ).datepicker( "option", "dateFormat" );
-$( "#datepicker2" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-//Min Date
-$( "#datepicker2" ).datepicker({
-  minDate: new Date()
-});
-var minDate = $( "#datepicker2" ).datepicker( "option", "minDate" );
-$( "#datepicker2" ).datepicker( "option", "minDate", new Date() );
-
-  } );
-
-
- //if(currentDate !=null) console.log(currentDate);
-
-  </script>
-
-  <script type="text/javascript">
-      //EndDate
-$("#datepicker2").datepicker({
-                onSelect: function (date, datepicker) {
-                    var date_start = $('#datepicker').val();
-                    if (date != "") {
-                        if(date_start > date)
-                            alert('End date cannot be earlier than start date!!')
-                        const date1 = new Date(date_start);
-                        const date2 = new Date(date);
-                        const diffTime = Math.abs(date2 - date1);
-                        var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                        diffDays = diffDays+1; 
-                        $('#days').html(diffDays);
-
-                        var per_day = $('#per_day').val();
-                        var price = (per_day*diffDays);
-                        var s_fee = 200; var total = price + s_fee;
-                        $('#price').html('$'+price);
-                        $('#total_price').html('$'+total);
-                        $('#t_price').html('$'+total);
-                        $('#due').html('$'+total);
-                      
-                    }
-                }
-            });
- //DATE
-  </script>
 
 
 
@@ -676,75 +605,10 @@ $("#datepicker2").datepicker({
   </div>
 </div>
 
-<script type="text/javascript">
-    $('#login').css('border-bottom', '2px solid #72c537');
-    $('#business_reg').hide();
-    
-    function login(){
-    $('#register').css('border-bottom', 'none');    
-    $('#login').css('border-bottom', '2px solid #72c537');
-
-    $('#all_logins').show();
-    $('#all_registers').hide();
-    }
-
-     function register(){ 
-    $('#login').css('border-bottom', 'none');
-    $('#register').css('border-bottom', '2px solid #72c537');
-
-   $('#all_logins').hide();
-    $('#all_registers').show();
-    
-    }
 
 
-</script>
 
 
-<script type="text/javascript">
-    function user_log(){
-    $('#art_log').css('border-bottom', 'none');   
-    $('#usr_log').css('border-bottom', 'none');   
-    $('#usr_log').css('border-bottom', '2px solid #72c537');
-    $('#user_log').show();
-    $('#artist_log').hide();
-    }
-
-     function business_log(){ 
-    $('#usr_log').css('border-bottom', 'none');   
-    $('#art_log').css('border-bottom', 'none');   
-    $('#art_log').css('border-bottom', '2px solid #72c537');
-
-    $('#artist_log').show();
-    $('#user_log').hide();
-    
-    }
-
-
-</script>
-
-
-<script type="text/javascript">
-
-    function user(){
-
-    $('#user').css({'background-color' : '#72c537'});
-    $('#business').css({'background-color' : ''});
-
-    $('#user_reg').show();
-     $('#business_reg').hide();
-    }
-
-    
-
-     function business(){
-    $('#business').css({'background-color' : '#72c537'});
-    $('#user').css({'background-color' : ''});
-
-    $('#user_reg').hide();
-    $('#business_reg').show();
-    
-    }
 
 
 </script>
