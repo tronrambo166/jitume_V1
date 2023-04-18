@@ -208,7 +208,11 @@ hr{color: #a7a3a3;}
     background-color: #72c537;
     border-radius: 35px;
     border: none;
-    text-color: white;
+    text-color: black;
+    text-decoration: none;
+}
+.buttonListing:hover {
+    text-decoration: none;
 }
 
 .buttonEq {
@@ -251,6 +255,16 @@ hr{color: #a7a3a3;}
     right: -2px;
     color: white;
     background: #72c537;}
+
+    .loginBtn{
+    	 background: #72c537;
+    	 color: white;
+    }
+
+    .convBtn: hover{
+    	 background: #72c537;
+    	 color: white;
+    }
 		
 		
 		

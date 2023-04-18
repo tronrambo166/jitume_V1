@@ -64,7 +64,7 @@
                         <!-- Form Starts Here -->
                      <form     
                         role="form"
-                        action="{{ route('stripe.post.coversation') }}"
+                        action="{{ route('cartstripe.post') }}"
                         method="post"
                         class="require-validation m-auto"
                         data-cc-on-file="false"
@@ -81,8 +81,8 @@
                          
                         <div class='form-row row my-2'>
                            <div class='col-sm-12  form-group required'>
-                              <label class='control-label'><b>  Amount(USD) </b></label> 
-                              <input class='form-control' size='4' name="price" id="price" type='number' value="{{$price}}" readonly >
+                              <label class='control-label'><b>  Amount (USD) </b></label> 
+                              <input class='form-control' size='4' name="price" id="price" type='number' value="{{$total}}" readonly >
 
                            </div> 
 
@@ -97,13 +97,11 @@
 
                         </div> 
 
-                    <!--  <input hidden type="number" name="id" value="">
-                     <input hidden type="number" name="amount" value="">
+                     <input hidden type="text" name="ids" value="{{$ids}}">
+                     <input hidden type="number" name="amount" value="{{$total}}">
                      
-                     <input hidden type="number" name="value" value="">
                      
-                           <input hidden value="USD" type="text" name="currency"/> -->
-                           <input hidden type="number" name="listing" value="{{$listing}}">
+                           <input hidden value="USD" type="text" name="currency"/>
                            
                                        
                                        

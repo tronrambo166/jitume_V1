@@ -20,6 +20,9 @@
                     <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/applyShow" class=" text-secondary">Apply for show
                     </router-link></li>
 
+                     <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/cart" class=" text-secondary"><i class="fa fa-shopping-cart"></i><span id="cart" class="rounded-circle px-2 text-light bg-warning"></span>
+                    </router-link></li>
+
                 </ul>
                  </div>
             </div>
@@ -78,7 +81,7 @@
 
              
                 <div v-for="( result, index ) in results" class="listing col-sm-4 my-5">
-                    <router-link :to="`/serviceDetails/${result.id}`" class="shadow card border"> <img style="width:332px; height:230px" :src="result.image"   alt=""  /> 
+                    <router-link :to="`/serviceDetails/${result.id}`" class="shadow card border px-5"> <img style="width:332px; height:230px" :src="result.image"   alt=""  /> 
 
                     <h4 class="mt-3 mb-0">{{result.name}} </h4>
                     <p class="my-1"><i class="mr-2 fa fa-dollar"></i>{{result.price}} Kshs</p>
@@ -119,12 +122,19 @@ export default {
    
         return '../';
 
-        }
+        },
+        cart(){
+           axios.get('http://localhost/laravel_projects/jitume/public/cart').then( (data) =>{
+            document.getElementById('cart').innerHTML = data.data.cart;
+        
+    });
+    }
   
   },
   
    mounted() { 
    this.setRes()
+   this.cart()
      //return this.$store.dispatch("fetchpro")
       } 
 

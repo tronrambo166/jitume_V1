@@ -75,10 +75,10 @@
 
     <div class="row">
         @if(Session::has('loginFailed'))
-        <p class="text-danger font-weight-bold float-right">{{Session::has('loginFailed')}}</p>@endif
+        <p style="position: absolute;background: chartreuse;right: 0px;border-radius: 10px;" class="text-danger font-weight-bold float-right">{{Session::has('loginFailed')}}</p>@endif
 
         @if(Session::has('Stripe_pay'))
-        <p class="text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('Stripe_pay')}} @php Session::forget('Stripe_pay'); @endphp </p>@endif
+        <p style="position: absolute;background: chartreuse;right: 0px;border-radius: 10px;" class="text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('Stripe_pay')}} @php Session::forget('Stripe_pay'); @endphp </p>@endif
 
     <!-- yield('page') -->
     <router-view :auth_user='@json($auth_user)' ></router-view>
@@ -301,7 +301,7 @@ $("#datepicker2").datepicker({
 
 
 <!-- LOGIN MODAL -->
-  <div  class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div  class="modal fade" id="loginModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -336,7 +336,7 @@ $("#datepicker2").datepicker({
             <div class="col-md-5"></div>                
             
              <div class="card-header w-100">
-            <button  id="user"onclick="user()" class="w-25 btn  font-weight-bold px-3 mr-2">{{ __('User') }}</button>
+            <button  id="user"onclick="user()" class="w-25 btn  font-weight-bold px-3 mr-2">{{ __('Investor') }}</button>
             <button  id="business" onclick="business()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Business") }}</button>
             </div>
 
@@ -555,7 +555,7 @@ $("#datepicker2").datepicker({
 
   <div class="card" id="all_logins">
     <div class="card-header w-100">
-            <button  id="usr_log"onclick="user_log()" class="w-25 btn  font-weight-bold px-3 mr-2">{{ __('User') }}</button>
+            <button  id="usr_log"onclick="user_log()" class="w-25 btn  font-weight-bold px-3 mr-2">{{ __('Investor') }}</button>
             <button  id="art_log" onclick="business_log()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Business") }}</button>
             </div>
 
@@ -676,24 +676,230 @@ $("#datepicker2").datepicker({
   </div>
 </div>
 
+
+
+
+
+<!-- INVEST LOGIN MODAL --> <!-- INVEST LOGIN MODAL -->
+
+  <div  class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+         <div class="card-header w-100">
+            <button style="border: 1px solid darkblue;background: #72c537;" id="logins" onclick="login()" class=" w-25 btn   px-4 mr-2">{{ __('Log In') }}</button>
+            <button style="border: 1px solid darkblue;" id="registers" onclick="register()" class=" w-50 btn  px-4">{{ __('Create Investor Account') }}</button>
+
+             @if(Session::has('email')) <p class="text-danger ml-5">{{Session::get('email')}} @php Session::forget('email'); @endphp </p> @endif
+        </div>
+
+              
+
+        <button type="button" class="m-0 close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    
+    
+      <div class="modal-body">       
+      <div class="hidden_currency ">
+
+      <div class="row justify-content-center py-3 mb-5">
+        <div class="px-0 w-100 py-2">
+            <div class="card collapse" id="all_register">
+
+            <div class=" mt-2 text-center User-Artist-Select">
+            <div class="col-md-5"></div>                
+                             </div>
+
+                <!-- HIDDEN USER REG -->
+
+                    <div id="user_regs" class=" collapse card-body">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __( 'Name') }} <span  class="text-danger">*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+           
+
+
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('E-Mail') }} <span title="Required" class="text-danger">*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Password') }} <span title="Required" class="text-danger">*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
+                        
+                         <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Confirm Password') }}<span title="Required" class="text-danger">*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-12 ">
+                                <button type="submit" class="w-25 d-block mx-auto btn loginBtn">
+                                    {{ __('Create') }}
+                                </button>
+                            </div>
+                            </div> 
+
+                              
+                    </form>
+
+                </div>
+
+                <!-- HIDDEN USER REG -->
+
+                </div>
+                 <!-- Logout-->
+
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+
+
+
+                <!-- HIDDEN login-->
+                <!-- HIDDEN login-->
+                <!-- HIDDEN login-->
+
+  <div class="" id="all_logins">
+
+ <div id="user_logs" class="text-center py-0">
+
+                          <form method="POST" class="" action="{{route('login')}}">
+                           @csrf
+
+                                          <div class="row">  <span style="padding-left: 30px;" class="font-weight-bold w-25 mt-3 text-left">Email</span>   <input style="border: 1px solid;" class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="" id="inputEmailAddress" 
+                                            value=""    /> </div>
+                                                                       
+                                          
+                                         <div class="row"> <span class=" w-25 mt-3 font-weight-bold">Password</span>  <input style="border: 1px solid;" class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder=""
+                                            value=""  /> </div>
+                                            
+
+                                          
+
+                                          @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                           @enderror
+
+                                       
+                                           
+                                            @if (Route::has('forgetPass')) 
+                                            <a href="{{ route('password.request') }}" class="small text">Forgot password ?</a> @endif
+                                            
+                                            <input  type="submit"class=" d-block w-25 mx-auto my-2 btn loginBtn  font-weight-bold " href="" name="Log In" value="Sign In" />
+                    </form>
+
+                    
+                    @if(Session::has('reset'))<p class="text-light font-weight-bold">{{Session::get('reset')}}   @php Session::forget('reset'); @endphp </p>@endif
+                    
+
+                   @if(Session::has('login_err'))
+                   <div class="alert alert-danger" role="alert">
+                                  <p class="">{{Session::get('login_err')}}   @php Session::forget('login_err'); @endphp </p> 
+
+                                 </div>  @endif
+                   
+                        
+                       <hr>  <div class="row">
+                              <div class="col-sm-12 pr-1">
+                    <a href="{{ route('forgot','email') }}" class=" text-responsive font-weight-bold text-info mx-auto my-2 d-inline-block py-0 small">Forgot Password?</a>
+                    </div>
+                  
+                    
+                    </div>
+                    
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+  
+  </div>
+    
+    
+      </div>
+    
+    
+     
+    </div>
+  </div>
+</div>
+<!-- INVEST LOGIN MODAL -->
+
+
+
 <script type="text/javascript">
     $('#login').css('border-bottom', '2px solid #72c537');
     $('#business_reg').hide();
     
     function login(){
-    $('#register').css('border-bottom', 'none');    
-    $('#login').css('border-bottom', '2px solid #72c537');
+    $('#registers').css('background', 'none');    
+    $('#logins').css('background', '#72c537');
 
+    $('#user_logs').show();
     $('#all_logins').show();
-    $('#all_registers').hide();
+    $('#user_regs').hide();
+    $('#all_register').hide();
     }
 
-     function register(){ 
-    $('#login').css('border-bottom', 'none');
-    $('#register').css('border-bottom', '2px solid #72c537');
+    function register(){ 
+    $('#logins').css('background', 'none');
+    $('#registers').css('background', '#72c537');
 
-   $('#all_logins').hide();
-    $('#all_registers').show();
+    $('#user_logs').hide();
+    $('#all_register').show();
+    $('#user_regs').show();
     
     }
 
@@ -748,6 +954,8 @@ $("#datepicker2").datepicker({
 
 
 </script>
+
+
 
 
 

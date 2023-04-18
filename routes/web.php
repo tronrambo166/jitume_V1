@@ -69,6 +69,10 @@ Route::get('ServiceResults/{ids}', 'PagesController@ServiceResults')->name('Serv
 
 Route::get('equipments/{id}', 'PagesController@equipments')->name('equipments');
 Route::get('invest/{listing_id}/{id}/{value}/{amount}/{type}', 'PagesController@invest')->name('equipments');
+Route::get('addToCart/{id}-{qty}', 'PagesController@addToCart')->name('addToCart');
+Route::get('removeCart/{id}', 'PagesController@removeCart')->name('removeCart');
+Route::get('cart', 'PagesController@cart')->name('cart');
+
 
 //MAIN/BACKEND/VUE
 
@@ -108,5 +112,11 @@ Route::get('/clear', function() {
 Auth::routes();
 
 // Payment Routes
+//Invest/Donate
 Route::get('/stripe', 'checkoutController@goCheckout')->name('stripe');
 Route::post('/stripe', 'checkoutController@stripePost')->name('stripe.post');
+Route::post('/stripe', 'checkoutController@stripeConversation')->name('stripe.post.coversation');
+
+//CART
+Route::get('cartStripe', 'checkoutController@cartCheckout')->name('cartStripe');
+Route::post('cartstripe', 'checkoutController@cartStripePost')->name('cartstripe.post');

@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use DB;
 use App\Models\Listing;
 use App\Models\Services;
+use App\Models\Cart;
 use App\Models\Shop;
 use App\Models\Equipments;
 use App\Models\User;
+use App\Models\Conversation;
 use Session; 
 use Hash;
 use Auth;
@@ -96,11 +98,15 @@ $results = array();
 $ids = explode(',',$ids); 
 foreach($ids as $id){ 
     if($id!=''){ 
+    $conv = Conversation::where('investor_id',Auth::id())->
+    where('listing_id',$id)->first();
+
     $listing = Listing::where('id',$id)->first();
     $results[] = $listing;
 }
 }
-return response()->json([ 'data' => $results] );
+if($conv!=null)$conv = true;else $conv=false;
+return response()->json([ 'data' => $results, 'conv'=>$conv] );
 }
 
 
@@ -196,66 +202,50 @@ return view('create_service',compact('events'));
 
 }
 
-public function save_event(Request $request){
-$name = $request->name;
-$type = $request->type;
-$category = $request->category;
-$event_type = $request->event_type;
-$isFree = $request->isFree;
-$ev_start = $request->ev_start;
-$ev_end = $request->ev_end;
-$details = $request->details;
-$address = $request->address;
-if($request->isFree == 'no'){
-$per_day = $request->per_day;
-$per_hour = $request->per_hour;
-}
-else $per_day = $per_hour =null;
 
+public function addToCart($id,$qty){
+$service = Services::where('id',$id)->first();
 $user_id = Auth::id();
+$name = $service->name;
+$service_id = $service->id;
+$category = $service->category;
+$price = $service->price;
+$details = $service->details;
+$user_id = Auth::id();
+//return response()->json(['response' => 'Added to cart!'] );
 
-
-Events::create([
+Cart::create([
             'user_id' => $user_id,
             'name' => $name,
-            'type' => $type,
+            'service_id' => $service_id,
             'category' => $category,
-            'event_type' => $event_type,
-            'isFree' => $isFree,
-            'ev_start' => $ev_start,
-            'ev_end' => $ev_end,
+            'price' => $price,
             'details' => $details,
-            'per_day' => $per_day,
-            'per_hour' => $per_hour
+            'qty' => $qty
            ]);
-
-          $image=$request->file('posters'); //print_r($image);
-
-          if($image) {
-          foreach ($image as $single_img) { 
-            # code...
-          $uniqid=hexdec(uniqid());
-          $ext=strtolower($single_img->getClientOriginalExtension());
-          $create_name=$uniqid.'.'.$ext;
-          $loc='images/events/';
-          //Move uploaded file
-          $single_img->move($loc, $create_name);
-          $final_img=$loc.$create_name;
-           //getting event id
-          $ev=Events::orderBy('id', 'DESC')->first();
-          $ev_id=($ev->id);
-
-           Images::create([
-            'img_name' => $create_name,
-            'ev_id' => $ev_id
-           ]);
-
-             } }
-
-        Session::put('success','Event added!');
-        return redirect('home');
-
+return response()->json(['response' => 'Added to cart!'] );
 }
+
+
+public function cart(){
+    $total =0;
+    $cart = Cart::where('user_id',Auth::id())->get();
+    foreach($cart as $c)
+        $total = $total + ($c->price*$c->qty);
+
+    $cartCount = count($cart);
+    return response()->json(['data'=>$cart, 'cart' => $cartCount, 
+        'total'=>$total] );
+    }
+
+public function removeCart($id){
+    $cart = Cart::where('id',$id)->delete();
+
+    $total =0;$cart = Cart::where('user_id',Auth::id())->get();
+    foreach($cart as $c)
+        $total = $total + ($c->price*$c->qty);
+    return response()->json(['data'=>'success','total'=>$total]);
+    }
 
 public function save_service(Request $request){
 $s_name = $request->s_name;
