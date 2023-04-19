@@ -7586,6 +7586,25 @@ __webpack_require__.r(__webpack_exports__);
     },
     make_session: function make_session(id) {
       sessionStorage.setItem('invest', id);
+    },
+    hover: function hover() {
+      $('#convBtn1').css('background', '#72c537');
+    },
+    hover2: function hover2() {
+      $('#convBtn2').css('background', '#72c537');
+    },
+    hover3: function hover3() {
+      $('#convBtn3').css('background', '#72c537');
+    },
+    leave: function leave() {
+      $('.convBtn').css('background', '');
+    },
+    download_business: function download_business() {
+      var id = this.$route.params.id;
+      var t = this;
+      axios.get('http://localhost/laravel_projects/jitume/public/download_business/' + id).then(function (data) {
+        console.log(data);
+      });
     }
   },
   mounted: function mounted() {
@@ -63825,7 +63844,7 @@ var render = function () {
                           "py-2 text-center text-dark buttonListing my-3",
                         attrs: {
                           href: "",
-                          "data-target": "#loginModal",
+                          "data-target": "#loginModal2",
                           "data-toggle": "modal",
                         },
                         on: {
@@ -63844,7 +63863,7 @@ var render = function () {
                           "py-2 text-center text-dark buttonListing my-3",
                         attrs: {
                           href: "",
-                          "data-target": "#loginModal",
+                          "data-target": "#loginModal2",
                           "data-toggle": "modal",
                         },
                       },
@@ -63855,7 +63874,78 @@ var render = function () {
           : _c(
               "div",
               { staticClass: "bg-light w-75 mx-auto py-3 text-center" },
-              [_vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5)]
+              [
+                _c(
+                  "div",
+                  { staticClass: "eqp-invest" },
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "convBtn text-center mx-auto w-75 btn px-4",
+                        staticStyle: { border: "1px solid black" },
+                        attrs: { id: "convBtn1" },
+                        on: {
+                          mouseleave: function ($event) {
+                            return _vm.leave()
+                          },
+                          mouseover: function ($event) {
+                            return _vm.hover()
+                          },
+                        },
+                      },
+                      [_vm._v("Message Business Owner")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "convBtn my-3 text-center mx-auto w-75 btn px-4",
+                        staticStyle: { border: "1px solid black" },
+                        attrs: { to: "/services", id: "convBtn2" },
+                        on: {
+                          mouseleave: function ($event) {
+                            return _vm.leave()
+                          },
+                          mouseover: function ($event) {
+                            return _vm.hover2()
+                          },
+                        },
+                      },
+                      [_vm._v("Request a Transaction Advisor")]
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _c("div", { staticClass: "eqp-invest" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        "convBtn text-center mx-auto w-75 btn mt-4 px-4",
+                      staticStyle: { border: "1px solid black" },
+                      attrs: { id: "convBtn3" },
+                      on: {
+                        mouseleave: function ($event) {
+                          return _vm.leave()
+                        },
+                        mouseover: function ($event) {
+                          return _vm.hover3()
+                        },
+                        click: function ($event) {
+                          return _vm.download_business()
+                        },
+                      },
+                    },
+                    [_vm._v("Download Business Information")]
+                  ),
+                ]),
+              ]
             ),
       ]),
     ]),
@@ -63878,7 +63968,7 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(6),
+              _vm._m(4),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "row" }, [
@@ -64074,32 +64164,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "eqp-invest" }, [
-      _c(
-        "a",
-        {
-          staticClass: "convBtn text-center mx-auto w-75 btn px-4",
-          staticStyle: { border: "1px solid black" },
-          attrs: { id: "registers" },
-        },
-        [_vm._v("Message Business Owner")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "convBtn my-3 text-center mx-auto w-75 btn px-4",
-          staticStyle: { border: "1px solid black" },
-          attrs: { id: "registers" },
-        },
-        [_vm._v("Request a Transaction Advisor")]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "eqp-invest my-4" }, [
       _c("h4", { staticClass: "text-center my-3" }, [_vm._v("About Sodaa")]),
       _vm._v(" "),
@@ -64108,22 +64172,6 @@ var staticRenderFns = [
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip"
         ),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "eqp-invest" }, [
-      _c(
-        "a",
-        {
-          staticClass: "convBtn text-center mx-auto w-75 btn mt-4 px-4",
-          staticStyle: { border: "1px solid black" },
-          attrs: { id: "registers", onclick: "register()" },
-        },
-        [_vm._v("Download Business Information")]
-      ),
     ])
   },
   function () {

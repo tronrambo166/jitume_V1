@@ -72,6 +72,7 @@ Route::get('invest/{listing_id}/{id}/{value}/{amount}/{type}', 'PagesController@
 Route::get('addToCart/{id}-{qty}', 'PagesController@addToCart')->name('addToCart');
 Route::get('removeCart/{id}', 'PagesController@removeCart')->name('removeCart');
 Route::get('cart', 'PagesController@cart')->name('cart');
+Route::get('download_business/{id}', 'PagesController@download_business')->name('download_business');
 
 
 //MAIN/BACKEND/VUE

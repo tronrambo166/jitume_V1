@@ -15,6 +15,7 @@ use Session;
 use Hash;
 use Auth;
 use Mail;
+use PDF;
 
 
 
@@ -245,6 +246,16 @@ public function removeCart($id){
     foreach($cart as $c)
         $total = $total + ($c->price*$c->qty);
     return response()->json(['data'=>'success','total'=>$total]);
+    }
+
+
+  public function download_business($id){
+    $data = '';
+    $pdf = PDF::loadView('download.business_details'); 
+    return $pdf->download('business_details.pdf'); 
+
+    //return response()->json(['data'=>'success']);
+
     }
 
 public function save_service(Request $request){

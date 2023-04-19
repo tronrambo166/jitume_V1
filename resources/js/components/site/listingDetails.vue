@@ -119,8 +119,8 @@
 
 
                 <div v-else="auth_user" class="eqp-invest">
-                <a @click="make_session(form.listing_id);" href="" data-target="#loginModal" data-toggle="modal" class="py-2 text-center text-dark buttonListing my-3">Start a Conversation</a>
-                <a href="" data-target="#loginModal" data-toggle="modal" class="py-2 text-center text-dark buttonListing my-3">Donate</a>
+                <a @click="make_session(form.listing_id);" href="" data-target="#loginModal2" data-toggle="modal" class="py-2 text-center text-dark buttonListing my-3">Start a Conversation</a>
+                <a href="" data-target="#loginModal2" data-toggle="modal" class="py-2 text-center text-dark buttonListing my-3">Donate</a>
                 </div>
 
          </div>
@@ -130,8 +130,8 @@
 
 
                <div  class="eqp-invest">
-                <a style="border: 1px solid black;" id="registers"  class="convBtn text-center mx-auto w-75 btn  px-4">Message Business Owner</a>
-                <a style="border: 1px solid black;" id="registers"  class="convBtn my-3 text-center mx-auto w-75 btn  px-4">Request a Transaction Advisor</a>
+                <a @mouseleave="leave()" @mouseover="hover()" style="border: 1px solid black;" id="convBtn1"  class="convBtn text-center mx-auto w-75 btn  px-4">Message Business Owner</a>
+                <router-link to="/services"  @mouseleave="leave()" @mouseover="hover2()" style="border: 1px solid black;" id="convBtn2"  class="convBtn my-3 text-center mx-auto w-75 btn  px-4">Request a Transaction Advisor</router-link>
                </div>
 
                <div  class="eqp-invest my-4">
@@ -140,7 +140,7 @@
                </div>
 
                <div  class="eqp-invest">
-                <a style="border: 1px solid black;" id="registers" onclick="register()" class="convBtn text-center mx-auto w-75 btn mt-4 px-4">Download Business Information</a>
+                <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover3()" @click="download_business()" id="convBtn3" class="convBtn text-center mx-auto w-75 btn mt-4 px-4">Download Business Information</a>
                 
                </div>
 
@@ -301,7 +301,28 @@ if(sessionStorage.getItem('invest')!=null)
   
   make_session(id){
             sessionStorage.setItem('invest',id);
+        },
+
+        hover(){
+            $('#convBtn1').css('background','#72c537');
+        },
+        hover2(){
+            $('#convBtn2').css('background','#72c537');
+        },
+        hover3(){
+            $('#convBtn3').css('background','#72c537');
+        },
+        leave(){
+            $('.convBtn').css('background','');
+        },
+
+    download_business(){
+    var id=this.$route.params.id; var t=this;
+    axios.get('http://localhost/laravel_projects/jitume/public/download_business/'+id).then( (data) =>{console.log(data);
+    
+    });
         }
+
         },
   
 

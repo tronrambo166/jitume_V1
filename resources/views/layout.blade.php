@@ -301,14 +301,14 @@ $("#datepicker2").datepicker({
 
 
 <!-- LOGIN MODAL -->
-  <div  class="modal fade" id="loginModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div  class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
 
          <div class="card-header w-100">
-            <button id="login" onclick="login()" class="w-25 btn   px-4 mr-2">{{ __('Log In') }}</button>
-            <button  id="register" onclick="register()" class="w-25 btn  px-4">{{ __('Register') }}</button>
+            <button id="login" onclick="logins()" class="w-25 btn   px-4 mr-2">{{ __('Log In') }}</button>
+            <button  id="register" onclick="registers()" class="w-25 btn  px-4">{{ __('Register') }}</button>
 
              @if(Session::has('email')) <p class="text-danger ml-5">{{Session::get('email')}} @php Session::forget('email'); @endphp </p> @endif
         </div>
@@ -682,7 +682,7 @@ $("#datepicker2").datepicker({
 
 <!-- INVEST LOGIN MODAL --> <!-- INVEST LOGIN MODAL -->
 
-  <div  class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div  class="modal fade" id="loginModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -705,7 +705,7 @@ $("#datepicker2").datepicker({
       <div class="modal-body">       
       <div class="hidden_currency ">
 
-      <div class="row justify-content-center py-3 mb-5">
+      <div class="row justify-content-center py-3 ">
         <div class="px-0 w-100 py-2">
             <div class="card collapse" id="all_register">
 
@@ -900,6 +900,28 @@ $("#datepicker2").datepicker({
     $('#user_logs').hide();
     $('#all_register').show();
     $('#user_regs').show();
+    
+    }
+
+
+    function logins(){
+    $('#register').css('background', 'none');    
+    $('#login').css('background', '#72c537');
+
+    $('#user_log').show();
+    $('#artist_log').hide();
+    $('#user_reg').hide();
+    $('#all_registers').hide();
+    $('#all_logins').show();
+    }
+
+    function registers(){ 
+    $('#login').css('background', 'none');
+    $('#register').css('background', '#72c537');
+
+    $('#user_log').hide();
+    $('#all_logins').hide();
+    $('#all_registers').show();
     
     }
 
