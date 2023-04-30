@@ -109,7 +109,7 @@ export default {
             let t = this;
             this.ids = this.$route.params.results;
              //this.results = this.ids.split(",");
-            axios.get('http://localhost/laravel_projects/jitume/public/searchResults/'+t.ids).then( (data) =>{
+            axios.get('https://test.jitume.com/searchResults/'+t.ids).then( (data) =>{
                 t.results = data.data.data;
                 console.log(data);
               }).catch( (error) =>{})

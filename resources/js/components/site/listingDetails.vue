@@ -267,7 +267,7 @@ if(sessionStorage.getItem('invest')!=null)
     var id=this.$route.params.id; var t=this;
     document.getElementById('listing_id').value = id;
 
-    axios.get('http://localhost/laravel_projects/jitume/public/searchResults/'+id).then( (data) =>{console.log(data);
+    axios.get('https://test.jitume.com/searchResults/'+id).then( (data) =>{console.log(data);
     t.form.conv = data.data.conv;
     t.form.name = data.data.data[0].name;
     t.form.details = data.data.data[0].details;
@@ -318,7 +318,7 @@ if(sessionStorage.getItem('invest')!=null)
 
     download_business(){
     var id=this.$route.params.id; var t=this;
-    axios.get('http://localhost/laravel_projects/jitume/public/download_business/'+id).then( (data) =>{console.log(data);
+    axios.get('https://test.jitume.com/download_business/'+id).then( (data) =>{console.log(data);
     
     });
         }

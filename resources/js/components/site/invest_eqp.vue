@@ -200,7 +200,7 @@ export default {
 
     getEquipment:function(){ 
     var id=this.$route.params.id; var t=this;
-    axios.get('http://localhost/laravel_projects/jitume/public/equipments/'+id).then( (data) =>{console.log(data);
+    axios.get('https://test.jitume.com/equipments/'+id).then( (data) =>{console.log(data);
     t.equipments = data.data.data;
     if (t.equipments == null ) t.empty = true; 
     });
@@ -209,7 +209,7 @@ export default {
 
     Invest(listing_id,id,value,amount){
     var t=this;
-     axios.get('http://localhost/laravel_projects/jitume/public/invest/'+listing_id+'/'+id+'/'+value+'/'+amount+'/invest').then( (data) =>{console.log(data.data.response);
+     axios.get('https://test.jitume.com/invest/'+listing_id+'/'+id+'/'+value+'/'+amount+'/invest').then( (data) =>{console.log(data.data.response);
          toastr.success(data.data.response) 
     });
 

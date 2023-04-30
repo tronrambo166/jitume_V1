@@ -162,7 +162,7 @@ export default {
     },
 
     cart(){
-           axios.get('http://localhost/laravel_projects/jitume/public/cart').then( (data) =>{
+           axios.get('https://test.jitume.com/cart').then( (data) =>{
             document.getElementById('cart').innerHTML = data.data.cart;
         
     });

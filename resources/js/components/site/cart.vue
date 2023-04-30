@@ -140,7 +140,7 @@ export default {
 
     removeCart(id){
     var t=this;
-     axios.get('http://localhost/laravel_projects/jitume/public/removeCart/'+id).then( (data) =>{
+     axios.get('https://test.jitume.com/removeCart/'+id).then( (data) =>{
          $('#'+id).css('display','none');
          toastr.success(data.data.data) 
          document.getElementById('total').innerHTML = data.data.total;      
