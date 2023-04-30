@@ -241,6 +241,10 @@ created() {
             this.checkListing = sessionStorage.getItem('invest');
             if(this.checkListing!=null)
               this.$router.push(`listingDetails/${this.checkListing}`)
+
+            this.serviceDetails = sessionStorage.getItem('serviceDetails');
+            if(this.serviceDetails!=null)
+              this.$router.push(`serviceDetails/${this.serviceDetails}`)
         },
 
   methods:{

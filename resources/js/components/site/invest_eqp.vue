@@ -136,16 +136,16 @@
 
         <div class="card-header w-100">
             <form action="stripe" method="get">
-                <input type="number" hidden name="listing_id" :value="equipment.id">
+       
 
-                <input type="number" hidden name="id" :value="equipment.listing_id">
+                <input type="number" hidden name="id" :value="equipment.id">
 
                 <input type="number" hidden name="listing" :value="equipment.listing_id">
 
                 <input type="number" hidden name="value" :value="equipment.value">
                 <input type="number" hidden name="amount" :value="equipment.amount">
 
-                 <input type="number" hidden id="price" name="price" value="2000">
+                 <input type="text" hidden id="price" name="price" value="2000">
 
 
                 <button type="submit" class="btn btn-primary px-3 font-weight-bold" >
@@ -200,7 +200,7 @@ export default {
 
     getEquipment:function(){ 
     var id=this.$route.params.id; var t=this;
-    axios.get('http://localhost/laravel_projects/jitume/public/equipments/'+id).then( (data) =>{console.log(data);
+    axios.get('https://test.jitume.com/equipments/'+id).then( (data) =>{console.log(data);
     t.equipments = data.data.data;
     if (t.equipments == null ) t.empty = true; 
     });
@@ -209,7 +209,7 @@ export default {
 
     Invest(listing_id,id,value,amount){
     var t=this;
-     axios.get('http://localhost/laravel_projects/jitume/public/invest/'+listing_id+'/'+id+'/'+value+'/'+amount+'/invest').then( (data) =>{console.log(data.data.response);
+     axios.get('https://test.jitume.com/invest/'+listing_id+'/'+id+'/'+value+'/'+amount+'/invest').then( (data) =>{console.log(data.data.response);
          toastr.success(data.data.response) 
     });
 
@@ -223,7 +223,7 @@ export default {
     $('.single').css('background','');
     $('.multiple').css('background','#72c537');},
 
-    price(ev){ alert(ev.target.value);
+    price(ev){
     document.getElementById('price').value = btoa(ev.target.value);
     },
 

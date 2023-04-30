@@ -1,4 +1,4 @@
-https://test.jitume.com/<template>
+<template>
     <div class="container">
         
               <!-- Layout -->
@@ -33,7 +33,7 @@ https://test.jitume.com/<template>
       <a v-if="auth_user" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" style="background: rgb(175 173 173 / 23%); cursor:pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Logout</b></a>
           
-      <a v-else data-target="#loginModal" data-toggle="modal" style="background: rgb(175 173 173 / 23%);" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
+      <a v-else data-target="#loginModal" data-toggle="modal" style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
 
        </li>
                                     
@@ -53,10 +53,10 @@ https://test.jitume.com/<template>
 <table class="eq table table-bordered " id="">
     <thead>
         <tr>
-            <th>Equipment </th>
-            <th>Amount </th>
-            <th>Value </th>
-            <th>Details </th>  
+            <th>Service Name </th>
+            <th>Category </th>
+            <th>Price </th>
+            <th>Quantity </th>  
             <th class="text-center"></th>        
         </tr>
 
@@ -66,18 +66,24 @@ https://test.jitume.com/<template>
     
     <tbody>
 
-        <tr v-for="( equipment, index ) in equipments" >
-            <td>{{equipment.eq_name }}</td>
-                <td>{{equipment.amount }}</td>
-                    <td>{{equipment.value }}</td>
-                        <td>{{equipment.details }}</td>
+        <tr v-for="( equipment, index ) in equipments" :id="equipment.id">
+            <td>{{equipment.name }}</td>
+                <td>{{equipment.category }}</td>
+                    <td>{{equipment.price }} x {{equipment.qty }}</td>
+                        <td>{{equipment.qty }}</td>
    
             <td class="text-center">
 
-            <a style="cursor:pointer;" id="invest" v-if="equipment.status == 'active'" @click="Invest(equipment.listing_id,equipment.id,equipment.value,equipment.amount)" class="text-light buttonEq my-2">Donate</a>
-            <button  v-else  disabled class="text-secondary buttonEq my-2">Donate</button>
+          <!--   <a style="cursor:pointer;" id="invest" v-if="equipment.status == 'active'" @click="Invest(equipment.listing_id,equipment.id,equipment.value,equipment.amount)" class="text-light buttonEq my-2">Invest</a> -->
+
+          <a @click="removeCart(equipment.id)" style="cursor:pointer;"  class="text-light buttonEq my-2">X</a> 
+
+        
 
             </td>
+
+            
+
         </tr>
         <td v-if="empty" > No data found! </td>
     
@@ -86,17 +92,19 @@ https://test.jitume.com/<template>
     
 </table>
 
+<div class="shopping float-right">
+    <div class="float-left">
+        <h3>TOTAL: <span id="total" class="text-warning font-weight-bold"></span> Kshs</h3> 
+    </div>
+                    <div class="float-right"> 
+                        <a href="cartStripe/"> <img class="rounded" width="150px" src="images/check.jpg" alt="" /></a>
+                    </div> 
+                </div>
+
         
         </div>   
 
-
-
-
-        
-        
-        
-        
-        
+ 
         <!-- Body -->
         
         
@@ -118,31 +126,50 @@ export default {
 
     methods:{
 
-    getEquipment:function(){ 
-    var id=this.$route.params.id; var t=this;
-    axios.get('https://test.jitume.com/hhttps://test.jitume.com/equipments/'+id).then( (data) =>{console.log(data);
-    t.equipments = data.data.data;
-    if (t.equipments == null ) t.empty = true; 
+     cart(){
+           var t = this;
+           axios.get('http://localhost/laravel_projects/jitume/public/cart').then( (data) =>{
+            t.equipments = data.data.data;
+            if(data.data.cartCount == 0)
+                t.expty = true;
+             console.log(data.data.total)
+             document.getElementById('total').innerHTML = data.data.total;
+        
     });
-    
     },
 
-    Invest(listing_id,id,value,amount){
+    removeCart(id){
     var t=this;
-     axios.get('https://test.jitume.com/invest/'+listing_id+'/'+id+'/'+value+'/'+amount+'/donate').then( (data) =>{console.log(data.data.response);
-         toastr.success(data.data.response) 
+     axios.get('https://test.jitume.com/removeCart/'+id).then( (data) =>{
+         $('#'+id).css('display','none');
+         toastr.success(data.data.data) 
+         document.getElementById('total').innerHTML = data.data.total;      
     });
 
     },
+
+    select(){ 
+    $('.single').css('background','#72c537');
+    $('.multiple').css('background','');},
+        
+    select2(){ 
+    $('.single').css('background','');
+    $('.multiple').css('background','#72c537');},
+
+    price(ev){ alert(ev.target.value);
+    document.getElementById('price').value = btoa(ev.target.value);
+    },
+
     getPhoto(){
-   return '../';
+    return '../';
 }
   },
   
 
      mounted() { 
-     this.getEquipment(); 
+     this.cart(); 
       }
 
     }
 </script>
+

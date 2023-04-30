@@ -20,6 +20,9 @@
                     <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/applyShow" class=" text-secondary">Apply for show
                     </router-link></li>
 
+                    <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/cart" class=" text-secondary"><i class="fa fa-shopping-cart"></i><span id="cart" class="rounded-circle px-2 text-light bg-warning"></span>
+                    </router-link></li>
+
                 </ul>
                  </div>
             </div>
@@ -31,9 +34,9 @@
         <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light "> 
 
       <a v-if="auth_user" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Logout</b></a>
+                                                     document.getElementById('logout-form').submit();" style="background: rgb(175 173 173 / 23%);" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Logout</b></a>
           
-      <a v-else data-target="#loginModal" data-toggle="modal" style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
+      <a v-else data-target="#loginModal" data-toggle="modal" style="background: rgb(175 173 173 / 23%);" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
 
        </li>
                                     
@@ -82,6 +85,17 @@
                       
                    <div class="Overview" id="Overview">
                     <p> <span class="ml-2 font-weight-bold">Details:{{form.details}}</span></p>
+
+                    <div class="cart">
+                        <form>
+                            <input id="qty" min="1" class="w-25 form-control d-inline" type="number" name="qty" value="1">
+                           
+                            <a  v-if="auth_user" @click="addToCart(form.id)" class="text-light font-weight-bold btn buttonEq2">Add to cart</a>
+
+                            <a v-else @click="make_session()" class="text-light font-weight-bold btn buttonEq2" data-target="#loginModal" data-toggle="modal">Add to cart</a>
+
+                        </form>
+                    </div>
                     <p><span class="mt-1 rounded"><i class="mr-2 fa fa-category"></i>Category: {{form.category}}</span></p>
                     </div>
 
@@ -161,14 +175,14 @@ export default {
     }),
 
 created(){
-if(sessionStorage.getItem('invest')!=null)
+if(sessionStorage.getItem('serviceDetails')!=null)
     sessionStorage.clear();
 },
     methods:{
 
    getDetails:function(){ 
     var id=this.$route.params.id; var t=this;
-    axios.get('http://localhost/laravel_projects/jitume/public/ServiceResults/'+id).then( (data) =>{console.log(data);
+    axios.get('https://test.jitume.com/ServiceResults/'+id).then( (data) =>{console.log(data);
     //t.details = data.data.data;
     t.form.price = data.data.data[0].price;
     t.form.name = data.data.data[0].name;
@@ -182,6 +196,16 @@ if(sessionStorage.getItem('invest')!=null)
     });
     
     },
+
+    addToCart(id){
+        var qty = $('#qty').val();
+        var id=this.$route.params.id; var t=this;
+    axios.get('https://test.jitume.com/addToCart/'+id+'-'+qty).then( (data) =>{console.log(data);
+         toastr.success(data.data.response) 
+         this.$router.push('/cart')
+    });
+    },
+
     getPhoto(){
    
         return '../';
@@ -189,14 +213,22 @@ if(sessionStorage.getItem('invest')!=null)
         },
 
   
-  make_session(id){
-            sessionStorage.setItem('invest',id);
-        }
+  make_session(){ 
+            var id=this.$route.params.id;
+            sessionStorage.setItem('serviceDetails',id);
+        },
+        cart(){
+           axios.get('https://test.jitume.com/public/cart').then( (data) =>{
+            document.getElementById('cart').innerHTML = data.data.cart;
+        
+    });
+    }
         },
   
 
      mounted() { 
      this.getDetails();
+     this.cart();
     
       }
 

@@ -19,6 +19,10 @@
                     <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/become_provider" class=" text-secondary">Become a provider
                     </router-link></li>
 
+
+                    <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/cart" class=" text-secondary"><i class="fa fa-shopping-cart"></i><span id="cart" class="rounded-circle px-2 text-light bg-warning"></span>
+                    </router-link></li>
+
                 </ul>
                  </div>
             </div>
@@ -155,11 +159,19 @@ export default {
     console.log(response);
     }
     });
+    },
+
+    cart(){
+           axios.get('https://test.jitume.com/cart').then( (data) =>{
+            document.getElementById('cart').innerHTML = data.data.cart;
+        
+    });
     }
 
   },
   
 mounted() { 
+    this.cart();
      //return this.$store.dispatch("fetchpro")
       } 
 

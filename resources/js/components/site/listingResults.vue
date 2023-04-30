@@ -78,7 +78,7 @@
 
              
                 <div v-for="( result, index ) in results" class="listing col-sm-4 my-5">
-                    <router-link :to="`/listingDetails/${result.id}`" class="shadow card border"> <img style="width:332px; height:230px" :src="result.image"   alt=""  /> 
+                    <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-5"> <img style="width:332px; height:230px" :src="result.image"   alt=""  /> 
 
                     <h4 class="mt-3 mb-0">{{result.name}} </h4>
                     <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{result.location}}</p>
@@ -109,7 +109,7 @@ export default {
             let t = this;
             this.ids = this.$route.params.results;
              //this.results = this.ids.split(",");
-            axios.get('http://localhost/laravel_projects/jitume/public/searchResults/'+t.ids).then( (data) =>{
+            axios.get('https://test.jitume.com/searchResults/'+t.ids).then( (data) =>{
                 t.results = data.data.data;
                 console.log(data);
               }).catch( (error) =>{})
