@@ -6505,7 +6505,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     cart: function cart() {
       var t = this;
-      axios.get('http://localhost/laravel_projects/jitume/public/cart').then(function (data) {
+      axios.get('https://test.jitume.com/cart').then(function (data) {
         t.equipments = data.data.data;
         if (data.data.cartCount == 0) t.expty = true;
         console.log(data.data.total);
@@ -7294,7 +7294,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
 //
 //
 //
@@ -63859,8 +63858,6 @@ var render = function () {
                     ),
                     _vm._v(" "),
                     _vm._m(3),
-                    _vm._v(" "),
-                    _vm._m(4),
                   ]),
             ])
           : _c(
@@ -63912,7 +63909,7 @@ var render = function () {
                   1
                 ),
                 _vm._v(" "),
-                _vm._m(5),
+                _vm._m(4),
                 _vm._v(" "),
                 _c("div", { staticClass: "eqp-invest" }, [
                   _c(
@@ -63960,7 +63957,7 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(6),
+              _vm._m(5),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "row" }, [
@@ -64118,7 +64115,7 @@ var staticRenderFns = [
         _c("img", {
           staticStyle: { "margin-left": "58px" },
           attrs: {
-            src: "public/images/logo_services.png",
+            src: "images/logo_services.png",
             width: "200px",
             height: "65px",
           },
@@ -64163,20 +64160,6 @@ var staticRenderFns = [
         attrs: { "data-target": "#loginmodal2", "data-toggle": "modal" },
       },
       [_c("b", [_vm._v("Donate")])]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "text-dark d-inline px-3 py-2 d-inline-block text-center",
-        staticStyle: { background: "rgb(175 173 173 / 23%)" },
-        attrs: { "data-target": "#loginmodal2", "data-toggle": "modal" },
-      },
-      [_c("b", [_vm._v("Sign In")])]
     )
   },
   function () {

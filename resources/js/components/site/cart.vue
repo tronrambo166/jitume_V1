@@ -128,7 +128,7 @@ export default {
 
      cart(){
            var t = this;
-           axios.get('http://localhost/laravel_projects/jitume/public/cart').then( (data) =>{
+           axios.get('https://test.jitume.com/cart').then( (data) =>{
             t.equipments = data.data.data;
             if(data.data.cartCount == 0)
                 t.expty = true;

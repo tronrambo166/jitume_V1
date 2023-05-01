@@ -10,7 +10,7 @@
        <ul class="navbar-nav py-2 ">
 
         <li class="nav-item py-1 pl-3 pr-4">
-            <a href="home"><img class="" src="public/images/logo_services.png" width="200px" height="65px" style="margin-left: 58px;"></a>
+            <a href="home"><img class="" src="images/logo_services.png" width="200px" height="65px" style="margin-left: 58px;"></a>
         </li>
         
          <li class="nav-item py-1 px-3"><router-link to="/home" class="text-secondary ">Home</router-link></li>
@@ -122,7 +122,6 @@
                 <a @click="make_session(form.listing_id);" data-target="#loginmodal2" data-toggle="modal" class="py-2 text-center text-dark buttonListing my-3"><b>Start a Conversation</b></a>
                 <a data-target="#loginmodal2" data-toggle="modal" class="py-2 text-center text-dark buttonListing my-3"><b>Donate</b></a>
 
-                <a data-target="#loginmodal2" data-toggle="modal" style="background: rgb(175 173 173 / 23%);" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
 
                 </div>
 
