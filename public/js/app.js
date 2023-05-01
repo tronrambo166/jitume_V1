@@ -6514,7 +6514,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     removeCart: function removeCart(id) {
       var t = this;
-      axios.get('http://localhost/laravel_projects/jitume/public/removeCart/' + id).then(function (data) {
+      axios.get('https://test.jitume.com/removeCart/' + id).then(function (data) {
         $('#' + id).css('display', 'none');
         toastr.success(data.data.data);
         document.getElementById('total').innerHTML = data.data.total;
@@ -6673,7 +6673,7 @@ __webpack_require__.r(__webpack_exports__);
     getEquipment: function getEquipment() {
       var id = this.$route.params.id;
       var t = this;
-      axios.get('http://localhost/laravel_projects/jitume/public/equipments/' + id).then(function (data) {
+      axios.get('https://test.jitume.com/hhttps://test.jitume.com/equipments/' + id).then(function (data) {
         console.log(data);
         t.equipments = data.data.data;
         if (t.equipments == null) t.empty = true;
@@ -6681,7 +6681,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     Invest: function Invest(listing_id, id, value, amount) {
       var t = this;
-      axios.get('http://localhost/laravel_projects/jitume/public/invest/' + listing_id + '/' + id + '/' + value + '/' + amount + '/donate').then(function (data) {
+      axios.get('https://test.jitume.com/invest/' + listing_id + '/' + id + '/' + value + '/' + amount + '/donate').then(function (data) {
         console.log(data.data.response);
         toastr.success(data.data.response);
       });
@@ -7248,7 +7248,7 @@ __webpack_require__.r(__webpack_exports__);
     getEquipment: function getEquipment() {
       var id = this.$route.params.id;
       var t = this;
-      axios.get('http://localhost/laravel_projects/jitume/public/equipments/' + id).then(function (data) {
+      axios.get('https://test.jitume.com/equipments/' + id).then(function (data) {
         console.log(data);
         t.equipments = data.data.data;
         if (t.equipments == null) t.empty = true;
@@ -7256,7 +7256,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     Invest: function Invest(listing_id, id, value, amount) {
       var t = this;
-      axios.get('http://localhost/laravel_projects/jitume/public/invest/' + listing_id + '/' + id + '/' + value + '/' + amount + '/invest').then(function (data) {
+      axios.get('https://test.jitume.com/invest/' + listing_id + '/' + id + '/' + value + '/' + amount + '/invest').then(function (data) {
         console.log(data.data.response);
         toastr.success(data.data.response);
       });
@@ -7558,7 +7558,7 @@ __webpack_require__.r(__webpack_exports__);
       var id = this.$route.params.id;
       var t = this;
       document.getElementById('listing_id').value = id;
-      axios.get('http://localhost/laravel_projects/jitume/public/searchResults/' + id).then(function (data) {
+      axios.get('https://test.jitume.com/searchResults/' + id).then(function (data) {
         console.log(data);
         t.form.conv = data.data.conv;
         t.form.name = data.data.data[0].name;
@@ -7602,7 +7602,7 @@ __webpack_require__.r(__webpack_exports__);
     download_business: function download_business() {
       var id = this.$route.params.id;
       var t = this;
-      axios.get('http://localhost/laravel_projects/jitume/public/download_business/' + id).then(function (data) {
+      axios.get('https://test.jitume.com/download_business/' + id).then(function (data) {
         console.log(data);
       });
     }
@@ -7736,7 +7736,7 @@ __webpack_require__.r(__webpack_exports__);
       var t = this;
       this.ids = this.$route.params.results; //this.results = this.ids.split(",");
 
-      axios.get('http://localhost/laravel_projects/jitume/public/searchResults/' + t.ids).then(function (data) {
+      axios.get('https://test.jitume.com/searchResults/' + t.ids).then(function (data) {
         t.results = data.data.data;
         console.log(data);
       })["catch"](function (error) {});
@@ -8074,7 +8074,7 @@ __webpack_require__.r(__webpack_exports__);
     getDetails: function getDetails() {
       var id = this.$route.params.id;
       var t = this;
-      axios.get('http://localhost/laravel_projects/jitume/public/ServiceResults/' + id).then(function (data) {
+      axios.get('https://test.jitume.com/ServiceResults/' + id).then(function (data) {
         console.log(data); //t.details = data.data.data;
 
         t.form.price = data.data.data[0].price;
@@ -8093,7 +8093,7 @@ __webpack_require__.r(__webpack_exports__);
       var qty = $('#qty').val();
       var id = this.$route.params.id;
       var t = this;
-      axios.get('http://localhost/laravel_projects/jitume/public/addToCart/' + id + '-' + qty).then(function (data) {
+      axios.get('https://test.jitume.com/addToCart/' + id + '-' + qty).then(function (data) {
         console.log(data);
         toastr.success(data.data.response);
 
@@ -8108,7 +8108,7 @@ __webpack_require__.r(__webpack_exports__);
       sessionStorage.setItem('serviceDetails', id);
     },
     cart: function cart() {
-      axios.get('http://localhost/laravel_projects/jitume/public/cart').then(function (data) {
+      axios.get('https://test.jitume.com/public/cart').then(function (data) {
         document.getElementById('cart').innerHTML = data.data.cart;
       });
     }
@@ -8246,7 +8246,7 @@ __webpack_require__.r(__webpack_exports__);
       var t = this;
       this.ids = this.$route.params.results; //this.results = this.ids.split(",");
 
-      axios.get('http://localhost/laravel_projects/jitume/public/ServiceResults/' + t.ids).then(function (data) {
+      axios.get('https://test.jitume.com/ServiceResults/' + t.ids).then(function (data) {
         t.results = data.data.data;
         console.log(data);
       })["catch"](function (error) {});
@@ -8255,7 +8255,7 @@ __webpack_require__.r(__webpack_exports__);
       return '../';
     },
     cart: function cart() {
-      axios.get('http://localhost/laravel_projects/jitume/public/cart').then(function (data) {
+      axios.get('https://test.jitume.com/cart').then(function (data) {
         document.getElementById('cart').innerHTML = data.data.cart;
       });
     }
@@ -8461,7 +8461,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       });
     },
     cart: function cart() {
-      axios.get('http://localhost/laravel_projects/jitume/public/cart').then(function (data) {
+      axios.get('https://test.jitume.com/cart').then(function (data) {
         document.getElementById('cart').innerHTML = data.data.cart;
       });
     }
@@ -8509,7 +8509,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_0__["default"].Store(_store_store_
 var router = new VueRouter({
   routes: _routes_routes__WEBPACK_IMPORTED_MODULE_2__.routes,
   //mode:'history',
-  base: "/laravel_projects/jitume/public/"
+  base: "https://test.jitume.com/"
 });
 Vue.component('example-component', (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"])); //const  app = new Vue({ router }).$mount('.admin');
 //SWEET alert

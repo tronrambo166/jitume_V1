@@ -22,7 +22,7 @@ import {routes} from './routes/routes';
 
 const router = new VueRouter({
 routes, //mode:'history',
-base:"/laravel_projects/jitume/public/", 
+base:"https://test.jitume.com/", 
 });
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
