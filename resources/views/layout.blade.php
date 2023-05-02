@@ -81,7 +81,7 @@
         <p style="position: absolute;background: chartreuse;right: 0px;border-radius: 10px;" class="text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('Stripe_pay')}} @php Session::forget('Stripe_pay'); @endphp </p>@endif
 
     <!-- yield('page') -->
-    <router-view :auth_user='@json($auth_user)' ></router-view>
+    <router-view :auth_user='@json($auth_user)' :app_url='@json($app_url)' ></router-view>
 
      </div>
 

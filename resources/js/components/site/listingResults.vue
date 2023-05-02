@@ -98,7 +98,7 @@
 <script>
    
 export default {
-    props: ['auth_user'],
+    props: ['auth_user','app_url'],
     data: () => ({
     results:[],
     ids:'',
@@ -109,7 +109,7 @@ export default {
             let t = this;
             this.ids = this.$route.params.results;
              //this.results = this.ids.split(",");
-            axios.get('https://test.jitume.com/searchResults/'+t.ids).then( (data) =>{
+            axios.get('searchResults/'+t.ids).then( (data) =>{
                 t.results = data.data.data;
                 console.log(data);
               }).catch( (error) =>{})

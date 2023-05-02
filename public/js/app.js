@@ -7725,7 +7725,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['auth_user'],
+  props: ['auth_user', 'app_url'],
   data: function data() {
     return {
       results: [],
@@ -7738,7 +7738,7 @@ __webpack_require__.r(__webpack_exports__);
       var t = this;
       this.ids = this.$route.params.results; //this.results = this.ids.split(",");
 
-      axios.get('https://test.jitume.com/searchResults/' + t.ids).then(function (data) {
+      axios.get('searchResults/' + t.ids).then(function (data) {
         t.results = data.data.data;
         console.log(data);
       })["catch"](function (error) {});

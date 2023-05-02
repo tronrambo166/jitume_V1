@@ -35,8 +35,10 @@ class PagesController extends Controller
     	
     }
 
- public function home(){       
-         return view('home')->with('auth_user', auth()->user());
+ public function home(){ 
+         $app_url = config('app.url');
+         $auth_user = auth()->user();     
+         return view('home',compact('auth_user','app_url'));
         
     }
 
