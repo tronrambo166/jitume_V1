@@ -71,27 +71,27 @@ return response()->json(['data'=>$results]);
 
 
 public function search(Request $request){
-$listing_name = $request->listing_name;
+//$listing_name = $request->listing_name;
 $location = $request->search;
 $category = $request->category;
 $results = array();
 //return response()->json(['success' => $category]);
 
 $check_listing = Listing::where('location',$location)
-//->where('category',$category)
+->where('category',$category)
 ->get();
 
-foreach($check_listing as $service){ 
-    if (str_contains(strtolower($service->name), $listing_name)) {
-        $results[] = $service;
-} }
+// foreach($check_listing as $service){ 
+//     if (str_contains(strtolower($service->name), $listing_name)) {
+//         $results[] = $service;
+// } }
 
-foreach($check_listing as $service){ 
-    if (!str_contains(strtolower($service->name), $listing_name)) {
-        $results[] = $service;
-} }
+// foreach($check_listing as $service){ 
+//     if (!str_contains(strtolower($service->name), $listing_name)) {
+//         $results[] = $service;
+// } }
 
-$listings = $results;
+$listings = $check_listing; // $results;
 return response()->json(['results'=>$listings, 'success' => "Success"]);
 
 }
@@ -197,6 +197,23 @@ public function invest($listing_id,$id,$amount,$realAmount,$type){
     return response()->json(['response' => 'Invest request sent successfully!'] );
 }
 
+
+public function priceFilter($min, $max, $ids){
+    $results = array();
+    $ids = explode(',',$ids); 
+    foreach($ids as $id){ 
+    if($id!=''){ 
+    $listing = Listing::where('id',$id)->first();
+    $range = explode('-',$listing->y_turnover);
+    $db_min = $range[0];$db_max = $range[1];
+    if((int)$min <= $db_min && (int)$max >= $db_max)
+        //return response()->json([ 'data' => (int)$min .'<='. $db_min .'//'.(int)$max .'>='. $db_max]);
+    $results[] = $listing;
+}
+}
+
+    return response()->json([ 'data' => $results]);
+}
 
 
 public function create_service(){

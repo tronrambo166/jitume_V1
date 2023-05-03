@@ -162,7 +162,7 @@ export default {
     },
 
     cart(){
-           axios.get('https://test.jitume.com/cart').then( (data) =>{
+           axios.get('cart').then( (data) =>{
             document.getElementById('cart').innerHTML = data.data.cart;
         
     });

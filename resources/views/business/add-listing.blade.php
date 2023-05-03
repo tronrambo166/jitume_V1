@@ -39,7 +39,7 @@
                    <div class="row form-group"> 
                         <div class="row">
                                         
-            <div class="col-sm-6">
+            <div class="col-sm-4">
             <select  name="category" class="border-none form-control">
             <option hidden class="form-control" >Select Category</option>
 
@@ -56,8 +56,20 @@
            </select>
   </div>
 
-                 <div class="col-sm-6"> 
+                 <div class="col-sm-4"> 
                     <textarea rows="1" required=""  class=" form-control border border-none rounded form-group"  name="details" id="title"  > Details... </textarea>
+                    </div>
+
+                     <div class="col-sm-4"> 
+                    <select required name="y_turnover" class="form-control">
+                        <option hidden >Choose Yearly Turnover</option>
+
+                        <option value="0-10000">$0-$10000</option>
+                        <option value="10000-100000">$10000-$100000</option>
+                        <option value="100000-250000">$100000-$250000</option>
+                        <option value="250000-500000">$250000-$500000</option>
+                        <option value="500000-">$500000+</option>
+                    </select>
                     </div>
 
             

@@ -128,7 +128,7 @@ export default {
 
      cart(){
            var t = this;
-           axios.get('https://test.jitume.com/cart').then( (data) =>{
+           axios.get('cart').then( (data) =>{
             t.equipments = data.data.data;
             if(data.data.cartCount == 0)
                 t.expty = true;
@@ -140,7 +140,7 @@ export default {
 
     removeCart(id){
     var t=this;
-     axios.get('https://test.jitume.com/removeCart/'+id).then( (data) =>{
+     axios.get('removeCart/'+id).then( (data) =>{
          $('#'+id).css('display','none');
          toastr.success(data.data.data) 
          document.getElementById('total').innerHTML = data.data.total;      

@@ -269,7 +269,7 @@ if(sessionStorage.getItem('invest')!=null)
     var id=this.$route.params.id; var t=this;
     document.getElementById('listing_id').value = id;
 
-    axios.get('https://test.jitume.com/searchResults/'+id).then( (data) =>{console.log(data);
+    axios.get('searchResults/'+id).then( (data) =>{console.log(data);
     t.form.conv = data.data.conv;
     t.form.name = data.data.data[0].name;
     t.form.details = data.data.data[0].details;

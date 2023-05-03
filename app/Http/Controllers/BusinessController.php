@@ -42,6 +42,7 @@ $location = $request->location;
 $investment_needed = $request->investment_needed;
 $share = $request->share;
 $contact_mail = $request->contact_mail;
+$y_turnover = $request->y_turnover;
 $user_id = Auth::id();
 
  $image=$request->file('image');
@@ -66,7 +67,8 @@ Listing::create([
             'location' => $location,
             'investment_needed' => $investment_needed,
             'share' => $share,
-            'image' => $final_img
+            'image' => $final_img,
+            'y_turnover' => $y_turnover
             
            ]);       
 

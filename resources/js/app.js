@@ -45,6 +45,7 @@ const Toast = Swal.mixin({
 window.Toast = Toast;
 //SWEET alert
 
+
 //TOASTR
 //import toastr from 'toastr'
 //window.toastr = toastr;
@@ -62,6 +63,9 @@ Vue.filter('substr', (a,b) => {
 
 import Form from 'vform'
 window.Form = Form;
+
+//import noUiSlider from 'nouislider';
+//window.noUiSlider = noUiSlider;
 
 const app = new Vue({
 el: '.app',

@@ -182,7 +182,7 @@ if(sessionStorage.getItem('serviceDetails')!=null)
 
    getDetails:function(){ 
     var id=this.$route.params.id; var t=this;
-    axios.get('https://test.jitume.com/ServiceResults/'+id).then( (data) =>{console.log(data);
+    axios.get('ServiceResults/'+id).then( (data) =>{console.log(data);
     //t.details = data.data.data;
     t.form.price = data.data.data[0].price;
     t.form.name = data.data.data[0].name;
@@ -200,7 +200,7 @@ if(sessionStorage.getItem('serviceDetails')!=null)
     addToCart(id){
         var qty = $('#qty').val();
         var id=this.$route.params.id; var t=this;
-    axios.get('https://test.jitume.com/addToCart/'+id+'-'+qty).then( (data) =>{console.log(data);
+    axios.get('addToCart/'+id+'-'+qty).then( (data) =>{console.log(data);
          toastr.success(data.data.response) 
          this.$router.push('/cart')
     });
@@ -218,7 +218,7 @@ if(sessionStorage.getItem('serviceDetails')!=null)
             sessionStorage.setItem('serviceDetails',id);
         },
         cart(){
-           axios.get('https://test.jitume.com/public/cart').then( (data) =>{
+           axios.get('cart').then( (data) =>{
             document.getElementById('cart').innerHTML = data.data.cart;
         
     });

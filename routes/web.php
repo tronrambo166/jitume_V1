@@ -63,6 +63,7 @@ Route::post('/up_profile', 'PagesController@up_profile')->name('up_profile');
 Route::get('/get_suggest/{search}', 'PagesController@getAddress')->name('get_suggest');
 Route::post('search', 'PagesController@search')->name('search');
 Route::get('searchResults/{ids}', 'PagesController@searchResults')->name('searchResults');
+Route::get('priceFilter/{min}/{max}/{ids}', 'PagesController@priceFilter')->name('priceFilter');
 
 Route::post('searchService', 'PagesController@searchService')->name('searchService');
 Route::get('ServiceResults/{ids}', 'PagesController@ServiceResults')->name('ServiceResults');

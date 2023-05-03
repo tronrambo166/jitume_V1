@@ -64,17 +64,17 @@
            </div>
 
                              <form id="form" @submit.prevent ="search();" class=" w-100" method="post">
-                            <div style="width:85%;" class=" mx-auto text-center row py-4 rounded text-center">
+                            <div style="width:75%;" class=" mx-auto text-center row py-4 rounded text-center">
 
-                            <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3 bg-white">
-                              <input  required=""  style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div>
+                            <!-- <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3 bg-white">
+                              <input  required=""  style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div> -->
 
-                              <div style="" class="py-2 col-sm-3 bg-white">
+                             <div style="border-radius: 35px 0 0 35px;"  class="py-2 col-sm-4 bg-white">
                               <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="search" value=""placeholder="Location">
 
                           </div>
 
-                          <div class="py-2 col-sm-3 bg-white">
+                          <div class="py-2 col-sm-4 bg-white">
                           <div class="dropdown">
 
             <select  name="category" class="border-none form-control">
@@ -95,14 +95,14 @@
                         </div>
                         </div>
 
-                            <div style="border-radius: 0 35px 35px 0;" class="bg-white col-sm-3 py-2 ">
+                            <div style="border-radius: 0 35px 35px 0;" class="bg-white col-sm-4 py-2 ">
                                 <button  class="searchListing  float-right" type="submit">Search</button>
                             </div>
 
                                </div>               
 
                             <div class="row" style="">
-                                <div id="result_list" class="text-left" style="display: none;width:30%; z-index: 1000;height: 600px;position: absolute; margin-left: 394px;top: 410px;">
+                                <div id="result_list" class="text-left" style="display: none;width:30%; z-index: 1000;height: 600px;position: absolute; margin-left: 172px;top: 410px;">
                                     
                                 </div>
                             </div>
@@ -250,7 +250,7 @@ created() {
   methods:{
 
   async search(){
-  const response = await this.form.post('http://localhost/laravel_projects/jitume/public/search');
+  const response = await this.form.post('search');
   console.log(response.data);
   toastr.success(response.data.success, { timeout:5000 });
  //this.$router.push('/manage-category');
@@ -275,7 +275,9 @@ data:form.serialize(),
     Object.entries(response.results).forEach(entry => {
            const [index, row] = entry; 
            ids = ids+row.id+',';      
-          });//console.log(ids);
+          });console.log(ids);
+
+          if(!ids) ids =0;
 
     //thiss.$router.push({ path: '/listingResults', query: { result: response } })
     thiss.$router.push({ name: 'listingResults', params: { results: ids}})

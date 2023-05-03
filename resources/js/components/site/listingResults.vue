@@ -2,7 +2,6 @@
     <div class="container bg-white" id="">
 
               <!-- Layout -->
- 
      <div class="row border_dark p-0" style="">
      <div class="col-sm-8">
       
@@ -73,9 +72,34 @@
                 <div class="clear"></div>
             </div>
 
-             
-         <div class="row mt-5">
 
+            <div class="row">
+                <div id="" class="col-sm-5 ml-3">
+                <h4 class="btn-light px-2 py-1 mb-3">Filter by Price</h4>
+
+                <div id="slider" class="">
+                    
+                </div>
+
+                <div class="row mt-5">
+                <div  class="col-sm-6 ">
+                    <span id="price_low" class="form-control"  name="min" > </span>
+                   </div>
+
+                  <div  class="col-sm-6 ">
+                    <span id="price_high" class="form-control"  name="min" > </span>
+
+                   </div>
+                </div>
+
+                </div>
+            </div>
+
+             
+         <div class="row mt-4">
+
+         <div v-if="this.ids =='0'">
+         <h3 class="text-center font-weight-bold btn-light btn py-3 d-block">No Results Found! </h3></div>
              
                 <div v-for="( result, index ) in results" class="listing col-sm-4 my-5">
                     <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-5"> <img style="width:332px; height:230px" :src="result.image"   alt=""  /> 
@@ -91,6 +115,8 @@
                
             </div>
            </div>
+           
+
                </div>
    
 </template>
@@ -104,6 +130,8 @@ export default {
     ids:'',
     empty:false
     }),
+
+
     methods:{
     setRes:function () {
             let t = this;
@@ -119,12 +147,56 @@ export default {
    
         return '../';
 
-        }
+        },
+
+    range(){ 
+     this.ids = this.$route.params.results;
+     let t = this;
+
+    var slider = document.getElementById('slider');
+    noUiSlider.create(slider, {
+    start: [0, 500000],
+    connect: true,
+    range: {
+        'min': 0,
+        'max': 500000
+    },
+
+    step: 10000,
+     margin: 600,
+     pips: {
+        mode: 'steps',
+        stepped: true,
+        density: 6
+    }
+});
+    var skipValues = [
+    document.getElementById('price_low'),
+    document.getElementById('price_high')
+    ];
+    slider.noUiSlider.on('update', function (values, handle) {
+    skipValues[handle].innerHTML = '$'+values[handle]; 
+    //console.log(values[1] - values[0]);
+
+     axios.get('priceFilter/'+values[0]+'/'+values[1]+'/'+t.ids).then( (data) =>{
+               
+             // if(values[0]==0.00 && values[1]==500000.00){}
+              //else{ 
+               t.results = '';
+               t.results = data.data.data;
+                //}
+               console.log(data);
+              }).catch( (error) =>{})
+    
+}); 
+
+    },
   
   },
   
    mounted() { 
    this.setRes()
+   this.range()
      //return this.$store.dispatch("fetchpro")
       } 
 

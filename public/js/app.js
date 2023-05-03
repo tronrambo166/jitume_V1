@@ -6505,7 +6505,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     cart: function cart() {
       var t = this;
-      axios.get('https://test.jitume.com/cart').then(function (data) {
+      axios.get('cart').then(function (data) {
         t.equipments = data.data.data;
         if (data.data.cartCount == 0) t.expty = true;
         console.log(data.data.total);
@@ -6514,7 +6514,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     removeCart: function removeCart(id) {
       var t = this;
-      axios.get('https://test.jitume.com/removeCart/' + id).then(function (data) {
+      axios.get('removeCart/' + id).then(function (data) {
         $('#' + id).css('display', 'none');
         toastr.success(data.data.data);
         document.getElementById('total').innerHTML = data.data.total;
@@ -6673,7 +6673,7 @@ __webpack_require__.r(__webpack_exports__);
     getEquipment: function getEquipment() {
       var id = this.$route.params.id;
       var t = this;
-      axios.get('https://test.jitume.com/hhttps://test.jitume.com/equipments/' + id).then(function (data) {
+      axios.get('equipments/' + id).then(function (data) {
         console.log(data);
         t.equipments = data.data.data;
         if (t.equipments == null) t.empty = true;
@@ -6681,7 +6681,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     Invest: function Invest(listing_id, id, value, amount) {
       var t = this;
-      axios.get('https://test.jitume.com/invest/' + listing_id + '/' + id + '/' + value + '/' + amount + '/donate').then(function (data) {
+      axios.get('invest/' + listing_id + '/' + id + '/' + value + '/' + amount + '/donate').then(function (data) {
         console.log(data.data.response);
         toastr.success(data.data.response);
       });
@@ -6981,7 +6981,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.form.post('http://localhost/laravel_projects/jitume/public/search');
+                return _this.form.post('search');
 
               case 2:
                 response = _context.sent;
@@ -7019,8 +7019,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               row = _entry[1];
 
           ids = ids + row.id + ',';
-        }); //console.log(ids);
-        //thiss.$router.push({ path: '/listingResults', query: { result: response } })
+        });
+        console.log(ids);
+        if (!ids) ids = 0; //thiss.$router.push({ path: '/listingResults', query: { result: response } })
 
         thiss.$router.push({
           name: 'listingResults',
@@ -7248,7 +7249,7 @@ __webpack_require__.r(__webpack_exports__);
     getEquipment: function getEquipment() {
       var id = this.$route.params.id;
       var t = this;
-      axios.get('https://test.jitume.com/equipments/' + id).then(function (data) {
+      axios.get('equipments/' + id).then(function (data) {
         console.log(data);
         t.equipments = data.data.data;
         if (t.equipments == null) t.empty = true;
@@ -7256,7 +7257,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     Invest: function Invest(listing_id, id, value, amount) {
       var t = this;
-      axios.get('https://test.jitume.com/invest/' + listing_id + '/' + id + '/' + value + '/' + amount + '/invest').then(function (data) {
+      axios.get('invest/' + listing_id + '/' + id + '/' + value + '/' + amount + '/invest').then(function (data) {
         console.log(data.data.response);
         toastr.success(data.data.response);
       });
@@ -7560,7 +7561,7 @@ __webpack_require__.r(__webpack_exports__);
       var id = this.$route.params.id;
       var t = this;
       document.getElementById('listing_id').value = id;
-      axios.get('https://test.jitume.com/searchResults/' + id).then(function (data) {
+      axios.get('searchResults/' + id).then(function (data) {
         console.log(data);
         t.form.conv = data.data.conv;
         t.form.name = data.data.data[0].name;
@@ -7724,6 +7725,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'app_url'],
   data: function data() {
@@ -7745,10 +7772,44 @@ __webpack_require__.r(__webpack_exports__);
     },
     getPhoto: function getPhoto() {
       return '../';
+    },
+    range: function range() {
+      this.ids = this.$route.params.results;
+      var t = this;
+      var slider = document.getElementById('slider');
+      noUiSlider.create(slider, {
+        start: [0, 500000],
+        connect: true,
+        range: {
+          'min': 0,
+          'max': 500000
+        },
+        step: 10000,
+        margin: 600,
+        pips: {
+          mode: 'steps',
+          stepped: true,
+          density: 6
+        }
+      });
+      var skipValues = [document.getElementById('price_low'), document.getElementById('price_high')];
+      slider.noUiSlider.on('update', function (values, handle) {
+        skipValues[handle].innerHTML = '$' + values[handle]; //console.log(values[1] - values[0]);
+
+        axios.get('priceFilter/' + values[0] + '/' + values[1] + '/' + t.ids).then(function (data) {
+          // if(values[0]==0.00 && values[1]==500000.00){}
+          //else{ 
+          t.results = '';
+          t.results = data.data.data; //}
+
+          console.log(data);
+        })["catch"](function (error) {});
+      });
     }
   },
   mounted: function mounted() {
-    this.setRes(); //return this.$store.dispatch("fetchpro")
+    this.setRes();
+    this.range(); //return this.$store.dispatch("fetchpro")
   }
 });
 
@@ -8076,7 +8137,7 @@ __webpack_require__.r(__webpack_exports__);
     getDetails: function getDetails() {
       var id = this.$route.params.id;
       var t = this;
-      axios.get('https://test.jitume.com/ServiceResults/' + id).then(function (data) {
+      axios.get('ServiceResults/' + id).then(function (data) {
         console.log(data); //t.details = data.data.data;
 
         t.form.price = data.data.data[0].price;
@@ -8095,7 +8156,7 @@ __webpack_require__.r(__webpack_exports__);
       var qty = $('#qty').val();
       var id = this.$route.params.id;
       var t = this;
-      axios.get('https://test.jitume.com/addToCart/' + id + '-' + qty).then(function (data) {
+      axios.get('addToCart/' + id + '-' + qty).then(function (data) {
         console.log(data);
         toastr.success(data.data.response);
 
@@ -8110,7 +8171,7 @@ __webpack_require__.r(__webpack_exports__);
       sessionStorage.setItem('serviceDetails', id);
     },
     cart: function cart() {
-      axios.get('https://test.jitume.com/public/cart').then(function (data) {
+      axios.get('cart').then(function (data) {
         document.getElementById('cart').innerHTML = data.data.cart;
       });
     }
@@ -8248,7 +8309,7 @@ __webpack_require__.r(__webpack_exports__);
       var t = this;
       this.ids = this.$route.params.results; //this.results = this.ids.split(",");
 
-      axios.get('https://test.jitume.com/ServiceResults/' + t.ids).then(function (data) {
+      axios.get('ServiceResults/' + t.ids).then(function (data) {
         t.results = data.data.data;
         console.log(data);
       })["catch"](function (error) {});
@@ -8257,7 +8318,7 @@ __webpack_require__.r(__webpack_exports__);
       return '../';
     },
     cart: function cart() {
-      axios.get('https://test.jitume.com/cart').then(function (data) {
+      axios.get('cart').then(function (data) {
         document.getElementById('cart').innerHTML = data.data.cart;
       });
     }
@@ -8463,7 +8524,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       });
     },
     cart: function cart() {
-      axios.get('https://test.jitume.com/cart').then(function (data) {
+      axios.get('cart').then(function (data) {
         document.getElementById('cart').innerHTML = data.data.cart;
       });
     }
@@ -8545,7 +8606,9 @@ Vue.filter('substr', function (a, b) {
 }); //MOMENT
 
 
-window.Form = vform__WEBPACK_IMPORTED_MODULE_5__["default"];
+window.Form = vform__WEBPACK_IMPORTED_MODULE_5__["default"]; //import noUiSlider from 'nouislider';
+//window.noUiSlider = noUiSlider;
+
 var app = new Vue({
   el: '.app',
   router: router,
@@ -62902,13 +62965,13 @@ var staticRenderFns = [
       "div",
       {
         staticClass: "mx-auto text-center row py-4 rounded text-center",
-        staticStyle: { width: "85%" },
+        staticStyle: { width: "75%" },
       },
       [
         _c(
           "div",
           {
-            staticClass: "py-2 col-sm-3 bg-white",
+            staticClass: "py-2 col-sm-4 bg-white",
             staticStyle: { "border-radius": "35px 0 0 35px" },
           },
           [
@@ -62916,32 +62979,19 @@ var staticRenderFns = [
               staticClass: "bar bg-white form-control d-inline",
               staticStyle: { border: "none", height: "42px" },
               attrs: {
+                id: "searchbox",
                 required: "",
+                onkeyup: "suggest(this.value);",
                 type: "text",
-                name: "listing_name",
-                placeholder: "What are you looking for?",
+                name: "search",
+                value: "",
+                placeholder: "Location",
               },
             }),
           ]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "py-2 col-sm-3 bg-white" }, [
-          _c("input", {
-            staticClass: "bar bg-white form-control d-inline",
-            staticStyle: { border: "none", height: "42px" },
-            attrs: {
-              id: "searchbox",
-              required: "",
-              onkeyup: "suggest(this.value);",
-              type: "text",
-              name: "search",
-              value: "",
-              placeholder: "Location",
-            },
-          }),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "py-2 col-sm-3 bg-white" }, [
+        _c("div", { staticClass: "py-2 col-sm-4 bg-white" }, [
           _c("div", { staticClass: "dropdown" }, [
             _c(
               "select",
@@ -63000,7 +63050,7 @@ var staticRenderFns = [
         _c(
           "div",
           {
-            staticClass: "bg-white col-sm-3 py-2",
+            staticClass: "bg-white col-sm-4 py-2",
             staticStyle: { "border-radius": "0 35px 35px 0" },
           },
           [
@@ -63030,7 +63080,7 @@ var staticRenderFns = [
           "z-index": "1000",
           height: "600px",
           position: "absolute",
-          "margin-left": "394px",
+          "margin-left": "172px",
           top: "410px",
         },
         attrs: { id: "result_list" },
@@ -64334,48 +64384,65 @@ var render = function () {
     _vm._v(" "),
     _vm._m(2),
     _vm._v(" "),
+    _vm._m(3),
+    _vm._v(" "),
     _c(
       "div",
-      { staticClass: "row mt-5" },
-      _vm._l(_vm.results, function (result, index) {
-        return _c(
-          "div",
-          { staticClass: "listing col-sm-4 my-5" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "shadow card border px-5",
-                attrs: { to: "/listingDetails/" + result.id },
-              },
-              [
-                _c("img", {
-                  staticStyle: { width: "332px", height: "230px" },
-                  attrs: { src: result.image, alt: "" },
-                }),
-                _vm._v(" "),
-                _c("h4", { staticClass: "mt-3 mb-0" }, [
-                  _vm._v(_vm._s(result.name) + " "),
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "my-1" }, [
-                  _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
-                  _vm._v(_vm._s(result.location)),
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _c("span", { staticClass: "mt-1 rounded" }, [
-                    _c("i", { staticClass: "mr-2 fa fa-phone" }),
-                    _vm._v(_vm._s(result.contact)),
+      { staticClass: "row mt-4" },
+      [
+        this.ids == "0"
+          ? _c("div", [
+              _c(
+                "h3",
+                {
+                  staticClass:
+                    "text-center font-weight-bold btn-light btn py-3 d-block",
+                },
+                [_vm._v("No Results Found! ")]
+              ),
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm._l(_vm.results, function (result, index) {
+          return _c(
+            "div",
+            { staticClass: "listing col-sm-4 my-5" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "shadow card border px-5",
+                  attrs: { to: "/listingDetails/" + result.id },
+                },
+                [
+                  _c("img", {
+                    staticStyle: { width: "332px", height: "230px" },
+                    attrs: { src: result.image, alt: "" },
+                  }),
+                  _vm._v(" "),
+                  _c("h4", { staticClass: "mt-3 mb-0" }, [
+                    _vm._v(_vm._s(result.name) + " "),
                   ]),
-                ]),
-              ]
-            ),
-          ],
-          1
-        )
-      }),
-      0
+                  _vm._v(" "),
+                  _c("p", { staticClass: "my-1" }, [
+                    _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
+                    _vm._v(_vm._s(result.location)),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _c("span", { staticClass: "mt-1 rounded" }, [
+                      _c("i", { staticClass: "mr-2 fa fa-phone" }),
+                      _vm._v(_vm._s(result.contact)),
+                    ]),
+                  ]),
+                ]
+              ),
+            ],
+            1
+          )
+        }),
+      ],
+      2
     ),
   ])
 }
@@ -64417,6 +64484,36 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "clear" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-5 ml-3", attrs: { id: "" } }, [
+        _c("h4", { staticClass: "btn-light px-2 py-1 mb-3" }, [
+          _vm._v("Filter by Price"),
+        ]),
+        _vm._v(" "),
+        _c("div", { attrs: { id: "slider" } }),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-5" }, [
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("span", {
+              staticClass: "form-control",
+              attrs: { id: "price_low", name: "min" },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("span", {
+              staticClass: "form-control",
+              attrs: { id: "price_high", name: "min" },
+            }),
+          ]),
+        ]),
+      ]),
     ])
   },
 ]

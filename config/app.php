@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost/laravel_projects/jitumeLive/public'),
+    'url' => env('APP_URL', 'https://test.jitume.com/'),
 
     'asset_url' => env('ASSET_URL', null),
 
