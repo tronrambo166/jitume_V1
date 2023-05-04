@@ -6951,6 +6951,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -62499,7 +62516,7 @@ var render = function () {
                         staticClass: "font-weight-bold text-light",
                         attrs: { to: "/services" },
                       },
-                      [_vm._v("Jitume service")]
+                      [_vm._v("Jitume Services")]
                     ),
                   ],
                   1
@@ -62518,7 +62535,7 @@ var render = function () {
                         staticClass: "text-light",
                         attrs: { to: "/applyShow" },
                       },
-                      [_vm._v("Apply for show\n                    ")]
+                      [_vm._v("Apply For Show\n                    ")]
                     ),
                   ],
                   1
@@ -62971,7 +62988,7 @@ var staticRenderFns = [
         _c(
           "div",
           {
-            staticClass: "py-2 col-sm-4 bg-white",
+            staticClass: "py-2 col-sm-5 bg-white",
             staticStyle: { "border-radius": "35px 0 0 35px" },
           },
           [
@@ -63012,7 +63029,9 @@ var staticRenderFns = [
                   },
                   [_vm._v("Agriculture")]
                 ),
-                _vm._v(" "),
+                _vm._v(
+                  "\n\n            Food\n- Legal\n- Security\n- Media / Internet\n- Arts / Culture\n- Fashion\n- Security\n- Technology / Communications\n- Retail\n           "
+                ),
                 _c("option", { attrs: { value: "Sports/Gaming" } }, [
                   _vm._v("Sports/Gaming"),
                 ]),
@@ -63021,24 +63040,46 @@ var staticRenderFns = [
                   _vm._v("Real State"),
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "Entertainment" } }, [
-                  _vm._v("Entertainment "),
+                _c("option", { attrs: { value: "Food" } }, [_vm._v("Food ")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Legal" } }, [_vm._v("Legal ")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Security" } }, [
+                  _vm._v("Security "),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Media / Internet" } }, [
+                  _vm._v("Media / Internet "),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Arts / Culture" } }, [
+                  _vm._v("Arts / Culture "),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Fashion" } }, [
+                  _vm._v("Fashion "),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "option",
+                  { attrs: { value: "Technology / Communications" } },
+                  [_vm._v("Technology / Communications ")]
+                ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Retail" } }, [
+                  _vm._v("Retail "),
                 ]),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "Auto" } }, [_vm._v("Auto")]),
                 _vm._v(" "),
-                _c(
-                  "option",
-                  { attrs: { value: "Finance/Accounting Security" } },
-                  [_vm._v("Finance/Accounting Security")]
-                ),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "Domestic Help" } }, [
-                  _vm._v("Pets"),
+                _c("option", { attrs: { value: "Finance/Accounting" } }, [
+                  _vm._v("Finance/Accounting"),
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "Domestic Help" } }, [
-                  _vm._v("Domestic Help"),
+                _c("option", { attrs: { value: "Pets" } }, [_vm._v("Pets")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Domestic (Home Help etc)" } }, [
+                  _vm._v("Domestic (Home Help etc)"),
                 ]),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "Other" } }, [_vm._v("Other")]),
@@ -63050,7 +63091,7 @@ var staticRenderFns = [
         _c(
           "div",
           {
-            staticClass: "bg-white col-sm-4 py-2",
+            staticClass: "bg-white col-sm-3 py-2",
             staticStyle: { "border-radius": "0 35px 35px 0" },
           },
           [
@@ -64493,7 +64534,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-sm-5 ml-3", attrs: { id: "" } }, [
         _c("h4", { staticClass: "btn-light px-2 py-1 mb-3" }, [
-          _vm._v("Filter by Price"),
+          _vm._v("Filter by Turnover"),
         ]),
         _vm._v(" "),
         _c("div", { attrs: { id: "slider" } }),

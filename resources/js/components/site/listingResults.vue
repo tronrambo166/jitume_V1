@@ -75,7 +75,7 @@
 
             <div class="row">
                 <div id="" class="col-sm-5 ml-3">
-                <h4 class="btn-light px-2 py-1 mb-3">Filter by Price</h4>
+                <h4 class="btn-light px-2 py-1 mb-3">Filter by Turnover</h4>
 
                 <div id="slider" class="">
                     

@@ -15,9 +15,9 @@
         </li>
                     <li class="nav-item py-1 px-3 text-light  "><router-link to="/" class="font-weight-bold text-light ">Home</router-link></li>
 
-                    <li class="nav-item py-1 px-3 text-light  "><router-link to="/services" class="font-weight-bold text-light ">Jitume service</router-link></li>
+                    <li class="nav-item py-1 px-3 text-light  "><router-link to="/services" class="font-weight-bold text-light ">Jitume Services</router-link></li>
 
-                    <li class="font-weight-bold nav-item py-1 px-3 text-light"><router-link to="/applyShow" class="text-light">Apply for show
+                    <li class="font-weight-bold nav-item py-1 px-3 text-light"><router-link to="/applyShow" class="text-light">Apply For Show
                     </router-link></li>
                 </ul>
              </div>
@@ -69,7 +69,7 @@
                             <!-- <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3 bg-white">
                               <input  required=""  style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div> -->
 
-                             <div style="border-radius: 35px 0 0 35px;"  class="py-2 col-sm-4 bg-white">
+                             <div style="border-radius: 35px 0 0 35px;"  class="py-2 col-sm-5 bg-white">
                               <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="search" value=""placeholder="Location">
 
                           </div>
@@ -81,13 +81,30 @@
             <option class="form-control" >Select Category</option>
 
             <option class="form-control" value="Agriculture" >Agriculture</option>
+
+            Food
+- Legal
+- Security
+- Media / Internet
+- Arts / Culture
+- Fashion
+- Security
+- Technology / Communications
+- Retail
            <option value="Sports/Gaming" >Sports/Gaming</option>
            <option value="Real State" >Real State</option>
-           <option value="Entertainment" >Entertainment </option>
+           <option value="Food" >Food </option>
+           <option value="Legal" >Legal </option>
+            <option value="Security" >Security </option>
+             <option value="Media / Internet" >Media / Internet </option>
+              <option value="Arts / Culture" >Arts / Culture </option>
+               <option value="Fashion" >Fashion </option>
+                <option value="Technology / Communications" >Technology / Communications </option>
+                 <option value="Retail" >Retail </option>
            <option value="Auto" >Auto</option>
-           <option value="Finance/Accounting Security" >Finance/Accounting Security</option>
-           <option value="Domestic Help">Pets</option>
-           <option value="Domestic Help">Domestic Help</option>
+           <option value="Finance/Accounting" >Finance/Accounting</option>
+           <option value="Pets">Pets</option>
+           <option value="Domestic (Home Help etc)">Domestic (Home Help etc)</option>
            <option value="Other" >Other</option> 
 
            </select>
@@ -95,7 +112,7 @@
                         </div>
                         </div>
 
-                            <div style="border-radius: 0 35px 35px 0;" class="bg-white col-sm-4 py-2 ">
+                            <div style="border-radius: 0 35px 35px 0;" class="bg-white col-sm-3 py-2 ">
                                 <button  class="searchListing  float-right" type="submit">Search</button>
                             </div>
 
