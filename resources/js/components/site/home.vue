@@ -58,7 +58,7 @@
          <h2 style="font-size:42px; font-weight: 500px;" class="text-light ">Invest in
           <marquee>Agriculture | Sports/Gaming | Real State | Entertainment | Auto | Finance/Accounting Security | Pets | Domestic Help | Other</marquee>
        </h2> 
-       <p class="text text-center">Your platform to invest in local Businesses</p>
+       <p class="text text-center">Your platform to invest in local businesses</p>
 
  
            </div>
@@ -74,7 +74,7 @@
 
                           </div>
 
-                          <div class="py-2 col-sm-4 bg-white">
+                          <div class="pt-3 col-sm-4 bg-white">
                           <div class="dropdown">
 
             <select  name="category" class="border-none form-control">
