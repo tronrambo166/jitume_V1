@@ -113,14 +113,20 @@
                 </h5>
 
                <div v-if="auth_user" class="eqp-invest">
-                <a data-target="#investModal" data-toggle="modal" class="text-dark text-center buttonListing my-3 py-2">Start a Conversation</a>
-                <router-link :to="`/donate_eqp/${form.listing_id}`" class="text-dark text-center buttonListing my-3 py-2">Donate</router-link>
+                <a data-target="#investModal" data-toggle="modal" class="text-light text-center buttonListing my-3 py-2">Start a Conversation</a>
+
+                <router-link :to="`/subscribe/${form.listing_id}`" class="text-light text-center buttonListing my-3 py-2">Subscribe</router-link>
+
+                <router-link :to="`/donate_eqp/${form.listing_id}`" class="text-light text-center buttonListing my-3 py-2">Donate</router-link>
                 </div> 
 
 
                 <div v-else class="eqp-invest">
-                <a @click="make_session(form.listing_id);" data-target="#loginmodal2" data-toggle="modal" class="py-2 text-center text-dark buttonListing my-3"><b>Start a Conversation</b></a>
-                <a data-target="#loginmodal2" data-toggle="modal" class="py-2 text-center text-dark buttonListing my-3"><b>Donate</b></a>
+                <a @click="make_session(form.listing_id);" data-target="#loginmodal2" data-toggle="modal" class="py-2 text-center text-light buttonListing my-3"><b>Start a Conversation</b></a>
+
+                <a  @click="make_session(form.listing_id);" data-target="#loginmodal2" data-toggle="modal" class="py-2 text-center text-light buttonListing my-3"><b>Subscribe</b></a>
+
+                <a  @click="make_session(form.listing_id);" data-target="#loginmodal2" data-toggle="modal" class="py-2 text-center text-light buttonListing my-3"><b>Donate</b></a>
 
 
                 </div>
@@ -177,15 +183,15 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <div style="cursor:pointer;background:#72c537;" @click="select()" class="single card shadow p-3">
+                <div style="cursor:pointer;background:#e0edd8;" class="single card shadow p-3">
                     <h5>One Time Fee</h5>
-                    <p class="text-secondary smalls">Start a conversation & access business records</p> <hr>
+                    <p class="text-dark smalls">Start a conversation & access business records</p> <hr>
                     <p class="font-weight-bold smalls">Commitment to invest fee: 2000 kshs</p>
 
                 </div>
             </div>
 
-            <div class="col-sm-6">
+          <!--  <div class="col-sm-6">
                  <div @click="select2()" style="cursor:pointer;" class="multiple card shadow p-3">
                     <h5>Tiered Subscription</h5>
                     <p style="min-height: 50px;" class="text-secondary small">Access multiple businesses records</p> <hr>
@@ -200,7 +206,7 @@
 
 
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
@@ -211,7 +217,7 @@
         <div class="card-header w-100">
             <form action="stripe" method="get">
        
-                 <input type="text" hidden id="price" name="price" value="one time">
+                 <input type="text" hidden id="price" name="price" value="15">
                   <input type="number" hidden id="listing_id" name="listing_id" value="">
 
 

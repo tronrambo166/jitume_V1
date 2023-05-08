@@ -82,15 +82,6 @@
 
             <option class="form-control" value="Agriculture" >Agriculture</option>
 
-            Food
-- Legal
-- Security
-- Media / Internet
-- Arts / Culture
-- Fashion
-- Security
-- Technology / Communications
-- Retail
            <option value="Sports/Gaming" >Sports/Gaming</option>
            <option value="Real State" >Real State</option>
            <option value="Food" >Food </option>

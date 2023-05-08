@@ -27,13 +27,9 @@ class checkoutController extends Controller
       // $listing=$request->listing;
       // $value=$request->value;
       // $amount=$request->amount;
-    $listing=$request->listing_id;
+      $listing=$request->listing_id;
 
-      $fakePrice=$request->price;
-      $db_price = DB::table('price')->get();
-      foreach($db_price as $p)
-        if($p->name == $fakePrice)
-            $price = $p->price;
+      $price=$request->price;
       //$ids=Crypt::decryptString($ids);
       
         return view('checkout.stripe',compact('price','listing'));

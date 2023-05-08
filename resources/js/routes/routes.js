@@ -10,6 +10,7 @@ import serviceDetails from '../components/site/serviceDetails.vue'
 import invest_eqp from '../components/site/invest_eqp.vue'
 import donate_eqp from '../components/site/donate_eqp.vue'
 import cart from '../components/site/cart.vue'
+import subscribe from '../components/site/subscribe.vue'
 
 
 //ADMIN COMPONENTS
@@ -34,6 +35,7 @@ export const routes=[
 { path:'/listingDetails/:id', component: listingDetails},
 { path:'/invest_eqp/:id', component: invest_eqp},
 { path:'/donate_eqp/:id', component: donate_eqp},
+{ path:'/subscribe/:id', component: subscribe},
 { path:'/invest/:listing_id/:id', component: invest_eqp},
 { path:'/cart', component: cart},
 
