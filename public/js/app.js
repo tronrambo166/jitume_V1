@@ -6493,6 +6493,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -6509,7 +6525,10 @@ __webpack_require__.r(__webpack_exports__);
         t.equipments = data.data.data;
         if (data.data.cartCount == 0) t.expty = true;
         console.log(data.data.total);
-        document.getElementById('total').innerHTML = data.data.total;
+        document.getElementById('vat').innerHTML = (0.05 * data.data.total).toFixed(2);
+        document.getElementById('tax').innerHTML = (0.02 * data.data.total).toFixed();
+        document.getElementById('total').innerHTML = 0.07 * data.data.total + data.data.total;
+        document.getElementById('price').value = 0.07 * data.data.total + data.data.total;
       });
     },
     removeCart: function removeCart(id) {
@@ -6517,7 +6536,10 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('removeCart/' + id).then(function (data) {
         $('#' + id).css('display', 'none');
         toastr.success(data.data.data);
-        document.getElementById('total').innerHTML = data.data.total;
+        document.getElementById('vat').innerHTML = 0.05 * data.data.total;
+        document.getElementById('tax').innerHTML = 0.02 * data.data.total;
+        document.getElementById('total').innerHTML = 0.07 * data.data.total + data.data.total;
+        document.getElementById('price').value = 0.07 * data.data.total + data.data.total;
       });
     },
     select: function select() {
@@ -62491,7 +62513,51 @@ var render = function () {
         ]
       ),
       _vm._v(" "),
-      _vm._m(2),
+      _c("div", { staticClass: "shopping float-right" }, [
+        _vm._m(2),
+        _vm._v(" "),
+        _c("div", { staticClass: "float-right" }, [
+          _c("form", { attrs: { action: "stripe", method: "get" } }, [
+            _c("input", {
+              attrs: {
+                type: "text",
+                hidden: "",
+                id: "price",
+                name: "price",
+                value: "",
+              },
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "number",
+                hidden: "",
+                id: "service_id",
+                name: "service_id",
+                value: "",
+              },
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary px-3 font-weight-bold",
+                attrs: { type: "submit" },
+                on: {
+                  click: function ($event) {
+                    return _vm.make_session(_vm.form.id)
+                  },
+                },
+              },
+              [
+                _vm._v(
+                  "\n                            Checkout\n                            "
+                ),
+              ]
+            ),
+          ]),
+        ]),
+      ]),
     ]),
   ])
 }
@@ -62535,25 +62601,30 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "shopping float-right" }, [
-      _c("div", { staticClass: "float-left" }, [
-        _c("h3", [
-          _vm._v("TOTAL: "),
-          _c("span", {
-            staticClass: "text-warning font-weight-bold",
-            attrs: { id: "total" },
-          }),
-          _vm._v(" Kshs"),
-        ]),
+    return _c("div", { staticClass: "float-left" }, [
+      _c("h6", [
+        _vm._v("Vat (5%): "),
+        _c("span", {
+          staticClass: "text-secondary font-weight-bold",
+          attrs: { id: "vat" },
+        }),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "float-right" }, [
-        _c("a", { attrs: { href: "cartStripe/" } }, [
-          _c("img", {
-            staticClass: "rounded",
-            attrs: { width: "150px", src: "images/check.jpg", alt: "" },
-          }),
-        ]),
+      _c("h6", [
+        _vm._v("Vat (2%): "),
+        _c("span", {
+          staticClass: "text-secondary font-weight-bold",
+          attrs: { id: "tax" },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("h4", [
+        _vm._v("TOTAL: "),
+        _c("span", {
+          staticClass: "text-secondary font-weight-bold",
+          attrs: { id: "total" },
+        }),
+        _vm._v(" Kshs"),
       ]),
     ])
   },
@@ -65109,6 +65180,11 @@ var render = function () {
                       attrs: {
                         "data-target": "#loginModal",
                         "data-toggle": "modal",
+                      },
+                      on: {
+                        click: function ($event) {
+                          return _vm.make_session()
+                        },
                       },
                     },
                     [_c("b", [_vm._v("Sign In")])]

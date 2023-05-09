@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <head>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-    <title>JITUME - Business</title>
+    <title>JITUME - Services</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -67,11 +67,11 @@
               <ul class="myaccount">
                     <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary ">
                         <a class="text-secondary" href="">My Account</a>
-                        <a class="text-secondary" href="logoutB">Logout</a>
+                        <a class="text-secondary" href="logoutS">Logout</a>
                     </li>
 
                      <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary ">
-                        <a href="./business/add-listing" style="border-radius: 35px 35px;border: 1px solid green;text-decoration: none;" class="px-3 text-secondary" href="">Add Business</a>
+                        <a href="./services/add-services" style="border-radius: 35px 35px;border: 1px solid green;text-decoration: none;" class="px-3 text-secondary" href="">Add Service</a>
                     </li>
 
                 </ul>     
@@ -90,7 +90,7 @@
                         <ul class="sidebar text-light" style="color:white;">
                            
                             <li class="{{ Request::is('admin/index_admin') ? 'active' : '' }}"> 
-                                <a class="text-light" href="index_admin"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                                <a class="text-light" href="index_admin"><i class="fe fe-home"></i> <span>Service Dashboard</span></a>
                             </li>
 
 
@@ -98,11 +98,11 @@
                             
 
                             <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
-                                <a class="text-light" href="./add-listing"><i class=" fe fe-layout"></i> <span>Add Business</span></a>
+                                <a class="text-light" href="./services/add-services"><i class=" fe fe-layout"></i> <span>Add Service</span></a>
                             </li>
 
                             <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
-                                <a class="text-light" href="./listings"><i class=" fe fe-layout"></i> <span>My Business</span></a>
+                                <a class="text-light" href="./services"><i class=" fe fe-layout"></i> <span>My Services</span></a>
                             </li>
                             
                         </ul>

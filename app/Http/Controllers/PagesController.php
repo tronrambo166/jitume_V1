@@ -29,11 +29,32 @@ class PagesController extends Controller
     $user = User::where('email',$email)->where('business',1)->first();
     if($user!='')
     if(password_verify($password, $user->password))    
-    return redirect('business');// view('business.index');
+    return redirect('home');// view('business.index');
 
-    else Session::put('loginFailed','Incorrect Credentials!');
+    else {
+        Session::put('loginFailed','Incorrect Credentials!');
+        return redirect('home');
+    }
     	
     }
+
+     public function loginS(Request $request){   
+    $email = $request->email; 
+    $password = $request->password;    
+    $user = User::where('email',$email)->where('service',1)->first();
+    if($user!=''){
+    if(password_verify($password, $user->password))    
+    return redirect('services');
+
+    else
+    {
+        
+        Session::put('loginFailed','Incorrect Credentials!');
+        return redirect('home');
+    } }
+        
+    }
+
 
  public function home(){ 
          $app_url = config('app.url');

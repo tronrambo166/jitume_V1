@@ -14,61 +14,56 @@ use Auth;
 use Mail;
 use DB;
 
-class BusinessController extends Controller
+class ServiceController extends Controller
 {
 
-public function logoutB(){
-  Session::forget('service_login');
-  return redirect('home');
-}
-
-
-public function registerB(Request $request){
+public function registerS(Request $request){
 $name = $request->name;
 $email = $request->email;
 $password = Hash::make($request->password);
 $phone = $request->phone;
-$business = 1;
+$service = 1;
 
 User::create([
             'name' => $name,
             'email' => $email,
             'password' => $password,
             //'phone' => $phone,
-            'business' => $business           
+            'service' => $service           
            ]);       
 
         Session::put('service_login','true');
-        return redirect('/business');
+        return redirect('/services');
 
 }
 
-public function business(){
-return view('business.index');
+public function logoutS(){
+  Session::forget('service_login');
+  return redirect('home');
+}
+
+public function services(){
+return view('services.index');
 }
 
 public function add_listing(){
 //$events = Events::latest()->get();
-return view('business.add-listing');
+return view('services.add-listing');
 
 }
 
 public function listings(){
-$listings = Listing::latest()->get();
-return view('business.listings',compact('listings'));
+$listings = Services::latest()->get();
+return view('services.listings',compact('listings'));
 }
 
 
 public function save_listing(Request $request){
 $title = $request->title;
-$contact = $request->contact;
 $category = $request->category;
 $details = $request->details;
+$price = $request->price;
 $location = $request->location;
-$investment_needed = $request->investment_needed;
-$share = $request->share;
-$contact_mail = $request->contact_mail;
-$y_turnover = $request->y_turnover;
 $user_id = Auth::id();
 
  $image=$request->file('image');
@@ -76,43 +71,36 @@ $user_id = Auth::id();
           $uniqid=hexdec(uniqid());
           $ext=strtolower($image->getClientOriginalExtension());
           $create_name=$uniqid.'.'.$ext;
-          $loc='images/listing/';
+          $loc='images/services/';
           //Move uploaded file
           $image->move($loc, $create_name);
           $final_img=$loc.$create_name;
              }
           else $final_img='';
 
-Listing::create([
+Services::create([
             'name' => $title,
-            'user_id' => $user_id,
-            'contact' => $contact,
-            'contact_mail' => $contact_mail,
+            'shop_id' => $user_id,
+            'price' => $price,
             'category' => $category,
             'details' => $details,
             'location' => $location,
-            'investment_needed' => $investment_needed,
-            'share' => $share,
-            'image' => $final_img,
-            'y_turnover' => $y_turnover
-            
+            'image' => $final_img           
            ]);       
 
-        Session::put('success','Business added!');
+        Session::put('success','Service added!');
         return redirect()->back();
 
 }
 
 public function up_listing(Request $request){
 $title = $request->title;
-$contact = $request->contact;
 $category = $request->category;
 $details = $request->details;
+$price = $request->price;
 $location = $request->location;
-$investment_needed = $request->investment_needed;
-$share = $request->share;
-//$contact_mail = $request->contact_mail;
 $user_id = Auth::id();
+$old_img = $request->old_img;
 $id = $request->id;
 
  $image=$request->file('image');
@@ -126,18 +114,19 @@ $id = $request->id;
           $final_img=$loc.$create_name;
           Listing::where('id',$id)->update(['image' => $final_img ]); 
              }
+             else $final_img = $old_img;
 
-Listing::where('id',$id)->update([
+Services::where('id',$id)->update([
             'name' => $title,
-            'contact' => $contact,
+            'shop_id' => $user_id,
+            'price' => $price,
             'category' => $category,
             'details' => $details,
             'location' => $location,
-            'investment_needed' => $investment_needed,
-            'share' => $share     
+            'image' => $final_img    
            ]);       
 
-        Session::put('success','Business Updated!');
+        Session::put('success','Service Updated!');
         return redirect()->back();
 
 }

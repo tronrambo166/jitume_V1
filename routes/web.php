@@ -78,6 +78,7 @@ Route::get('download_business/{id}', 'PagesController@download_business')->name(
 
 //MAIN/BACKEND/VUE
 
+
 Route::get('{/anypath}', 'PagesController@home')->where('path', '.*');
 //Route::get('admin/{anypath}', 'AdminController@dashboard')->where('path', '.*');
 Route::get('profile/{id}', 'PagesController@profile');
@@ -87,8 +88,12 @@ Route::post('profile/edit/{id}', 'PagesController@updateProfile');
 
 // LARAVEL ROUTES
 Auth::routes();
-Route::post('loginB', 'PagesController@loginB')->name('loginB'); 
+//-- Business
+Route::post('loginB', 'PagesController@loginB')->name('loginB');
+Route::get('logoutB', 'BusinessController@logoutB')->name('logoutB'); 
+Route::post('registerB', 'BusinessController@registerB')->name('registerB'); 
 Route::get('business', 'BusinessController@business')->name('business');
+Route::get('services', 'ServiceController@services')->name('services');
 
 Route::prefix('/business')->group(function(){
   Route::get('add-listing', 'BusinessController@add_listing')->name('add-listing');
@@ -98,6 +103,24 @@ Route::post('add_eqp', 'BusinessController@add_eqp')->name('add_eqp');
 Route::post('up_listing', 'BusinessController@up_listing')->name('up_listing');
 
 });
+
+
+//-- Service
+Route::post('loginS', 'PagesController@loginS')->name('loginS');
+Route::get('logoutS', 'ServiceController@logoutS')->name('logoutS'); 
+Route::post('registerS', 'ServiceController@registerS')->name('registerS'); 
+Route::get('services', 'ServiceController@services')->name('services');
+
+Route::prefix('/services')->group(function(){
+  Route::get('add-services', 'ServiceController@add_listing')->name('add-services');
+  Route::post('create-service', 'ServiceController@save_listing')->name('create-service');
+  Route::get('services', 'ServiceController@listings')->name('services');
+//Route::post('add_eqp', 'ServiceController@add_eqp')->name('add_eqp');
+Route::post('up_service', 'ServiceController@up_listing')->name('up_service');
+
+});
+
+
 
 Route::get('forgot/{remail}', 'testController@forgot')->name('forgot');
 Route::post('send_reset_email', 'testController@send_reset_email')->name('send_reset_email');

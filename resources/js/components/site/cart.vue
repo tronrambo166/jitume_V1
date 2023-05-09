@@ -94,10 +94,26 @@
 
 <div class="shopping float-right">
     <div class="float-left">
-        <h3>TOTAL: <span id="total" class="text-warning font-weight-bold"></span> Kshs</h3> 
+        <h6>Vat (5%): <span id="vat" class="text-secondary font-weight-bold"></span> </h6> 
+
+        <h6>Vat (2%): <span id="tax" class="text-secondary font-weight-bold"></span> </h6> 
+
+        <h4>TOTAL: <span id="total" class="text-secondary font-weight-bold"></span> Kshs</h4> 
     </div>
-                    <div class="float-right"> 
-                        <a href="cartStripe/"> <img class="rounded" width="150px" src="images/check.jpg" alt="" /></a>
+                    <div class="float-right">
+                    <form action="stripe" method="get">
+       
+                             <input type="text" hidden id="price" name="price" value="">
+                              <input type="number" hidden id="service_id" name="service_id" value="">
+
+
+                          <button @click="make_session(form.id);" type="submit" class="btn btn-primary px-3 font-weight-bold" >
+                            Checkout
+                            </button> 
+                        </form>
+
+                        
+
                     </div> 
                 </div>
 
@@ -132,8 +148,11 @@ export default {
             t.equipments = data.data.data;
             if(data.data.cartCount == 0)
                 t.expty = true;
-             console.log(data.data.total)
-             document.getElementById('total').innerHTML = data.data.total;
+         console.log(data.data.total)
+         document.getElementById('vat').innerHTML = (0.05*data.data.total).toFixed(2);
+         document.getElementById('tax').innerHTML = (0.02*data.data.total).toFixed();
+         document.getElementById('total').innerHTML = (0.07*data.data.total)+data.data.total;
+         document.getElementById('price').value =(0.07*data.data.total)+data.data.total;
         
     });
     },
@@ -143,7 +162,10 @@ export default {
      axios.get('removeCart/'+id).then( (data) =>{
          $('#'+id).css('display','none');
          toastr.success(data.data.data) 
-         document.getElementById('total').innerHTML = data.data.total;      
+         document.getElementById('vat').innerHTML = (0.05*data.data.total);
+         document.getElementById('tax').innerHTML = (0.02*data.data.total);
+         document.getElementById('total').innerHTML = (0.07*data.data.total)+data.data.total;  
+         document.getElementById('price').value =   (0.07*data.data.total)+data.data.total; 
     });
 
     },

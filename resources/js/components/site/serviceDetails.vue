@@ -36,7 +36,7 @@
       <a v-if="auth_user" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" style="background: rgb(175 173 173 / 23%);" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Logout</b></a>
           
-      <a v-else data-target="#loginModal" data-toggle="modal" style="background: rgb(175 173 173 / 23%);" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
+      <a v-else @click="make_session();" data-target="#loginModal" data-toggle="modal" style="background: rgb(175 173 173 / 23%);" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
 
        </li>
                                     
