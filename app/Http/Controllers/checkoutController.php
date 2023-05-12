@@ -29,7 +29,8 @@ class checkoutController extends Controller
       // $amount=$request->amount;
       $listing=$request->listing_id;
 
-      $price=$request->price;
+      $base_price=$request->price;
+      $price = round( $base_price+($base_price*0.07),2 );
       //$ids=Crypt::decryptString($ids);
       
         return view('checkout.stripe',compact('price','listing'));
@@ -46,6 +47,7 @@ class checkoutController extends Controller
      public function stripeConversation(Request $request)
     {
         $listing_id=$request->listing;
+        $package=$request->package;
 
         //STRIPE
          $curr='USD'; //$request->currency; 
@@ -66,7 +68,9 @@ class checkoutController extends Controller
 //DB INSERT
     Conversation::create([
         'investor_id' => Auth::id(),
-        'listing_id' => $listing_id
+        'listing_id' => $listing_id,
+        'package' => $package,
+        'price' => $price
     ]);
 
         // $info=['eq_name'=>$Equipment->eq_name, 
@@ -160,7 +164,8 @@ class checkoutController extends Controller
         $ids = $id.$c->id.',';
 
     }
-    $total = round($total/132);
+    $total = $total+($total*0.07);
+    $total = round(($total/136),2);
  
         return view('cart.stripe',compact('total','ids'));
     }
@@ -210,10 +215,10 @@ class checkoutController extends Controller
 
         $user['to'] = 'sohaankane@gmail.com';//$request->email;
 
-        Mail::send('cart.cart_mail', $info, function($msg) use ($user){
-            $msg->to($user['to']);
-            $msg->subject('Test Checkout Alert!');
-        });  
+        // Mail::send('cart.cart_mail', $info, function($msg) use ($user){
+        //     $msg->to($user['to']);
+        //     $msg->subject('Test Checkout Alert!');
+        // });  
 
 
        Session::put('Stripe_pay','Order created successfully!');

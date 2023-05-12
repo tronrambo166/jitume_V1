@@ -96,18 +96,18 @@
     <div class="float-left">
         <h6>Vat (5%): <span id="vat" class="text-secondary font-weight-bold"></span> </h6> 
 
-        <h6>Vat (2%): <span id="tax" class="text-secondary font-weight-bold"></span> </h6> 
+        <h6>Tax (2%): <span id="tax" class="text-secondary font-weight-bold"></span> </h6> 
 
         <h4>TOTAL: <span id="total" class="text-secondary font-weight-bold"></span> Kshs</h4> 
     </div>
                     <div class="float-right">
-                    <form action="stripe" method="get">
+                    <form action="cartStripe" method="get">
        
                              <input type="text" hidden id="price" name="price" value="">
                               <input type="number" hidden id="service_id" name="service_id" value="">
 
 
-                          <button @click="make_session(form.id);" type="submit" class="btn btn-primary px-3 font-weight-bold" >
+                          <button @click="make_session(form.id);" type="submit" class="btn btn-dark text-light px-3 mt-4 font-weight-bold" >
                             Checkout
                             </button> 
                         </form>
@@ -150,9 +150,11 @@ export default {
                 t.expty = true;
          console.log(data.data.total)
          document.getElementById('vat').innerHTML = (0.05*data.data.total).toFixed(2);
-         document.getElementById('tax').innerHTML = (0.02*data.data.total).toFixed();
+         document.getElementById('tax').innerHTML = (0.02*data.data.total).toFixed(2);
          document.getElementById('total').innerHTML = (0.07*data.data.total)+data.data.total;
-         document.getElementById('price').value =(0.07*data.data.total)+data.data.total;
+
+         var grand = ( (0.07*data.data.total)+data.data.total) /136;
+         document.getElementById('price').value =grand.toFixed(2);
         
     });
     },
@@ -162,10 +164,12 @@ export default {
      axios.get('removeCart/'+id).then( (data) =>{
          $('#'+id).css('display','none');
          toastr.success(data.data.data) 
-         document.getElementById('vat').innerHTML = (0.05*data.data.total);
-         document.getElementById('tax').innerHTML = (0.02*data.data.total);
+         document.getElementById('vat').innerHTML = (0.05*data.data.total).toFixed(2);
+         document.getElementById('tax').innerHTML = (0.02*data.data.total).toFixed(2);
          document.getElementById('total').innerHTML = (0.07*data.data.total)+data.data.total;  
-         document.getElementById('price').value =   (0.07*data.data.total)+data.data.total; 
+
+         var grand = ( (0.07*data.data.total)+data.data.total) /136;
+         document.getElementById('price').value =  grand.toFixed(2); 
     });
 
     },

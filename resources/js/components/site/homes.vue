@@ -31,7 +31,7 @@
      @guest
     @if (Route::has('login'))
 
-     <a style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" :href=" login" ><b>Sign Ins</b></a> @endif
+     <a style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" :href=" login" ><b>Sign In</b></a> @endif
 
      @else
    

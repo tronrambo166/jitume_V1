@@ -9,6 +9,7 @@ use App\Models\Services;
 use App\Models\Cart;
 use App\Models\Shop;
 use App\Models\Equipments;
+use App\Models\businessDocs;
 use App\Models\User;
 use App\Models\Conversation;
 use Session; 
@@ -58,8 +59,18 @@ class PagesController extends Controller
 
  public function home(){ 
          $app_url = config('app.url');
-         $auth_user = auth()->user();     
-         return view('home',compact('auth_user','app_url'));
+         $auth_user = auth()->user(); 
+         $business=0;
+         if($auth_user){
+         $user = User::where('id',Auth::id())->first();
+         if($user->business==1 ) 
+         $business=1;  
+
+         if($user->service ==1 )
+          $business=2;
+         }
+
+         return view('home',compact('auth_user','app_url','business'));
         
     }
 
@@ -126,6 +137,12 @@ foreach($ids as $id){
     where('listing_id',$id)->first();
 
     $listing = Listing::where('id',$id)->first();
+    $files = businessDocs::where('business_id',$id)
+    ->where('media',1)->first();
+    if(isset($files->file))
+    $listing->file = $files->file;
+    else $listing->file = false;
+
     $results[] = $listing;
 }
 }
@@ -227,6 +244,15 @@ public function priceFilter($min, $max, $ids){
     $listing = Listing::where('id',$id)->first();
     $range = explode('-',$listing->y_turnover);
     $db_min = $range[0];$db_max = $range[1];
+
+//Video check
+    $files = businessDocs::where('business_id',$id)
+    ->where('media',1)->first();
+    if(isset($files->file))
+    $listing->file = $files->file;
+    else $listing->file = false;
+//Video check  
+  
     if((int)$min <= $db_min && (int)$max >= $db_max)
         //return response()->json([ 'data' => (int)$min .'<='. $db_min .'//'.(int)$max .'>='. $db_max]);
     $results[] = $listing;

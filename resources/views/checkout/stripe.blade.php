@@ -81,7 +81,7 @@
                          
                         <div class='form-row row my-2'>
                            <div class='col-sm-12  form-group required'>
-                              <label class='control-label'><b>  Amount(USD) </b></label> 
+                              <label class='control-label'><b>  Amount(USD) </b> <small>5% + tax added</small></label> 
                               <input class='form-control' size='4' name="price" id="price" type='number' value="{{$price}}" readonly >
 
                            </div> 

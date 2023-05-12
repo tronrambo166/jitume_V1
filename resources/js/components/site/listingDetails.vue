@@ -30,6 +30,8 @@
   <ul>
         <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light "> 
 
+             <a v-if="business=='1'" href="./business" style="" class=" text-light bg-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a>
+
       <a v-if="auth_user" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" style="background: rgb(175 173 173 / 23%); cursor:pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Logout</b></a>
           
@@ -249,7 +251,7 @@
    
 export default {
     
-   props: ['auth_user'],
+   props: ['auth_user','business'],
    data: () =>({
     form: new Form({
         name:'',
@@ -326,7 +328,7 @@ if(sessionStorage.getItem('invest')!=null)
 
     download_business(){
     var id=this.$route.params.id; var t=this;
-    axios.get('https://test.jitume.com/download_business/'+id).then( (data) =>{console.log(data);
+    axios.get('download_business/'+id).then( (data) =>{console.log(data);
     
     });
         }

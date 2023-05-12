@@ -8,16 +8,15 @@
      <div class="navbar navbar-expand-sm p-0 navy  ">
        <ul class="navbar-nav py-2 "> 
 
-        <li class="nav-item py-1 pl-3 pr-4">
-            <a href="home"><img class="" src="images/logo_services.png" width="150px" height="35px" style="margin-left: 58px;"></a>
+        <li class="nav-item py-1 pl-1 pr-2">
+            <a href="home"><img class="" src="images/logo_services.png" width="170px" height="45px" style="margin-left: 58px;"></a>
         </li>
         
-         <li class="nav-item py-1 px-3">
 
-                    <li class="nav-item py-1 px-3 text-secondary"><router-link to="/looking_investor" class="text-secondary ">Looking for investors</router-link></li>
+                    <li class="nav-item py-1 px-3 text-secondary"><router-link to="/" class="bg-white text-dark ">Looking for investors</router-link></li>
 
-                    <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/become_provider" class=" text-secondary">Become a provider
-                    </router-link></li>
+                    <li class="font-weight-bold nav-item py-1 px-3"><a href="#" data-target="#loginModal" data-toggle="modal" class=" text-dark">Become a provider
+                    </a></li>
 
 
                     <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/cart" class=" text-secondary"><i class="fa fa-shopping-cart"></i><span id="cart" class="rounded-circle px-2 text-light bg-warning"></span>
@@ -79,7 +78,7 @@
                           <div class="py-2 col-sm-3 bg-white">
                           <div class="dropdown">
 
-           <select  name="category" class="border-none form-control">    
+           <select  name="category" class="mt-2 border-none form-control">    
            <option hidden class="form-control" >Services</option>
            <option class="form-control" value="Business Planning" >Business Planning</option>
            <option value="IT" >IT</option>

@@ -11,7 +11,7 @@
        <ul class="navbar-nav py-2 ">
 
         <li class="nav-item py-1 px-3">
-            <a href="home"><img class="mr-3" src="images/logo.png" width="200px" height="60px" style="margin-left: 58px;"></a>
+            <a href="home"><img class="mr-3" src="images/logo.png" width="170px" height="45px" style="margin-left: 58px;"></a>
         </li>
                     <li class="nav-item py-1 px-3 text-light  "><router-link to="/" class="font-weight-bold text-light ">Home</router-link></li>
 
@@ -27,7 +27,12 @@
     
     <div class="col-sm-3">
   <ul>
-        <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light "> 
+        <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light ">
+
+        <a v-if="business=='1'" href="./business" style="" class=" text-light bg-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a> 
+
+        <a v-if="business=='2'" href="./services" style="" class=" text-light bg-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a> 
+
 
       <a v-if="auth_user" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Logout</b></a>
@@ -231,7 +236,7 @@
    
 export default {
     
-  props: ['auth_user'],  
+  props: ['auth_user','business'],  
   data: () => ({
   form: new Form({
   listing_name:'',

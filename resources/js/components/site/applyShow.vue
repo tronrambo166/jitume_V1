@@ -10,15 +10,15 @@
      <div class="navbar navbar-expand-sm p-0 navy  ">
        <ul class="navbar-nav py-2 ">
 
-        <li class="nav-item py-1 pl-3 pr-4">
-            <a href="home"><img class="" src="images/logo_services.png" width="200px" height="65px" style="margin-left: 58px;"></a>
+        <li class="nav-item py-1 px-3 mr-4">
+            <a href="home"><img class="" src="images/logo_services.png" width="170px" height="45px" style="margin-left: 44px;"></a>
         </li>
         
-         <li class="nav-item py-1 px-3"><router-link to="/home" class="text-secondary ">Home</router-link></li>
+         <li class="nav-item py-1 px-4"><router-link to="/home" class="text-dark ">Home</router-link></li>
 
-                    <li class="nav-item py-1 px-3 text-secondary"><router-link to="/services" class="text-secondary ">Jitume service</router-link></li>
+                    <li class="nav-item py-1 px-3 text-secondary"><router-link to="/services" class="text-dark ">Jitume services</router-link></li>
 
-                    <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/applyShow" class=" text-secondary">Apply for show
+                    <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/applyShow" class=" text-light">Apply for show
                     </router-link></li>
 
                 </ul>
@@ -34,7 +34,7 @@
       <a v-if="auth_user" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Logout</b></a>
           
-      <a v-else data-target="#loginModal" data-toggle="modal" style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
+      <a v-else data-target="#loginModal" data-toggle="modal" style="background: rgba(175, 173, 173, 0.23);" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
 
        </li>
                                     
@@ -53,9 +53,8 @@
 
 <!-- PAGE CONTENT -->
 <div class="my-5 row w-75 mx-auto text-center">
-  <h3>Show</h3>
-  <h3>Show</h3>
-  <h3>Show</h3>
+  <h3>Apply For Show</h3>
+  
 </div>
 
 <!-- PAGE CONTENT -->

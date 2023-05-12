@@ -45,7 +45,7 @@
     <div class="col-sm-3">
         <ul class="navbar-nav ">
         <li class="nav-item  px-3">
-            <a href="home"><img class="bg-dark" src="{{asset('images/logo.png')}}" width="150px" height="55px" style=";"></a>
+            <a href="{{route('/')}}"><img class="bg-dark" src="{{asset('images/logo.png')}}" width="150px" height="55px" style=";"></a>
         </li> </ul> 
     </div>
 
@@ -53,7 +53,7 @@
      <div class="navbar navbar-expand-sm p-0 navy  ">
        <ul class="navbar-nav py-2 ">
 
-                    <li class="nav-item py-1 px-3 text-secondary  "><router-link to="/home" class="font-weight-bold text-secondary nav-link">Jitume service</router-link></li>
+                    <li class="nav-item py-1 px-3 text-secondary  "><router-link to="/" class="font-weight-bold text-secondary nav-link">Jitume service</router-link></li>
 
                     <li class="font-weight-bold nav-item py-1 px-3 text-secondary"><router-link to="/applyShow" class="text-secondary nav-link">Apply for show
                     </router-link></li>
@@ -66,12 +66,13 @@
     <div class="col-sm-4" style="background: white;">
               <ul class="myaccount">
                     <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary ">
+                         <a class="text-secondary" href="home">Back to Main</a>
                         <a class="text-secondary" href="">My Account</a>
-                        <a class="text-secondary" href="logoutB">Logout</a>
+                        <a class="text-secondary" href="{{route('logoutB')}}">Logout</a>
                     </li>
 
                      <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary ">
-                        <a href="./business/add-listing" style="border-radius: 35px 35px;border: 1px solid green;text-decoration: none;" class="px-3 text-secondary" href="">Add Business</a>
+                        <a href="{{route('add-listing')}}" style="border-radius: 35px 35px;border: 1px solid green;text-decoration: none;" class="px-3 text-secondary" href="">Add Business</a>
                     </li>
 
                 </ul>     
@@ -90,7 +91,7 @@
                         <ul class="sidebar text-light" style="color:white;">
                            
                             <li class="{{ Request::is('admin/index_admin') ? 'active' : '' }}"> 
-                                <a class="text-light" href="index_admin"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                                <a class="text-light" href="{{route('/')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
                             </li>
 
 
@@ -98,11 +99,11 @@
                             
 
                             <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
-                                <a class="text-light" href="./add-listing"><i class=" fe fe-layout"></i> <span>Add Business</span></a>
+                                <a class="text-light" href="{{route('add-listing')}}"><i class=" fe fe-layout"></i> <span>Add Business</span></a>
                             </li>
 
                             <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
-                                <a class="text-light" href="./listings"><i class=" fe fe-layout"></i> <span>My Business</span></a>
+                                <a class="text-light" href="{{route('listings')}}"><i class=" fe fe-layout"></i> <span>My Business</span></a>
                             </li>
                             
                         </ul>

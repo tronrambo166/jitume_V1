@@ -102,7 +102,13 @@
          <h3 class="text-center font-weight-bold btn-light btn py-3 d-block">No Results Found! </h3></div>
              
                 <div v-for="( result, index ) in results" class="listing col-sm-4 my-5">
-                    <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-5"> <img style="width:332px; height:230px" :src="result.image"   alt=""  /> 
+                    <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-5">
+
+                     <video v-if="result.file" controls style="width:332px; height:230px" alt="">
+                    <source :src="result.file" type="video/mp4">
+                     </video> 
+
+                     <img v-else :src="result.image" style="width:332px; height:230px" alt=""/>
 
                     <h4 class="mt-3 mb-0">{{result.name}} </h4>
                     <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{result.location}}</p>
@@ -185,7 +191,7 @@ export default {
                t.results = '';
                t.results = data.data.data;
                 //}
-               console.log(data);
+               //console.log(data);
               }).catch( (error) =>{})
     
 }); 

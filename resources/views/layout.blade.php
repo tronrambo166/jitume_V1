@@ -83,7 +83,8 @@
         <p style="position: absolute;background: chartreuse;right: 0px;border-radius: 10px;" class="text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('Stripe_pay')}} @php Session::forget('Stripe_pay'); @endphp </p>@endif
 
     <!-- yield('page') -->
-    <router-view :auth_user='@json($auth_user)' :app_url='@json($app_url)' ></router-view>
+    <router-view :auth_user='@json($auth_user)' :app_url='@json($app_url)' 
+    :business='@json($business)' ></router-view>
 
      </div>
 
@@ -741,7 +742,7 @@ $("#datepicker2").datepicker({
   <!-- HIDDEN SERVICE LOG -->
   <div id="serv_log" class="collapse card-body text-center py-0">
 
-                    <form action="{{route('loginS')}}" method="POST" class="d-inline form-inline" >
+                    <form action="{{route('login')}}" method="POST" class="d-inline form-inline" >
                         @csrf
                                   
                                             <input class=" w-75 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" 

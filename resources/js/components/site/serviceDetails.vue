@@ -33,6 +33,8 @@
   <ul>
         <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light "> 
 
+
+
       <a v-if="auth_user" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" style="background: rgb(175 173 173 / 23%);" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Logout</b></a>
           

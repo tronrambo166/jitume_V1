@@ -8,6 +8,7 @@ use App\Models\Services;
 use App\Models\Shop;
 use App\Models\Equipments;
 use App\Models\User;
+use App\Models\businessDocs;
 use Session; 
 use Hash;
 use Auth;
@@ -44,7 +45,8 @@ User::create([
 }
 
 public function business(){
-return view('business.index');
+$business = listing::where('user_id',Auth::id())->get();
+return view('business.index',compact('business'));
 }
 
 public function add_listing(){
@@ -52,6 +54,12 @@ public function add_listing(){
 return view('business.add-listing');
 
 }
+
+public function home(){
+$business = listing::where('user_id',Auth::id())->get();
+return view('business.index',compact('business'));
+}
+
 
 public function listings(){
 $listings = Listing::latest()->get();
@@ -161,66 +169,106 @@ Equipments::create([
         return redirect()->back();
 }
 
-public function save_service(Request $request){
-$s_name = $request->s_name;
-$phone = $request->phone;
-$service_cats = implode(',', $request->service_cats);
-$instant_book = $request->instant_book;
-$s_details = $request->s_details;
-$s_loction = $request->s_loction;
-$max_guests = $request->max_guests;
-$min_guests = $request->min_guests;
-$reservation_start = $request->reservation_start;
-$reservation_end = $request->reservation_end;
-$s_per_day = $request->s_per_day;
-$s_per_hour = $request->s_per_hour;
-
+public function add_docs(Request $request){
+//$name = $request->name;
+  //return $request->all();
+$listing = $request->listing;
 $user_id = Auth::id();
 
-
-
-Services::create([
-            'user_id' => $user_id,
-            's_name' => $s_name,
-            'phone' => $phone,
-            'service_cats' => $service_cats,
-            'instant_book' => $instant_book,
-            's_details' => $s_details,
-            's_loction' => $s_loction,
-            'max_guests' => $max_guests,
-            'min_guests' => $min_guests,
-            'reservation_start' => $reservation_start,
-            'reservation_end' => $reservation_end,
-            's_per_day' => $s_per_day,
-            's_per_hour' => $s_per_hour
-           ]);
-
-          $image=$request->file('s_posters'); //print_r($image);
-
-          if($image) {
-          foreach ($image as $single_img) { 
+          $files=$request->file('files'); //print_r($files);
+ 
+          foreach ($files as $single_img) { 
             # code...
           $uniqid=hexdec(uniqid());
           $ext=strtolower($single_img->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('file_error','Only pdf & docx are allowed!');
+            return redirect('business');
+          }
+
           $create_name=$uniqid.'.'.$ext;
-          $loc='images/services/';
+
+          if (!file_exists('files/business/'.$user_id)) 
+          mkdir('files/business/'.$user_id, 0777, true);
+
+          $loc='files/business/'.$user_id.'/';
           //Move uploaded file
           $single_img->move($loc, $create_name);
-          $final_img=$loc.$create_name;
-           //getting event id
-          $ev=Services::orderBy('id', 'DESC')->first();
-          $ev_id=($ev->id);
-
-           Images::create([
-            'img_name' => $create_name,
-            's_id' => $ev_id
+          $final_file=$loc.$create_name;
+           
+           businessDocs::create([
+            'user_id' => $user_id,
+            'business_id' => $listing,
+            'file' => $final_file         
            ]);
 
-             } }
+             } 
 
-        Session::put('success','Service added!');
-        return redirect('home');
+        Session::put('success','Documents added!');
+        return redirect('business');
 
 }
 
+
+public function add_video(Request $request){
+//$name = $request->name;
+$listing = $request->listing;
+$user_id = Auth::id();
+
+
+          $single_img=$request->file('files'); //print_r($files);
+ 
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($single_img->getClientOriginalExtension());
+          if($ext!='mpg' && $ext!= 'mpeg' && $ext!='webm' && $ext!= 'mp4' 
+            && $ext!='avi' && $ext!= 'wmv')
+          { 
+            Session::put('file_error','Only mpg || mpeg || webm || mp4 
+            avi || wmv are allowed!');
+            return redirect('business');
+          }
+
+          $create_name=$uniqid.'.'.$ext;
+          if (!file_exists('files/business/'.$user_id)) 
+          mkdir('files/business/'.$user_id, 0777, true);
+
+          $loc='files/business/'.$user_id.'/';
+          //Move uploaded file
+          $single_img->move($loc, $create_name);
+          $final_file=$loc.$create_name;
+           
+           businessDocs::create([
+            'user_id' => $user_id,
+            'business_id' => $listing,
+            'file' => $final_file,
+            'media' => 1
+          
+           ]);
+
+        Session::put('success','Media added!');
+        return redirect('business');
+
+}
+
+
+public function embed_business_video(Request $request){
+$link = $request->link;
+$listing = $request->listing;
+$user_id = Auth::id();
+
+           businessDocs::create([
+            'user_id' => $user_id,
+            'business_id' => $listing,
+            'file' => $link,
+            'media' => 1        
+           ]);
+
+        Session::put('success','Media Embedded!');
+        return redirect('business');
+
+}
+
+
+//Class Bracket
 }

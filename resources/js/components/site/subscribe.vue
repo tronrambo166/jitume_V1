@@ -140,11 +140,18 @@
 
                 <div class="w-50">
                 <form action="stripe" method="get" class="float-right mt-5">
-                 <input type="text" hidden id="price" name="price" value="one time">
+                    <input type="text" hidden id="package" name="package" value="">
+                 <input type="text" hidden id="price" name="price" value="">
                   <input type="number" hidden id="listing_id" name="listing_id" value="">
-                <button @click="make_session(form.id);" type="submit" class="btn btn-primary px-3 font-weight-bold" >
+         
+         <button v-if="form.select" @click="make_session(form.id);" type="submit" class="btn btn-primary px-3 font-weight-bold" >
           Checkout
         </button>
+
+        <button v-else onclick="alert('Please select a package!');" type="button" class="btn btn-primary px-3 font-weight-bold" >
+          Checkout
+        </button>
+
             </form>
                 </div>
 
@@ -166,7 +173,8 @@
     props: ['auth_user'],    
     data: () => ({
     form: new Form({
-        id:''
+        id:'',
+        select:false
     }),
     empty:false
     }),
@@ -191,43 +199,52 @@
 
     },
     select(event){ 
-        //alert(event)
+    this.form.select = true;
+
     if(event == '9.99'){
+        var pacage = 'silver-month';
     $('#one').css('background','#e0edd8');
     $('#two').css('background','');
     $('#three').css('background','');
   }
 
    if(event == '29.99'){
+    var pacage = 'gold-month';
     $('#two').css('background','#e0edd8');
     $('#one').css('background','');
     $('#three').css('background','');
   }
 
    if(event == '69.99'){
+    var pacage = 'platinum-month';
     $('#three').css('background','#e0edd8');
     $('#two').css('background','');
     $('#one').css('background','');
   }
 
    if(event == '95.99'){
+    var pacage = 'silver-year';
     $('#four').css('background','#e0edd8');
     $('#five').css('background','');
     $('#six').css('background','');
   }
 
   if(event == '287.99'){
+    var pacage = 'gold-year';
     $('#five').css('background','#e0edd8');
     $('#four').css('background','');
     $('#six').css('background','');
   }
 
   if(event == '671.99'){
+    var pacage = 'platinum-year';
     $('#six').css('background','#e0edd8');
     $('#five').css('background','');
     $('#four').css('background','');
   }
     document.getElementById('price').value = event;
+    document.getElementById('listing_id').value = this.form.id;
+    document.getElementById('package').value = pacage;
 },
  make_session(id){
             sessionStorage.setItem('invest',id);

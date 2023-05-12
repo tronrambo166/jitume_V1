@@ -8,8 +8,8 @@
      <div class="navbar navbar-expand-sm p-0 navy  ">
        <ul class="navbar-nav py-2 ">
 
-        <li class="nav-item py-1 pl-3 pr-4">
-            <a href="home"><img class="" src="images/logo_services.png" width="200px" height="65px" style="margin-left: 58px;"></a>
+               <li class="nav-item py-1 px-2">
+            <a href="home"><img class="" src="images/logo_services.png" width="170px" height="45px" style="margin-left: 58px;"></a>
         </li>
         
          <li class="nav-item py-1 px-3">
