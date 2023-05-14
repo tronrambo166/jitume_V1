@@ -9,6 +9,7 @@ use App\Models\Shop;
 use App\Models\Equipments;
 use App\Models\User;
 use App\Models\businessDocs;
+use App\Models\Milestones;
 use Session; 
 use Hash;
 use Auth;
@@ -169,6 +170,108 @@ Equipments::create([
         return redirect()->back();
 }
 
+
+//MILESTONES
+public function delete_milestone($id){
+$milestones = Milestones::where('id',$id)->delete();
+return redirect()->back();
+}
+
+public function add_milestones(){
+$milestones = Milestones::where('user_id',Auth::id())->latest()->get();
+$business = listing::where('user_id',Auth::id())->get();
+return view('business.add_milestones',compact('business','milestones'));
+}
+
+public function milestones(){
+$milestones = Milestones::latest()->get();
+return view('business.milestones',compact('milestones'));
+}
+
+
+public function save_milestone(Request $request){
+$title = $request->title;
+$business_id = $request->business_id;
+$amount = $request->amount;
+$user_id = Auth::id();
+
+ $single_img=$request->file('file');
+ 
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($single_img->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('file_error','Only pdf & docx are allowed!');
+            return redirect()->back();
+          }
+
+          $create_name=$uniqid.'.'.$ext;
+
+          if (!file_exists('files/milestones/'.$business_id)) 
+          mkdir('files/milestones/'.$business_id, 0777, true);
+
+          $loc='files/milestones/'.$business_id.'/';
+          //Move uploaded file
+          $single_img->move($loc, $create_name);
+          $final_file=$loc.$create_name;
+           
+
+Milestones::create([
+            'user_id' => $user_id,
+            'title' => $title,
+            'listing_id' => $business_id,
+            'amount' => $amount,
+            'document' => $final_file            
+           ]);       
+
+        Session::put('success','Milestone added!');
+        return redirect()->back();
+
+}
+
+public function up_milestone(Request $request){
+$title = $request->title;
+$contact = $request->contact;
+$category = $request->category;
+$details = $request->details;
+$location = $request->location;
+$investment_needed = $request->investment_needed;
+$share = $request->share;
+//$contact_mail = $request->contact_mail;
+$user_id = Auth::id();
+$id = $request->id;
+
+ $image=$request->file('image');
+ if($image) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($image->getClientOriginalExtension());
+          $create_name=$uniqid.'.'.$ext;
+          $loc='images/listing/';
+          //Move uploaded file
+          $image->move($loc, $create_name);
+          $final_img=$loc.$create_name;
+          Milestones::where('id',$id)->update(['image' => $final_img ]); 
+             }
+
+Milestones::where('id',$id)->update([
+            'name' => $title,
+            'contact' => $contact,
+            'category' => $category,
+            'details' => $details,
+            'location' => $location,
+            'investment_needed' => $investment_needed,
+            'share' => $share     
+           ]);       
+
+        Session::put('success','Business Updated!');
+        return redirect()->back();
+
+}
+
+//END MILESTONES
+
+
+
 public function add_docs(Request $request){
 //$name = $request->name;
   //return $request->all();
@@ -189,10 +292,10 @@ $user_id = Auth::id();
 
           $create_name=$uniqid.'.'.$ext;
 
-          if (!file_exists('files/business/'.$user_id)) 
-          mkdir('files/business/'.$user_id, 0777, true);
+          if (!file_exists('files/business/'.$listing)) 
+          mkdir('files/business/'.$listing, 0777, true);
 
-          $loc='files/business/'.$user_id.'/';
+          $loc='files/business/'.$listing.'/';
           //Move uploaded file
           $single_img->move($loc, $create_name);
           $final_file=$loc.$create_name;

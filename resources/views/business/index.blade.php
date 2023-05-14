@@ -9,13 +9,11 @@
     <h2 class="text-center"> Dashboard </h2> <hr>
 
     <div class="row w-50 mx-auto">
-        <div class="col-sm-6">
-            <a href="" data-target="#multiple_doc" data-toggle="modal" class="font-weight-bold btn btn-light border border-dark">Upload multiple doc</a>
+        <div class="col-sm-12">
+            <a href="" data-target="#multiple_doc" data-toggle="modal" class="d-block font-weight-bold btn btn-light border border-dark">Upload Supporting Business Documentation</a>
         </div>
 
-        <div class="col-sm-6">
-            <a href="" data-target="#support_doc" data-toggle="modal" class="font-weight-bold btn btn-light border border-dark">Upload supportive doc</a>
-        </div>
+        
     </div>
 
 

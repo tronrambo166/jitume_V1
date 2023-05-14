@@ -104,6 +104,12 @@ Route::prefix('/business')->group(function(){
 Route::post('add_eqp', 'BusinessController@add_eqp')->name('add_eqp');
 Route::post('up_listing', 'BusinessController@up_listing')->name('up_listing');
 
+Route::get('add_milestones', 'BusinessController@add_milestones')->name('add_milestones');
+Route::get('milestones', 'BusinessController@milestones')->name('milestones');
+Route::post('save_milestone', 'BusinessController@save_milestone')->name('save_milestone');
+Route::post('up_milestones', 'BusinessController@up_milestone')->name('up_milestones');
+Route::get('delete_milestone/{id}', 'BusinessController@delete_milestone')->name('delete_milestone');
+
 Route::post('add_doc', 'BusinessController@add_docs')->name('add_doc');
 Route::post('add_video', 'BusinessController@add_video')->name('add_video');
 Route::post('embed_business_video', 'BusinessController@embed_business_video')->name('embed_business_video');
@@ -127,7 +133,7 @@ Route::post('up_service', 'ServiceController@up_listing')->name('up_service');
 
 Route::post('add_doc', 'ServiceController@add_docs')->name('add_docs');
 Route::post('add_video', 'ServiceController@add_video')->name('add_videos');
-Route::post('embed_business_video', 'ServiceController@embed_business_video')->name('embed_business_videos');
+Route::post('embed_service_videos', 'ServiceController@embed_service_videos')->name('embed_service_videos');
 
 });
 

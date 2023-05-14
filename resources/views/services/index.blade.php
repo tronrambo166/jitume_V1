@@ -10,7 +10,7 @@
 
     <div class="row w-50 mx-auto">
         <div class="col-sm-12">
-            <a href="" data-target="#multiple_doc" data-toggle="modal" class="d-block font-weight-bold btn btn-light border border-dark">Upload Supporting Business Documentation</a>
+            <a href="" data-target="#multiple_doc" data-toggle="modal" class="d-block font-weight-bold btn btn-light border border-dark">Upload Supporting Service Documentation</a>
         </div>
 
         
@@ -25,7 +25,7 @@
 
         <div class="col-sm-12"> <span class="my-3 d-block font-weight-bold text-center m-auto"> OR </span>
 
-          <form method="post" action="{{route('embed_business_videos')}}">
+          <form method="post" action="{{route('embed_service_videos')}}">
             @csrf
            <input class="w-75 d-inline form-control" placeholder="Embed video link" name="link" /> 
            <input value="Embed" type="submit" class="text-light py-1 mb-1 d-inline btn" style="background:#72c537;" >
@@ -68,7 +68,7 @@
                                     <div class="col-12 col-sm-6">
                                         <div class="form-group">
             <select required=""  name="listing" class="border-none form-control">
-            <option hidden class="form-control" >Select Business</option>
+            <option hidden class="form-control" >Select Service</option>
 
             @foreach($services as $b)
             <option value="{{$b->id}}" class="form-control" >{{$b->name}}</option> @endforeach
@@ -133,7 +133,7 @@
                                     <div class="col-12 col-sm-6">
                                         <div class="form-group">
             <select required=""  name="listing" class="border-none form-control">
-            <option hidden class="form-control" >Select Business</option>
+            <option hidden class="form-control" >Select Service</option>
 
             @foreach($services as $b)
             <option value="{{$b->id}}" class="form-control" >{{$b->name}}</option> @endforeach

@@ -11,6 +11,7 @@ import invest_eqp from '../components/site/invest_eqp.vue'
 import donate_eqp from '../components/site/donate_eqp.vue'
 import cart from '../components/site/cart.vue'
 import subscribe from '../components/site/subscribe.vue'
+import project_dash from '../components/site/project_dash.vue'
 
 
 //ADMIN COMPONENTS
@@ -41,6 +42,7 @@ export const routes=[
 
 { path:'/serviceResults/:results',name: 'serviceResults', component: serviceResults},
 { path:'/serviceDetails/:id', component: serviceDetails},
+{ path:'/project_dash/:id', component: project_dash},
 
 
 //ADMIN ROUTES

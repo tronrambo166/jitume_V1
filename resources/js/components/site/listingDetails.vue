@@ -140,6 +140,9 @@
 
 
                <div  class="eqp-invest">
+
+                <router-link :to="`/project_dash/${form.listing_id}`"  @mouseleave="leave()" @mouseover="hover2()" style="border: 1px solid black;" id="convBtn2"  class="convBtn my-3 text-center mx-auto w-75 btn  px-4">Project Dashboard</router-link>
+
                 <a @mouseleave="leave()" @mouseover="hover()" style="border: 1px solid black;" id="convBtn1"  class="convBtn text-center mx-auto w-75 btn  px-4">Message Business Owner</a>
                 <router-link to="/services"  @mouseleave="leave()" @mouseover="hover2()" style="border: 1px solid black;" id="convBtn2"  class="convBtn my-3 text-center mx-auto w-75 btn  px-4">Request a Transaction Advisor</router-link>
                </div>

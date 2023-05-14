@@ -239,7 +239,7 @@ $user_id = Auth::id();
 }
 
 
-public function embed_business_video(Request $request){
+public function embed_service_videos(Request $request){
 $link = $request->link;
 $listing = $request->listing;
 $user_id = Auth::id();

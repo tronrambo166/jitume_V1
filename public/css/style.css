@@ -267,7 +267,21 @@ hr{color: #a7a3a3;}
 
    
 		
-		
+	
+::placeholder {
+  color: darkgrey; font-weight: 500;
+  font-size: 12px;
+  padding-left: 8px;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color: darkgrey;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+ color: darkgrey;
+}	
 		
 		
 		

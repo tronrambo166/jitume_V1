@@ -65,15 +65,28 @@
     
     <div class="col-sm-4" style="background: white;">
               <ul class="myaccount">
-                    <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary ">
-                         <a class="text-secondary" href="home">Back to Main</a>
-                        <a class="text-secondary" href="">My Account</a>
-                        <a class="text-secondary" href="{{route('logoutB')}}">Logout</a>
-                    </li>
 
-                     <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary ">
+                <li style="list-style-type: none;" class="float-left ml-4 mt-3 nav-item py-1 px-3 text-secondary ">
                         <a href="{{route('add-listing')}}" style="border-radius: 35px 35px;border: 1px solid green;text-decoration: none;" class="px-3 text-secondary" href="">Add Business</a>
                     </li>
+
+
+                <div class="dropdown show d-inline-block ml-5 mt-3">
+                  <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Options
+                  </a>
+                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary">
+                         <a class="dropdown-item text-secondary" href="home">Back to Main</a>
+                        <a class="dropdown-item text-secondary" href="">My Account</a>
+                        <a class="dropdown-item text-secondary" href="{{route('logoutB')}}">Logout</a>
+                    </li>
+                    
+                  </div>
+                </div> 
+
+
+                     
 
                 </ul>     
         </div> 
@@ -91,7 +104,7 @@
                         <ul class="sidebar text-light" style="color:white;">
                            
                             <li class="{{ Request::is('admin/index_admin') ? 'active' : '' }}"> 
-                                <a class="text-light" href="{{route('/')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                                <a class="font-weight-bold text-light" href="{{route('/')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
                             </li>
 
 
@@ -99,11 +112,16 @@
                             
 
                             <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
-                                <a class="text-light" href="{{route('add-listing')}}"><i class=" fe fe-layout"></i> <span>Add Business</span></a>
+                                <a class="font-weight-bold text-light" href="{{route('add-listing')}}"><i class=" fe fe-layout"></i> <span>Add Business</span></a>
                             </li>
 
                             <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
-                                <a class="text-light" href="{{route('listings')}}"><i class=" fe fe-layout"></i> <span>My Business</span></a>
+                                <a class="font-weight-bold text-light" href="{{route('listings')}}"><i class=" fe fe-layout"></i> <span>My Business</span></a>
+
+                                <a class="font-weight-bold text-light" href="{{route('add_milestones')}}"><i class=" fe fe-layout"></i> <span>Add Milestone</span></a>
+
+                                <a class="font-weight-bold text-light" href="{{route('milestones')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
+
                             </li>
                             
                         </ul>
