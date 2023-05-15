@@ -12,11 +12,14 @@ use App\Models\User;
 use App\Models\Cart;
 use App\Models\orders;
 use App\Models\Conversation;
+use App\Models\Milestones;
 use Session; 
 use Hash;
 use Auth;
 use Mail;
 use Stripe;
+use App\Models\taxes;
+
 
 class checkoutController extends Controller
 {
@@ -225,5 +228,71 @@ class checkoutController extends Controller
        return redirect("/");
 
     }
+
+
+    //  MILESTONES
+
+    //CART
+
+     public function milestoneCheckout(Request $request)
+    {
+    $tax = taxes::where('id',1)->first();
+    $tax = $tax->tax+$tax->vat;
+    $amount =($request->amount)+($request->amount)*($tax/100);
+    $milestone_id =$request->milestone_id;
+ 
+        return view('milestone.stripe',compact('amount','milestone_id','tax'));
+    }
+
+   
+    public function milestoneStripePost(Request $request)
+    {
+    $id = $request->milestone_id; //explode(',',$request->ids);
+
+    $mile = Milestones::where('id',$id)->first();    
+    $tax = taxes::where('id',1)->first();$tax = $tax->tax+$tax->vat;
+    $amount =($mile->amount)+($mile->amount)*($tax/100);
+
+    $user_id = $mile->user_id;
+
+
+        //STRIPE
+         $curr='USD'; //$request->currency; 
+         $amount=round($amount);
+
+        Stripe\Stripe::setApiKey('sk_test_51JFWrpJkjwNxIm6zcIxSq9meJlasHB3MpxJYepYx1RuQnVYpk0zmoXSXz22qS62PK5pryX4ptYGCHaudKePMfGyH00sO7Jwion');
+
+        Stripe\Charge::create ([ 
+
+                //"billing_address_collection": null,
+                "amount" => $amount*100, //100 * 100,
+                "currency" => $curr,
+                "source" => $request->stripeToken,
+                "description" => "This payment is tested purpose only!"
+        ]);
+   
+
+//DB INSERT
+  
+       
+    Milestones::where('id',$id)->update([ 'status' => 'Done']);
+    $mileLat = Milestones::where('user_id',$user_id)->where('status','Created')->first();
+
+    Milestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
+
+
+        $info=[  'order_id'=>''  ]; 
+        $user['to'] = 'sohaankane@gmail.com';//$request->email;
+
+        // Mail::send('cart.cart_mail', $info, function($msg) use ($user){
+        //     $msg->to($user['to']);
+        //     $msg->subject('Test Checkout Alert!');
+        // });  
+
+       Session::put('Stripe_pay','Milestone paid successfully!');
+       return redirect("/");
+
+    }
+
 
 }

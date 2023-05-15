@@ -48,58 +48,114 @@
     </div> 
            
 
-    <!-- Layout -->
+ <div class="root py-5 mb-5 ml-4">
+     <div class="progressbar-wrapper">
+      <ul class="progressbar">
+        
+        <li v-for="( result, index ) in results" :class="result.status=='In Progress' || result.status=='Done'?'active':'' " > Step </li>
+          
+      </ul>
+</div>
+  </div>
 
-             <div class="w-75 m-auto row my-4 text-center">
 
-                <!-- Download form -->
-  
-         <div class="modal-body">
-        <form action=""  method="post" enctype="multipart/form-data" class="form-group form">
+
+    <!--  Layout -->
+
+        <div v-for="result in results" class="w-75 m-auto row mt-4 text-center">
+
+                <!--Active Download form -->
+         <div v-if="result.status=='In Progress'" class="modal-body">
+        <form action="milestoneStripe"  method="get" enctype="multipart/form-data" class="vueform form-group form">
                                 
                                 
 
                                 <div class="row pt-2" width="85%">
                                     <div class="col-sm-3 px-1">
                                         <div class=" ">
-                                            <input required="" name="title" type="text" placeholder="Milestone Name"  class="w-100 rounded border border-dark ">
+                                            <input readonly required="" name="title" type="text" v-model="result.title"   class="placeH w-100 rounded border border-dark ">
                                         </div>
                                     </div>
 
 
-                                    <div class="col-sm-2 px-1 ">
+                                    <div class="col-sm-2 px-0 ">
                                         <div class="">
                                          
-                                            <input required=""  type="number"placeholder="Amount"  name="amount" class="w-100 rounded border border-dark " >
+                                            <input readonly required=""  type="number"v-model="result.amount"   name="amount" class="placeH w-100 rounded border border-dark " >
                                         </div>
                                     </div>
 
                                 <div class="col-sm-3 px-1">
                                 <div class="upload-btn-wrapper w-100">
-                                  <button class="btnUp3 w-100">Download Milestone Documentaion <i class="ml-2 fa fa-arrow-up"></i></button>
-                                  <input type="file" name="file" />
+                                  <a @click="download_milestone_doc()" class="text-white  placeH btnUp3 w-100">Download Milestone Documentaion <i class="ml-2 fa fa-arrow-down"></i></a>
+                                  
                                 </div>
-                                    </div>
-
-
-
-            <div class="col-sm-3 px-1">
-                <div class="form-group ">
-          <select required=""  name="business_id" class="w-100 rounded border border-dark p-1 ">
-            <option hidden class="form-control" >Select Business</option>
-
-            
-            
-           </select> 
-                                        </div>
                                     </div>
 
 
                                     <div class="col-1 px-1">
                                         <div class="form-group">
-                                        <input type="submit" class="text-center p-0 btn btn-warning btn-block" value="ADD" />
-                                    </div>
+                                        <button type="submit" class="text-center border border-dark p-0 btn btn-light btn-block" >PAY</button>                                    </div>
                                 </div>
+
+                                <input type="number" hidden="" name="lisitng_id" v-model="form.id">
+                                <input type="number" hidden name="milestone_id" v-model="result.id">
+
+                                <div class="col-2 px-1">
+                                        <div class="form-group">
+                                        <span  class="text-center border border-dark p-0 btn btn-success btn-block" >In Progress</span>                                    </div>
+                                </div>
+
+                           
+                                </div>
+                                
+                            </form>
+
+    </div>
+
+    <!--Active Download form -->
+
+
+
+<!--Done Download form -->
+         <div v-else-if="result.status=='Done'" class="modal-body">
+        <form action=""  method="post" enctype="multipart/form-data" class="vueform form-group form">
+                                
+                                
+
+                                <div class="row pt-2" width="85%">
+                                    <div class="col-sm-3 px-1">
+                                        <div class=" ">
+                                            <input readonly required="" name="title" type="text" v-model="result.title"   class="placeH_inactive w-100 rounded border border-dark ">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-2 px-0 ">
+                                        <div class="">
+                                         
+                                            <input readonly required=""  type="number"v-model="result.amount"  name="amount" class="placeH_inactive w-100 rounded border border-dark " >
+                                        </div>
+                                    </div>
+
+                                <div class="col-sm-3 px-1">
+                                <div class="upload-btn-wrapper w-100">
+                                  <a class="text-white disabled placeH_inactive btnUp4 w-100">Download Milestone Documentaion <i class="ml-2 fa fa-arrow-down"></i></a>
+                                  
+                                </div>
+                                    </div>
+
+
+                                    <div class="col-1 px-1">
+                                        <div class="form-group">
+                                        <a disabled class="text-center border border-dark p-0 btn btn-light btn-block" >PAY</a>                                    </div>
+                                </div>
+
+                                <div class="col-2 px-1">
+                                        <div class="form-group">
+                                        <span  class="text-center border border-dark p-0 btn btn-light btn-block" >Done!</span>                                    </div>
+                                </div>
+
                            
                                 </div>
                                 
@@ -108,10 +164,60 @@
     </div>
 
 
-      <!-- ADD MODAL -->
+<!-- Done Layout -->
 
 
-             </div>
+
+
+        <!--IN Active Download form -->
+         <div v-else class="modal-body">
+        <form action=""  method="post" enctype="multipart/form-data" class="vueform form-group form">
+                                
+                                
+
+                                <div class="row pt-2" width="85%">
+                                    <div class="col-sm-3 px-1">
+                                        <div class=" ">
+                                            <input readonly required="" name="title" type="text" v-model="result.title"   class="placeH_inactive w-100 rounded border border-dark ">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-2 px-0 ">
+                                        <div class="">
+                                         
+                                            <input readonly required=""  type="number"v-model="result.amount"  name="amount" class="placeH_inactive w-100 rounded border border-dark " >
+                                        </div>
+                                    </div>
+
+                                <div class="col-sm-3 px-1">
+                                <div class="upload-btn-wrapper w-100">
+                                  <a class="text-white disabled placeH_inactive btnUp4 w-100">Download Milestone Documentaion <i class="ml-2 fa fa-arrow-down"></i></a>
+                                  
+                                </div>
+                                    </div>
+
+
+                                    <div class="col-1 px-1">
+                                        <div class="form-group">
+                                        <a disabled class="text-center border border-dark p-0 btn btn-light btn-block" >PAY</a>                                    </div>
+                                </div>
+
+                                <div class="col-2 px-1">
+                                        <div class="form-group">
+                                        <span  class="text-center border border-dark p-0 btn btn-light btn-block" >On Hold</span>                                    </div>
+                                </div>
+
+                           
+                                </div>
+                                
+                            </form>
+
+    </div>
+
+
+<!-- IN Active Layout -->
+
 
 
                
@@ -121,6 +227,7 @@
        
         </div>
     </div>
+    </div>
 </template>
 
 <script>
@@ -129,85 +236,51 @@
     props: ['auth_user'],    
     data: () => ({
     form: new Form({
-        id:'',
-        select:false
+        id:''
     }),
-    empty:false
+    results:[],
+    status:false
     }),
 
     created(){
          var id=this.$route.params.id;
          let t=this;
          t.form.id = id;
-         document.getElementById('listing_id').value = id;
+ 
 
     },
-    methods:{
-    type(event){
-        if(event.target.value == 'M'){
-        $('#monthly').show();
-        $('#yearly').hide();
-    }
-    else {
-        $('#monthly').hide();
-        $('#yearly').show();
-    }
+methods:{
 
+getMilestones:function(){ 
+    var id=this.$route.params.id; var t=this;
+
+    axios.get('getMilestones/'+id).then( (data) =>{
+        console.log(data);
+        t.results = data.data.data;
+    
+    });
+    
     },
-    select(event){ 
-    this.form.select = true;
 
-    if(event == '9.99'){
-        var pacage = 'silver-month';
-    $('#one').css('background','#e0edd8');
-    $('#two').css('background','');
-    $('#three').css('background','');
-  }
-
-   if(event == '29.99'){
-    var pacage = 'gold-month';
-    $('#two').css('background','#e0edd8');
-    $('#one').css('background','');
-    $('#three').css('background','');
-  }
-
-   if(event == '69.99'){
-    var pacage = 'platinum-month';
-    $('#three').css('background','#e0edd8');
-    $('#two').css('background','');
-    $('#one').css('background','');
-  }
-
-   if(event == '95.99'){
-    var pacage = 'silver-year';
-    $('#four').css('background','#e0edd8');
-    $('#five').css('background','');
-    $('#six').css('background','');
-  }
-
-  if(event == '287.99'){
-    var pacage = 'gold-year';
-    $('#five').css('background','#e0edd8');
-    $('#four').css('background','');
-    $('#six').css('background','');
-  }
-
-  if(event == '671.99'){
-    var pacage = 'platinum-year';
-    $('#six').css('background','#e0edd8');
-    $('#five').css('background','');
-    $('#four').css('background','');
-  }
-    document.getElementById('price').value = event;
-    document.getElementById('listing_id').value = this.form.id;
-    document.getElementById('package').value = pacage;
-},
  make_session(id){
             sessionStorage.setItem('invest',id);
         },
 
+    download_milestone_doc(){
+    var id=this.$route.params.id; var t=this;
+    axios.get('download_milestoneDoc/'+id).then( (data) =>{console.log(data);
+    
+    });
+        }
 
-}
+
+},
+
+ mounted() { 
+     this.getMilestones();
+    
+      }
+
 
 }
 

@@ -75,6 +75,9 @@ Route::get('removeCart/{id}', 'PagesController@removeCart')->name('removeCart');
 Route::get('cart', 'PagesController@cart')->name('cart');
 Route::get('download_business/{id}', 'PagesController@download_business')->name('download_business');
 
+Route::get('getMilestones/{id}', 'BusinessController@getMilestones')->name('getMilestones');
+Route::get('download_milestoneDoc/{id}', 'BusinessController@download_milestone_doc')->name('download_milestoneDoc');
+
 
 //MAIN/BACKEND/VUE
 
@@ -164,3 +167,6 @@ Route::post('/stripe', 'checkoutController@stripeConversation')->name('stripe.po
 //CART
 Route::get('cartStripe', 'checkoutController@cartCheckout')->name('cartStripe');
 Route::post('cartstripe', 'checkoutController@cartStripePost')->name('cartstripe.post');
+
+Route::get('milestoneStripe', 'checkoutController@milestoneCheckout')->name('milestoneStripe');
+Route::post('milestonestripe', 'checkoutController@milestoneStripePost')->name('milestonestripe.post');

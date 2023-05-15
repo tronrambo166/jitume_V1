@@ -10,6 +10,7 @@ use App\Models\Equipments;
 use App\Models\User;
 use App\Models\businessDocs;
 use App\Models\Milestones;
+use Response;
 use Session; 
 use Hash;
 use Auth;
@@ -183,10 +184,36 @@ $business = listing::where('user_id',Auth::id())->get();
 return view('business.add_milestones',compact('business','milestones'));
 }
 
+public function getMilestones($id){ 
+ $milestones = Milestones::where('listing_id',$id)->get(); $c=0;$test='';
+  foreach($milestones as $mile)
+  if($mile->status == 'In Progress') $c++;
+
+ if($c==0){
+  
+  $milestones[0]->status = 'In Progress';
+}
+
+return response()->json([ 'data' => $milestones ]);
+
+ }
+
+ public function download_milestone_doc($id){
+    
+    $file="files/milestones/1/1765896965832438.docx";
+    $headers = array('Content-Type'=> 'application/pdf');
+    return Response::download($file, 'milestone.pdf', $headers);
+    return response()->json(['data'=>'success']);
+
+    }
+
+
+
 public function milestones(){
-$milestones = Milestones::latest()->get();
+$milestones = Milestones::wh()->get();
 return view('business.milestones',compact('milestones'));
 }
+
 
 
 public function save_milestone(Request $request){

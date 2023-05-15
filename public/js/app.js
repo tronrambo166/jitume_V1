@@ -8133,85 +8133,151 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
     return {
       form: new Form({
-        id: '',
-        select: false
+        id: ''
       }),
-      empty: false
+      results: [],
+      status: false
     };
   },
   created: function created() {
     var id = this.$route.params.id;
     var t = this;
     t.form.id = id;
-    document.getElementById('listing_id').value = id;
   },
   methods: {
-    type: function type(event) {
-      if (event.target.value == 'M') {
-        $('#monthly').show();
-        $('#yearly').hide();
-      } else {
-        $('#monthly').hide();
-        $('#yearly').show();
-      }
-    },
-    select: function select(event) {
-      this.form.select = true;
-
-      if (event == '9.99') {
-        var pacage = 'silver-month';
-        $('#one').css('background', '#e0edd8');
-        $('#two').css('background', '');
-        $('#three').css('background', '');
-      }
-
-      if (event == '29.99') {
-        var pacage = 'gold-month';
-        $('#two').css('background', '#e0edd8');
-        $('#one').css('background', '');
-        $('#three').css('background', '');
-      }
-
-      if (event == '69.99') {
-        var pacage = 'platinum-month';
-        $('#three').css('background', '#e0edd8');
-        $('#two').css('background', '');
-        $('#one').css('background', '');
-      }
-
-      if (event == '95.99') {
-        var pacage = 'silver-year';
-        $('#four').css('background', '#e0edd8');
-        $('#five').css('background', '');
-        $('#six').css('background', '');
-      }
-
-      if (event == '287.99') {
-        var pacage = 'gold-year';
-        $('#five').css('background', '#e0edd8');
-        $('#four').css('background', '');
-        $('#six').css('background', '');
-      }
-
-      if (event == '671.99') {
-        var pacage = 'platinum-year';
-        $('#six').css('background', '#e0edd8');
-        $('#five').css('background', '');
-        $('#four').css('background', '');
-      }
-
-      document.getElementById('price').value = event;
-      document.getElementById('listing_id').value = this.form.id;
-      document.getElementById('package').value = pacage;
+    getMilestones: function getMilestones() {
+      var id = this.$route.params.id;
+      var t = this;
+      axios.get('getMilestones/' + id).then(function (data) {
+        console.log(data);
+        t.results = data.data.data;
+      });
     },
     make_session: function make_session(id) {
       sessionStorage.setItem('invest', id);
+    },
+    download_milestone_doc: function download_milestone_doc() {
+      var id = this.$route.params.id;
+      var t = this;
+      axios.get('download_milestoneDoc/' + id).then(function (data) {
+        console.log(data);
+      });
     }
+  },
+  mounted: function mounted() {
+    this.getMilestones();
   }
 });
 
@@ -65475,110 +65541,517 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "main" }, [
-    _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row border_dark p-0" }, [
-        _c("div", { staticClass: "col-sm-8" }, [
-          _c("div", { staticClass: "navbar navbar-expand-sm p-0 navy" }, [
-            _c("ul", { staticClass: "navbar-nav py-2" }, [
-              _vm._m(0),
-              _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "container" },
+      [
+        _c("div", { staticClass: "row border_dark p-0" }, [
+          _c("div", { staticClass: "col-sm-8" }, [
+            _c("div", { staticClass: "navbar navbar-expand-sm p-0 navy" }, [
+              _c("ul", { staticClass: "navbar-nav py-2" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item py-1 px-3" },
+                  [
+                    _c(
+                      "router-link",
+                      { staticClass: "text-secondary", attrs: { to: "/home" } },
+                      [_vm._v("Home")]
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item py-1 px-3 text-secondary" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "text-secondary",
+                        attrs: { to: "/services" },
+                      },
+                      [_vm._v("Jitume service")]
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "font-weight-bold nav-item py-1 px-3" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "text-secondary",
+                        attrs: { to: "/applyShow" },
+                      },
+                      [_vm._v("Apply for show\n                    ")]
+                    ),
+                  ],
+                  1
+                ),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("ul", [
               _c(
                 "li",
-                { staticClass: "nav-item py-1 px-3" },
+                {
+                  staticClass: "float-right mt-3 nav-item py-1 px-3 text-light",
+                  staticStyle: { "list-style-type": "none" },
+                },
                 [
-                  _c(
-                    "router-link",
-                    { staticClass: "text-secondary", attrs: { to: "/home" } },
-                    [_vm._v("Home")]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item py-1 px-3 text-secondary" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "text-secondary",
-                      attrs: { to: "/services" },
-                    },
-                    [_vm._v("Jitume service")]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "font-weight-bold nav-item py-1 px-3" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "text-secondary",
-                      attrs: { to: "/applyShow" },
-                    },
-                    [_vm._v("Apply for show\n                  ")]
-                  ),
-                ],
-                1
+                  _vm.auth_user
+                    ? _c(
+                        "a",
+                        {
+                          staticClass:
+                            "text-dark d-inline px-3 py-2 d-inline-block text-center",
+                          staticStyle: {
+                            background: "rgb(175 173 173 / 23%)",
+                            cursor: "pointer",
+                          },
+                          attrs: {
+                            onclick:
+                              "event.preventDefault();\n                                                     document.getElementById('logout-form').submit();",
+                          },
+                        },
+                        [_c("b", [_vm._v("Logout")])]
+                      )
+                    : _c(
+                        "a",
+                        {
+                          staticClass:
+                            "text-dark d-inline px-3 py-2 d-inline-block text-center",
+                          staticStyle: { background: "rgb(175 173 173 / 23%)" },
+                          attrs: {
+                            "data-target": "#loginModal",
+                            "data-toggle": "modal",
+                          },
+                        },
+                        [_c("b", [_vm._v("Sign In")])]
+                      ),
+                ]
               ),
             ]),
           ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-1" }),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("ul", [
+        _c("div", { staticClass: "root py-5 mb-5 ml-4" }, [
+          _c("div", { staticClass: "progressbar-wrapper" }, [
             _c(
-              "li",
-              {
-                staticClass: "float-right mt-3 nav-item py-1 px-3 text-light",
-                staticStyle: { "list-style-type": "none" },
-              },
-              [
-                _vm.auth_user
-                  ? _c(
-                      "a",
-                      {
-                        staticClass:
-                          "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                        staticStyle: {
-                          background: "rgb(175 173 173 / 23%)",
-                          cursor: "pointer",
-                        },
-                        attrs: {
-                          onclick:
-                            "event.preventDefault();\n                                                   document.getElementById('logout-form').submit();",
-                        },
-                      },
-                      [_c("b", [_vm._v("Logout")])]
-                    )
-                  : _c(
-                      "a",
-                      {
-                        staticClass:
-                          "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                        staticStyle: { background: "rgb(175 173 173 / 23%)" },
-                        attrs: {
-                          "data-target": "#loginModal",
-                          "data-toggle": "modal",
-                        },
-                      },
-                      [_c("b", [_vm._v("Sign In")])]
-                    ),
-              ]
+              "ul",
+              { staticClass: "progressbar" },
+              _vm._l(_vm.results, function (result, index) {
+                return _c(
+                  "li",
+                  {
+                    class:
+                      result.status == "In Progress" || result.status == "Done"
+                        ? "active"
+                        : "",
+                  },
+                  [_vm._v(" Step ")]
+                )
+              }),
+              0
             ),
           ]),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-sm-1" }),
-      ]),
-      _vm._v(" "),
-      _vm._m(1),
-    ]),
+        _vm._l(_vm.results, function (result) {
+          return _c(
+            "div",
+            { staticClass: "w-75 m-auto row mt-4 text-center" },
+            [
+              result.status == "In Progress"
+                ? _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "form",
+                      {
+                        staticClass: "vueform form-group form",
+                        attrs: {
+                          action: "milestoneStripe",
+                          method: "get",
+                          enctype: "multipart/form-data",
+                        },
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "row pt-2", attrs: { width: "85%" } },
+                          [
+                            _c("div", { staticClass: "col-sm-3 px-1" }, [
+                              _c("div", { staticClass: "" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: result.title,
+                                      expression: "result.title",
+                                    },
+                                  ],
+                                  staticClass:
+                                    "placeH w-100 rounded border border-dark",
+                                  attrs: {
+                                    readonly: "",
+                                    required: "",
+                                    name: "title",
+                                    type: "text",
+                                  },
+                                  domProps: { value: result.title },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        result,
+                                        "title",
+                                        $event.target.value
+                                      )
+                                    },
+                                  },
+                                }),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-sm-2 px-0" }, [
+                              _c("div", {}, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: result.amount,
+                                      expression: "result.amount",
+                                    },
+                                  ],
+                                  staticClass:
+                                    "placeH w-100 rounded border border-dark",
+                                  attrs: {
+                                    readonly: "",
+                                    required: "",
+                                    type: "number",
+                                    name: "amount",
+                                  },
+                                  domProps: { value: result.amount },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        result,
+                                        "amount",
+                                        $event.target.value
+                                      )
+                                    },
+                                  },
+                                }),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-sm-3 px-1" }, [
+                              _c(
+                                "div",
+                                { staticClass: "upload-btn-wrapper w-100" },
+                                [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "text-white placeH btnUp3 w-100",
+                                      on: {
+                                        click: function ($event) {
+                                          return _vm.download_milestone_doc()
+                                        },
+                                      },
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Download Milestone Documentaion "
+                                      ),
+                                      _c("i", {
+                                        staticClass: "ml-2 fa fa-arrow-down",
+                                      }),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(1, true),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.id,
+                                  expression: "form.id",
+                                },
+                              ],
+                              attrs: {
+                                type: "number",
+                                hidden: "",
+                                name: "lisitng_id",
+                              },
+                              domProps: { value: _vm.form.id },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(_vm.form, "id", $event.target.value)
+                                },
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: result.id,
+                                  expression: "result.id",
+                                },
+                              ],
+                              attrs: {
+                                type: "number",
+                                hidden: "",
+                                name: "milestone_id",
+                              },
+                              domProps: { value: result.id },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(result, "id", $event.target.value)
+                                },
+                              },
+                            }),
+                            _vm._v(" "),
+                            _vm._m(2, true),
+                          ]
+                        ),
+                      ]
+                    ),
+                  ])
+                : result.status == "Done"
+                ? _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "form",
+                      {
+                        staticClass: "vueform form-group form",
+                        attrs: {
+                          action: "",
+                          method: "post",
+                          enctype: "multipart/form-data",
+                        },
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "row pt-2", attrs: { width: "85%" } },
+                          [
+                            _c("div", { staticClass: "col-sm-3 px-1" }, [
+                              _c("div", { staticClass: "" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: result.title,
+                                      expression: "result.title",
+                                    },
+                                  ],
+                                  staticClass:
+                                    "placeH_inactive w-100 rounded border border-dark",
+                                  attrs: {
+                                    readonly: "",
+                                    required: "",
+                                    name: "title",
+                                    type: "text",
+                                  },
+                                  domProps: { value: result.title },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        result,
+                                        "title",
+                                        $event.target.value
+                                      )
+                                    },
+                                  },
+                                }),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-sm-2 px-0" }, [
+                              _c("div", {}, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: result.amount,
+                                      expression: "result.amount",
+                                    },
+                                  ],
+                                  staticClass:
+                                    "placeH_inactive w-100 rounded border border-dark",
+                                  attrs: {
+                                    readonly: "",
+                                    required: "",
+                                    type: "number",
+                                    name: "amount",
+                                  },
+                                  domProps: { value: result.amount },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        result,
+                                        "amount",
+                                        $event.target.value
+                                      )
+                                    },
+                                  },
+                                }),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(3, true),
+                            _vm._v(" "),
+                            _vm._m(4, true),
+                            _vm._v(" "),
+                            _vm._m(5, true),
+                          ]
+                        ),
+                      ]
+                    ),
+                  ])
+                : _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "form",
+                      {
+                        staticClass: "vueform form-group form",
+                        attrs: {
+                          action: "",
+                          method: "post",
+                          enctype: "multipart/form-data",
+                        },
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "row pt-2", attrs: { width: "85%" } },
+                          [
+                            _c("div", { staticClass: "col-sm-3 px-1" }, [
+                              _c("div", { staticClass: "" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: result.title,
+                                      expression: "result.title",
+                                    },
+                                  ],
+                                  staticClass:
+                                    "placeH_inactive w-100 rounded border border-dark",
+                                  attrs: {
+                                    readonly: "",
+                                    required: "",
+                                    name: "title",
+                                    type: "text",
+                                  },
+                                  domProps: { value: result.title },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        result,
+                                        "title",
+                                        $event.target.value
+                                      )
+                                    },
+                                  },
+                                }),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-sm-2 px-0" }, [
+                              _c("div", {}, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: result.amount,
+                                      expression: "result.amount",
+                                    },
+                                  ],
+                                  staticClass:
+                                    "placeH_inactive w-100 rounded border border-dark",
+                                  attrs: {
+                                    readonly: "",
+                                    required: "",
+                                    type: "number",
+                                    name: "amount",
+                                  },
+                                  domProps: { value: result.amount },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        result,
+                                        "amount",
+                                        $event.target.value
+                                      )
+                                    },
+                                  },
+                                }),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(6, true),
+                            _vm._v(" "),
+                            _vm._m(7, true),
+                            _vm._v(" "),
+                            _vm._m(8, true),
+                          ]
+                        ),
+                      ]
+                    ),
+                  ]),
+            ]
+          )
+        }),
+      ],
+      2
+    ),
   ])
 }
 var staticRenderFns = [
@@ -65603,88 +66076,137 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-75 m-auto row my-4 text-center" }, [
-      _c("div", { staticClass: "modal-body" }, [
+    return _c("div", { staticClass: "col-1 px-1" }, [
+      _c("div", { staticClass: "form-group" }, [
         _c(
-          "form",
+          "button",
           {
-            staticClass: "form-group form",
-            attrs: {
-              action: "",
-              method: "post",
-              enctype: "multipart/form-data",
-            },
+            staticClass:
+              "text-center border border-dark p-0 btn btn-light btn-block",
+            attrs: { type: "submit" },
           },
+          [_vm._v("PAY")]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-2 px-1" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "span",
+          {
+            staticClass:
+              "text-center border border-dark p-0 btn btn-success btn-block",
+          },
+          [_vm._v("In Progress")]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3 px-1" }, [
+      _c("div", { staticClass: "upload-btn-wrapper w-100" }, [
+        _c(
+          "a",
+          { staticClass: "text-white disabled placeH_inactive btnUp4 w-100" },
           [
-            _c("div", { staticClass: "row pt-2", attrs: { width: "85%" } }, [
-              _c("div", { staticClass: "col-sm-3 px-1" }, [
-                _c("div", { staticClass: "" }, [
-                  _c("input", {
-                    staticClass: "w-100 rounded border border-dark",
-                    attrs: {
-                      required: "",
-                      name: "title",
-                      type: "text",
-                      placeholder: "Milestone Name",
-                    },
-                  }),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-2 px-1" }, [
-                _c("div", {}, [
-                  _c("input", {
-                    staticClass: "w-100 rounded border border-dark",
-                    attrs: {
-                      required: "",
-                      type: "number",
-                      placeholder: "Amount",
-                      name: "amount",
-                    },
-                  }),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3 px-1" }, [
-                _c("div", { staticClass: "upload-btn-wrapper w-100" }, [
-                  _c("button", { staticClass: "btnUp3 w-100" }, [
-                    _vm._v("Download Milestone Documentaion "),
-                    _c("i", { staticClass: "ml-2 fa fa-arrow-up" }),
-                  ]),
-                  _vm._v(" "),
-                  _c("input", { attrs: { type: "file", name: "file" } }),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3 px-1" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c(
-                    "select",
-                    {
-                      staticClass: "w-100 rounded border border-dark p-1",
-                      attrs: { required: "", name: "business_id" },
-                    },
-                    [
-                      _c(
-                        "option",
-                        { staticClass: "form-control", attrs: { hidden: "" } },
-                        [_vm._v("Select Business")]
-                      ),
-                    ]
-                  ),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-1 px-1" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("input", {
-                    staticClass: "text-center p-0 btn btn-warning btn-block",
-                    attrs: { type: "submit", value: "ADD" },
-                  }),
-                ]),
-              ]),
-            ]),
+            _vm._v("Download Milestone Documentaion "),
+            _c("i", { staticClass: "ml-2 fa fa-arrow-down" }),
           ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-1 px-1" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "a",
+          {
+            staticClass:
+              "text-center border border-dark p-0 btn btn-light btn-block",
+            attrs: { disabled: "" },
+          },
+          [_vm._v("PAY")]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-2 px-1" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "span",
+          {
+            staticClass:
+              "text-center border border-dark p-0 btn btn-light btn-block",
+          },
+          [_vm._v("Done!")]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3 px-1" }, [
+      _c("div", { staticClass: "upload-btn-wrapper w-100" }, [
+        _c(
+          "a",
+          { staticClass: "text-white disabled placeH_inactive btnUp4 w-100" },
+          [
+            _vm._v("Download Milestone Documentaion "),
+            _c("i", { staticClass: "ml-2 fa fa-arrow-down" }),
+          ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-1 px-1" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "a",
+          {
+            staticClass:
+              "text-center border border-dark p-0 btn btn-light btn-block",
+            attrs: { disabled: "" },
+          },
+          [_vm._v("PAY")]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-2 px-1" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "span",
+          {
+            staticClass:
+              "text-center border border-dark p-0 btn btn-light btn-block",
+          },
+          [_vm._v("On Hold")]
         ),
       ]),
     ])
