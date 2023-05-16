@@ -39,41 +39,66 @@
 
 <div class="app container-fluid " style="background: white;" >
  
+
 <!-- Layout -->
-    <!--  <div  class="row border_dark p-0" style="">
+     <div class="row border_dark p-0" style="background: #02480f;">
      <div class="col-sm-8">
       
      <div class="navbar navbar-expand-sm p-0 navy  ">
-       <ul class="navbar-nav py-2 ">
+       <ul class="navbar-nav py-1 ">
 
-        <li class="nav-item py-1 px-3">
-            <a href="home"><img class="" src="images/logo.png" width="200px" height="65px" style="margin-left: 58px;"></a>
-        </li>
         
-                    <li class="nav-item py-1 px-3 text-light  "><router-link to="/home" class="font-weight-bold text-light nav-link">Jitume service</router-link></li>
+        <li class="nav-item py-1 pr-5">
+            <a href="home"><img class="" src="images/logo.png" width="170px" height="45px" style="margin-left: 45px;"></a>
+        </li>
 
-                    <li class="font-weight-bold nav-item py-1 px-3 text-light"><router-link to="/applyShow" class="text-light nav-link">Apply for show
+        <div class="navbar navbar-expand-sm pl-4">
+        
+         <li class="nav-item py-1 px-3 active"><router-link to="/home" class=" ">Home</router-link></li>
+
+                    <li class="nav-item py-1 px-3 text-light"><router-link to="/services" class=" ">Jitume service</router-link></li>
+
+                    <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/applyShow" class="">Apply for show
                     </router-link></li>
+
+                </div>
+
                 </ul>
                  </div>
             </div>
 
     
     
-    <div class="col-sm-3">
-   
+        <div class="col-sm-3">
+  <ul>
+        <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light ">
 
-              <ul>
-                    <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light ">
-                    </li>
+        <a v-if="business=='1'" href="./business" style="" class=" text-light bg-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a> 
 
-                </ul>     
+        <a v-if="business=='2'" href="./services" style="" class=" text-light bg-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a> 
+
+
+    @if(Auth::check())
+      <a v-if="" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Logout</b></a>
+     @else     
+      <a  data-target="#loginModal" data-toggle="modal" style="background: white; border-radius: 15px;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
+      @endif
+
+       </li>
+                                    
+    </ul>
+        
         </div> 
+
        <div class="col-sm-1"> </div>
 
-    </div> -->
+    </div> 
+           
 
     <!-- Layout -->
+
+
 
     <div class="row">
         @if(Session::has('loginFailed'))

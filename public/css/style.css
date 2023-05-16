@@ -45,15 +45,30 @@
 	
 	
     /*Calling Fonts*/
-	 
-	 
-	 
+	 .navbar ul li router-link{
+        color: #f8f9fa;
+        font-family: system-ui;
+        font-weight: 400;
+         }
 	 
 	.navbar ul li .router-link-active{
 		color: white;background: #72c537;
 		border-radius: 35px;
 		padding-left: 20px;padding-right: 20px;
+        font-family: system-ui;
+        font-weight: 400;
 		 }
+
+         .navbar ul li .router-link-active: hover{
+        color: white;
+         }
+
+    .categories ul li .router-link-active{
+        color: black;background: white;
+        padding-left: 10px;padding-right: 10px;
+        font-family: system-ui;
+        font-weight: 500; font-size: 12px;
+         }
  
 	p{
 		
@@ -93,16 +108,15 @@ h1 { font-family: revert; font-size: 36px; }
 		font: italic 12px/24px 'OpenSans';
 		}
 		
-		.navy ul li a{ text-decoration: none; font-family:system-ui; font-weight: 500;}
+		.navy ul li a{ 
+        text-decoration: none; 
+        font-family: system-ui;
+        font-weight: 400; color: #f8f9fa;}
 	
 		.fix{ overflow:hidden;}
 		
 	.home_bg{
     
-    background: url(../images/background.jpg) no-repeat;
-    background-size: 100% 800px;
-    background-position: center bottom;
-
 }
 
 .service_img{
@@ -150,20 +164,26 @@ hr{color: #a7a3a3;}
 .borderRed {border:2px solid #ee2f31;}
 
 .searchListing {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 600;
     padding: 0 40px;
     margin-right: 1px;
-    height: 50px;
+    height: 40px;
     outline: none;
     background-color: #72c537;
-    border-radius: 35px;
+    border-radius: 15px;
     border: none;
     color: white;
 }
 
-.text{font-size: 24px;
+.searchBar{
+border: 1px solid #cbcbcb;
+border-radius: 35px;
+}
+
+.text{font-size: 19px;
     font-weight: 100;
+    font-family: system-ui;
     color: #d9d3d3;
     line-height: 32px;}
 
@@ -172,6 +192,8 @@ hr{color: #a7a3a3;}
     }
 
     .bar{font-family: system-ui;}
+    .bar: focus{outline: none; box-shadow: none;}
+    
 
     .ibv3-content p, .footer_txt{
     font-family: system-ui;
@@ -265,7 +287,12 @@ hr{color: #a7a3a3;}
     	 background-color: white;
     }
 
-   
+.placeH_done{
+    background: #2f3a8f;
+    color: white;
+    font-weight: bold;
+    padding-left: 6px;
+}
 		
 .placeH{ font-weight: bold; color: aliceblue; background: #14a914; padding-left: 6px;}	
 .placeH_inactive{
@@ -303,6 +330,18 @@ background: lightgray;
   width: 100%;
   text-align: left;
 }	
+
+.btnUp_done {
+  border: 1px solid black;
+  color: white;
+  background-color: #2f3a8f;
+  padding: 5px ;
+  border-radius: 5px;
+  font-size: 10px;
+  font-weight: bold;
+  width: 100%;
+  text-align: left;
+}   
 		
 /* Progess Bar */
 .progressbar-wrapper {

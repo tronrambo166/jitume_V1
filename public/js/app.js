@@ -6136,54 +6136,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -6248,51 +6200,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -6639,50 +6546,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -6753,23 +6616,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -7227,51 +7073,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -7331,54 +7132,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -7675,52 +7428,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -8193,53 +7900,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -8294,56 +7954,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -8587,54 +8197,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -8694,54 +8256,6 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -8886,52 +8400,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -62468,126 +61936,17 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container", attrs: { id: "" } }, [
-    _c("div", { staticClass: "row border_dark p-0" }, [
-      _c("div", { staticClass: "col-sm-8" }, [
-        _c("div", { staticClass: "navbar navbar-expand-sm p-0 navy" }, [
-          _c("ul", { staticClass: "navbar-nav py-2" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-4" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-dark", attrs: { to: "/home" } },
-                  [_vm._v("Home")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-3 text-secondary" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-dark", attrs: { to: "/services" } },
-                  [_vm._v("Jitume services")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "font-weight-bold nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-light", attrs: { to: "/applyShow" } },
-                  [_vm._v("Apply for show\n                    ")]
-                ),
-              ],
-              1
-            ),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("ul", [
-          _c(
-            "li",
-            {
-              staticClass: "float-right mt-3 nav-item py-1 px-3 text-light",
-              staticStyle: { "list-style-type": "none" },
-            },
-            [
-              _vm.auth_user
-                ? _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: { background: "#ffffff8c" },
-                      attrs: {
-                        onclick:
-                          "event.preventDefault();\n                                                     document.getElementById('logout-form').submit();",
-                      },
-                    },
-                    [_c("b", [_vm._v("Logout")])]
-                  )
-                : _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: { background: "rgba(175, 173, 173, 0.23)" },
-                      attrs: {
-                        "data-target": "#loginModal",
-                        "data-toggle": "modal",
-                      },
-                    },
-                    [_c("b", [_vm._v("Sign In")])]
-                  ),
-            ]
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-1" }),
-    ]),
-    _vm._v(" "),
-    _vm._m(1),
-  ])
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item py-1 px-3 mr-4" }, [
-      _c("a", { attrs: { href: "home" } }, [
-        _c("img", {
-          staticStyle: { "margin-left": "44px" },
-          attrs: {
-            src: "images/logo_services.png",
-            width: "170px",
-            height: "45px",
-          },
-        }),
+    return _c("div", { staticClass: "container", attrs: { id: "" } }, [
+      _c("div", { staticClass: "my-5 row w-75 mx-auto text-center" }, [
+        _c("h3", [_vm._v("Apply For Show")]),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "my-5 row w-75 mx-auto text-center" }, [
-      _c("h3", [_vm._v("Apply For Show")]),
     ])
   },
 ]
@@ -62613,124 +61972,21 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container", attrs: { id: "" } }, [
-    _c("div", { staticClass: "row border_dark p-0" }, [
-      _c("div", { staticClass: "col-sm-8" }, [
-        _c("div", { staticClass: "navbar navbar-expand-sm p-0 navy" }, [
-          _c("ul", { staticClass: "navbar-nav py-2" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item py-1 px-3" }),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-3 text-secondary" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-secondary",
-                    attrs: { to: "/looking_investor" },
-                  },
-                  [_vm._v("Looking for investors")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "font-weight-bold nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-secondary",
-                    attrs: { to: "/become_provider" },
-                  },
-                  [_vm._v("Become a provider\n                    ")]
-                ),
-              ],
-              1
-            ),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("ul", [
-          _c(
-            "li",
-            {
-              staticClass: "float-right mt-3 nav-item py-1 px-3 text-light",
-              staticStyle: { "list-style-type": "none" },
-            },
-            [
-              _vm.auth_user
-                ? _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: { background: "#ffffff8c" },
-                      attrs: {
-                        onclick:
-                          "event.preventDefault();\n                                                     document.getElementById('logout-form').submit();",
-                      },
-                    },
-                    [_c("b", [_vm._v("Logout")])]
-                  )
-                : _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: { background: "#ffffff8c" },
-                      attrs: {
-                        "data-target": "#loginModal",
-                        "data-toggle": "modal",
-                      },
-                    },
-                    [_c("b", [_vm._v("Sign In")])]
-                  ),
-            ]
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-1" }),
-    ]),
-    _vm._v(" "),
-    _vm._m(1),
-  ])
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item py-1 px-2" }, [
-      _c("a", { attrs: { href: "home" } }, [
-        _c("img", {
-          staticStyle: { "margin-left": "58px" },
-          attrs: {
-            src: "images/logo_services.png",
-            width: "170px",
-            height: "45px",
-          },
-        }),
+    return _c("div", { staticClass: "container", attrs: { id: "" } }, [
+      _c("div", { staticClass: "my-5 row w-75 mx-auto text-center" }, [
+        _c("h3", [_vm._v("Content")]),
+        _vm._v(" "),
+        _c("h3", [_vm._v("Content")]),
+        _vm._v(" "),
+        _c("h3", [_vm._v("Content")]),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "my-5 row w-75 mx-auto text-center" }, [
-      _c("h3", [_vm._v("Content")]),
-      _vm._v(" "),
-      _c("h3", [_vm._v("Content")]),
-      _vm._v(" "),
-      _c("h3", [_vm._v("Content")]),
     ])
   },
 ]
@@ -63044,110 +62300,12 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row border_dark p-0" }, [
-      _c("div", { staticClass: "col-sm-8" }, [
-        _c("div", { staticClass: "navbar navbar-expand-sm p-0 navy" }, [
-          _c("ul", { staticClass: "navbar-nav py-2" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-secondary", attrs: { to: "/home" } },
-                  [_vm._v("Home")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-3 text-secondary" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-secondary", attrs: { to: "/services" } },
-                  [_vm._v("Jitume service")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "font-weight-bold nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-secondary",
-                    attrs: { to: "/applyShow" },
-                  },
-                  [_vm._v("Apply for show\n                    ")]
-                ),
-              ],
-              1
-            ),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("ul", [
-          _c(
-            "li",
-            {
-              staticClass: "float-right mt-3 nav-item py-1 px-3 text-light",
-              staticStyle: { "list-style-type": "none" },
-            },
-            [
-              _vm.auth_user
-                ? _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: {
-                        background: "rgb(175 173 173 / 23%)",
-                        cursor: "pointer",
-                      },
-                      attrs: {
-                        onclick:
-                          "event.preventDefault();\n                                                     document.getElementById('logout-form').submit();",
-                      },
-                    },
-                    [_c("b", [_vm._v("Logout")])]
-                  )
-                : _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: { background: "rgb(175 173 173 / 23%)" },
-                      attrs: {
-                        "data-target": "#loginModal",
-                        "data-toggle": "modal",
-                      },
-                    },
-                    [_c("b", [_vm._v("Sign In")])]
-                  ),
-            ]
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-1" }),
-    ]),
-    _vm._v(" "),
     _c("div", { staticClass: "heading row w-75 mx-auto my-5" }, [
       _c(
         "table",
         { staticClass: "eq table table-bordered", attrs: { id: "" } },
         [
-          _vm._m(1),
+          _vm._m(0),
           _vm._v(" "),
           _c(
             "tbody",
@@ -63209,23 +62367,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item py-1 pl-3 pr-4" }, [
-      _c("a", { attrs: { href: "home" } }, [
-        _c("img", {
-          staticStyle: { "margin-left": "58px" },
-          attrs: {
-            src: "images/logo_services.png",
-            width: "200px",
-            height: "65px",
-          },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("Equipment ")]),
@@ -63266,163 +62407,32 @@ var render = function () {
   return _c("div", { staticClass: "container-fluid px-0" }, [
     _c(
       "div",
-      { staticClass: "home_bg", staticStyle: { "min-height": "700px" } },
+      { staticClass: "home_bg", staticStyle: { "min-height": "300px" } },
       [
-        _c("div", { staticClass: "row border_dark p-0" }, [
-          _c("div", { staticClass: "col-sm-8" }, [
-            _c("div", { staticClass: "navbar navbar-expand-sm p-0 navy" }, [
-              _c("ul", { staticClass: "navbar-nav py-2" }, [
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item py-1 px-3 text-light" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "font-weight-bold text-light",
-                        attrs: { to: "/" },
-                      },
-                      [_vm._v("Home")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item py-1 px-3 text-light" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "font-weight-bold text-light",
-                        attrs: { to: "/services" },
-                      },
-                      [_vm._v("Jitume Services")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass:
-                      "font-weight-bold nav-item py-1 px-3 text-light",
-                  },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "text-light",
-                        attrs: { to: "/applyShow" },
-                      },
-                      [_vm._v("Apply For Show\n                    ")]
-                    ),
-                  ],
-                  1
-                ),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-3" }, [
-            _c("ul", [
-              _c(
-                "li",
-                {
-                  staticClass: "float-right mt-3 nav-item py-1 px-3 text-light",
-                  staticStyle: { "list-style-type": "none" },
-                },
-                [
-                  _vm.business == "1"
-                    ? _c(
-                        "a",
-                        {
-                          staticClass:
-                            "text-light bg-dark d-inline px-3 py-2 d-inline-block text-center",
-                          attrs: { href: "./business" },
-                        },
-                        [_c("b", [_vm._v("Dashboard")])]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.business == "2"
-                    ? _c(
-                        "a",
-                        {
-                          staticClass:
-                            "text-light bg-dark d-inline px-3 py-2 d-inline-block text-center",
-                          attrs: { href: "./services" },
-                        },
-                        [_c("b", [_vm._v("Dashboard")])]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.auth_user
-                    ? _c(
-                        "a",
-                        {
-                          staticClass:
-                            "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                          staticStyle: { background: "#ffffff8c" },
-                          attrs: {
-                            onclick:
-                              "event.preventDefault();\n                                                     document.getElementById('logout-form').submit();",
-                          },
-                        },
-                        [_c("b", [_vm._v("Logout")])]
-                      )
-                    : _c(
-                        "a",
-                        {
-                          staticClass:
-                            "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                          staticStyle: { background: "#ffffff8c" },
-                          attrs: {
-                            "data-target": "#loginModal",
-                            "data-toggle": "modal",
-                          },
-                        },
-                        [_c("b", [_vm._v("Sign In")])]
-                      ),
-                ]
-              ),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-1" }),
-        ]),
-        _vm._v(" "),
         _c("div", { staticClass: "heading" }, [
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-sm-12 text-center image" }, [
-              _c("div", { staticClass: "py-5" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "mt-5 mb-4 w-50 mx-auto text-center" }, [
+              _c("div", { staticClass: "my-4 w-50 mx-auto text-center" }, [
                 _c(
-                  "h2",
+                  "h4",
                   {
-                    staticClass: "text-light",
+                    staticClass: "text-dark",
                     staticStyle: {
-                      "font-size": "42px",
+                      "font-size": "27px",
                       "font-weight": "500px",
                     },
                   },
                   [
-                    _vm._v("Invest in\n          "),
                     _c("marquee", [
                       _vm._v(
-                        "Agriculture | Sports/Gaming | Real State | Entertainment | Auto | Finance/Accounting Security | Pets | Domestic Help | Other"
+                        "Invest in Agriculture | Sports/Gaming | Real State | Entertainment | Auto | Finance/Accounting Security | Pets | Domestic Help | Other"
                       ),
                     ]),
                   ],
                   1
                 ),
                 _vm._v(" "),
-                _c("p", { staticClass: "text text-center" }, [
+                _c("p", { staticClass: "h6 text text-center text-dark" }, [
                   _vm._v("Your platform to invest in local businesses"),
                 ]),
               ]),
@@ -63439,15 +62449,178 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._m(1), _vm._v(" "), _vm._m(2)]
+                [_vm._m(0), _vm._v(" "), _vm._m(1)]
               ),
             ]),
           ]),
         ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row my-4" }, [
+          _c(
+            "div",
+            { staticClass: "text-center categories navbar navbar-expand-sm" },
+            [
+              _c("ul", { staticClass: "navbar-nav mx-auto" }, [
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "" } }, [
+                      _vm._v("Agriculture "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "" } }, [
+                      _vm._v("Sports/Gaming "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "" } }, [
+                      _vm._v("Real State "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [_c("router-link", { attrs: { to: "" } }, [_vm._v("Food ")])],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "" } }, [
+                      _vm._v("Legal  "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "" } }, [
+                      _vm._v("Security "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "" } }, [
+                      _vm._v("Arts/Culture "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "" } }, [
+                      _vm._v("Fashion "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "" } }, [
+                      _vm._v("Technology/Communications  "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "" } }, [
+                      _vm._v("Retail "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [_c("router-link", { attrs: { to: "" } }, [_vm._v("Auto ")])],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "" } }, [
+                      _vm._v("Finance/Accounting "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [_c("router-link", { attrs: { to: "" } }, [_vm._v("Pets ")])],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "" } }, [
+                      _vm._v("Domestic Home "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "" } }, [
+                      _vm._v("Other "),
+                    ]),
+                  ],
+                  1
+                ),
+              ]),
+            ]
+          ),
+        ]),
       ]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "row mt-2 border border-bottom-dark bg-white" }),
+    _c("div", { staticClass: "row mt-4 border border-bottom-dark bg-white" }),
     _vm._v(" "),
     _c("div", { staticClass: "row w-75 mx-auto my-5 bg-white" }, [
       _c(
@@ -63465,7 +62638,7 @@ var render = function () {
             },
             [
               _c("div", { staticClass: "elementor-widget-wrap" }, [
-                _vm._m(3),
+                _vm._m(2),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -63532,7 +62705,7 @@ var render = function () {
                           ),
                         ]),
                         _vm._v(" "),
-                        _vm._m(4),
+                        _vm._m(3),
                       ]),
                     ]),
                   ]
@@ -63639,7 +62812,7 @@ var render = function () {
                           ]),
                         ]),
                         _vm._v(" "),
-                        _vm._m(5),
+                        _vm._m(4),
                       ]),
                     ]),
                   ]
@@ -63746,7 +62919,7 @@ var render = function () {
                           ]),
                         ]),
                         _vm._v(" "),
-                        _vm._m(6),
+                        _vm._m(5),
                       ]),
                     ]),
                   ]
@@ -63759,12 +62932,12 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-1" }),
       _vm._v(" "),
-      _vm._m(7),
+      _vm._m(6),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row mt-2 border border-bottom-dark" }),
     _vm._v(" "),
-    _vm._m(8),
+    _vm._m(7),
   ])
 }
 var staticRenderFns = [
@@ -63772,24 +62945,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item py-1 px-3" }, [
-      _c("a", { attrs: { href: "home" } }, [
-        _c("img", {
-          staticClass: "mr-3",
-          staticStyle: { "margin-left": "58px" },
-          attrs: { src: "images/logo.png", width: "170px", height: "45px" },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
       "div",
       {
-        staticClass: "mx-auto text-center row py-4 rounded text-center",
+        staticClass: "mx-auto text-center row py-0 searchBar text-center",
         staticStyle: { width: "75%" },
       },
       [
@@ -63821,7 +62980,7 @@ var staticRenderFns = [
             _c(
               "select",
               {
-                staticClass: "border-none form-control",
+                staticClass: "border-white form-control",
                 attrs: { name: "category" },
               },
               [
@@ -63855,11 +63014,11 @@ var staticRenderFns = [
                 ]),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "Media / Internet" } }, [
-                  _vm._v("Media / Internet "),
+                  _vm._v("Media/Internet "),
                 ]),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "Arts / Culture" } }, [
-                  _vm._v("Arts / Culture "),
+                  _vm._v("Arts/Culture "),
                 ]),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "Fashion" } }, [
@@ -63869,7 +63028,7 @@ var staticRenderFns = [
                 _c(
                   "option",
                   { attrs: { value: "Technology / Communications" } },
-                  [_vm._v("Technology / Communications ")]
+                  [_vm._v("Technology/Communications ")]
                 ),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "Retail" } }, [
@@ -64075,7 +63234,7 @@ var staticRenderFns = [
           staticClass: "elementor-video",
           staticStyle: { width: "500px", height: "300px" },
           attrs: {
-            src: "https://jitume.com/file/2022/03/Pendeza%20Cut.mp4",
+            src: "videos/Jitume.mp4",
             controls: "",
             controlslist: "nodownload",
           },
@@ -64107,110 +63266,12 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row border_dark p-0" }, [
-      _c("div", { staticClass: "col-sm-8" }, [
-        _c("div", { staticClass: "navbar navbar-expand-sm p-0 navy" }, [
-          _c("ul", { staticClass: "navbar-nav py-2" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-secondary", attrs: { to: "/home" } },
-                  [_vm._v("Home")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-3 text-secondary" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-secondary", attrs: { to: "/services" } },
-                  [_vm._v("Jitume service")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "font-weight-bold nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-secondary",
-                    attrs: { to: "/applyShow" },
-                  },
-                  [_vm._v("Apply for show\n                    ")]
-                ),
-              ],
-              1
-            ),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("ul", [
-          _c(
-            "li",
-            {
-              staticClass: "float-right mt-3 nav-item py-1 px-3 text-light",
-              staticStyle: { "list-style-type": "none" },
-            },
-            [
-              _vm.auth_user
-                ? _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: {
-                        background: "rgb(175 173 173 / 23%)",
-                        cursor: "pointer",
-                      },
-                      attrs: {
-                        onclick:
-                          "event.preventDefault();\n                                                     document.getElementById('logout-form').submit();",
-                      },
-                    },
-                    [_c("b", [_vm._v("Logout")])]
-                  )
-                : _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: { background: "#ffffff8c" },
-                      attrs: {
-                        "data-target": "#loginModal",
-                        "data-toggle": "modal",
-                      },
-                    },
-                    [_c("b", [_vm._v("Sign In")])]
-                  ),
-            ]
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-1" }),
-    ]),
-    _vm._v(" "),
     _c("div", { staticClass: "heading row w-75 mx-auto my-5" }, [
       _c(
         "table",
         { staticClass: "eq table table-bordered", attrs: { id: "" } },
         [
-          _vm._m(1),
+          _vm._m(0),
           _vm._v(" "),
           _c(
             "tbody",
@@ -64270,7 +63331,7 @@ var render = function () {
                         },
                         [
                           _c("div", { staticClass: "modal-content" }, [
-                            _vm._m(2, true),
+                            _vm._m(1, true),
                             _vm._v(" "),
                             _c("div", { staticClass: "modal-body" }, [
                               _c("div", { staticClass: "row" }, [
@@ -64483,23 +63544,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item py-1 pl-3 pr-4" }, [
-      _c("a", { attrs: { href: "home" } }, [
-        _c("img", {
-          staticStyle: { "margin-left": "58px" },
-          attrs: {
-            src: "images/logo_services.png",
-            width: "200px",
-            height: "65px",
-          },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("Equipment ")]),
@@ -64559,116 +63603,6 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row border_dark p-0" }, [
-      _c("div", { staticClass: "col-sm-8" }, [
-        _c("div", { staticClass: "navbar navbar-expand-sm p-0 navy" }, [
-          _c("ul", { staticClass: "navbar-nav py-2" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-secondary", attrs: { to: "/home" } },
-                  [_vm._v("Home")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-3 text-secondary" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-secondary", attrs: { to: "/services" } },
-                  [_vm._v("Jitume service")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "font-weight-bold nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-secondary",
-                    attrs: { to: "/applyShow" },
-                  },
-                  [_vm._v("Apply for show\n                    ")]
-                ),
-              ],
-              1
-            ),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("ul", [
-          _c(
-            "li",
-            {
-              staticClass: "float-right mt-3 nav-item py-1 px-3 text-light",
-              staticStyle: { "list-style-type": "none" },
-            },
-            [
-              _vm.business == "1"
-                ? _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-light bg-dark d-inline px-3 py-2 d-inline-block text-center",
-                      attrs: { href: "./business" },
-                    },
-                    [_c("b", [_vm._v("Dashboard")])]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.auth_user
-                ? _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: {
-                        background: "rgb(175 173 173 / 23%)",
-                        cursor: "pointer",
-                      },
-                      attrs: {
-                        onclick:
-                          "event.preventDefault();\n                                                     document.getElementById('logout-form').submit();",
-                      },
-                    },
-                    [_c("b", [_vm._v("Logout")])]
-                  )
-                : _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: { background: "rgb(175 173 173 / 23%)" },
-                      attrs: {
-                        "data-target": "#loginModal",
-                        "data-toggle": "modal",
-                      },
-                    },
-                    [_c("b", [_vm._v("Sign In")])]
-                  ),
-            ]
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-1" }),
-    ]),
-    _vm._v(" "),
     _c("div", { staticClass: "heading row" }, [
       _c("div", { staticClass: "col-sm-7" }, [
         _c("div", { staticClass: "grid images_3_of_2 rounded listing px-3" }, [
@@ -64692,7 +63626,7 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row my-4" }, [
-            _vm._m(1),
+            _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "Overview", attrs: { id: "Overview" } }, [
               _c("p", [
@@ -64715,7 +63649,7 @@ var render = function () {
       _c("div", { staticClass: "col-sm-5" }, [
         !_vm.form.conv
           ? _c("div", { staticClass: "card bg-light w-75 mx-auto py-3" }, [
-              _vm._m(2),
+              _vm._m(1),
               _vm._v(" "),
               _vm.auth_user
                 ? _c(
@@ -64884,7 +63818,7 @@ var render = function () {
                   1
                 ),
                 _vm._v(" "),
-                _vm._m(3),
+                _vm._m(2),
                 _vm._v(" "),
                 _c("div", { staticClass: "eqp-invest" }, [
                   _c(
@@ -64932,9 +63866,9 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(4),
+              _vm._m(3),
               _vm._v(" "),
-              _vm._m(5),
+              _vm._m(4),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
                 _c("div", { staticClass: "card-header w-100" }, [
@@ -64983,23 +63917,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item py-1 pl-3 pr-4" }, [
-      _c("a", { attrs: { href: "home" } }, [
-        _c("img", {
-          staticStyle: { "margin-left": "58px" },
-          attrs: {
-            src: "images/logo_services.png",
-            width: "200px",
-            height: "65px",
-          },
-        }),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -65116,104 +64033,6 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container bg-white", attrs: { id: "" } }, [
-    _c("div", { staticClass: "row border_dark p-0" }, [
-      _c("div", { staticClass: "col-sm-8" }, [
-        _c("div", { staticClass: "navbar navbar-expand-sm p-0 navy" }, [
-          _c("ul", { staticClass: "navbar-nav py-2" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-secondary", attrs: { to: "/home" } },
-                  [_vm._v("Home")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-3 text-secondary" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-secondary", attrs: { to: "/services" } },
-                  [_vm._v("Jitume service")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "font-weight-bold nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-secondary",
-                    attrs: { to: "/applyShow" },
-                  },
-                  [_vm._v("Apply for show\n                  ")]
-                ),
-              ],
-              1
-            ),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("ul", [
-          _c(
-            "li",
-            {
-              staticClass: "float-right mt-3 nav-item py-1 px-3 text-light",
-              staticStyle: { "list-style-type": "none" },
-            },
-            [
-              _vm.auth_user
-                ? _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: {
-                        background: "rgb(175 173 173 / 23%)",
-                        cursor: "pointer",
-                      },
-                      attrs: {
-                        onclick:
-                          "event.preventDefault();\n                                                   document.getElementById('logout-form').submit();",
-                      },
-                    },
-                    [_c("b", [_vm._v("Logout")])]
-                  )
-                : _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: { background: "rgb(175 173 173 / 23%)" },
-                      attrs: {
-                        "data-target": "#loginModal",
-                        "data-toggle": "modal",
-                      },
-                    },
-                    [_c("b", [_vm._v("Sign In")])]
-                  ),
-            ]
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-1" }),
-    ]),
-    _vm._v(" "),
     _c("link", {
       attrs: {
         rel: "stylesheet",
@@ -65221,15 +64040,15 @@ var render = function () {
       },
     }),
     _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "clear" }),
+    _vm._v(" "),
+    _c("div", { staticClass: "clear" }),
+    _vm._v(" "),
     _vm._m(1),
     _vm._v(" "),
-    _c("div", { staticClass: "clear" }),
-    _vm._v(" "),
-    _c("div", { staticClass: "clear" }),
-    _vm._v(" "),
     _vm._m(2),
-    _vm._v(" "),
-    _vm._m(3),
     _vm._v(" "),
     _c(
       "div",
@@ -65305,23 +64124,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item py-1 pl-3 pr-4" }, [
-      _c("a", { attrs: { href: "home" } }, [
-        _c("img", {
-          staticStyle: { "margin-left": "58px" },
-          attrs: {
-            src: "images/logo_services.png",
-            width: "200px",
-            height: "65px",
-          },
-        }),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -65545,107 +64347,6 @@ var render = function () {
       "div",
       { staticClass: "container" },
       [
-        _c("div", { staticClass: "row border_dark p-0" }, [
-          _c("div", { staticClass: "col-sm-8" }, [
-            _c("div", { staticClass: "navbar navbar-expand-sm p-0 navy" }, [
-              _c("ul", { staticClass: "navbar-nav py-2" }, [
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item py-1 px-3" },
-                  [
-                    _c(
-                      "router-link",
-                      { staticClass: "text-secondary", attrs: { to: "/home" } },
-                      [_vm._v("Home")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item py-1 px-3 text-secondary" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "text-secondary",
-                        attrs: { to: "/services" },
-                      },
-                      [_vm._v("Jitume service")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "font-weight-bold nav-item py-1 px-3" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "text-secondary",
-                        attrs: { to: "/applyShow" },
-                      },
-                      [_vm._v("Apply for show\n                    ")]
-                    ),
-                  ],
-                  1
-                ),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-3" }, [
-            _c("ul", [
-              _c(
-                "li",
-                {
-                  staticClass: "float-right mt-3 nav-item py-1 px-3 text-light",
-                  staticStyle: { "list-style-type": "none" },
-                },
-                [
-                  _vm.auth_user
-                    ? _c(
-                        "a",
-                        {
-                          staticClass:
-                            "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                          staticStyle: {
-                            background: "rgb(175 173 173 / 23%)",
-                            cursor: "pointer",
-                          },
-                          attrs: {
-                            onclick:
-                              "event.preventDefault();\n                                                     document.getElementById('logout-form').submit();",
-                          },
-                        },
-                        [_c("b", [_vm._v("Logout")])]
-                      )
-                    : _c(
-                        "a",
-                        {
-                          staticClass:
-                            "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                          staticStyle: { background: "rgb(175 173 173 / 23%)" },
-                          attrs: {
-                            "data-target": "#loginModal",
-                            "data-toggle": "modal",
-                          },
-                        },
-                        [_c("b", [_vm._v("Sign In")])]
-                      ),
-                ]
-              ),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-1" }),
-        ]),
-        _vm._v(" "),
         _c("div", { staticClass: "root py-5 mb-5 ml-4" }, [
           _c("div", { staticClass: "progressbar-wrapper" }, [
             _c(
@@ -65791,7 +64492,7 @@ var render = function () {
                               ),
                             ]),
                             _vm._v(" "),
-                            _vm._m(1, true),
+                            _vm._m(0, true),
                             _vm._v(" "),
                             _c("input", {
                               directives: [
@@ -65843,7 +64544,7 @@ var render = function () {
                               },
                             }),
                             _vm._v(" "),
-                            _vm._m(2, true),
+                            _vm._m(1, true),
                           ]
                         ),
                       ]
@@ -65878,7 +64579,7 @@ var render = function () {
                                     },
                                   ],
                                   staticClass:
-                                    "placeH_inactive w-100 rounded border border-dark",
+                                    "placeH_done w-100 rounded border border-dark",
                                   attrs: {
                                     readonly: "",
                                     required: "",
@@ -65914,7 +64615,7 @@ var render = function () {
                                     },
                                   ],
                                   staticClass:
-                                    "placeH_inactive w-100 rounded border border-dark",
+                                    "placeH_done w-100 rounded border border-dark",
                                   attrs: {
                                     readonly: "",
                                     required: "",
@@ -65938,11 +64639,11 @@ var render = function () {
                               ]),
                             ]),
                             _vm._v(" "),
+                            _vm._m(2, true),
+                            _vm._v(" "),
                             _vm._m(3, true),
                             _vm._v(" "),
                             _vm._m(4, true),
-                            _vm._v(" "),
-                            _vm._m(5, true),
                           ]
                         ),
                       ]
@@ -66036,11 +64737,11 @@ var render = function () {
                               ]),
                             ]),
                             _vm._v(" "),
+                            _vm._m(5, true),
+                            _vm._v(" "),
                             _vm._m(6, true),
                             _vm._v(" "),
                             _vm._m(7, true),
-                            _vm._v(" "),
-                            _vm._m(8, true),
                           ]
                         ),
                       ]
@@ -66055,23 +64756,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item py-1 pl-3 pr-4" }, [
-      _c("a", { attrs: { href: "home" } }, [
-        _c("img", {
-          staticStyle: { "margin-left": "58px" },
-          attrs: {
-            src: "images/logo_services.png",
-            width: "200px",
-            height: "65px",
-          },
-        }),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -66115,7 +64799,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "upload-btn-wrapper w-100" }, [
         _c(
           "a",
-          { staticClass: "text-white disabled placeH_inactive btnUp4 w-100" },
+          { staticClass: "text-white disabled placeH_done btnUp_done w-100" },
           [
             _vm._v("Download Milestone Documentaion "),
             _c("i", { staticClass: "ml-2 fa fa-arrow-down" }),
@@ -66137,7 +64821,7 @@ var staticRenderFns = [
               "text-center border border-dark p-0 btn btn-light btn-block",
             attrs: { disabled: "" },
           },
-          [_vm._v("PAY")]
+          [_vm._v("PAID")]
         ),
       ]),
     ])
@@ -66152,7 +64836,8 @@ var staticRenderFns = [
           "span",
           {
             staticClass:
-              "text-center border border-dark p-0 btn btn-light btn-block",
+              "text-center border text-light border-dark p-0 btn btn-block",
+            staticStyle: { background: "#2f3a8f" },
           },
           [_vm._v("Done!")]
         ),
@@ -66235,125 +64920,6 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row border_dark p-0" }, [
-      _c("div", { staticClass: "col-sm-8" }, [
-        _c("div", { staticClass: "navbar navbar-expand-sm p-0 navy" }, [
-          _c("ul", { staticClass: "navbar-nav py-2" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-secondary", attrs: { to: "/home" } },
-                  [_vm._v("Home")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-3 text-secondary" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-secondary", attrs: { to: "/services" } },
-                  [_vm._v("Jitume service")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "font-weight-bold nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-secondary",
-                    attrs: { to: "/applyShow" },
-                  },
-                  [_vm._v("Apply for show\n                  ")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "font-weight-bold nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-secondary", attrs: { to: "/cart" } },
-                  [
-                    _c("i", { staticClass: "fa fa-shopping-cart" }),
-                    _c("span", {
-                      staticClass: "rounded-circle px-2 text-light bg-warning",
-                      attrs: { id: "cart" },
-                    }),
-                  ]
-                ),
-              ],
-              1
-            ),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("ul", [
-          _c(
-            "li",
-            {
-              staticClass: "float-right mt-3 nav-item py-1 px-3 text-light",
-              staticStyle: { "list-style-type": "none" },
-            },
-            [
-              _vm.auth_user
-                ? _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: { background: "rgb(175 173 173 / 23%)" },
-                      attrs: {
-                        onclick:
-                          "event.preventDefault();\n                                                   document.getElementById('logout-form').submit();",
-                      },
-                    },
-                    [_c("b", [_vm._v("Logout")])]
-                  )
-                : _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: { background: "rgb(175 173 173 / 23%)" },
-                      attrs: {
-                        "data-target": "#loginModal",
-                        "data-toggle": "modal",
-                      },
-                      on: {
-                        click: function ($event) {
-                          return _vm.make_session()
-                        },
-                      },
-                    },
-                    [_c("b", [_vm._v("Sign In")])]
-                  ),
-            ]
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-1" }),
-    ]),
-    _vm._v(" "),
     _c("link", {
       attrs: {
         rel: "stylesheet",
@@ -66393,7 +64959,7 @@ var render = function () {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row my-5" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c(
                 "div",
@@ -66464,7 +65030,7 @@ var render = function () {
           ]),
         ]),
         _vm._v(" "),
-        _vm._m(2),
+        _vm._m(1),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-5" }),
@@ -66472,23 +65038,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item py-1 pl-3 pr-4" }, [
-      _c("a", { attrs: { href: "home" } }, [
-        _c("img", {
-          staticStyle: { "margin-left": "58px" },
-          attrs: {
-            src: "images/logo_services.png",
-            width: "200px",
-            height: "65px",
-          },
-        }),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -66545,123 +65094,6 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container bg-white", attrs: { id: "" } }, [
-    _c("div", { staticClass: "row border_dark p-0" }, [
-      _c("div", { staticClass: "col-sm-8" }, [
-        _c("div", { staticClass: "navbar navbar-expand-sm p-0 navy" }, [
-          _c("ul", { staticClass: "navbar-nav py-2" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-secondary", attrs: { to: "/home" } },
-                  [_vm._v("Home")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-3 text-secondary" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-secondary", attrs: { to: "/services" } },
-                  [_vm._v("Jitume service")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "font-weight-bold nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-secondary",
-                    attrs: { to: "/applyShow" },
-                  },
-                  [_vm._v("Apply for show\n                  ")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "font-weight-bold nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-secondary", attrs: { to: "/cart" } },
-                  [
-                    _c("i", { staticClass: "fa fa-shopping-cart" }),
-                    _c("span", {
-                      staticClass: "rounded-circle px-2 text-light bg-warning",
-                      attrs: { id: "cart" },
-                    }),
-                  ]
-                ),
-              ],
-              1
-            ),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("ul", [
-          _c(
-            "li",
-            {
-              staticClass: "float-right mt-3 nav-item py-1 px-3 text-light",
-              staticStyle: { "list-style-type": "none" },
-            },
-            [
-              _vm.auth_user
-                ? _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: {
-                        background: "rgb(175 173 173 / 23%)",
-                        cursor: "pointer",
-                      },
-                      attrs: {
-                        onclick:
-                          "event.preventDefault();\n                                                   document.getElementById('logout-form').submit();",
-                      },
-                    },
-                    [_c("b", [_vm._v("Logout")])]
-                  )
-                : _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: { background: "rgb(175 173 173 / 23%)" },
-                      attrs: {
-                        "data-target": "#loginModal",
-                        "data-toggle": "modal",
-                      },
-                    },
-                    [_c("b", [_vm._v("Sign In")])]
-                  ),
-            ]
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-1" }),
-    ]),
-    _vm._v(" "),
     _c("link", {
       attrs: {
         rel: "stylesheet",
@@ -66669,13 +65101,13 @@ var render = function () {
       },
     }),
     _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "clear" }),
+    _vm._v(" "),
+    _c("div", { staticClass: "clear" }),
+    _vm._v(" "),
     _vm._m(1),
-    _vm._v(" "),
-    _c("div", { staticClass: "clear" }),
-    _vm._v(" "),
-    _c("div", { staticClass: "clear" }),
-    _vm._v(" "),
-    _vm._m(2),
     _vm._v(" "),
     _c(
       "div",
@@ -66727,23 +65159,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item py-1 pl-3 pr-4" }, [
-      _c("a", { attrs: { href: "home" } }, [
-        _c("img", {
-          staticStyle: { "margin-left": "58px" },
-          attrs: {
-            src: "images/logo_services.png",
-            width: "200px",
-            height: "65px",
-          },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("h3", { staticClass: "text-center font-weight-bold" }, [
       _c("b", { staticClass: "h5 text-success" }),
     ])
@@ -66786,96 +65201,6 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container", attrs: { id: "" } }, [
-    _c("div", { staticClass: "row border_dark p-0" }, [
-      _c("div", { staticClass: "col-sm-8" }, [
-        _c("div", { staticClass: "navbar navbar-expand-sm p-0 navy" }, [
-          _c("ul", { staticClass: "navbar-nav py-2" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item py-1 px-3 text-secondary" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "bg-white text-dark", attrs: { to: "/" } },
-                  [_vm._v("Looking for investors")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "font-weight-bold nav-item py-1 px-3" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "text-secondary", attrs: { to: "/cart" } },
-                  [
-                    _c("i", { staticClass: "fa fa-shopping-cart" }),
-                    _c("span", {
-                      staticClass: "rounded-circle px-2 text-light bg-warning",
-                      attrs: { id: "cart" },
-                    }),
-                  ]
-                ),
-              ],
-              1
-            ),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("ul", [
-          _c(
-            "li",
-            {
-              staticClass: "float-right mt-3 nav-item py-1 px-3 text-light",
-              staticStyle: { "list-style-type": "none" },
-            },
-            [
-              _vm.auth_user
-                ? _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: {
-                        background: "rgb(175 173 173 / 23%)",
-                        cursor: "pointer",
-                      },
-                      attrs: {
-                        onclick:
-                          "event.preventDefault();\n                                                     document.getElementById('logout-form').submit();",
-                      },
-                    },
-                    [_c("b", [_vm._v("Logout")])]
-                  )
-                : _c(
-                    "a",
-                    {
-                      staticClass:
-                        "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                      staticStyle: { background: "rgb(175 173 173 / 23%)" },
-                      attrs: {
-                        "data-target": "#loginModal",
-                        "data-toggle": "modal",
-                      },
-                    },
-                    [_c("b", [_vm._v("Sign In")])]
-                  ),
-            ]
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-1" }),
-    ]),
-    _vm._v(" "),
     _c(
       "div",
       {
@@ -66886,7 +65211,7 @@ var render = function () {
         _c("div", { staticClass: "col-sm-12 text-center" }, [
           _c("div", { staticClass: "py-5" }),
           _vm._v(" "),
-          _vm._m(2),
+          _vm._m(0),
           _vm._v(" "),
           _c(
             "form",
@@ -66900,7 +65225,7 @@ var render = function () {
                 },
               },
             },
-            [_vm._m(3), _vm._v(" "), _vm._m(4)]
+            [_vm._m(1), _vm._v(" "), _vm._m(2)]
           ),
         ]),
       ]
@@ -66908,42 +65233,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item py-1 pl-1 pr-2" }, [
-      _c("a", { attrs: { href: "home" } }, [
-        _c("img", {
-          staticStyle: { "margin-left": "58px" },
-          attrs: {
-            src: "images/logo_services.png",
-            width: "170px",
-            height: "45px",
-          },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "font-weight-bold nav-item py-1 px-3" }, [
-      _c(
-        "a",
-        {
-          staticClass: "text-dark",
-          attrs: {
-            href: "#",
-            "data-target": "#loginModal",
-            "data-toggle": "modal",
-          },
-        },
-        [_vm._v("Become a provider\n                    ")]
-      ),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -67141,109 +65430,8 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "main" }, [
     _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row border_dark p-0" }, [
-        _c("div", { staticClass: "col-sm-8" }, [
-          _c("div", { staticClass: "navbar navbar-expand-sm p-0 navy" }, [
-            _c("ul", { staticClass: "navbar-nav py-2" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item py-1 px-3" },
-                [
-                  _c(
-                    "router-link",
-                    { staticClass: "text-secondary", attrs: { to: "/home" } },
-                    [_vm._v("Home")]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item py-1 px-3 text-secondary" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "text-secondary",
-                      attrs: { to: "/services" },
-                    },
-                    [_vm._v("Jitume service")]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "font-weight-bold nav-item py-1 px-3" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "text-secondary",
-                      attrs: { to: "/applyShow" },
-                    },
-                    [_vm._v("Apply for show\n                  ")]
-                  ),
-                ],
-                1
-              ),
-            ]),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("ul", [
-            _c(
-              "li",
-              {
-                staticClass: "float-right mt-3 nav-item py-1 px-3 text-light",
-                staticStyle: { "list-style-type": "none" },
-              },
-              [
-                _vm.auth_user
-                  ? _c(
-                      "a",
-                      {
-                        staticClass:
-                          "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                        staticStyle: {
-                          background: "rgb(175 173 173 / 23%)",
-                          cursor: "pointer",
-                        },
-                        attrs: {
-                          onclick:
-                            "event.preventDefault();\n                                                   document.getElementById('logout-form').submit();",
-                        },
-                      },
-                      [_c("b", [_vm._v("Logout")])]
-                    )
-                  : _c(
-                      "a",
-                      {
-                        staticClass:
-                          "text-dark d-inline px-3 py-2 d-inline-block text-center",
-                        staticStyle: { background: "rgb(175 173 173 / 23%)" },
-                        attrs: {
-                          "data-target": "#loginModal",
-                          "data-toggle": "modal",
-                        },
-                      },
-                      [_c("b", [_vm._v("Sign In")])]
-                    ),
-              ]
-            ),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-1" }),
-      ]),
-      _vm._v(" "),
       _c("div", { staticClass: "w-75 m-auto row my-4 text-center" }, [
-        _vm._m(1),
+        _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-12 my-3" }, [
           _c("input", {
@@ -67271,7 +65459,7 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _vm._m(2),
+      _vm._m(1),
       _vm._v(" "),
       _c("div", { staticClass: "row w-75 mx-auto", attrs: { id: "monthly" } }, [
         _c("div", { staticClass: "col-sm-4" }, [
@@ -67440,7 +65628,7 @@ var render = function () {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "row w-50 mx-auto my-4" }, [
-        _vm._m(3),
+        _vm._m(2),
         _vm._v(" "),
         _c("div", { staticClass: "w-50" }, [
           _c(
@@ -67492,7 +65680,7 @@ var render = function () {
                         },
                       },
                     },
-                    [_vm._v("\n        Checkout\n      ")]
+                    [_vm._v("\n      Checkout\n    ")]
                   )
                 : _c(
                     "button",
@@ -67503,7 +65691,7 @@ var render = function () {
                         type: "button",
                       },
                     },
-                    [_vm._v("\n        Checkout\n      ")]
+                    [_vm._v("\n      Checkout\n    ")]
                   ),
             ]
           ),
@@ -67513,23 +65701,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item py-1 pl-3 pr-4" }, [
-      _c("a", { attrs: { href: "home" } }, [
-        _c("img", {
-          staticStyle: { "margin-left": "58px" },
-          attrs: {
-            src: "images/logo_services.png",
-            width: "200px",
-            height: "65px",
-          },
-        }),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

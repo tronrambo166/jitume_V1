@@ -1,88 +1,39 @@
 <template>
     <div class="container-fluid px-0">
-    <div class="home_bg" style="min-height:700px;">
+    <div class="home_bg" style="min-height:300px;">
 
- <!-- Layout -->
  
-     <div class="row border_dark p-0" style="">
-     <div class="col-sm-8">
-      
-     <div class="navbar navbar-expand-sm p-0 navy  ">
-       <ul class="navbar-nav py-2 ">
-
-        <li class="nav-item py-1 px-3">
-            <a href="home"><img class="mr-3" src="images/logo.png" width="170px" height="45px" style="margin-left: 58px;"></a>
-        </li>
-                    <li class="nav-item py-1 px-3 text-light  "><router-link to="/" class="font-weight-bold text-light ">Home</router-link></li>
-
-                    <li class="nav-item py-1 px-3 text-light  "><router-link to="/services" class="font-weight-bold text-light ">Jitume Services</router-link></li>
-
-                    <li class="font-weight-bold nav-item py-1 px-3 text-light"><router-link to="/applyShow" class="text-light">Apply For Show
-                    </router-link></li>
-                </ul>
-             </div>
-            </div>
-
-    
-    
-    <div class="col-sm-3">
-  <ul>
-        <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light ">
-
-        <a v-if="business=='1'" href="./business" style="" class=" text-light bg-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a> 
-
-        <a v-if="business=='2'" href="./services" style="" class=" text-light bg-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a> 
-
-
-      <a v-if="auth_user" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Logout</b></a>
-          
-      <a v-else data-target="#loginModal" data-toggle="modal" style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
-
-       </li>
-                                    
-    </ul>
-        
-        </div> 
-       <div class="col-sm-1"> </div>
-
-    </div> 
-           
-
-    <!-- Layout -->
-
 
         <div class="heading">
 
-        <div class="row " style="">
+        <div class="row" style="">
 
          <div class=" col-sm-12 text-center image" style="">
 
-         <div class="py-5"></div>
-         <div class="mt-5 mb-4 w-50 mx-auto text-center">   
-         <h2 style="font-size:42px; font-weight: 500px;" class="text-light ">Invest in
-          <marquee>Agriculture | Sports/Gaming | Real State | Entertainment | Auto | Finance/Accounting Security | Pets | Domestic Help | Other</marquee>
-       </h2> 
-       <p class="text text-center">Your platform to invest in local businesses</p>
+         <div class="my-4 w-50 mx-auto text-center">   
+         <h4 style="font-size:27px; font-weight: 500px;" class="text-dark ">
+          <marquee>Invest in Agriculture | Sports/Gaming | Real State | Entertainment | Auto | Finance/Accounting Security | Pets | Domestic Help | Other</marquee>
+       </h4> 
+       <p class="h6 text text-center text-dark ">Your platform to invest in local businesses</p>
 
  
            </div>
 
-                             <form id="form" @submit.prevent ="search();" class=" w-100" method="post">
-                            <div style="width:75%;" class=" mx-auto text-center row py-4 rounded text-center">
+                            <form id="form" @submit.prevent ="search();" class=" w-100" method="post">
+                            <div style="width:75%;" class=" mx-auto text-center row py-0 searchBar text-center">
 
                             <!-- <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3 bg-white">
                               <input  required=""  style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div> -->
 
                              <div style="border-radius: 35px 0 0 35px;"  class="py-2 col-sm-5 bg-white">
-                              <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="search" value=""placeholder="Location">
+                              <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="search" value="" placeholder="Location">
 
                           </div>
 
                           <div class="pt-3 col-sm-4 bg-white">
                           <div class="dropdown">
 
-            <select  name="category" class="border-none form-control">
+            <select  name="category" class="border-white form-control">
             <option class="form-control" >Select Category</option>
 
             <option class="form-control" value="Agriculture" >Agriculture</option>
@@ -92,10 +43,10 @@
            <option value="Food" >Food </option>
            <option value="Legal" >Legal </option>
             <option value="Security" >Security </option>
-             <option value="Media / Internet" >Media / Internet </option>
-              <option value="Arts / Culture" >Arts / Culture </option>
+             <option value="Media / Internet" >Media/Internet </option>
+              <option value="Arts / Culture" >Arts/Culture </option>
                <option value="Fashion" >Fashion </option>
-                <option value="Technology / Communications" >Technology / Communications </option>
+                <option value="Technology / Communications" >Technology/Communications </option>
                  <option value="Retail" >Retail </option>
            <option value="Auto" >Auto</option>
            <option value="Finance/Accounting" >Finance/Accounting</option>
@@ -126,6 +77,38 @@
                         </div> 
                     
                     </div>
+
+
+      <div class="row my-4">
+
+        <div class="text-center categories navbar navbar-expand-sm">
+                                        
+        <ul class=" navbar-nav mx-auto" >
+            
+            <li class="nav-item" > <router-link to="">Agriculture </router-link></li> 
+
+           <li class="nav-item" > <router-link to="">Sports/Gaming </router-link></li>      
+           <li class="nav-item" > <router-link to="">Real State </router-link></li>     
+           <li class="nav-item" > <router-link to="">Food </router-link></li> 
+           <li class="nav-item" > <router-link to="">Legal  </router-link></li>   
+            <li class="nav-item" > <router-link to="">Security </router-link></li>    
+               
+              <li class="nav-item" > <router-link to="">Arts/Culture </router-link></li>    
+               <li class="nav-item" > <router-link to="">Fashion </router-link></li>   
+                <li class="nav-item" > <router-link to="">Technology/Communications  </router-link></li>     
+                 <li class="nav-item" > <router-link to="">Retail </router-link></li>     
+           <li class="nav-item" > <router-link to="">Auto </router-link></li>
+           <li class="nav-item" > <router-link to="">Finance/Accounting </router-link></li>  
+           <li class="nav-item" > <router-link to="">Pets </router-link></li>
+           <li class="nav-item" > <router-link to="">Domestic Home </router-link></li>  
+           <li class="nav-item" ><router-link to="">Other </router-link></li>   
+           </ul>
+
+         </div>
+
+                    </div>
+
+
                       </div>
 
 
@@ -133,7 +116,7 @@
 
 <!-- HOW IT WORKS -->
 
-<div class="row mt-2 border border-bottom-dark bg-white"></div>
+<div class="row mt-4 border border-bottom-dark bg-white"></div>
 
         <div class="row w-75 mx-auto my-5 bg-white">
           <div class="col-sm-5 elementor-top-column elementor-element elementor-element-ce6f4c7" data-id="ce6f4c7" data-element_type="column">
@@ -220,7 +203,7 @@
      </div>
 
       <div class="col-sm-6">
-       <video style ="width:500px; height:300px;" class="elementor-video" src="https://jitume.com/file/2022/03/Pendeza%20Cut.mp4" controls="" controlslist="nodownload"></video>
+       <video style ="width:500px; height:300px;" class="elementor-video" src="videos/Jitume.mp4" controls="" controlslist="nodownload"></video>
      </div>
 
    </div>

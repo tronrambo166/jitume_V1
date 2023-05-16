@@ -2,55 +2,7 @@
     <div class="container" id="">
 
       
-      <!-- Layout -->
- 
-     <div class="row border_dark p-0" style="">
-     <div class="col-sm-8">
-      
-     <div class="navbar navbar-expand-sm p-0 navy  ">
-       <ul class="navbar-nav py-2 ">
-
-        <li class="nav-item py-1 px-3 mr-4">
-            <a href="home"><img class="" src="images/logo_services.png" width="170px" height="45px" style="margin-left: 44px;"></a>
-        </li>
-        
-         <li class="nav-item py-1 px-4"><router-link to="/home" class="text-dark ">Home</router-link></li>
-
-                    <li class="nav-item py-1 px-3 text-secondary"><router-link to="/services" class="text-dark ">Jitume services</router-link></li>
-
-                    <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/applyShow" class=" text-light">Apply for show
-                    </router-link></li>
-
-                </ul>
-                 </div>
-            </div>
-
-    
-    
-    <div class="col-sm-3">
-  <ul>
-        <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light "> 
-
-      <a v-if="auth_user" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" style="background: #ffffff8c;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Logout</b></a>
-          
-      <a v-else data-target="#loginModal" data-toggle="modal" style="background: rgba(175, 173, 173, 0.23);" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
-
-       </li>
-                                    
-    </ul>
-        
-        </div> 
-
-       <div class="col-sm-1"> </div>
-
-    </div> 
-           
-
-    <!-- Layout -->
-
-
-
+     
 <!-- PAGE CONTENT -->
 <div class="my-5 row w-75 mx-auto text-center">
   <h3>Apply For Show</h3>
