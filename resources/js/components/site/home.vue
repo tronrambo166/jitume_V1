@@ -12,7 +12,7 @@
 
          <div class="my-4 w-50 mx-auto text-center">   
          <h4 style="font-size:27px; font-weight: 500px;" class="text-dark ">
-          <marquee>Invest in Agriculture | Sports/Gaming | Real State | Entertainment | Auto | Finance/Accounting Security | Pets | Domestic Help | Other</marquee>
+        <!--  <marquee>Invest in Agriculture | Sports/Gaming | Real State | Entertainment | Auto | Finance/Accounting Security | Pets | Domestic Help | Other</marquee> -->
        </h4> 
        <p class="h6 text text-center text-dark ">Your platform to invest in local businesses</p>
 
@@ -25,30 +25,31 @@
                             <!-- <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3 bg-white">
                               <input  required=""  style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div> -->
 
-                             <div style="border-radius: 35px 0 0 35px;"  class="py-2 col-sm-5 bg-white">
+                             <div style="border-radius: 35px 0 0 35px;"  class="py-2 col-5 bg-white">
                               <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="search" value="" placeholder="Location">
 
                           </div>
 
-                          <div class="pt-3 col-sm-4 bg-white">
-                          <div class="dropdown">
+                          <div class="pt-2 col-4 bg-white">
+                          <div class="dropdown pt-1">
 
             <select  name="category" class="border-white form-control">
-            <option class="form-control" >Select Category</option>
+            <option class="form-control" >Category</option>
 
             <option class="form-control" value="Agriculture" >Agriculture</option>
-
+            <option value="Arts / Culture" >Arts/Culture </option>
+            <option value="Auto" >Auto</option>
            <option value="Sports/Gaming" >Sports/Gaming</option>
            <option value="Real State" >Real State</option>
            <option value="Food" >Food </option>
            <option value="Legal" >Legal </option>
             <option value="Security" >Security </option>
              <option value="Media / Internet" >Media/Internet </option>
-              <option value="Arts / Culture" >Arts/Culture </option>
+              
                <option value="Fashion" >Fashion </option>
                 <option value="Technology / Communications" >Technology/Communications </option>
                  <option value="Retail" >Retail </option>
-           <option value="Auto" >Auto</option>
+           
            <option value="Finance/Accounting" >Finance/Accounting</option>
            <option value="Pets">Pets</option>
            <option value="Domestic (Home Help etc)">Domestic (Home Help etc)</option>
@@ -59,14 +60,14 @@
                         </div>
                         </div>
 
-                            <div style="border-radius: 0 35px 35px 0;" class="bg-white col-sm-3 py-2 ">
-                                <button  class="searchListing  float-right" type="submit">Search</button>
+                            <div style="border-radius: 0 35px 35px 0;" class="bg-white col-3 py-2 ">
+                                <button  class="searchListing px-3  float-right" type="submit">Search</button>
                             </div>
 
                                </div>               
 
                             <div class="row" style="">
-                                <div id="result_list" class="text-left" style="display: none;width:30%; z-index: 1000;height: 600px;position: absolute; margin-left: 172px;top: 410px;">
+                                <div id="result_list" class="text-left" style="display: none;width:30%; z-index: 1000;height: 600px;position: absolute; margin-left: 145px;top: 139px;">
                                     
                                 </div>
                             </div>
@@ -81,27 +82,37 @@
 
       <div class="row my-4">
 
-        <div class="text-center categories navbar navbar-expand-sm">
+        <div class="cats text-center categories navbar navbar-expand-sm">
                                         
         <ul class=" navbar-nav mx-auto" >
             
-            <li class="nav-item" > <router-link to="">Agriculture </router-link></li> 
+            <li class="nav-item" > <router-link to="category/Agriculture">Agriculture </router-link></li> 
+              <li class="nav-item" > <router-link to="category/Arts-Culture">Arts/Culture </router-link></li>
+               <li class="nav-item" > <router-link to="category/Auto">Auto </router-link></li>    
+                <li class="nav-item" > <router-link to="category/Domestic_Home">Domestic Home </router-link></li>
+                <li class="nav-item" > <router-link to="category/Fashion">Fashion </router-link></li> 
+                 <li class="nav-item" > <router-link to="category/Finance-Accounting">Finance/Accounting </router-link></li>  
+                  <li class="nav-item" > <router-link to="category/Food">Food </router-link></li>
+                   <li class="nav-item" > <router-link to="category/Legal">Legal  </router-link></li>  
+                    <li class="nav-item" > <router-link to="category/Media-Internet">Media/Internet</router-link></li> 
+                     <li class="nav-item" > <router-link to="category/Pets">Pets </router-link></li> 
+                      <li class="nav-item" > <router-link to="category/Pets">Pets </router-link></li>
 
-           <li class="nav-item" > <router-link to="">Sports/Gaming </router-link></li>      
-           <li class="nav-item" > <router-link to="">Real State </router-link></li>     
-           <li class="nav-item" > <router-link to="">Food </router-link></li> 
-           <li class="nav-item" > <router-link to="">Legal  </router-link></li>   
-            <li class="nav-item" > <router-link to="">Security </router-link></li>    
+                
+           <li class="nav-item" > <router-link to="category/Real State">Real State </router-link></li>     
+           
+           
+            <li class="nav-item" > <router-link to="category/Security">Security </router-link></li>    
+             <li class="nav-item" > <router-link to="category/Sports-Gaming">Sports/Gaming </router-link></li>
                
-              <li class="nav-item" > <router-link to="">Arts/Culture </router-link></li>    
-               <li class="nav-item" > <router-link to="">Fashion </router-link></li>   
-                <li class="nav-item" > <router-link to="">Technology/Communications  </router-link></li>     
-                 <li class="nav-item" > <router-link to="">Retail </router-link></li>     
-           <li class="nav-item" > <router-link to="">Auto </router-link></li>
-           <li class="nav-item" > <router-link to="">Finance/Accounting </router-link></li>  
-           <li class="nav-item" > <router-link to="">Pets </router-link></li>
-           <li class="nav-item" > <router-link to="">Domestic Home </router-link></li>  
-           <li class="nav-item" ><router-link to="">Other </router-link></li>   
+                 
+                <li class="nav-item" > <router-link to="category/Technology-Communications">Technology/Communications  </router-link></li>     
+                     
+          
+          
+          
+            
+           <li class="nav-item" ><router-link to="category/Other">Other </router-link></li>   
            </ul>
 
          </div>

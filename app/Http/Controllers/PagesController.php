@@ -190,6 +190,27 @@ return response()->json([ 'data' => $results] );
 }
 
 
+public function categoryResults($name){
+$results = array();
+$name = str_replace('-','/',$name);
+$name = str_replace('_',' ',$name);
+
+$listing = Listing::where('category',$name)->get();
+foreach($listing as $list){ 
+
+    $files = businessDocs::where('business_id',$list->id)
+    ->where('media',1)->first();
+    if(isset($files->file))
+    $list->file = $files->file;
+    else $list->file = false;
+
+    $results[] = $list;
+}
+
+return response()->json([ 'data' => $results] );
+}
+
+
 public function equipments($id){
 
     $Equipment = Equipments::where('listing_id',$id)->get();

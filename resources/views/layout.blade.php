@@ -53,6 +53,7 @@
         </li>
 
         <div class="navbar navbar-expand-sm pl-4">
+             <ul class="navbar-nav ">
         
          <li class="nav-item py-1 px-3 active"><router-link to="/home" class=" ">Home</router-link></li>
 
@@ -60,6 +61,7 @@
 
                     <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/applyShow" class="">Apply for show
                     </router-link></li>
+                </ul>
 
                 </div>
 

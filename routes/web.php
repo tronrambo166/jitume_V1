@@ -66,7 +66,8 @@ Route::get('searchResults/{ids}', 'PagesController@searchResults')->name('search
 Route::get('priceFilter/{min}/{max}/{ids}', 'PagesController@priceFilter')->name('priceFilter');
 
 Route::post('searchService', 'PagesController@searchService')->name('searchService');
-Route::get('ServiceResults/{ids}', 'PagesController@ServiceResults')->name('ServiceResults');
+Route::get('ServiceResults/{ids}', 'PagesController@ServiceResults')->name('ServiceResults'); 
+Route::get('categoryResults/{catName}', 'PagesController@categoryResults')->name('categoryResults');
 
 Route::get('equipments/{id}', 'PagesController@equipments')->name('equipments');
 Route::get('invest/{listing_id}/{id}/{value}/{amount}/{type}', 'PagesController@invest')->name('equipments');
