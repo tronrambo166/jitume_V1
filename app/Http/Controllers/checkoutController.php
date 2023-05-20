@@ -274,6 +274,7 @@ class checkoutController extends Controller
 
 
    //MAIL
+        $business = listing::where('id',$mile->listing_id)->first();
 
         $info=[  'name'=>$mile->name,  'amount'=>$mile->amount, 'business'=>$business->name, ]; 
         $user['to'] = $request->email;//'sohaankane@gmail.com';
@@ -285,8 +286,7 @@ class checkoutController extends Controller
 
 
 //DB INSERT
-    $business = listing::where('id',$mile->listing_id)->first();
-       
+        
     Milestones::where('id',$id)->update([ 'status' => 'Done']);
     $mileLat = Milestones::where('user_id',$user_id)->where('status','On Hold')->first();
 
