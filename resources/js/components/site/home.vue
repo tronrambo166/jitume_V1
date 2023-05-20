@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid px-0">
-    <div class="home_bg" style="min-height:300px;">
+    <div class="home_bg" style="">
 
  
 
@@ -80,7 +80,7 @@
                     </div>
 
 
-      <div class="row my-4">
+      <div class="row mt-4">
 
         <div class="cats text-center categories navbar navbar-expand-sm">
                                         
@@ -89,14 +89,14 @@
             <li class="nav-item" > <router-link to="category/Agriculture">Agriculture </router-link></li> 
               <li class="nav-item" > <router-link to="category/Arts-Culture">Arts/Culture </router-link></li>
                <li class="nav-item" > <router-link to="category/Auto">Auto </router-link></li>    
-                <li class="nav-item" > <router-link to="category/Domestic_Home">Domestic Home </router-link></li>
+                <li class="nav-item" > <router-link to="category/Domestic_Home">Domestic (HomeHelp etc) </router-link></li>
                 <li class="nav-item" > <router-link to="category/Fashion">Fashion </router-link></li> 
                  <li class="nav-item" > <router-link to="category/Finance-Accounting">Finance/Accounting </router-link></li>  
                   <li class="nav-item" > <router-link to="category/Food">Food </router-link></li>
                    <li class="nav-item" > <router-link to="category/Legal">Legal  </router-link></li>  
                     <li class="nav-item" > <router-link to="category/Media-Internet">Media/Internet</router-link></li> 
                      <li class="nav-item" > <router-link to="category/Pets">Pets </router-link></li> 
-                      <li class="nav-item" > <router-link to="category/Pets">Pets </router-link></li>
+                      <li class="nav-item" > <router-link to="category/Retail">Retail </router-link></li>
 
                 
            <li class="nav-item" > <router-link to="category/Real State">Real State </router-link></li>     
@@ -238,7 +238,9 @@ export default {
   categories:'',
   
   }),
-  checkListing:''
+  checkListing:'',
+  serviceDetails:'',
+  milestone:''
 
     }),
 
@@ -252,6 +254,10 @@ created() {
             this.serviceDetails = sessionStorage.getItem('serviceDetails');
             if(this.serviceDetails!=null)
               this.$router.push(`serviceDetails/${this.serviceDetails}`)
+
+            this.milestone = sessionStorage.getItem('milestone');
+            if(this.milestone !=null)
+              this.$router.push(`project_dash/${this.milestone}`)
         },
 
   methods:{

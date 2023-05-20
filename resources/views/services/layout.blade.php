@@ -39,7 +39,6 @@
 
 <div class="container-fluid">
    
-
  <div  class="row p-0 shadow" style="background: black;">
 
     <div class="col-sm-3">
@@ -53,9 +52,9 @@
      <div class="navbar navbar-expand-sm p-0 navy  ">
        <ul class="navbar-nav py-2 ">
 
-                    <li class="nav-item py-1 px-3 text-secondary  "><router-link to="/home" class="font-weight-bold text-secondary nav-link">Jitume service</router-link></li>
+                    <li class="nav-item py-1 px-3 text-secondary  "><router-link to="/home" class="font-weight-bold text-secondary nav-link">Jitume Services</router-link></li>
 
-                    <li class="font-weight-bold nav-item py-1 px-3 text-secondary"><router-link to="/applyShow" class="text-secondary nav-link">Apply for show
+                    <li class="font-weight-bold nav-item py-1 px-3 text-secondary"><router-link to="/applyShow" class="text-secondary nav-link">Apply for Show
                     </router-link></li>
                 </ul>
                  </div>
@@ -65,14 +64,34 @@
     
     <div class="col-sm-4" style="background: white;">
               <ul class="myaccount">
-                    <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary ">
-                        <a class="text-secondary" href="">My Account</a>
-                        <a class="text-secondary" href="{{route('logoutS')}}">Logout</a>
+             
+                     <li style="list-style-type: none;" class="float-left mt-3 nav-item py-1 px-3 text-secondary ">
+                        <a href="{{route('add-services')}}" style="border-radius: 35px 35px;border: 1px solid green;text-decoration: none;" class="px-3 text-secondary float-left" href="">Add Service</a>
                     </li>
 
-                     <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary ">
-                        <a href="{{route('add-services')}}" style="border-radius: 35px 35px;border: 1px solid green;text-decoration: none;" class="px-3 text-secondary" href="">Add Service</a>
+
+
+                <div class="dropdown show d-inline-block ml-5 mt-3">
+                  <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Options
+                  </a>
+                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary">
+                         <a class="dropdown-item text-secondary" href="{{route('home')}}">Back to Main</a>
+                        <a class="dropdown-item text-secondary" href="">My Account</a>
+
+                       
+                        <a  onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class=" dropdown-item text-secondary" ><b>Logout</b></a>
+
+ <form id="logout-form " style="cursor: pointer;" action="{{ route('logout') }}" method="POST" class="d-none">
+@csrf
+                                    </form>
+
                     </li>
+                    
+                  </div>
+                </div>
 
                 </ul>     
         </div> 

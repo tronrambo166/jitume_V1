@@ -48,7 +48,7 @@
 
                                     <div class="col-1 px-1">
                                         <div class="form-group">
-                                        <button type="submit" class="text-center border border-dark p-0 btn btn-light btn-block" >PAY</button>                                    </div>
+                                        <button @click="make_session(form.id);" type="submit" class="text-center border border-dark p-0 btn btn-light btn-block" >PAY</button>                                    </div>
                                 </div>
 
                                 <input type="number" hidden="" name="lisitng_id" v-model="form.id">
@@ -196,6 +196,9 @@
     }),
 
     created(){
+    if(sessionStorage.getItem('milestone')!=null)
+    sessionStorage.clear();
+
          var id=this.$route.params.id;
          let t=this;
          t.form.id = id;
@@ -216,7 +219,7 @@ getMilestones:function(){
     },
 
  make_session(id){
-            sessionStorage.setItem('invest',id);
+            sessionStorage.setItem('milestone',id);
         },
 
     download_milestone_doc(){

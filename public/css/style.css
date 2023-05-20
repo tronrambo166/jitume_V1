@@ -54,7 +54,7 @@
 	.navbar ul li .router-link-active{
 		color: white;background: #72c537;
 		border-radius: 35px;
-		padding-left: 20px;padding-right: 20px;
+		padding-left: 8px;padding-right: 8px;
         font-family: system-ui;
         font-weight: 400;
 		 }

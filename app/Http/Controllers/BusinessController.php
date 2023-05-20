@@ -221,6 +221,12 @@ $title = $request->title;
 $business_id = $request->business_id;
 $amount = $request->amount;
 $user_id = Auth::id();
+$status = 'Created';
+
+$mile = Milestones::where('listing_id',$business_id)->where('status','Created')->first();
+
+if($mile->status == 'Created')
+$status = 'On Hold';
 
  $single_img=$request->file('file');
  
@@ -248,13 +254,24 @@ Milestones::create([
             'title' => $title,
             'listing_id' => $business_id,
             'amount' => $amount,
-            'document' => $final_file            
+            'document' => $final_file,
+            'status' => $status           
            ]);       
 
         Session::put('success','Milestone added!');
         return redirect()->back();
 
 }
+
+
+public function mile_status(Request $request){
+$milestones = Milestones::where('id',$request->id)
+->update([
+'status' => $request->status
+]);
+return redirect()->back();
+}
+
 
 public function up_milestone(Request $request){
 $title = $request->title;

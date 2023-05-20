@@ -53,9 +53,9 @@
      <div class="navbar navbar-expand-sm p-0 navy  ">
        <ul class="navbar-nav py-2 ">
 
-                    <li class="nav-item py-1 px-3 text-secondary  "><router-link to="/" class="font-weight-bold text-secondary nav-link">Jitume service</router-link></li>
+                    <li class="nav-item py-1 px-3 text-secondary  "><router-link to="/" class="font-weight-bold text-secondary nav-link">Jitume Services</router-link></li>
 
-                    <li class="font-weight-bold nav-item py-1 px-3 text-secondary"><router-link to="/applyShow" class="text-secondary nav-link">Apply for show
+                    <li class="font-weight-bold nav-item py-1 px-3 text-secondary"><router-link to="/applyShow" class="text-secondary nav-link">Apply for Show
                     </router-link></li>
                 </ul>
                  </div>
@@ -77,9 +77,17 @@
                   </a>
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary">
-                         <a class="dropdown-item text-secondary" href="home">Back to Main</a>
+                         <a class="dropdown-item text-secondary" href="{{route('home')}}">Back to Main</a>
                         <a class="dropdown-item text-secondary" href="">My Account</a>
-                        <a class="dropdown-item text-secondary" href="{{route('logoutB')}}">Logout</a>
+
+                       
+                        <a v-if="" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class=" dropdown-item text-secondary" ><b>Logout</b></a>
+
+ <form id="logout-form " style="cursor: pointer;" action="{{ route('logout') }}" method="POST" class="d-none">
+@csrf
+                                    </form>
+
                     </li>
                     
                   </div>
@@ -120,7 +128,7 @@
 
                                 <a class="font-weight-bold text-light" href="{{route('add_milestones')}}"><i class=" fe fe-layout"></i> <span>Add Milestone</span></a>
 
-                                <a class="font-weight-bold text-light" href="{{route('milestones')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
+                                
 
                             </li>
                             

@@ -6567,11 +6567,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'app_url'],
   data: function data() {
     return {
       results: [],
+      services: [],
       catName: '',
       empty: false
     };
@@ -6583,6 +6614,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('categoryResults/' + t.catName).then(function (data) {
         t.results = data.data.data;
+        t.services = data.data.services;
         console.log(data);
       })["catch"](function (error) {});
     },
@@ -6978,7 +7010,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         search: '',
         categories: ''
       }),
-      checkListing: ''
+      checkListing: '',
+      serviceDetails: '',
+      milestone: ''
     };
   },
   created: function created() {
@@ -6987,6 +7021,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     if (this.checkListing != null) this.$router.push("listingDetails/".concat(this.checkListing));
     this.serviceDetails = sessionStorage.getItem('serviceDetails');
     if (this.serviceDetails != null) this.$router.push("serviceDetails/".concat(this.serviceDetails));
+    this.milestone = sessionStorage.getItem('milestone');
+    if (this.milestone != null) this.$router.push("project_dash/".concat(this.milestone));
   },
   methods: _defineProperty({
     search: function search() {
@@ -8048,6 +8084,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    if (sessionStorage.getItem('milestone') != null) sessionStorage.clear();
     var id = this.$route.params.id;
     var t = this;
     t.form.id = id;
@@ -8062,7 +8099,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     make_session: function make_session(id) {
-      sessionStorage.setItem('invest', id);
+      sessionStorage.setItem('milestone', id);
     },
     download_milestone_doc: function download_milestone_doc() {
       var id = this.$route.params.id;
@@ -62561,7 +62598,10 @@ var render = function () {
                     ? _c(
                         "video",
                         {
-                          staticStyle: { width: "332px", height: "230px" },
+                          staticStyle: {
+                            "max-width": "332px",
+                            height: "230px",
+                          },
                           attrs: { controls: "", alt: "" },
                         },
                         [
@@ -62571,7 +62611,7 @@ var render = function () {
                         ]
                       )
                     : _c("img", {
-                        staticStyle: { width: "332px", height: "230px" },
+                        staticStyle: { "max-width": "332px", height: "230px" },
                         attrs: { src: result.image, alt: "" },
                       }),
                   _vm._v(" "),
@@ -62589,6 +62629,60 @@ var render = function () {
                       _c("i", { staticClass: "mr-2 fa fa-phone" }),
                       _vm._v(_vm._s(result.contact)),
                     ]),
+                  ]),
+                ]
+              ),
+            ],
+            1
+          )
+        }),
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row mt-4" },
+      [
+        this.services == ""
+          ? _c("div", [
+              _c(
+                "h3",
+                {
+                  staticClass:
+                    "text-center font-weight-bold btn-light btn py-3 d-block",
+                },
+                [_vm._v("No Results Found! ")]
+              ),
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm._l(_vm.services, function (service, index) {
+          return _c(
+            "div",
+            { staticClass: "listing col-sm-4 my-5" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "shadow card border px-5",
+                  attrs: { to: "/servicegDetails/" + service.id },
+                },
+                [
+                  _c("img", {
+                    staticStyle: { "max-width": "332px", height: "230px" },
+                    attrs: { src: service.image, alt: "" },
+                  }),
+                  _vm._v(" "),
+                  _c("h4", { staticClass: "mt-3 mb-0" }, [
+                    _vm._v(_vm._s(service.name) + " "),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "my-1" }, [
+                    _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
+                    _vm._v(_vm._s(service.location)),
                   ]),
                 ]
               ),
@@ -62618,6 +62712,20 @@ var staticRenderFns = [
       _c("div", { staticClass: "heading" }, [
         _c("h3", { staticClass: "my-5 bg-light text-center text-secondary" }, [
           _vm._v("Listings"),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "clear" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "content_bottom" }, [
+      _c("div", { staticClass: "heading" }, [
+        _c("h3", { staticClass: "my-5 bg-light text-center text-secondary" }, [
+          _vm._v("Services"),
         ]),
       ]),
       _vm._v(" "),
@@ -62753,239 +62861,230 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid px-0" }, [
-    _c(
-      "div",
-      { staticClass: "home_bg", staticStyle: { "min-height": "300px" } },
-      [
-        _c("div", { staticClass: "heading" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-sm-12 text-center image" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "form",
-                {
-                  staticClass: "w-100",
-                  attrs: { id: "form", method: "post" },
-                  on: {
-                    submit: function ($event) {
-                      $event.preventDefault()
-                      return _vm.search()
-                    },
+    _c("div", { staticClass: "home_bg" }, [
+      _c("div", { staticClass: "heading" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-12 text-center image" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                staticClass: "w-100",
+                attrs: { id: "form", method: "post" },
+                on: {
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.search()
                   },
                 },
-                [_vm._m(1), _vm._v(" "), _vm._m(2)]
-              ),
-            ]),
+              },
+              [_vm._m(1), _vm._v(" "), _vm._m(2)]
+            ),
           ]),
         ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row my-4" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "cats text-center categories navbar navbar-expand-sm",
-            },
-            [
-              _c("ul", { staticClass: "navbar-nav mx-auto" }, [
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: "category/Agriculture" } },
-                      [_vm._v("Agriculture ")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: "category/Arts-Culture" } },
-                      [_vm._v("Arts/Culture ")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c("router-link", { attrs: { to: "category/Auto" } }, [
-                      _vm._v("Auto "),
-                    ]),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: "category/Domestic_Home" } },
-                      [_vm._v("Domestic Home ")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c("router-link", { attrs: { to: "category/Fashion" } }, [
-                      _vm._v("Fashion "),
-                    ]),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: "category/Finance-Accounting" } },
-                      [_vm._v("Finance/Accounting ")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c("router-link", { attrs: { to: "category/Food" } }, [
-                      _vm._v("Food "),
-                    ]),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c("router-link", { attrs: { to: "category/Legal" } }, [
-                      _vm._v("Legal  "),
-                    ]),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: "category/Media-Internet" } },
-                      [_vm._v("Media/Internet")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c("router-link", { attrs: { to: "category/Pets" } }, [
-                      _vm._v("Pets "),
-                    ]),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c("router-link", { attrs: { to: "category/Pets" } }, [
-                      _vm._v("Pets "),
-                    ]),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: "category/Real State" } },
-                      [_vm._v("Real State ")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c("router-link", { attrs: { to: "category/Security" } }, [
-                      _vm._v("Security "),
-                    ]),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: "category/Sports-Gaming" } },
-                      [_vm._v("Sports/Gaming ")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: "category/Technology-Communications" } },
-                      [_vm._v("Technology/Communications  ")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c("router-link", { attrs: { to: "category/Other" } }, [
-                      _vm._v("Other "),
-                    ]),
-                  ],
-                  1
-                ),
-              ]),
-            ]
-          ),
-        ]),
-      ]
-    ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mt-4" }, [
+        _c(
+          "div",
+          {
+            staticClass: "cats text-center categories navbar navbar-expand-sm",
+          },
+          [
+            _c("ul", { staticClass: "navbar-nav mx-auto" }, [
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c("router-link", { attrs: { to: "category/Agriculture" } }, [
+                    _vm._v("Agriculture "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: "category/Arts-Culture" } },
+                    [_vm._v("Arts/Culture ")]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c("router-link", { attrs: { to: "category/Auto" } }, [
+                    _vm._v("Auto "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: "category/Domestic_Home" } },
+                    [_vm._v("Domestic (HomeHelp etc) ")]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c("router-link", { attrs: { to: "category/Fashion" } }, [
+                    _vm._v("Fashion "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: "category/Finance-Accounting" } },
+                    [_vm._v("Finance/Accounting ")]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c("router-link", { attrs: { to: "category/Food" } }, [
+                    _vm._v("Food "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c("router-link", { attrs: { to: "category/Legal" } }, [
+                    _vm._v("Legal  "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: "category/Media-Internet" } },
+                    [_vm._v("Media/Internet")]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c("router-link", { attrs: { to: "category/Pets" } }, [
+                    _vm._v("Pets "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c("router-link", { attrs: { to: "category/Retail" } }, [
+                    _vm._v("Retail "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c("router-link", { attrs: { to: "category/Real State" } }, [
+                    _vm._v("Real State "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c("router-link", { attrs: { to: "category/Security" } }, [
+                    _vm._v("Security "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: "category/Sports-Gaming" } },
+                    [_vm._v("Sports/Gaming ")]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: "category/Technology-Communications" } },
+                    [_vm._v("Technology/Communications  ")]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c("router-link", { attrs: { to: "category/Other" } }, [
+                    _vm._v("Other "),
+                  ]),
+                ],
+                1
+              ),
+            ]),
+          ]
+        ),
+      ]),
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "row mt-4 border border-bottom-dark bg-white" }),
     _vm._v(" "),
@@ -64874,7 +64973,24 @@ var render = function () {
                               ),
                             ]),
                             _vm._v(" "),
-                            _vm._m(0, true),
+                            _c("div", { staticClass: "col-1 px-1" }, [
+                              _c("div", { staticClass: "form-group" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "text-center border border-dark p-0 btn btn-light btn-block",
+                                    attrs: { type: "submit" },
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.make_session(_vm.form.id)
+                                      },
+                                    },
+                                  },
+                                  [_vm._v("PAY")]
+                                ),
+                              ]),
+                            ]),
                             _vm._v(" "),
                             _c("input", {
                               directives: [
@@ -64926,7 +65042,7 @@ var render = function () {
                               },
                             }),
                             _vm._v(" "),
-                            _vm._m(1, true),
+                            _vm._m(0, true),
                           ]
                         ),
                       ]
@@ -65021,11 +65137,11 @@ var render = function () {
                               ]),
                             ]),
                             _vm._v(" "),
+                            _vm._m(1, true),
+                            _vm._v(" "),
                             _vm._m(2, true),
                             _vm._v(" "),
                             _vm._m(3, true),
-                            _vm._v(" "),
-                            _vm._m(4, true),
                           ]
                         ),
                       ]
@@ -65119,11 +65235,11 @@ var render = function () {
                               ]),
                             ]),
                             _vm._v(" "),
+                            _vm._m(4, true),
+                            _vm._v(" "),
                             _vm._m(5, true),
                             _vm._v(" "),
                             _vm._m(6, true),
-                            _vm._v(" "),
-                            _vm._m(7, true),
                           ]
                         ),
                       ]
@@ -65138,24 +65254,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 px-1" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "button",
-          {
-            staticClass:
-              "text-center border border-dark p-0 btn btn-light btn-block",
-            attrs: { type: "submit" },
-          },
-          [_vm._v("PAY")]
-        ),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

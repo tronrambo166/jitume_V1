@@ -224,7 +224,7 @@ export default {
 
 created(){
 if(sessionStorage.getItem('invest')!=null)
-    sessionStorage.clear();
+    sessionStorage.clear(); 
 },
     methods:{
 

@@ -58,15 +58,45 @@
                 <div v-for="( result, index ) in results" class="listing col-sm-4 my-5">
                     <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-5">
 
-                     <video v-if="result.file" controls style="width:332px; height:230px" alt="">
+                     <video v-if="result.file" controls style="max-width:332px; height:230px" alt="">
                     <source :src="result.file" type="video/mp4">
                      </video> 
 
-                     <img v-else :src="result.image" style="width:332px; height:230px" alt=""/>
+                     <img v-else :src="result.image" style="max-width:332px; height:230px" alt=""/>
 
                     <h4 class="mt-3 mb-0">{{result.name}} </h4>
                     <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{result.location}}</p>
                     <p><span class="mt-1 rounded"><i class="mr-2 fa fa-phone"></i>{{result.contact}}</span></p>
+                    </router-link>
+                    
+              </div>
+                </div>
+
+
+
+
+                  <div class="content_bottom">
+                <div class="heading">
+                     <h3 class="my-5 bg-light text-center text-secondary">Services</h3>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+             
+         <div class="row mt-4">
+
+         <div v-if="this.services ==''">
+         <h3 class="text-center font-weight-bold btn-light btn py-3 d-block">No Results Found! </h3></div>
+             
+                <div v-for="( service, index ) in services" class="listing col-sm-4 my-5">
+                    <router-link :to="`/servicegDetails/${service.id}`" class="shadow card border px-5">
+
+
+                     <img :src="service.image" style="max-width:332px; height:230px" alt=""/>
+
+                    <h4 class="mt-3 mb-0">{{service.name}} </h4>
+                    <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{service.location}}</p>
+                    
                     </router-link>
                     
               </div>
@@ -87,6 +117,7 @@ export default {
     props: ['auth_user','app_url'],
     data: () => ({
     results:[],
+    services:[],
     catName:'',
     empty:false
     }),
@@ -99,6 +130,7 @@ export default {
              //this.results = this.ids.split(",");
             axios.get('categoryResults/'+t.catName).then( (data) =>{
                 t.results = data.data.data;
+                t.services = data.data.services;
                 console.log(data);
               }).catch( (error) =>{})
         },

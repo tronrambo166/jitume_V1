@@ -273,7 +273,6 @@ class checkoutController extends Controller
    
 
 //DB INSERT
-  
        
     Milestones::where('id',$id)->update([ 'status' => 'Done']);
     $mileLat = Milestones::where('user_id',$user_id)->where('status','Created')->first();
@@ -284,7 +283,7 @@ class checkoutController extends Controller
         $info=[  'order_id'=>''  ]; 
         $user['to'] = 'sohaankane@gmail.com';//$request->email;
 
-        // Mail::send('cart.cart_mail', $info, function($msg) use ($user){
+        // Mail::send('milestone.milestone_mail', $info, function($msg) use ($user){
         //     $msg->to($user['to']);
         //     $msg->subject('Test Checkout Alert!');
         // });  

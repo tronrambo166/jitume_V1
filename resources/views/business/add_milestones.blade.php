@@ -70,7 +70,7 @@
                                 <div class="col-sm-3 px-1">
                                 <div class="upload-btn-wrapper w-100">
                                   <button class="btnUp3 w-100">Upload Milestone Documentaion <i class="ml-2 fa fa-arrow-up"></i></button>
-                                  <input type="file" name="file" />
+                                  <input style="height: 30px;" required="" type="file" name="file" />
                                 </div>
                                     </div>
 
@@ -125,7 +125,7 @@
     
 
     
-    <tbody>
+    <tbody> @php $c=1; @endphp
         @foreach($milestones as $ev)
         <tr >
             <td>{{$ev->title }}</td>
@@ -136,18 +136,43 @@
                </td>
                     <td>{{$ev->amount }}</td>
 
-                     <td>Unpaid</td>
+                     <td>
+
+           
+
+        <form action="{{route('mile_status')}}" method="post" class="form-inline">@csrf
+            <select  name="status" style="width:65%;" class=" d-inline rounded border border-dark p-1 ">
+                 
+                
+            @if($ev->status == 'Created')
+            <option hidden value="In Progress" class="form-control" >In Progress</option> 
+            @else
+            <option hidden value="{{$ev->status}}" class="form-control" >{{$ev->status}}</option>
+            @endif
+
+            @if($ev->status != 'Done' || $ev->status == 'Done')
+            <option value="Done" class="form-control" >
+                
+            Done</option>
+            @endif
+            
+           </select>
+          
+
+           <input type="submit" value="Set" class="ml-2 py-1 d-inline btn btn-success w-25">
+
+            <input hidden type="number" name="id" value="{{$ev->id}}">
+           </form> 
+
+                     </td>
 
             <td class="text-center">
             
             <div class="dropdown show d-inline-block ml-5">
                   <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    To Do 
+                    Action 
                   </a>
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-
-            <a href="{{route('delete_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light border border-dark my-1">In Progress</a>
-            <a href="{{route('delete_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light border border-dark my-1">Done</a>
 
             <a href="{{route('delete_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light border border-dark my-1">Delete</a>
             </div>  
@@ -179,70 +204,6 @@
 
 
 
-
-
-<!-- Download form -->
-  
-         <div class="card-header w-100">
-           <h3>Add Milestones</h3>
-        </div>       
-
-      </div>
-    
-    
-      <div class="modal-body">
-        <form action="{{route('add_eqp')}}"  method="post" enctype="multipart/form-data" class="form-group form">
-                                @csrf
-                                
-
-                                <div class="row w-75">
-                                    <div class="col-sm-3 px-1">
-                                        <div class=" ">
-                                            <input required="" name="title" type="text" placeholder="Milestone Name"  class="w-100 rounded p-1 ">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-sm-2 px-1 ">
-                                        <div class="">
-                                         
-                                            <input required=""  type="number"placeholder="amount"  name="amount" class="w-100 rounded p-1 " >
-                                        </div>
-                                    </div>
-
-                                <div class="col-sm-3 px-1">
-                                <div class="upload-btn-wrapper w-100">
-                                  <button class="btnUp3 w-100">Upload <i class="ml-2 fa fa-arrow-up"></i></button>
-                                  <input type="file" name="image" />
-                                </div>
-                                    </div>
-
-
-
-            <div class="col-sm-3 px-1">
-                <div class="form-group ">
-          <select required=""  name="listing" class="w-100 rounded py-2  ">
-            <option hidden class="form-control" >Select Business</option>
-
-            @foreach($business as $b)
-            <option value="{{$b->id}}" class="form-control" >{{$b->name}}</option> @endforeach
-
-           </select> 
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-1 px-1">
-                                        <div class="form-group">
-                                        <input type="submit" class="text-center btn btn-warning btn-block" value="ADD" />
-                                    </div>
-                                </div>
-                           
-                                </div>
-                                
-                            </form>
-
-    </div>
 
       <!-- ADD MODAL -->
 

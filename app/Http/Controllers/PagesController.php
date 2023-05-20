@@ -207,7 +207,9 @@ foreach($listing as $list){
     $results[] = $list;
 }
 
-return response()->json([ 'data' => $results] );
+$services = Services::where('category',$name)->get();
+
+return response()->json([ 'data' => $results, 'services' => $services] );
 }
 
 

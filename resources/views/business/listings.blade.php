@@ -16,7 +16,7 @@
             <th>Value Needed</th>
             <th>Details </th>  
             <th>Contact </th> 
-            <th>Share Nemaining </th> 
+            <th>Share Remaining </th> 
             <th>Image </th> 
             <th width="20%" class="text-center">Action</th>        
         </tr>
@@ -268,13 +268,12 @@
 
                 </div>
 
-                <div style="background:aliceblue;" class="col-sm-5"><p class="mx-auto my-5 py-5 font-weight-bold text-center">MAP Loading...</p></div>
+                
 
             </div>
 
 
-            <div class="clear"></div>
-            <div class="clearfix py-5"></div>
+
 
         </div>
 

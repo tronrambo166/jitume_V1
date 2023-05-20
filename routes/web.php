@@ -113,6 +113,7 @@ Route::get('milestones', 'BusinessController@milestones')->name('milestones');
 Route::post('save_milestone', 'BusinessController@save_milestone')->name('save_milestone');
 Route::post('up_milestones', 'BusinessController@up_milestone')->name('up_milestones');
 Route::get('delete_milestone/{id}', 'BusinessController@delete_milestone')->name('delete_milestone');
+Route::post('mile_status', 'BusinessController@mile_status')->name('mile_status');
 
 Route::post('add_doc', 'BusinessController@add_docs')->name('add_doc');
 Route::post('add_video', 'BusinessController@add_video')->name('add_video');

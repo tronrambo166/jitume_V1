@@ -57,9 +57,9 @@
         
          <li class="nav-item py-1 px-3 active"><router-link to="/home" class=" ">Home</router-link></li>
 
-                    <li class="nav-item py-1 px-3 text-light"><router-link to="/services" class=" ">Jitume service</router-link></li>
+                    <li class="nav-item py-1 px-3 text-light"><router-link to="/services" class=" ">Jitume Services</router-link></li>
 
-                    <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/applyShow" class="">Apply for show
+                    <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/applyShow" class="">Apply for Show
                     </router-link></li>
                 </ul>
 
@@ -73,18 +73,23 @@
     
         <div class="col-sm-3">
   <ul>
-        <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light ">
+       
+   
 
-        <a v-if="business=='1'" href="./business" style="" class=" text-light bg-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a> 
+     <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light ">
 
-        <a v-if="business=='2'" href="./services" style="" class=" text-light bg-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a> 
+   @if(Auth::check()) 
 
+    @if($business == 1)
+        <a  href="./business" style="background: aliceblue; border-radius: 15px;" class=" text-dark small d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a> 
+    @elseif($business == 2)
+        <a  href="./services" style="background: aliceblue; border-radius: 15px; " class=" text-dark d-inline px-3 py-2 d-inline-block small text-center" ><b>Dashboard</b></a> 
+    @endif
 
-    @if(Auth::check())
       <a v-if="" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Logout</b></a>
+                                                     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Logout</b></a>
      @else     
-      <a  data-target="#loginModal" data-toggle="modal" style="background: white; border-radius: 15px;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center" ><b>Sign In</b></a>
+      <a  data-target="#loginModal" data-toggle="modal" style="background: white; border-radius: 15px;cursor: pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block small text-center" ><b>Sign In</b></a>
       @endif
 
        </li>
