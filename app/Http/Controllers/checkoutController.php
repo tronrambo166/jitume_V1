@@ -290,7 +290,7 @@ class checkoutController extends Controller
     Milestones::where('id',$id)->update([ 'status' => 'Done']);
     $mileLat = Milestones::where('user_id',$user_id)->where('status','On Hold')->first();
 
-if($mileLat->id)
+if(isset($mileLat->id))
     Milestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
 
 
