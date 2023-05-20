@@ -272,14 +272,8 @@ class checkoutController extends Controller
         ]);
    
 
-//DB INSERT
-    $business = listing::where('id',$mile->listing_id)->first();
-       
-    Milestones::where('id',$id)->update([ 'status' => 'Done']);
-    $mileLat = Milestones::where('user_id',$user_id)->where('status','On Hold')->first();
 
-    Milestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
-
+   //MAIL
 
         $info=[  'name'=>$mile->name,  'amount'=>$mile->amount, 'business'=>$business->name, ]; 
         $user['to'] = $request->email;//'sohaankane@gmail.com';
@@ -288,6 +282,18 @@ class checkoutController extends Controller
              $msg->to($user['to']);
              $msg->subject('Milestone Status Changed!');
          });  
+
+
+//DB INSERT
+    $business = listing::where('id',$mile->listing_id)->first();
+       
+    Milestones::where('id',$id)->update([ 'status' => 'Done']);
+    $mileLat = Milestones::where('user_id',$user_id)->where('status','On Hold')->first();
+
+if($mileLat->id)
+    Milestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
+
+
 
        Session::put('Stripe_pay','Milestone paid successfully!');
        return redirect("/");
