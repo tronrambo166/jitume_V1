@@ -273,20 +273,21 @@ class checkoutController extends Controller
    
 
 //DB INSERT
+    $business = listing::where('id',$mile->listing_id)->first();
        
     Milestones::where('id',$id)->update([ 'status' => 'Done']);
-    $mileLat = Milestones::where('user_id',$user_id)->where('status','Created')->first();
+    $mileLat = Milestones::where('user_id',$user_id)->where('status','On Hold')->first();
 
     Milestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
 
 
-        $info=[  'order_id'=>''  ]; 
-        $user['to'] = 'sohaankane@gmail.com';//$request->email;
+        $info=[  'name'=>$mile->name,  'amount'=>$mile->amount, 'business'=>$business->name, ]; 
+        $user['to'] = $request->email;//'sohaankane@gmail.com';
 
-        // Mail::send('milestone.milestone_mail', $info, function($msg) use ($user){
-        //     $msg->to($user['to']);
-        //     $msg->subject('Test Checkout Alert!');
-        // });  
+         Mail::send('milestone.milestone_mail', $info, function($msg) use ($user){
+             $msg->to($user['to']);
+             $msg->subject('Milestone Status Changed!');
+         });  
 
        Session::put('Stripe_pay','Milestone paid successfully!');
        return redirect("/");

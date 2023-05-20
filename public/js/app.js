@@ -63567,7 +63567,7 @@ var staticRenderFns = [
           "z-index": "1000",
           height: "600px",
           position: "absolute",
-          "margin-left": "145px",
+          "margin-left": "174px",
           top: "139px",
         },
         attrs: { id: "result_list" },

@@ -8,7 +8,13 @@
 		<div class="container w-75 m-auto" style="box-shadow: 3px 3px 7px 7px grey; background: #72c537;width:80%; margin:auto; text-align:center">
 		
 		 <h2 style="color: white;font-family: sans-serif;">  
-		 	<br> Order Placed! Your order id #OR-{{$order_id}}</h2>
+		 	<br> Milestone Status Changed to Done!</h2>
+			
+			<div class="" style="width:50%; margin:auto;">
+			<h4 style="color: darkgreen;font-family:  sans-serif;text-align:left;"> Milestone Name: {{$name}} </h4>
+			<h4 style="color: darkgreen;font-family: sans-serif;text-align:left;"> Amount: {{$amount}} </h4>
+			<h4 style="color: darkgreen;font-family: sans-serif;text-align:left;"> Business Name: {{$business}} </h4>
+			</div>
 		
 		
 				
