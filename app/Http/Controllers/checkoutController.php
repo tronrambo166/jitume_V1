@@ -276,7 +276,7 @@ class checkoutController extends Controller
    //MAIL
         $business = listing::where('id',$mile->listing_id)->first();
 
-        $info=[  'name'=>$mile->name,  'amount'=>$mile->amount, 'business'=>$business->name, ]; 
+        $info=[  'name'=>$mile->title,  'amount'=>$mile->amount, 'business'=>$business->name, ]; 
         $user['to'] = $request->email;//'sohaankane@gmail.com';
 
          Mail::send('milestone.milestone_mail', $info, function($msg) use ($user){
