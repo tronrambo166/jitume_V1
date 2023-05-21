@@ -185,11 +185,13 @@ return view('business.add_milestones',compact('business','milestones'));
 }
 
 public function getMilestones($id){ 
- $milestones = Milestones::where('listing_id',$id)->get(); $c=0;$test='';
-  foreach($milestones as $mile)
+ $milestones = Milestones::where('listing_id',$id)->get(); $c=0;$d=0;$test='';
+  foreach($milestones as $mile){
   if($mile->status == 'In Progress') $c++;
+  if($mile->status != 'Done') $d++;
+}
 
- if($c==0){
+ if($c==0 && $d!=0){
   
   $milestones[0]->status = 'In Progress';
 }
