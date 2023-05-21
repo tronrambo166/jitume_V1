@@ -225,7 +225,7 @@ $status = 'Created';
 
 $mile = Milestones::where('listing_id',$business_id)->where('status','Created')->first();
 
-if($mile->status == 'Created')
+if(isset($mile->status) &&  $mile->status ==  'Created')
 $status = 'On Hold';
 
  $single_img=$request->file('file');
