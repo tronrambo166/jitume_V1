@@ -1,37 +1,25 @@
 @extends('business.layout')
 
 @section('page')
-    <div class="container px-0">
+    <div class="container px-0 h-100">
   
   @if(Session::has('file_error'))
   <p class="d-block mx-auto btn btn btn-light text-danger font-weight-bold text-center">
       {{Session::get('file_error')}} @php Session::forget('file_error'); @endphp</p>@endif
-    <h2 class="text-center"> Dashboard </h2> <hr>
+    
 
-    <div class="row w-50 mx-auto">
-        <div class="col-sm-12">
-            <a href="" data-target="#multiple_doc" data-toggle="modal" class="d-block font-weight-bold btn btn-light border border-dark">Upload Supporting Business Documentation</a>
-        </div>
-
-        
-    </div>
+    
 
 
 
-    <div class="row w-50 mx-auto my-5">
-        <div class="col-sm-12">
-            <a style="background:#72c537;" href="" data-target="#add_video" data-toggle="modal" class="d-block font-weight-bold btn border border-dark">Upload supportive video</a>
-        </div>
+  <div class="h-75 w-100 m-auto d-flex align-items-center justify-content-center">
 
-        <div class="col-sm-12"> <span class="my-3 d-block font-weight-bold text-center m-auto"> OR </span>
+        <div><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary ">
+                        <a href="{{route('add-listing')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold" href="">Add Business</a>
+                    </li> </div>
 
-          <form method="post" action="{{route('embed_business_video')}}">
-            @csrf
-           <input class="w-75 d-inline form-control" placeholder="Embed video link" name="link" /> 
-           <input value="Embed" type="submit" class="text-light py-1 mb-1 d-inline btn" style="background:#72c537;" >
-           </form>
-
-        </div>
+        <!-- 
+        </div> -->
     </div>
 
 

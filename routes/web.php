@@ -46,7 +46,7 @@ Route::post('admin/logout', 'AdminController@adminLogout')->name('admin/logout')
 
 
 //MAIN/BACKEND/VUE
-Route::get('/', 'PagesController@home'); 
+Route::get('/', 'PagesController@home')->name('/'); 
 Route::get('/home', 'PagesController@home')->name('home');
 
 //Route::group(['middleware'=>['auth']], function(){ 

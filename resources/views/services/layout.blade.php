@@ -65,14 +65,12 @@
     <div class="col-sm-4" style="background: white;">
               <ul class="myaccount">
              
-                     <li style="list-style-type: none;" class="float-left mt-3 nav-item py-1 px-3 text-secondary ">
-                        <a href="{{route('add-services')}}" style="border-radius: 35px 35px;border: 1px solid green;text-decoration: none;" class="px-3 text-secondary float-left" href="">Add Service</a>
-                    </li>
+                     
 
 
 
-                <div class="dropdown show d-inline-block ml-5 mt-3">
-                  <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="dropdown show d-block ml-5 mt-3">
+                  <a class="btn btn-light dropdown-toggle float-right" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Options
                   </a>
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -130,8 +128,6 @@
 
        
    <div class="col-md-9 bg-white">
-    @if(Session::has('success'))
-        <p class="text-success shadow font-weight-bold float-right">{{Session::get('success')}} @php Session::forget('success'); @endphp </p>@endif
 
          @yield('page') </div>  
 

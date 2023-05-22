@@ -14,27 +14,54 @@ use Hash;
 use Auth;
 use Mail;
 use DB;
+use Exception;
 
 class ServiceController extends Controller
 {
 
 public function registerS(Request $request){
-$name = $request->name;
+$fname = $request->fname;
+$mname = $request->mname;
+$lname = $request->lname;
 $email = $request->email;
+
+$password = $request->password;
+$c_password = $request->c_password;
+if($password != $c_password) {
+  Session::put('login_err','Passwords do not match!');
+  return redirect()->back();
+}
+
 $password = Hash::make($request->password);
 $phone = $request->phone;
 $service = 1;
 
-User::create([
-            'name' => $name,
+$user = User::where('email',$email)->first();
+if($user) {
+  Session::put('login_err','User already exists with this email!');
+    return redirect()->back();
+}
+
+try {
+ User::create([
+            'fname' => $fname,
+            'mname' => $mname,
+            'lname' => $lname,
             'email' => $email,
             'password' => $password,
             //'phone' => $phone,
             'service' => $service           
            ]);       
+;
+        Session::put('auth_service','Registration Success! Please Log In to continue.');
+        return redirect('/');
 
-        Session::put('service_login','true');
-        return redirect('/services');
+} catch (\Exception $e) {
+
+Session::put('login_err',$e->getMessage());
+    return redirect()->back(); 
+}
+
 
 }
 
@@ -71,8 +98,17 @@ $category = $request->category;
 $details = $request->details;
 $price = $request->price;
 $location = $request->location;
+
+$pin = $request->pin;
+$identification = $request->identification;
+$document = $request->document;
+$video = $request->video;
 $user_id = Auth::id();
 
+$listing = Services::latest()->first();
+$listing = ($listing->id)+1;
+
+//FILES 
  $image=$request->file('image');
  if($image) {
           $uniqid=hexdec(uniqid());
@@ -85,6 +121,97 @@ $user_id = Auth::id();
              }
           else $final_img='';
 
+
+  $pin=$request->file('pin');
+ if($pin) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($pin->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('file_error','Only pdf & docx are allowed!');
+            return redirect('services');
+          }
+
+          $create_name=$uniqid.'.'.$ext;
+          if (!file_exists('files/services/'.$listing)) 
+          mkdir('files/services/'.$listing, 0777, true);
+
+          $loc='files/services/'.$listing.'/';
+          //Move uploaded file
+          $pin->move($loc, $create_name);
+          $final_pin=$loc.$create_name;
+             }else $final_pin='';
+
+
+ $identification=$request->file('identification');
+ if($identification) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($identification->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('file_error','Only pdf & docx are allowed!');
+            return redirect('services');
+          }
+
+          $create_name=$uniqid.'.'.$ext;
+          if (!file_exists('files/services/'.$listing)) 
+          mkdir('files/services/'.$listing, 0777, true);
+
+          $loc='files/services/'.$listing.'/';
+          //Move uploaded file
+          $identification->move($loc, $create_name);
+          $final_identification=$loc.$create_name;
+             }else $final_identification='';
+
+
+ $document=$request->file('document');
+ if($document) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($document->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('file_error','Only pdf & docx are allowed!');
+            return redirect('services');
+          }
+
+          $create_name=$uniqid.'.'.$ext;
+          if (!file_exists('files/services/'.$listing)) 
+          mkdir('files/services/'.$listing, 0777, true);
+
+          $loc='files/services/'.$listing.'/';
+          //Move uploaded file
+          $document->move($loc, $create_name);
+          $final_document=$loc.$create_name;
+             }else $final_document='';
+             
+
+
+ $video=$request->file('video');
+ if($video) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($video->getClientOriginalExtension());
+          if($ext!='mpg' && $ext!= 'mpeg' && $ext!='webm' && $ext!= 'mp4' 
+            && $ext!='avi' && $ext!= 'wmv')
+          { 
+            Session::put('file_error','Only mpg || mpeg || webm || mp4 
+            avi || wmv are allowed!');
+            return redirect('services');
+          }
+
+          $create_name=$uniqid.'.'.$ext;
+          if (!file_exists('files/services/'.$listing)) 
+          mkdir('files/services/'.$listing, 0777, true);
+
+          $loc='files/services/'.$listing.'/';
+          //Move uploaded file
+          $video->move($loc, $create_name);
+          $final_video=$loc.$create_name;
+             }else $final_video=$request->link;                     
+
+          
+
+//FILES         
+
 Services::create([
             'name' => $title,
             'shop_id' => $user_id,
@@ -92,7 +219,11 @@ Services::create([
             'category' => $category,
             'details' => $details,
             'location' => $location,
-            'image' => $final_img           
+            'image' => $final_img,
+            'pin' => $final_pin,
+            'identification' => $final_identification,
+            'document' => $final_document,
+            'video' => $final_video           
            ]);       
 
         Session::put('success','Service added!');

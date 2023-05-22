@@ -108,6 +108,44 @@
 
 
     <div class="row">
+
+        @if(Session::has('login_err'))
+        <div class="w-50 m-auto alert alert-danger alert-dismissible fade show" role="alert">
+          <p class="font-weight-bold">{{Session::get('login_err')}}   @php Session::forget('login_err'); @endphp </p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>  @endif
+
+
+        @if(Session::has('auth_service'))
+        <div class="w-50 m-auto alert alert-success alert-dismissible fade show" role="alert">
+          <p class="font-weight-bold">{{Session::get('auth_service')}}   @php Session::forget('auth_service'); @endphp </p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>  @endif
+
+
+        @if(Session::has('auth_business'))
+        <div class="w-50 m-auto alert alert-success alert-dismissible fade show" role="alert">
+          <p class="font-weight-bold">{{Session::get('auth_business')}}   @php Session::forget('auth_business'); @endphp </p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>  @endif
+
+                   
+        </div>
+       
+
+                    
+                   
+
+
+
+          @if(Session::has('reset'))<p class="text-light font-weight-bold">{{Session::get('reset')}}   @php Session::forget('reset'); @endphp </p>@endif                         
+
         @if(Session::has('loginFailed'))
         <p style="position: absolute;background: chartreuse;right: 0px;border-radius: 10px;" class="mb-3 text-danger font-weight-bold float-right">{{Session::get('loginFailed')}} @php Session::forget('loginFailed'); @endphp </p>@endif
 
@@ -395,11 +433,12 @@ $("#datepicker2").datepicker({
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __( 'Name') }} <span  class="text-danger">*</span></label>
+                       
+                         <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('First Name') }} <span title="Required" class="text-danger">*</span></label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -408,6 +447,37 @@ $("#datepicker2").datepicker({
                                 @enderror
                             </div>
                         </div>
+
+
+                         <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Middle Name') }} <span title="Required" class="text-danger"></span></label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="mname" value="{{ old('mname') }}"  autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                         <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Last Name') }} <span title="Required" class="text-danger">*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
 
            
 
@@ -486,10 +556,40 @@ $("#datepicker2").datepicker({
                          
 
                          <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Business Name') }} <span title="Required" class="text-danger">*</span></label>
+                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('First Name') }} <span title="Required" class="text-danger">*</span></label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('fname') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                         <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Middle Name') }} <span title="Required" class="text-danger"></span></label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="mname" value="{{ old('mname') }}"  autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                         <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Last Name') }} <span title="Required" class="text-danger">*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -529,6 +629,22 @@ $("#datepicker2").datepicker({
                                 @enderror
                             </div>
                         </div>
+
+
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('Confirm Password') }} <span title="Required" class="text-danger">*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="c_password" value="{{ old('password') }}" required autocomplete="password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
 
 
                         <div class="row mb-3">
@@ -574,7 +690,7 @@ $("#datepicker2").datepicker({
 
                               <div class="row mb-0">
                             <div class="col-md-12">
-                                <a href="{{route('login')}}" class=" w-25 d-block mx-auto btn btn-outline-danger">
+                                <a href="{{route('home')}}" class=" w-25 d-block mx-auto btn btn-outline-danger">
                                     {{ __('Cancel') }}
                                 </a>
                             </div>
@@ -593,11 +709,42 @@ $("#datepicker2").datepicker({
                         @csrf    
                          
 
+                        
                          <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Service Name') }} <span title="Required" class="text-danger">*</span></label>
+                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('First Name') }} <span title="Required" class="text-danger">*</span></label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('fname') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                         <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Middle Name') }} <span title="Required" class="text-danger"></span></label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="mname" value="{{ old('mname') }}"  autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                         <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Last Name') }} <span title="Required" class="text-danger">*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -638,6 +785,20 @@ $("#datepicker2").datepicker({
                             </div>
                         </div>
 
+
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('Confirm Password') }} <span title="Required" class="text-danger">*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="c_password" value="{{ old('password') }}" required autocomplete="password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="row mb-3">
                             <label for="phone" class="col-md-4 col-form-label text-md-left">{{ __('Telephone') }} <span title="Required" class="text-danger">*</span></label>
@@ -706,7 +867,7 @@ $("#datepicker2").datepicker({
 
 
 
- <!-- HIDDEN login-->
+ <!-- HIDDEN login-->  <!-- HIDDEN login-->  <!-- HIDDEN login-->  <!-- login-->
 
   <div class="card" id="all_logins">
     <div class="card-header w-100">
@@ -747,14 +908,7 @@ $("#datepicker2").datepicker({
                     </form>
 
                     
-                    @if(Session::has('reset'))<p class="text-light font-weight-bold">{{Session::get('reset')}}   @php Session::forget('reset'); @endphp </p>@endif
                     
-
-                   @if(Session::has('login_err'))
-                   <div class="alert alert-danger" role="alert">
-                                  <p class="">{{Session::get('login_err')}}   @php Session::forget('login_err'); @endphp </p> 
-
-                                 </div>  @endif
                    
                         
                        <hr>  <div class="row">
@@ -1047,14 +1201,7 @@ $("#datepicker2").datepicker({
                     </form>
 
                     
-                    @if(Session::has('reset'))<p class="text-light font-weight-bold">{{Session::get('reset')}}   @php Session::forget('reset'); @endphp </p>@endif
                     
-
-                   @if(Session::has('login_err'))
-                   <div class="alert alert-danger" role="alert">
-                                  <p class="">{{Session::get('login_err')}}   @php Session::forget('login_err'); @endphp </p> 
-
-                                 </div>  @endif
                    
                         
                        <hr>  <div class="row">
@@ -1089,7 +1236,7 @@ $("#datepicker2").datepicker({
 
 
 <script type="text/javascript">
-    $('#login').css('border-bottom', '2px solid #72c537');
+    $('#login').css('background', '#72c537');
     $('#business_reg').hide();
     
     function login(){
@@ -1140,12 +1287,15 @@ $("#datepicker2").datepicker({
 
 
 <script type="text/javascript">
+    $('#usr_log').css('border-bottom', '2px solid #72c537');
+
     function user_log(){
-    $('#art_log').css('border-bottom', 'none');   
-    $('#usr_log').css('border-bottom', 'none');   
+    $('#art_log').css('border-bottom', 'none');
+    $('#service_log').css('border-bottom', 'none');      
     $('#usr_log').css('border-bottom', '2px solid #72c537');
     $('#user_log').show();
     $('#artist_log').hide();
+     $('#serv_log').hide();
     }
 
      function business_log(){ 
@@ -1180,6 +1330,7 @@ $("#datepicker2").datepicker({
 
     $('#user').css({'background-color' : '#72c537'});
     $('#business').css({'background-color' : ''});
+    $('#service').css({'background-color' : ''});
 
     $('#user_reg').show();
      $('#business_reg').hide();
@@ -1191,6 +1342,7 @@ $("#datepicker2").datepicker({
      function business(){
     $('#business').css({'background-color' : '#72c537'});
     $('#user').css({'background-color' : ''});
+    $('#service').css({'background-color' : ''});
 
     $('#user_reg').hide();
     $('#business_reg').show();
@@ -1213,8 +1365,12 @@ $("#datepicker2").datepicker({
 </script>
 
 
-
-
+@if(Session::has('login_err'))
+<script>
+     $('#loginModal').addClass('show');
+     $('#loginModal').css('display','block');
+</script>
+@endif
 
 </body>
 </html>

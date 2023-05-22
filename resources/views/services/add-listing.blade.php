@@ -36,8 +36,7 @@
                 </div>
 
 
-                   <div class="row form-group"> 
-                        <div class="row">
+            <div class="row form-group"> 
                                         
             <div class="col-sm-6">
             <select name="category" class="border-none form-control"><option hidden="hidden" class="form-control">Services</option> <option value="Business Planning" class="form-control">Business Planning</option> <option value="IT">IT</option> <option value="Legal Project Management">Legal Project Management</option> <option value="Branding and Design">Branding and Design </option> <option value="Auto">Auto</option> <option value="Finance, Accounting &amp; 
@@ -46,14 +45,8 @@
   </div>
 
                  <div class="col-sm-6"> 
-                    <textarea rows="1" required=""  class=" form-control border border-none rounded form-group"  name="details" id="title"  > Details... </textarea>
+                    <textarea class="form-control" required="" name="details" rows="1" cols="30" placeholder="Details"></textarea>
                     </div>
-
-                     
-
-            
- </div>
-
                        
                     </div>
 
@@ -73,7 +66,7 @@
                     </div>
 
                     <div class="col-sm-6"> 
-                    <input id="searchbox" required="" onkeyup="suggest(this.value);" style="height: 42px;" class=" form-control d-inline" type="text" name="location" value="" placeholder="Enter a location...">
+                    <input id="searchbox" required="" onkeyup="suggest(this.value);" style="height: 32px;" class=" form-control d-inline" type="text" name="location" value="" placeholder="Enter a location...">
                     </div>
 
                          <div class="row" style="">
@@ -86,15 +79,79 @@
                     </div> 
                 </div>
 
-                <div class="row form-group">
+                
+ <div class="row my-5 row form-group">
+
+                    <div class="col-sm-12"> 
+                        <div class="row">
+                           <div class="col-sm-12"><label class="h5" for="name">
+                                <p>Upload mandatory documents below to feature on the platform</p></label>
+                               </div>
+                               </div> 
+                               </div>
                     
-            
+                    <div class="col-sm-5"> 
+
+                    <div class="upload-btn-wrapper">
+                      <button class="btnUp_listing"> Upload Company/Individual Pin *
+                      <img src="../images/up.svg" width="30px"> </button>
+                      <input required="" type="file" name="pin" />
+                    </div>
+
+                    </div>
+
+
+                    <div class="col-sm-7"> 
+
+                    <div class="upload-btn-wrapper">
+                      <button class="btnUp_listing"> Upload Directors Identification(Id/Passport)*
+                      <img src="../images/up.svg" width="30px"> </button>
+                      <input required="" type="file" name="identification" />
+                    </div>
+
+                    </div>
+
+
                 </div>
 
 
 
-                 <div class="row my-4"> 
-                    <button style="background:#72c537;" class="w-50 m-3 btn text-white font-weight-bold">SAVE</button></div>
+        <div class="row my-4 form-group">
+
+            <div class="col-sm-12 mx-auto"> 
+
+                    <div class="upload-btn-wrapper w-75  d-block">
+                      <button class="btnUp_listing w-100"> Upload Supporting Business Documentation*
+                      <img src="../images/up.svg" width="30px"> </button>
+                      <input required="" type="file" name="document" />
+                    </div>
+
+                    </div>
+
+
+                    <div class="col-sm-12 mt-3"> 
+
+                    <div class="upload-btn-wrapper w-75  d-block">
+                      <button class="btnUp_listing bg-info w-100"> Upload supportive video*
+                      <img src="../images/up.svg" width="30px"> </button>
+                      <input type="file" name="video" />
+                    </div>
+
+                    </div>
+
+            <div class="col-sm-12 w-75  d-block"> <span class="my-3 d-block font-weight-bold text-center m-auto"> OR </span>
+
+          
+           <input class="w-100 d-blocks d-inline form-control" placeholder="Embed video link" name="link" /> 
+
+        </div>
+          </div>
+
+
+
+
+                <div class="row my-5"> 
+                    <button style="width: 40%;background:green;border-radius: 2px;" class="m-auto btn text-white font-weight-bold">SAVE</button></div>
 
 
             </form>
