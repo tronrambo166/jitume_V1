@@ -77,8 +77,8 @@
                   </a>
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary">
-                         <a class="dropdown-item text-secondary" href="{{route('home')}}">Back to Main</a>
-                        <a class="dropdown-item text-secondary" href="">My Account</a>
+                         <a class="font-weight-bold dropdown-item text-secondary" href="{{route('home')}}">Back to Main</a>
+                        <a class="font-weight-bold dropdown-item text-secondary" href="">My Account</a>
 
                        
                         <a v-if="" onclick="event.preventDefault();
@@ -98,7 +98,7 @@
 
                 </ul>     
         </div> 
-       <div class="col-sm-1"> </div>
+       
 
     </div>
 

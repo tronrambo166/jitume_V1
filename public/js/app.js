@@ -7509,6 +7509,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -7571,6 +7575,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     hover3: function hover3() {
       $('#convBtn3').css('background', '#72c537');
+    },
+    hover4: function hover4() {
+      $('#convBtn4').css('background', '#72c537');
     },
     leave: function leave() {
       $('.convBtn').css('background', '');
@@ -63876,7 +63883,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "heading row" }, [
+    _c("div", { staticClass: "heading row my-3" }, [
       _c("div", { staticClass: "col-sm-7" }, [
         _c("div", { staticClass: "grid images_3_of_2 rounded listing px-3" }, [
           _c("img", {
@@ -64029,28 +64036,6 @@ var render = function () {
                   { staticClass: "eqp-invest" },
                   [
                     _c(
-                      "router-link",
-                      {
-                        staticClass:
-                          "convBtn my-3 text-center mx-auto w-75 btn px-4",
-                        staticStyle: { border: "1px solid black" },
-                        attrs: {
-                          to: "/project_dash/" + _vm.form.listing_id,
-                          id: "convBtn2",
-                        },
-                        on: {
-                          mouseleave: function ($event) {
-                            return _vm.leave()
-                          },
-                          mouseover: function ($event) {
-                            return _vm.hover2()
-                          },
-                        },
-                      },
-                      [_vm._v("Project Dashboard")]
-                    ),
-                    _vm._v(" "),
-                    _c(
                       "a",
                       {
                         staticClass:
@@ -64076,12 +64061,12 @@ var render = function () {
                           "convBtn my-3 text-center mx-auto w-75 btn px-4",
                         staticStyle: { border: "1px solid black" },
                         attrs: { to: "/services", id: "convBtn2" },
-                        on: {
+                        nativeOn: {
                           mouseleave: function ($event) {
                             return _vm.leave()
                           },
                           mouseover: function ($event) {
-                            return _vm.hover2()
+                            return _vm.hover2.apply(null, arguments)
                           },
                         },
                       },
@@ -64093,29 +64078,56 @@ var render = function () {
                 _vm._v(" "),
                 _vm._m(2),
                 _vm._v(" "),
-                _c("div", { staticClass: "eqp-invest" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "convBtn text-center mx-auto w-75 btn mt-4 px-4",
-                      staticStyle: { border: "1px solid black" },
-                      attrs: { id: "convBtn3" },
-                      on: {
-                        mouseleave: function ($event) {
-                          return _vm.leave()
-                        },
-                        mouseover: function ($event) {
-                          return _vm.hover3()
-                        },
-                        click: function ($event) {
-                          return _vm.download_business()
+                _c(
+                  "div",
+                  { staticClass: "eqp-invest" },
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "convBtn text-center mx-auto w-75 btn mt-4 px-4",
+                        staticStyle: { border: "1px solid black" },
+                        attrs: { id: "convBtn3" },
+                        on: {
+                          mouseleave: function ($event) {
+                            return _vm.leave()
+                          },
+                          mouseover: function ($event) {
+                            return _vm.hover3()
+                          },
+                          click: function ($event) {
+                            return _vm.download_business()
+                          },
                         },
                       },
-                    },
-                    [_vm._v("Download Business Information")]
-                  ),
-                ]),
+                      [_vm._v("Download Business Documentation")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "convBtn my-3 text-center mx-auto w-75 btn px-4",
+                        staticStyle: { border: "1px solid black" },
+                        attrs: {
+                          to: "/project_dash/" + _vm.form.listing_id,
+                          id: "convBtn4",
+                        },
+                        nativeOn: {
+                          mouseleave: function ($event) {
+                            return _vm.leave()
+                          },
+                          mouseover: function ($event) {
+                            return _vm.hover4.apply(null, arguments)
+                          },
+                        },
+                      },
+                      [_vm._v("Milestones Dashboard")]
+                    ),
+                  ],
+                  1
+                ),
               ]
             ),
       ]),
@@ -65199,7 +65211,7 @@ var render = function () {
       },
     }),
     _vm._v(" "),
-    _c("div", { staticClass: "heading row w-75 mx-auto" }, [
+    _c("div", { staticClass: "heading row w-75 mx-auto my-3" }, [
       _c("div", { staticClass: "col-sm-10" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-sm-7" }, [

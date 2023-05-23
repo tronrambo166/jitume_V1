@@ -20,6 +20,18 @@ use DB;
 class BusinessController extends Controller
 {
 
+//private $auth_id;
+   public function __construct()
+    {
+        $this->middleware('business');   
+    }
+
+public function auth_id(){
+  $auth_email = Session::get('business_email');
+  $auth= User::where('email',$auth_email)->first();
+  return $auth->id;
+}
+
 public function logoutB(){
   Session::forget('service_login');
   return redirect('home');
@@ -73,7 +85,7 @@ Session::put('login_err',$e->getMessage());
 }
 
 public function business(){
-$business = listing::where('user_id',Auth::id())->get();
+$business = listing::where('user_id',$this->auth_id())->get();
 return view('business.index',compact('business'));
 }
 
@@ -84,13 +96,13 @@ return view('business.add-listing');
 }
 
 public function home(){
-$business = listing::where('user_id',Auth::id())->get();
+$business = listing::where('user_id',$this->auth_id())->get();
 return view('business.index',compact('business'));
 }
 
 
 public function listings(){
-$listings = Listing::latest()->get();
+$listings = Listing::where('user_id',$this->auth_id())->latest()->get();
 return view('business.listings',compact('listings'));
 }
 
@@ -110,7 +122,7 @@ $pin = $request->pin;
 $identification = $request->identification;
 $document = $request->document;
 $video = $request->video;
-$user_id = Auth::id();
+$user_id = $this->auth_id();
 
 $listing = Listing::latest()->first();
 $listing = ($listing->id)+1;
@@ -134,8 +146,8 @@ $listing = ($listing->id)+1;
           $ext=strtolower($pin->getClientOriginalExtension());
           if($ext!='pdf' && $ext!= 'docx')
           {
-            Session::put('file_error','Only pdf & docx are allowed!');
-            return redirect('business');
+            Session::put('error','Only pdf & docx are allowed!');
+            return redirect()->back();
           }
 
           $create_name=$uniqid.'.'.$ext;
@@ -155,8 +167,8 @@ $listing = ($listing->id)+1;
           $ext=strtolower($identification->getClientOriginalExtension());
           if($ext!='pdf' && $ext!= 'docx')
           {
-            Session::put('file_error','Only pdf & docx are allowed!');
-            return redirect('business');
+            Session::put('error','Only pdf & docx are allowed!');
+            return redirect()->back();
           }
 
           $create_name=$uniqid.'.'.$ext;
@@ -176,8 +188,8 @@ $listing = ($listing->id)+1;
           $ext=strtolower($document->getClientOriginalExtension());
           if($ext!='pdf' && $ext!= 'docx')
           {
-            Session::put('file_error','Only pdf & docx are allowed!');
-            return redirect('business');
+            Session::put('error','Only pdf & docx are allowed!');
+            return redirect()->back();
           }
 
           $create_name=$uniqid.'.'.$ext;
@@ -199,9 +211,10 @@ $listing = ($listing->id)+1;
           if($ext!='mpg' && $ext!= 'mpeg' && $ext!='webm' && $ext!= 'mp4' 
             && $ext!='avi' && $ext!= 'wmv')
           { 
-            Session::put('file_error','Only mpg || mpeg || webm || mp4 
+            Session::put('error','Only mpg || mpeg || webm || mp4 
             avi || wmv are allowed!');
-            return redirect('business');
+             
+            return redirect()->back();
           }
 
           $create_name=$uniqid.'.'.$ext;
@@ -251,7 +264,7 @@ $location = $request->location;
 $investment_needed = $request->investment_needed;
 $share = $request->share;
 //$contact_mail = $request->contact_mail;
-$user_id = Auth::id();
+$user_id = $this->auth_id();
 $id = $request->id;
 
  $image=$request->file('image');
@@ -287,7 +300,7 @@ $eq_name = $request->eq_name;
 $value = $request->value;
 $amount = $request->amount;
 $details = $request->details;
-$user_id = Auth::id();
+$user_id = $this->auth_id();
 
 Equipments::create([
             'eq_name' => $eq_name,
@@ -308,8 +321,8 @@ return redirect()->back();
 }
 
 public function add_milestones(){
-$milestones = Milestones::where('user_id',Auth::id())->latest()->get();
-$business = listing::where('user_id',Auth::id())->get();
+$milestones = Milestones::where('user_id',$this->auth_id())->latest()->get();
+$business = listing::where('user_id',$this->auth_id())->get();
 return view('business.add_milestones',compact('business','milestones'));
 }
 
@@ -351,7 +364,7 @@ public function save_milestone(Request $request){
 $title = $request->title;
 $business_id = $request->business_id;
 $amount = $request->amount;
-$user_id = Auth::id();
+$user_id = $this->auth_id();
 $status = 'Created';
 
 $mile = Milestones::where('listing_id',$business_id)->where('status','Created')->first();
@@ -413,7 +426,7 @@ $location = $request->location;
 $investment_needed = $request->investment_needed;
 $share = $request->share;
 //$contact_mail = $request->contact_mail;
-$user_id = Auth::id();
+$user_id = $this->auth_id();
 $id = $request->id;
 
  $image=$request->file('image');
@@ -451,7 +464,7 @@ public function add_docs(Request $request){
 //$name = $request->name;
   //return $request->all();
 $listing = $request->listing;
-$user_id = Auth::id();
+$user_id = $this->auth_id();
 
           $files=$request->file('files'); //print_r($files);
  
@@ -492,7 +505,7 @@ $user_id = Auth::id();
 public function add_video(Request $request){
 //$name = $request->name;
 $listing = $request->listing;
-$user_id = Auth::id();
+$user_id = $this->auth_id();
 
 
           $single_img=$request->file('files'); //print_r($files);
@@ -533,7 +546,7 @@ $user_id = Auth::id();
 public function embed_business_video(Request $request){
 $link = $request->link;
 $listing = $request->listing;
-$user_id = Auth::id();
+$user_id = $this->auth_id();
 
            businessDocs::create([
             'user_id' => $user_id,

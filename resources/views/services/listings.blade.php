@@ -172,13 +172,12 @@
 
                 </div>
 
-                <div style="background:aliceblue;" class="col-sm-5"><p class="mx-auto my-5 py-5 font-weight-bold text-center">MAP Loading...</p></div>
 
             </div>
 
 
             <div class="clear"></div>
-            <div class="clearfix py-5"></div>
+          
 
         </div>
 

@@ -270,13 +270,6 @@
 
                 
 
-            </div>
-
-
-
-
-        </div>
-
 
 @endsection
 

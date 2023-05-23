@@ -3,7 +3,23 @@
 @section('page')
     <div class="container" id="">
         
-        <h3 class="text-center font-weight-bold bg-light"><b class="h5 text-success" > {{ Session:: get('success') }}</b> </h3>
+         @if(Session::has('success'))
+        <div class="w-50 m-auto alert font-weight-bold text-danger alert-warning alert-dismissible fade show" role="alert">
+          <p class="font-weight-bold">{{Session::get('success')}}   @php Session::forget('success'); @endphp </p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>  @endif
+
+        @if(Session::has('error'))
+        <div class="w-50 m-auto alert font-weight-bold text-danger alert-warning alert-dismissible fade show" role="alert">
+          <p class="font-weight-bold">{{Session::get('error')}}   @php Session::forget('error'); @endphp </p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>  @endif
+
+        
         <div class="row pt-4 w-75 m-auto">
            
                 <div class="col-sm-12">

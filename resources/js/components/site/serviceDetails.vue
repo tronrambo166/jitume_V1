@@ -5,7 +5,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     
-        <div class="heading row w-75 mx-auto"> 
+        <div class="heading row w-75 mx-auto my-3"> 
         <div class="col-sm-10">
             <div class="row">
                 <div class="col-sm-7">

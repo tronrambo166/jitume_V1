@@ -302,6 +302,7 @@ border-radius: 35px;
     	 background-color: white;
     }
 
+
 .placeH_done{
     background: #2f3a8f;
     color: white;
@@ -440,7 +441,9 @@ background: lightgray;
     color: black;
 }
 		
-		
+ #convBtn2: hover{
+         background-color: green;
+    }		
 		
 		
 		

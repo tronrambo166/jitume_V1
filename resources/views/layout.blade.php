@@ -78,16 +78,27 @@
 
      <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-light ">
 
-   @if(Auth::check()) 
+     @if(Auth::check()) 
 
-    @if($business == 1)
-        <a  href="./business" style="background: aliceblue; border-radius: 15px;" class=" text-dark small d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a> 
-    @elseif($business == 2)
-        <a  href="./services" style="background: aliceblue; border-radius: 15px; " class=" text-dark d-inline px-3 py-2 d-inline-block small text-center" ><b>Dashboard</b></a> 
-    @endif
 
       <a v-if="" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Logout</b></a>
+     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Logout</b></a>
+         
+
+    @elseif(Session::has('business_auth') && Session::get('business_auth') == true)
+        <a  href="./business" style="background: aliceblue; border-radius: 15px;" class=" text-dark small d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a> 
+
+        <a v-if="" onclick="event.preventDefault();
+     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Logout</b></a>
+
+
+    @elseif(Session::has('service_auth') && Session::get('service_auth') == true)
+        <a  href="./services" style="background: aliceblue; border-radius: 15px; " class=" text-dark d-inline px-3 py-2 d-inline-block small text-center" ><b>Dashboard</b></a> 
+
+        <a v-if="" onclick="event.preventDefault();
+     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Logout</b></a>
+
+
      @else     
       <a  data-target="#loginModal" data-toggle="modal" style="background: white; border-radius: 15px;cursor: pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block small text-center" ><b>Sign In</b></a>
       @endif
@@ -168,20 +179,30 @@
 
         <div class="col-sm-3">
             <ul>
+              
                 <li style="list-style-type:none;">
-                    <a class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>My Profile</a>
-                </li>
+                     @if(Session::has('business_auth') && Session::get('business_auth') == true)
+                    <a href="./business/listings" class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>My Listings</a>
 
-                <li style="list-style-type:none;">
-                    <a class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>My Listings</a>
-                </li>
+                     @elseif(Session::has('service_auth') && Session::get('service_auth') == true)
+                    
+                    <a href="./services/listings" class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>My Services</a>
+                      @endif
+              </li>
+
 
                 <li style="list-style-type:none;">
                     <a class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>Bookmarks</a>
                 </li>
 
                 <li style="list-style-type:none;">
-                    <a class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>Add Business</a>
+                   @if(Session::has('business_auth') && Session::get('business_auth') == true)
+                    <a href="./business/add-listing" class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>Add Listing</a>
+
+                     @elseif(Session::has('service_auth') && Session::get('service_auth') == true)
+                    
+                    <a href="./services/add-listing" class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>Add Service</a>
+                      @endif
                 </li>
             </ul>
         </div>
@@ -386,7 +407,7 @@ $("#datepicker2").datepicker({
 <!-- LOGIN MODAL -->
   <div  class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content" style="width: 640px;">
+    <div class="modal-content" style="max-width: 640px;">
       <div class="modal-header">
 
          <div class="card-header w-100">
@@ -883,11 +904,11 @@ $("#datepicker2").datepicker({
                           <form method="POST" class="" action="{{route('login')}}">
                            @csrf
 
-                                            <input class=" w-75 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" 
+                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" 
                                             value=""    />
                                                                        
                                           
-                                            <input class=" w-75 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="Enter password"
+                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="Enter password"
                                             value=""  />
                                             
 
@@ -928,14 +949,14 @@ $("#datepicker2").datepicker({
   <!-- HIDDEN SERVICE LOG -->
   <div id="serv_log" class="collapse card-body text-center py-0">
 
-                    <form action="{{route('login')}}" method="POST" class="d-inline form-inline" >
+                    <form action="{{route('loginS')}}" method="POST" class="d-inline form-inline" >
                         @csrf
                                   
-                                            <input class=" w-75 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" 
+                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" 
                                             value=""    />
                                                                        
                                           
-                                            <input class=" w-75 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="Enter password"
+                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="Enter password"
                                             value=""  />
                                             
 
@@ -976,14 +997,14 @@ $("#datepicker2").datepicker({
                 <!-- ARTIST LOG -->
                  <div id="artist_log" class="collapse card-body text-center py-0">
 
-                    <form action="{{route('login')}}" method="POST" class="d-inline form-inline" >
+                    <form action="{{route('loginB')}}" method="POST" class="d-inline form-inline" >
                         @csrf
                                   
-                                            <input class=" w-75 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" 
+                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" 
                                             value=""    />
                                                                        
                                           
-                                            <input class=" w-75 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="Enter password"
+                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="Enter password"
                                             value=""  />
                                             
 

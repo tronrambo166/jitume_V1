@@ -44,7 +44,6 @@
            <h3>Add Milestones</h3>
         </div>       
 
-      </div>
     
     
       <div class="modal-body">
@@ -168,7 +167,7 @@
 
             <td class="text-center">
             
-            <div class="dropdown show d-inline-block ml-5">
+            <div class="dropdown show d-inline-block">
                   <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Action 
                   </a>
@@ -191,10 +190,6 @@
                 </div>
 
                 </div>
-
-               
-
-            </div>
 
 
             <div class="clear"></div>

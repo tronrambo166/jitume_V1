@@ -3,7 +3,7 @@
         
              
     
-        <div class="heading row"> 
+        <div class="heading row my-3"> 
         <div class="col-sm-7">
              <div class="grid images_3_of_2 rounded listing px-3">
                 <img style="width:100%;height:405px" class="shadow card" 
@@ -93,10 +93,11 @@
 
                <div  class="eqp-invest">
 
-                <router-link :to="`/project_dash/${form.listing_id}`"  @mouseleave="leave()" @mouseover="hover2()" style="border: 1px solid black;" id="convBtn2"  class="convBtn my-3 text-center mx-auto w-75 btn  px-4">Project Dashboard</router-link>
+                
 
                 <a @mouseleave="leave()" @mouseover="hover()" style="border: 1px solid black;" id="convBtn1"  class="convBtn text-center mx-auto w-75 btn  px-4">Message Business Owner</a>
-                <router-link to="/services"  @mouseleave="leave()" @mouseover="hover2()" style="border: 1px solid black;" id="convBtn2"  class="convBtn my-3 text-center mx-auto w-75 btn  px-4">Request a Transaction Advisor</router-link>
+
+                <router-link to="/services"  @mouseleave.native="leave()" @mouseover.native="hover2" style="border: 1px solid black;" id="convBtn2"  class="convBtn my-3 text-center mx-auto w-75 btn  px-4">Request a Transaction Advisor</router-link>
                </div>
 
                <div  class="eqp-invest my-4">
@@ -105,7 +106,10 @@
                </div>
 
                <div  class="eqp-invest">
-                <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover3()" @click="download_business()" id="convBtn3" class="convBtn text-center mx-auto w-75 btn mt-4 px-4">Download Business Information</a>
+                <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover3()" @click="download_business()" id="convBtn3" class="convBtn text-center mx-auto w-75 btn mt-4 px-4">Download Business Documentation</a>
+
+
+                <router-link :to="`/project_dash/${form.listing_id}`"  @mouseleave.native="leave()" @mouseover.native="hover4" style="border: 1px solid black;" id="convBtn4"  class="convBtn my-3 text-center mx-auto w-75 btn  px-4">Milestones Dashboard</router-link>
                 
                </div>
 
@@ -276,6 +280,9 @@ if(sessionStorage.getItem('invest')!=null)
         },
         hover3(){
             $('#convBtn3').css('background','#72c537');
+        },
+        hover4(){
+            $('#convBtn4').css('background','#72c537');
         },
         leave(){
             $('.convBtn').css('background','');

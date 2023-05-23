@@ -19,6 +19,22 @@ use Exception;
 class ServiceController extends Controller
 {
 
+ public function __construct()
+    {
+        $this->middleware('service');
+    }
+
+public function auth_id(){
+  $auth_email = Session::get('service_email');
+  $auth= User::where('email',$auth_email)->first();
+  return $auth->id;
+}
+
+public function logoutS(){
+  Session::forget('service_login');
+  return redirect('home');
+}
+
 public function registerS(Request $request){
 $fname = $request->fname;
 $mname = $request->mname;
@@ -65,13 +81,10 @@ Session::put('login_err',$e->getMessage());
 
 }
 
-public function logoutS(){
-  Session::forget('service_login');
-  return redirect('home');
-}
+
 
 public function services(){
-$services = Services::where('user_id',Auth::id())->get();
+$services = Services::where('user_id',$this->auth_id())->get();
 return view('services.index',compact('services'));
 }
 
@@ -82,12 +95,12 @@ return view('services.add-listing');
 }
 
 public function home(){
-$services = Services::where('shop_id',Auth::id())->get();
+$services = Services::where('shop_id',$this->auth_id())->get();
 return view('services.index',compact('services'));
 }
 
 public function listings(){
-$listings = Services::latest()->get();
+$listings = Services::where('shop_id',$this->auth_id())->latest()->get();
 return view('services.listings',compact('listings'));
 }
 
@@ -103,7 +116,7 @@ $pin = $request->pin;
 $identification = $request->identification;
 $document = $request->document;
 $video = $request->video;
-$user_id = Auth::id();
+$user_id = $this->auth_id();
 
 $listing = Services::latest()->first();
 $listing = ($listing->id)+1;
@@ -128,8 +141,8 @@ $listing = ($listing->id)+1;
           $ext=strtolower($pin->getClientOriginalExtension());
           if($ext!='pdf' && $ext!= 'docx')
           {
-            Session::put('file_error','Only pdf & docx are allowed!');
-            return redirect('services');
+            Session::put('error','Only pdf & docx are allowed!');
+            return redirect()->back();
           }
 
           $create_name=$uniqid.'.'.$ext;
@@ -149,8 +162,8 @@ $listing = ($listing->id)+1;
           $ext=strtolower($identification->getClientOriginalExtension());
           if($ext!='pdf' && $ext!= 'docx')
           {
-            Session::put('file_error','Only pdf & docx are allowed!');
-            return redirect('services');
+            Session::put('error','Only pdf & docx are allowed!');
+            return redirect()->back();
           }
 
           $create_name=$uniqid.'.'.$ext;
@@ -170,8 +183,8 @@ $listing = ($listing->id)+1;
           $ext=strtolower($document->getClientOriginalExtension());
           if($ext!='pdf' && $ext!= 'docx')
           {
-            Session::put('file_error','Only pdf & docx are allowed!');
-            return redirect('services');
+            Session::put('error','Only pdf & docx are allowed!');
+            return redirect()->back();
           }
 
           $create_name=$uniqid.'.'.$ext;
@@ -193,9 +206,9 @@ $listing = ($listing->id)+1;
           if($ext!='mpg' && $ext!= 'mpeg' && $ext!='webm' && $ext!= 'mp4' 
             && $ext!='avi' && $ext!= 'wmv')
           { 
-            Session::put('file_error','Only mpg || mpeg || webm || mp4 
+            Session::put('error','Only mpg || mpeg || webm || mp4 
             avi || wmv are allowed!');
-            return redirect('services');
+            return redirect()->back();
           }
 
           $create_name=$uniqid.'.'.$ext;
@@ -237,7 +250,7 @@ $category = $request->category;
 $details = $request->details;
 $price = $request->price;
 $location = $request->location;
-$user_id = Auth::id();
+$user_id = $this->auth_id();
 $old_img = $request->old_img;
 $id = $request->id;
 
@@ -275,7 +288,7 @@ $eq_name = $request->eq_name;
 $value = $request->value;
 $amount = $request->amount;
 $details = $request->details;
-$user_id = Auth::id();
+$user_id = $this->auth_id();
 
 Equipments::create([
             'eq_name' => $eq_name,
@@ -291,7 +304,7 @@ Equipments::create([
 public function add_docs(Request $request){
 //$name = $request->name;
 $listing = $request->listing;
-$user_id = Auth::id();
+$user_id = $this->auth_id();
 
           $files=$request->file('files'); //print_r($files);
  
@@ -332,7 +345,7 @@ $user_id = Auth::id();
 public function add_video(Request $request){
 //$name = $request->name;
 $listing = $request->listing;
-$user_id = Auth::id();
+$user_id = $this->auth_id();
 
 
           $single_img=$request->file('files'); //print_r($files);
@@ -373,7 +386,7 @@ $user_id = Auth::id();
 public function embed_service_videos(Request $request){
 $link = $request->link;
 $listing = $request->listing;
-$user_id = Auth::id();
+$user_id = $this->auth_id();
 
            serviceDocs::create([
             'user_id' => $user_id,

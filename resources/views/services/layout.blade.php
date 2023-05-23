@@ -60,23 +60,17 @@
                  </div>
             </div>
 
-    
-    
     <div class="col-sm-4" style="background: white;">
               <ul class="myaccount">
-             
-                     
-
-
-
+   
                 <div class="dropdown show d-block ml-5 mt-3">
                   <a class="btn btn-light dropdown-toggle float-right" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Options
                   </a>
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary">
-                         <a class="dropdown-item text-secondary" href="{{route('home')}}">Back to Main</a>
-                        <a class="dropdown-item text-secondary" href="">My Account</a>
+                         <a class="font-weight-bold dropdown-item text-secondary" href="{{route('home')}}">Back to Main</a>
+                        <a class="font-weight-bold dropdown-item text-secondary" href="">My Account</a>
 
                        
                         <a  onclick="event.preventDefault();

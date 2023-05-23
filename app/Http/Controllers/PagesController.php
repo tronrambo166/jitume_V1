@@ -28,33 +28,49 @@ class PagesController extends Controller
     $email = $request->email;  
     $password = $request->password;    
     $user = User::where('email',$email)->where('business',1)->first();
-    if($user!='')
-    if(password_verify($password, $user->password))    
-    return redirect('home');// view('business.index');
-
+    if($user!=''){
+    if(password_verify($password, $user->password)){
+        Session::put('business_email', $email);
+        Session::put('business_auth',true);
+        return redirect('business');// view('business.index');
+    }    
+    
     else {
-        Session::put('loginFailed','Incorrect Credentials!');
+        Session::put('login_err','Incorrect Credentials!');
+        return redirect('home');
+    } }
+    else{
+        Session::put('login_err','Business User do not exist!');
         return redirect('home');
     }
     	
     }
 
-     public function loginS(Request $request){   
+
+    public function loginS(Request $request){   
     $email = $request->email; 
     $password = $request->password;    
     $user = User::where('email',$email)->where('service',1)->first();
     if($user!=''){
-    if(password_verify($password, $user->password))    
+    if(password_verify($password, $user->password)){
+    Session::put('service_email', $email);    
+    Session::put('service_auth',true);
     return redirect('services');
+    }
 
     else
-    {
-        
-        Session::put('loginFailed','Incorrect Credentials!');
+    {    
+        Session::put('login_err','Incorrect Credentials!');
         return redirect('home');
     } }
+
+    else{
+        Session::put('login_err','Service Provider do not exist!');
+        return redirect('home');
+    }
         
     }
+
 
 
  public function home(){ 
