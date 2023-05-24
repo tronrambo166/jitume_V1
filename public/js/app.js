@@ -63133,7 +63133,7 @@ var staticRenderFns = [
                 attrs: { name: "category" },
               },
               [
-                _c("option", { staticClass: "form-control" }, [
+                _c("option", { staticClass: "form-control small" }, [
                   _vm._v("Category"),
                 ]),
                 _vm._v(" "),
@@ -63212,7 +63212,7 @@ var staticRenderFns = [
             _c(
               "button",
               {
-                staticClass: "searchListing px-3 float-right",
+                staticClass: "searchListing px-sm-3 px-1 float-right",
                 attrs: { type: "submit" },
               },
               [_vm._v("Search")]

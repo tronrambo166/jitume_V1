@@ -34,7 +34,7 @@
                           <div class="dropdown pt-1">
 
             <select  name="category" class="border-white form-control">
-            <option class="form-control" >Category</option>
+            <option class="form-control small" >Category</option>
 
             <option class="form-control" value="Agriculture" >Agriculture</option>
             <option value="Arts / Culture" >Arts/Culture </option>
@@ -61,7 +61,7 @@
                         </div>
 
                             <div style="border-radius: 0 35px 35px 0;" class="bg-white col-3 py-2 ">
-                                <button  class="searchListing px-3  float-right" type="submit">Search</button>
+                                <button  class="searchListing px-sm-3 px-1 float-right" type="submit">Search</button>
                             </div>
 
                                </div>               
