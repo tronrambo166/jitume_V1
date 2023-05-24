@@ -6595,8 +6595,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'app_url'],
   data: function data() {
@@ -6773,15 +6771,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -62576,76 +62565,58 @@ var render = function () {
     _c(
       "div",
       { staticClass: "row mt-4" },
-      [
-        this.results == ""
-          ? _c("div", [
-              _c(
-                "h3",
-                {
-                  staticClass:
-                    "text-center font-weight-bold btn-light btn py-3 d-block",
-                },
-                [_vm._v("No Results Found! ")]
-              ),
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm._l(_vm.results, function (result, index) {
-          return _c(
-            "div",
-            { staticClass: "listing col-sm-4 my-5" },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "shadow card border px-5",
-                  attrs: { to: "/listingDetails/" + result.id },
-                },
-                [
-                  result.file
-                    ? _c(
-                        "video",
-                        {
-                          staticStyle: {
-                            "max-width": "332px",
-                            height: "230px",
-                          },
-                          attrs: { controls: "", alt: "" },
-                        },
-                        [
-                          _c("source", {
-                            attrs: { src: result.file, type: "video/mp4" },
-                          }),
-                        ]
-                      )
-                    : _c("img", {
+      _vm._l(_vm.results, function (result, index) {
+        return _c(
+          "div",
+          { staticClass: "listing col-sm-4 my-5" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "shadow card border px-5",
+                attrs: { to: "/listingDetails/" + result.id },
+              },
+              [
+                result.file
+                  ? _c(
+                      "video",
+                      {
                         staticStyle: { "max-width": "332px", height: "230px" },
-                        attrs: { src: result.image, alt: "" },
-                      }),
-                  _vm._v(" "),
-                  _c("h4", { staticClass: "mt-3 mb-0" }, [
-                    _vm._v(_vm._s(result.name) + " "),
+                        attrs: { controls: "", alt: "" },
+                      },
+                      [
+                        _c("source", {
+                          attrs: { src: result.file, type: "video/mp4" },
+                        }),
+                      ]
+                    )
+                  : _c("img", {
+                      staticStyle: { "max-width": "332px", height: "230px" },
+                      attrs: { src: result.image, alt: "" },
+                    }),
+                _vm._v(" "),
+                _c("h4", { staticClass: "mt-3 mb-0" }, [
+                  _vm._v(_vm._s(result.name) + " "),
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "my-1" }, [
+                  _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
+                  _vm._v(_vm._s(result.location)),
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("span", { staticClass: "mt-1 rounded" }, [
+                    _c("i", { staticClass: "mr-2 fa fa-phone" }),
+                    _vm._v(_vm._s(result.contact)),
                   ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "my-1" }, [
-                    _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
-                    _vm._v(_vm._s(result.location)),
-                  ]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _c("span", { staticClass: "mt-1 rounded" }, [
-                      _c("i", { staticClass: "mr-2 fa fa-phone" }),
-                      _vm._v(_vm._s(result.contact)),
-                    ]),
-                  ]),
-                ]
-              ),
-            ],
-            1
-          )
-        }),
-      ],
-      2
+                ]),
+              ]
+            ),
+          ],
+          1
+        )
+      }),
+      0
     ),
     _vm._v(" "),
     _vm._m(2),
@@ -62654,7 +62625,7 @@ var render = function () {
       "div",
       { staticClass: "row mt-4" },
       [
-        this.services == ""
+        this.services == "" && this.results == ""
           ? _c("div", [
               _c(
                 "h3",
@@ -62718,7 +62689,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "content_bottom" }, [
       _c("div", { staticClass: "heading" }, [
-        _c("h3", { staticClass: "my-5 bg-light text-center text-secondary" }, [
+        _c("h3", { staticClass: "my-4 bg-light text-center text-secondary" }, [
           _vm._v("Listings"),
         ]),
       ]),
@@ -62732,7 +62703,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "content_bottom" }, [
       _c("div", { staticClass: "heading" }, [
-        _c("h3", { staticClass: "my-5 bg-light text-center text-secondary" }, [
+        _c("h3", { staticClass: "my-4 bg-light text-center text-secondary" }, [
           _vm._v("Services"),
         ]),
       ]),
@@ -63094,7 +63065,7 @@ var render = function () {
       ]),
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row mt-4 border border-bottom-dark bg-white" }),
+    _c("div", { staticClass: "mt-4 border border-bottom-dark bg-white" }),
     _vm._v(" "),
     _vm._m(3),
     _vm._v(" "),
@@ -63275,7 +63246,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row w-75 mx-auto my-5 bg-white" }, [
+    return _c("div", { staticClass: "row w-sm-75 mx-auto my-5 bg-white" }, [
       _c(
         "div",
         {
@@ -63438,55 +63409,13 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-1" }),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "col-sm-6 elementor-top-column elementor-element elementor-element-bcc00b2",
-          attrs: { "data-id": "bcc00b2", "data-element_type": "column" },
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass: "elementor-column-wrap elementor-element-populated",
-            },
-            [
-              _c("div", { staticClass: "elementor-widget-wrap" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "elementor-element elementor-element-052ff25 elementor-widget elementor-widget-image",
-                    attrs: {
-                      "data-id": "052ff25",
-                      "data-element_type": "widget",
-                      "data-widget_type": "image.default",
-                    },
-                  },
-                  [
-                    _c("div", { staticClass: "elementor-widget-container" }, [
-                      _c("div", { staticClass: "elementor-image" }, [
-                        _c("img", {
-                          staticClass: "attachment-large size-large",
-                          staticStyle: { width: "486px", height: "462px" },
-                          attrs: {
-                            decoding: "async",
-                            width: "579",
-                            height: "551",
-                            src: "images/home.png",
-                            alt: "",
-                          },
-                        }),
-                      ]),
-                    ]),
-                  ]
-                ),
-              ]),
-            ]
-          ),
-        ]
-      ),
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c("img", {
+          staticClass: "img-fluid",
+          staticStyle: { width: "100%", height: "auto" },
+          attrs: { src: "images/home.png", alt: "" },
+        }),
+      ]),
     ])
   },
   function () {
@@ -63501,7 +63430,7 @@ var staticRenderFns = [
             staticClass: "py-4 text-center",
             staticStyle: {
               color: "black",
-              "font-size": "100px",
+              "font-size": "80px",
               "font-weight": "bold",
             },
           },
@@ -63512,7 +63441,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "col-sm-6" }, [
         _c("video", {
           staticClass: "elementor-video",
-          staticStyle: { width: "500px", height: "300px" },
+          staticStyle: { width: "100%", height: "auto" },
           attrs: {
             src: "videos/Jitume.mp4",
             controls: "",

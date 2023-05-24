@@ -44,7 +44,7 @@
     <div class="col-sm-3">
         <ul class="navbar-nav ">
         <li class="nav-item  px-3">
-            <a href="{{route('/')}}"><img class="bg-dark" src="{{asset('images/logo.png')}}" width="150px" height="55px" style=";"></a>
+            <a href="{{route('services/index')}}"><img class="bg-dark" src="{{asset('images/logo.png')}}" width="150px" height="55px" style=";"></a>
         </li> </ul> 
     </div>
 
@@ -101,7 +101,7 @@
                         <ul class="sidebar text-light" style="color:white;">
                            
                             <li class="{{ Request::is('admin/index_admin') ? 'active' : '' }}"> 
-                                <a class="text-light" href="{{route('/')}}"><i class="fe fe-home"></i> <span>Service Dashboard</span></a>
+                                <a class="text-light" href="{{route('services/index')}}"><i class="fe fe-home"></i> <span>Service Dashboard</span></a>
                             </li>
 
 

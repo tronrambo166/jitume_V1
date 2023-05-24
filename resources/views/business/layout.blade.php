@@ -45,7 +45,7 @@
     <div class="col-sm-3">
         <ul class="navbar-nav ">
         <li class="nav-item  px-3">
-            <a href="{{route('/')}}"><img class="bg-dark" src="{{asset('images/logo.png')}}" width="150px" height="55px" style=";"></a>
+            <a href="{{route('business')}}"><img class="bg-dark" src="{{asset('images/logo.png')}}" width="150px" height="55px" style=";"></a>
         </li> </ul> 
     </div>
 
@@ -53,10 +53,10 @@
      <div class="navbar navbar-expand-sm p-0 navy  ">
        <ul class="navbar-nav py-2 ">
 
-                    <li class="nav-item py-1 px-3 text-secondary  "><router-link to="/" class="font-weight-bold text-secondary nav-link">Jitume Services</router-link></li>
+                   <!--  <li class="nav-item py-1 px-3 text-secondary  "><router-link to="/" class="font-weight-bold text-secondary nav-link">Jitume Services</router-link></li>
 
                     <li class="font-weight-bold nav-item py-1 px-3 text-secondary"><router-link to="/applyShow" class="text-secondary nav-link">Apply for Show
-                    </router-link></li>
+                    </router-link></li> -->
                 </ul>
                  </div>
             </div>
@@ -112,7 +112,7 @@
                         <ul class="sidebar text-light" style="color:white;">
                            
                             <li class="{{ Request::is('admin/index_admin') ? 'active' : '' }}"> 
-                                <a class="font-weight-bold text-light" href="{{route('/')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                                <a class="font-weight-bold text-light" href="{{route('business')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
                             </li>
 
 

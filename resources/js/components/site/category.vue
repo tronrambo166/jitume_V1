@@ -21,7 +21,7 @@
 
             <div class="content_bottom">
                 <div class="heading">
-                     <h3 class="my-5 bg-light text-center text-secondary">Listings</h3>
+                     <h3 class="my-4 bg-light text-center text-secondary">Listings</h3>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -52,8 +52,6 @@
              
          <div class="row mt-4">
 
-         <div v-if="this.results ==''">
-         <h3 class="text-center font-weight-bold btn-light btn py-3 d-block">No Results Found! </h3></div>
              
                 <div v-for="( result, index ) in results" class="listing col-sm-4 my-5">
                     <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-5">
@@ -77,7 +75,7 @@
 
                   <div class="content_bottom">
                 <div class="heading">
-                     <h3 class="my-5 bg-light text-center text-secondary">Services</h3>
+                     <h3 class="my-4 bg-light text-center text-secondary">Services</h3>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -85,7 +83,7 @@
              
          <div class="row mt-4">
 
-         <div v-if="this.services ==''">
+         <div v-if="this.services =='' && this.results ==''">
          <h3 class="text-center font-weight-bold btn-light btn py-3 d-block">No Results Found! </h3></div>
              
                 <div v-for="( service, index ) in services" class="listing col-sm-4 my-5">

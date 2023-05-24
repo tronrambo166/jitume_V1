@@ -127,9 +127,9 @@
 
 <!-- HOW IT WORKS -->
 
-<div class="row mt-4 border border-bottom-dark bg-white"></div>
+<div class=" mt-4 border border-bottom-dark bg-white"></div>
 
-        <div class="row w-75 mx-auto my-5 bg-white">
+        <div class="row w-sm-75 mx-auto my-5 bg-white">
           <div class="col-sm-5 elementor-top-column elementor-element elementor-element-ce6f4c7" data-id="ce6f4c7" data-element_type="column">
       <div class="elementor-column-wrap elementor-element-populated">
               <div class="elementor-widget-wrap">
@@ -191,31 +191,22 @@
     <div class="col-sm-1"></div>
 
 
-    <div class="col-sm-6 elementor-top-column elementor-element elementor-element-bcc00b2" data-id="bcc00b2" data-element_type="column">
-      <div class="elementor-column-wrap elementor-element-populated">
-              <div class="elementor-widget-wrap">
-            <div class="elementor-element elementor-element-052ff25 elementor-widget elementor-widget-image" data-id="052ff25" data-element_type="widget" data-widget_type="image.default">
-        <div class="elementor-widget-container">
-                <div class="elementor-image">
-                        <img style="width:486px;height: 462px;" decoding="async" width="579" height="551" src="images/home.png" class="attachment-large size-large" alt="" >                           </div>
-            </div>
-        </div>
-            </div>
-          </div>
-    </div>
+    <div class="col-sm-6" >
+                        <img style="width:100%; height:auto;"  src="images/home.png" class="img-fluid" alt="" ></div>
+    
    </div>
 
    <div class="row mt-2 border border-bottom-dark"></div>
 
    <div class="row my-5 w-75 mx-auto">
      <div class="col-sm-6">
-       <h1 class="py-4 text-center" style="color: black;font-size:100px; font-weight:bold;">
+       <h1 class="py-4 text-center" style="color: black;font-size:80px; font-weight:bold;">
          THE SHOW
        </h1> 
      </div>
 
       <div class="col-sm-6">
-       <video style ="width:500px; height:300px;" class="elementor-video" src="videos/Jitume.mp4" controls="" controlslist="nodownload"></video>
+       <video style ="width:100%; height:auto;" class="elementor-video" src="videos/Jitume.mp4" controls="" controlslist="nodownload"></video>
      </div>
 
    </div>

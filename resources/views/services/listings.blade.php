@@ -38,7 +38,7 @@
 
             <button data-target="#edit{{$ev->id}}" data-toggle="modal" style="cursor:pointer;" id="invest" class="rounded text-light buttonEq2 my-1">Edit</button>
                 
-            <button class="rounded text-danger buttonEq2 my-1">Delete</button>
+            <a onclick="return confirm('Are you sure?');" href="{{route('delete_service',$ev->id)}}" class="rounded text-danger buttonEq2 my-1 d-inline-block py-0">Delete</a >
             
 
             </td>

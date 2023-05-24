@@ -4,6 +4,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="container" id="" style="background:white;">
         
+        @if(Session::has('success_update'))
+        <div class="w-50 m-auto alert font-weight-bold text-light alert-success alert-dismissible fade show" role="alert">
+          <p class="font-weight-bold">{{Session::get('success')}}   @php Session::forget('success'); @endphp </p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>  @endif
+
         
         <div class="row pt-4  m-auto">
 
@@ -41,7 +49,7 @@
 
             <button data-target="#edit{{$ev->id}}" data-toggle="modal" style="cursor:pointer;" id="invest" class="rounded text-light buttonEq2 my-1">Edit</button>
                 
-            <button class="rounded text-danger buttonEq2 my-1">Delete</button>
+            <a onclick="return confirm('Are you sure?');" href="{{route('delete_listing',$ev->id)}}" class="rounded text-danger buttonEq2 my-1  d-inline-block py-0">Delete</a >
             
 
             </td>
@@ -219,7 +227,7 @@
                         <div class="row">
                     
                     <div class="col-sm-12"> 
-                    <input required=""  class=" form-control border border-none rounded form-group" type="number" name="investment_needed" id="title" value="{{$ev->investment_needed}}"  /> 
+                    <input required=""  max="1000000" class=" form-control border border-none rounded form-group" type="number" name="investment_needed" id="title" value="{{$ev->investment_needed}}"  /> 
                     </div>
                         </div>
                     </div>

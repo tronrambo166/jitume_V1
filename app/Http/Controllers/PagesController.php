@@ -22,7 +22,7 @@ use PDF;
 
 class PagesController extends Controller
 {
-    //
+    //-------------------Login-Register
 
     public function loginB(Request $request){   
     $email = $request->email;  
@@ -71,6 +71,97 @@ class PagesController extends Controller
         
     }
 
+    public function registerS(Request $request){
+$fname = $request->fname;
+$mname = $request->mname;
+$lname = $request->lname;
+$email = $request->email;
+ 
+$password = $request->password;
+$c_password = $request->c_password;
+if($password != $c_password) {
+  Session::put('login_err','Passwords do not match!');
+  return redirect()->back();
+}
+
+$password = Hash::make($request->password);
+$phone = $request->phone;
+$service = 1;
+
+$user = User::where('email',$email)->first();
+if($user) {
+  Session::put('login_err','User already exists with this email!');
+    return redirect()->back();
+}
+
+try {
+ User::create([
+            'fname' => $fname,
+            'mname' => $mname,
+            'lname' => $lname,
+            'email' => $email,
+            'password' => $password,
+            //'phone' => $phone,
+            'service' => $service           
+           ]);       
+;
+        Session::put('auth_service','Registration Success! Please Log In to continue.');
+        return redirect('/');
+
+} catch (\Exception $e) {
+
+Session::put('login_err',$e->getMessage());
+    return redirect()->back(); 
+}
+}
+
+
+
+public function registerB(Request $request){
+$fname = $request->fname;
+$mname = $request->mname;
+$lname = $request->lname;
+$email = $request->email;
+
+$password = $request->password;
+$c_password = $request->c_password;
+if($password != $c_password) {
+  Session::put('login_err','Passwords do not match!');
+  return redirect()->back();
+}
+
+$password = Hash::make($request->password);
+$phone = $request->phone;
+$business = 1;
+
+$user = User::where('email',$email)->first();
+if($user) {
+  Session::put('login_err','User already exists with this email!');
+    return redirect()->back();
+}
+
+try {
+ User::create([
+            'fname' => $fname,
+            'mname' => $mname,
+            'lname' => $lname,
+            'email' => $email,
+            'password' => $password,
+            //'phone' => $phone,
+            'business' => $business           
+           ]);       
+;
+        Session::put('auth_business','Registration Success! Please Log In to continue.');
+        return redirect('/');
+
+} catch (\Exception $e) {
+
+Session::put('login_err',$e->getMessage());
+    return redirect()->back(); 
+}
+}
+
+//-------------------Login-Register
 
 
  public function home(){ 

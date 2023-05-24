@@ -35,53 +35,6 @@ public function logoutS(){
   return redirect('home');
 }
 
-public function registerS(Request $request){
-$fname = $request->fname;
-$mname = $request->mname;
-$lname = $request->lname;
-$email = $request->email;
-
-$password = $request->password;
-$c_password = $request->c_password;
-if($password != $c_password) {
-  Session::put('login_err','Passwords do not match!');
-  return redirect()->back();
-}
-
-$password = Hash::make($request->password);
-$phone = $request->phone;
-$service = 1;
-
-$user = User::where('email',$email)->first();
-if($user) {
-  Session::put('login_err','User already exists with this email!');
-    return redirect()->back();
-}
-
-try {
- User::create([
-            'fname' => $fname,
-            'mname' => $mname,
-            'lname' => $lname,
-            'email' => $email,
-            'password' => $password,
-            //'phone' => $phone,
-            'service' => $service           
-           ]);       
-;
-        Session::put('auth_service','Registration Success! Please Log In to continue.');
-        return redirect('/');
-
-} catch (\Exception $e) {
-
-Session::put('login_err',$e->getMessage());
-    return redirect()->back(); 
-}
-
-
-}
-
-
 
 public function services(){
 $services = Services::where('user_id',$this->auth_id())->get();
@@ -126,6 +79,11 @@ $listing = ($listing->id)+1;
  if($image) {
           $uniqid=hexdec(uniqid());
           $ext=strtolower($image->getClientOriginalExtension());
+          if($ext!='jpg' && $ext!= 'png' && $ext!='jpeg' && $ext!= 'svg'&& $ext!='gif')
+          {
+            Session::put('error','For Cover, Only images are allowed!');
+            return redirect()->back();
+          }
           $create_name=$uniqid.'.'.$ext;
           $loc='images/services/';
           //Move uploaded file
@@ -141,7 +99,7 @@ $listing = ($listing->id)+1;
           $ext=strtolower($pin->getClientOriginalExtension());
           if($ext!='pdf' && $ext!= 'docx')
           {
-            Session::put('error','Only pdf & docx are allowed!');
+            Session::put('error','For pin, Only pdf & docx are allowed!');
             return redirect()->back();
           }
 
@@ -162,7 +120,7 @@ $listing = ($listing->id)+1;
           $ext=strtolower($identification->getClientOriginalExtension());
           if($ext!='pdf' && $ext!= 'docx')
           {
-            Session::put('error','Only pdf & docx are allowed!');
+            Session::put('error','For identification, Only pdf & docx are allowed!');
             return redirect()->back();
           }
 
@@ -183,7 +141,7 @@ $listing = ($listing->id)+1;
           $ext=strtolower($document->getClientOriginalExtension());
           if($ext!='pdf' && $ext!= 'docx')
           {
-            Session::put('error','Only pdf & docx are allowed!');
+            Session::put('error','For service document, Only pdf & docx are allowed!');
             return redirect()->back();
           }
 
@@ -206,7 +164,7 @@ $listing = ($listing->id)+1;
           if($ext!='mpg' && $ext!= 'mpeg' && $ext!='webm' && $ext!= 'mp4' 
             && $ext!='avi' && $ext!= 'wmv')
           { 
-            Session::put('error','Only mpg || mpeg || webm || mp4 
+            Session::put('error','For video, Only mpg || mpeg || webm || mp4 
             avi || wmv are allowed!');
             return redirect()->back();
           }
@@ -281,6 +239,28 @@ Services::where('id',$id)->update([
         return redirect()->back();
 
 }
+
+
+public function delete_service($id){
+$milestone = Services::where('id',$id)->first();
+
+if($milestone->document!= null && file_exists($milestone->document)) 
+  unlink($milestone->document);
+
+if($milestone->image!= null && file_exists($milestone->image)) 
+  unlink($milestone->image);
+
+if($milestone->pin!= null && file_exists($milestone->pin)) unlink($milestone->pin);
+
+if($milestone->identification  != null && file_exists($milestone->identification)) 
+  unlink($milestone->identification);
+if($milestone->video!= null && file_exists($milestone->video)) 
+  unlink($milestone->video);
+
+$milestones = Services::where('id',$id)->delete();
+return redirect()->back();
+}
+
 
 public function add_eqp(Request $request){
 $listing_id = $request->id;

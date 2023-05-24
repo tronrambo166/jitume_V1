@@ -4,7 +4,7 @@
     <div class="container" id="">
         
          @if(Session::has('success'))
-        <div class="w-50 m-auto alert font-weight-bold text-danger alert-warning alert-dismissible fade show" role="alert">
+        <div class="w-50 m-auto alert font-weight-bold alert-info alert-dismissible fade show" role="alert">
           <p class="font-weight-bold">{{Session::get('success')}}   @php Session::forget('success'); @endphp </p>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>

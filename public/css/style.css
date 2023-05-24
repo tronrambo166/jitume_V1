@@ -446,6 +446,9 @@ background: lightgray;
     }		
 		
 		
+ #service_log,#art_log,#usr_log,#user,#business,#service{
+   font-size: 12px;
+ }       
 		
 		
 		

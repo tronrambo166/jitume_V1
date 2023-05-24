@@ -95,18 +95,18 @@ Auth::routes();
 
 //-- Business ROUTES
 Route::post('loginB', 'PagesController@loginB')->name('loginB');
-Route::get('logoutB', 'BusinessController@logoutB')->name('logoutB'); 
-Route::post('registerB', 'BusinessController@registerB')->name('registerB'); 
+//Route::get('logoutB', 'BusinessController@logoutB')->name('logoutB'); 
+Route::post('registerB', 'PagesController@registerB')->name('registerB'); 
 Route::get('business', 'BusinessController@business')->name('business');
-Route::get('services', 'ServiceController@services')->name('services');
 
 Route::prefix('/business')->group(function(){
   Route::get('add-listing', 'BusinessController@add_listing')->name('add-listing');
   Route::post('create-listing', 'BusinessController@save_listing')->name('create-listing');
-  Route::get('/index', 'BusinessController@home')->name('/');
+  Route::get('/index', 'BusinessController@home')->name('business');
   Route::get('listings', 'BusinessController@listings')->name('listings');
 Route::post('add_eqp', 'BusinessController@add_eqp')->name('add_eqp');
 Route::post('up_listing', 'BusinessController@up_listing')->name('up_listing');
+Route::get('delete_listing/{id}', 'BusinessController@delete_listing')->name('delete_listing');
 
 Route::get('add_milestones', 'BusinessController@add_milestones')->name('add_milestones');
 Route::get('milestones', 'BusinessController@milestones')->name('milestones');
@@ -124,17 +124,18 @@ Route::post('embed_business_video', 'BusinessController@embed_business_video')->
 
 //-- Service ROUTES
 Route::post('loginS', 'PagesController@loginS')->name('loginS');
-Route::get('logoutS', 'ServiceController@logoutS')->name('logoutS'); 
-Route::post('registerS', 'ServiceController@registerS')->name('registerS'); 
+//Route::get('logoutS', 'ServiceController@logoutS')->name('logoutS'); 
+Route::post('registerS', 'PagesController@registerS')->name('registerS'); 
 Route::get('services', 'ServiceController@services')->name('services');
 
 Route::prefix('/services')->group(function(){
   Route::get('add-services', 'ServiceController@add_listing')->name('add-services');
   Route::post('create-service', 'ServiceController@save_listing')->name('create-service');
-  Route::get('/', 'ServiceController@home')->name('/');
+  Route::get('/', 'ServiceController@home')->name('services/index');
   Route::get('services', 'ServiceController@listings')->name('services');
 //Route::post('add_eqp', 'ServiceController@add_eqp')->name('add_eqp');
 Route::post('up_service', 'ServiceController@up_listing')->name('up_service');
+Route::get('delete_service/{id}', 'ServiceController@delete_service')->name('delete_service');
 
 Route::post('add_doc', 'ServiceController@add_docs')->name('add_docs');
 Route::post('add_video', 'ServiceController@add_video')->name('add_videos');
