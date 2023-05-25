@@ -70,6 +70,7 @@ $location = $request->location;
 $investment_needed = $request->investment_needed;
 $share = $request->share;
 $contact_mail = $request->contact_mail;
+$reason = $request->reason;
 $y_turnover = $request->y_turnover;
 
 $pin = $request->pin;
@@ -201,6 +202,7 @@ Listing::create([
             'investment_needed' => $investment_needed,
             'share' => $share,
             'image' => $final_img,
+            'reason' => $reason,
             'y_turnover' => $y_turnover,
             'pin' => $final_pin,
             'identification' => $final_identification,

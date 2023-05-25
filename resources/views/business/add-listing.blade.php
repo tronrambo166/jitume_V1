@@ -224,6 +224,17 @@
            <input class="w-100 d-blocks d-inline form-control" placeholder="Enter Video Link" name="link" /> 
 
         </div>
+
+
+            <div class="col-sm-12 mt-5"><label class="h5 mb-0" for="name">
+                                <p>Business reason for funding</p></label>
+                               </div>
+
+                 <div class="col-sm-12 w-75  d-block"> 
+                    <textarea class="form-control" required="" name="reason" rows="2" cols="30" placeholder="Reason for funding..."></textarea>
+                    </div>
+
+
           </div>
 
 

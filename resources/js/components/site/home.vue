@@ -129,7 +129,7 @@
 
 <div class=" mt-4 border border-bottom-dark bg-white"></div>
 
-        <div class="row w-sm-75 mx-auto my-5 bg-white">
+        <div class="row w-75 mx-auto my-5 bg-white">
           <div class="col-sm-5 elementor-top-column elementor-element elementor-element-ce6f4c7" data-id="ce6f4c7" data-element_type="column">
       <div class="elementor-column-wrap elementor-element-populated">
               <div class="elementor-widget-wrap">
