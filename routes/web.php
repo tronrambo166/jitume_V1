@@ -173,3 +173,5 @@ Route::post('cartstripe', 'checkoutController@cartStripePost')->name('cartstripe
 
 Route::get('milestoneStripe', 'checkoutController@milestoneCheckout')->name('milestoneStripe');
 Route::post('milestonestripe', 'checkoutController@milestoneStripePost')->name('milestonestripe.post');
+
+//Route::post('register', 'BusinessController@test')->name('register');

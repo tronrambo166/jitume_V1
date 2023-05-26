@@ -20,6 +20,10 @@ use DB;
 class BusinessController extends Controller
 {
 
+  public function test(){
+    return response->json(['data' => 'OKAY']);
+  }
+
 //private $auth_id;
    public function __construct()
     {

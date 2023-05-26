@@ -494,22 +494,48 @@ $("#datepicker2").datepicker({
         <div class="px-0 w-100 py-2">
             <div class="card collapse" id="all_registers">
 
-            <div class=" mt-2 text-center User-Artist-Select">
+            <div class="text-center User-Artist-Select">
             <div class="col-md-5"></div>                
             
-             <div class="card-header w-100">
+           <!--  <div class="card-header w-100">
             <button  id="user"onclick="user()" class="w-25 btn  font-weight-bold px-3 mr-2">{{ __('Investor') }}</button>
             <button  id="business" onclick="business()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Business") }}</button>
 
              <button  id="service" onclick="service()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Service") }}</button>
+            </div> -->
+
+             <div id="errors" class="w-100">
+                
+            </div> 
+
+             <p id="typeZero" class="font-weight-bold text-center">Register a new account or log in to Jitume</p>
+            </div> 
+
+                
+
+
+
+                <!-- HIDDEN Investor REG -->
+
+
+            <!-- TYPES -->    
+            <input hidden type="number" value="" id="type"/>
+            <div id="types" class="collapse card-header w-100">
+
+            <button  id="user"onclick="user()" class="w-25 btn  font-weight-bold px-3 mr-2">{{ __('Investor') }}</button>
+
+            
+            
+            <button  id="business" onclick="business()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Business") }}</button>
+
+             <button  id="service" onclick="service()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Service") }}</button>
             </div>
+            <!-- TYPES --> 
 
-                                          </div>
 
-                <!-- HIDDEN USER REG -->
 
-                    <div id="user_reg" class=" collapse card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    <div id="user_reg" class=" card-body">
+                    <form id="register_main" onsubmit="register_main(event);"  enctype="multipart/form-data">
                         @csrf
 
                        
@@ -580,6 +606,40 @@ $("#datepicker2").datepicker({
                             </div>
                         </div>
 
+
+
+                    <!--      <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Upload Id/Passport') }}<span title="Required" class="text-danger">*</span></label>
+
+                            <div class="col-md-6">
+                            <div class="upload-btn-wrapper">
+                              <button class="btnUp_listing mr-2"> Id / Passport
+                              <img src="images/up.svg" width="24px"> </button>
+                              <input required="" type="file" name="id_passport" />
+                            </div>
+
+                               
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Upload Pin (Optional)') }}<span title="Required" class="text-danger"></span></label>
+
+                            <div class="col-md-6">
+                            <div class="upload-btn-wrapper">
+                              <button class="btnUp_listing mr-2"> Pin
+                              <img src="images/up.svg" width="24px"> </button>
+                              <input  type="file" name="pin" />
+                            </div>
+
+                               
+                            </div>
+                        </div> -->
+
+
+                        
+
                         <div class="row mb-4">
                             <div class="col-md-12 ">
                                 <button type="submit" class="w-25 d-block mx-auto btn btn-outline-success">
@@ -596,119 +656,40 @@ $("#datepicker2").datepicker({
                 <!-- HIDDEN USER REG -->
 
 
-                <!-- HIDDEN Business REG -->
+
+
+<!-- HIDDEN Investor REG -->
+
+                <div id="investor_reg" class=" collapse card-body">
+                    <form method="POST" action="{{route('registerB')}}" enctype="multipart/form-data">
+                        @csrf    
+          
+                        <div class="row mb-4">
+                            <div class="col-md-12 ">
+                                <button type="submit" class="mt-3 w-25 d-block mx-auto btn btn-outline-success">
+                                    {{ __('Create AccountI') }}
+                                </button>
+                            </div>
+                            </div> <hr>
+                    </form>
+                </div>
+<!-- HIDDEN Investor REG -->
+
+
+       <!-- HIDDEN Business REG -->
 
                 <div id="business_reg" class=" collapse card-body">
                     <form method="POST" action="{{route('registerB')}}" enctype="multipart/form-data">
                         @csrf    
-                         
-
-                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('First Name') }} <span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
-
-                               
-                            </div>
-                        </div>
-
-
-                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Middle Name') }} <span title="Required" class="text-danger"></span></label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="mname" value="{{ old('mname') }}"  autocomplete="name" autofocus>
-
-                               
-                            </div>
-                        </div>
-
-
-                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Last Name') }} <span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus>
-
-                               
-                            </div>
-                        </div>
-
-
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('E-Mail') }} <span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                               
-                            </div>
-                        </div>
-
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('Password') }} <span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password">
-
-                               
-                            </div>
-                        </div>
-
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('Confirm Password') }} <span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="c_password" value="{{ old('password') }}" required autocomplete="password">
-
-                               
-                            </div>
-                        </div>
-
-
-
-                        <div class="row mb-3">
-                            <label for="phone" class="col-md-4 col-form-label text-md-left">{{ __('Telephone') }} <span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                                <input id="phone" type="number" class="form-control @error('email') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
-
-                            </div>
-                        </div>
-
-
-                     <!--   <div class="row mb-3">
-                            <label for="phone" class="col-md-4 col-form-label text-md-left">{{ __('Image') }} <span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                                <input id="file" type="file" class="form-control @error('email') is-invalid @enderror" name="image" autocomplete="phone">
-
-                                @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div> -->
-
-
-
-
-
+          
                         <div class="row mb-4">
                             <div class="col-md-12 ">
                                 <button type="submit" class="mt-3 w-25 d-block mx-auto btn btn-outline-success">
-                                    {{ __('Register') }}
+                                    {{ __('Create Account') }}
                                 </button>
                             </div>
                             </div> <hr>
-
                     </form>
-
                 </div>
                 <!-- HIDDEN Business REG -->
 
@@ -718,127 +699,13 @@ $("#datepicker2").datepicker({
                 <div id="serv_reg" class=" collapse card-body">
                     <form method="POST" action="{{route('registerS')}}" enctype="multipart/form-data">
                         @csrf    
-                         
-
-                        
-                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('First Name') }} <span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
-
-                               
-                            </div>
-                        </div>
-
-
-                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Middle Name') }} <span title="Required" class="text-danger"></span></label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="mname" value="{{ old('mname') }}"  autocomplete="name" autofocus>
-
-                              
-                            </div>
-                        </div>
-
-
-                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Last Name') }} <span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus>
-
-                              
-                            </div>
-                        </div>
-
-
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('E-Mail') }} <span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('Password') }} <span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('Confirm Password') }} <span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="c_password" value="{{ old('password') }}" required autocomplete="password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="phone" class="col-md-4 col-form-label text-md-left">{{ __('Telephone') }} <span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                                <input id="phone" type="number" class="form-control @error('email') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
-
-                                @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-
-                         <!--   <div class="row mb-3">
-                            <label for="phone" class="col-md-4 col-form-label text-md-left">{{ __('Image') }} <span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                                <input id="file" type="file" class="form-control @error('email') is-invalid @enderror" name="image" autocomplete="phone">
-
-                                @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div> -->
-
-
-
-
-
-                        <div class="row mb-4">
+                     <div class="row mb-4">
                             <div class="col-md-12 ">
                                 <button type="submit" class="mt-3 w-25 d-block mx-auto btn btn-outline-success">
-                                    {{ __('Register') }}
+                                    {{ __('Create Account') }}
                                 </button>
                             </div>
-                            </div> <hr>
+                            </div>  <hr>
 
                               
                     </form>
@@ -846,12 +713,11 @@ $("#datepicker2").datepicker({
                 </div>
                 <!-- HIDDEN SERVICE REG -->
 
-
-
-
                 </div>
-                 <!-- Logout-->
 
+
+
+ <!-- Logout-->
 
 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -1269,9 +1135,18 @@ $("#datepicker2").datepicker({
     $('#login').css('background', 'none');
     $('#register').css('background', '#72c537');
 
-    $('#user_log').hide();
+    //$('#user_log').hide();
     $('#all_logins').hide();
+
+    var type = $('#type').val();
+    if(type == 1){
     $('#all_registers').show();
+    $('#user_reg').hide();
+ }
+ else{
+    $('#all_registers').show();
+    $('#user_reg').show();
+ }
     
     }
 
@@ -1325,7 +1200,9 @@ $("#datepicker2").datepicker({
     $('#business').css({'background-color' : ''});
     $('#service').css({'background-color' : ''});
 
-    $('#user_reg').show();
+    investor_reg
+     $('#investor_reg').show();
+     $('#user_reg').hide();
      $('#business_reg').hide();
      $('#serv_reg').hide();
     }
@@ -1337,6 +1214,7 @@ $("#datepicker2").datepicker({
     $('#user').css({'background-color' : ''});
     $('#service').css({'background-color' : ''});
 
+    $('#investor_reg').hide();
     $('#user_reg').hide();
     $('#business_reg').show();
     $('#serv_reg').hide();
@@ -1348,6 +1226,7 @@ $("#datepicker2").datepicker({
      $('#business').css({'background-color' : ''});
     $('#user').css({'background-color' : ''});
 
+    $('#investor_reg').hide();
     $('#user_reg').hide();
     $('#business_reg').hide();
     $('#serv_reg').show();
@@ -1358,12 +1237,35 @@ $("#datepicker2").datepicker({
 </script>
 
 
-@if(Session::has('login_err'))
 <script>
-     $('#loginModal').addClass('show');
-     $('#loginModal').css('display','block');
+
+     function register_main(e){  alert('hello'); 
+        e.preventDefault();
+            $.ajax({
+                url: "register",
+                method: "POST",
+                data: $('#register_main').serialize(),
+                dataType:'json',
+                success: function (response) {
+                    //console.log(response);
+                    $('#user_reg').hide();
+                    $('#types').show();
+                    document.getElementById('type').value=1;
+                    $('#typeZero').hide();
+
+                                       
+                },
+                error:function(error){
+                    console.log(error);
+                    $('#errors').html('<p class="btn btn-light text-center text-danger">'+error+'</p>');
+                     }
+           
+            });
+ 
+}
+
 </script>
-@endif
+
 
 </body>
 </html>

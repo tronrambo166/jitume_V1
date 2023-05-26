@@ -24,7 +24,10 @@ class User extends Authenticatable
         'email',
         'password',
         'service',
-        'business',
+        'business', 
+        'friends',
+        'id_passport',
+        'pin',
     ];
 
     /**
