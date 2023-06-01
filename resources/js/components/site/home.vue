@@ -191,26 +191,16 @@
     <div class="col-sm-1"></div>
 
 
-    <div class="col-sm-6" >
-                        <img style="width:100%; height:auto;"  src="images/home.png" class="img-fluid" alt="" ></div>
+     <div class="col-sm-6">
+      <div class="text-dark">
+          <h3 style="font-family: system-ui; text-align:left;" class="text-dark headline  headline-aligned-to-left  headline-box "> The Show </h3>
+        </div>
+       <video style ="width:100%; height:auto;" class="elementor-video" src="videos/Jitume.mp4" controls="" controlslist="nodownload"></video>
+     </div>
     
    </div>
 
    <div class="row mt-2 border border-bottom-dark"></div>
-
-   <div class="row my-5 w-75 mx-auto">
-     <div class="col-sm-6">
-       <h1 class="py-4 text-center" style="color: black;font-size:80px; font-weight:bold;">
-         THE SHOW
-       </h1> 
-     </div>
-
-      <div class="col-sm-6">
-       <video style ="width:100%; height:auto;" class="elementor-video" src="videos/Jitume.mp4" controls="" controlslist="nodownload"></video>
-     </div>
-
-   </div>
-
 
 
    </div>

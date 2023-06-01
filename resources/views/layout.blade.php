@@ -236,7 +236,7 @@
     
 
 
-    <div style="width:80%;" class="row mx-auto my-5">
+    <div style="width:80%;" class="row mx-auto my-3">
         <div class="col-sm-6">
             <img src="images/logo_services.png" width="363px" height="110px">
         </div>
@@ -255,9 +255,7 @@
               </li>
 
 
-                <li style="list-style-type:none;">
-                    <a class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>Bookmarks</a>
-                </li>
+               
 
                 <li style="list-style-type:none;">
                    @if(Session::has('business_auth') && Session::get('business_auth') == true)
@@ -277,9 +275,7 @@
                 <h4 class="text-dark">Contact Us</h4>
                
 
-                <li style="list-style-type:none;">
-                    <a class="footer_txt" href="#">Phone: (123) 123-456</a>
-                </li>
+                
 
                 <li style="list-style-type:none;">
                     <a class="footer_txt" href="#">E-Mail: info@thedtagency.com</a>
@@ -297,7 +293,7 @@
 
                  <div class="col-sm-6 m-auto text-center">
                     
-                    <p class="text-center text-secondary py-2">© JITUME PROJECT. All Rights Reserved.
+                    <p class="text-center text-secondary pt-2">© JITUME PROJECT. All Rights Reserved.
                     </p>
                 </div>
 

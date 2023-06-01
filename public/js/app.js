@@ -6981,16 +6981,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -63070,8 +63060,6 @@ var render = function () {
     _vm._m(3),
     _vm._v(" "),
     _c("div", { staticClass: "row mt-2 border border-bottom-dark" }),
-    _vm._v(" "),
-    _vm._m(4),
   ])
 }
 var staticRenderFns = [
@@ -63410,35 +63398,18 @@ var staticRenderFns = [
       _c("div", { staticClass: "col-sm-1" }),
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-6" }, [
-        _c("img", {
-          staticClass: "img-fluid",
-          staticStyle: { width: "100%", height: "auto" },
-          attrs: { src: "images/home.png", alt: "" },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row my-5 w-75 mx-auto" }, [
-      _c("div", { staticClass: "col-sm-6" }, [
-        _c(
-          "h1",
-          {
-            staticClass: "py-4 text-center",
-            staticStyle: {
-              color: "black",
-              "font-size": "80px",
-              "font-weight": "bold",
+        _c("div", { staticClass: "text-dark" }, [
+          _c(
+            "h3",
+            {
+              staticClass:
+                "text-dark headline headline-aligned-to-left headline-box",
+              staticStyle: { "font-family": "system-ui", "text-align": "left" },
             },
-          },
-          [_vm._v("\n         THE SHOW\n       ")]
-        ),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-6" }, [
+            [_vm._v(" The Show ")]
+          ),
+        ]),
+        _vm._v(" "),
         _c("video", {
           staticClass: "elementor-video",
           staticStyle: { width: "100%", height: "auto" },
