@@ -52,6 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            //'g-recaptcha-response' => 'required|recaptcha',
         ]);
     }
 
@@ -63,46 +64,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     { 
-
- // $passport=$data['id_passport'];
- // if(isset($data['pin']))
- // $pin=$data['pin'];
-
- // if(isset($pin) && $pin !=null) {
- //          $uniqid=hexdec(uniqid());
- //          $ext=strtolower($pin->getClientOriginalExtension());
- //          if($ext!='pdf' && $ext!= 'docx')
- //          {
- //            Session::put('login_err','For pin, Only pdf & docx are allowed!');
- //            return redirect()->back();
- //          }
-
- //          $create_name=$uniqid.'.'.$ext;
- //          //if (!file_exists('files/investor/'.$listing)) 
- //          //mkdir('files/investor/'.$listing, 0777, true);
-
- //          $loc='files/investor/';
- //          //Move uploaded file
- //          $pin->move($loc, $create_name);
- //          $final_pin=$loc.$create_name;
- //             }else $final_pin=null;
-
- //   if($passport) {
- //          $uniqid=hexdec(uniqid());
- //          $ext=strtolower($passport->getClientOriginalExtension());
- //          if($ext!='pdf' && $ext!= 'docx')
- //          {
- //            Session::put('login_err','For passport, Only pdf & docx are allowed!');
- //            return redirect()->back();
- //          }
-
- //          $create_name=$uniqid.'.'.$ext;
- //          $loc='files/investor/';
- //          //Move uploaded file
- //          $passport->move($loc, $create_name);
- //          $final_passport=$loc.$create_name;
- //             }else $final_passport='';          
-
 
         return User::create([
             'fname' => $data['fname'],

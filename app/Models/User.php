@@ -25,7 +25,7 @@ class User extends Authenticatable
         'password',
         'service',
         'business', 
-        'friends',
+        'investor',
         'id_passport',
         'pin',
     ];

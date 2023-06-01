@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
  
    <style type="text/css"> 
-   .btn-success{background:#72c537;color:white;}</style>
+   .btn-success{background:#72c537;color:white;}
+   </style>
     
     
     
@@ -27,6 +28,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- {{-- Vue component files --}}
 <script src="https://unpkg.com/vue"></script>
 <script src="https://unpkg.com/http-vue-loader"></script>
@@ -78,14 +80,7 @@
 
      <li style="list-style-type: none;" class="w-100 ml-2 mt-3 nav-item py-1 px-3 text-light ">
 
-     @if(Auth::check()) 
-
-
-      <a v-if="" onclick="event.preventDefault();
-     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Logout</b></a>
-         
-
-    @elseif(Session::has('business_auth') && Session::get('business_auth') == true)
+    @if(Session::has('business_auth') && Session::get('business_auth') == true)
 
     <div class="row">
      <div class="col-sm-6 py-1 text-center">
@@ -116,9 +111,20 @@
      </div>
 
 
+     @elseif(Auth::check()) 
+      <a v-if="" onclick="event.preventDefault();
+     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class="float-right text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Logout</b></a>
+
+
+      @elseif(Session::has('investor_auth') && Session::get('investor_auth') == true)
+       <a v-if="" onclick="event.preventDefault();
+     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class="float-right text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Logout</b></a>
+
+
+
      @else     
       <a  data-target="#loginModal" data-toggle="modal" style="background: white; border-radius: 15px;cursor: pointer; " class="float-right text-dark px-sm-3 px-1 py-2 d-inline-block small text-center" ><b>Sign In</b></a>
-      @endif
+      @endif 
 
        </li>
                                     
@@ -465,10 +471,10 @@ $("#datepicker2").datepicker({
 <!-- LOGIN MODAL -->
   <div  class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content" style="max-width: 620px;">
-      <div class="modal-header">
+    <div class="modal-content" style="max-width: 620px;border-radius: 2px;">
+      <div id="header"  class="modal-header">
 
-         <div class="card-header w-100">
+        <div class="card-header w-100">
             <button id="login" onclick="logins()" class="w-25 btn   px-4 mr-2">{{ __('Log In') }}</button>
             <button  id="register" onclick="registers()" class="w-25 btn  px-4">{{ __('Register') }}</button>
 
@@ -485,7 +491,9 @@ $("#datepicker2").datepicker({
     
       <div class="modal-body">
 
-         
+         <div id="choose" class="px-0 collapse">
+          <h5 class="text-secondary font-weight-bold text-center btn btn-light w-100 m-auto">Please choose the register type!</h5>
+          </div> 
 
         
       <div class="hidden_currency ">
@@ -608,37 +616,40 @@ $("#datepicker2").datepicker({
 
 
 
-                    <!--      <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Upload Id/Passport') }}<span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                            <div class="upload-btn-wrapper">
-                              <button class="btnUp_listing mr-2"> Id / Passport
-                              <img src="images/up.svg" width="24px"> </button>
-                              <input required="" type="file" name="id_passport" />
+                        <div class="row w-75 m-auto">
+                            <div class="col-md-1">
+                                <input id="password" type="checkbox" class=" "name="terms" required >     
                             </div>
 
-                               
+                            <div class="col-md-10">
+                                <p style="font-family:system-ui;" class="text-secondary small mb-0">I have read and agree to the<a class="small d-inline" href="terms">Terms of Use</a> and<a class="small d-inline" href="terms">Privacy Policy</a></p>
                             </div>
                         </div>
 
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Upload Pin (Optional)') }}<span title="Required" class="text-danger"></span></label>
 
-                            <div class="col-md-6">
-                            <div class="upload-btn-wrapper">
-                              <button class="btnUp_listing mr-2"> Pin
-                              <img src="images/up.svg" width="24px"> </button>
-                              <input  type="file" name="pin" />
+                        <div class="row mb-1 w-75 m-auto">
+                            <div class="col-md-1">
+                                <input id="password" type="checkbox" class=" "name="terms"  >     
                             </div>
 
-                               
+                            <div class="col-md-10">
+                                <p style="font-family:system-ui;" class="small text-secondary ">I want to receive updates</p>
                             </div>
-                        </div> -->
+                        </div>
 
 
-                        
+
+                        <div class="row mb-3 w-75 m-auto">
+                            <div class="col-md-12">
+                                @if(config('services.recaptcha.key'))
+                                    <div class="g-recaptcha"
+                                        data-sitekey="{{config('services.recaptcha.key')}}">
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+
 
                         <div class="row mb-4">
                             <div class="col-md-12 ">
@@ -647,9 +658,25 @@ $("#datepicker2").datepicker({
                                 </button>
                             </div>
                             </div> <hr>
-
                              
                     </form>
+
+
+                     <div class="row mb-3 w-75 m-auto">
+                            <div class="col-md-12">
+                            <a href="{{route('login.facebook')}}" class="social_btn text-light w-100" >
+                            <i class="fa fa-facebook-f mr-2 px-1" style="font-size:14px;background: white;color:#3B5998;"></i>Register with Facebook</a >
+                            </div>
+                        </div>
+
+
+                         <div class="row mb-3 w-75 m-auto">
+                            <div class="col-md-12">
+                            <a href="{{route('login.google')}}" class="social_btn2 text-dark w-100" >
+                            <i class="fab fa-google mr-2" style="font-size:15px;color:#3B5998;"></i>Register with Google</a >
+                            </div>
+                        </div>
+
 
                 </div>
 
@@ -661,16 +688,62 @@ $("#datepicker2").datepicker({
 <!-- HIDDEN Investor REG -->
 
                 <div id="investor_reg" class=" collapse card-body">
-                    <form method="POST" action="{{route('registerB')}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('registerI')}}" enctype="multipart/form-data">
                         @csrf    
+
+                        <div class="row mb-1">
+                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Upload Id/Passport') }}<span title="Required" class="text-danger">*</span></label>
+
+                            <div class="col-md-6">
+                            <div class="upload-btn-wrapper ml-2">
+                              <button class="btnUp_listing mr-2"> Id / Passport
+                              <img src="images/up.svg" width="24px"> </button>
+                              <input required="" type="file" name="id_passport" />
+                            </div>
+
+                               
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Upload Pin') }}<span title="Required" class="text-danger"></span></label>
+
+                            <div class="col-md-6">
+                            <div class="upload-btn-wrapper ml-2">
+                              <button class="btnUp_listing mr-2"> Pin
+                              <img src="images/up.svg" width="24px"> </button>
+                              <input  type="file" name="pin" />
+                            </div>
+
+                               
+                            </div>
+                        </div>
           
                         <div class="row mb-4">
                             <div class="col-md-12 ">
-                                <button type="submit" class="mt-3 w-25 d-block mx-auto btn btn-outline-success">
-                                    {{ __('Create AccountI') }}
+                                <button type="submit" class="mt-3 w-25 d-block mx-auto btn px-2 create">
+                                    {{ __('Create account') }}
                                 </button>
                             </div>
-                            </div> <hr>
+
+                            <div class="col-md-12 ">
+                                <p  class="text-center mb-0 mt-2">Or
+                                </p>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <a href="{{route('home')}}" class="mt-0 w-25 d-block mx-auto btn px-2 create">
+                                    {{ __('Skip') }}
+                                </a>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <p  class="text-center w-75 mx-auto my-2">To create regular Jitume account and donate/puchase business services
+                                </p>
+                            </div>
+
+                            </div>
                     </form>
                 </div>
 <!-- HIDDEN Investor REG -->
@@ -682,13 +755,31 @@ $("#datepicker2").datepicker({
                     <form method="POST" action="{{route('registerB')}}" enctype="multipart/form-data">
                         @csrf    
           
+                       
                         <div class="row mb-4">
                             <div class="col-md-12 ">
-                                <button type="submit" class="mt-3 w-25 d-block mx-auto btn btn-outline-success">
-                                    {{ __('Create Account') }}
+                                <button type="submit" class="mt-3 w-25 d-block mx-auto btn px-2 create">
+                                    {{ __('Create account') }}
                                 </button>
                             </div>
-                            </div> <hr>
+
+                            <div class="col-md-12 ">
+                                <p  class="text-center mb-0 mt-2">Or
+                                </p>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <a href="{{route('home')}}" class="mt-0 w-25 d-block mx-auto btn px-2 create">
+                                    {{ __('Skip') }}
+                                </a>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <p  class="text-center w-75 mx-auto my-2">To create regular Jitume account and donate/puchase business services
+                                </p>
+                            </div>
+
+                            </div>
                     </form>
                 </div>
                 <!-- HIDDEN Business REG -->
@@ -699,13 +790,31 @@ $("#datepicker2").datepicker({
                 <div id="serv_reg" class=" collapse card-body">
                     <form method="POST" action="{{route('registerS')}}" enctype="multipart/form-data">
                         @csrf    
-                     <div class="row mb-4">
+                     
+                        <div class="row mb-4">
                             <div class="col-md-12 ">
-                                <button type="submit" class="mt-3 w-25 d-block mx-auto btn btn-outline-success">
-                                    {{ __('Create Account') }}
+                                <button type="submit" class="mt-3 w-25 d-block mx-auto btn px-2 create">
+                                    {{ __('Create account') }}
                                 </button>
                             </div>
-                            </div>  <hr>
+
+                            <div class="col-md-12 ">
+                                <p  class="text-center mb-0 mt-2">Or
+                                </p>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <a href="{{route('home')}}" class="mt-0 w-25 d-block mx-auto btn px-2 create">
+                                    {{ __('Skip') }}
+                                </a>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <p  class="text-center w-75 mx-auto my-2">To create regular Jitume account and donate/puchase business services
+                                </p>
+                            </div>
+
+                            </div>
 
                               
                     </form>
@@ -1239,7 +1348,7 @@ $("#datepicker2").datepicker({
 
 <script>
 
-     function register_main(e){  alert('hello'); 
+     function register_main(e){ 
         e.preventDefault();
             $.ajax({
                 url: "register",
@@ -1252,13 +1361,23 @@ $("#datepicker2").datepicker({
                     $('#types').show();
                     document.getElementById('type').value=1;
                     $('#typeZero').hide();
+                    $('#header').hide();
+                    $('#choose').show();
+
+                     $('#errors').html('');
 
                                        
                 },
                 error:function(error){
-                    console.log(error);
-                    $('#errors').html('<p class="btn btn-light text-center text-danger">'+error+'</p>');
+                    var err = JSON.parse(error.responseText);
+                    console.log(err.errors);
+                    if(err.errors.email)
+                    $('#errors').html('<p class="btn btn-light text-center text-danger">'+err.errors.email+'</p>');
+
+                if(err.errors.password)
+                    $('#errors').html('<p class="btn btn-light text-center text-danger">'+err.errors.password+'</p>');
                      }
+
            
             });
  
@@ -1266,6 +1385,6 @@ $("#datepicker2").datepicker({
 
 </script>
 
-
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 </html>

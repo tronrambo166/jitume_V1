@@ -24,6 +24,11 @@ class PagesController extends Controller
 {
     //-------------------Login-Register
 
+    public function skip(){
+        Session::put('investor_auth',true);
+        return redirect('/');
+    }
+
     public function loginB(Request $request){   
     $email = $request->email;  
     $password = $request->password;    
@@ -71,41 +76,25 @@ class PagesController extends Controller
         
     }
 
-    public function registerS(Request $request){
-$fname = $request->fname;
-$mname = $request->mname;
-$lname = $request->lname;
-$email = $request->email;
- 
-$password = $request->password;
-$c_password = $request->c_password;
-if($password != $c_password) {
-  Session::put('login_err','Passwords do not match!');
-  return redirect()->back();
-}
-
-$password = Hash::make($request->password);
-$phone = $request->phone;
+public function registerS(Request $request){
 $service = 1;
-
-$user = User::where('email',$email)->first();
-if($user) {
-  Session::put('login_err','User already exists with this email!');
-    return redirect()->back();
-}
+$user = User::latest()->first();
 
 try {
- User::create([
-            'fname' => $fname,
-            'mname' => $mname,
-            'lname' => $lname,
-            'email' => $email,
-            'password' => $password,
-            //'phone' => $phone,
+ User::where('id',$user->id)->update([
             'service' => $service           
-           ]);       
-;
+           ]);
+        Session::put('service_email', $user->email);       
         Session::put('auth_service','Registration Success! Please Log In to continue.');
+
+        if (Session::has('social_reg')) {
+         Session::put('service_auth',true);   
+         return redirect('services');
+
+          } 
+
+        Auth::logout();
+        session_unset();
         return redirect('/');
 
 } catch (\Exception $e) {
@@ -118,46 +107,100 @@ Session::put('login_err',$e->getMessage());
 
 
 public function registerB(Request $request){
-$fname = $request->fname;
-$mname = $request->mname;
-$lname = $request->lname;
-$email = $request->email;
-
-$password = $request->password;
-$c_password = $request->c_password;
-if($password != $c_password) {
-  Session::put('login_err','Passwords do not match!');
-  return redirect()->back();
-}
-
-$password = Hash::make($request->password);
-$phone = $request->phone;
 $business = 1;
-
-$user = User::where('email',$email)->first();
-if($user) {
-  Session::put('login_err','User already exists with this email!');
-    return redirect()->back();
-}
+$user = User::latest()->first();
 
 try {
- User::create([
-            'fname' => $fname,
-            'mname' => $mname,
-            'lname' => $lname,
-            'email' => $email,
-            'password' => $password,
-            //'phone' => $phone,
+ User::where('id',$user->id)->update([
             'business' => $business           
-           ]);       
-;
-        Session::put('auth_business','Registration Success! Please Log In to continue.');
+           ]); 
+
+        Session::put('business_email', $user->email); 
+        Session::put('auth_business','Registration Success! Please Log In to continue!');
+
+        if (Session::has('social_reg')){
+            Session::put('business_auth',true);
+            return redirect('business');
+        } 
+        
+
+        Auth::logout();
+        session_unset();
         return redirect('/');
 
 } catch (\Exception $e) {
 
 Session::put('login_err',$e->getMessage());
     return redirect()->back(); 
+}
+}
+
+public function registerI(Request $request){
+$investor = 1;
+$user = User::latest()->first();
+$inv_id = $user->id;
+
+try {
+ $passport=$request->file('id_passport');
+ if(isset($request->pin))
+ $pin=$request->file('pin');
+
+ if (!file_exists('files/investor/'.$inv_id)) 
+          mkdir('files/investor/'.$inv_id, 0777, true);
+          $loc='files/investor/'.$inv_id.'/';
+
+ if(isset($pin) && $pin !=null) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($pin->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('login_err','For pin, Only pdf & docx are allowed!');
+            return redirect('/');
+          }
+
+          $create_name=$uniqid.'.'.$ext;    
+          //Move uploaded file
+          $pin->move($loc, $create_name);
+          $final_pin=$loc.$create_name;
+             }else $final_pin=null;
+
+   if($passport) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($passport->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('login_err','For passport, Only pdf & docx are allowed!');
+            return redirect('/');
+          }
+
+          $create_name=$uniqid.'.'.$ext;
+          $passport->move($loc, $create_name);
+          $final_passport=$loc.$create_name;
+             }else $final_passport=''; 
+
+
+            User::where('id',$inv_id)->update([
+            'investor' => $investor,
+            'pin' => $final_pin,
+            'id_passport' => $final_passport           
+           ]); 
+
+        if (Session::has('social_reg')){
+        Session::put('investor_email', $user->email);    
+        Session::put('investor_auth',true);
+         return redirect('/');
+        } 
+                
+
+        Auth::logout();
+        session_unset();   
+        Session::put('auth_investor','Registration Success! Please Log In to continue.');
+        return redirect('/');
+
+} catch (\Exception $e) {
+
+    Session::put('login_err',$e->getMessage());
+    redirect()->back(); 
 }
 }
 

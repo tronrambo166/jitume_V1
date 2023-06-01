@@ -1,5 +1,4 @@
 @extends('layout')
-
 @section('page')
     <div class=" w-75 m-auto px-5 container" id="">
         

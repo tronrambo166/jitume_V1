@@ -97,6 +97,7 @@ Auth::routes();
 Route::post('loginB', 'PagesController@loginB')->name('loginB');
 //Route::get('logoutB', 'BusinessController@logoutB')->name('logoutB'); 
 Route::post('registerB', 'PagesController@registerB')->name('registerB'); 
+Route::post('registerI', 'PagesController@registerI')->name('registerI');
 Route::get('business', 'BusinessController@business')->name('business');
 
 Route::prefix('/business')->group(function(){
@@ -175,3 +176,16 @@ Route::get('milestoneStripe', 'checkoutController@milestoneCheckout')->name('mil
 Route::post('milestonestripe', 'checkoutController@milestoneStripePost')->name('milestonestripe.post');
 
 //Route::post('register', 'BusinessController@test')->name('register');
+
+//SOCIAL
+Route::get('social_login',function (){return view('social_types');})->name('social_login');
+
+Route::get('/google', function (){
+return Socialite::driver('google')->redirect(); })->name('login.google');
+Route::get('google/callback','socialController@google');
+ 
+Route::get('/facebook', function () {
+return Socialite::driver('facebook')->redirect(); })->name('login.facebook');
+Route::get('facebook/callback', 'socialController@facebook');
+
+Route::get('skip', 'PagesController@skip')->name('skip');

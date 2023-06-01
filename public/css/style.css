@@ -450,10 +450,37 @@ background: lightgray;
    font-size: 12px;
  }       
 		
+.create{
+    font-size: 13px;
+    border: 1px solid #08b73e;
+    color: #08b73e;
+}	
 		
-		
-		
-		
+.social_btn{
+    font-family: system-ui;
+    background:#3B5998; 
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+
+}	
+.social_btn2{
+    font-family: system-ui;
+    background:#f1f1f1; 
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+
+}   
+a:hover{text-decoration: none;}
+
+.fa-google {
+  background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}	
 		
 		
 		
