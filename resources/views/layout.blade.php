@@ -104,7 +104,7 @@
 
         <div class="col-sm-6 py-1 text-center">
         <a v-if="" onclick="event.preventDefault();
-     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Logout</b></a>
+     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Sign Out</b></a>
 
       </div> 
 
@@ -113,12 +113,12 @@
 
      @elseif(Auth::check()) 
       <a v-if="" onclick="event.preventDefault();
-     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class="float-right text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Logout</b></a>
+     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class="float-right text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Sign Out</b></a>
 
 
       @elseif(Session::has('investor_auth') && Session::get('investor_auth') == true)
        <a v-if="" onclick="event.preventDefault();
-     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class="float-right text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Logout</b></a>
+     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class="float-right text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Sign Out</b></a>
 
 
 
@@ -168,6 +168,19 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>  @endif
+
+
+        @if(Session::has('auth_investor'))
+        <div class="w-50 m-auto alert alert-success alert-dismissible fade show" role="alert">
+          <p class="font-weight-bold">{{Session::get('auth_investor')}}   @php Session::forget('auth_investor'); @endphp </p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>  
+
+         @endif 
+
+
 
 @if(isset($errors))
 
@@ -524,7 +537,7 @@ $("#datepicker2").datepicker({
 
             <!-- TYPES -->    
             <input hidden type="number" value="" id="type"/>
-            <div id="types" class="collapse card-header w-100">
+            <div id="types" class="collapse card-header w-100 text-center">
 
             <button  id="user"onclick="user()" class="w-25 btn  font-weight-bold px-3 mr-2">{{ __('Investor') }}</button>
 
@@ -533,6 +546,25 @@ $("#datepicker2").datepicker({
             <button  id="business" onclick="business()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Business") }}</button>
 
              <button  id="service" onclick="service()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Service") }}</button>
+            </div>
+
+
+            <div class="row collapse" id="skip">
+                <div class="col-md-12 ">
+                                <p  class="text-center mb-0 mt-2">Or
+                                </p>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <a href="{{route('home')}}" class="mt-0 w-25 d-block mx-auto btn px-2 py-1 create">
+                                    {{ __('Skip') }}
+                                </a>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <p  class="text-center w-75 mx-auto my-2">To create regular Jitume account and donate/puchase business services
+                                </p>
+                            </div>
             </div>
             <!-- TYPES --> 
 
@@ -618,7 +650,7 @@ $("#datepicker2").datepicker({
                             </div>
 
                             <div class="col-md-10">
-                                <p style="font-family:system-ui;" class="text-secondary small mb-0">I have read and agree to the<a class="small d-inline" href="terms">Terms of Use</a> and<a class="small d-inline" href="terms">Privacy Policy</a></p>
+                                <p style="font-family:system-ui;" class="text-secondary small mb-0">I have read and agree to the<a class="small d-inline"  target="_black" href="terms">Terms of Use</a> and<a class="small d-inline" target="_black" href="privacy-policy">Privacy Policy</a></p>
                             </div>
                         </div>
 
@@ -729,7 +761,7 @@ $("#datepicker2").datepicker({
                             </div>
 
                             <div class="col-md-12 ">
-                                <a href="{{route('home')}}" class="mt-0 w-25 d-block mx-auto btn px-2 create">
+                                <a href="{{route('home')}}" class="py-1 mt-0 w-25 d-block mx-auto btn px-2 create">
                                     {{ __('Skip') }}
                                 </a>
                             </div>
@@ -765,7 +797,7 @@ $("#datepicker2").datepicker({
                             </div>
 
                             <div class="col-md-12 ">
-                                <a href="{{route('home')}}" class="mt-0 w-25 d-block mx-auto btn px-2 create">
+                                <a href="{{route('home')}}" class="mt-0 w-25 d-block mx-auto btn px-2 py-1 create">
                                     {{ __('Skip') }}
                                 </a>
                             </div>
@@ -800,7 +832,7 @@ $("#datepicker2").datepicker({
                             </div>
 
                             <div class="col-md-12 ">
-                                <a href="{{route('home')}}" class="mt-0 w-25 d-block mx-auto btn px-2 create">
+                                <a href="{{route('home')}}" class="mt-0 w-25 d-block mx-auto btn px-2 py-1 create">
                                     {{ __('Skip') }}
                                 </a>
                             </div>
@@ -833,7 +865,7 @@ $("#datepicker2").datepicker({
  <!-- HIDDEN login-->  <!-- HIDDEN login-->  <!-- HIDDEN login-->  <!-- login-->
 
   <div class="card" id="all_logins">
-    <div class="card-header w-100">
+    <div class="card-header w-100 text-center">
             <button  id="usr_log"onclick="user_log()" class="w-25 btn  font-weight-bold px-3 mr-2">{{ __('Investor') }}</button>
             <button  id="art_log" onclick="business_log()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Business") }}</button>
 
@@ -1310,6 +1342,8 @@ $("#datepicker2").datepicker({
      $('#user_reg').hide();
      $('#business_reg').hide();
      $('#serv_reg').hide();
+
+     $('#skip').hide();
     }
 
     
@@ -1323,6 +1357,8 @@ $("#datepicker2").datepicker({
     $('#user_reg').hide();
     $('#business_reg').show();
     $('#serv_reg').hide();
+
+    $('#skip').hide();
     
     }
 
@@ -1335,6 +1371,8 @@ $("#datepicker2").datepicker({
     $('#user_reg').hide();
     $('#business_reg').hide();
     $('#serv_reg').show();
+
+    $('#skip').hide();
     
     }
 
@@ -1359,6 +1397,7 @@ $("#datepicker2").datepicker({
                     $('#typeZero').hide();
                     $('#header').hide();
                     $('#choose').show();
+                    $('#skip').show();
 
                      $('#errors').html('');
 
