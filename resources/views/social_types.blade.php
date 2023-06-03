@@ -34,7 +34,13 @@
   
 </head>
 
-
+ @if(Session::has('login_err'))
+        <div class="w-50 m-auto alert alert-danger alert-dismissible fade show" role="alert">
+          <p class="font-weight-bold">{{Session::get('login_err')}}   @php Session::forget('login_err'); @endphp </p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>  @endif
 
 
 
@@ -46,7 +52,7 @@
       <div class="modal-body">
         <div class="row justify-content-center py-0 mb-5">
           <div class="px-0">
-          <h5 class="text-secondary font-weight-bold text-center btn btn-light w-100 m-auto">Please choose the register type!</h5>
+          <h5 class="text-secondary font-weight-bold text-center btn btn-light w-100 m-auto">Please choose the account type!</h5>
           </div>  
 
         <div class="px-0 w-100 py-2">
