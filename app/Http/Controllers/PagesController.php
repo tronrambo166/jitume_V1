@@ -162,7 +162,7 @@ try {
           //Move uploaded file
           $pin->move($loc, $create_name);
           $final_pin=$loc.$create_name;
-             }else $final_pin=null;
+             } else $final_pin=null;
 
    if($passport) {
           $uniqid=hexdec(uniqid());
@@ -200,7 +200,7 @@ try {
 } catch (\Exception $e) {
 
     Session::put('login_err',$e->getMessage());
-    redirect()->back(); 
+     return redirect()->back(); 
 }
 }
 

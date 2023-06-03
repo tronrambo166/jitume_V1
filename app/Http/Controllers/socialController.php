@@ -88,7 +88,12 @@ class socialController extends Controller
         Session::put('investor_auth',true);
         return '/';
 
-      } else return '/';
+      } else {
+        Session::put('investor_email', $email);    
+        Session::put('investor_auth',true);
+        return '/';
+
+      }
 
       }
       else{ 
