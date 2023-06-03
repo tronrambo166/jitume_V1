@@ -306,7 +306,7 @@
 
                  <div class="col-sm-6 m-auto text-center">
                     
-                    <p class="text-center text-secondary pt-2">© JITUME PROJECT. All Rights Reserved.
+                    <p class="text-center text-secondary pt-2">© JITUME. All Rights Reserved.
                     </p>
                 </div>
 
@@ -484,7 +484,7 @@ $("#datepicker2").datepicker({
       <div id="header"  class="modal-header">
 
         <div class="card-header w-100">
-            <button id="login" onclick="logins()" class="w-25 btn   px-4 mr-2">{{ __('Log In') }}</button>
+            <button id="login" onclick="logins()" class="w-25 btn   px-4 mr-2">{{ __('Sign In') }}</button>
             <button  id="register" onclick="registers()" class="w-25 btn  px-4">{{ __('Register') }}</button>
 
              @if(Session::has('email')) <p class="text-danger ml-5">{{Session::get('email')}} @php Session::forget('email'); @endphp </p> @endif
@@ -501,7 +501,7 @@ $("#datepicker2").datepicker({
       <div class="modal-body">
 
          <div id="choose" class="px-0 collapse">
-          <h5 class="text-secondary font-weight-bold text-center btn btn-light w-100 m-auto">Please choose the register type!</h5>
+          <h5 class="text-secondary font-weight-bold text-center btn btn-light w-100 m-auto">Please choose the account type!</h5>
           </div> 
 
         
@@ -865,6 +865,7 @@ $("#datepicker2").datepicker({
  <!-- HIDDEN login-->  <!-- HIDDEN login-->  <!-- HIDDEN login-->  <!-- login-->
 
   <div class="card" id="all_logins">
+
     <div class="card-header w-100 text-center">
             <button  id="usr_log"onclick="user_log()" class="w-25 btn  font-weight-bold px-3 mr-2">{{ __('Investor') }}</button>
             <button  id="art_log" onclick="business_log()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Business") }}</button>
