@@ -21,7 +21,7 @@ class ServiceController extends Controller
 
  public function __construct()
     {
-        $this->middleware('service');
+        $this->middleware('business');
     }
 
 public function auth_id(){
@@ -37,8 +37,8 @@ public function logoutS(){
 
 
 public function services(){
-$services = Services::where('user_id',$this->auth_id())->get();
-return view('services.index',compact('services'));
+$listings = Services::where('shop_id',Auth::id())->latest()->get();
+return view('services.listings',compact('listings'));
 }
 
 public function add_listing(){
@@ -48,12 +48,12 @@ return view('services.add-listing');
 }
 
 public function home(){
-$services = Services::where('shop_id',$this->auth_id())->get();
+$services = Services::where('shop_id',Auth::id())->get();
 return view('services.index',compact('services'));
 }
 
 public function listings(){
-$listings = Services::where('shop_id',$this->auth_id())->latest()->get();
+$listings = Services::where('shop_id',Auth::id())->latest()->get();
 return view('services.listings',compact('listings'));
 }
 
@@ -69,7 +69,7 @@ $pin = $request->pin;
 $identification = $request->identification;
 $document = $request->document;
 $video = $request->video;
-$user_id = $this->auth_id();
+$user_id = Auth::id();
 
 $listing = Services::latest()->first();
 $listing = ($listing->id)+1;
@@ -208,7 +208,7 @@ $category = $request->category;
 $details = $request->details;
 $price = $request->price;
 $location = $request->location;
-$user_id = $this->auth_id();
+$user_id = Auth::id();
 $old_img = $request->old_img;
 $id = $request->id;
 
@@ -268,7 +268,7 @@ $eq_name = $request->eq_name;
 $value = $request->value;
 $amount = $request->amount;
 $details = $request->details;
-$user_id = $this->auth_id();
+$user_id = Auth::id();
 
 Equipments::create([
             'eq_name' => $eq_name,
@@ -284,7 +284,7 @@ Equipments::create([
 public function add_docs(Request $request){
 //$name = $request->name;
 $listing = $request->listing;
-$user_id = $this->auth_id();
+$user_id = Auth::id();
 
           $files=$request->file('files'); //print_r($files);
  
@@ -325,7 +325,7 @@ $user_id = $this->auth_id();
 public function add_video(Request $request){
 //$name = $request->name;
 $listing = $request->listing;
-$user_id = $this->auth_id();
+$user_id = Auth::id();
 
 
           $single_img=$request->file('files'); //print_r($files);
@@ -366,7 +366,7 @@ $user_id = $this->auth_id();
 public function embed_service_videos(Request $request){
 $link = $request->link;
 $listing = $request->listing;
-$user_id = $this->auth_id();
+$user_id = Auth::id();
 
            serviceDocs::create([
             'user_id' => $user_id,

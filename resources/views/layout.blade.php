@@ -79,8 +79,8 @@
    
 
      <li style="list-style-type: none;" class="w-100 ml-2 mt-3 nav-item py-1 px-3 text-light ">
-
-    @if(Session::has('business_auth') && Session::get('business_auth') == true)
+<!-- 
+    (Session::has('business_auth') && Session::get('business_auth') == true)
 
     <div class="row">
      <div class="col-sm-6 py-1 text-center">
@@ -95,7 +95,7 @@
      </div>
 
 
-    @elseif(Session::has('service_auth') && Session::get('service_auth') == true)
+    (Session::has('service_auth') && Session::get('service_auth') == true)
 
     <div class="row">
      <div class="col-sm-6 py-1 text-center">
@@ -109,22 +109,40 @@
       </div> 
 
      </div>
+ -->
+
+     @if(Auth::check()) 
+    <div class="row">
+     <div class="col-sm-6 py-1 text-center">
+         <a  href="{{route('business')}}" style="background: aliceblue; border-radius: 15px;" class=" text-dark small d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a> 
+    </div> 
+       
+    <div class="col-sm-6 py-1 text-center">
+        <a v-if="" onclick="event.preventDefault();
+     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Sign Out</b></a>
+      </div> 
+
+     </div>
 
 
-     @elseif(Auth::check()) 
-      <a v-if="" onclick="event.preventDefault();
-     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class="float-right text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Sign Out</b></a>
+     @elseif (Session::has('investor_auth') && Session::get('investor_auth') == true)
 
+     <div class="row">
+     <div class="col-sm-6 py-1 text-center">
+         <a  href="{{route('business')}}" style="background: aliceblue; border-radius: 15px;" class=" text-dark small d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a> 
+    </div> 
+       
+    <div class="col-sm-6 py-1 text-center">
+        <a v-if="" onclick="event.preventDefault();
+     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Sign Out</b></a>
+      </div> 
 
-      @elseif(Session::has('investor_auth') && Session::get('investor_auth') == true)
-       <a v-if="" onclick="event.preventDefault();
-     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class="float-right text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Sign Out</b></a>
+     </div>
 
-
-
-     @else     
+      @else     
       <a  data-target="#loginModal" data-toggle="modal" style="background: white; border-radius: 15px;cursor: pointer; " class="float-right text-dark px-sm-3 px-1 py-2 d-inline-block small text-center" ><b>Sign In</b></a>
-      @endif 
+
+      @endif
 
        </li>
                                     
@@ -143,13 +161,13 @@
 
     <div class="row">
 
-        @if(Session::has('login_err'))
+       <!--  @if(Session::has('login_err'))
         <div class="w-50 m-auto alert alert-danger alert-dismissible fade show" role="alert">
           <p class="font-weight-bold">{{Session::get('login_err')}}   @php Session::forget('login_err'); @endphp </p>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        </div>  @endif
+        </div>  @endif -->
 
 
         @if(Session::has('auth_service'))
@@ -195,7 +213,7 @@
 
 @endif
 
-        <!-- @error('email')
+        <!--  @error('email')
         <div class="w-50 m-auto alert alert-danger alert-dismissible fade show" role="alert">
           <p class="font-weight-bold">{{$message}} </p>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -211,7 +229,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div> 
-        @enderror -->
+        @enderror
 
 
          @error('name')
@@ -222,7 +240,7 @@
           </button>
         </div> 
         @enderror
-
+ -->
                    
         </div>
        
@@ -571,7 +589,8 @@ $("#datepicker2").datepicker({
 
 
                     <div id="user_reg" class=" card-body">
-                    <form id="register_main" onsubmit="register_main(event);"  enctype="multipart/form-data">
+                    <!-- onsubmit="register_main(event);" -->
+                    <form method="POST" action="{{ route('register') }}" id="register_main" enctype="multipart/form-data">
                         @csrf
 
                        
@@ -669,13 +688,13 @@ $("#datepicker2").datepicker({
 
 
                         <div class="row mb-3 w-75 m-auto">
-                            <div class="col-md-12">
+                            <!-- <div class="col-md-12">
                                 @if(config('services.recaptcha.key'))
                                     <div class="g-recaptcha"
                                         data-sitekey="{{config('services.recaptcha.key')}}">
                                     </div>
                                 @endif
-                            </div>
+                            </div> -->
                         </div>
 
 
@@ -816,7 +835,7 @@ $("#datepicker2").datepicker({
                 <!-- HIDDEN SERVICE REG -->
 
                 <div id="serv_reg" class=" collapse card-body">
-                    <form method="POST" action="{{route('registerS')}}" enctype="multipart/form-data">
+                    <form method="POST" action="" enctype="multipart/form-data">
                         @csrf    
                      
                         <div class="row mb-4">
@@ -866,13 +885,13 @@ $("#datepicker2").datepicker({
 
   <div class="card" id="all_logins">
 
-    <div class="card-header w-100 text-center">
+    <!-- <div class="card-header w-100 text-center">
             <button  id="usr_log"onclick="user_log()" class="w-25 btn  font-weight-bold px-3 mr-2">{{ __('Investor') }}</button>
             <button  id="art_log" onclick="business_log()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Business") }}</button>
 
              <button  id="service_log" onclick="service_log()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Service") }}</button>
 
-            </div>
+            </div> -->
 
  <div id="user_log" class="card-body text-center py-0">
 
@@ -889,11 +908,11 @@ $("#datepicker2").datepicker({
 
                                           
 
-                                          @error('password')
+                                         <!--  @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                           @enderror
+                                           @enderror -->
 
                                        
                                            
@@ -924,7 +943,7 @@ $("#datepicker2").datepicker({
   <!-- HIDDEN SERVICE LOG -->
   <div id="serv_log" class="collapse card-body text-center py-0">
 
-                    <form action="{{route('loginS')}}" method="POST" class="d-inline form-inline" >
+                    <form action="" method="POST" class="d-inline form-inline" >
                         @csrf
                                   
                                             <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" 
@@ -1073,18 +1092,42 @@ $("#datepicker2").datepicker({
                 <!-- HIDDEN USER REG -->
 
                     <div id="user_regs" class=" collapse card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-                        @csrf
+                  <form method="POST" action="{{route('registerI')}}" enctype="multipart/form-data">
+                        @csrf    
+
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __( 'Name') }} <span  class="text-danger">*</span></label>
+                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('First Name') }} <span title="Required" class="text-danger">*</span></label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
 
-                              
+                               
                             </div>
                         </div>
+
+
+                         <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Middle Name') }} <span title="Required" class="text-danger"></span></label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="mname" value="{{ old('mname') }}"  autocomplete="name" autofocus>
+
+                               
+                            </div>
+                        </div>
+
+
+                         <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Last Name') }} <span title="Required" class="text-danger">*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus>
+
+                               
+                            </div>
+                        </div>
+
 
            
 
@@ -1095,11 +1138,7 @@ $("#datepicker2").datepicker({
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                
                             </div>
                         </div>
 
@@ -1109,11 +1148,7 @@ $("#datepicker2").datepicker({
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                               
                             </div>
                         </div>
                         
@@ -1124,23 +1159,76 @@ $("#datepicker2").datepicker({
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                               
                             </div>
                         </div>
 
+
+                        <div class="row mb-1">
+                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Upload Id/Passport') }}<span title="Required" class="text-danger">*</span></label>
+
+                            <div class="col-md-6">
+                            <div class="upload-btn-wrapper ml-2">
+                              <button class="btnUp_listing mr-2"> Id / Passport
+                              <img src="images/up.svg" width="24px"> </button>
+                              <input required="" type="file" name="id_passport" />
+                            </div>
+
+                               
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Upload Pin') }}<span title="Required" class="text-danger"></span></label>
+
+                            <div class="col-md-6">
+                            <div class="upload-btn-wrapper ml-2">
+                              <button class="btnUp_listing mr-2"> Pin
+                              <img src="images/up.svg" width="24px"> </button>
+                              <input  type="file" name="pin" />
+                            </div>
+
+                               
+                            </div>
+                        </div>
+
+
+                          <div class="row w-75 m-auto">
+                            <div class="col-md-1">
+                                <input id="password" type="checkbox" class=" "name="terms" required >     
+                            </div>
+
+                            <div class="col-md-10">
+                                <p style="font-family:system-ui;" class="text-secondary small mb-0">I have read and agree to the<a class="small d-inline"  target="_black" href="terms">Terms of Use</a> and<a class="small d-inline" target="_black" href="privacy-policy">Privacy Policy</a></p>
+                            </div>
+                        </div>
+
+          
                         <div class="row mb-4">
                             <div class="col-md-12 ">
-                                <button type="submit" class="w-25 d-block mx-auto btn loginBtn">
-                                    {{ __('Create') }}
+                                <button type="submit" class="mt-3 w-25 d-block mx-auto btn px-2 create">
+                                    {{ __('Create account') }}
                                 </button>
                             </div>
+
+                           <!--  <div class="col-md-12 ">
+                                <p  class="text-center mb-0 mt-2">Or
+                                </p>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <a href="{{route('home')}}" class="py-1 mt-0 w-25 d-block mx-auto btn px-2 create">
+                                    {{ __('Skip') }}
+                                </a>
                             </div> 
 
-                              
+                            <div class="col-md-12 ">
+                                <p  class="text-center w-75 mx-auto my-2">To create regular Jitume account and donate/puchase business services
+                                </p>
+                            </div> -->
+
+                            </div>
                     </form>
 
                 </div>
@@ -1165,7 +1253,7 @@ $("#datepicker2").datepicker({
 
  <div id="user_logs" class="text-center py-0">
 
-                          <form method="POST" class="" action="{{route('login')}}">
+                          <form method="POST" class="" action="{{route('loginI')}}">
                            @csrf
 
                                           <div class="row">  <span style="padding-left: 30px;" class="font-weight-bold w-25 mt-3 text-left">Email</span>   <input style="border: 1px solid;" class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="" id="inputEmailAddress" 

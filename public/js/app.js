@@ -8059,6 +8059,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -64574,9 +64582,9 @@ var render = function () {
                       [
                         _c(
                           "div",
-                          { staticClass: "row pt-2", attrs: { width: "85%" } },
+                          { staticClass: "row pt-2", attrs: { width: "90%" } },
                           [
-                            _c("div", { staticClass: "col-sm-3 px-1" }, [
+                            _c("div", { staticClass: "col-sm-2 px-1" }, [
                               _c("div", { staticClass: "" }, [
                                 _c("input", {
                                   directives: [
@@ -64677,7 +64685,7 @@ var render = function () {
                               ),
                             ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-1 px-1" }, [
+                            _c("div", { staticClass: "col-1 py-1" }, [
                               _c("div", { staticClass: "form-group" }, [
                                 _c(
                                   "button",
@@ -64747,6 +64755,33 @@ var render = function () {
                             }),
                             _vm._v(" "),
                             _vm._m(0, true),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-sm-3 p-1" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "rounded border border-dark px-2 d-inline-block",
+                                },
+                                [
+                                  _c(
+                                    "p",
+                                    {
+                                      staticClass:
+                                        "text-success due small d-inline",
+                                      staticStyle: { "font-size": "12px" },
+                                    },
+                                    [_vm._v("Due in: ")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    { staticClass: "small due d-inline" },
+                                    [_vm._v(_vm._s(result.time_left))]
+                                  ),
+                                ]
+                              ),
+                            ]),
                           ]
                         ),
                       ]
@@ -64962,13 +64997,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2 px-1" }, [
+    return _c("div", { staticClass: "col-1 p-1" }, [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "span",
           {
             staticClass:
-              "text-center border border-dark p-0 btn btn-success btn-block",
+              "status text-center border border-dark p-0 btn btn-success btn-block",
           },
           [_vm._v("In Progress")]
         ),
@@ -64996,13 +65031,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 px-1" }, [
+    return _c("div", { staticClass: "col-1 py-1" }, [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "a",
           {
             staticClass:
-              "text-center border border-dark p-0 btn btn-light btn-block",
+              "text-center border border-dark py-0 btn btn-light btn-block",
             attrs: { disabled: "" },
           },
           [_vm._v("PAID")]
@@ -65014,14 +65049,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2 px-1" }, [
+    return _c("div", { staticClass: "col-1 p-1" }, [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "span",
           {
             staticClass:
-              "text-center border text-light border-dark p-0 btn btn-block",
-            staticStyle: { background: "#2f3a8f" },
+              "status text-center border text-light border-dark p-0 btn btn-block",
+            staticStyle: { background: "black" },
           },
           [_vm._v("Done!")]
         ),
@@ -65049,7 +65084,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 px-1" }, [
+    return _c("div", { staticClass: "col-1 py-1" }, [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "a",
@@ -65067,13 +65102,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2 px-1" }, [
+    return _c("div", { staticClass: "col-1 p-1" }, [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "span",
           {
             staticClass:
-              "text-center border border-dark p-0 btn btn-light btn-block",
+              "status text-center border border-dark p-0 btn btn-light btn-block",
           },
           [_vm._v("On Hold")]
         ),

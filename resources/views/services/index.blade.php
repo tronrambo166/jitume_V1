@@ -1,4 +1,4 @@
-@extends('services.layout')
+@extends('business.layout')
 
 @section('page')
     <div class="container h-100">
@@ -11,9 +11,15 @@
 
     <div class="h-75 w-100 m-auto d-flex align-items-center justify-content-center">
 
-        <div><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary ">
+        <div class="w-50 text-center m-auto"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary ">
+                        <a href="{{route('add-listing')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold" href="">Add Business</a>
+                    </li> </div>
+
+
+                    <div class="w-50 text-center m-auto"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary ">
                         <a href="{{route('add-services')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold" href="">Add Service</a>
                     </li> </div>
+
 <!-- 
         <div class="row w-50 mx-auto">
         <div class="col-sm-12">

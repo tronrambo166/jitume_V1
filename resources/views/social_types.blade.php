@@ -44,7 +44,7 @@
 
 
 
- <div  class="modal show" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: block;">
+ <div  class="modal show my-5" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: block;">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="max-width: 620px;border-radius: 2px;">
 

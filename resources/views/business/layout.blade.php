@@ -112,21 +112,31 @@
                         <ul class="sidebar text-light" style="color:white;">
                            
                             <li class="{{ Request::is('admin/index_admin') ? 'active' : '' }}"> 
-                                <a class="font-weight-bold text-light" href="{{route('business')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                                <a class="navLink" href="{{route('business')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
                             </li>
 
 
                             
-                            
-
                             <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
-                                <a class="font-weight-bold text-light" href="{{route('add-listing')}}"><i class=" fe fe-layout"></i> <span>Add Business</span></a>
+                                <a class="navLink" href="{{route('add-services')}}"><i class=" fe fe-layout"></i> <span>Add Service</span></a>
                             </li>
 
-                            <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
-                                <a class="font-weight-bold text-light" href="{{route('listings')}}"><i class=" fe fe-layout"></i> <span>My Business</span></a>
+                        
 
-                                <a class="font-weight-bold text-light" href="{{route('add_milestones')}}"><i class=" fe fe-layout"></i> <span>Add Milestone</span></a>
+                            <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('add-listing')}}"><i class=" fe fe-layout"></i> <span>Add Business</span></a>
+                            </li>
+
+
+                             <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('services')}}"><i class=" fe fe-layout"></i> <span>My Services</span></a>
+                            </li>
+
+
+                            <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('listings')}}"><i class=" fe fe-layout"></i> <span>My Business</span></a>
+
+                                <a class="navLink" href="{{route('add_milestones')}}"><i class=" fe fe-layout"></i> <span>Add Milestone</span></a>
 
                                 
 

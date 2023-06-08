@@ -120,20 +120,13 @@ Route::post('add_doc', 'BusinessController@add_docs')->name('add_doc');
 Route::post('add_video', 'BusinessController@add_video')->name('add_video');
 Route::post('embed_business_video', 'BusinessController@embed_business_video')->name('embed_business_video');
 
-});
 
-
-//-- Service ROUTES
-Route::post('loginS', 'PagesController@loginS')->name('loginS');
-//Route::get('logoutS', 'ServiceController@logoutS')->name('logoutS'); 
-Route::post('registerS', 'PagesController@registerS')->name('registerS'); 
+//Service
 Route::get('services', 'ServiceController@services')->name('services');
-
-Route::prefix('/services')->group(function(){
-  Route::get('add-services', 'ServiceController@add_listing')->name('add-services');
-  Route::post('create-service', 'ServiceController@save_listing')->name('create-service');
-  Route::get('/', 'ServiceController@home')->name('services/index');
-  Route::get('services', 'ServiceController@listings')->name('services');
+Route::get('add-services', 'ServiceController@add_listing')->name('add-services');
+Route::post('create-service', 'ServiceController@save_listing')->name('create-service');
+Route::get('/', 'BusinessController@home')->name('services/index');
+Route::get('services', 'ServiceController@listings')->name('services');
 //Route::post('add_eqp', 'ServiceController@add_eqp')->name('add_eqp');
 Route::post('up_service', 'ServiceController@up_listing')->name('up_service');
 Route::get('delete_service/{id}', 'ServiceController@delete_service')->name('delete_service');
@@ -143,6 +136,15 @@ Route::post('add_video', 'ServiceController@add_video')->name('add_videos');
 Route::post('embed_service_videos', 'ServiceController@embed_service_videos')->name('embed_service_videos');
 
 });
+
+
+//-- Investor ROUTES
+Route::post('loginI', 'PagesController@loginI')->name('loginI');
+//Route::get('logoutS', 'ServiceController@logoutS')->name('logoutS'); 
+Route::post('registerI', 'PagesController@registerI')->name('registerI'); 
+
+
+//Route::prefix('/services')->group(function(){});
 
 
 

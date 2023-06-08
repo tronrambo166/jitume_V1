@@ -16,17 +16,18 @@ use Hash;
 use Auth;
 use Mail;
 use DB;
+use DateTime;
 
 class BusinessController extends Controller
 {
 
   public function test(){
-    return response->json(['data' => 'OKAY']);
+    return response()->json(['data' => 'OKAY']);
   }
 
 //private $auth_id;
    public function __construct()
-    {
+    { 
         $this->middleware('business');   
     }
 
@@ -43,7 +44,7 @@ public function logoutB(){
 
 
 public function business(){
-$business = listing::where('user_id',$this->auth_id())->get();
+$business = listing::where('user_id',Auth::id())->get();
 return view('business.index',compact('business'));
 }
 
@@ -54,13 +55,13 @@ return view('business.add-listing');
 }
 
 public function home(){
-$business = listing::where('user_id',$this->auth_id())->get();
+$business = listing::where('user_id',Auth::id())->get();
 return view('business.index',compact('business'));
 }
 
 
 public function listings(){
-$listings = Listing::where('user_id',$this->auth_id())->latest()->get();
+$listings = Listing::where('user_id',Auth::id())->latest()->get();
 return view('business.listings',compact('listings'));
 }
 
@@ -81,7 +82,7 @@ $pin = $request->pin;
 $identification = $request->identification;
 $document = $request->document;
 $video = $request->video;
-$user_id = $this->auth_id();
+$user_id = Auth::id();
 
 $listing = Listing::latest()->first();
 $listing = ($listing->id)+1;
@@ -229,7 +230,7 @@ $location = $request->location;
 $investment_needed = $request->investment_needed;
 $share = $request->share;
 //$contact_mail = $request->contact_mail;
-$user_id = $this->auth_id();
+$user_id = Auth::id();
 $id = $request->id;
 
  $image=$request->file('image');
@@ -288,7 +289,7 @@ $eq_name = $request->eq_name;
 $value = $request->value;
 $amount = $request->amount;
 $details = $request->details;
-$user_id = $this->auth_id();
+$user_id = Auth::id();
 
 Equipments::create([
             'eq_name' => $eq_name,
@@ -309,8 +310,8 @@ return redirect()->back();
 }
 
 public function add_milestones(){
-$milestones = Milestones::where('user_id',$this->auth_id())->latest()->get();
-$business = listing::where('user_id',$this->auth_id())->get();
+$milestones = Milestones::where('user_id',Auth::id())->latest()->get();
+$business = listing::where('user_id',Auth::id())->get();
 return view('business.add_milestones',compact('business','milestones'));
 }
 
@@ -319,6 +320,15 @@ public function getMilestones($id){
   foreach($milestones as $mile){
   if($mile->status == 'In Progress') $c++;
   if($mile->status != 'Done') $d++;
+
+  //SETTING Time Diffrence
+$time_due_date = date( "Y-m-d H:i:s", strtotime($mile->created_at.' +'.$mile->n_o_days.' days 0 hours 0 minutes'));
+$start_date = new DateTime(date("Y-m-d H:i:s"));
+$since_start = $start_date->diff(new DateTime($time_due_date));
+
+$time_left = $since_start->d.' days, '.$since_start->h.' hours, '. $since_start->i.' minutes';
+$mile->time_left = $time_left;
+
 }
 
  if($c==0 && $d!=0){
@@ -352,8 +362,15 @@ public function save_milestone(Request $request){
 $title = $request->title;
 $business_id = $request->business_id;
 $amount = $request->amount;
-$user_id = $this->auth_id();
+$user_id = Auth::id();
 $status = 'Created';
+
+$time_type = $request->time_type;
+$n_o_days = $request->n_o_days;
+if($time_type == 'Weeks')
+$n_o_days = 7*$n_o_days;
+if($time_type == 'Months')
+$n_o_days = 30*$n_o_days;
 
 $mile = Milestones::where('listing_id',$business_id)->where('status','Created')->first();
 
@@ -387,6 +404,7 @@ Milestones::create([
             'listing_id' => $business_id,
             'amount' => $amount,
             'document' => $final_file,
+      			'n_o_days' => $n_o_days,
             'status' => $status           
            ]);       
 
@@ -414,7 +432,7 @@ $location = $request->location;
 $investment_needed = $request->investment_needed;
 $share = $request->share;
 //$contact_mail = $request->contact_mail;
-$user_id = $this->auth_id();
+$user_id = Auth::id();
 $id = $request->id;
 
  $image=$request->file('image');
@@ -452,7 +470,7 @@ public function add_docs(Request $request){
 //$name = $request->name;
   //return $request->all();
 $listing = $request->listing;
-$user_id = $this->auth_id();
+$user_id = Auth::id();
 
           $files=$request->file('files'); //print_r($files);
  
@@ -493,7 +511,7 @@ $user_id = $this->auth_id();
 public function add_video(Request $request){
 //$name = $request->name;
 $listing = $request->listing;
-$user_id = $this->auth_id();
+$user_id = Auth::id();
 
 
           $single_img=$request->file('files'); //print_r($files);
@@ -534,7 +552,7 @@ $user_id = $this->auth_id();
 public function embed_business_video(Request $request){
 $link = $request->link;
 $listing = $request->listing;
-$user_id = $this->auth_id();
+$user_id = Auth::id();
 
            businessDocs::create([
             'user_id' => $user_id,

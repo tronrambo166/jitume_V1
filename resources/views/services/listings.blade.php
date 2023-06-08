@@ -1,4 +1,4 @@
-@extends('services.layout')
+@extends('business.layout')
 
 @section('page')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -158,7 +158,7 @@
 
 
          @endforeach
-         @if(count($listings)==0))
+         @if(count($listings)==0)
          <td  > No data found! </td>
          @endif
     

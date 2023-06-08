@@ -262,7 +262,7 @@
 
 
          @endforeach
-         @if(count($listings)==0))
+         @if(count($listings)==0)
          <td  > No data found! </td>
          @endif
     

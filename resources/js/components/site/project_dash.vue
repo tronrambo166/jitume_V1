@@ -23,8 +23,8 @@
                                 
                                 
 
-                                <div class="row pt-2" width="85%">
-                                    <div class="col-sm-3 px-1">
+                                <div class="row pt-2" width="90%">
+                                    <div class="col-sm-2 px-1">
                                         <div class=" ">
                                             <input readonly required="" name="title" type="text" v-model="result.title"   class="placeH w-100 rounded border border-dark ">
                                         </div>
@@ -46,7 +46,7 @@
                                     </div>
 
 
-                                    <div class="col-1 px-1">
+                                    <div class="col-1 py-1">
                                         <div class="form-group">
                                         <button @click="make_session(form.id);" type="submit" class="text-center border border-dark p-0 btn btn-light btn-block" >PAY</button>                                    </div>
                                 </div>
@@ -54,10 +54,18 @@
                                 <input type="number" hidden="" name="lisitng_id" v-model="form.id">
                                 <input type="number" hidden name="milestone_id" v-model="result.id">
 
-                                <div class="col-2 px-1">
+                                <div class="col-1 p-1">
                                         <div class="form-group">
-                                        <span  class="text-center border border-dark p-0 btn btn-success btn-block" >In Progress</span>                                    </div>
+                                        <span  class="status text-center border border-dark p-0 btn btn-success btn-block" >In Progress</span>                                    </div>
                                 </div>
+
+                                <div class="col-sm-3 p-1">
+                                        <div class="rounded border border-dark px-2 d-inline-block">
+                                            <p style="font-size:12px;" class="text-success due small d-inline">Due in: </p>
+                                            <p class="small due d-inline">{{result.time_left}}</p>
+                                        </div>
+                                    </div>
+
 
                            
                                 </div>
@@ -99,14 +107,14 @@
                                     </div>
 
 
-                                    <div class="col-1 px-1">
+                                    <div class="col-1 py-1">
                                         <div class="form-group">
-                                        <a disabled class="text-center border border-dark p-0 btn btn-light btn-block" >PAID</a>                                    </div>
+                                        <a disabled class="text-center border border-dark py-0 btn btn-light btn-block" >PAID</a>                                    </div>
                                 </div>
 
-                                <div class="col-2 px-1">
+                                <div class="col-1 p-1">
                                         <div class="form-group">
-                                        <span style="background:#2f3a8f;" class="text-center border text-light border-dark p-0 btn btn-block" >Done!</span>                                    </div>
+                                        <span style="background:black;" class="status text-center border text-light border-dark p-0 btn btn-block" >Done!</span>                                    </div>
                                 </div>
 
                            
@@ -151,14 +159,14 @@
                                     </div>
 
 
-                                    <div class="col-1 px-1">
+                                    <div class="col-1 py-1">
                                         <div class="form-group">
                                         <a disabled class="text-center border border-dark p-0 btn btn-light btn-block" >PAY</a>                                    </div>
                                 </div>
 
-                                <div class="col-2 px-1">
+                                <div class="col-1 p-1">
                                         <div class="form-group">
-                                        <span  class="text-center border border-dark p-0 btn btn-light btn-block" >On Hold</span>                                    </div>
+                                        <span  class="status text-center border border-dark p-0 btn btn-light btn-block" >On Hold</span>                                    </div>
                                 </div>
 
                            

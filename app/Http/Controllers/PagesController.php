@@ -52,15 +52,15 @@ class PagesController extends Controller
     }
 
 
-    public function loginS(Request $request){   
+    public function loginI(Request $request){   
     $email = $request->email; 
     $password = $request->password;    
-    $user = User::where('email',$email)->where('service',1)->first();
+    $user = User::where('email',$email)->first();
     if($user!=''){
     if(password_verify($password, $user->password)){
-    Session::put('service_email', $email);    
-    Session::put('service_auth',true);
-    return redirect('services');
+    Session::put('investor_email', $user->email);    
+        Session::put('investor_auth',true);
+    return redirect('home');
     }
 
     else
@@ -179,23 +179,22 @@ try {
              }else $final_passport=''; 
 
 
-            User::where('id',$inv_id)->update([
-            'investor' => $investor,
+            User::create([
+            'fname' => $data['fname'],
+            'mname' => $data['mname'],
+            'lname' => $data['lname'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'email' => $data['email'],
             'pin' => $final_pin,
             'id_passport' => $final_passport           
            ]); 
 
-        if (Session::has('social_reg')){
+       
         Session::put('investor_email', $user->email);    
         Session::put('investor_auth',true);
-         return redirect('/');
-        } 
-                
+         return redirect('home');             
 
-        Auth::logout();
-        session_unset();   
-        Session::put('auth_investor','Registration Success! Please Log In to continue.');
-        return redirect('/');
 
 } catch (\Exception $e) {
 
@@ -217,7 +216,7 @@ try {
          $business=1;  
 
          if($user->service ==1 )
-          $business=2;
+          $business=2; $auth_user = true; 
          }
 
          return view('home',compact('auth_user','app_url','business'));

@@ -52,7 +52,7 @@
                                 
 
                                 <div class="row border border-dark pt-2" width="85%">
-                                    <div class="col-sm-3 px-1">
+                                    <div class="col-sm-2 px-1">
                                         <div class=" ">
                                             <input required="" name="title" type="text" placeholder="Milestone Name"  class="w-100 rounded border border-dark ">
                                         </div>
@@ -66,6 +66,57 @@
                                         </div>
                                     </div>
 
+
+                                     <div class="col-sm-2 px-1 ">
+                                        <div class="">
+
+                                            <select style="width:65%;" class="d-inline py-1" name="time_type" required="">
+                                            <option value="Days" class="form-control" >Days</option>
+                                            <option value="Weeks" class="form-control" >Weeks</option>
+                                            <option value="Months" class="form-control" >Months</option>
+                                            </select>
+                                         
+                                            <select class="py-1" required=""  type="number" name="n_o_days" value="1" min="1" class="rounded" >
+                                            
+
+                                            <option class="d-inlin form-control"  value="01">01</option>
+                                            <option class="form-control"  value="02">02</option>
+                                            <option class="form-control"  value="03">03</option>
+                                            <option class="form-control"  value="04">04</option>
+                                            <option class="form-control"  value="05">05</option>
+                                            <option class="form-control"  value="06">06</option>
+                                            <option class="form-control"  value="07">07</option>
+                                            <option class="form-control"  value="08">08</option>
+                                            <option class="form-control"  value="09">09</option>
+                                            <option class="form-control" value="10">10</option>
+                                            <option class="form-control" value="11">11</option>
+                                            <option class="form-control"  value="12">12</option>
+                                            <option class="form-control"  value="13">13</option>
+                                            <option class="form-control"  value="14">14</option>
+                                            <option class="form-control"  value="15">15</option>
+                                            <option class="form-control"  value="16">16</option>
+                                            <option class="form-control" value="17">17</option>
+                                            <option class="form-control" value="18">18</option>
+                                            <option class="form-control" value="19">19</option>
+                                            <option class="form-control" value="20">20</option>
+                                            <option class="form-control" value="21">21</option>
+                                            <option  class="form-control"value="22">22</option>
+                                            <option class="form-control" value="23">23</option>
+                                            <option class="form-control" value="24">24</option>
+                                            <option class="form-control" value="25">25</option>
+                                            <option  class="form-control"value="26">26</option>
+                                            <option class="form-control" value="27">27</option>
+                                            <option class="form-control" value="28">28</option>
+                                            <option  class="form-control"value="29">29</option>
+                                            <option  class="form-control"value="30">30</option>
+
+
+                                            </select>
+
+
+                                        </div>
+                                    </div>
+
                                 <div class="col-sm-3 px-1">
                                 <div class="upload-btn-wrapper w-100">
                                   <button class="btnUp3 w-100">Upload Milestone Documentaion <i class="ml-2 fa fa-arrow-up"></i></button>
@@ -75,10 +126,10 @@
 
 
 
-            <div class="col-sm-3 px-1">
+            <div class="col-sm-2 px-1">
                 <div class="form-group ">
-          <select required=""  name="business_id" class="w-100 rounded border border-dark p-1 ">
-            <option hidden class="form-control" >Select Business</option>
+          <select required  name="business_id" class="w-100 rounded border border-dark p-1 ">
+            <option hidden value="" class="form-control" >Select Business</option>
 
             @foreach($business as $b)
             <option value="{{$b->id}}" class="form-control" >{{$b->name}}</option> @endforeach

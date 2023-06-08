@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Session;
+use Auth;
 
 class business
 {
@@ -17,7 +18,7 @@ class business
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Session::has('business_auth') && Session::get('business_auth') == true ) {
+        if (Session::has('investor_auth') || Auth::check() ) {
             return $next($request);
         }
         return redirect('home');

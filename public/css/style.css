@@ -304,13 +304,13 @@ border-radius: 35px;
 
 
 .placeH_done{
-    background: #2f3a8f;
+    background: black;
     color: white;
     font-weight: bold;
     padding-left: 6px;
 }
 		
-.placeH{ font-weight: bold; color: aliceblue; background: #14a914; padding-left: 6px;}	
+.placeH{font-weight: bold; color: aliceblue; background: #14a914; padding-left: 6px;}	
 .placeH_inactive{
 background: lightgray;
     color: white;
@@ -350,7 +350,7 @@ background: lightgray;
 .btnUp_done {
   border: 1px solid black;
   color: white;
-  background-color: #2f3a8f;
+  background-color: black;
   padding: 5px ;
   border-radius: 5px;
   font-size: 10px;
@@ -420,11 +420,11 @@ background: lightgray;
 }
 
 .progressbar li.active:before {
-    background: #14a914  url(user.svg) no-repeat center center;
+    background: #14a914 ; /* url(user.svg) no-repeat center center;*/
     background-size: 60%;
 }
 .progressbar li::before {
-    background: #fff url(user.svg) no-repeat center center;
+    background: #fff ; /*url(user.svg) no-repeat center center;*/
     background-size: 60%;
 }
 
@@ -482,6 +482,18 @@ a:hover{text-decoration: none;}
   -webkit-text-fill-color: transparent;
 }	
 		
+.sidebar li .navLink{
+    color: azure;
+    font-weight: 500;
+    font-family: system-ui;
+}
 		
-		
+.status{
+    font-size: 12px;
+}
+
+.due{
+    font-weight: 600;
+    font-size: 11px;
+}
 		

@@ -1,4 +1,4 @@
-@extends('services.layout')
+@extends('business.layout')
 
 @section('page')
     <div class="container" id="">
