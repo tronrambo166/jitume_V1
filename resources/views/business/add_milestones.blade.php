@@ -128,7 +128,7 @@
 
             <div class="col-sm-2 px-1">
                 <div class="form-group ">
-          <select required  name="business_id" class="w-100 rounded border border-dark p-1 ">
+          <select onchange="active();" required  name="business_id" class="w-100 rounded border border-dark p-1 ">
             <option hidden value="" class="form-control" >Select Business</option>
 
             @foreach($business as $b)
@@ -141,7 +141,7 @@
 
                                     <div class="col-1 px-1">
                                         <div class="form-group">
-                                        <input type="submit" class="text-center p-0 btn btn-warning btn-block" value="ADD" />
+                                        <input id="addBtn" type="submit" class="disabled text-center p-0 btn btn-warning btn-block" value="Add" />
                                     </div>
                                 </div>
                            
@@ -209,7 +209,7 @@
            </select>
           
 
-           <input type="submit" value="Set" class="ml-2 py-1 d-inline btn btn-success w-25">
+           <input type="submit" value="Set" class="ml-2 py-0 mb-1 d-inline btn btn-success w-25">
 
             <input hidden type="number" name="id" value="{{$ev->id}}">
            </form> 
@@ -248,7 +248,11 @@
 
         </div>
 
-
+        <script type="text/javascript">
+            function active(){
+                $('#addBtn').removeClass('disabled');
+            }
+        </script>
 
 
       <!-- ADD MODAL -->
