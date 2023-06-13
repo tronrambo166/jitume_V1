@@ -127,7 +127,7 @@
 
 
             <div class="col-sm-2 px-1">
-                <div class="form-group ">
+         <div class="form-group ">
           <select onchange="active();" required  name="business_id" class="w-100 rounded border border-dark p-1 ">
             <option hidden value="" class="form-control" >Select Business</option>
 

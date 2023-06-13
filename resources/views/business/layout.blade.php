@@ -136,7 +136,15 @@
                             <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('listings')}}"><i class=" fe fe-layout"></i> <span>My Business</span></a>
 
-                                <a class="navLink" href="{{route('add_milestones')}}"><i class=" fe fe-layout"></i> <span>Add Milestone</span></a>
+                                <a class="navLink" href="{{route('add_milestones')}}"><i class=" fe fe-layout"></i> <span>Add Business Milestone</span></a>
+
+                                
+
+                            </li>
+
+                            <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
+
+                                <a class="navLink" href="{{route('milestones')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
 
                                 
 

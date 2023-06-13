@@ -352,8 +352,9 @@ return response()->json([ 'data' => $milestones ]);
 
 
 public function milestones(){
-$milestones = Milestones::wh()->get();
-return view('business.milestones',compact('milestones'));
+$milestones = Milestones::get();
+$business = listing::where('user_id',Auth::id())->get();
+return view('business.milestones',compact('milestones','business'));
 }
 
 
