@@ -329,6 +329,10 @@ $since_start = $start_date->diff(new DateTime($time_due_date));
 $time_left = $since_start->d.' days, '.$since_start->h.' hours, '. $since_start->i.' minutes';
 $mile->time_left = $time_left;
 
+$time_now = date("Y-m-d H:i:s");
+if($time_now > $time_due_date)
+  $mile->time_left = 'L A T E !';
+
 }
 
  if($c==0 && $d!=0){
@@ -351,10 +355,20 @@ return response()->json([ 'data' => $milestones ]);
 
 
 
-public function milestones(){
-$milestones = Milestones::get();
+public function milestones($id){
+if($id == 'all'){
+  $listing = listing::where('user_id', Auth::id())->latest()->first();
+  $milestones = Milestones::where('listing_id', $listing->id)->get();
+  $business_name = $listing->name;
+}
+else{
+  $milestones = Milestones::where('listing_id', $id)->get();
+  $listing = listing::where('id', $id)->first();
+  $business_name = $listing->name;
+}
+
 $business = listing::where('user_id',Auth::id())->get();
-return view('business.milestones',compact('milestones','business'));
+return view('business.milestones',compact('milestones','business', 'business_name'));
 }
 
 

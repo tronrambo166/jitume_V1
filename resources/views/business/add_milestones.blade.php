@@ -240,13 +240,11 @@
 
                 </div>
 
-                </div>
 
 
             <div class="clear"></div>
             <div class="clearfix py-5"></div>
 
-        </div>
 
         <script type="text/javascript">
             function active(){

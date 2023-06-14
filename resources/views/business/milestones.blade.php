@@ -9,14 +9,36 @@
 <div class="card-header w-100 mt-5">
            <h4 class="w-50 d-inline">Your Milestones</h4>
 
-         <div class="w-50 d-inline-block float-right">
-          <select class="w-50" required  name="business_id" class="w-100 rounded border border-dark p-2 ">
+ <div class="w-75 d-inline-block">
+  <div class="dropdown show d-block ml-5 mt-3">
+                  <a class="mile btn py-1 dropdown-toggle float-right" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @if(isset($business_name)) {{$business_name}} @else Select Business @endif
+                  </a>
+                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-0 text-secondary">
+                          @foreach($business as $b)
+                <a style="font-size:13px;" class="dropdown-item" href="{{route('milestones', $b->id) }}">{{$b->name}}</a>
+                 @endforeach
+
+                    </li>
+                    
+                  </div>
+                </div> 
+
+
+</div>
+
+      
+         <!-- <div class="w-50 d-inline-block float-right">
+          <select onchange="BusinessMilestones(this.value);" class="w-50" required  name="business_id" class="w-100 rounded border border-dark p-2 ">
 
             @foreach($business as $b)
-            <a href="home"> <option value="{{$b->id}}" class="form-control" >{{$b->name}}</option></a>  @endforeach
+            <option value="{{$b->id}}" class="form-control" >{{$b->name}}</option> @endforeach
 
            </select> 
-            </div>
+            </div> -->
+
+  
 
             </div>
 

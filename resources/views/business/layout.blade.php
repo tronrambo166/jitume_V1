@@ -40,7 +40,7 @@
 <div class="container-fluid">
    
 
- <div  class="row p-0 shadow" style="background: black;">
+ <div  class="row p-0 shadow" style="background: black; min-height: 69px;">
 
     <div class="col-sm-3">
         <ul class="navbar-nav ">
@@ -107,44 +107,48 @@
 
 
     <div class="row">
-              <div class="bg-dark col-sm-3 sidebar-inner slimscroll" style="min-height:600px">
+              <div class="pb-4 bg-dark col-sm-3 sidebar-inner slimscroll" style="min-height:600px">
                     <div id="sidebar-menu" class="sidebar-menu">
-                        <ul class="sidebar text-light" style="color:white;">
+                        <ul class="sidebar text-light px-2" style="color:white;">
                            
-                            <li class="{{ Request::is('admin/index_admin') ? 'active' : '' }}"> 
+                            <li class="{{ Request::is('business/index') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('business')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
                             </li>
 
 
                             
-                            <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
+                            <li  class="{{ Request::is('business/add-services') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('add-services')}}"><i class=" fe fe-layout"></i> <span>Add Service</span></a>
                             </li>
 
                         
 
-                            <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
+                            <li  class="{{ Request::is('business/add-listing') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('add-listing')}}"><i class=" fe fe-layout"></i> <span>Add Business</span></a>
                             </li>
 
 
-                             <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
+                             <li  class="{{ Request::is('business/services') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('services')}}"><i class=" fe fe-layout"></i> <span>My Services</span></a>
                             </li>
 
 
-                            <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
-                                <a class="navLink" href="{{route('listings')}}"><i class=" fe fe-layout"></i> <span>My Business</span></a>
+                            <li  class="{{ Request::is('business/listings') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('listings')}}"><i class=" fe fe-layout"></i> <span>My Business</span></a>           
 
+                            </li>
+
+                            <li  class="{{ Request::is('business/add_milestones') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('add_milestones')}}"><i class=" fe fe-layout"></i> <span>Add Business Milestone</span></a>
 
                                 
 
                             </li>
 
-                            <li  class="{{ Request::is('admin/books') ? 'active' : '' }}"> 
 
-                                <a class="navLink" href="{{route('milestones')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
+                            <li  class="{{ Request::is('business/milestones-*') ? 'active' : '' }}"> 
+
+                                <a class="navLink" href="{{route('milestones','all')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
 
                                 
 

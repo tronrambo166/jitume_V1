@@ -8,7 +8,7 @@
 		<div class="container w-75 m-auto" style="box-shadow: 3px 3px 7px 7px grey; background: #067495;width:80%; margin:auto; text-align:center">
 		
 		 <h2 style="color: white;font-family: sans-serif;">  
-		 	<br> Your milestone has only {{$d}} day(s) left!</h2>
+		 	<br> Your milestone has {{$d}} day(s) left!</h2>
 			
 			<div class="" style="width:50%; margin:auto;">
 			<h4 style="color: silver;font-family:  sans-serif;text-align:left;"> Milestone Name: {{$name}} </h4>

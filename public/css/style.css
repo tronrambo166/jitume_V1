@@ -498,3 +498,63 @@ a:hover{text-decoration: none;}
     font-size: 11px;
 }
 		
+.mile{
+    border: 1px solid black;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.sidebar li{
+    background: #3d423d;
+    padding-left: 30px;
+
+}
+
+.sidebar .active{
+    background: darkgreen;
+}
+
+.formLabel {
+
+    font-family: "Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
+    font-size: 87%;
+    font-weight: bold;
+    color: #222;
+    line-height: 150%;
+    margin: 0;
+    padding: 0 0 3px 0;
+    border: none;
+    display: block;
+    white-space: normal;
+    width: 100%;
+}
+
+    .showForm input.text, .showForm input.search, .showForm textarea.textarea {
+    border-top: 1px solid #7c7c7c;
+    border-left: 1px solid #c3c3c3;
+    border-right: 1px solid #c3c3c3;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+}
+
+.showForm input, .showForm select {
+    border-top: 1px solid #7c7c7c;
+    border-left: 1px solid #c3c3c3;
+    border-right: 1px solid #c3c3c3;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+    height: 22px;
+}
+ .showForm textarea {
+    border-top: 1px solid #7c7c7c;
+    border-left: 1px solid #c3c3c3;
+    border-right: 1px solid #c3c3c3;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+
+}
+
+.fileI{
+    font-size: 12px;
+    border: none;
+}

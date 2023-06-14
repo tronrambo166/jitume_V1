@@ -48,7 +48,10 @@
 
                                     <div class="col-1 py-1">
                                         <div class="form-group">
-                                        <button @click="make_session(form.id);" type="submit" class="text-center border border-dark p-0 btn btn-light btn-block" >PAY</button>                                    </div>
+
+                                        <button v-if="result.time_left == 'L A T E !' " @click="make_session(form.id);" type="submit" class="text-center border border-dark p-0 btn btn-light btn-block disabled" >PAY</button>
+
+                                        <button v-else @click="make_session(form.id);" type="submit" class="text-center border border-dark p-0 btn btn-light btn-block" >PAY</button>                                    </div>
                                 </div>
 
                                 <input type="number" hidden="" name="lisitng_id" v-model="form.id">
@@ -62,7 +65,9 @@
                                 <div class="col-sm-3 p-1">
                                         <div class="rounded border border-dark px-2 d-inline-block">
                                             <p style="font-size:12px;" class="text-success due small d-inline">Due in: </p>
-                                            <p class="small due d-inline">{{result.time_left}}</p>
+
+                                            <p v-if="result.time_left == 'L A T E !' " style="color:red;" class="due d-inline"> {{result.time_left}} </p>
+                                            <p v-else class="small due d-inline">{{result.time_left}}</p>
                                         </div>
                                     </div>
 

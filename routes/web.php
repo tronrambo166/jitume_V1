@@ -110,7 +110,7 @@ Route::post('up_listing', 'BusinessController@up_listing')->name('up_listing');
 Route::get('delete_listing/{id}', 'BusinessController@delete_listing')->name('delete_listing');
 
 Route::get('add_milestones', 'BusinessController@add_milestones')->name('add_milestones');
-Route::get('milestones', 'BusinessController@milestones')->name('milestones');
+Route::get('milestones-{id}', 'BusinessController@milestones')->name('milestones');
 Route::post('save_milestone', 'BusinessController@save_milestone')->name('save_milestone');
 Route::post('up_milestones', 'BusinessController@up_milestone')->name('up_milestones');
 Route::get('delete_milestone/{id}', 'BusinessController@delete_milestone')->name('delete_milestone');
