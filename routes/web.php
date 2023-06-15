@@ -195,3 +195,6 @@ Route::get('skip', 'PagesController@skip')->name('skip');
 //TERMS
 Route::get('terms', function (){return view('terms');} )->name('terms');
 Route::get('privacy-policy', function (){return view('privacy-policy');} )->name('privacy-policy');
+
+Route::post('ApplyForShow', 'socialController@ApplyForShow')->name('ApplyForShow');
+

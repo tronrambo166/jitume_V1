@@ -9,18 +9,19 @@
   <div class="row my-4">
      <div class="col-sm-6">
        <div><p class="h4">Apply for Show - Form</p>
+        <p id="msg" class="text-success font-weight-bold"></p>
 
       </div>
      </div>
 
    </div>
 
- <form class="showForm mb-5">
+ <form id="form" class="showForm mb-5" @submit.prevent ="ApplyForShow();" method="POST" enctype="multipart/form-data">
    
    <div class="row">
      <div class="col-sm-6">
        <div><label class="formLabel">Business Name <span style="color:red;">*</span></label>
-        <input class="w-100 py-0" type="text" name="business_name">
+        <input required class="w-100 py-0" type="text" name="business_name">
       </div>
      </div>
 
@@ -38,7 +39,7 @@
    <div class="row my-3">
      <div class="col-sm-6">
        <div><label class="formLabel">Product/Service Description <span style="color:red;">*</span></label>
-        <input class="w-100 py-0" type="text" name="description">
+        <input required class="w-100 py-0" type="text" name="s_description">
       </div>
      </div>
    </div>
@@ -48,7 +49,7 @@
      <div class="col-sm-6">
    <div>
     <select required name="y_turnover" class="px-2 py-0 w-100">
-                    <option hidden >What was your annual turnover last year?</option>
+                    <option hidden >What was your annual turnover last year?<span style="color:red;">*</span></option>
 
                     <option value="0-10000">$0-$10000</option>
                     <option value="10000-100000">$10000-$100000</option>
@@ -67,8 +68,8 @@
        <div>
         <p class=" h5"> Owner</p>
         <label class="formLabel">Name <span style="color:red;">*</span></label>
-        <input class="w-25 py-0" placeholder="first" type="text" name="firstN">
-        <input class="w-25 py-0" placeholder="last" type="text" name="lastN">
+        <input class="w-25 py-0" required placeholder="first" type="text" name="firstN">
+        <input class="w-25 py-0" required placeholder="last" type="text" name="lastN">
       </div>
      </div>
    </div>
@@ -76,7 +77,7 @@
    <div class="row my-3">
      <div class="col-sm-6">
        <div><label class="formLabel">Legal Name as it Appears on Government-Issued I.D.  <span style="color:red;">*</span></label>
-        <input class="w-100 py-0" type="text" name="legal_name">
+        <input class="w-100 py-0" required type="text" name="legal_name">
       </div>
      </div>
    </div>
@@ -93,7 +94,7 @@
    <div class="row my-2">
      <div class="col-sm-12">
        <div><label class="formLabel font-weight-light">Street Address<span style="color:red;">*</span></label>
-        <input class="w-100 py-0" type="text" name="st_address">
+        <input required class="w-100 py-0" type="text" name="st_address">
       </div>
      </div>
    </div>
@@ -105,12 +106,12 @@
         <label class="formLabel font-weight-light">Address Line 2 <span style="color:red;">*</span></label>
 
        <div class="w-100"> 
-        <input style="width:48%" class="px-2 d-inline py-0" placeholder="City" type="text" name="city">
-        <input style="width:48%" class="px-2 float-right d-inline py-0" placeholder="State / Province / Region" type="text" name="state">
+        <input required style="width:48%" class="px-2 d-inline py-0" placeholder="City" type="text" name="city">
+        <input required style="width:48%" class="px-2 float-right d-inline py-0" placeholder="State / Province / Region" type="text" name="state">
       </div>
 
       <div class="w-100 my-3">   
-        <input style="width:48%" class="px-2 d-inline py-0" placeholder="Postal / Zip Code" type="text" name="zip">
+        <input required style="width:48%" class="px-2 d-inline py-0" placeholder="Postal / Zip Code" type="text" name="zip">
         
         <select style="width:48%" required name="country" class="px-2 float-right d-inline ">
                   <option value="" selected="selected" hidden>Country</option>
@@ -379,7 +380,7 @@
    <div class="row my-2">
      <div class="col-sm-12">
        <div><label class="formLabel">Business Address<span style="color:red;">*</span></label>
-        <input class="w-100 py-0" type="text" name="B_address">
+        <input required class="w-100 py-0" type="text" name="B_address">
       </div>
      </div>
    </div>
@@ -387,7 +388,7 @@
    <div class="row my-2">
      <div class="col-sm-12">
        <div><label class="formLabel font-weight-light">Street Address<span style="color:red;">*</span></label>
-        <input class="w-100 py-0" type="text" name="B_st_address">
+        <input required class="w-100 py-0" type="text" name="B_st_address">
       </div>
      </div>
    </div>
@@ -399,7 +400,7 @@
         <label class="formLabel font-weight-light">Address Line 2 <span style="color:red;">*</span></label>
 
        <div class="w-100"> 
-        <input style="width:48%" class="px-2 d-inline py-0" placeholder="City" type="text" name="B_city">
+        <input required style="width:48%" class="px-2 d-inline py-0" placeholder="City" type="text" name="B_city">
         <input style="width:48%" class="px-2 float-right d-inline py-0" placeholder="State / Province / Region" type="text" name="B_state">
       </div>
 
@@ -704,7 +705,7 @@
    <div class="row my-3">
      <div class="col-sm-6">
        <div><label class="formLabel">Facebook URL <span style="color:red;"></span></label>
-        <input  class="w-100 py-0" type="text" name="facebok">
+        <input  class="w-100 py-0" type="text" name="facebook">
       </div>
      </div>
    </div>
@@ -723,9 +724,9 @@
      <div class="col-sm-6">
        <div>
         <p class=" h4 font-weight-light"> EMERGENCY CONTACT INFO</p>
-        <label class="formLabel">Name <span style="color:red;">*</span></label>
-        <input class="w-25 py-0" placeholder="First" type="text" name="e_firstN">
-        <input class="w-25 py-0" placeholder="Last" type="text" name="e_lastN">
+        <label class="formLabel">Name <span style="color:red;"></span></label>
+        <input class="w-25 py-0"   placeholder="First" type="text" name="e_firstN">
+        <input class="w-25 py-0"   placeholder="Last" type="text" name="e_lastN">
       </div>
      </div>
    </div>
@@ -734,7 +735,7 @@
    <div class="row my-3">
      <div class="col-sm-6">
        <div><label class="formLabel">Relationship <span style="color:red;"></span></label>
-        <input required class="w-100 py-0" type="text" name="relation">
+        <input  class="w-100 py-0" type="text" name="relation">
       </div>
      </div>
    </div>
@@ -784,7 +785,7 @@
   <div class="col-sm-12">
     <label class="formLabel">Please describe your business in detail <span style="color:red;">*</span></label>
    <div>
-    <textarea required class="w-100" name="business_details" rows="3"></textarea>
+    <textarea placeholder="255 letters max" required class="w-100" name="business_details" rows="3"></textarea>
       </div>
      </div>
    </div>
@@ -893,7 +894,7 @@
        <div>
         <p class=" h5"> UPLOAD IMAGE(S)</p>
         <label class="formLabel">Attach a File <span style="color:red;"></span></label>
-        <input style="border: none;" class="w-50 py-0 fileI"  type="file" name="image1">
+        <input style="border: none;" class="w-50 py-0 fileI"  type="file" @change="handleFile" name="image1">
 
       </div>
      </div>
@@ -903,7 +904,7 @@
      <div class="col-sm-6">
        <div>
         <label class="formLabel">Attach a File <span style="color:red;"></span></label>
-        <input style="border: none;" class="w-50 py-0 fileI"  type="file" name="image2">
+        <input style="border: none;" class="w-50 py-0 fileI"  type="file" @change="handleFile" name="image2">
 
       </div>
      </div>
@@ -913,7 +914,7 @@
      <div class="col-sm-6">
        <div>
         <label class="formLabel">Attach a File <span style="color:red;"></span></label>
-        <input style="border: none;" class="w-50 py-0 fileI"  type="file" name="image3">
+        <input style="border: none;" class="w-50 py-0 fileI"  type="file" @change="handleFile" name="image3">
 
       </div>
      </div>
@@ -923,7 +924,7 @@
      <div class="col-sm-6">
        <div>
         <label class="formLabel">Attach a File <span style="color:red;"></span></label>
-        <input style="border: none;" class="w-50 py-0 fileI"  type="file" name="image4">
+        <input style="border: none;" class="w-50 py-0 fileI"  type="file" @change="handleFile" name="image4">
 
       </div>
      </div>
@@ -986,43 +987,45 @@ export default {
     data: () => ({
     category:{},
     catIds:[],
-    emptyCat:false
+    emptyCat:false,
+    image:[]
     }),
-    methods:{
-     getCats:function(){
-     let t = this; 
-    const response = axios.get('http://localhost/laravel_projects/Vue_eCommerce/public/admin/manage-product').then(function(response){
+methods:{
+
+handleFile (event) {
+      let t = this
+      const file = event.target.files[0]
+      this.image = file
+
+      let filereader = new FileReader();
+      filereader.onload = function(e) {
+      t.form.showImage = e.target.result
+      }
+      filereader.readAsDataURL(event.target.files[0])
+    },
+
+ApplyForShow(){
+ let t = this; 
+const form = $('#form');
+form.image = t.image;    
+$.ajax({
+url:'ApplyForShow',
+method:'POST',
+headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+dataType:'json',
+data:form.serialize(),
+    success: function (response) {
     console.log(response.data);
-    t.allcategory=response.data.data;
-   
-    });
+    document.getElementById('msg').innerHTML = 'Apply Success!';
+    },
+    error: function (response) {
+    console.log(response);
+
+      }
+      });
     
-  },
-  
-  
-  removePro(id){
-
-  Swal.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
-}).then((result) => {
-  if (result.isConfirmed) {
-  axios.get('http://localhost/laravel_projects/Vue_eCommerce/public/delpro/'+id).then( (data) =>{
-  console.log(data)
-   toastr.success(data.data.message)
-              }).catch( (error) =>{})
-   this.$store.dispatch("fetchpro")
   }
-})
-
- 
-
-  }
+  
   },
   
 
