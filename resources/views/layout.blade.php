@@ -61,8 +61,8 @@
 
                     <li class="nav-item py-1 px-3 text-light"><router-link to="/services" class=" ">Jitume Services</router-link></li>
 
-                    <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/applyShow" class="">Apply for Show
-                    </router-link></li>
+                    <!-- <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/applyShow" class="">Apply for Show
+                    </router-link></li> -->
                 </ul>
 
                 </div>
