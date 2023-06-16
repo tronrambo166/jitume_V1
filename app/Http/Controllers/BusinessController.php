@@ -54,6 +54,10 @@ return view('business.add-listing');
 
 }
 
+public function applyForShow(){
+return view('business.applyForShow');
+}
+
 public function home(){
 $business = listing::where('user_id',Auth::id())->get();
 return view('business.index',compact('business'));

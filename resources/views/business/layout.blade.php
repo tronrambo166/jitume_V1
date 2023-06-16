@@ -111,7 +111,7 @@
                     <div id="sidebar-menu" class="sidebar-menu">
                         <ul class="sidebar text-light px-2" style="color:white;">
                            
-                            <li class="{{ Request::is('business/index') ? 'active' : '' }}"> 
+                            <li class="{{ Request::is('business/index') || Request::is('business/')? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('business')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
                             </li>
 
@@ -147,11 +147,11 @@
 
 
                             <li  class="{{ Request::is('business/milestones-*') ? 'active' : '' }}"> 
-
                                 <a class="navLink" href="{{route('milestones','all')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
+                            </li>
 
-                                
-
+                            <li  class="{{ Request::is('business/applyForShow') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('applyForShow')}}"><i class=" fe fe-layout"></i> <span>Apply For Show</span></a>
                             </li>
                             
                         </ul>

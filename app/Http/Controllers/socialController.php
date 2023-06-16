@@ -117,7 +117,7 @@ class socialController extends Controller
 
 public function ApplyForShow(Request $request){
 
-  $data['user_id'] = 3;//Auth::id();
+  $data['user_id'] = Auth::id();
   $data['business_name'] = $request->business_name;
   $data['business_site'] = $request->business_site;
   $data['s_description'] = $request->s_description;
@@ -163,6 +163,8 @@ public function ApplyForShow(Request $request){
   $data['long_term_goals'] = $request->long_term_goals;
   
   //Images
+
+  try{
 
     if (!file_exists('files/applyShow/'.$data['user_id'])) 
           mkdir('files/applyShow/'.$data['user_id'], 0777, true);
@@ -211,7 +213,12 @@ public function ApplyForShow(Request $request){
       //Images
 
 $create = ApplyShow::create($data);
-return response()->json(['data'=>'success']);
+Session::put('success','Applied for show success!');
+}
+catch(\Exception $e){
+  Session::put('failed',$e->getMessage());
+}
+return redirect()->back();
 }
 
 

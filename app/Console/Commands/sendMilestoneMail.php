@@ -59,9 +59,12 @@ class sendMilestoneMail extends Command
             $time_left = $since_start->d.' days, '.$since_start->h.' hours, '. $since_start->i.' minutes';
             
             //Send Mail
+            $business_owner = User::where('id',$mile->user_id)->first();
+            $toMail = $business_owner->email;
+
             if($since_start->d == 1 && $since_start->h == 23){
                  $info=['d'=>1, 'name'=>$mile->title,'amount'=>$mile->amount,]; 
-                 $user['to'] = ['sohaankane@gmail.com','tottenham266@gmail.com'];//$listing->contact_mail;
+                 $user['to'] = $toMail; //['sohaankane@gmail.com'];
 
                     Mail::send('milestone.milestone_due_mail', $info, function($msg) use ($user){
                     $msg->to($user['to']);
@@ -71,7 +74,7 @@ class sendMilestoneMail extends Command
 
              if($since_start->d == 0 && $since_start->h == 23){
                 $info=['d'=>0, 'name'=>$mile->title,'amount'=>$mile->amount,]; 
-                 $user['to'] = ['sohaankane@gmail.com','tottenham266@gmail.com'];//$listing->contact_mail;
+                 $user['to'] = $toMail; //['sohaankane@gmail.com'];
 
                     Mail::send('milestone.milestone_due_mail', $info, function($msg) use ($user){
                     $msg->to($user['to']);
