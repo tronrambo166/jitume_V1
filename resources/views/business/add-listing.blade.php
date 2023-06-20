@@ -59,16 +59,24 @@
             <div class="col-sm-4">
             <select  name="category" class="border-none form-control">
             <option hidden class="form-control" >Select Category</option>
-
             <option class="form-control" value="Agriculture" >Agriculture</option>
+            <option value="Arts / Culture" >Arts/Culture </option>
+            <option value="Auto" >Auto</option>
            <option value="Sports/Gaming" >Sports/Gaming</option>
            <option value="Real State" >Real State</option>
-           <option value="Entertainment" >Entertainment </option>
-           <option value="Auto" >Auto</option>
-           <option value="Finance/Accounting Security" >Finance/Accounting Security</option>
-           <option value="Domestic Help">Pets</option>
-           <option value="Domestic Help">Domestic Help</option>
-           <option value="Other" >Other</option> 
+           <option value="Food" >Food </option>
+           <option value="Legal" >Legal </option>
+            <option value="Security" >Security </option>
+             <option value="Media / Internet" >Media/Internet </option>
+              
+               <option value="Fashion" >Fashion </option>
+                <option value="Technology / Communications" >Technology/Communications </option>
+                 <option value="Retail" >Retail </option>
+           
+           <option value="Finance/Accounting" >Finance/Accounting</option>
+           <option value="Pets">Pets</option>
+           <option value="Domestic (Home Help etc)">Domestic (Home Help etc)</option>
+           <option value="Other" >Other</option>  
 
            </select>
   </div>
@@ -138,8 +146,10 @@
                     
                     <div class="col-sm-4"> 
                     <div class="upload-btn-wrapper">
-                      <button class="btnUp2">Upload <i class="ml-2 fa fa-arrow-up"></i></button>
-                      <input required="" type="file" name="image" />
+                      <label for="file-upload" class="btnUp2 custom-file-upload">
+                                Upload <i class="ml-2 fa fa-arrow-up"></i>
+                              </label>
+                              <input id="file-upload" name='image' type="file" style="display:none;">
                     </div>
                     </div>
 
@@ -172,9 +182,11 @@
                     <div class="col-sm-5"> 
 
                     <div class="upload-btn-wrapper">
-                      <button class="btnUp_listing"> Upload Company/Individual Pin *
-                      <img src="../images/up.svg" width="30px"> </button>
-                      <input required="" type="file" name="pin" />
+                      
+                      <label for="file-upload2" class="btnUp_listing">
+                        Upload Company/Individual Pin *
+                      <img src="../images/up.svg" width="30px"> </label>
+                      <input style="display:none;" id="file-upload2" required="" type="file" name="pin" />
                     </div>
 
                     </div>
@@ -183,9 +195,9 @@
                     <div class="col-sm-7"> 
 
                     <div class="upload-btn-wrapper">
-                      <button class="btnUp_listing"> Upload Directors Identification(Id/Passport)*
-                      <img src="../images/up.svg" width="30px"> </button>
-                      <input required="" type="file" name="identification" />
+                      <label for="file-upload3" class="btnUp_listing"> Upload Directors Identification(Id/Passport)*
+                      <img src="../images/up.svg" width="30px"> </label>
+                      <input style="display:none;" id="file-upload3" required="" type="file" name="identification" />
                     </div>
 
                     </div>
@@ -200,9 +212,9 @@
             <div class="col-sm-12 mx-auto"> 
 
                     <div class="upload-btn-wrapper w-75  d-block">
-                      <button class="btnUp_listing w-100"> Upload Supporting Business Documentation*
-                      <img src="../images/up.svg" width="30px"> </button>
-                      <input required="" type="file" name="document" />
+                      <label for="file-upload4" class="text-center w-100 btnUp_listing">  Upload Supporting Business Documentation*
+                      <img src="../images/up.svg" width="30px"> </label>
+                      <input style="display:none;" id="file-upload4" required="" type="file" name="document" />
                     </div>
 
                     </div>
@@ -211,9 +223,9 @@
                     <div class="col-sm-12 mt-3"> 
 
                     <div class="upload-btn-wrapper w-75  d-block">
-                      <button class="btnUp_listing bg-info w-100"> Upload supportive video*
-                      <img src="../images/up.svg" width="30px"> </button>
-                      <input  type="file" name="video" />
+                     <label for="file-upload5" class="text-center w-100 bg-info btnUp_listing"> Upload supportive video*
+                      <img src="../images/up.svg" width="30px"> </label>
+                      <input style="display:none;" id="file-upload5" type="file" name="video" />
                     </div>
 
                     </div>
@@ -259,6 +271,41 @@
 
             <div class="clear"></div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+        <script type="text/javascript">
+           $('#file-upload').change(function() {
+              var i = $(this).prev('label').clone();
+              var file = $('#file-upload')[0].files[0].name;
+              $(this).prev('label').text(file);
+            });
+
+            $('#file-upload2').change(function() {
+              var i = $(this).prev('label').clone();
+              var file = $('#file-upload2')[0].files[0].name;
+              $(this).prev('label').text(file);
+            });
+
+            $('#file-upload3').change(function() {
+              var i = $(this).prev('label').clone();
+              var file = $('#file-upload3')[0].files[0].name;
+              $(this).prev('label').text(file);
+            });
+
+            $('#file-upload4').change(function() {
+              var i = $(this).prev('label').clone();
+              var file = $('#file-upload4')[0].files[0].name;
+              $(this).prev('label').text(file);
+            });
+
+            $('#file-upload5').change(function() {
+              var i = $(this).prev('label').clone();
+              var file = $('#file-upload5')[0].files[0].name;
+              $(this).prev('label').text(file);
+            });
+        </script>
+
+
   <script type="text/javascript">
   
     function bookForm(shift) {
@@ -272,6 +319,7 @@
      function free_price() {
       $('#paid_price').hide(); 
     }
+
   </script>
 
 @endsection

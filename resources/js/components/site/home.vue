@@ -98,7 +98,7 @@
                      <li class="nav-item" > <router-link to="category/Pets">Pets </router-link></li> 
                       <li class="nav-item" > <router-link to="category/Retail">Retail </router-link></li>
 
-                 <li class="nav-item" > <router-link to="category/Renewable Energy">Renewable Energy </router-link></li>
+                 
 
            <li class="nav-item" > <router-link to="category/Real State">Real Estate </router-link></li>     
            
@@ -114,11 +114,14 @@
           
             
            <li class="nav-item" ><router-link to="category/Other">Other </router-link></li>   
-           </ul>
+           </ul> <br>
+           
 
          </div>
 
-                    </div>
+             </div>
+
+             <div class="row"><ul class="row text-center"><li class="nav-item" > <router-link to="category/Renewable Energy" style="color:#1ed73d;" class="font-weight-bold">Renewable Energy </router-link></li></ul></div>
 
 
                       </div>

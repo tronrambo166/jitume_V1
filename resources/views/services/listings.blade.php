@@ -50,7 +50,7 @@
       <!-- Edit MODAL -->
   <div  class="modal fade" id="edit{{$ev->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content" style="width:125%;">
       <div class="modal-header">
          <div class="card-header w-100">
            <h3>Edit</h3>
@@ -67,15 +67,14 @@
             @csrf   
                <input  name="id" type="number" hidden value="{{$ev->id}}" class="form-control">
 
-               <input  name="old_img" type="text" hidden value="{{$ev->image}}" class="form-control">
-
                 <div class="row form-group">
                     
                     <div class="col-sm-6"> 
                         <div class="row">
                         
                     <div class="col-sm-12"> 
-                    <input required=""  class=" form-control border border-none rounded form-group" type="text" name="title" id="title" value="{{$ev->name}}"  /> 
+                    <label class="labels font-weight-bold">Title</label>
+                    <input required=""  class=" form-control border border-none rounded form-group" type="text" name="name" id="name" value="{{$ev->name}}"  /> 
                     </div>
                         </div>
                     </div>
@@ -85,6 +84,7 @@
                             
                     
                     <div class="col-sm-12"> 
+                    <label class="labels font-weight-bold">Price</label>
                     <input required="" type="number" class="form-control" value="{{$ev->price}}" name="price" value="">                     
                     </div>
                         </div>
@@ -97,12 +97,17 @@
                         <div class="row">
                                         
            <div class="col-sm-6">
-           <select name="category" class="border-none form-control"><option hidden="hidden" class="form-control">Services</option> <option value="Business Planning" class="form-control">Business Planning</option> <option value="IT">IT</option> <option value="Legal Project Management">Legal Project Management</option> <option value="Branding and Design">Branding and Design </option> <option value="Auto">Auto</option> <option value="Finance, Accounting &amp; 
+            <label class="labels font-weight-bold">Category</label>
+           <select name="category" class="border-none form-control">
+             <option value="{{$ev->category}}" selected class="form-control">{{$ev->category}}</option>
+
+            <option value="Business Planning" class="form-control">Business Planning</option> <option value="IT">IT</option> <option value="Legal Project Management">Legal Project Management</option> <option value="Branding and Design">Branding and Design </option> <option value="Auto">Auto</option> <option value="Finance, Accounting &amp; 
                 Tax Marketing">Finance, Accounting &amp; 
                 Tax Marketing</option> <option value="Tax Marketing">Tax Marketing</option> <option value="Public Relations">Public Relations</option> <option value="Other">Other</option></select>
   </div>
 
                  <div class="col-sm-6"> 
+                    <label class="labels font-weight-bold">Details</label>
                     <textarea rows="1" required=""  class=" form-control border border-none rounded form-group"  name="details" id="title"  > {{$ev->details}}</textarea>
                     </div>
 
@@ -115,23 +120,24 @@
 
                     <div class="col-sm-12"> 
                         <div class="row">
-                           <div class="col-sm-2"><label class="h4" for="name">
+                           <div class="col-sm-2 mt-3"><label class="h4" for="name">
                                 <strong>Cover</strong></label>
                                </div>
                     
-                    <div class="col-sm-4"> 
+                    <div class="col-sm-4 mt-3"> 
                     <div class="upload-btn-wrapper">
-                      <button class="btnUp2">Upload <i class="ml-2 fa fa-arrow-up"></i></button>
+                      <button class="btnUp2">Change <i class="ml-2 fa fa-arrow-up"></i></button>
                       <input type="file" name="image" />
                     </div>
                     </div>
 
                     <div class="col-sm-6"> 
+                    <label class="labels font-weight-bold">Location</label>
                     <input id="searchbox" required="" onkeyup="suggest(this.value);" style="height: 42px;" class=" form-control d-inline" type="text" name="location" value="{{$ev->location}}">
                     </div>
 
                          <div class="row" style="">
-                                <div id="result_list" class="" style="display: none;left: 340px;width:41%; z-index: 1000;height: 600px;position: absolute;">
+                                <div id="result_list" class="" style="display: none;left: 312px;width:49%; z-index: 1000;height: 600px;position: absolute;">
                                     
                                 </div>
                             </div>
@@ -139,6 +145,77 @@
                         </div>
                     </div> 
                 </div>
+
+
+                <div class="row my-5 row form-group">
+
+                    <div class="col-sm-12"> 
+                        <div class="row">
+                           <div class="col-sm-12"><label class="h5" for="name">
+                                <p>Upload mandatory documents below to feature on the platform</p></label>
+                               </div>
+                               </div> 
+                               </div>
+                    
+                    <div class="col-sm-5"> 
+
+                    <div class="upload-btn-wrapper">
+                      <button class="btnUp_listing"> Change Company/Individual Pin *
+                      <img src="../images/up.svg" width="30px"> </button>
+                      <input type="file" name="pin" />
+                    </div>
+
+                    </div>
+
+
+                    <div class="col-sm-7"> 
+
+                    <div class="upload-btn-wrapper">
+                      <button class="btnUp_listing"> Change Directors Identification(Id/Passport)*
+                      <img src="../images/up.svg" width="30px"> </button>
+                      <input type="file" name="identification" />
+                    </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+        <div class="row my-4 form-group">
+
+            <div class="col-sm-12 mx-auto"> 
+
+                    <div class="upload-btn-wrapper w-75  d-block">
+                      <button class="btnUp_listing w-100"> Change Supporting Business Documentation*
+                      <img src="../images/up.svg" width="30px"> </button>
+                      <input  type="file" name="document" />
+                    </div>
+
+                    </div>
+
+
+                    <div class="col-sm-12 mt-3"> 
+
+                    <div class="upload-btn-wrapper w-75  d-block">
+                      <button class="btnUp_listing bg-info w-100"> Change supportive video
+                      <img src="../images/up.svg" width="30px"> </button>
+                      <input  type="file" name="video" />
+                    </div>
+
+                    </div>
+
+            <div class="col-sm-12 w-75  d-block"> <span class="my-3 d-block font-weight-bold text-center m-auto"> OR </span>
+
+          <label class="labels font-weight-bold">Video Link</label>
+           <input class="w-100 d-blocks d-inline form-control" value="{{$ev->link}}" name="link" /> 
+
+         </div>
+
+
+          </div>
+
 
                
 

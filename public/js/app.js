@@ -7950,6 +7950,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -66901,19 +66904,6 @@ var render = function () {
                 "li",
                 { staticClass: "nav-item" },
                 [
-                  _c(
-                    "router-link",
-                    { attrs: { to: "category/Renewable Energy" } },
-                    [_vm._v("Renewable Energy ")]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
                   _c("router-link", { attrs: { to: "category/Real State" } }, [
                     _vm._v("Real Estate "),
                   ]),
@@ -66969,8 +66959,31 @@ var render = function () {
                 1
               ),
             ]),
+            _vm._v(" "),
+            _c("br"),
           ]
         ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("ul", { staticClass: "row text-center" }, [
+          _c(
+            "li",
+            { staticClass: "nav-item" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "font-weight-bold",
+                  staticStyle: { color: "#1ed73d" },
+                  attrs: { to: "category/Renewable Energy" },
+                },
+                [_vm._v("Renewable Energy ")]
+              ),
+            ],
+            1
+          ),
+        ]),
       ]),
     ]),
     _vm._v(" "),

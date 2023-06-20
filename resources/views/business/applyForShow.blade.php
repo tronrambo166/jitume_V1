@@ -940,10 +940,62 @@
   <div class="row my-3">
   <div class="col-sm-12"> 
    <div>
-    <textarea style="font-size:11px;" class="p-3 w-100 formLabel font-weight-light" name="tANDc" rows="7">By submitting this application, I hereby consent to the recording, use and reuse by Machete Corporation (“Producer”), NBCUniversal Media LLC (“NBCU”), and any of their respective licensees, successors, assignees, parents, subsidiaries, or affiliated entities, and each of their respective employees, agents, representative, officers and directors (collectively “Releasees”) of my voice, actions, likeness, name, appearance, biographical material, and any information contained in, derived from or obtained in connection with my application to be a participant in “The Profit” (the “Program”) or in any materials submitted by me in connection with my application (collectively “Likeness”), as edited, altered, or modified by the Producer or by any of the other Releasees, in any and all media now known or hereafter devised, worldwide in perpetuity, in or in connection with the Program or any other work. I agree that the Releasees or any of them may use all or any part of my Likeness, and may alter or modify it regardless of whether or not I am recognizable. I further agree that the Releasees exclusively own all right, title, and interest (including, without limitation, all copyrights) in and to any and all recordings made by them and in and to any and all video that I have provided in connection with my application and any other materials that I have provided or may provide in connection with my application or the Program (collectively, the “Materials”), including, without limitation, the right to edit, alter or modify the Materials and to use all or part of the Materials and my Likeness in any and all media now known or hereafter devised worldwide, in perpetuity. Without in any way limiting the foregoing, if I perform or include any music (other than music supplied to me by Producer) in connection with my application or the Program, I represent and warrant that I own all rights to such music, and I grant Producer the right to record, reproduce and publicly perform any such music in and in connection with the Program or any other work. Without in any way limiting the waivers and releases set forth herein, I waive any claims to royalties of any kind, whether accruing now or in the future, from Producer and NBCU for the use of any such music, including, without limitation, any applicable copyright, public performance, mechanical and synchronization royalties. I further agree that Releasees may use my Likeness and the Materials in connection with any promotion, publicity, marketing or advertisement. I grant the rights hereunder whether or not I am selected to participate in the Program in any manner whatsoever. I understand that I will not be paid any money for giving Releasees these rights or for signing this application. I acknowledge that everything stated in this application is true. I understand that any falsely submitted answers can and will be grounds for removal from the casting process and from my subsequent participation in the Program.
+    <textarea style="font-size:11px;" class="p-3 w-100 formLabel font-weight-light" name="tANDc" rows="7">By submitting this application, I hereby consent to the recording, use and reuse by DreamTeam Creative
+Agency (“Producer”), Jitume Inc. (“JITUME”), and any of their respective licensees, successors, assignees,
+parents, subsidiaries, or affiliated entities, and each of their respective employees, agents,
+representative, officers and directors (collectively “Releasees”) of my voice, actions, likeness, name,
+appearance, biographical material, and any information contained in, derived from or obtained in
+connection with my application to be a participant in “The Profit” (the “Program”) or in any materials
+submitted by me in connection with my application (collectively “Likeness”), as edited, altered, or
+modified by the Producer or by any of the other Releasees, in any and all media now known or hereafter
+devised, worldwide in perpetuity, in or in connection with the Program or any other work. I agree that
+the Releasees or any of them may use all or any part of my Likeness, and may alter or modify it
+regardless of whether or not I am recognizable. I further agree that the Releasees exclusively own all
+right, title, and interest (including, without limitation, all copyrights) in and to any and all recordings
+made by them and in and to any and all video that I have provided in connection with my application
+and any other materials that I have provided or may provide in connection with my application or the
+Program (collectively, the “Materials”), including, without limitation, the right to edit, alter or modify
+the Materials and to use all or part of the Materials and my Likeness in any and all media now known or
+hereafter devised worldwide, in perpetuity. Without in any way limiting the foregoing, if I perform or
+include any music (other than music supplied to me by Producer) in connection with my application or
+the Program, I represent and warrant that I own all rights to such music, and I grant Producer the right
+to record, reproduce and publicly perform any such music in and in connection with the Program or any
+other work. Without in any way limiting the waivers and releases set forth herein, I waive any claims to
+royalties of any kind, whether accruing now or in the future, from Producer and JITUME for the use of
+any such music, including, without limitation, any applicable copyright, public performance, mechanical
+and synchronization royalties. I further agree that Releasees may use my Likeness and the Materials in
+connection with any promotion, publicity, marketing or advertisement. I grant the rights hereunder
+whether or not I am selected to participate in the Program in any manner whatsoever. I understand that
+I will not be paid any money for giving Releasees these rights or for signing this application. I
+acknowledge that everything stated in this application is true. I understand that any falsely submitted
+answers can and will be grounds for removal from the casting process and from my subsequent
+participation in the Program.
 
-Whether or not I am selected to be a participant on the Program, I shall keep in strictest confidence and shall not disclose to any other applicant, participant or other third party at any time (i.e., prior to, during, or after the taping or exhibition of any episode of the Program) any information or materials of any kind, including without limitation, any information or materials concerning or relating to Producer or to NBCU, the business of Producer or NBCU, any program produced by Producer and/or exhibited by NBCU, including, without limitation, any information concerning or relating to the Program, the Program applicants, the Program participants, the location(s) of the Program, the events contained in the Program, or the outcome of any episode of the Program, that I read, hear or otherwise acquire or learn in connection with or as a result of my applying to be a participant on the Program or (if I am selected to be a participant) as the result of my experiences as a participant on the Program (collectively, the “Information and Materials”). I acknowledge and agree that the Information and Materials are confidential and the exclusive property of Producer and/or NBCU. At no time will I ever, directly or indirectly, divulge in any manner or use or permit others to use any of the Information and Materials. I acknowledge and agree that my obligations with respect to confidentiality set forth in this application shall continue in perpetuity or until terminated by NBCU by giving me written notice of termination. In no event will I have the right to terminate my confidentiality obligations under this application. I acknowledge that in the event I breach the confidentiality or any other provisions of this application, my breach may, in the sole discretion of Producer and/or NBCU result in my being disqualified to participate as a participant in the Program. I further acknowledge that a breach by me of any of the confidentiality provisions of this application would cause Producer and NBCU irreparable injury and damage that cannot be reasonably or adequately compensated by damages in an action at law, and, therefore, I hereby expressly agree that Producer and NBCU shall be entitled to injunctive and other equitable relief to prevent and/or cure any breach or threatened breach of any of the confidentiality provisions of this application by me.
+Whether or not I am selected to be a participant on the Program, I shall keep in strictest confidence and
+shall not disclose to any other applicant, participant or other third party at any time (i.e., prior to,
+during, or after the taping or exhibition of any episode of the Program) any information or materials of
+any kind, including without limitation, any information or materials concerning or relating to Producer or
+to JITUME, the business of Producer or JITUME, any program produced by Producer and/or exhibited by
+JITUME, including, without limitation, any information concerning or relating to the Program, the
+Program applicants, the Program participants, the location(s) of the Program, the events contained in
+the Program, or the outcome of any episode of the Program, that I read, hear or otherwise acquire or
+learn in connection with or as a result of my applying to be a participant on the Program or (if I am
+selected to be a participant) as the result of my experiences as a participant on the Program
+(collectively, the “Information and Materials”). I acknowledge and agree that the Information and
+Materials are confidential and the exclusive property of Producer and/or JITUME. At no time will I ever,
 
+directly or indirectly, divulge in any manner or use or permit others to use any of the Information and
+Materials. I acknowledge and agree that my obligations with respect to confidentiality set forth in this
+application shall continue in perpetuity or until terminated by JITUME by giving me written notice of
+termination. In no event will I have the right to terminate my confidentiality obligations under this
+application. I acknowledge that in the event I breach the confidentiality or any other provisions of this
+application, my breach may, in the sole discretion of Producer and/or JITUME result in my being
+disqualified to participate as a participant in the Program. I further acknowledge that a breach by me of
+any of the confidentiality provisions of this application would cause Producer and JITUME irreparable
+injury and damage that cannot be reasonably or adequately compensated by damages in an action at
+law, and, therefore, I hereby expressly agree that Producer and JITUME shall be entitled to injunctive
+and other equitable relief to prevent and/or cure any breach or threatened breach of any of the
+confidentiality provisions of this application by me.
     </textarea>
       </div>
      </div>

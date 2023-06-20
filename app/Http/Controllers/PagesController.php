@@ -187,7 +187,8 @@ try {
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
             'pin' => $final_pin,
-            'id_passport' => $final_passport           
+            'id_passport' => $final_passport,
+            'investor' => $investor           
            ]); 
 
        

@@ -545,6 +545,16 @@ a:hover{text-decoration: none;}
     background: #fff;
     height: 22px;
 }
+
+.showFormB input, .showFormB select {
+    border-top: 1px solid #7c7c7c;
+    border-left: 1px solid #c3c3c3;
+    border-right: 1px solid #c3c3c3;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+    height: 28px;
+}
+
  .showForm textarea {
     border-top: 1px solid #7c7c7c;
     border-left: 1px solid #c3c3c3;
@@ -557,4 +567,16 @@ a:hover{text-decoration: none;}
 .fileI{
     font-size: 12px;
     border: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.eq tr th{
+    font-size:12px;
+    padding-x: 0;
 }

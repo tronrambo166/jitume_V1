@@ -79,17 +79,23 @@
             <select  name="status" style="width:65%;" class=" d-inline rounded border border-dark p-1 ">
                  
                 
-            @if($ev->status == 'Created')
-            <option hidden value="In Progress" class="form-control" >In Progress</option> 
-            @else
-            <option hidden value="{{$ev->status}}" class="form-control" >{{$ev->status}}</option>
+            @if($ev->status == 'Created' || $ev->status == 'In Progress')
+            <option selected hidden value="In Progress" class="form-control" >In Progress</option> 
+            <option value="On Hold"class="form-control" >On Hold</option>
+             <option value="Done" class="form-control" >Done</option>
+             <option value="Cancelled" class="form-control" >Cancelled</option>
+
+            @elseif($ev->status == 'On Hold')
+             <option value="In Progress" class="form-control" >In Progress</option>
+             <option selected hidden value="On Hold"class="form-control" >On Hold</option>
+             <option value="Done" class="form-control" >Done</option>
+             <option value="Cancelled" class="form-control" >Cancelled</option>
+
+              @else
+               <option disabled selected hidden value="{{$ev->status}}"class="form-control" >{{$ev->status}}</option>
+
             @endif
 
-            @if($ev->status != 'Done' || $ev->status == 'Done')
-            <option value="Done" class="form-control" >
-                
-            Done</option>
-            @endif
             
            </select>
           

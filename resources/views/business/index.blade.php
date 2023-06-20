@@ -8,10 +8,51 @@
       {{Session::get('file_error')}} @php Session::forget('file_error'); @endphp</p>@endif
     
 
+   @if(isset($investor) && $investor == true ) 
+   <div class="row pt-4  m-auto">  
+   <h4 class="text-center pb-3 font-weight-bold"> My Investments</h4>       
+     <table class="eq table table-bordered " id="">
+    <thead>
+        <tr>
+            <th>Name </th>
+            <th>Category </th>
+            <th style="width: 10%;">Value Needed</th>
+            <th>Details </th>  
+            <th>Contact </th> 
+            <th style="width: 11%;">Share Allocated </th> 
+            <th>Image </th> 
+            <th width="20%" class="text-center">Action</th>        
+        </tr>
+
+    </thead>
     
 
+    
+    <tbody>
+        @foreach($results as $ev)
+        <tr class="invest_heading">
+            <td>{{$ev->name }}</td>
+                <td>{{$ev->category }}</td>
+                    <td>{{$ev->investment_needed }}</td>
+                        <td>{{$ev->details }}</td>
+                        <td>{{$ev->contact }}</td>
+                        <td>{{$ev->share }}%</td>
+                        <td><img width="100px" height="60px" src="../{{$ev->image}}"></td>
+   
+            <td class="text-center">
+                
+            <a style="color:#72c537; border-radius: 4px;" href="./../#/project_dash/{{$ev->id}}" class="border border-dark small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
+            
+
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+</div>
 
 
+@else
   <div class="h-75 w-75 m-auto d-flex align-items-center justify-content-center">
 
         <div class="mb-5 pb-3 w-50 text-center mx-auto"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary ">
@@ -26,6 +67,7 @@
         <!-- 
         </div> -->
     </div>
+    @endif
 
 
 

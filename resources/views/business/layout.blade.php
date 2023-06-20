@@ -134,7 +134,7 @@
 
 
                             <li  class="{{ Request::is('business/listings') ? 'active' : '' }}"> 
-                                <a class="navLink" href="{{route('listings')}}"><i class=" fe fe-layout"></i> <span>My Business</span></a>           
+                                <a class="navLink" href="{{route('listings')}}"><i class=" fe fe-layout"></i> <span>My Businesses</span></a>           
 
                             </li>
 

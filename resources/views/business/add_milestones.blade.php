@@ -117,12 +117,14 @@
                                         </div>
                                     </div>
 
-                                <div class="col-sm-3 px-1">
-                                <div class="upload-btn-wrapper w-100">
-                                  <button class="btnUp3 w-100">Upload Milestone Documentaion <i class="ml-2 fa fa-arrow-up"></i></button>
-                                  <input style="height: 30px;" required="" type="file" name="file" />
+                        <div class="col-sm-3 px-1">
+                            <div class="upload-btn-wrapper w-100">
+                                <label for="file-upload" class="btnUp3 custom-file-upload">
+                                Upload Milestone Documentaion <i class="ml-2 fa fa-arrow-up"></i>
+                              </label>
+                              <input id="file-upload" name='file' type="file" style="display:none;">
                                 </div>
-                                    </div>
+                            </div>
 
 
 
@@ -245,11 +247,18 @@
             <div class="clear"></div>
             <div class="clearfix py-5"></div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
         <script type="text/javascript">
             function active(){
                 $('#addBtn').removeClass('disabled');
             }
+
+           $('#file-upload').change(function() {
+              var i = $(this).prev('label').clone();
+              var file = $('#file-upload')[0].files[0].name;
+              $(this).prev('label').text(file);
+            });
         </script>
 
 

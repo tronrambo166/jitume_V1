@@ -203,37 +203,138 @@ Services::create([
 }
 
 public function up_listing(Request $request){
-$title = $request->title;
-$category = $request->category;
-$details = $request->details;
-$price = $request->price;
-$location = $request->location;
 $user_id = Auth::id();
-$old_img = $request->old_img;
 $id = $request->id;
 
+$listing = $request->id;
+$data = $request->except(['_token','link']);
+$current = Services::where('id',$id)->first();
+
+$old_cover = $current->image;
+$old_pin = $current->pin;
+$old_identification = $current->identification;
+$old_video = $current->video;
+$old_document = $current->document;
+
+ //FILES
  $image=$request->file('image');
  if($image) {
           $uniqid=hexdec(uniqid());
           $ext=strtolower($image->getClientOriginalExtension());
+          if($ext!='jpg' && $ext!= 'png' && $ext!='jpeg' && $ext!= 'svg'&& $ext!='gif')
+          {
+            Session::put('error','For Cover, Only images are allowed!');
+            return redirect()->back();
+          }
           $create_name=$uniqid.'.'.$ext;
-          $loc='images/listing/';
+          $loc='images/services/';
           //Move uploaded file
           $image->move($loc, $create_name);
           $final_img=$loc.$create_name;
-          Listing::where('id',$id)->update(['image' => $final_img ]); 
+          $data['image'] = $final_img;
+          if($old_cover!=null) unlink($old_cover);
              }
-             else $final_img = $old_img;
 
-Services::where('id',$id)->update([
-            'name' => $title,
-            'shop_id' => $user_id,
-            'price' => $price,
-            'category' => $category,
-            'details' => $details,
-            'location' => $location,
-            'image' => $final_img    
-           ]);       
+ $pin=$request->file('pin');
+ if($pin) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($pin->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('error','For pin, Only pdf & docx are allowed!');
+            return redirect()->back();
+          }
+
+          $create_name=$uniqid.'.'.$ext;
+          if (!file_exists('files/services/'.$listing)) 
+          mkdir('files/services/'.$listing, 0777, true);
+
+          $loc='files/services/'.$listing.'/';
+          //Move uploaded file
+          $pin->move($loc, $create_name);
+          $final_pin=$loc.$create_name;
+          $data['pin'] = $final_pin;
+          if($old_pin!=null) unlink($old_pin);
+             }
+
+
+ $identification=$request->file('identification');
+ if($identification) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($identification->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('error','For identification, Only pdf & docx are allowed!');
+            return redirect()->back();
+          }
+
+          $create_name=$uniqid.'.'.$ext;
+          if (!file_exists('files/services/'.$listing)) 
+          mkdir('files/services/'.$listing, 0777, true);
+
+          $loc='files/services/'.$listing.'/';
+          //Move uploaded file
+          $identification->move($loc, $create_name);
+          $final_identification=$loc.$create_name;
+          $data['identification'] = $final_identification;
+          if($old_identification!=null) unlink($old_identification);
+             }
+
+
+ $document=$request->file('document');
+ if($document) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($document->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('error','For services document, Only pdf & docx are allowed!');
+            return redirect()->back();
+          }
+
+          $create_name=$uniqid.'.'.$ext;
+          if (!file_exists('files/services/'.$listing)) 
+          mkdir('files/services/'.$listing, 0777, true);
+
+          $loc='files/services/'.$listing.'/';
+          //Move uploaded file
+          $document->move($loc, $create_name);
+          $final_document=$loc.$create_name;
+          $data['document'] = $final_document;
+          if($old_document!=null) unlink($old_document);
+             }
+             
+
+
+ $video=$request->file('video');
+ if($video) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($video->getClientOriginalExtension());
+          if($ext!='mpg' && $ext!= 'mpeg' && $ext!='webm' && $ext!= 'mp4' 
+            && $ext!='avi' && $ext!= 'wmv')
+          { 
+            Session::put('error','For video, Only mpg || mpeg || webm || mp4 
+            avi || wmv are allowed!');
+             
+            return redirect()->back();
+          }
+
+          $create_name=$uniqid.'.'.$ext;
+          if (!file_exists('files/services/'.$listing)) 
+          mkdir('files/services/'.$listing, 0777, true);
+
+          $loc='files/services/'.$listing.'/';
+          //Move uploaded file
+          $video->move($loc, $create_name);
+          $final_video=$loc.$create_name;
+          $data['video'] = $final_video;
+          if($old_video!=null) unlink($old_video);
+             }                     
+
+          
+
+//FILES
+if(isset($request->link)) $data['video'] = $request->link;
+Services::where('id',$id)->update($data);   
 
         Session::put('success','Service Updated!');
         return redirect()->back();
