@@ -139,8 +139,13 @@
 
      </div>
 
-      @else     
-      <a  data-target="#loginModal" data-toggle="modal" style="background: white; border-radius: 15px;cursor: pointer; " class="float-right text-dark px-sm-3 px-1 py-2 d-inline-block small text-center" ><b>Sign In</b></a>
+      @else 
+
+      <div class="d-inline-block" id="call_to">
+      <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 px-1 py-1 ml-3 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> 
+     </div>
+
+      <a  data-target="#loginModal" data-toggle="modal" style="background: white; border-radius: 15px;cursor: pointer;font-size: 11px; " class="float-right text-dark px-sm-3 px-1 py-1 d-inline-block small text-center" ><b>Sign In</b></a>
 
       @endif
 
@@ -593,6 +598,8 @@ $("#datepicker2").datepicker({
                     <form method="POST" action="{{ route('register') }}" id="register_main" enctype="multipart/form-data">
                         @csrf
 
+                    <input hidden id="c_to_action" type="text" class="form-control" name="c_to_action" value="" >
+
                        
                          <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('First Name') }} <span title="Required" class="text-danger">*</span></label>
@@ -627,6 +634,20 @@ $("#datepicker2").datepicker({
                         </div>
 
 
+                        <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Gender') }} <span title="Required" class="text-danger">*</span></label>
+
+                            <div class="col-md-6">
+                               <select required name="gender" class="dropdown-toggle py-1 px-4">
+                                <option hidden value="">Select Gender</option>
+                                   <option value="M">M</option>
+                                    <option value="F">F</option>
+                                     <option value="N/A">N/A</option>
+                               </select>
+
+                               
+                            </div>
+                        </div>
            
 
 
@@ -1506,6 +1527,14 @@ $("#datepicker2").datepicker({
             });
  
 }
+
+function c_to_action(){
+  document.getElementById('c_to_action').value = 'True';
+}
+function c_to_actionS(){
+  document.getElementById('c_to_action').value = 'TrueS';
+}
+
 
 </script>
 

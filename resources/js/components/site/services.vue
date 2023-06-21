@@ -82,6 +82,12 @@ export default {
     res:[],
     emptyCat:false
     }),
+
+    created(){
+    //document.getElementById('c_to_ac').innerHTML = 'Add Your Service';
+    $('#call_to').html('');
+    $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 px-1 py-1 ml-3 d-inline-block small text-center" ><span id="c_to_ac">Add Your Service</span></a> ');
+    },
     methods:{
     
     search(){

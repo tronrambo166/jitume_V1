@@ -108,20 +108,22 @@
                
                  
                 <li class="nav-item" > <router-link to="category/Technology-Communications">Technology/Communications  </router-link></li>     
-                     
-          
-          
-          
             
            <li class="nav-item" ><router-link to="category/Other">Other </router-link></li>   
-           </ul> <br>
+           </ul>
+            <br>
            
-
-         </div>
 
              </div>
 
-             <div class="row"><ul class="row text-center"><li class="nav-item" > <router-link to="category/Renewable Energy" style="color:#1ed73d;" class="font-weight-bold">Renewable Energy </router-link></li></ul></div>
+             </div>
+
+             <div class="row">
+              <ul class="row text-center">
+                <li class="nav-item" > <router-link to="category/Renewable-Energy" style="color:#1ed73d;" class="font-weight-bold">Renewable Energy </router-link>
+                </li>
+              </ul>
+            </div>
 
 
                       </div>
@@ -244,6 +246,10 @@ created() {
             this.milestone = sessionStorage.getItem('milestone');
             if(this.milestone !=null)
               this.$router.push(`project_dash/${this.milestone}`)
+
+      //CALL ACTION
+      $('#call_to').html('');
+      $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 px-1 py-1 ml-3 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> ');
         },
 
   methods:{

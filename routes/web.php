@@ -103,7 +103,7 @@ Route::get('business', 'BusinessController@business')->name('business');
 Route::prefix('/business')->group(function(){
   Route::get('add-listing', 'BusinessController@add_listing')->name('add-listing');
   Route::post('create-listing', 'BusinessController@save_listing')->name('create-listing');
-  Route::get('/index', 'BusinessController@home')->name('business');
+  Route::get('index', 'BusinessController@home')->name('business');
   Route::get('listings', 'BusinessController@listings')->name('listings');
 Route::post('add_eqp', 'BusinessController@add_eqp')->name('add_eqp');
 Route::post('up_listing', 'BusinessController@up_listing')->name('up_listing');

@@ -60,17 +60,18 @@
             <select  name="category" class="border-none form-control">
             <option hidden class="form-control" >Select Category</option>
             <option class="form-control" value="Agriculture" >Agriculture</option>
-            <option value="Arts / Culture" >Arts/Culture </option>
+            <option value="Arts/Culture" >Arts/Culture </option>
             <option value="Auto" >Auto</option>
            <option value="Sports/Gaming" >Sports/Gaming</option>
            <option value="Real State" >Real State</option>
            <option value="Food" >Food </option>
            <option value="Legal" >Legal </option>
             <option value="Security" >Security </option>
-             <option value="Media / Internet" >Media/Internet </option>
+             <option value="Media/Internet" >Media/Internet </option>
               
                <option value="Fashion" >Fashion </option>
-                <option value="Technology / Communications" >Technology/Communications </option>
+                <option value="Technology/Communications" >Technology/Communications </option>
+                <option value="Renewable/Energy" >Renewable Energy </option>
                  <option value="Retail" >Retail </option>
            
            <option value="Finance/Accounting" >Finance/Accounting</option>

@@ -61,6 +61,12 @@ return view('business.applyForShow');
 }
 
 public function home(){
+if(Session::has('c_to_action') && Session::get('c_to_action') == true)
+  return redirect('business/add-listing');
+
+if(Session::has('c_to_actionS') && Session::get('c_to_actionS') == true)
+  return redirect('business/add-services');
+
 $investor ='';
 $business = listing::where('user_id',Auth::id())->get();
 $investor_ck = User::where('id',Auth::id())->first();

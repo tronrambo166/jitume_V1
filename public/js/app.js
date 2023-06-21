@@ -7953,6 +7953,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -7974,7 +7976,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.serviceDetails = sessionStorage.getItem('serviceDetails');
     if (this.serviceDetails != null) this.$router.push("serviceDetails/".concat(this.serviceDetails));
     this.milestone = sessionStorage.getItem('milestone');
-    if (this.milestone != null) this.$router.push("project_dash/".concat(this.milestone));
+    if (this.milestone != null) this.$router.push("project_dash/".concat(this.milestone)); //CALL ACTION
+
+    $('#call_to').html('');
+    $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 px-1 py-1 ml-3 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> ');
   },
   methods: _defineProperty({
     search: function search() {
@@ -9484,6 +9489,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       res: [],
       emptyCat: false
     };
+  },
+  created: function created() {
+    //document.getElementById('c_to_ac').innerHTML = 'Add Your Service';
+    $('#call_to').html('');
+    $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 px-1 py-1 ml-3 d-inline-block small text-center" ><span id="c_to_ac">Add Your Service</span></a> ');
   },
   methods: {
     search: function search() {
@@ -66976,7 +66986,7 @@ var render = function () {
                 {
                   staticClass: "font-weight-bold",
                   staticStyle: { color: "#1ed73d" },
-                  attrs: { to: "category/Renewable Energy" },
+                  attrs: { to: "category/Renewable-Energy" },
                 },
                 [_vm._v("Renewable Energy ")]
               ),

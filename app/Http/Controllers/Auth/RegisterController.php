@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Session;
 class RegisterController extends Controller
 {
     /*
@@ -64,12 +64,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     { 
+        if($data['c_to_action'] == 'True')
+            Session::put('c_to_action', true);
+        else if($data['c_to_action'] == 'TrueS')
+            Session::put('c_to_actionS', true);
 
         return User::create([
             'fname' => $data['fname'],
             'mname' => $data['mname'],
             'lname' => $data['lname'],
             'email' => $data['email'],
+            'gender' => $data['gender'],
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
             //'pin' => $final_pin,
