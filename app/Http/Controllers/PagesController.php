@@ -137,9 +137,15 @@ Session::put('login_err',$e->getMessage());
 
 public function registerI(Request $request){
 $investor = 1;
-$user = User::latest()->first();
-$inv_id = $user->id;
+$usr = User::where('email',$request->email)->first();
+    if($user!=''){ 
+    Session::put('login_err','User already exists!');
+     return redirect('home');
+     }
 
+//Upload
+$user = User::latest()->first();
+$inv_id = $user->id+1;
 try {
  $passport=$request->file('id_passport');
  if(isset($request->pin))
@@ -177,15 +183,14 @@ try {
           $passport->move($loc, $create_name);
           $final_passport=$loc.$create_name;
              }else $final_passport=''; 
-
+//Upload
 
             User::create([
-            'fname' => $data['fname'],
-            'mname' => $data['mname'],
-            'lname' => $data['lname'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'email' => $data['email'],
+            'fname' => $request->fname,
+            'mname' => $request->mname,
+            'lname' => $request->lname,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
             'pin' => $final_pin,
             'id_passport' => $final_passport,
             'investor' => $investor           
@@ -198,10 +203,11 @@ try {
 
 
 } catch (\Exception $e) {
-
+   return $e->getMessage();
     Session::put('login_err',$e->getMessage());
-     return redirect()->back(); 
+     return redirect('home'); 
 }
+
 }
 
 //-------------------Login-Register
@@ -219,6 +225,14 @@ try {
          if($user->service ==1 )
           $business=2; $auth_user = true; 
          }
+         else {
+         if(Session::has('investor_email')){   
+         $mail = Session::get('investor_email');
+         $user = User::where('email',$mail)->first();
+         if($user->investor == 1 )
+            $auth_user = true;
+    }
+    }
 
          return view('home',compact('auth_user','app_url','business'));
         

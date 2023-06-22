@@ -142,10 +142,10 @@
       @else 
 
       <div class="d-inline-block" id="call_to">
-      <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 px-1 py-1 ml-3 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> 
+      <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> 
      </div>
 
-      <a  data-target="#loginModal" data-toggle="modal" style="background: white; border-radius: 15px;cursor: pointer;font-size: 11px; " class="float-right text-dark px-sm-3 px-1 py-1 d-inline-block small text-center" ><b>Sign In</b></a>
+      <a  data-target="#loginModal" data-toggle="modal" style="background: white; border-radius: 15px;cursor: pointer;font-size: 11px; " class="float-right text-dark px-sm-3 my-1 mr-2 px-1 py-1 d-inline-block small text-center" ><b>Sign In</b></a>
 
       @endif
 

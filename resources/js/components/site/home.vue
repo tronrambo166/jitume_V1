@@ -249,7 +249,7 @@ created() {
 
       //CALL ACTION
       $('#call_to').html('');
-      $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 px-1 py-1 ml-3 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> ');
+      $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> ');
         },
 
   methods:{

@@ -7979,7 +7979,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     if (this.milestone != null) this.$router.push("project_dash/".concat(this.milestone)); //CALL ACTION
 
     $('#call_to').html('');
-    $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 px-1 py-1 ml-3 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> ');
+    $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> ');
   },
   methods: _defineProperty({
     search: function search() {
@@ -9493,7 +9493,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   created: function created() {
     //document.getElementById('c_to_ac').innerHTML = 'Add Your Service';
     $('#call_to').html('');
-    $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 px-1 py-1 ml-3 d-inline-block small text-center" ><span id="c_to_ac">Add Your Service</span></a> ');
+    $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span id="c_to_ac">Add Your Service</span></a> ');
   },
   methods: {
     search: function search() {
