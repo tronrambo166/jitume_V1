@@ -57,9 +57,9 @@
         <div class="navbar navbar-expand-sm pl-4">
              <ul class="navbar-nav ">
         
-         <li class="nav-item py-1 px-3 active"><router-link to="/home" class=" ">Home</router-link></li>
+         <li class="nav-item py-1 px-3 active"><router-link to="/home" class="py-1 px-3">Home</router-link></li>
 
-                    <li class="nav-item py-1 px-3 text-light"><router-link to="/services" class=" ">Jitume Services</router-link></li>
+                    <li class="nav-item py-1 px-3 text-light"><router-link to="/services" class="py-1 px-3 ">Jitume Services</router-link></li>
 
                     <!-- <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/applyShow" class="">Apply for Show
                     </router-link></li> -->
@@ -142,7 +142,7 @@
       @else 
 
       <div class="d-inline-block" id="call_to">
-      <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> 
+      <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Business</span></a> 
      </div>
 
       <a  data-target="#loginModal" data-toggle="modal" style="background: white; border-radius: 15px;cursor: pointer;font-size: 11px; " class="float-right text-dark px-sm-3 my-1 mr-2 px-1 py-1 d-inline-block small text-center" ><b>Sign In</b></a>
@@ -919,7 +919,9 @@ $("#datepicker2").datepicker({
                           <form method="POST" class="" action="{{route('login')}}">
                            @csrf
 
-                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" 
+                           <input type="text" hidden name="c_to_action_login" id="c_to_action_login" value="">
+
+                                           <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" 
                                             value=""    />
                                                                        
                                           
@@ -1530,9 +1532,11 @@ $("#datepicker2").datepicker({
 
 function c_to_action(){
   document.getElementById('c_to_action').value = 'True';
+  document.getElementById('c_to_action_login').value = 'True';
 }
 function c_to_actionS(){
   document.getElementById('c_to_action').value = 'TrueS';
+  document.getElementById('c_to_action_login').value = 'TrueS';
 }
 
 

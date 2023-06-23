@@ -82,7 +82,7 @@
 
       <div class="row mt-4">
 
-        <div class="cats text-center categories navbar navbar-expand-sm">
+        <div class="cats text-center categories navbar navbar-expand-sm pb-0">
                                         
         <ul class=" navbar-nav mx-auto" >
             
@@ -118,9 +118,9 @@
 
              </div>
 
-             <div class="row">
-              <ul class="row text-center">
-                <li class="nav-item" > <router-link to="category/Renewable-Energy" style="color:#1ed73d;" class="font-weight-bold">Renewable Energy </router-link>
+             <div class="categories cats py-0">
+              <ul class="row text-center py-0">
+                <li class="nav-item py-0" > <router-link to="category/Renewable-Energy" class="py-0" style="color:#1ed73d;">Renewable Energy </router-link>
                 </li>
               </ul>
             </div>
@@ -249,7 +249,7 @@ created() {
 
       //CALL ACTION
       $('#call_to').html('');
-      $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> ');
+      $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Business</span></a> ');
         },
 
   methods:{
