@@ -120,7 +120,7 @@
 
              <div class="categories cats py-0">
               <ul class="row text-center py-0">
-                <li class="nav-item py-0" > <router-link to="category/Renewable-Energy" class="py-0" style="color:#1ed73d;">Renewable Energy </router-link>
+                <li style="list-style-type:none;" class="nav-item py-0" > <router-link to="category/Renewable-Energy" class="py-0" style="color:#1ed73d;">Renewable Energy </router-link>
                 </li>
               </ul>
             </div>

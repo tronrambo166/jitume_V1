@@ -183,10 +183,10 @@ hr{color: #a7a3a3;}
     font-weight: 600;
     max-padding: 0 40px;
     margin-right: 1px;
-    height: 40px;
+    height: 37px;
     outline: none;
     background-color: #72c537;
-    border-radius: 15px;
+    border-radius: 35px;
     border: none;
     color: white;
 }
@@ -579,4 +579,18 @@ a:hover{text-decoration: none;}
 .eq tr th{
     font-size:12px;
     padding-x: 0;
+}
+
+.header_buttons{
+    font-family: system-ui;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.navbar ul li .header_buttons{
+    font-family: system-ui;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 11px;
 }

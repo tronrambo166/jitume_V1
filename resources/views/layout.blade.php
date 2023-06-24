@@ -51,15 +51,15 @@
 
         
         <li class="nav-item py-1 pr-5">
-            <a href="home"><img class="" src="images/logo.png" width="170px" height="45px" style="margin-left: 45px;"></a>
+            <a href="./"><img class="" src="images/logo.png" width="170px" height="45px" style="margin-left: 45px;"></a>
         </li>
 
         <div class="navbar navbar-expand-sm pl-4">
              <ul class="navbar-nav ">
         
-         <li class="nav-item py-1 px-3 active"><router-link to="/home" class="py-1 px-3">Home</router-link></li>
+         <li class="nav-item py-1 px-3 active"><router-link to="/home" class=" header_buttons py-1 px-3"> <b style="position:relative;top: -1px;">Home</b></router-link></li>
 
-                    <li class="nav-item py-1 px-3 text-light"><router-link to="/services" class="py-1 px-3 ">Jitume Services</router-link></li>
+                    <li class="nav-item py-1 px-3 text-light"><router-link to="/services" class=" header_buttons py-1 px-3 "> <b style="position:relative;top: -1px;">Jitume Services</b></router-link></li>
 
                     <!-- <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/applyShow" class="">Apply for Show
                     </router-link></li> -->
@@ -113,13 +113,14 @@
 
      @if(Auth::check()) 
     <div class="row">
-     <div class="col-sm-6 py-1 text-center">
-         <a  href="{{route('business')}}" style="background: aliceblue; border-radius: 15px;" class=" text-dark small d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a> 
+     <div class="col-sm-2"></div>   
+     <div class="col-sm-4 py-1 text-center">
+         <a  href="{{route('business')}}" style="background: aliceblue; border-radius: 15px;" class="ml-2 header_buttons text-dark px-sm-3 my-1 mr-2 px-1 py-1 d-inline-block small text-center" ><b>Dashboard</b></a> 
     </div> 
        
     <div class="col-sm-6 py-1 text-center">
         <a v-if="" onclick="event.preventDefault();
-     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Sign Out</b></a>
+     document.getElementById('logout-form').submit();" style="background: white;" class=" header_buttons text-dark px-sm-3 my-1 mr-2 px-1 py-1 d-inline-block small text-center" ><b>Sign Out</b></a>
       </div> 
 
      </div>
@@ -128,13 +129,14 @@
      @elseif (Session::has('investor_auth') && Session::get('investor_auth') == true)
 
      <div class="row">
-     <div class="col-sm-6 py-1 text-center">
-         <a  href="{{route('business')}}" style="background: aliceblue; border-radius: 15px;" class=" text-dark small d-inline px-3 py-2 d-inline-block text-center" ><b>Dashboard</b></a> 
+     <div class="col-sm-2"></div>   
+     <div class="col-sm-4 py-1 text-center">
+         <a  href="{{route('business')}}" style="background: aliceblue; border-radius: 15px;" class="ml-2 header_buttons text-dark px-sm-3 my-1 mr-2 px-1 py-1 d-inline-block small text-center" ><b>Dashboard</b></a> 
     </div> 
        
     <div class="col-sm-6 py-1 text-center">
         <a v-if="" onclick="event.preventDefault();
-     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class=" text-dark d-inline px-3 py-2 d-inline-block text-center small" ><b>Sign Out</b></a>
+     document.getElementById('logout-form').submit();" style="background: white; border-radius: 15px;cursor: pointer;" class=" header_buttons text-dark d-inline px-sm-3 my-1 mr-2 px-1 py-1 d-inline-block small text-center" ><b>Sign Out</b></a>
       </div> 
 
      </div>
@@ -142,10 +144,12 @@
       @else 
 
       <div class="d-inline-block" id="call_to">
-      <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Business</span></a> 
+
+      <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class=" header_buttons text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">
+      Add Your Business</span></a> 
      </div>
 
-      <a  data-target="#loginModal" data-toggle="modal" style="background: white; border-radius: 15px;cursor: pointer;font-size: 11px; " class="float-right text-dark px-sm-3 my-1 mr-2 px-1 py-1 d-inline-block small text-center" ><b>Sign In</b></a>
+      <a  data-target="#loginModal" data-toggle="modal" style="background: white; border-radius: 15px;cursor: pointer;font-size: 11px; " class=" header_buttons float-right text-dark px-sm-3 my-1 mr-2 px-1 py-1 d-inline-block small text-center" ><b>Sign In</b></a>
 
       @endif
 

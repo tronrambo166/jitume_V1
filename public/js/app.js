@@ -7432,9 +7432,16 @@ __webpack_require__.r(__webpack_exports__);
     },
     getPhoto: function getPhoto() {
       return '../';
+    },
+    replaceText: function replaceText() {
+      if (this.$router.currentRoute.path == '/cart') {
+        $('#call_to').html('');
+        $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+      }
     }
   },
   mounted: function mounted() {
+    this.replaceText();
     this.cart();
   }
 });
@@ -9274,9 +9281,14 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('cart').then(function (data) {
         document.getElementById('cart').innerHTML = data.data.cart;
       });
+    },
+    replaceText: function replaceText() {
+      $('#call_to').html('');
+      $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
     }
   },
   mounted: function mounted() {
+    this.replaceText();
     this.getDetails();
     this.cart();
   }
@@ -9373,9 +9385,14 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('cart').then(function (data) {
         document.getElementById('cart').innerHTML = data.data.cart;
       });
+    },
+    replaceText: function replaceText() {
+      $('#call_to').html('');
+      $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
     }
   },
   mounted: function mounted() {
+    this.replaceText();
     this.setRes();
     this.cart(); //return this.$store.dispatch("fetchpro")
   }
@@ -9491,7 +9508,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     };
   },
   created: function created() {
-    //document.getElementById('c_to_ac').innerHTML = 'Add Your Service';
+    console.log(this.$router.currentRoute.path);
+    document.getElementById('c_to_ac').innerHTML = 'Add Your Service';
     $('#call_to').html('');
     $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
   },
@@ -9531,14 +9549,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         }
       });
     },
-    cart: function cart() {
-      axios.get('cart').then(function (data) {
-        document.getElementById('cart').innerHTML = data.data.cart;
-      });
+    replaceText: function replaceText() {
+      if (this.$router.currentRoute.path == '/services' || this.$router.currentRoute.path == '/serviceResults') {
+        $('#call_to').html('');
+        $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+      }
     }
   },
   mounted: function mounted() {
-    this.cart(); //return this.$store.dispatch("fetchpro")
+    //return this.$store.dispatch("fetchpro")
+    this.replaceText();
   }
 });
 
@@ -66980,7 +67000,10 @@ var render = function () {
         _c("ul", { staticClass: "row text-center py-0" }, [
           _c(
             "li",
-            { staticClass: "nav-item py-0" },
+            {
+              staticClass: "nav-item py-0",
+              staticStyle: { "list-style-type": "none" },
+            },
             [
               _c(
                 "router-link",
@@ -69557,7 +69580,7 @@ var staticRenderFns = [
             _c(
               "button",
               {
-                staticClass: "searchListing float-right",
+                staticClass: "px-sm-3 px-1 searchListing float-right",
                 attrs: { type: "submit" },
               },
               [_vm._v("Search")]

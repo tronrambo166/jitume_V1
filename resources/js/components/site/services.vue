@@ -50,7 +50,7 @@
                         </div>
 
                             <div style="border-radius: 0 35px 35px 0;" class="bg-white col-sm-3 py-2 ">
-                                <button  class="searchListing  float-right" type="submit">Search</button>
+                                <button  class="px-sm-3 px-1 searchListing  float-right" type="submit">Search</button>
                             </div>
 
                                </div>               
@@ -84,9 +84,13 @@ export default {
     }),
 
     created(){
-    //document.getElementById('c_to_ac').innerHTML = 'Add Your Service';
+    console.log(this.$router.currentRoute.path);
+    document.getElementById('c_to_ac').innerHTML = 'Add Your Service';
     $('#call_to').html('');
     $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+
+    
+
     },
     methods:{
     
@@ -118,18 +122,19 @@ export default {
     });
     },
 
-    cart(){
-           axios.get('cart').then( (data) =>{
-            document.getElementById('cart').innerHTML = data.data.cart;
-        
-    });
+    replaceText(){
+    if(this.$router.currentRoute.path == '/services' ||
+     this.$router.currentRoute.path == '/serviceResults'){
+    $('#call_to').html('');
+    $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+    }
     }
 
   },
   
 mounted() { 
-    this.cart();
      //return this.$store.dispatch("fetchpro")
+     this.replaceText();
       } 
 
     }
