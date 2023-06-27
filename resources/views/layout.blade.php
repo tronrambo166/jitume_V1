@@ -278,7 +278,7 @@
 
     <div style="width:80%;" class="row mx-auto my-3">
         <div class="col-sm-6">
-            <img src="images/logo_services.png" width="363px" height="110px">
+            <img class="img-fluid w-100" src="images/logo_services.png" width="363px" height="110px">
         </div>
 
         <div class="col-sm-3">
