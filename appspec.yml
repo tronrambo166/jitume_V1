@@ -13,3 +13,4 @@ hooks:
 
 #BeforeInstall
 #AfterInstall
+file_exists_behavior: OVERWRITE
