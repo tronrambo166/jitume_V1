@@ -17,6 +17,6 @@ trait CreatesApplication
 
         $app->make(Kernel::class)->bootstrap();
 
-        return false; //$app;
+        return $app;
     }
 }
