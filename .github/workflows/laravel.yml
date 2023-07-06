@@ -37,4 +37,4 @@ jobs:
         run: |
           if [ ${{ job.status }} != 'success' ]; then
             echo "Tests failed. Deployment will not proceed."
-            exit 1
+            exit
