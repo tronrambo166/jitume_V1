@@ -33,3 +33,8 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
+      - name: Check test status
+        run: |
+          if [ ${{ job.status }} != 'success' ]; then
+            echo "Tests failed. Deployment will not proceed."
+            exit 1
