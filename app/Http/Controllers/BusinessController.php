@@ -47,7 +47,8 @@ public function logoutB(){
 
 public function business(){
 $business = listing::where('user_id',Auth::id())->get();
-return view('business.index',compact('business'));
+$services = Services::where('shop_id',Auth::id())->get();
+return view('business.index',compact('business','services'));
 }
 
 public function add_listing(){
@@ -73,6 +74,7 @@ if(Session::has('c_to_actionS') && Session::get('c_to_actionS') == true){
 
 $investor ='';
 $business = listing::where('user_id',Auth::id())->get();
+$services = Services::where('shop_id',Auth::id())->get();
 $investor_ck = User::where('id',Auth::id())->first();
 
 if($investor_ck == null){
@@ -94,7 +96,7 @@ $convs = Conversation::where('investor_id',Auth::id())->get();
 foreach($convs as $conv){ 
   $results[] = listing::where('id',$conv->listing_id)->first();
 }
-return view('business.index',compact('business','investor','results'));
+return view('business.index',compact('business','investor','results','services'));
 }
 
 
@@ -482,10 +484,14 @@ return response()->json([ 'data' => $milestones ]);
 
  public function download_milestone_doc($id){
     
+    $fileName = Milestones::where('id',$id)->first();
+return response()->json(['data'=>$fileName]);
+    //$file="files/milestones/".$id."/".$fileName->document;
     $file="files/milestones/1/1765896965832438.docx";
     $headers = array('Content-Type'=> 'application/pdf');
     return Response::download($file, 'milestone.pdf', $headers);
     return response()->json(['data'=>'success']);
+ 
 
     }
 

@@ -17,7 +17,7 @@
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li style="list-style-type: none;" class="text-center mt-3 nav-item py-1 px-0 text-secondary">
                           @foreach($business as $b)
-                <a style="font-size:13px;" class="dropdown-item" href="{{route('milestones', $b->id) }}">{{$b->name}}</a>
+                <a style="font-size:13px;" class="dropdown-item" href="{{route('s_milestones', $b->id) }}">{{$b->name}}</a>
                  @endforeach
 
                     </li>
@@ -75,7 +75,7 @@
 
            
 
-        <form action="{{route('mile_status')}}" method="post" class="form-inline">@csrf
+        <form action="{{route('mile_s_status')}}" method="post" class="form-inline">@csrf
             <select  name="status" style="width:65%;" class=" d-inline rounded border border-dark p-1 ">
                  
                 

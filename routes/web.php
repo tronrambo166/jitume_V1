@@ -77,7 +77,9 @@ Route::get('cart', 'PagesController@cart')->name('cart');
 Route::get('download_business/{id}', 'PagesController@download_business')->name('download_business');
 
 Route::get('getMilestones/{id}', 'BusinessController@getMilestones')->name('getMilestones');
+Route::get('getMilestonesS/{id}', 'ServiceController@getMilestones')->name('getMilestonesS');
 Route::get('download_milestoneDoc/{id}', 'BusinessController@download_milestone_doc')->name('download_milestoneDoc');
+Route::get('download_milestoneDocS/{id}', 'BusinessController@download_milestone_doc')->name('download_milestoneDocS');
 
 
 //MAIN/BACKEND/VUE
@@ -108,15 +110,16 @@ Route::prefix('/business')->group(function(){
 Route::post('add_eqp', 'BusinessController@add_eqp')->name('add_eqp');
 Route::post('up_listing', 'BusinessController@up_listing')->name('up_listing');
 Route::get('delete_listing/{id}', 'BusinessController@delete_listing')->name('delete_listing');
-
+// --- MILESTONE
 Route::get('add_milestones', 'BusinessController@add_milestones')->name('add_milestones');
+
 Route::get('milestones-{id}', 'BusinessController@milestones')->name('milestones');
 Route::post('save_milestone', 'BusinessController@save_milestone')->name('save_milestone');
 Route::post('up_milestones', 'BusinessController@up_milestone')->name('up_milestones');
 Route::get('delete_milestone/{id}', 'BusinessController@delete_milestone')->name('delete_milestone');
 Route::get('applyForShow', 'BusinessController@applyForShow')->name('applyForShow');
 Route::post('mile_status', 'BusinessController@mile_status')->name('mile_status');
-
+// --- MILESTONE
 Route::post('add_doc', 'BusinessController@add_docs')->name('add_doc');
 Route::post('add_video', 'BusinessController@add_video')->name('add_video');
 Route::post('embed_business_video', 'BusinessController@embed_business_video')->name('embed_business_video');
@@ -126,6 +129,14 @@ Route::post('embed_business_video', 'BusinessController@embed_business_video')->
 Route::get('services', 'ServiceController@services')->name('services');
 Route::get('add-services', 'ServiceController@add_listing')->name('add-services');
 Route::post('create-service', 'ServiceController@save_listing')->name('create-service');
+// --- MILESTONE
+Route::get('add_s_milestones', 'ServiceController@add_milestones')->name('add_s_milestones');
+Route::get('s_milestones-{id}', 'ServiceController@milestones')->name('s_milestones');
+Route::post('save_s_milestone', 'ServiceController@save_milestone')->name('save_s_milestone');
+Route::post('up_milestones', 'ServiceController@up_milestone')->name('up_s_milestones');
+Route::get('delete_s_milestone/{id}', 'ServiceController@delete_milestone')->name('delete_milestone');
+Route::post('mile_s_status', 'ServiceController@mile_status')->name('mile_s_status');
+// --- MILESTONE
 Route::get('/', 'BusinessController@home')->name('services/index');
 Route::get('services', 'ServiceController@listings')->name('services');
 //Route::post('add_eqp', 'ServiceController@add_eqp')->name('add_eqp');

@@ -12,6 +12,7 @@ import donate_eqp from '../components/site/donate_eqp.vue'
 import cart from '../components/site/cart.vue'
 import subscribe from '../components/site/subscribe.vue'
 import project_dash from '../components/site/project_dash.vue'
+import project_dash_service from '../components/site/project_dash_service.vue'
 import category from '../components/site/category.vue'
 
 
@@ -43,7 +44,8 @@ export const routes=[
 
 { path:'/serviceResults/:results',name: 'serviceResults', component: serviceResults},
 { path:'/serviceDetails/:id', component: serviceDetails},
-{ path:'/project_dash/:id', component: project_dash},
+{ path:'/business-milestone/:id', component: project_dash},
+{ path:'/service-milestone/:id', component: project_dash_service},
 { path:'/category/:name', component: category},
 
 
@@ -55,7 +57,6 @@ export const routes=[
 {path:'/add-product', component: addpro},
 { path:'/manage-product', component: manpro},
 { path:'/edit-product/:id', component: editpro},
-
 
 
 ];

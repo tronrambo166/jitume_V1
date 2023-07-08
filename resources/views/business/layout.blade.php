@@ -1,3 +1,11 @@
+@php $user_id = Auth::id();
+use App\Models\Listing;
+use App\Models\Services;
+use App\Models\User;
+
+$business = Listing::where('user_id',$user_id)->get();
+$service = Services::where('shop_id',$user_id)->get();
+@endphp
 
 <!DOCTYPE HTML>
 <head>
@@ -111,20 +119,41 @@
                     <div id="sidebar-menu" class="sidebar-menu">
                         <ul class="sidebar text-light px-2" style="color:white;">
                            
+
                             <li class="{{ Request::is('business/index') || Request::is('business/')? 'active' : '' }}"> 
-                                <a class="navLink" href="{{route('business')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                                
+                                <a class="navLink" href="{{route('business')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a> 
                             </li>
 
-
-                            
-                            <li  class="{{ Request::is('business/add-services') ? 'active' : '' }}"> 
-                                <a class="navLink" href="{{route('add-services')}}"><i class=" fe fe-layout"></i> <span>Add Service</span></a>
-                            </li>
-
-                        
-
+                        @if($business->count())
                             <li  class="{{ Request::is('business/add-listing') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('add-listing')}}"><i class=" fe fe-layout"></i> <span>Add Business</span></a>
+                            </li>
+
+                             <li  class="{{ Request::is('business/listings') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('listings')}}"><i class=" fe fe-layout"></i> <span>My Businesses</span></a>           
+
+                            </li>
+
+
+                            <li  class="{{ Request::is('business/add_milestones') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('add_milestones')}}"><i class=" fe fe-layout"></i> <span>Add Business Milestone</span></a>
+       
+                            </li>
+
+                               <li  class="{{ Request::is('business/milestones-*') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('milestones','all')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
+                            </li>
+
+                        @endif  
+
+
+                        
+                        @if($service->count())
+                         <hr class=""> 
+
+                            <li  class="{{ Request::is('business/add-services') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('add-services')}}"><i class=" fe fe-layout"></i> <span>Add Service</span></a>
                             </li>
 
 
@@ -133,22 +162,16 @@
                             </li>
 
 
-                            <li  class="{{ Request::is('business/listings') ? 'active' : '' }}"> 
-                                <a class="navLink" href="{{route('listings')}}"><i class=" fe fe-layout"></i> <span>My Businesses</span></a>           
 
+                            <li  class="{{ Request::is('business/add_s_milestones') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('add_s_milestones')}}"><i class=" fe fe-layout"></i> <span>Add Service Milestone</span></a>
                             </li>
 
-                            <li  class="{{ Request::is('business/add_milestones') ? 'active' : '' }}"> 
-                                <a class="navLink" href="{{route('add_milestones')}}"><i class=" fe fe-layout"></i> <span>Add Business Milestone</span></a>
-
-                                
-
+                               <li  class="{{ Request::is('business/s_milestones-*') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('s_milestones','all')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
                             </li>
 
-
-                            <li  class="{{ Request::is('business/milestones-*') ? 'active' : '' }}"> 
-                                <a class="navLink" href="{{route('milestones','all')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
-                            </li>
+                            @endif
 
                             <li  class="{{ Request::is('business/applyForShow') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('applyForShow')}}"><i class=" fe fe-layout"></i> <span>Apply For Show</span></a>

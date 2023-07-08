@@ -7,8 +7,10 @@ use App\Models\Listing;
 use App\Models\Services;
 use App\Models\Shop;
 use App\Models\Equipments;
+use App\Models\Smilestones;
 use App\Models\serviceDocs;
 use App\Models\User;
+use DateTime;
 use Session; 
 use Hash;
 use Auth;
@@ -480,6 +482,197 @@ $user_id = Auth::id();
         return redirect('services');
 
 }
+
+
+//MILESTONES
+public function delete_milestone($id){
+$milestones = Smilestones::where('id',$id)->delete();
+return redirect()->back();
+}
+
+public function add_milestones(){
+$milestones = Smilestones::where('user_id',Auth::id())->latest()->get();
+$business = Services::where('shop_id',Auth::id())->get();
+return view('services.add_milestones',compact('business','milestones'));
+}
+
+public function getMilestones($id){ 
+ $milestones = Smilestones::where('listing_id',$id)->get(); $c=0;$d=0;$test='';
+
+try{
+  foreach($milestones as $mile){
+  if($mile->status == 'In Progress') $c++;
+  if($mile->status != 'Done') $d++; 
+
+  //SETTING Time Diffrence
+$time_due_date = date( "Y-m-d H:i:s", strtotime($mile->created_at.' +'.$mile->n_o_days.' days 0 hours 0 minutes'));
+$start_date = new DateTime(date("Y-m-d H:i:s"));
+$since_start = $start_date->diff(new DateTime($time_due_date));
+
+$time_left = $since_start->d.' days, '.$since_start->h.' hours, '. $since_start->i.' minutes';
+$mile->time_left = $time_left;
+
+$time_now = date("Y-m-d H:i:s");
+if($time_now > $time_due_date)
+  $mile->time_left = 'L A T E !';
+
+} 
+
+ if($c==0 && $d!=0){
+  
+  $milestones[0]->status = 'In Progress';
+}
+
+}
+catch(\Exception $e){
+  return response()->json([ 'data' => $e->getMessage() ]);
+}
+
+return response()->json([ 'data' => $milestones ]);
+
+ }
+
+ public function download_milestone_doc($id){
+    
+    $file="files/milestones/1/1765896965832438.docx";
+    $headers = array('Content-Type'=> 'application/pdf');
+    return Response::download($file, 'milestone.pdf', $headers);
+    return response()->json(['data'=>'success']);
+
+    }
+
+
+
+public function milestones($id){
+if($id == 'all'){
+  $listing = Services::where('shop_id', Auth::id())->latest()->first();
+  if($listing != null){
+  $milestones = Smilestones::where('listing_id', $listing->id)->get();
+ }
+  else $milestones = [];
+  $business_name = 'Select Service';//$listing->name;
+}
+else{
+  $milestones = Smilestones::where('listing_id', $id)->get();
+  $listing = Services::where('id', $id)->first();
+  $business_name = $listing->name;
+}
+
+$business = Services::where('shop_id',Auth::id())->get();
+return view('services.milestones',compact('milestones','business', 'business_name'));
+}
+
+
+
+public function save_milestone(Request $request){
+$title = $request->title;
+$business_id = $request->business_id;
+$amount = $request->amount;
+$user_id = Auth::id();
+$status = 'Created';
+
+$time_type = $request->time_type;
+$n_o_days = $request->n_o_days;
+if($time_type == 'Weeks')
+$n_o_days = 7*$n_o_days;
+if($time_type == 'Months')
+$n_o_days = 30*$n_o_days;
+
+$mile = Smilestones::where('listing_id',$business_id)->where('status','Created')->first();
+
+if(isset($mile->status) &&  $mile->status ==  'Created')
+$status = 'On Hold';
+
+try{
+ $single_img=$request->file('file');
+ 
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($single_img->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('file_error','Only pdf & docx are allowed!');
+            return redirect()->back();
+          }
+
+          $create_name=$uniqid.'.'.$ext;
+
+          if (!file_exists('files/Smilestones/'.$business_id)) 
+          mkdir('files/Smilestones/'.$business_id, 0777, true);
+
+          $loc='files/Smilestones/'.$business_id.'/';
+          //Move uploaded file
+          $single_img->move($loc, $create_name);
+          $final_file=$loc.$create_name;
+           
+
+Smilestones::create([
+            'user_id' => $user_id,
+            'title' => $title,
+            'listing_id' => $business_id,
+            'amount' => $amount,
+            'document' => $final_file,
+            'n_o_days' => $n_o_days,
+            'status' => $status           
+           ]);       
+}
+catch(\Exception $e){
+  Session::put('failed', $e->getMessage()); ;
+}
+        Session::put('success','Milestone added!');
+        return redirect()->back();
+
+}
+
+
+public function mile_status(Request $request){
+$milestones = Smilestones::where('id',$request->id)
+->update([
+'status' => $request->status
+]);
+return redirect()->back();
+}
+
+
+public function up_milestone(Request $request){
+$title = $request->title;
+$contact = $request->contact;
+$category = $request->category;
+$details = $request->details;
+$location = $request->location;
+$investment_needed = $request->investment_needed;
+$share = $request->share;
+//$contact_mail = $request->contact_mail;
+$user_id = Auth::id();
+$id = $request->id;
+
+ $image=$request->file('image');
+ if($image) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($image->getClientOriginalExtension());
+          $create_name=$uniqid.'.'.$ext;
+          $loc='images/listing/';
+          //Move uploaded file
+          $image->move($loc, $create_name);
+          $final_img=$loc.$create_name;
+          Smilestones::where('id',$id)->update(['image' => $final_img ]); 
+             }
+
+Smilestones::where('id',$id)->update([
+            'name' => $title,
+            'contact' => $contact,
+            'category' => $category,
+            'details' => $details,
+            'location' => $location,
+            'investment_needed' => $investment_needed,
+            'share' => $share     
+           ]);       
+
+        Session::put('success','Business Updated!');
+        return redirect()->back();
+
+}
+
+//END MILESTONES
 
 
 //CLASS

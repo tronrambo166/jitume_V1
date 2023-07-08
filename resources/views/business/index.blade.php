@@ -41,7 +41,7 @@
    
             <td class="text-center">
                 
-            <a style="color:#72c537; border-radius: 4px;" href="./../#/project_dash/{{$ev->id}}" class="border border-dark small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
+            <a style="color:#72c537; border-radius: 4px;" href="./../#/business-milestone/{{$ev->id}}" class="border border-dark small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
             
 
             </td>
@@ -53,21 +53,106 @@
 
 
 @else
-  <div class="h-75 w-75 m-auto d-flex align-items-center justify-content-center">
+ 
+ @if($services->count())       
+<div class="row pt-4  m-auto">
+     <h4 class="text-center pb-3 font-weight-bold"> My Services</h4> 
 
+     <table class="eq table table-bordered " id="">
+    <thead>
+        <tr>
+            <th>Name </th>
+            <th>Category </th>
+            <th>Price </th>  
+            <th>Details </th> 
+            <th>Location </th> 
+            <th>Image </th> 
+            <th width="20%" class="text-center">Action</th>        
+        </tr>
+
+    </thead>
+       
+    <tbody>
+        @foreach($services as $ev)
+        <tr >
+            <td>{{$ev->name }}</td>
+                <td>{{$ev->category }}</td>
+                    <td>{{$ev->price }}</td>
+                        <td>{{$ev->details }}</td>
+                        <td>{{$ev->location }}</td>
+                        <td><img width="100px" height="60px" src="../{{$ev->image}}"></td>
+   
+            <td class="text-center">
+
+            <a style="color:#72c537; border-radius: 4px;font-size: 12px;font-weight: 600;" href="./../#/service-milestone/{{$ev->id}}" class="btn btn-outline-success border border-dark small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
+            
+
+            </td>
+        </tr>
+        @endforeach
+        </tbody>
+    </table>
+</div>
+@endif
+
+
+@if($business->count())       
+<div class="row pt-4  m-auto">
+     <h4 class="text-center pb-3 font-weight-bold"> My Businesses</h4> 
+
+     <table class="eq table table-bordered " id="">
+    <thead>
+        <tr>
+            <th>Name </th>
+            <th>Category </th>
+            <th>Value Needed</th>
+            <th>Details </th>  
+            <th>Contact </th> 
+            <th>Share Remaining </th> 
+            <th>Image </th> 
+            <th width="20%" class="text-center">Action</th>        
+        </tr>
+
+    </thead>
+    
+
+    
+    <tbody>
+        @foreach($business as $ev)
+        <tr >
+            <td>{{$ev->name }}</td>
+                <td>{{$ev->category }}</td>
+                    <td>{{$ev->investment_needed }}</td>
+                        <td>{{$ev->details }}</td>
+                        <td>{{$ev->contact }}</td>
+                        <td>{{$ev->share }}</td>
+                        <td><img width="100px" height="60px" src="../{{$ev->image}}"></td>
+   
+            <td class="text-center">
+            <a style="color:#72c537; border-radius: 4px;font-size: 12px;font-weight: 600;" href="./../#/business-milestone/{{$ev->id}}" class="btn btn-outline-success border border-dark small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
+            
+            </td>
+        </tr>
+        @endforeach
+        </tbody>
+    </table>
+</div>
+@endif
+
+
+<!--   <div class="h-75 w-75 m-auto d-flex align-items-center justify-content-center">
         <div class="mb-5 pb-3 w-50 text-center mx-auto"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary ">
                         <a href="{{route('add-listing')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold" href="">Add Business</a>
                     </li> </div>
 
-
                     <div class="mb-5 pb-3 w-50 text-center mx-auto"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary ">
                         <a href="{{route('add-services')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold" href="">Add Service</a>
                     </li> </div>
+    </div> -->
 
-        <!-- 
-        </div> -->
-    </div>
     @endif
+
+
 
 
 
