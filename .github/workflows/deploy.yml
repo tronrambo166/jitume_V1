@@ -13,7 +13,7 @@ jobs:
 
     - name: Install PHP and dependencies
       run: sudo apt-get update && sudo apt-get install php php-mbstring php-xml
-      
+
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
