@@ -13,6 +13,9 @@ jobs:
 
     - name: Install PHP and dependencies
       run: sudo apt-get update && sudo apt-get install php php-mbstring php-xml
+      
+    - name: Copy .env
+      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
     - name: Install Composer dependencies
       run: composer install --no-interaction --prefer-dist --optimize-autoloader
@@ -23,7 +26,7 @@ jobs:
         aws-access-key-id: ${{ secrets.SSH_ACCESS_KEY }}
         aws-secret-access-key: ${{ secrets.SSH_PRIVATE_KEY }}
         aws-region: us-east-1
-        
+
     - name: Generate key
       run: php artisan key:generate
     - name: Directory Permissions
