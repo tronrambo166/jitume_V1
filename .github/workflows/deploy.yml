@@ -7,7 +7,7 @@ jobs:
   continuous-integration:
     runs-on: ubuntu-latest
     steps:
-      
+
     - name: Checkout repository
       uses: actions/checkout@v2
 
@@ -20,10 +20,10 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id:${{ secrets.SSH_ACCESS_KEY }}
-        aws-secret-access-key:${{ secrets.SSH_PRIVATE_KEY }}
+        aws-access-key-id: ${{ secrets.SSH_ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.SSH_PRIVATE_KEY }}
         aws-region: us-east-1
-      # Step 5
+      
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
