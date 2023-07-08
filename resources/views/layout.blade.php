@@ -59,7 +59,7 @@
         
          <li class="nav-item py-1 px-3 active"><router-link to="/home" class=" header_buttons py-1 px-3"> <b style="position:relative;top: -1px;">Home</b></router-link></li>
 
-                    <li class="nav-item py-1 px-3 text-light"><router-link to="/services" class=" header_buttons py-1 px-3 "> <b style="position:relative;top: -1px;">Jitume ServicesnoAPS</b></router-link></li>
+                    <li class="nav-item py-1 px-3 text-light"><router-link to="/services" class=" header_buttons py-1 px-3 "> <b style="position:relative;top: -1px;">Jitume ServicesnoAP</b></router-link></li>
 
                     <!-- <li class="font-weight-bold nav-item py-1 px-3"><router-link to="/applyShow" class="">Apply for Show
                     </router-link></li> -->
