@@ -23,7 +23,7 @@
                     <div class="pl-2">
                     <h3 class="mt-2 text-left text-dark font-weight-bold ">{{form.name}}</h3>
         
-                        <p class="font-weight-bold my-1"><i class="mr-1 fa fa-dollar"></i>{{form.price}} Kshs</p>
+                        <p class="font-weight-bold my-1">{{form.price}} Kshs</p>
                         </div>
 
                         <div class="row my-5">

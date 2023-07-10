@@ -9086,10 +9086,10 @@ __webpack_require__.r(__webpack_exports__);
     make_session: function make_session(id) {
       sessionStorage.setItem('milestone', id);
     },
-    download_milestone_doc: function download_milestone_doc() {
+    download_milestone_doc: function download_milestone_doc(mile_id) {
       var id = this.$route.params.id;
       var t = this;
-      axios.get('download_milestoneDoc/' + id).then(function (data) {
+      axios.get('download_milestoneDoc/' + id + '/' + mile_id).then(function (data) {
         console.log(data);
       });
     }
@@ -9310,6 +9310,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -9318,7 +9321,8 @@ __webpack_require__.r(__webpack_exports__);
         id: ''
       }),
       results: [],
-      status: false
+      status: false,
+      done_msg: ''
     };
   },
   created: function created() {
@@ -9334,15 +9338,16 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('getMilestonesS/' + id).then(function (data) {
         console.log(data);
         t.results = data.data.data;
+        t.done_msg = data.data.done_msg;
       });
     },
     make_session: function make_session(id) {
       sessionStorage.setItem('milestoneS', id);
     },
-    download_milestone_doc: function download_milestone_doc() {
+    download_milestone_doc: function download_milestone_doc(mile_id) {
       var id = this.$route.params.id;
       var t = this;
-      axios.get('download_milestoneDocS/' + id).then(function (data) {
+      axios.get('download_milestoneDocS/' + id + '/' + mile_id).then(function (data) {
         console.log(data);
       });
     }
@@ -68968,7 +68973,9 @@ var render = function () {
                                         "text-white placeH btnUp3 w-100",
                                       on: {
                                         click: function ($event) {
-                                          return _vm.download_milestone_doc()
+                                          return _vm.download_milestone_doc(
+                                            result.id
+                                          )
                                         },
                                       },
                                     },
@@ -69471,6 +69478,14 @@ var render = function () {
       "div",
       { staticClass: "container" },
       [
+        _vm.done_msg != null
+          ? _c("div", { staticClass: "w-75 my-2 text-center mx-auto" }, [
+              _c("h4", { staticClass: "font-weight-bold text-success" }, [
+                _vm._v("Milestone completed! Order placed!"),
+              ]),
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c("div", { staticClass: "root py-5 mb-5 ml-4" }, [
           _c("div", { staticClass: "progressbar-wrapper" }, [
             _c(
@@ -69599,7 +69614,9 @@ var render = function () {
                                         "text-white placeH btnUp3 w-100",
                                       on: {
                                         click: function ($event) {
-                                          return _vm.download_milestone_doc()
+                                          return _vm.download_milestone_doc(
+                                            result.id
+                                          )
                                         },
                                       },
                                     },
@@ -70131,7 +70148,6 @@ var render = function () {
               ),
               _vm._v(" "),
               _c("p", { staticClass: "font-weight-bold my-1" }, [
-                _c("i", { staticClass: "mr-1 fa fa-dollar" }),
                 _vm._v(_vm._s(_vm.form.price) + " Kshs"),
               ]),
             ]),

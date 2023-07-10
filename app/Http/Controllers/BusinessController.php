@@ -486,12 +486,10 @@ return response()->json([ 'data' => $milestones ]);
 
  }
 
- public function download_milestone_doc($id){
+ public function download_milestone_doc($id, $mile_id){
     
-    $fileName = Milestones::where('id',$id)->first();
-return response()->json(['data'=>$fileName]);
-    //$file="files/milestones/".$id."/".$fileName->document;
-    $file="files/milestones/1/1765896965832438.docx";
+    $doc = Milestones::where('id',$mile_id)->first();
+    $file=$doc->document;
     $headers = array('Content-Type'=> 'application/pdf');
     return Response::download($file, 'milestone.pdf', $headers);
     return response()->json(['data'=>'success']);

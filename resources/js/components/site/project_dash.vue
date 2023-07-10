@@ -40,7 +40,7 @@
 
                                 <div class="col-sm-3 px-1">
                                 <div class="upload-btn-wrapper w-100">
-                                  <a @click="download_milestone_doc()" class="text-white  placeH btnUp3 w-100">Download Milestone Documentaion <i class="ml-2 fa fa-arrow-down"></i></a>
+                                  <a @click="download_milestone_doc(result.id)" class="text-white  placeH btnUp3 w-100">Download Milestone Documentaion <i class="ml-2 fa fa-arrow-down"></i></a>
                                   
                                 </div>
                                     </div>
@@ -235,9 +235,9 @@ getMilestones:function(){
             sessionStorage.setItem('milestone',id);
         },
 
-    download_milestone_doc(){
+    download_milestone_doc(mile_id){
     var id=this.$route.params.id; var t=this;
-    axios.get('download_milestoneDoc/'+id).then( (data) =>{console.log(data);
+    axios.get('download_milestoneDoc/'+id+'/'+mile_id).then( (data) =>{console.log(data);
     
     });
         }

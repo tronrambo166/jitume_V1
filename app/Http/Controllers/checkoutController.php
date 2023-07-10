@@ -362,9 +362,27 @@ if(isset($mileLat->id))
     Smilestones::where('id',$id)->update([ 'status' => 'Done']);
     $mileLat = Smilestones::where('user_id',$user_id)->where('status','On Hold')->first();
 
-if($mileLat->id != null)
+if($mileLat != null)
     Smilestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
-
+else {
+    //Completed, order place
+    try{
+        $total = 0;
+        $all_milestone = Smilestones::where('listing_id',$mile->listing_id)->get();
+        foreach($all_milestone as $all_m){
+            $total = $total+$all_m->amount;
+        }
+        orders::create([
+            'user_id' => $mile->user_id,
+            'service_id' => $mile->listing_id,
+            'price' => $total
+        ]);
+    }
+    catch(\Exception $e){
+    Session::put('Stripe_pay', $e->getMessage());
+    return redirect("/");
+}
+}
 
 
        Session::put('Stripe_pay','Milestone paid successfully!');

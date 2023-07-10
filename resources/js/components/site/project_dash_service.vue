@@ -3,6 +3,9 @@
         <div class="container">
 
            
+<div v-if="done_msg != null" class="w-75 my-2 text-center mx-auto">
+    <h4 class="font-weight-bold text-success">Milestone completed! Order placed!</h4>
+</div>
 
  <div class="root py-5 mb-5 ml-4">
      <div class="progressbar-wrapper">
@@ -40,7 +43,7 @@
 
                                 <div class="col-sm-3 px-1">
                                 <div class="upload-btn-wrapper w-100">
-                                  <a @click="download_milestone_doc()" class="text-white  placeH btnUp3 w-100">Download Milestone Documentaion <i class="ml-2 fa fa-arrow-down"></i></a>
+                                  <a @click="download_milestone_doc(result.id)" class="text-white  placeH btnUp3 w-100">Download Milestone Documentaion <i class="ml-2 fa fa-arrow-down"></i></a>
                                   
                                 </div>
                                     </div>
@@ -205,7 +208,8 @@
         id:''
     }),
     results:[],
-    status:false
+    status:false,
+    done_msg:''
     }),
 
     created(){
@@ -226,6 +230,7 @@ getMilestones:function(){
     axios.get('getMilestonesS/'+id).then( (data) =>{
         console.log(data);
         t.results = data.data.data;
+        t.done_msg = data.data.done_msg;
     
     });
     
@@ -235,9 +240,9 @@ getMilestones:function(){
             sessionStorage.setItem('milestoneS',id);
         },
 
-    download_milestone_doc(){
+    download_milestone_doc(mile_id){
     var id=this.$route.params.id; var t=this;
-    axios.get('download_milestoneDocS/'+id).then( (data) =>{console.log(data);
+    axios.get('download_milestoneDocS/'+id+'/'+mile_id).then( (data) =>{console.log(data);
     
     });
         }

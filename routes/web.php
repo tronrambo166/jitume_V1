@@ -78,8 +78,8 @@ Route::get('download_business/{id}', 'PagesController@download_business')->name(
 
 Route::get('getMilestones/{id}', 'BusinessController@getMilestones')->name('getMilestones');
 Route::get('getMilestonesS/{id}', 'ServiceController@getMilestones')->name('getMilestonesS');
-Route::get('download_milestoneDoc/{id}', 'BusinessController@download_milestone_doc')->name('download_milestoneDoc');
-Route::get('download_milestoneDocS/{id}', 'ServiceController@download_milestone_doc')->name('download_milestoneDocS');
+Route::get('download_milestoneDoc/{id}/{mile_id}', 'BusinessController@download_milestone_doc')->name('download_milestoneDoc');
+Route::get('download_milestoneDocS/{id}/{mile_id}', 'ServiceController@download_milestone_doc')->name('download_milestoneDocS');
 
 
 //MAIN/BACKEND/VUE

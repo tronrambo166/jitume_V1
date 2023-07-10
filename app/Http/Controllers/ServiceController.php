@@ -524,18 +524,25 @@ if($time_now > $time_due_date)
   $milestones[0]->status = 'In Progress';
 }
 
+if($d == 0)
+{
+  $done_msg = 'Milestone completed! Order placed!';
+}
+else $done_msg = null;
+
 }
 catch(\Exception $e){
   return response()->json([ 'data' => $e->getMessage() ]);
 }
 
-return response()->json([ 'data' => $milestones ]);
+return response()->json([ 'data' => $milestones, 'done_msg' => $done_msg ]);
 
  }
 
- public function download_milestone_doc($id){
+ public function download_milestone_doc($id, $mile_id){
     
-    $file="files/milestones/1/1765896965832438.docx";
+    $doc = Smilestones::where('id',$mile_id)->first();
+    $file=$doc->document;
     $headers = array('Content-Type'=> 'application/pdf');
     return Response::download($file, 'milestone.pdf', $headers);
     return response()->json(['data'=>'success']);
