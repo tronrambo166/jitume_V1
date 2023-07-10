@@ -244,8 +244,13 @@ created() {
               this.$router.push(`serviceDetails/${this.serviceDetails}`)
 
             this.milestone = sessionStorage.getItem('milestone');
+            this.milestoneS = sessionStorage.getItem('milestoneS');
             if(this.milestone !=null)
-              this.$router.push(`project_dash/${this.milestone}`)
+              this.$router.push(`business-milestone/${this.milestone}`);
+
+           else if(this.milestoneS !=null)
+              this.$router.push(`service-milestone/${this.milestoneS}`);
+
 
       //CALL ACTION
       $('#call_to').html('');

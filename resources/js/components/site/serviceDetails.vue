@@ -40,11 +40,15 @@
 
                     <div class="cart">
                         <form>
-                            <input id="qty" min="1" class="w-25 form-control d-inline" type="number" name="qty" value="1">
+                           <!--  <input id="qty" min="1" class="w-25 form-control d-inline" type="number" name="qty" value="1"> -->
                            
-                            <a  v-if="auth_user" @click="addToCart(form.id)" class="text-light font-weight-bold btn buttonEq2">Add to cart</a>
+                            <a  v-if="auth_user" @click="service_milestones(form.id)" class="text-light font-weight-bold w-75 text-center buttonEq2">Purchase by Milestones</a>
 
-                            <a v-else @click="make_session()" class="text-light font-weight-bold btn buttonEq2" data-target="#loginModal" data-toggle="modal">Add to cart</a>
+                            <!--
+                            <a  v-if="auth_user" @click="addToCart(form.id)" class="text-light font-weight-bold btn buttonEq2">Add to cart</a>
+                            <a v-else @click="make_session()" class="text-light font-weight-bold btn buttonEq2" data-target="#loginModal" data-toggle="modal">Add to cart</a> -->
+
+                            <a v-else @click="make_session()" class="text-light font-weight-bold w-75 text-center buttonEq2" data-target="#loginModal" data-toggle="modal">Purchase by Milestones</a>
 
                         </form>
                     </div>
@@ -158,6 +162,12 @@ if(sessionStorage.getItem('serviceDetails')!=null)
     });
     },
 
+    service_milestones(id){
+        var id=this.$route.params.id;
+        var t=this; 
+         this.$router.push('/service-milestone/'+id);
+    },
+
     getPhoto(){
    
         return '../';
@@ -168,6 +178,8 @@ if(sessionStorage.getItem('serviceDetails')!=null)
   make_session(){ 
             var id=this.$route.params.id;
             sessionStorage.setItem('serviceDetails',id);
+            document.getElementById('c_to_action').value = 'loginFromService';
+            document.getElementById('c_to_action_login').value = 'loginFromService';
         },
         cart(){
            axios.get('cart').then( (data) =>{

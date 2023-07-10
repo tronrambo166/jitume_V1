@@ -68,6 +68,8 @@ class RegisterController extends Controller
             Session::put('c_to_action', true);
         else if($data['c_to_action'] == 'TrueS')
             Session::put('c_to_actionS', true);
+        else if($data['c_to_action'] == 'loginFromService')
+            Session::put('c_to_action_Service', true);
 
         return User::create([
             'fname' => $data['fname'],

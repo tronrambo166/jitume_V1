@@ -79,7 +79,7 @@ Route::get('download_business/{id}', 'PagesController@download_business')->name(
 Route::get('getMilestones/{id}', 'BusinessController@getMilestones')->name('getMilestones');
 Route::get('getMilestonesS/{id}', 'ServiceController@getMilestones')->name('getMilestonesS');
 Route::get('download_milestoneDoc/{id}', 'BusinessController@download_milestone_doc')->name('download_milestoneDoc');
-Route::get('download_milestoneDocS/{id}', 'BusinessController@download_milestone_doc')->name('download_milestoneDocS');
+Route::get('download_milestoneDocS/{id}', 'ServiceController@download_milestone_doc')->name('download_milestoneDocS');
 
 
 //MAIN/BACKEND/VUE
@@ -189,7 +189,11 @@ Route::post('cartstripe', 'checkoutController@cartStripePost')->name('cartstripe
 Route::get('milestoneStripe', 'checkoutController@milestoneCheckout')->name('milestoneStripe');
 Route::post('milestonestripe', 'checkoutController@milestoneStripePost')->name('milestonestripe.post');
 
+Route::get('milestoneService', 'checkoutController@milestoneCheckoutS')->name('milestoneService');
+Route::post('milestoneService', 'checkoutController@milestoneStripePostS')->name('milestoneService.post');
+
 //Route::post('register', 'BusinessController@test')->name('register');
+// Payment Routes
 
 //SOCIAL
 Route::get('social_login',function (){return view('social_types');})->name('social_login');

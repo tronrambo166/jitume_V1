@@ -13,6 +13,7 @@ use App\Models\Cart;
 use App\Models\orders;
 use App\Models\Conversation;
 use App\Models\Milestones;
+use App\Models\Smilestones;
 use Session; 
 use Hash;
 use Auth;
@@ -292,6 +293,77 @@ class checkoutController extends Controller
 
 if(isset($mileLat->id))
     Milestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
+
+
+
+       Session::put('Stripe_pay','Milestone paid successfully!');
+       return redirect("/");
+
+    }
+
+
+    //  MILESTONES Services
+
+    //CART
+
+     public function milestoneCheckoutS(Request $request)
+    {
+    $tax = taxes::where('id',1)->first();
+    $tax = $tax->tax+$tax->vat;
+    $amount =($request->amount)+($request->amount)*($tax/100);
+    $milestone_id =$request->milestone_id;
+ 
+        return view('milestoneS.stripe',compact('amount','milestone_id','tax'));
+    }
+
+   
+    public function milestoneStripePostS(Request $request)
+    {
+    $id = $request->milestone_id; //explode(',',$request->ids);
+
+    $mile = Smilestones::where('id',$id)->first();    
+    $tax = taxes::where('id',1)->first();$tax = $tax->tax+$tax->vat;
+    $amount =($mile->amount)+($mile->amount)*($tax/100);
+
+    $user_id = $mile->user_id;
+
+
+        //STRIPE
+         $curr='USD'; //$request->currency; 
+         $amount=round($amount);
+
+        Stripe\Stripe::setApiKey('sk_test_51JFWrpJkjwNxIm6zcIxSq9meJlasHB3MpxJYepYx1RuQnVYpk0zmoXSXz22qS62PK5pryX4ptYGCHaudKePMfGyH00sO7Jwion');
+
+        Stripe\Charge::create ([ 
+
+                //"billing_address_collection": null,
+                "amount" => $amount*100, //100 * 100,
+                "currency" => $curr,
+                "source" => $request->stripeToken,
+                "description" => "This payment is tested purpose only!"
+        ]);
+   
+
+
+   //MAIL
+        $business = Services::where('id',$mile->listing_id)->first();
+
+        $info=[  'name'=>$mile->title,  'amount'=>$mile->amount, 'business'=>$business->name, ]; 
+        $user['to'] = $request->email;//'sohaankane@gmail.com';
+
+         Mail::send('milestoneS.milestone_mail', $info, function($msg) use ($user){
+             $msg->to($user['to']);
+             $msg->subject('Milestone Status Changed!');
+         });  
+
+
+//DB INSERT
+        
+    Smilestones::where('id',$id)->update([ 'status' => 'Done']);
+    $mileLat = Smilestones::where('user_id',$user_id)->where('status','On Hold')->first();
+
+if($mileLat->id != null)
+    Smilestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
 
 
 

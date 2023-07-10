@@ -17,6 +17,7 @@ use Auth;
 use Mail;
 use DB;
 use Exception;
+use Response;
 
 class ServiceController extends Controller
 {

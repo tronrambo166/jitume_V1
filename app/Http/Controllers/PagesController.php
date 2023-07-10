@@ -137,7 +137,7 @@ Session::put('login_err',$e->getMessage());
 
 public function registerI(Request $request){
 $investor = 1;
-$usr = User::where('email',$request->email)->first();
+$user = User::where('email',$request->email)->first();
     if($user!=''){ 
     Session::put('login_err','User already exists!');
      return redirect('home');

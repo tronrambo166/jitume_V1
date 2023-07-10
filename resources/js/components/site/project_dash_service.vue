@@ -19,7 +19,7 @@
 
                 <!--Active Download form -->
          <div v-if="result.status=='In Progress'" class="modal-body">
-        <form action="milestoneStripe"  method="get" enctype="multipart/form-data" class="vueform form-group form">
+        <form action="milestoneService"  method="get" enctype="multipart/form-data" class="vueform form-group form">
                                 
                                 
 
@@ -232,7 +232,7 @@ getMilestones:function(){
     },
 
  make_session(id){
-            sessionStorage.setItem('milestone',id);
+            sessionStorage.setItem('milestoneS',id);
         },
 
     download_milestone_doc(){

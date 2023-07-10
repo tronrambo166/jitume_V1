@@ -7983,7 +7983,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.serviceDetails = sessionStorage.getItem('serviceDetails');
     if (this.serviceDetails != null) this.$router.push("serviceDetails/".concat(this.serviceDetails));
     this.milestone = sessionStorage.getItem('milestone');
-    if (this.milestone != null) this.$router.push("project_dash/".concat(this.milestone)); //CALL ACTION
+    this.milestoneS = sessionStorage.getItem('milestoneS');
+    if (this.milestone != null) this.$router.push("business-milestone/".concat(this.milestone));else if (this.milestoneS != null) this.$router.push("service-milestone/".concat(this.milestoneS)); //CALL ACTION
 
     $('#call_to').html('');
     $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Business</span></a> ');
@@ -9336,7 +9337,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     make_session: function make_session(id) {
-      sessionStorage.setItem('milestone', id);
+      sessionStorage.setItem('milestoneS', id);
     },
     download_milestone_doc: function download_milestone_doc() {
       var id = this.$route.params.id;
@@ -9364,6 +9365,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
 //
 //
 //
@@ -9523,12 +9528,19 @@ __webpack_require__.r(__webpack_exports__);
         _this.$router.push('/cart');
       });
     },
+    service_milestones: function service_milestones(id) {
+      var id = this.$route.params.id;
+      var t = this;
+      this.$router.push('/service-milestone/' + id);
+    },
     getPhoto: function getPhoto() {
       return '../';
     },
     make_session: function make_session() {
       var id = this.$route.params.id;
       sessionStorage.setItem('serviceDetails', id);
+      document.getElementById('c_to_action').value = 'loginFromService';
+      document.getElementById('c_to_action_login').value = 'loginFromService';
     },
     cart: function cart() {
       axios.get('cart').then(function (data) {
@@ -69493,7 +69505,7 @@ var render = function () {
                       {
                         staticClass: "vueform form-group form",
                         attrs: {
-                          action: "milestoneStripe",
+                          action: "milestoneService",
                           method: "get",
                           enctype: "multipart/form-data",
                         },
@@ -70139,36 +70151,25 @@ var render = function () {
                   _vm._v(" "),
                   _c("div", { staticClass: "cart" }, [
                     _c("form", [
-                      _c("input", {
-                        staticClass: "w-25 form-control d-inline",
-                        attrs: {
-                          id: "qty",
-                          min: "1",
-                          type: "number",
-                          name: "qty",
-                          value: "1",
-                        },
-                      }),
-                      _vm._v(" "),
                       _vm.auth_user
                         ? _c(
                             "a",
                             {
                               staticClass:
-                                "text-light font-weight-bold btn buttonEq2",
+                                "text-light font-weight-bold w-75 text-center buttonEq2",
                               on: {
                                 click: function ($event) {
-                                  return _vm.addToCart(_vm.form.id)
+                                  return _vm.service_milestones(_vm.form.id)
                                 },
                               },
                             },
-                            [_vm._v("Add to cart")]
+                            [_vm._v("Purchase by Milestones")]
                           )
                         : _c(
                             "a",
                             {
                               staticClass:
-                                "text-light font-weight-bold btn buttonEq2",
+                                "text-light font-weight-bold w-75 text-center buttonEq2",
                               attrs: {
                                 "data-target": "#loginModal",
                                 "data-toggle": "modal",
@@ -70179,7 +70180,7 @@ var render = function () {
                                 },
                               },
                             },
-                            [_vm._v("Add to cart")]
+                            [_vm._v("Purchase by Milestones")]
                           ),
                     ]),
                   ]),

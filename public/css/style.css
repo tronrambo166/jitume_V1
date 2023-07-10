@@ -262,6 +262,7 @@ border-radius: 35px;
     border-radius: 35px;
     border: none;
     text-color: white;
+    cursor: pointer;
 }
 
 .buttonEq2 {
@@ -272,6 +273,7 @@ border-radius: 35px;
     background-color: #72c537;
     border: none;
     text-color: white;
+    cursor: pointer;
 }
 
 .eq tr th{color: #72c537;}
