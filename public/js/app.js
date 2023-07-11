@@ -8530,6 +8530,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     make_session: function make_session(id) {
       sessionStorage.setItem('invest', id);
+      document.getElementById('c_to_action').value = 'loginFromService';
+      document.getElementById('c_to_action_login2').value = 'loginFromService';
     },
     hover: function hover() {
       $('#convBtn1').css('background', '#72c537');
@@ -68369,7 +68371,7 @@ var render = function () {
               _vm._m(4),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
-                _c("div", { staticClass: "card-header w-100" }, [
+                _c("div", { staticClass: "card-header w-100 text-center" }, [
                   _c("form", { attrs: { action: "stripe", method: "get" } }, [
                     _c("input", {
                       attrs: {
@@ -68394,7 +68396,8 @@ var render = function () {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-primary px-3 font-weight-bold",
+                        staticClass:
+                          "btn btn-primary px-3 font-weight-bold mx-auto",
                         attrs: { type: "submit" },
                         on: {
                           click: function ($event) {
@@ -68482,7 +68485,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-body" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-6" }, [
+        _c("div", { staticClass: "col-sm-12 w-75 mx-auto" }, [
           _c(
             "div",
             {
@@ -69481,7 +69484,7 @@ var render = function () {
         _vm.done_msg != null
           ? _c("div", { staticClass: "w-75 my-2 text-center mx-auto" }, [
               _c("h4", { staticClass: "font-weight-bold text-success" }, [
-                _vm._v("Milestone completed! Order placed!"),
+                _vm._v("Milestones completed! Service delivered!"),
               ]),
             ])
           : _vm._e(),

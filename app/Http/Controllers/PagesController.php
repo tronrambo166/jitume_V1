@@ -218,12 +218,7 @@ try {
          $auth_user = auth()->user(); 
          $business=0;
          if($auth_user){
-         $user = User::where('id',Auth::id())->first();
-         if($user->business==1 ) 
-         $business=1;  
-
-         if($user->service ==1 )
-          $business=2; $auth_user = true; 
+         $auth_user = true; 
          }
          else {
          if(Session::has('investor_email')){   

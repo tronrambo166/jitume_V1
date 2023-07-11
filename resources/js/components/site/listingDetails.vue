@@ -143,7 +143,7 @@
       <div class="modal-body">
 
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-12 w-75 mx-auto">
                 <div style="cursor:pointer;background:#e0edd8;" class="single card shadow p-3">
                     <h5>One Time Fee</h5>
                     <p class="text-dark smalls">Start a conversation & access business records</p> <hr>
@@ -175,14 +175,14 @@
 
         <div class="modal-footer">
 
-        <div class="card-header w-100">
+        <div class="card-header w-100 text-center">
             <form action="stripe" method="get">
        
                  <input type="text" hidden id="price" name="price" value="15">
                   <input type="number" hidden id="listing_id" name="listing_id" value="">
 
 
-                <button @click="make_session(form.listing_id);" type="submit" class="btn btn-primary px-3 font-weight-bold" >
+                <button @click="make_session(form.listing_id);" type="submit" class="btn btn-primary px-3 font-weight-bold mx-auto" >
           Checkout
         </button>
             </form>
@@ -270,6 +270,8 @@ if(sessionStorage.getItem('invest')!=null)
   
   make_session(id){
             sessionStorage.setItem('invest',id);
+            document.getElementById('c_to_action').value = 'loginFromService';
+            document.getElementById('c_to_action_login2').value = 'loginFromService';
         },
 
         hover(){

@@ -270,6 +270,7 @@
     <!-- yield('page') -->
     <router-view :auth_user='@json($auth_user)' :app_url='@json($app_url)' 
     :business='@json($business)' ></router-view>
+    <!-- yield('page') -->
 
      </div>
 
@@ -1280,8 +1281,10 @@ $("#datepicker2").datepicker({
 
  <div id="user_logs" class="text-center py-0">
 
-                          <form method="POST" class="" action="{{route('loginI')}}">
+                          <form method="POST" class="" action="{{route('login')}}">
                            @csrf
+
+                           <input type="text" hidden name="c_to_action_login2" id="c_to_action_login2" value="">
 
                                           <div class="row">  <span style="padding-left: 30px;" class="font-weight-bold w-25 mt-3 text-left">Email</span>   <input style="border: 1px solid;" class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="" id="inputEmailAddress" 
                                             value=""    /> </div>

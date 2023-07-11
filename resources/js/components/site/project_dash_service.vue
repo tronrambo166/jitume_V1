@@ -4,7 +4,7 @@
 
            
 <div v-if="done_msg != null" class="w-75 my-2 text-center mx-auto">
-    <h4 class="font-weight-bold text-success">Milestone completed! Order placed!</h4>
+    <h4 class="font-weight-bold text-success">Milestones completed! Service delivered!</h4>
 </div>
 
  <div class="root py-5 mb-5 ml-4">

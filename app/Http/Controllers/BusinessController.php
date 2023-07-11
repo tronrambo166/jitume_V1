@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\businessDocs;
 use App\Models\Milestones;
 use App\Models\Conversation;
+use App\Models\MilestonePaidByUsers;
 
 use Response;
 use Session; 
@@ -457,13 +458,45 @@ $business = listing::where('user_id',Auth::id())->get();
 return view('business.add_milestones',compact('business','milestones'));
 }
 
-public function getMilestones($id){ 
- $milestones = Milestones::where('listing_id',$id)->get(); $c=0;$d=0;$test='';
-  foreach($milestones as $mile){
-  if($mile->status == 'In Progress') $c++;
-  if($mile->status != 'Done') $d++;
+public function getMilestones($id){
 
-  //SETTING Time Diffrence
+if(Auth::check())
+        $investor_id = Auth::id();
+    else {
+        if(Session::has('investor_email')){   
+        $mail = Session::get('investor_email');
+        $investor = User::where('email',$mail)->first();
+        $investor_id = $investor->id;
+      }
+    }
+
+  $milestones = Milestones::where('listing_id',$id)->get(); 
+  $c=0;$d=0;$test='';$i=1; $done=0;
+  foreach($milestones as $mile){
+
+  //Status Determine
+  $paid = MilestonePaidByUsers::where('milestone_id',$mile->id)
+  ->where('investor_id',$investor_id)->first();
+  if($paid!=null) { $mile->status = 'Done'; $done++;}
+  else {
+      if($i == 1) 
+        $mile->status = 'In Progress';
+      else{
+        if($done == 0)
+          $mile->status = 'On Hold';
+        else{
+          if(($i-$done) == 1)
+            $mile->status = 'In Progress';
+          else{
+            $mile->status = 'On Hold';
+          }
+        }
+      }
+  }
+  //Status Determine
+  $i++;
+
+//SETTING Time Diffrence
 $time_due_date = date( "Y-m-d H:i:s", strtotime($mile->created_at.' +'.$mile->n_o_days.' days 0 hours 0 minutes'));
 $start_date = new DateTime(date("Y-m-d H:i:s"));
 $since_start = $start_date->diff(new DateTime($time_due_date));
@@ -475,11 +508,6 @@ $time_now = date("Y-m-d H:i:s");
 if($time_now > $time_due_date)
   $mile->time_left = 'L A T E !';
 
-}
-
- if($c==0 && $d!=0){
-  
-  $milestones[0]->status = 'In Progress';
 }
 
 return response()->json([ 'data' => $milestones ]);

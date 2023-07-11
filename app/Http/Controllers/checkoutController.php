@@ -14,6 +14,7 @@ use App\Models\orders;
 use App\Models\Conversation;
 use App\Models\Milestones;
 use App\Models\Smilestones;
+use App\Models\MilestonePaidByUsers;
 use Session; 
 use Hash;
 use Auth;
@@ -248,6 +249,16 @@ class checkoutController extends Controller
    
     public function milestoneStripePost(Request $request)
     {
+    if(Auth::check())
+        $investor_id = Auth::id();
+    else {
+        if(Session::has('investor_email')){   
+        $mail = Session::get('investor_email');
+        $investor = User::where('email',$mail)->first();
+        $investor_id = $investor->id;
+      }
+    }
+
     $id = $request->milestone_id; //explode(',',$request->ids);
 
     $mile = Milestones::where('id',$id)->first();    
@@ -288,11 +299,33 @@ class checkoutController extends Controller
 
 //DB INSERT
         
-    Milestones::where('id',$id)->update([ 'status' => 'Done']);
-    $mileLat = Milestones::where('user_id',$user_id)->where('status','On Hold')->first();
+    MilestonePaidByUsers::create([ 
+        'milestone_id' => $id,
+        'investor_id' => $investor_id
+    ]);
 
-if(isset($mileLat->id))
-    Milestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
+
+
+$last_mile = Milestones::where('listing_id',$mile->listing_id)->latest()->first();
+if($last_mile->id == $id){
+    //Completed, order place
+    try{
+        $total = 0;
+        $all_milestone = Milestones::where('listing_id',$mile->listing_id)->get();
+        foreach($all_milestone as $all_m){
+            $total = $total+$all_m->amount;
+        }
+        // orders::create([
+        //     'user_id' => $mile->user_id,
+        //     'service_id' => $mile->listing_id,
+        //     'price' => $total
+        // ]);
+    }
+    catch(\Exception $e){
+    Session::put('Stripe_pay', $e->getMessage());
+    return redirect("/");
+}
+}
 
 
 
@@ -319,6 +352,17 @@ if(isset($mileLat->id))
    
     public function milestoneStripePostS(Request $request)
     {
+    if(Auth::check())
+        $investor_id = Auth::id();
+    else {
+        if(Session::has('investor_email')){   
+        $mail = Session::get('investor_email');
+        $investor = User::where('email',$mail)->first();
+        $investor_id = $investor->id;
+      }
+    }
+
+
     $id = $request->milestone_id; //explode(',',$request->ids);
 
     $mile = Smilestones::where('id',$id)->first();    
@@ -359,12 +403,15 @@ if(isset($mileLat->id))
 
 //DB INSERT
         
-    Smilestones::where('id',$id)->update([ 'status' => 'Done']);
-    $mileLat = Smilestones::where('user_id',$user_id)->where('status','On Hold')->first();
+    MilestonePaidByUsers::create([ 
+        'milestone_id' => $id,
+        'investor_id' => $investor_id
+    ]);
 
-if($mileLat != null)
-    Smilestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
-else {
+
+
+$last_mile = Smilestones::where('listing_id',$mile->listing_id)->latest()->first();
+if($last_mile->id == $id){
     //Completed, order place
     try{
         $total = 0;
