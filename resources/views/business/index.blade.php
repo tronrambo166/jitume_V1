@@ -19,7 +19,8 @@
             <th style="width: 10%;">Value Needed</th>
             <th>Details </th>  
             <th>Contact </th> 
-            <th style="width: 11%;">Share Allocated </th> 
+            <th style="width: 11%;">Business Share </th> 
+            <th style="width: 11%;">My Share </th>
             <th>Image </th> 
             <th width="20%" class="text-center">Action</th>        
         </tr>
@@ -37,6 +38,7 @@
                         <td>{{$ev->details }}</td>
                         <td>{{$ev->contact }}</td>
                         <td>{{$ev->share }}%</td>
+                        <td>{{$ev->myShare }}%</td>
                         <td><img width="100px" height="60px" src="../{{$ev->image}}"></td>
    
             <td class="text-center">

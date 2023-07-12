@@ -11,7 +11,6 @@ use App\Models\User;
 use App\Models\businessDocs;
 use App\Models\Milestones;
 use App\Models\Conversation;
-use App\Models\MilestonePaidByUsers;
 
 use Response;
 use Session; 
@@ -96,11 +95,22 @@ else $investor = false;
 } 
 
 //Investments
-$results = [];
+$results = []; $t_share = 0;
+if ($investor_ck->investor == 1) {
 $convs = Conversation::where('investor_id',Auth::id())->get();
 foreach($convs as $conv){ 
-  $results[] = listing::where('id',$conv->listing_id)->first();
+  $miles = Milestones::where('investor_id',Auth::id())
+  ->where('listing_id',$conv->listing_id)->get();
+  foreach($miles as $share)
+    $t_share = $t_share+$share->share;
+
+  $my_listing =listing::where('id',$conv->listing_id)->first();
+  $my_listing->myShare = $t_share;
+  $results[] = $my_listing;
 }
+//echo '<pre>'; print_r($results); echo '<pre>';exit;
+}
+//Investments
 return view('business.index',compact('business','investor','results','services'));
 }
 
@@ -458,9 +468,9 @@ $business = listing::where('user_id',Auth::id())->get();
 return view('business.add_milestones',compact('business','milestones'));
 }
 
-public function getMilestones($id){
+public function getMilestones($id){ 
 
-if(Auth::check())
+    if(Auth::check())
         $investor_id = Auth::id();
     else {
         if(Session::has('investor_email')){   
@@ -470,33 +480,16 @@ if(Auth::check())
       }
     }
 
-  $milestones = Milestones::where('listing_id',$id)->get(); 
-  $c=0;$d=0;$test='';$i=1; $done=0;
+ $milestones = Milestones::where('listing_id',$id)->get(); 
+ $c=0;$d=0;
   foreach($milestones as $mile){
-
+  if($mile->investor_id == $investor_id)
+    $mile->access = true;
   //Status Determine
-  $paid = MilestonePaidByUsers::where('milestone_id',$mile->id)
-  ->where('investor_id',$investor_id)->first();
-  if($paid!=null) { $mile->status = 'Done'; $done++;}
-  else {
-      if($i == 1) 
-        $mile->status = 'In Progress';
-      else{
-        if($done == 0)
-          $mile->status = 'On Hold';
-        else{
-          if(($i-$done) == 1)
-            $mile->status = 'In Progress';
-          else{
-            $mile->status = 'On Hold';
-          }
-        }
-      }
-  }
+  //if($mile->status == 'In Progress') $c++;if($mile->status != 'Done') $d++;
   //Status Determine
-  $i++;
 
-//SETTING Time Diffrence
+  //SETTING Time Diffrence
 $time_due_date = date( "Y-m-d H:i:s", strtotime($mile->created_at.' +'.$mile->n_o_days.' days 0 hours 0 minutes'));
 $start_date = new DateTime(date("Y-m-d H:i:s"));
 $since_start = $start_date->diff(new DateTime($time_due_date));
@@ -510,6 +503,8 @@ if($time_now > $time_due_date)
 
 }
 
+
+ //if($c==0 && $d!=0){ $milestones[0]->status = 'In Progress';}
 return response()->json([ 'data' => $milestones ]);
 
  }
@@ -553,7 +548,7 @@ $title = $request->title;
 $business_id = $request->business_id;
 $amount = $request->amount;
 $user_id = Auth::id();
-$status = 'Created';
+$status = 'To Do';
 
 $time_type = $request->time_type;
 $n_o_days = $request->n_o_days;
@@ -562,10 +557,24 @@ $n_o_days = 7*$n_o_days;
 if($time_type == 'Months')
 $n_o_days = 30*$n_o_days;
 
-$mile = Milestones::where('listing_id',$business_id)->where('status','Created')->first();
+//$mile = Milestones::where('listing_id',$business_id)->latest()->first();
+//if($mile  &&  ($mile->status ==  'Created' || $mile->status ==  'In Progress'))
+//$status = 'On Hold';if($mile  && $mile->status ==  'Done') $status = 'In Progress';
 
-if(isset($mile->status) &&  $mile->status ==  'Created')
-$status = 'On Hold';
+$this_listing = Listing::where('id',$business_id)->first();
+$inv_need = $this_listing->investment_needed;
+$share = round(( round($amount)/round($inv_need) )*$this_listing->share, 2);
+
+$mile_shares = Milestones::where('listing_id',$business_id)->get();
+$total_share_amount = 0;
+foreach($mile_shares as $single){
+$total_share_amount = $total_share_amount+$single->amount;
+}
+$total_share_amount = $total_share_amount+$amount;
+if($total_share_amount>$inv_need){
+Session::put('failed','The amount exceeds the total investment needed!');
+        return redirect()->back();
+}
 
  $single_img=$request->file('file');
  
@@ -595,7 +604,8 @@ Milestones::create([
             'amount' => $amount,
             'document' => $final_file,
       			'n_o_days' => $n_o_days,
-            'status' => $status           
+            'status' => $status,
+            'share'  => $share           
            ]);       
 
         Session::put('success','Milestone added!');
@@ -650,6 +660,40 @@ Milestones::where('id',$id)->update([
         Session::put('success','Business Updated!');
         return redirect()->back();
 
+}
+
+public function milestoneCommits($ids){
+  if(Auth::check())
+        $investor_id = Auth::id();
+    else {
+        if(Session::has('investor_email')){   
+        $mail = Session::get('investor_email');
+        $investor = User::where('email',$mail)->first();
+        $investor_id = $investor->id;
+      }
+    }
+
+$i = 1;
+$commited = explode(',',$ids);
+    //Check in progress
+    $mile = Milestones::where('id',$commited[0])->first();
+    $check = Milestones::where('listing_id',$mile->listing_id)
+    ->where('status','In Progress')->first();
+    //Check in progress
+
+foreach($commited as $commit_id){
+  if ($commit_id != '') {
+    if($i == 1 && !$check)
+    $milestones = Milestones::where('id',$commit_id)
+    ->update(['investor_id' => $investor_id, 'status' => 'In Progress']);
+    else
+    $milestones = Milestones::where('id',$commit_id)
+    ->update(['investor_id' => $investor_id]);
+    $i++;
+  }
+}
+
+return response()->json(['sucees' => 'committed']);
 }
 
 //END MILESTONES

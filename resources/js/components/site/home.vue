@@ -205,6 +205,29 @@
      </div>
     
    </div>
+   <!-- How it works -->
+
+   <div class="row mt-4 w-75 mx-auto">
+<hr>
+         <div >
+         <h3 style="font-family: system-ui; text-align:left;" class="text-dark headline  headline-aligned-to-left  headline-box "> Latest Businesses </h3></div>
+             
+                <div v-for="( result, index ) in results" class="listing col-sm-3 my-5">
+                    <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
+
+                     <video v-if="result.file" controls style="width:332px; height:230px" alt="">
+                    <source :src="result.file" type="video/mp4">
+                     </video> 
+
+                     <img v-else :src="result.image" style="width:100%; height:130px" alt=""/>
+
+                    <h4 class="mt-3 mb-0">{{result.name}} </h4>
+                    <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{result.location}}</p>
+                    <p><span class="mt-1 rounded"><i class="mr-2 fa fa-phone"></i>{{result.contact}}</span></p>
+                    </router-link>
+                    
+              </div>
+                </div>
 
    <div class="row mt-2 border border-bottom-dark"></div>
 
@@ -220,6 +243,7 @@ export default {
     
   props: ['auth_user','business'],  
   data: () => ({
+  results:[],
   form: new Form({
   listing_name:'',
   search:'',
@@ -228,7 +252,8 @@ export default {
   }),
   checkListing:'',
   serviceDetails:'',
-  milestone:''
+  milestone:'',
+  commit:''
 
     }),
 
@@ -296,9 +321,28 @@ data:form.serialize(),
     console.log(response);
       }
 });
-  }
+  },
+
+  latBusiness:function () {
+            let t = this;
+            axios.get('latBusiness').then( (data) =>{
+                t.results = data.data.data;
+                console.log(data);
+              }).catch( (error) =>{})
+        },
+
+        routerPush:function(){
+            this.commit = sessionStorage.getItem('commit');
+            if (this.commit !=null)
+              this.$router.push(`business-milestone/${this.commit}`);
+        },
 
   },
+
+  mounted() { 
+   this.latBusiness();
+   this.routerPush();
+      } 
 
      
     }

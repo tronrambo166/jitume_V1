@@ -194,9 +194,11 @@ try {
             'pin' => $final_pin,
             'id_passport' => $final_passport,
             'investor' => $investor           
-           ]); 
-
+           ]);  
        
+       Session::put('login_success','Registration successfull! Please login to continue.');
+       return redirect('/');
+
         Session::put('investor_email', $user->email);    
         Session::put('investor_auth',true);
          return redirect('home');             
@@ -309,6 +311,18 @@ if($conv!=null)$conv = true;else $conv=false;
 return response()->json([ 'data' => $results, 'conv'=>$conv] );
 }
 
+
+public function latBusiness(){
+$results = array();
+    $listings = Listing::latest()->get();$i=1;
+    foreach($listings as $listing){
+        $listing->file=null;
+        if($i<5)
+         $results[] = $listing;$i++;
+     }
+
+return response()->json([ 'data' => $results] );
+}
 
 public function searchService(Request $request){
 $listing_name = $request->listing_name;

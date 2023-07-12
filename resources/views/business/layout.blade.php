@@ -183,6 +183,13 @@ $service = Services::where('shop_id',$user_id)->get();
 
        
    <div class="col-md-9 bg-white">
+    <!-- Session -->
+    @if(Session::has('sucess'))
+        <p style="position: absolute;background: #00ff89;right: 0px;border-radius: 0px;" class="text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('sucess')}} @php Session::forget('sucess'); @endphp </p>@endif
+
+        @if(Session::has('failed'))
+        <p style="position: absolute;background: #00ff89;right: 0px;border-radius: 0px;" class="text-danger text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('failed')}} @php Session::forget('failed'); @endphp </p>@endif
+    <!-- Session -->
 
          @yield('page') </div>  
 

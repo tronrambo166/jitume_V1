@@ -14,7 +14,6 @@ use App\Models\orders;
 use App\Models\Conversation;
 use App\Models\Milestones;
 use App\Models\Smilestones;
-use App\Models\MilestonePaidByUsers;
 use Session; 
 use Hash;
 use Auth;
@@ -297,36 +296,23 @@ class checkoutController extends Controller
          });  
 
 
-//DB INSERT
-        
-    MilestonePaidByUsers::create([ 
-        'milestone_id' => $id,
-        'investor_id' => $investor_id
+//DB INSERT   
+    Milestones::where('id',$id)->update([ 
+        'status' => 'Done'
     ]);
 
+$mileLat = Milestones::where('investor_id',$investor_id)->where('status','To Do')->first();
 
-
-$last_mile = Milestones::where('listing_id',$mile->listing_id)->latest()->first();
-if($last_mile->id == $id){
-    //Completed, order place
-    try{
-        $total = 0;
-        $all_milestone = Milestones::where('listing_id',$mile->listing_id)->get();
-        foreach($all_milestone as $all_m){
-            $total = $total+$all_m->amount;
-        }
-        // orders::create([
-        //     'user_id' => $mile->user_id,
-        //     'service_id' => $mile->listing_id,
-        //     'price' => $total
-        // ]);
-    }
-    catch(\Exception $e){
-    Session::put('Stripe_pay', $e->getMessage());
-    return redirect("/");
+if($mileLat != null) {
+    Milestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
+}
+else {
+    $mileLat = Milestones::where('status','To Do')
+    ->where('listing_id',$mile->listing_id)->first();
+    if($mileLat != null) {
+    Milestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
 }
 }
-
 
 
        Session::put('Stripe_pay','Milestone paid successfully!');
@@ -352,6 +338,7 @@ if($last_mile->id == $id){
    
     public function milestoneStripePostS(Request $request)
     {
+
     if(Auth::check())
         $investor_id = Auth::id();
     else {
@@ -361,7 +348,6 @@ if($last_mile->id == $id){
         $investor_id = $investor->id;
       }
     }
-
 
     $id = $request->milestone_id; //explode(',',$request->ids);
 
@@ -403,15 +389,12 @@ if($last_mile->id == $id){
 
 //DB INSERT
         
-    MilestonePaidByUsers::create([ 
-        'milestone_id' => $id,
-        'investor_id' => $investor_id
-    ]);
+    Smilestones::where('id',$id)->update([ 'status' => 'Done']);
+    $mileLat = Smilestones::where('user_id',$user_id)->where('status','On Hold')->first();
 
-
-
-$last_mile = Smilestones::where('listing_id',$mile->listing_id)->latest()->first();
-if($last_mile->id == $id){
+if($mileLat != null)
+    Smilestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
+else {
     //Completed, order place
     try{
         $total = 0;

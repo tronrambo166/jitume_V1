@@ -24,8 +24,13 @@
                             </div>
                             
                       
-                   <div class="Overview" id="Overview">
-                    <p> <span class="font-weight-bold">Details:{{form.details}}</span></p>
+                <div class="Overview" id="Overview">
+                    
+                <div  class="w-75 eqp-invest my-4 text-left">
+                <h4 class=" my-3">About Sodaa</h4>
+                <p class=" small text-justify-center  ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
+               </div>
+
                     <p><span class="mt-1 rounded"><i class="mr-2 fa fa-phone"></i>{{form.contact}}</span></p>
                     </div>
 
@@ -41,18 +46,13 @@
            <!--  <div class="card bg-light w-75 mx-auto py-3">
              <h5 class="mx-4 text-secondary shadow border border-light py-2 d-block text-center">Seed investors spot open
                 <i class="ml-1 fa fa-angle-up"></i></h5>
-                <button class="buttonListing my-3">Login to book</button>
-                <hr>
-
+                <button class="buttonListing my-3">Login to book</button><hr>
                 <h5 class="border border-light py-2 d-block text-center">Commitment to invest fee <p class="d-inline text-success">2000</p>
                 </h5>
-
                <div v-if="auth_user" class="eqp-invest">
                 <router-link :to="`/invest_eqp/${form.listing_id}`" class="text-light buttonListing my-3 py-3">Invest with Equipment/Supplies</router-link>
                 <router-link :to="`/donate_eqp/${form.listing_id}`" class="text-light buttonListing my-3 py-3">Donate with Equipment/Supplies</router-link>
                 </div> 
-
-
                 <div v-else="auth_user" class="eqp-invest">
                 <a @click="make_session(form.listing_id);" href="" data-target="#loginModal" data-toggle="modal" class="py-2 text-light buttonListing my-3">Invest with Equipment/Supplies</a>
                 <a href="" data-target="#loginModal" data-toggle="modal" class="py-2 text-light buttonListing my-3">Donate with Equipment/Supplies</a>
@@ -95,21 +95,38 @@
 
                 
 
-                <a @mouseleave="leave()" @mouseover="hover()" style="border: 1px solid black;" id="convBtn1"  class="convBtn text-center mx-auto w-75 btn  px-4">Message Business Owner</a>
+                <a @mouseleave="leave()" @mouseover="hover()" style="border: 1px solid black;" id="convBtn1"  class="py-1 convBtn text-center mx-auto w-75 btn  px-4">Message Business Owner</a>
 
-                <router-link to="/services"  @mouseleave.native="leave()" @mouseover.native="hover2" style="border: 1px solid black;" id="convBtn2"  class="convBtn my-3 text-center mx-auto w-75 btn  px-4">Request a Transaction Advisor</router-link>
+                <router-link to="/services"  @mouseleave.native="leave()" @mouseover.native="hover2" style="border: 1px solid black;" id="convBtn2"  class="py-1 convBtn my-3 text-center mx-auto w-75 btn  px-4">Request a Transaction Advisor</router-link>
                </div>
 
-               <div  class="eqp-invest my-4">
-                <h4 class="text-center my-3">About Sodaa</h4>
-                <p class=" small text-justify-center w-75 mx-auto">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
-               </div>
 
                <div  class="eqp-invest">
-                <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover3()" @click="download_business()" id="convBtn3" class="convBtn text-center mx-auto w-75 btn mt-4 px-4">Download Business Documentation</a>
+                <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover3()" @click="download_business()" id="convBtn3" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4">Download Business Documentation</a>
 
 
-                <router-link :to="`/business-milestone/${form.listing_id}`"  @mouseleave.native="leave()" @mouseover.native="hover4" style="border: 1px solid black;" id="convBtn4"  class="convBtn my-3 text-center mx-auto w-75 btn  px-4">Milestones Dashboard</router-link>
+                <router-link :to="`/business-milestone/${form.listing_id}`"  @mouseleave.native="leave()" @mouseover.native="hover4" style="border: 1px solid black;" id="convBtn4"  class="py-1 convBtn my-3 text-center mx-auto w-75 btn  px-4">Milestones</router-link>
+
+                <div class="w-75 mx-auto row">
+                    <div class="col-sm-8 px-0"><p class="commitP text-left">Commit to invest in milestones:</p></div>
+
+                    <div class="col-sm-4 px-1">
+                    <div v-for="result in results" class="d-flex">
+
+                    <input  v-if="result.investor_id == null" :value="result.id" type="checkbox" name="miles" class="float-left mr-2" > 
+
+                    <span v-else style="font-size:10px;" class="font-weight-bold mt-2 float-left mr-2 small text-success">(Commited)</span> 
+                    <label style="font-size:12px;" class="mt-2 float-left">{{result.title}}</label>
+                    </div>
+
+                    </div>
+                    
+                </div>
+
+                 <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover5()" @click="milestoneCommits()" id="convBtn5" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4">Invest</a>
+
+                  <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover6()" @click="milestoneCommitsEQP()" id="convBtn6" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4">Invest With Equpment</a>
+
                 
                </div>
 
@@ -222,7 +239,8 @@ export default {
         image:'',
         conv:'',
     }),
-    
+
+    results:[],  
     details:[] 
     }),
 
@@ -286,6 +304,12 @@ if(sessionStorage.getItem('invest')!=null)
         hover4(){
             $('#convBtn4').css('background','#72c537');
         },
+        hover5(){
+            $('#convBtn5').css('background','#72c537');
+        },
+        hover6(){
+            $('#convBtn6').css('background','#72c537');
+        },
         leave(){
             $('.convBtn').css('background','');
         },
@@ -295,13 +319,51 @@ if(sessionStorage.getItem('invest')!=null)
     axios.get('download_business/'+id).then( (data) =>{console.log(data);
     
     });
-        }
+        },
+
+    getMilestones:function(){ 
+    var id=this.$route.params.id; var t=this;
+
+    axios.get('getMilestones/'+id).then( (data) =>{
+        console.log(data);
+        t.results = data.data.data;
+    
+    });
+    
+    },
+
+
+    milestoneCommits:function(){
+    var checked  = '';
+    [...document.querySelectorAll('input[name="miles"]:checked')]
+   .forEach((cb) => checked = checked+cb.value+',');
+
+        var ids = checked;
+        if(ids == '')
+            $.alert({
+                title: 'Alert!',
+                content: 'Please select a milestone to commit!',
+            });
+        else{
+         axios.get('milestoneCommits/'+ids).then( (data) =>{
+         console.log(data);
+         });  
+         $.alert({
+                title: 'Alert!',
+                content: 'Commit Success!',
+            });
+            
+            $('#convBtn4 a').trigger('click');
+    }
+
+    },
 
         },
   
 
      mounted() { 
      this.getDetails();
+     this.getMilestones();
     
       }
    

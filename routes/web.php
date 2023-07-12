@@ -76,26 +76,32 @@ Route::get('removeCart/{id}', 'PagesController@removeCart')->name('removeCart');
 Route::get('cart', 'PagesController@cart')->name('cart');
 Route::get('download_business/{id}', 'PagesController@download_business')->name('download_business');
 
+// <--milestones-->
 Route::get('getMilestones/{id}', 'BusinessController@getMilestones')->name('getMilestones');
 Route::get('getMilestonesS/{id}', 'ServiceController@getMilestones')->name('getMilestonesS');
+Route::get('milestoneCommits/{ids}', 'BusinessController@milestoneCommits')->name('milestoneCommits');
+Route::get('milestoneCommitsEqp/{ids}', 'BusinessController@milestoneCommitsEqp')->name('milestoneCommitsEqp');
+
+
 Route::get('download_milestoneDoc/{id}/{mile_id}', 'BusinessController@download_milestone_doc')->name('download_milestoneDoc');
 Route::get('download_milestoneDocS/{id}/{mile_id}', 'ServiceController@download_milestone_doc')->name('download_milestoneDocS');
-
+// <--milestones-->
+Route::get('latBusiness', 'PagesController@latBusiness')->name('latBusiness');
 
 //MAIN/BACKEND/VUE
 
-
+//EXTRA ROUTES
 Route::get('{/anypath}', 'PagesController@home')->where('path', '.*');
 //Route::get('admin/{anypath}', 'AdminController@dashboard')->where('path', '.*');
 Route::get('profile/{id}', 'PagesController@profile');
 Route::post('profile/edit/{id}', 'PagesController@updateProfile');
-
+//EXTRA ROUTES
 
 
 // LARAVEL ROUTES
 Auth::routes();
 
-//-- Business ROUTES
+//--Dashboard --  Business ROUTES
 Route::post('loginB', 'PagesController@loginB')->name('loginB');
 //Route::get('logoutB', 'BusinessController@logoutB')->name('logoutB'); 
 Route::post('registerB', 'PagesController@registerB')->name('registerB'); 
@@ -125,7 +131,7 @@ Route::post('add_video', 'BusinessController@add_video')->name('add_video');
 Route::post('embed_business_video', 'BusinessController@embed_business_video')->name('embed_business_video');
 
 
-//Service
+//Dashboard -- Service
 Route::get('services', 'ServiceController@services')->name('services');
 Route::get('add-services', 'ServiceController@add_listing')->name('add-services');
 Route::post('create-service', 'ServiceController@save_listing')->name('create-service');

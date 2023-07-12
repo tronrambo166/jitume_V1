@@ -7726,6 +7726,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
+var _methods;
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -7962,10 +7964,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
     return {
+      results: [],
       form: new Form({
         listing_name: '',
         search: '',
@@ -7973,7 +7999,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }),
       checkListing: '',
       serviceDetails: '',
-      milestone: ''
+      milestone: '',
+      commit: ''
     };
   },
   created: function created() {
@@ -7989,7 +8016,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     $('#call_to').html('');
     $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Business</span></a> ');
   },
-  methods: _defineProperty({
+  methods: (_methods = {
     search: function search() {
       var _this = this;
 
@@ -8018,7 +8045,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     }
-  }, "search", function search() {
+  }, _defineProperty(_methods, "search", function search() {
     var form = $('#form');
     var thiss = this;
     var ids = '';
@@ -8053,7 +8080,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         console.log(response);
       }
     });
-  })
+  }), _defineProperty(_methods, "latBusiness", function latBusiness() {
+    var t = this;
+    axios.get('latBusiness').then(function (data) {
+      t.results = data.data.data;
+      console.log(data);
+    })["catch"](function (error) {});
+  }), _defineProperty(_methods, "routerPush", function routerPush() {
+    this.commit = sessionStorage.getItem('commit');
+    if (this.commit != null) this.$router.push("business-milestone/".concat(this.commit));
+  }), _methods),
+  mounted: function mounted() {
+    this.latBusiness();
+    this.routerPush();
+  }
 });
 
 /***/ }),
@@ -8269,6 +8309,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8491,6 +8560,7 @@ __webpack_require__.r(__webpack_exports__);
         image: '',
         conv: ''
       }),
+      results: [],
       details: []
     };
   },
@@ -8545,6 +8615,12 @@ __webpack_require__.r(__webpack_exports__);
     hover4: function hover4() {
       $('#convBtn4').css('background', '#72c537');
     },
+    hover5: function hover5() {
+      $('#convBtn5').css('background', '#72c537');
+    },
+    hover6: function hover6() {
+      $('#convBtn6').css('background', '#72c537');
+    },
     leave: function leave() {
       $('.convBtn').css('background', '');
     },
@@ -8554,10 +8630,41 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('download_business/' + id).then(function (data) {
         console.log(data);
       });
+    },
+    getMilestones: function getMilestones() {
+      var id = this.$route.params.id;
+      var t = this;
+      axios.get('getMilestones/' + id).then(function (data) {
+        console.log(data);
+        t.results = data.data.data;
+      });
+    },
+    milestoneCommits: function milestoneCommits() {
+      var checked = '';
+
+      _toConsumableArray(document.querySelectorAll('input[name="miles"]:checked')).forEach(function (cb) {
+        return checked = checked + cb.value + ',';
+      });
+
+      var ids = checked;
+      if (ids == '') $.alert({
+        title: 'Alert!',
+        content: 'Please select a milestone to commit!'
+      });else {
+        axios.get('milestoneCommits/' + ids).then(function (data) {
+          console.log(data);
+        });
+        $.alert({
+          title: 'Alert!',
+          content: 'Commit Success!'
+        });
+        $('#convBtn4 a').trigger('click');
+      }
     }
   },
   mounted: function mounted() {
     this.getDetails();
+    this.getMilestones();
   }
 });
 
@@ -8861,14 +8968,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -67374,6 +67473,69 @@ var render = function () {
     _vm._v(" "),
     _vm._m(3),
     _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row mt-4 w-75 mx-auto" },
+      [
+        _c("hr"),
+        _vm._v(" "),
+        _vm._m(4),
+        _vm._v(" "),
+        _vm._l(_vm.results, function (result, index) {
+          return _c(
+            "div",
+            { staticClass: "listing col-sm-3 my-5" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "shadow card border px-2",
+                  attrs: { to: "/listingDetails/" + result.id },
+                },
+                [
+                  result.file
+                    ? _c(
+                        "video",
+                        {
+                          staticStyle: { width: "332px", height: "230px" },
+                          attrs: { controls: "", alt: "" },
+                        },
+                        [
+                          _c("source", {
+                            attrs: { src: result.file, type: "video/mp4" },
+                          }),
+                        ]
+                      )
+                    : _c("img", {
+                        staticStyle: { width: "100%", height: "130px" },
+                        attrs: { src: result.image, alt: "" },
+                      }),
+                  _vm._v(" "),
+                  _c("h4", { staticClass: "mt-3 mb-0" }, [
+                    _vm._v(_vm._s(result.name) + " "),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "my-1" }, [
+                    _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
+                    _vm._v(_vm._s(result.location)),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _c("span", { staticClass: "mt-1 rounded" }, [
+                      _c("i", { staticClass: "mr-2 fa fa-phone" }),
+                      _vm._v(_vm._s(result.contact)),
+                    ]),
+                  ]),
+                ]
+              ),
+            ],
+            1
+          )
+        }),
+      ],
+      2
+    ),
+    _vm._v(" "),
     _c("div", { staticClass: "row mt-2 border border-bottom-dark" }),
   ])
 }
@@ -67735,6 +67897,22 @@ var staticRenderFns = [
           },
         }),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "h3",
+        {
+          staticClass:
+            "text-dark headline headline-aligned-to-left headline-box",
+          staticStyle: { "font-family": "system-ui", "text-align": "left" },
+        },
+        [_vm._v(" Latest Businesses ")]
+      ),
     ])
   },
 ]
@@ -68124,11 +68302,7 @@ var render = function () {
             _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "Overview", attrs: { id: "Overview" } }, [
-              _c("p", [
-                _c("span", { staticClass: "font-weight-bold" }, [
-                  _vm._v("Details:" + _vm._s(_vm.form.details)),
-                ]),
-              ]),
+              _vm._m(1),
               _vm._v(" "),
               _c("p", [
                 _c("span", { staticClass: "mt-1 rounded" }, [
@@ -68144,7 +68318,7 @@ var render = function () {
       _c("div", { staticClass: "col-sm-5" }, [
         !_vm.form.conv
           ? _c("div", { staticClass: "card bg-light w-75 mx-auto py-3" }, [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _vm.auth_user
                 ? _c(
@@ -68254,7 +68428,7 @@ var render = function () {
                       "a",
                       {
                         staticClass:
-                          "convBtn text-center mx-auto w-75 btn px-4",
+                          "py-1 convBtn text-center mx-auto w-75 btn px-4",
                         staticStyle: { border: "1px solid black" },
                         attrs: { id: "convBtn1" },
                         on: {
@@ -68273,7 +68447,7 @@ var render = function () {
                       "router-link",
                       {
                         staticClass:
-                          "convBtn my-3 text-center mx-auto w-75 btn px-4",
+                          "py-1 convBtn my-3 text-center mx-auto w-75 btn px-4",
                         staticStyle: { border: "1px solid black" },
                         attrs: { to: "/services", id: "convBtn2" },
                         nativeOn: {
@@ -68291,8 +68465,6 @@ var render = function () {
                   1
                 ),
                 _vm._v(" "),
-                _vm._m(2),
-                _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "eqp-invest" },
@@ -68301,7 +68473,7 @@ var render = function () {
                       "a",
                       {
                         staticClass:
-                          "convBtn text-center mx-auto w-75 btn mt-4 px-4",
+                          "py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4",
                         staticStyle: { border: "1px solid black" },
                         attrs: { id: "convBtn3" },
                         on: {
@@ -68323,7 +68495,7 @@ var render = function () {
                       "router-link",
                       {
                         staticClass:
-                          "convBtn my-3 text-center mx-auto w-75 btn px-4",
+                          "py-1 convBtn my-3 text-center mx-auto w-75 btn px-4",
                         staticStyle: { border: "1px solid black" },
                         attrs: {
                           to: "/business-milestone/" + _vm.form.listing_id,
@@ -68338,7 +68510,89 @@ var render = function () {
                           },
                         },
                       },
-                      [_vm._v("Milestones Dashboard")]
+                      [_vm._v("Milestones")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "w-75 mx-auto row" }, [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-4 px-1" },
+                        _vm._l(_vm.results, function (result) {
+                          return _c("div", { staticClass: "d-flex" }, [
+                            result.investor_id == null
+                              ? _c("input", {
+                                  staticClass: "float-left mr-2",
+                                  attrs: { type: "checkbox", name: "miles" },
+                                  domProps: { value: result.id },
+                                })
+                              : _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "font-weight-bold mt-2 float-left mr-2 small text-success",
+                                    staticStyle: { "font-size": "10px" },
+                                  },
+                                  [_vm._v("(Commited)")]
+                                ),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "mt-2 float-left",
+                                staticStyle: { "font-size": "12px" },
+                              },
+                              [_vm._v(_vm._s(result.title))]
+                            ),
+                          ])
+                        }),
+                        0
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4",
+                        staticStyle: { border: "1px solid black" },
+                        attrs: { id: "convBtn5" },
+                        on: {
+                          mouseleave: function ($event) {
+                            return _vm.leave()
+                          },
+                          mouseover: function ($event) {
+                            return _vm.hover5()
+                          },
+                          click: function ($event) {
+                            return _vm.milestoneCommits()
+                          },
+                        },
+                      },
+                      [_vm._v("Invest")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4",
+                        staticStyle: { border: "1px solid black" },
+                        attrs: { id: "convBtn6" },
+                        on: {
+                          mouseleave: function ($event) {
+                            return _vm.leave()
+                          },
+                          mouseover: function ($event) {
+                            return _vm.hover6()
+                          },
+                          click: function ($event) {
+                            return _vm.milestoneCommitsEQP()
+                          },
+                        },
+                      },
+                      [_vm._v("Invest With Equpment")]
                     ),
                   ],
                   1
@@ -68366,9 +68620,9 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
-              _vm._v(" "),
               _vm._m(4),
+              _vm._v(" "),
+              _vm._m(5),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
                 _c("div", { staticClass: "card-header w-100 text-center" }, [
@@ -68438,6 +68692,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-75 eqp-invest my-4 text-left" }, [
+      _c("h4", { staticClass: "my-3" }, [_vm._v("About Sodaa")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "small text-justify-center" }, [
+        _vm._v(
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip"
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
       "h5",
       { staticClass: "font-weight-bold ml-4 border border-light py-2 d-block" },
@@ -68448,13 +68716,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "eqp-invest my-4" }, [
-      _c("h4", { staticClass: "text-center my-3" }, [_vm._v("About Sodaa")]),
-      _vm._v(" "),
-      _c("p", { staticClass: "small text-justify-center w-75 mx-auto" }, [
-        _vm._v(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip"
-        ),
+    return _c("div", { staticClass: "col-sm-8 px-0" }, [
+      _c("p", { staticClass: "commitP text-left" }, [
+        _vm._v("Commit to invest in milestones:"),
       ]),
     ])
   },
@@ -68904,7 +69168,7 @@ var render = function () {
                                     },
                                   ],
                                   staticClass:
-                                    "placeH w-100 rounded border border-dark",
+                                    "placeH placeH_active w-100 py-1 border border-dark",
                                   attrs: {
                                     readonly: "",
                                     required: "",
@@ -68940,7 +69204,7 @@ var render = function () {
                                     },
                                   ],
                                   staticClass:
-                                    "placeH w-100 rounded border border-dark",
+                                    "placeH placeH_active w-100 py-1 border border-dark",
                                   attrs: {
                                     readonly: "",
                                     required: "",
@@ -68995,28 +69259,14 @@ var render = function () {
                               ),
                             ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-1 py-1" }, [
-                              _c("div", { staticClass: "form-group" }, [
-                                result.time_left == "L A T E !"
-                                  ? _c(
+                            result.access && result.time_left != "L A T E !"
+                              ? _c("div", { staticClass: "col-1 px-1" }, [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
                                       "button",
                                       {
                                         staticClass:
-                                          "text-center border border-dark p-0 btn btn-light btn-block disabled",
-                                        attrs: { type: "submit" },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.make_session(_vm.form.id)
-                                          },
-                                        },
-                                      },
-                                      [_vm._v("PAY")]
-                                    )
-                                  : _c(
-                                      "button",
-                                      {
-                                        staticClass:
-                                          "text-center border border-dark p-0 btn btn-light btn-block",
+                                          "placeH_active text-center border border-dark px-2 py-1 btn btn-light btn-block",
                                         attrs: { type: "submit" },
                                         on: {
                                           click: function ($event) {
@@ -69026,8 +69276,9 @@ var render = function () {
                                       },
                                       [_vm._v("PAY")]
                                     ),
-                              ]),
-                            ]),
+                                  ]),
+                                ])
+                              : _vm._e(),
                             _vm._v(" "),
                             _c("input", {
                               directives: [
@@ -69081,19 +69332,19 @@ var render = function () {
                             _vm._v(" "),
                             _vm._m(0, true),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-3 p-1" }, [
+                            _c("div", { staticClass: "col-sm-3 px-1" }, [
                               _c(
                                 "div",
                                 {
                                   staticClass:
-                                    "rounded border border-dark px-2 d-inline-block",
+                                    "border border-dark px-2 d-inline-block",
                                 },
                                 [
                                   _c(
                                     "p",
                                     {
                                       staticClass:
-                                        "text-success due small d-inline",
+                                        "placeH_active text-success due small d-inline",
                                       staticStyle: { "font-size": "12px" },
                                     },
                                     [_vm._v("Due in: ")]
@@ -69103,7 +69354,8 @@ var render = function () {
                                     ? _c(
                                         "p",
                                         {
-                                          staticClass: "due d-inline",
+                                          staticClass:
+                                            "placeH_active due d-inline",
                                           staticStyle: { color: "red" },
                                         },
                                         [
@@ -69114,7 +69366,10 @@ var render = function () {
                                       )
                                     : _c(
                                         "p",
-                                        { staticClass: "small due d-inline" },
+                                        {
+                                          staticClass:
+                                            "placeH_active small due d-inline",
+                                        },
                                         [_vm._v(_vm._s(result.time_left))]
                                       ),
                                 ]
@@ -69154,7 +69409,7 @@ var render = function () {
                                     },
                                   ],
                                   staticClass:
-                                    "placeH_done w-100 rounded border border-dark",
+                                    "placeH_done placeH_active w-100 py-1 border border-dark",
                                   attrs: {
                                     readonly: "",
                                     required: "",
@@ -69190,7 +69445,7 @@ var render = function () {
                                     },
                                   ],
                                   staticClass:
-                                    "placeH_done w-100 rounded border border-dark",
+                                    "placeH_done placeH_active w-100 py-1 border border-dark",
                                   attrs: {
                                     readonly: "",
                                     required: "",
@@ -69252,7 +69507,7 @@ var render = function () {
                                     },
                                   ],
                                   staticClass:
-                                    "placeH_inactive w-100 rounded border border-dark",
+                                    "placeH_inactive w-100 py-1 border border-dark",
                                   attrs: {
                                     readonly: "",
                                     required: "",
@@ -69288,7 +69543,7 @@ var render = function () {
                                     },
                                   ],
                                   staticClass:
-                                    "placeH_inactive w-100 rounded border border-dark",
+                                    "placeH_inactive w-100 py-1 border border-dark",
                                   attrs: {
                                     readonly: "",
                                     required: "",
@@ -69315,8 +69570,6 @@ var render = function () {
                             _vm._m(4, true),
                             _vm._v(" "),
                             _vm._m(5, true),
-                            _vm._v(" "),
-                            _vm._m(6, true),
                           ]
                         ),
                       ]
@@ -69335,13 +69588,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 p-1" }, [
+    return _c("div", { staticClass: "col-1 px-1" }, [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "span",
           {
             staticClass:
-              "status text-center border border-dark p-0 btn btn-success btn-block",
+              "placeH_active status text-center border border-dark px-0 py-1 btn btn-success btn-block",
           },
           [_vm._v("In Progress")]
         ),
@@ -69369,13 +69622,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 py-1" }, [
+    return _c("div", { staticClass: "col-1 px-1" }, [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "a",
           {
             staticClass:
-              "text-center border border-dark py-0 btn btn-light btn-block",
+              "placeH_active text-center border border-dark px-2 py-1 btn btn-light btn-block",
             attrs: { disabled: "" },
           },
           [_vm._v("PAID")]
@@ -69387,13 +69640,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 p-1" }, [
+    return _c("div", { staticClass: "col-1 px-1" }, [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "span",
           {
             staticClass:
-              "status text-center border text-light border-dark p-0 btn btn-block",
+              "placeH_active status text-center border text-light border-dark px-2 py-1 btn-block",
             staticStyle: { background: "black" },
           },
           [_vm._v("Done!")]
@@ -69407,14 +69660,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-3 px-1" }, [
       _c("div", { staticClass: "upload-btn-wrapper w-100" }, [
-        _c(
-          "a",
-          { staticClass: "text-white disabled placeH_inactive btnUp4 w-100" },
-          [
-            _vm._v("Download Milestone Documentaion "),
-            _c("i", { staticClass: "ml-2 fa fa-arrow-down" }),
-          ]
-        ),
+        _c("a", { staticClass: "pl-4 disabled placeH_inactive btnUp4 w-100" }, [
+          _vm._v("Download Milestone Documentaion "),
+          _c("i", { staticClass: "ml-2 fa fa-arrow-down" }),
+        ]),
       ]),
     ])
   },
@@ -69422,33 +69671,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 py-1" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "a",
-          {
-            staticClass:
-              "text-center border border-dark p-0 btn btn-light btn-block",
-            attrs: { disabled: "" },
-          },
-          [_vm._v("PAY")]
-        ),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 p-1" }, [
+    return _c("div", { staticClass: "col-1 px-1" }, [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "span",
           {
             staticClass:
-              "status text-center border border-dark p-0 btn btn-light btn-block",
+              "status text-center border border-dark px-2 py-1 btn-light placeH_inactive btn-block",
           },
-          [_vm._v("On Hold")]
+          [_vm._v("To Do")]
         ),
       ]),
     ])

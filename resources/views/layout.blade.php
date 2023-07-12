@@ -33,6 +33,8 @@
 <script src="https://unpkg.com/vue"></script>
 <script src="https://unpkg.com/http-vue-loader"></script>
   {{-- Vue component files --}} -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+
   
 </head>
 <body>
@@ -265,7 +267,7 @@
         <p style="position: absolute;background: chartreuse;right: 0px;border-radius: 10px;" class="mb-3 text-danger font-weight-bold float-right">{{Session::get('loginFailed')}} @php Session::forget('loginFailed'); @endphp </p>@endif
 
         @if(Session::has('Stripe_pay'))
-        <p style="position: absolute;background: chartreuse;right: 0px;border-radius: 10px;" class="text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('Stripe_pay')}} @php Session::forget('Stripe_pay'); @endphp </p>@endif
+        <p style="position: absolute;background: #00ff89;right: 0px;border-radius: 0px;" class="text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('Stripe_pay')}} @php Session::forget('Stripe_pay'); @endphp </p>@endif
 
     <!-- yield('page') -->
     <router-view :auth_user='@json($auth_user)' :app_url='@json($app_url)' 
@@ -1001,6 +1003,9 @@ $("#datepicker2").datepicker({
                     @if(Session::has('reset'))<p class="text-light font-weight-bold">{{Session::get('reset')}}  </p>
                       @php Session::forget('reset'); @endphp @endif
                     
+                    @if(Session::has('login_success'))
+                    <p class="text-success ">{{Session::get('login_success')}}</p>@php Session::forget('login_success'); 
+                    @endphp @endif
 
                    @if(Session::has('login_err'))
                     <p class="text-danger ">{{Session::get('login_err')}}</p>@php Session::forget('login_err'); 
@@ -1550,5 +1555,6 @@ function c_to_actionS(){
 </script>
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 </body>
 </html>
