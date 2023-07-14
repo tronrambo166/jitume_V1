@@ -615,10 +615,18 @@ Milestones::create([
 
 
 public function mile_status(Request $request){
+$thisMile = Milestones::where('id',$request->id)->first();
+
 $milestones = Milestones::where('id',$request->id)
 ->update([
 'status' => $request->status
 ]);
+$next_mile = Milestones::where('listing_id',$thisMile->listing_id)
+->where('status','To Do')->first();
+
+if($next_mile && $next_mile->id > $request->id)
+Milestones::where('id',$next_mile->id)->update(['status' => 'In Progress' ]);
+
 return redirect()->back();
 }
 
@@ -689,6 +697,41 @@ foreach($commited as $commit_id){
     else
     $milestones = Milestones::where('id',$commit_id)
     ->update(['investor_id' => $investor_id]);
+    $i++;
+  }
+}
+
+return response()->json(['sucees' => 'committed']);
+}
+
+
+public function milestoneCommitsEQP($ids){
+  if(Auth::check())
+        $investor_id = Auth::id();
+    else {
+        if(Session::has('investor_email')){   
+        $mail = Session::get('investor_email');
+        $investor = User::where('email',$mail)->first();
+        $investor_id = $investor->id;
+      }
+    }
+
+$i = 1;
+$commited = explode(',',$ids);
+    //Check in progress
+    $mile = Milestones::where('id',$commited[0])->first();
+    $check = Milestones::where('listing_id',$mile->listing_id)
+    ->where('status','In Progress')->first();
+    //Check in progress
+
+foreach($commited as $commit_id){
+  if ($commit_id != '') {
+    if($i == 1 && !$check)
+    $milestones = Milestones::where('id',$commit_id)
+    ->update(['investor_id' => $investor_id, 'with_equip' => 1, 'status' => 'In Progress']);
+    else
+    $milestones = Milestones::where('id',$commit_id)
+    ->update(['investor_id' => $investor_id, 'with_equip' => 1]);
     $i++;
   }
 }

@@ -8651,14 +8651,56 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         title: 'Alert!',
         content: 'Please select a milestone to commit!'
       });else {
-        axios.get('milestoneCommits/' + ids).then(function (data) {
-          console.log(data);
-        });
-        $.alert({
-          title: 'Alert!',
-          content: 'Commit Success!'
-        });
-        $('#convBtn4 a').trigger('click');
+        $.confirm({
+          title: 'Are you sure?',
+          content: 'Are you sure to commit?',
+          buttons: {
+            confirm: function confirm() {
+              axios.get('milestoneCommits/' + ids).then(function (data) {
+                console.log(data);
+              });
+              $.alert({
+                title: 'Alert!',
+                content: 'Commit Success! Go to milestones to see status.'
+              });
+            },
+            cancel: function cancel() {
+              $.alert('Canceled!');
+            }
+          }
+        }); //$('#convBtn4 a').trigger('click');
+      }
+    },
+    milestoneCommitsEQP: function milestoneCommitsEQP() {
+      var checked = '';
+
+      _toConsumableArray(document.querySelectorAll('input[name="miles"]:checked')).forEach(function (cb) {
+        return checked = checked + cb.value + ',';
+      });
+
+      var ids = checked;
+      if (ids == '') $.alert({
+        title: 'Alert!',
+        content: 'Please select a milestone to commit!'
+      });else {
+        $.confirm({
+          title: 'Are you sure?',
+          content: 'Are you sure to commit?',
+          buttons: {
+            confirm: function confirm() {
+              axios.get('milestoneCommitsEQP/' + ids).then(function (data) {
+                console.log(data);
+              });
+              $.alert({
+                title: 'Alert!',
+                content: 'Commit Success!'
+              });
+            },
+            cancel: function cancel() {
+              $.alert('Canceled!');
+            }
+          }
+        }); //$('#convBtn4 a').trigger('click');
       }
     }
   },
@@ -9158,6 +9200,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -9182,6 +9238,17 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('getMilestones/' + id).then(function (data) {
         console.log(data);
         t.results = data.data.data;
+      });
+    },
+    milestoneInvestEQP: function milestoneInvestEQP(mile_id, investor_id, owner_id) {
+      var t = this;
+      var listing_id = this.$route.params.id;
+      axios.get('milestoneInvestEQP/' + listing_id + '/' + mile_id + '/' + investor_id + '/' + owner_id).then(function (data) {
+        console.log(data);
+        if (data.data.success == 'success') $.alert({
+          title: 'Alert!',
+          content: 'Request to invest with equipment sent! Now the business owner will contact with the investor and conclude the milestone.'
+        });
       });
     },
     make_session: function make_session(id) {
@@ -69192,7 +69259,7 @@ var render = function () {
                               ]),
                             ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-2 px-0" }, [
+                            _c("div", { staticClass: "col-sm-1 px-0" }, [
                               _c("div", {}, [
                                 _c("input", {
                                   directives: [
@@ -69260,23 +69327,80 @@ var render = function () {
                             ]),
                             _vm._v(" "),
                             result.access && result.time_left != "L A T E !"
-                              ? _c("div", { staticClass: "col-1 px-1" }, [
-                                  _c("div", { staticClass: "form-group" }, [
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass:
-                                          "placeH_active text-center border border-dark px-2 py-1 btn btn-light btn-block",
-                                        attrs: { type: "submit" },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.make_session(_vm.form.id)
+                              ? _c("div", { staticClass: "col-2 px-1" }, [
+                                  result.with_equip
+                                    ? _c("div", { staticClass: "form-group" }, [
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "grey_btn pay_btn float-left diabled placeH_active text-center border border-dark px-2 py-1 btn btn-light",
                                           },
-                                        },
-                                      },
-                                      [_vm._v("PAY")]
-                                    ),
-                                  ]),
+                                          [
+                                            _vm._v(
+                                              "PAY\n                                        "
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "pay_btn placeH_active text-center border border-dark px-2 py-1 btn btn-light",
+                                            attrs: { type: "submit" },
+                                            on: {
+                                              click: function ($event) {
+                                                return _vm.milestoneInvestEQP(
+                                                  result.id,
+                                                  result.investor_id,
+                                                  result.user_id
+                                                )
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "EQUIP\n                                        "
+                                            ),
+                                          ]
+                                        ),
+                                      ])
+                                    : _c("div", { staticClass: "form-group" }, [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "pay_btn placeH_active text-center border border-dark px-2 py-1 btn btn-light",
+                                            attrs: { type: "submit" },
+                                            on: {
+                                              click: function ($event) {
+                                                return _vm.make_session(
+                                                  _vm.form.id
+                                                )
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "PAY\n                                        "
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "grey_btn pay_btn float-left diabled placeH_active text-center border border-dark px-2 py-1 btn btn-light",
+                                          },
+                                          [
+                                            _vm._v(
+                                              "EQUIP\n                                        "
+                                            ),
+                                          ]
+                                        ),
+                                      ]),
                                 ])
                               : _vm._e(),
                             _vm._v(" "),

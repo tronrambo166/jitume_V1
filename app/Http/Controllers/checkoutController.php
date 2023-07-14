@@ -237,86 +237,128 @@ class checkoutController extends Controller
 
      public function milestoneCheckout(Request $request)
     {
+
+    if(Auth::check())
+                $investor_id = Auth::id();
+            else {
+                if(Session::has('investor_email')){   
+                $mail = Session::get('investor_email');
+                $investor = User::where('email',$mail)->first();
+                $investor_id = $investor->id;
+              }
+            }
+
     $tax = taxes::where('id',1)->first();
     $tax = $tax->tax+$tax->vat;
     $amount =($request->amount)+($request->amount)*($tax/100);
     $milestone_id =$request->milestone_id;
+
+                //First ML check
+                $discount='';
+                $first_ml = Milestones::where('investor_id',$investor_id)->where('status','Done')->first();
+
+                $conv = Conversation::where('investor_id',$investor_id)
+                ->where('listing_id',$request->lisitng_id)->first();
+                
+                if(!$first_ml && $conv){
+                    $amount = $amount-15;
+                    $discount = 'discount - $15! from '.($amount+15).' (conversation fee)';
+                    
+                }
+                //Frist ML check
  
-        return view('milestone.stripe',compact('amount','milestone_id','tax'));
+        return view('milestone.stripe',compact('amount','milestone_id','tax','discount'));
     }
 
    
     public function milestoneStripePost(Request $request)
     {
-    if(Auth::check())
-        $investor_id = Auth::id();
-    else {
-        if(Session::has('investor_email')){   
-        $mail = Session::get('investor_email');
-        $investor = User::where('email',$mail)->first();
-        $investor_id = $investor->id;
-      }
-    }
+            if(Auth::check())
+                $investor_id = Auth::id();
+            else {
+                if(Session::has('investor_email')){   
+                $mail = Session::get('investor_email');
+                $investor = User::where('email',$mail)->first();
+                $investor_id = $investor->id;
+              }
+            }
 
-    $id = $request->milestone_id; //explode(',',$request->ids);
+            try{
 
-    $mile = Milestones::where('id',$id)->first();    
-    $tax = taxes::where('id',1)->first();$tax = $tax->tax+$tax->vat;
-    $amount =($mile->amount)+($mile->amount)*($tax/100);
+            $id = $request->milestone_id; //explode(',',$request->ids);
+            $mile = Milestones::where('id',$id)->first();    
+            $tax = taxes::where('id',1)->first();$tax = $tax->tax+$tax->vat;
+            $amount =($mile->amount)+($mile->amount)*($tax/100);
+            $user_id = $mile->user_id;
 
-    $user_id = $mile->user_id;
-
-
-        //STRIPE
-         $curr='USD'; //$request->currency; 
-         $amount=round($amount);
-
-        Stripe\Stripe::setApiKey('sk_test_51JFWrpJkjwNxIm6zcIxSq9meJlasHB3MpxJYepYx1RuQnVYpk0zmoXSXz22qS62PK5pryX4ptYGCHaudKePMfGyH00sO7Jwion');
-
-        Stripe\Charge::create ([ 
-
-                //"billing_address_collection": null,
-                "amount" => $amount*100, //100 * 100,
-                "currency" => $curr,
-                "source" => $request->stripeToken,
-                "description" => "This payment is tested purpose only!"
-        ]);
-   
+                //First ML check
+                $first_ml = Milestones::where('investor_id',$investor_id)->where('status','Done')->first();
+                $conv = Conversation::where('investor_id',$investor_id)
+                ->where('listing_id',$mile->listing_id)->first();
+                if(!$first_ml){
+                    $amount = $amount-15;
+                }
+                //Frist ML check
 
 
-   //MAIL
-        $business = listing::where('id',$mile->listing_id)->first();
+                //STRIPE
+                 $curr='USD'; //$request->currency; 
+                 $amount=round($amount);
 
-        $info=[  'name'=>$mile->title,  'amount'=>$mile->amount, 'business'=>$business->name, ]; 
-        $user['to'] = $request->email;//'sohaankane@gmail.com';
+                Stripe\Stripe::setApiKey('sk_test_51JFWrpJkjwNxIm6zcIxSq9meJlasHB3MpxJYepYx1RuQnVYpk0zmoXSXz22qS62PK5pryX4ptYGCHaudKePMfGyH00sO7Jwion');
 
-         Mail::send('milestone.milestone_mail', $info, function($msg) use ($user){
-             $msg->to($user['to']);
-             $msg->subject('Milestone Status Changed!');
-         });  
+                Stripe\Charge::create ([ 
 
-
-//DB INSERT   
-    Milestones::where('id',$id)->update([ 
-        'status' => 'Done'
-    ]);
-
-$mileLat = Milestones::where('investor_id',$investor_id)->where('status','To Do')->first();
-
-if($mileLat != null) {
-    Milestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
-}
-else {
-    $mileLat = Milestones::where('status','To Do')
-    ->where('listing_id',$mile->listing_id)->first();
-    if($mileLat != null) {
-    Milestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
-}
-}
+                        //"billing_address_collection": null,
+                        "amount" => $amount*100, //100 * 100,
+                        "currency" => $curr,
+                        "source" => $request->stripeToken,
+                        "description" => "This payment is tested purpose only!"
+                ]);
+           
 
 
-       Session::put('Stripe_pay','Milestone paid successfully!');
-       return redirect("/");
+           //MAIL
+                $business = listing::where('id',$mile->listing_id)->first();
+
+                $info=[  'name'=>$mile->title,  'amount'=>$mile->amount, 'business'=>$business->name, ]; 
+                $user['to'] = $request->email;//'sohaankane@gmail.com';
+
+                 Mail::send('milestone.milestone_mail', $info, function($msg) use ($user){
+                     $msg->to($user['to']);
+                     $msg->subject('Milestone Status Changed!');
+                 });  
+
+
+        //DB INSERT
+            $old_investment = $business->investment_needed;
+            $new_investment = $old_investment - $mile->amount;
+            listing::where('id',$mile->listing_id)->update(['investment_needed' => $new_investment]);
+
+            Milestones::where('id',$id)->update([ 
+                'status' => 'Done'
+            ]);
+
+        $mileLat = Milestones::where('investor_id',$investor_id)->where('status','To Do')->first();
+
+        if($mileLat != null) {
+            Milestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
+        }
+        else {
+            $mileLat = Milestones::where('status','To Do')
+            ->where('listing_id',$mile->listing_id)->first();
+            if($mileLat != null) {
+            Milestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
+        }
+        }
+
+               Session::put('Stripe_pay','Milestone paid successfully!');
+               return redirect("/");
+         }
+            catch(\Exception $e){
+            Session::put('Stripe_pay', $e->getMessage());
+            return redirect("/");
+        }
 
     }
 
@@ -418,6 +460,37 @@ else {
        Session::put('Stripe_pay','Milestone paid successfully!');
        return redirect("/");
 
+    }
+
+
+     public function milestoneInvestEQP($listing_id,$mile_id,$investor_id,$owner_id)
+    {
+        $investor = User::where('id',$investor_id)->first();
+        $investor_name = $investor->fname.' '.$investor->lname;
+        $owner = User::where('id',$owner_id)->first();
+        $business = listing::where('id',$listing_id)->first();
+        $mile = Milestones::where('id',$mile_id)->first();
+
+        //MAIL
+        try{
+
+        $info=[ 'mile_name'=>$mile->title, 
+        'inv_name'=>$investor_name, 
+        'inv_contact'=>$investor->email ];
+
+        $user['to'] = 'tottenham266@gmail.com'; //$owner->email;
+
+         Mail::send('milestone.milestone_eqp', $info, function($msg) use ($user){
+             $msg->to($user['to']);
+             $msg->subject('Request to invest with equipments!');
+         });
+
+        return response()->json(['success' => 'success']);
+        }
+
+        catch(\Exception $e){
+            return response()->json(['error' => $e->getMessage()]);
+        }
     }
 
 

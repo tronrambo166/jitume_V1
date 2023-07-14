@@ -80,7 +80,7 @@ Route::get('download_business/{id}', 'PagesController@download_business')->name(
 Route::get('getMilestones/{id}', 'BusinessController@getMilestones')->name('getMilestones');
 Route::get('getMilestonesS/{id}', 'ServiceController@getMilestones')->name('getMilestonesS');
 Route::get('milestoneCommits/{ids}', 'BusinessController@milestoneCommits')->name('milestoneCommits');
-Route::get('milestoneCommitsEqp/{ids}', 'BusinessController@milestoneCommitsEqp')->name('milestoneCommitsEqp');
+Route::get('milestoneCommitsEQP/{ids}', 'BusinessController@milestoneCommitsEQP')->name('milestoneCommitsEQP');
 
 
 Route::get('download_milestoneDoc/{id}/{mile_id}', 'BusinessController@download_milestone_doc')->name('download_milestoneDoc');
@@ -197,8 +197,7 @@ Route::post('milestonestripe', 'checkoutController@milestoneStripePost')->name('
 
 Route::get('milestoneService', 'checkoutController@milestoneCheckoutS')->name('milestoneService');
 Route::post('milestoneService', 'checkoutController@milestoneStripePostS')->name('milestoneService.post');
-
-//Route::post('register', 'BusinessController@test')->name('register');
+Route::get('milestoneInvestEQP/{listing_id}/{mile_id}/{investor_id}/{owner_id}', 'checkoutController@milestoneInvestEQP')->name('milestoneInvestEQP');
 // Payment Routes
 
 //SOCIAL

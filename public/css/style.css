@@ -381,6 +381,15 @@ background: #f3f3f3;
 .commitP{
     font-size:13px;
 }
+
+.pay_btn{
+    width: 45%;
+}
+
+.grey_btn{
+    background: #cbc6c6;
+    color: #6c6c6c;
+}
 		
 /* Progess Bar */
 .progressbar-wrapper {

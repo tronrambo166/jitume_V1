@@ -344,17 +344,67 @@ if(sessionStorage.getItem('invest')!=null)
                 title: 'Alert!',
                 content: 'Please select a milestone to commit!',
             });
-        else{
-         axios.get('milestoneCommits/'+ids).then( (data) =>{
-         console.log(data);
-         });  
-         $.alert({
-                title: 'Alert!',
-                content: 'Commit Success!',
-            });
+        else
+        {
+            $.confirm({
+                        title: 'Are you sure?',
+                        content: 'Are you sure to commit?',
+                        buttons: {
+                            confirm: function () {
+                             axios.get('milestoneCommits/'+ids).then( (data) =>{
+                             console.log(data);
+                             });  
+                             $.alert({
+                                    title: 'Alert!',
+                                    content: 'Commit Success! Go to milestones to see status.',
+                                });
+                            },
+                            cancel: function () {
+                                $.alert('Canceled!');
+                            },
+                        }
+                    });
             
-            $('#convBtn4 a').trigger('click');
-    }
+            //$('#convBtn4 a').trigger('click');
+        }
+
+    },
+
+
+    milestoneCommitsEQP:function(){
+    var checked  = '';
+    [...document.querySelectorAll('input[name="miles"]:checked')]
+   .forEach((cb) => checked = checked+cb.value+',');
+
+        var ids = checked;
+        if(ids == '')
+            $.alert({
+                title: 'Alert!',
+                content: 'Please select a milestone to commit!',
+            });
+        else
+        {
+            $.confirm({
+                        title: 'Are you sure?',
+                        content: 'Are you sure to commit?',
+                        buttons: {
+                            confirm: function () {
+                             axios.get('milestoneCommitsEQP/'+ids).then( (data) =>{
+                             console.log(data);
+                             });  
+                             $.alert({
+                                    title: 'Alert!',
+                                    content: 'Commit Success!',
+                                });
+                            },
+                            cancel: function () {
+                                $.alert('Canceled!');
+                            },
+                        }
+                    });
+            
+            //$('#convBtn4 a').trigger('click');
+        }
 
     },
 
