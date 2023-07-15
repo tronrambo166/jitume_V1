@@ -390,6 +390,11 @@ background: #f3f3f3;
     background: #cbc6c6;
     color: #6c6c6c;
 }
+#progress{
+    background: green;
+    border-radius: 3px;
+    height: 21px;
+}
 		
 /* Progess Bar */
 .progressbar-wrapper {

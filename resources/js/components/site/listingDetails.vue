@@ -10,7 +10,13 @@
                 :src="form.image" alt="" />
                     
                  <div class="pl-2">
-                    <h3 class="mt-2 text-left text-dark font-weight-bold ">{{form.name}}</h3>
+                    <h3 class="mt-2 text-left text-dark font-weight-bold ">{{form.name}}</h3> 
+                    <div class="float-right w-25">
+                     <div class="" style="background:#e5e5e9; height:21px;">
+                         <span id="progress" class="d-block"></span>
+                     </div>   
+                      <span>{{progress}}% Invested</span>
+                    </div>
         
                         <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{form.location}}</p>
                         </div>
@@ -241,7 +247,8 @@ export default {
     }),
 
     results:[],  
-    details:[] 
+    details:[],
+    progress:''
     }),
 
 created(){
@@ -327,6 +334,8 @@ if(sessionStorage.getItem('invest')!=null)
     axios.get('getMilestones/'+id).then( (data) =>{
         console.log(data);
         t.results = data.data.data;
+        t.progress = data.data.progress;
+        $('#progress').css('width',t.progress+'%');
     
     });
     

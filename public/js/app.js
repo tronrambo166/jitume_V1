@@ -8546,6 +8546,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -8561,7 +8567,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         conv: ''
       }),
       results: [],
-      details: []
+      details: [],
+      progress: ''
     };
   },
   created: function created() {
@@ -8637,6 +8644,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       axios.get('getMilestones/' + id).then(function (data) {
         console.log(data);
         t.results = data.data.data;
+        t.progress = data.data.progress;
+        $('#progress').css('width', t.progress + '%');
       });
     },
     milestoneCommits: function milestoneCommits() {
@@ -68359,6 +68368,12 @@ var render = function () {
               [_vm._v(_vm._s(_vm.form.name))]
             ),
             _vm._v(" "),
+            _c("div", { staticClass: "float-right w-25" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("span", [_vm._v(_vm._s(_vm.progress) + "% Invested")]),
+            ]),
+            _vm._v(" "),
             _c("p", { staticClass: "my-1" }, [
               _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
               _vm._v(_vm._s(_vm.form.location)),
@@ -68366,10 +68381,10 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row my-4" }, [
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
             _c("div", { staticClass: "Overview", attrs: { id: "Overview" } }, [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c("p", [
                 _c("span", { staticClass: "mt-1 rounded" }, [
@@ -68385,7 +68400,7 @@ var render = function () {
       _c("div", { staticClass: "col-sm-5" }, [
         !_vm.form.conv
           ? _c("div", { staticClass: "card bg-light w-75 mx-auto py-3" }, [
-              _vm._m(2),
+              _vm._m(3),
               _vm._v(" "),
               _vm.auth_user
                 ? _c(
@@ -68581,7 +68596,7 @@ var render = function () {
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "w-75 mx-auto row" }, [
-                      _vm._m(3),
+                      _vm._m(4),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -68687,9 +68702,9 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(4),
-              _vm._v(" "),
               _vm._m(5),
+              _vm._v(" "),
+              _vm._m(6),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
                 _c("div", { staticClass: "card-header w-100 text-center" }, [
@@ -68739,6 +68754,16 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticStyle: { background: "#e5e5e9", height: "21px" } },
+      [_c("span", { staticClass: "d-block", attrs: { id: "progress" } })]
+    )
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

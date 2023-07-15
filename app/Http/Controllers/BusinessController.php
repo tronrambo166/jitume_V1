@@ -481,13 +481,15 @@ public function getMilestones($id){
     }
 
  $milestones = Milestones::where('listing_id',$id)->get(); 
- $c=0;$d=0;
+ $done = 0; $c=0;$d=0;
   foreach($milestones as $mile){
   if($mile->investor_id == $investor_id)
     $mile->access = true;
   //Status Determine
   //if($mile->status == 'In Progress') $c++;if($mile->status != 'Done') $d++;
   //Status Determine
+
+if($mile->status == 'Done') $done++;
 
   //SETTING Time Diffrence
 $time_due_date = date( "Y-m-d H:i:s", strtotime($mile->created_at.' +'.$mile->n_o_days.' days 0 hours 0 minutes'));
@@ -503,9 +505,12 @@ if($time_now > $time_due_date)
 
 }
 
+$total_mile = count($milestones);
+$progress = ($done/$total_mile)*100;
+
 
  //if($c==0 && $d!=0){ $milestones[0]->status = 'In Progress';}
-return response()->json([ 'data' => $milestones ]);
+return response()->json([ 'data' => $milestones, 'progress' => $progress ]);
 
  }
 
