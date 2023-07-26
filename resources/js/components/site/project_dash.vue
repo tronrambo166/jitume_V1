@@ -2,7 +2,9 @@
         <div class="main">
         <div class="container">
 
-           
+  <div v-if="no_mile" class="w-75 h-100 py-5 my-5 my-auto justify-content-center my-2 text-center mx-auto">
+    <h4 class="font-weight-bold text-success">No Milestones Yet!</h4>
+  </div>         
 
  <div class="root py-5 mb-5 ml-4">
      <div class="progressbar-wrapper">
@@ -211,7 +213,8 @@
         id:''
     }),
     results:[],
-    status:false
+    status:false,
+    no_mile:false
     }),
 
     created(){
@@ -230,8 +233,10 @@ getMilestones:function(){
     var id=this.$route.params.id; var t=this;
 
     axios.get('getMilestones/'+id).then( (data) =>{
-        console.log(data);
+        //console.log(data.data.data);
         t.results = data.data.data;
+        if(data.data.data.length ==0)
+            t.no_mile = true;
     
     });
     

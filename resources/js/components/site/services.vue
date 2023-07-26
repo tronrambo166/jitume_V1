@@ -30,8 +30,8 @@
                           <div class="py-2 col-sm-3 bg-white">
                           <div class="dropdown">
 
-           <select  name="category" class="mt-2 border-none form-control">    
-           <option hidden class="form-control" >Services</option>
+           <select  name="category" required class="mt-2 border-none form-control">    
+           <option hidden value="" class="form-control" >Services</option>
            <option class="form-control" value="Business Planning" >Business Planning</option>
            <option value="IT" >IT</option>
            <option value="Legal Project Management" >Legal Project Management</option>
@@ -113,6 +113,8 @@ export default {
     ids = ids+row.id+',';      
     });//console.log(ids);
 
+    if(ids == '')
+        ids = 'no-results'
     //thiss.$router.push({ path: '/listingResults', query: { result: response } })
     thiss.$router.push({ name: 'serviceResults', params: { results: ids}})
     },
@@ -126,7 +128,7 @@ export default {
     if(this.$router.currentRoute.path == '/services' ||
      this.$router.currentRoute.path == '/serviceResults'){
     $('#call_to').html('');
-    $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+    $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
     }
     }
 
@@ -135,6 +137,7 @@ export default {
 mounted() { 
      //return this.$store.dispatch("fetchpro")
      this.replaceText();
+     //$('#create_investor').html('');
       } 
 
     }

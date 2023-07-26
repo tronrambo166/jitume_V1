@@ -141,8 +141,12 @@ $service = Services::where('shop_id',$user_id)->get();
        
                             </li>
 
-                               <li  class="{{ Request::is('business/milestones-*') ? 'active' : '' }}"> 
+                            <li  class="{{ Request::is('business/milestones-*') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('milestones','all')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
+                            </li>
+
+                            <li  class="{{ Request::is('business/business_bids') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('business_bids')}}"><i class=" fe fe-layout"></i> <span>Business Bids</span></a>
                             </li>
 
                         @endif  

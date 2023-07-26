@@ -33,8 +33,8 @@
                           <div class="pt-2 col-4 bg-white">
                           <div class="dropdown pt-1">
 
-            <select  name="category" class="border-white form-control">
-            <option class="form-control small" >Category</option>
+            <select required id="category"  name="category" class="border-white form-control">
+            <option class="form-control small" value="" >Category</option>
 
             <option class="form-control" value="Agriculture" >Agriculture</option>
             <option value="Arts / Culture" >Arts/Culture </option>
@@ -222,8 +222,13 @@
                      <img v-else :src="result.image" style="width:100%; height:130px" alt=""/>
 
                     <h4 class="mt-3 mb-0">{{result.name}} </h4>
-                    <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{result.location}}</p>
-                    <p><span class="mt-1 rounded"><i class="mr-2 fa fa-phone"></i>{{result.contact}}</span></p>
+                    <p class="my-1 text-left small"><i class="mr-2 fa fa-map-marker"></i>{{result.location}}</p>
+                    <p class="mb-1"><span class="mt-1 rounded"><i class="mr-2 fa fa-phone"></i>{{result.contact}}</span></p>
+
+                    <div class="amount float-right text-right w-100 py-0 my-0">   
+                        <h6 class="small font-weight-bold" >Amount: <span class="font-weight-light"><b>${{result.investment_needed}}</b></span></h6>
+                    </div>
+
                     </router-link>
                     
               </div>
@@ -279,7 +284,8 @@ created() {
 
       //CALL ACTION
       $('#call_to').html('');
-      $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Business</span></a> ');
+      $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Business</span></a> ');
+
         },
 
   methods:{
@@ -342,6 +348,9 @@ data:form.serialize(),
   mounted() { 
    this.latBusiness();
    this.routerPush();
+
+    //$('#create_investor').html('<a onclick="" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Create Investor Account</span></a> ');
+
       } 
 
      

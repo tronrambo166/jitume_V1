@@ -240,7 +240,7 @@ border-radius: 35px;
     font-size: 15px;
     font-weight: 600;
     padding: 0 40px;
-    height: 50px;
+    
     outline: none;
     background-color: #72c537;
     border-radius: 35px;
@@ -631,3 +631,17 @@ a:hover{text-decoration: none;}
     cursor: pointer;
     font-size: 11px;
 }
+
+.toggole_bar{
+    font-size: 25px;
+    top: -8px;
+}
+.form-check-input:checked {
+    background-color: #11af24;
+    }
+
+    #add_listing input, #add_listing select {height: 30px;}
+    .business_btns{font-size: 12px; padding: 0 22px;}
+    .amount {
+        color: black; font-family: math;
+    }
