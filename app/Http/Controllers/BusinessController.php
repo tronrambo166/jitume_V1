@@ -783,7 +783,7 @@ foreach($commited as $commit_id){
   }
 }
 
-return response()->json(['sucees' => 'committed']);
+return response()->json(['success' => 'committed']);
 }
 
 //END MILESTONES

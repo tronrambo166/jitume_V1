@@ -24,7 +24,7 @@
 
 </style>
     
-    <form action="" method="post">    
+ <form action="{{route('bidsAccepted')}}" method="post">  @csrf  
     <div class="row pt-4  m-auto">        
      <table class="eq table table-bordered " id="">
     <thead>
@@ -45,7 +45,7 @@
     <tbody>
         @foreach($bids as $ev)
         <tr >
-            <td><input type="checkbox" name="bid_ids[]" value="{{$ev->id}}"></td>
+            <td><input onchange="check();" type="checkbox" name="bid_ids[]" value="{{$ev->id}}"></td>
             <td>{{$ev->date }}</td>
                 <td>{{$ev->investor }}</td>
                     <td>{{$ev->business }}</td>
@@ -67,7 +67,9 @@
 </table>
                
 <div class=" ml-auto">
-    <button type="submit" class="float-right font-weight-bold btn-success w-25 mx-auto">Accept</button>
+    <a id="fakeBtn" onclick="accept();" type="submit" class="text-center float-right font-weight-bold btn-secondary text-mute py-1 w-25 mx-auto">Accept</a>
+
+    <button id="realBtn" type="submit" class="collapse float-right font-weight-bold btn-success w-25 mx-auto">Accept</button>
 </div>
 
 </div>
@@ -76,6 +78,28 @@
 
                 </div>
 
+<script type="text/javascript">
+  function accept() {
+            alert('Please select a bid!');
+    }
+
+    function check() {
+    var checked  = '';
+    [...document.querySelectorAll('input[name="bid_ids[]"]:checked')]
+   .forEach((cb) => checked = checked+cb.value+',');
+
+        var ids = checked;
+        if(ids != '')
+        {
+        $('#fakeBtn').hide();
+        $('#realBtn').show();
+        }
+        else{
+        $('#fakeBtn').show();
+        $('#realBtn').hide();
+        }
+    }
+</script>
                 
 
 

@@ -79,7 +79,7 @@ Route::get('download_business/{id}', 'PagesController@download_business')->name(
 // <--milestones-->
 Route::get('getMilestones/{id}', 'BusinessController@getMilestones')->name('getMilestones');
 Route::get('getMilestonesS/{id}', 'ServiceController@getMilestones')->name('getMilestonesS');
-Route::get('milestoneCommits/{amount}/{business_id}/{percent}', 'BusinessController@milestoneCommits')->name('milestoneCommits');
+//Route::get('milestoneCommits/{amount}/{business_id}/{percent}', 'BusinessController@milestoneCommits')->name('milestoneCommits');
 Route::get('milestoneCommitsEQP/{ids}', 'BusinessController@milestoneCommitsEQP')->name('milestoneCommitsEQP');
 
 
@@ -181,7 +181,7 @@ Route::get('/clear', function() {
 
 Auth::routes();
 
-// Payment Routes
+// <!-- Payment Routes -->
 
 Route::get('/stripe', 'checkoutController@goCheckout')->name('stripe');
 //Invest
@@ -200,6 +200,15 @@ Route::get('milestoneService', 'checkoutController@milestoneCheckoutS')->name('m
 Route::post('milestoneService', 'checkoutController@milestoneStripePostS')->name('milestoneService.post');
 Route::get('milestoneInvestEQP/{listing_id}/{mile_id}/{investor_id}/{owner_id}', 'checkoutController@milestoneInvestEQP')->name('milestoneInvestEQP');
 // Payment Routes
+
+
+//<!-- BIDS -->
+Route::post('bidsAccepted', 'bidsEmailController@bidsAccepted')->name('bidsAccepted');
+
+Route::get('bidCommits/{amount}/{business_id}/{percent}', 'checkoutController@bidCommitsForm')->name('bidCommits');
+Route::post('bidCommits', 'checkoutController@bidCommits')->name('bidCommits');
+//<!-- BIDS -->
+
 
 //SOCIAL
 Route::get('social_login',function (){return view('social_types');})->name('social_login');

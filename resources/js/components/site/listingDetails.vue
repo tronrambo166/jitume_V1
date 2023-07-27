@@ -180,7 +180,7 @@
                     <label style="font-size:12px;" class="mt-2 float-left">{{result.title}}</label>
                     </div>
                     </div> -->
-
+                    
                     <div class="col-sm-12 px-0">
                         <p class="text-center"><b>Enter A Bid To Invest</b></p>
                     </div>
@@ -203,6 +203,7 @@
                 </div>
 
                  <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover5()" @click="bidCommits()" id="convBtn5" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4">Invest</a>
+
 
                   <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover6()" @click="bidCommitsEQP()" id="convBtn6" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4">Invest With Equpment</a>
 
@@ -436,18 +437,15 @@ if(sessionStorage.getItem('invest')!=null)
             });
         else
         {
+            var amount = btoa(amount);
+            var business_id = btoa(business_id)
+            var percent = btoa(percent)
             $.confirm({
                         title: 'Are you sure?',
                         content: 'Are you sure to bid?',
                         buttons: {
-                            confirm: function () {
-                             axios.get('milestoneCommits/'+amount+'/'+business_id+'/'+percent).then( (data) =>{
-                             console.log(data);
-                             });  
-                             $.alert({
-                                    title: 'Alert!',
-                                    content: 'Commit Success! Go to milestones to see status.',
-                                });
+                           confirm: function () {
+                           window.location.href = './bidCommits/'+amount+'/'+business_id+'/'+percent;  
                             },
                             cancel: function () {
                                 $.alert('Canceled!');

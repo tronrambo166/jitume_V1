@@ -20,6 +20,7 @@ use Auth;
 use Mail;
 use Stripe;
 use App\Models\taxes;
+use App\Models\BusinessBids;
 
 
 class checkoutController extends Controller
@@ -492,6 +493,87 @@ else {
             return response()->json(['error' => $e->getMessage()]);
         }
     }
+
+//BIDS
+
+public function bidCommitsForm($amount,$business_id,$percent)
+{   $amount = base64_decode($amount);
+    $business_id = base64_decode($business_id);
+    $percent = base64_decode($percent);
+    $total = $amount+($amount*0.05);
+    $amount = round($total,2);
+ 
+        return view('bids.stripe',compact('amount','business_id','percent'));
+}
+
+public function bidCommits(Request $request){
+  try{
+   if(Auth::check())
+        $investor_id = Auth::id();
+    else {
+        if(Session::has('investor_email')){   
+        $mail = Session::get('investor_email');
+        $investor = User::where('email',$mail)->first();
+        $investor_id = $investor->id;
+      }
+    }
+
+    //Stripe
+        $curr='USD'; //$request->currency; 
+        $amount=$request->price;
+        $amount=$amount-($amount*.05);
+        Stripe\Stripe::setApiKey('sk_test_51JFWrpJkjwNxIm6zcIxSq9meJlasHB3MpxJYepYx1RuQnVYpk0zmoXSXz22qS62PK5pryX4ptYGCHaudKePMfGyH00sO7Jwion');
+        Stripe\Charge::create ([ 
+                //"billing_address_collection": null,
+                "amount" => $amount*100, //100 * 100,
+                "currency" => $curr,
+                "source" => $request->stripeToken,
+                "description" => "This payment is tested purpose only!"
+        ]);
+    //Stripe
+
+    $business_id = $request->listing;
+    $percent = $request->percent;
+    $type = 'Monetery';
+    $bids = BusinessBids::create([
+      'date' => date('Y-m-d'),
+      'investor_id' => $investor_id,
+      'business_id' => $business_id,
+      'type' => $type,
+      'amount' => $amount,
+      'representation' => $percent
+    ]);
+
+// Milestone Fulfill check
+    $total_bid_amount = 0;
+    $mile1 = Milestones::where('listing_id',$business_id)->first();
+    $this_bids = BusinessBids::where('business_id',$business_id)->get();
+    foreach($this_bids as $b)
+    $total_bid_amount = $total_bid_amount+($b->amount);
+
+    if($total_bid_amount >= $mile1->amount){
+        $list = listing::where('id',$business_id)->first();
+        $owner = User::where('id',$list->user_id)->first();
+        $info=[ 'business_name'=>$list->name ];
+        $user['to'] = 'tottenham266@gmail.com'; //$owner->email;
+         Mail::send('bids.mile_fulfill', $info, function($msg) use ($user){
+             $msg->to($user['to']);
+             $msg->subject('Fulfills a milestone!');
+         });
+     }
+// Milestone Fulfill check
+
+if($bids){
+    Session::put('Stripe_pay','Bid placed! you will get a notification if your bid is accepted!');
+    return redirect("/");
+         }
+}
+
+catch(\Exception $e){
+  return response()->json(['failed' =>  $e->getMessage()]);
+}
+
+}
 
 
 }
