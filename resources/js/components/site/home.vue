@@ -61,7 +61,7 @@
                         </div>
 
                             <div style="border-radius: 0 35px 35px 0;" class="bg-white col-3 py-2 ">
-                                <button  class="searchListing px-sm-3 px-1 float-right" type="submit">Search</button>
+                                <button  class="searchListing px-sm-3 px-1 float-right mt-1" type="submit">Search</button>
                             </div>
 
                                </div>               
@@ -283,10 +283,9 @@ created() {
 
 
       //CALL ACTION
-      $('#call_to').html('');
-      $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Business</span></a> ');
-
-        },
+    $('#call_to').html('');
+    $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> ');
+  },
 
   methods:{
 

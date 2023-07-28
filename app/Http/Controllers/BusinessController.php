@@ -752,40 +752,6 @@ catch(\Exception $e){
 }
 
 
-public function milestoneCommitsEQP($ids){
-  if(Auth::check())
-        $investor_id = Auth::id();
-    else {
-        if(Session::has('investor_email')){   
-        $mail = Session::get('investor_email');
-        $investor = User::where('email',$mail)->first();
-        $investor_id = $investor->id;
-      }
-    }
-
-$i = 1;
-$commited = explode(',',$ids);
-    //Check in progress
-    $mile = Milestones::where('id',$commited[0])->first();
-    $check = Milestones::where('listing_id',$mile->listing_id)
-    ->where('status','In Progress')->first();
-    //Check in progress
-
-foreach($commited as $commit_id){
-  if ($commit_id != '') {
-    if($i == 1 && !$check)
-    $milestones = Milestones::where('id',$commit_id)
-    ->update(['investor_id' => $investor_id, 'with_equip' => 1, 'status' => 'In Progress']);
-    else
-    $milestones = Milestones::where('id',$commit_id)
-    ->update(['investor_id' => $investor_id, 'with_equip' => 1]);
-    $i++;
-  }
-}
-
-return response()->json(['success' => 'committed']);
-}
-
 //END MILESTONES
 
 public function business_bids(){

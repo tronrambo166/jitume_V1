@@ -14,6 +14,8 @@ import subscribe from '../components/site/subscribe.vue'
 import project_dash from '../components/site/project_dash.vue'
 import project_dash_service from '../components/site/project_dash_service.vue'
 import category from '../components/site/category.vue'
+import investEQUIP from '../components/site/investEQUIP.vue'
+
 
 
 //ADMIN COMPONENTS
@@ -47,6 +49,7 @@ export const routes=[
 { path:'/business-milestone/:id', component: project_dash},
 { path:'/service-milestone/:id', component: project_dash_service},
 { path:'/category/:name', component: category},
+{ path:'/investEQUIP/:amount/:id/:percent', component: investEQUIP},
 
 
 //ADMIN ROUTES

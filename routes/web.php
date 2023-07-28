@@ -204,9 +204,10 @@ Route::get('milestoneInvestEQP/{listing_id}/{mile_id}/{investor_id}/{owner_id}',
 
 //<!-- BIDS -->
 Route::post('bidsAccepted', 'bidsEmailController@bidsAccepted')->name('bidsAccepted');
-
+Route::post('bidCommitsEQP', 'bidsEmailController@bidCommitsEQP')->name('bidCommitsEQP');
 Route::get('bidCommits/{amount}/{business_id}/{percent}', 'checkoutController@bidCommitsForm')->name('bidCommits');
 Route::post('bidCommits', 'checkoutController@bidCommits')->name('bidCommits');
+
 //<!-- BIDS -->
 
 

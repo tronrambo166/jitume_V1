@@ -204,6 +204,27 @@
 
                  <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover5()" @click="bidCommits()" id="convBtn5" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4">Invest</a>
 
+                <div class="w-75 mx-auto row">
+                  <div class="col-sm-12 px-0 mt-3">
+                        <p class="text-center"><b>Enter Equipment Equivalent Bid To Invest</b></p>
+                    </div>
+                    <div class="col-sm-12 px-1">
+                        <div class="row">
+                            <div class="col-sm-3">Amount:$</div>
+                            <div class="col-sm-3">
+                                <input v-on:keyup="calculate2($event.target.value);" value="" id="bid_amount_eqp" style="height:25px;" type="number" name="bid_amount_eqp"></div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-3">Represents:</div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-5"><p id="bid_percent_eqp"> %</p>
+                            <input step="0.01" hidden value="" id="bid_percent2_eqp" type="number" >
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
 
                   <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover6()" @click="bidCommitsEQP()" id="convBtn6" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4">Invest With Equpment</a>
 
@@ -460,38 +481,32 @@ if(sessionStorage.getItem('invest')!=null)
 
 
     bidCommitsEQP:function(){
-    var checked  = '';
-    [...document.querySelectorAll('input[name="miles"]:checked')]
-   .forEach((cb) => checked = checked+cb.value+',');
-
-        var ids = checked;
-        if(ids == '')
+    var amount = $('#bid_amount_eqp').val();
+        var percent = $('#bid_percent2_eqp').val();
+        var business_id = this.$route.params.id;
+        if(amount == '' || amount == 0)
             $.alert({
                 title: 'Alert!',
-                content: 'Please select a milestone to commit!',
+                content: 'Please enter a bid to invest!',
             });
         else
         {
+            var amount = btoa(amount);
+            var id = btoa(business_id);
+            var percent = btoa(percent);
+            let t = this;
             $.confirm({
                         title: 'Are you sure?',
-                        content: 'Are you sure to commit?',
+                        content: 'Are you sure to bid?',
                         buttons: {
-                            confirm: function () {
-                             axios.get('milestoneCommitsEQP/'+ids).then( (data) =>{
-                             console.log(data);
-                             });  
-                             $.alert({
-                                    title: 'Alert!',
-                                    content: 'Commit Success!',
-                                });
+                           confirm: function () {
+                           t.$router.push(`../investEQUIP/${amount}/${id}/${percent}`);
                             },
                             cancel: function () {
                                 $.alert('Canceled!');
                             },
                         }
                     });
-            
-            //$('#convBtn4 a').trigger('click');
         }
 
     },
@@ -509,6 +524,17 @@ if(sessionStorage.getItem('invest')!=null)
     else
     document.getElementById('bid_percent').innerHTML = percent+'%';
     document.getElementById('bid_percent2').value = percent;
+    },
+
+    calculate2:function(bid){
+    var total = this.form.investment_needed;
+    var percent = (bid/total)*100
+    var percent = percent.toFixed(2);
+    if(percent >=100)
+        document.getElementById('bid_percent_eqp').innerHTML = '<b class="text-danger">Exceeds 100%</b>';
+    else
+    document.getElementById('bid_percent_eqp').innerHTML = percent+'%';
+    document.getElementById('bid_percent2_eqp').value = percent;
     }
 
         },
