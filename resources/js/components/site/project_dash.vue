@@ -50,20 +50,20 @@
 
                                     <div v-if="result.access && result.time_left != 'L A T E !'" class="col-2 px-1">
 
-                                        <div v-if="result.with_equip" class="form-group">
+                                        <!-- <div v-if="result.with_equip" class="form-group">
                                         <span  class="grey_btn pay_btn float-left diabled placeH_active text-center border border-dark px-2 py-1 btn btn-light" >PAY
                                         </span> 
 
                                         <a @click="milestoneInvestEQP(result.id,result.investor_id,result.user_id);" type="submit" class="pay_btn placeH_active text-center border border-dark px-2 py-1 btn btn-light" >EQUIP
                                         </a> 
-                                         </div>
+                                         </div> -->
 
-                                        <div v-else class="form-group">
+                                        <div class="form-group">
                                         <button @click="make_session(form.id);" type="submit" class="pay_btn placeH_active text-center border border-dark px-2 py-1 btn btn-light" >PAY
                                         </button> 
 
-                                        <span  class="grey_btn pay_btn float-left diabled placeH_active text-center border border-dark px-2 py-1 btn btn-light" >EQUIP
-                                        </span> 
+                                     <!--    <span  class="grey_btn pay_btn float-left diabled placeH_active text-center border border-dark px-2 py-1 btn btn-light" >EQUIP
+                                        </span> --> 
                                         </div>
 
                                     </div>

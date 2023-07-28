@@ -8,7 +8,7 @@
 		<div class="container w-75 m-auto" style="box-shadow: 3px 3px 7px 7px grey; background: #fbfbfb;width:75%; margin:auto; text-align:center">
 		
 		 <h2 style="text-align: left;color: black;font-family: sans-serif;">  
-		 	<br> Fulfills a milestone!</h2>
+		 	<br> Bid Accepted!</h2>
 			
 			<div class="" style="width:100%; margin:auto;">
 			<h4 style="line-height: 28px;font-weight:500; color: #000000a1;font-family: sans-serif;text-align:left;"> Hi,<br> 
@@ -17,11 +17,11 @@
 		           Proceed to progress with the milestones work?
 		        <div style="width:50%;margin: auto; padding-bottom:20px;padding-top:15px;"> 
 		        	<a target="_blank" href="https://test.jitume.com/#/services"
-				style="width:50%;text-decoration:none;color: aliceblue;background:green;padding:10px 40px;border-radius:5px;margin-left:30px">
+				style="width:50%;text-decoration:none;color: aliceblue;background:green;padding:10px 30px;border-radius:5px;margin-left:30px">
 				Ok </a>
 
 				<a target="_blank" href="https://test.jitume.com/#/services"
-				style="width:50%;text-decoration:none;color: aliceblue;background:red;padding:10px 40px;border-radius:5px;margin-left:30px">
+				style="width:50%;text-decoration:none;color: aliceblue;background:red;padding:10px 30px;border-radius:5px;margin-left:30px">
 				Cancel </a>
 			</div>
 					<p>Please be on alert of completion milestone emails as progress of their investment depends on your review. </p>
