@@ -117,6 +117,10 @@ Route::post('add_eqp', 'BusinessController@add_eqp')->name('add_eqp');
 Route::post('up_listing', 'BusinessController@up_listing')->name('up_listing');
 Route::get('delete_listing/{id}', 'BusinessController@delete_listing')->name('delete_listing');
 Route::get('business_bids', 'BusinessController@business_bids')->name('business_bids');
+Route::get('my_bids', 'BusinessController@my_bids')->name('my_bids');
+Route::get('remove_bids/{id}', 'BusinessController@remove_bids')->name('remove_bids');
+Route::get('assetEquip/download/{id}/{type}', 'BusinessController@assetEquip_download')->name('assetEquip/download');
+
 // --- MILESTONE
 Route::get('add_milestones', 'BusinessController@add_milestones')->name('add_milestones');
 
@@ -207,6 +211,8 @@ Route::post('bidsAccepted', 'bidsEmailController@bidsAccepted')->name('bidsAccep
 Route::post('bidCommitsEQP', 'bidsEmailController@bidCommitsEQP')->name('bidCommitsEQP');
 Route::get('bidCommits/{amount}/{business_id}/{percent}', 'checkoutController@bidCommitsForm')->name('bidCommits');
 Route::post('bidCommits', 'checkoutController@bidCommits')->name('bidCommits');
+Route::get('agreeToBid/{bidId}', 'bidsEmailController@agreeToBid')->name('agreeToBid');
+Route::get('agreeToNextmile/{bidId}', 'bidsEmailController@agreeToNextmile')->name('agreeToNextmile');
 
 //<!-- BIDS -->
 

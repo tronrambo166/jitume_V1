@@ -204,13 +204,27 @@
         </div>  
         @endif
 
+
         @if(Session::has('login_success'))
-        <div class="w-50 m-auto alert alert-info alert-dismissible fade show" role="alert">
-          <p class="font-weight-bold">{{Session::get('login_success')}}   @php Session::forget('login_success'); @endphp </p>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>  
+
+        <!-- Pop up Modal -->
+            <div class="success_message modal" style="display:block;" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content popup_success">
+
+                  <div class="modal-body">
+                     <h2 class="my-4 modal-title text-center w-100" id="exampleModalLabel">Success</h2>
+
+                    <p class="text-center">{{Session::get('login_success')}}   @php Session::forget('login_success'); @endphp</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button onclick="popupClose();" type="button" class="w-50 py-2 my-3 h5 m-auto btn text-white" style="background:green;font-size: 18px;" data-dismiss="modal">Ok</button>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+        <!-- Pop up Modal -->
 
          @endif 
 
@@ -1111,6 +1125,10 @@
                 <div class="modal-header">
 
                     <div class="card-header w-100">
+                        <div class="card-header row my-2">
+                            <button style="border: 1px solid darkblue;background: navy;" class="ml-2 w-50 text-center text-white font-weight-bold btn px-4 mr-2">{{ __('Join Jitume') }}</button>
+                        </div>
+        
                         <button style="border: 1px solid darkblue;background: #72c537;" id="logins" onclick="login()" class=" w-25 btn   px-4 mr-2">{{ __('Log In') }}</button>
                         <button style="border: 1px solid darkblue;" id="registers" onclick="register()" class=" w-50 btn  px-4">{{ __('Create Investor Account') }}</button>
 
@@ -1737,6 +1755,10 @@
   $('#b2').hide();
   $('#b1').show();
   }
+ }
+
+ function popupClose() {
+     $('.success_message').css('display','none');
  }
 
     </script>

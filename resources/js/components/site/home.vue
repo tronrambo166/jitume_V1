@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid px-0">
+    <div class="container-fluid px-0" style="overflow:hidden;">
     <div class="home_bg" style="">
 
  
@@ -80,53 +80,56 @@
                     </div>
 
 
-      <div class="row mt-4">
+      <div class="mt-4">
 
-        <div class="cats text-center categories navbar navbar-expand-sm pb-0">
-                                        
-        <ul class=" navbar-nav mx-auto" >
-            
-            <li class="nav-item" > <router-link to="category/Agriculture">Agriculture </router-link></li> 
-              <li class="nav-item" > <router-link to="category/Arts-Culture">Arts/Culture </router-link></li>
-               <li class="nav-item" > <router-link to="category/Auto">Auto </router-link></li>    
-                <li class="nav-item" > <router-link to="category/Domestic_Home">Domestic (HomeHelp etc) </router-link></li>
-                <li class="nav-item" > <router-link to="category/Fashion">Fashion </router-link></li> 
-                 <li class="nav-item" > <router-link to="category/Finance-Accounting">Finance/Accounting </router-link></li>  
-                  <li class="nav-item" > <router-link to="category/Food">Food </router-link></li>
-                   <li class="nav-item" > <router-link to="category/Legal">Legal  </router-link></li>  
-                    <li class="nav-item" > <router-link to="category/Media-Internet">Media/Internet</router-link></li> 
-                     <li class="nav-item" > <router-link to="category/Pets">Pets </router-link></li> 
-                      <li class="nav-item" > <router-link to="category/Retail">Retail </router-link></li>
+        <div class="cats  text-center pb-0 ">
 
-                 
+          <ul class="hlist d-flex justify-content-center mx-4 mx-lg-4 py-0 my-0">
 
-           <li class="nav-item" > <router-link to="category/Real State">Real Estate </router-link></li>     
-           
-           
-            <li class="nav-item" > <router-link to="category/Security">Security </router-link></li>    
-             <li class="nav-item" > <router-link to="category/Sports-Gaming">Sports/Gaming </router-link></li>
-               
-                 
-                <li class="nav-item" > <router-link to="category/Technology-Communications">Technology/Communications  </router-link></li>     
-            
-           <li class="nav-item" ><router-link to="category/Other">Other </router-link></li>   
-           </ul>
-            <br>
-           
-
-             </div>
-
-             </div>
-
-             <div class="categories cats py-0">
-              <ul class="row text-center py-0">
-                <li style="list-style-type:none;" class="nav-item py-0" > <router-link to="category/Renewable-Energy" class="py-0" style="color:#1ed73d;">Renewable Energy </router-link>
-                </li>
-              </ul>
-            </div>
+            <li class="nav-item"> <router-link to="category/Agriculture">Agriculture </router-link></li>
+            <li class="nav-item"> <router-link to="category/Arts-Culture">Arts/Culture </router-link></li>
+            <li class="nav-item"> <router-link to="category/Auto">Auto </router-link></li>
+            <li class="nav-item"> <router-link to="category/Domestic_Home">Domestic (HomeHelp etc) </router-link></li>
+            <li class="nav-item"> <router-link to="category/Fashion">Fashion </router-link></li>
+            <li class="nav-item"> <router-link to="category/Finance-Accounting">Finance/Accounting </router-link></li>
+            <li class="nav-item"> <router-link to="category/Food">Food </router-link></li>
+            <li class="nav-item"> <router-link to="category/Legal">Legal </router-link></li>
+            <li class="nav-item"> <router-link to="category/Media-Internet">Media/Internet</router-link></li>
+            <li class="nav-item"> <router-link to="category/Pets">Pets </router-link></li>
+            <li class="nav-item"> <router-link to="category/Retail">Retail </router-link></li>
 
 
-                      </div>
+
+            <li class="nav-item"> <router-link to="category/Real State">Real Estate </router-link></li>
+
+
+            <li class="nav-item"> <router-link to="category/Security">Security </router-link></li>
+            <li class="nav-item"> <router-link to="category/Sports-Gaming">Sports/Gaming </router-link></li>
+
+
+            <li class="nav-item"> <router-link to="category/Technology-Communications">Technology/Communications
+              </router-link></li>
+
+            <li class="nav-item"><router-link to="category/Other">Other </router-link></li>
+
+          </ul>
+          <br>
+
+
+        </div>
+
+      </div>
+
+      <div class="categories cats py-0">
+        <ul class="text-center py-0">
+          <li style="list-style-type:none;" class="nav-item py-0 "> <router-link to="category/Renewable-Energy"
+              class="py-0 d-inline h6 renewable_text" style="">Renewable Energy </router-link>
+          </li>
+        </ul>
+      </div>
+
+
+   </div>
 
 
 

@@ -7997,6 +7997,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -8868,6 +8871,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -8887,7 +8900,9 @@ __webpack_require__.r(__webpack_exports__);
       results: [],
       details: [],
       progress: '',
-      share: ''
+      share: '',
+      amount_required: '',
+      running: 0
     };
   },
   created: function created() {
@@ -8966,8 +8981,11 @@ __webpack_require__.r(__webpack_exports__);
         console.log(data);
         t.results = data.data.data;
         t.progress = data.data.progress;
-        t.share = data.data.share * t.progress;
         $('#progress').css('width', t.progress + '%');
+        t.progress = data.data.share * t.progress;
+        t.share = data.data.share;
+        t.amount_required = data.data.amount_required;
+        t.running = data.data.running;
       });
     },
     bidCommits: function bidCommits() {
@@ -9029,16 +9047,28 @@ __webpack_require__.r(__webpack_exports__);
     },
     calculate: function calculate(bid) {
       var total = this.form.investment_needed;
-      var percent = bid / total * 100;
+      var share = this.share * 100;
+      var percent = bid / total * share;
       var percent = percent.toFixed(2);
-      if (percent >= 100) document.getElementById('bid_percent').innerHTML = '<b class="text-danger">Exceeds 100%</b>';else document.getElementById('bid_percent').innerHTML = percent + '%';
+
+      if (bid > this.amount_required) {
+        document.getElementById('bid_amount').value = 0;
+        document.getElementById('bid_percent').innerHTML = '<b class="text-danger">Amount exceeds the investment required!</b>';
+      } else document.getElementById('bid_percent').innerHTML = percent + '%';
+
       document.getElementById('bid_percent2').value = percent;
     },
     calculate2: function calculate2(bid) {
       var total = this.form.investment_needed;
-      var percent = bid / total * 100;
+      var share = this.share * 100;
+      var percent = bid / total * share;
       var percent = percent.toFixed(2);
-      if (percent >= 100) document.getElementById('bid_percent_eqp').innerHTML = '<b class="text-danger">Exceeds 100%</b>';else document.getElementById('bid_percent_eqp').innerHTML = percent + '%';
+
+      if (bid > this.amount_required) {
+        document.getElementById('bid_amount_eqp').value = 0;
+        document.getElementById('bid_percent_eqp').innerHTML = '<b class="text-danger">Amount exceeds the investment required!</b>';
+      } else document.getElementById('bid_percent_eqp').innerHTML = percent + '%';
+
       document.getElementById('bid_percent2_eqp').value = percent;
     }
   },
@@ -67663,346 +67693,356 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid px-0" }, [
-    _c("div", { staticClass: "home_bg" }, [
-      _c("div", { staticClass: "heading" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-12 text-center image" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "form",
-              {
-                staticClass: "w-100",
-                attrs: { id: "form", method: "post" },
-                on: {
-                  submit: function ($event) {
-                    $event.preventDefault()
-                    return _vm.search()
+  return _c(
+    "div",
+    {
+      staticClass: "container-fluid px-0",
+      staticStyle: { overflow: "hidden" },
+    },
+    [
+      _c("div", { staticClass: "home_bg" }, [
+        _c("div", { staticClass: "heading" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-12 text-center image" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  staticClass: "w-100",
+                  attrs: { id: "form", method: "post" },
+                  on: {
+                    submit: function ($event) {
+                      $event.preventDefault()
+                      return _vm.search()
+                    },
                   },
                 },
+                [_vm._m(1), _vm._v(" "), _vm._m(2)]
+              ),
+            ]),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mt-4" }, [
+          _c("div", { staticClass: "cats text-center pb-0" }, [
+            _c(
+              "ul",
+              {
+                staticClass:
+                  "hlist d-flex justify-content-center mx-4 mx-lg-4 py-0 my-0",
               },
-              [_vm._m(1), _vm._v(" "), _vm._m(2)]
+              [
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: "category/Agriculture" } },
+                      [_vm._v("Agriculture ")]
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: "category/Arts-Culture" } },
+                      [_vm._v("Arts/Culture ")]
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "category/Auto" } }, [
+                      _vm._v("Auto "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: "category/Domestic_Home" } },
+                      [_vm._v("Domestic (HomeHelp etc) ")]
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "category/Fashion" } }, [
+                      _vm._v("Fashion "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: "category/Finance-Accounting" } },
+                      [_vm._v("Finance/Accounting ")]
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "category/Food" } }, [
+                      _vm._v("Food "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "category/Legal" } }, [
+                      _vm._v("Legal "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: "category/Media-Internet" } },
+                      [_vm._v("Media/Internet")]
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "category/Pets" } }, [
+                      _vm._v("Pets "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "category/Retail" } }, [
+                      _vm._v("Retail "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: "category/Real State" } },
+                      [_vm._v("Real Estate ")]
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "category/Security" } }, [
+                      _vm._v("Security "),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: "category/Sports-Gaming" } },
+                      [_vm._v("Sports/Gaming ")]
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: "category/Technology-Communications" } },
+                      [_vm._v("Technology/Communications\n              ")]
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("router-link", { attrs: { to: "category/Other" } }, [
+                      _vm._v("Other "),
+                    ]),
+                  ],
+                  1
+                ),
+              ]
+            ),
+            _vm._v(" "),
+            _c("br"),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "categories cats py-0" }, [
+          _c("ul", { staticClass: "text-center py-0" }, [
+            _c(
+              "li",
+              {
+                staticClass: "nav-item py-0",
+                staticStyle: { "list-style-type": "none" },
+              },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "py-0 d-inline h6 renewable_text",
+                    attrs: { to: "category/Renewable-Energy" },
+                  },
+                  [_vm._v("Renewable Energy ")]
+                ),
+              ],
+              1
             ),
           ]),
         ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row mt-4" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "cats text-center categories navbar navbar-expand-sm pb-0",
-          },
-          [
-            _c("ul", { staticClass: "navbar-nav mx-auto" }, [
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c("router-link", { attrs: { to: "category/Agriculture" } }, [
-                    _vm._v("Agriculture "),
-                  ]),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c(
-                    "router-link",
-                    { attrs: { to: "category/Arts-Culture" } },
-                    [_vm._v("Arts/Culture ")]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c("router-link", { attrs: { to: "category/Auto" } }, [
-                    _vm._v("Auto "),
-                  ]),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c(
-                    "router-link",
-                    { attrs: { to: "category/Domestic_Home" } },
-                    [_vm._v("Domestic (HomeHelp etc) ")]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c("router-link", { attrs: { to: "category/Fashion" } }, [
-                    _vm._v("Fashion "),
-                  ]),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c(
-                    "router-link",
-                    { attrs: { to: "category/Finance-Accounting" } },
-                    [_vm._v("Finance/Accounting ")]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c("router-link", { attrs: { to: "category/Food" } }, [
-                    _vm._v("Food "),
-                  ]),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c("router-link", { attrs: { to: "category/Legal" } }, [
-                    _vm._v("Legal  "),
-                  ]),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c(
-                    "router-link",
-                    { attrs: { to: "category/Media-Internet" } },
-                    [_vm._v("Media/Internet")]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c("router-link", { attrs: { to: "category/Pets" } }, [
-                    _vm._v("Pets "),
-                  ]),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c("router-link", { attrs: { to: "category/Retail" } }, [
-                    _vm._v("Retail "),
-                  ]),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c("router-link", { attrs: { to: "category/Real State" } }, [
-                    _vm._v("Real Estate "),
-                  ]),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c("router-link", { attrs: { to: "category/Security" } }, [
-                    _vm._v("Security "),
-                  ]),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c(
-                    "router-link",
-                    { attrs: { to: "category/Sports-Gaming" } },
-                    [_vm._v("Sports/Gaming ")]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c(
-                    "router-link",
-                    { attrs: { to: "category/Technology-Communications" } },
-                    [_vm._v("Technology/Communications  ")]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c("router-link", { attrs: { to: "category/Other" } }, [
-                    _vm._v("Other "),
-                  ]),
-                ],
-                1
-              ),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-          ]
-        ),
-      ]),
+      _c("div", { staticClass: "mt-4 border border-bottom-dark bg-white" }),
       _vm._v(" "),
-      _c("div", { staticClass: "categories cats py-0" }, [
-        _c("ul", { staticClass: "row text-center py-0" }, [
-          _c(
-            "li",
-            {
-              staticClass: "nav-item py-0",
-              staticStyle: { "list-style-type": "none" },
-            },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "py-0",
-                  staticStyle: { color: "#1ed73d" },
-                  attrs: { to: "category/Renewable-Energy" },
-                },
-                [_vm._v("Renewable Energy ")]
-              ),
-            ],
-            1
-          ),
-        ]),
-      ]),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "mt-4 border border-bottom-dark bg-white" }),
-    _vm._v(" "),
-    _vm._m(3),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row mt-4 w-75 mx-auto" },
-      [
-        _c("hr"),
-        _vm._v(" "),
-        _vm._m(4),
-        _vm._v(" "),
-        _vm._l(_vm.results, function (result, index) {
-          return _c(
-            "div",
-            { staticClass: "listing col-sm-3 my-5" },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "shadow card border px-2",
-                  attrs: { to: "/listingDetails/" + result.id },
-                },
-                [
-                  result.file
-                    ? _c(
-                        "video",
-                        {
-                          staticStyle: { width: "332px", height: "230px" },
-                          attrs: { controls: "", alt: "" },
-                        },
-                        [
-                          _c("source", {
-                            attrs: { src: result.file, type: "video/mp4" },
-                          }),
-                        ]
-                      )
-                    : _c("img", {
-                        staticStyle: { width: "100%", height: "130px" },
-                        attrs: { src: result.image, alt: "" },
-                      }),
-                  _vm._v(" "),
-                  _c("h4", { staticClass: "mt-3 mb-0" }, [
-                    _vm._v(_vm._s(result.name) + " "),
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "my-1 text-left small" }, [
-                    _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
-                    _vm._v(_vm._s(result.location)),
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "mb-1" }, [
-                    _c("span", { staticClass: "mt-1 rounded" }, [
-                      _c("i", { staticClass: "mr-2 fa fa-phone" }),
-                      _vm._v(_vm._s(result.contact)),
+      _vm._m(3),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row mt-4 w-75 mx-auto" },
+        [
+          _c("hr"),
+          _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
+          _vm._l(_vm.results, function (result, index) {
+            return _c(
+              "div",
+              { staticClass: "listing col-sm-3 my-5" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "shadow card border px-2",
+                    attrs: { to: "/listingDetails/" + result.id },
+                  },
+                  [
+                    result.file
+                      ? _c(
+                          "video",
+                          {
+                            staticStyle: { width: "332px", height: "230px" },
+                            attrs: { controls: "", alt: "" },
+                          },
+                          [
+                            _c("source", {
+                              attrs: { src: result.file, type: "video/mp4" },
+                            }),
+                          ]
+                        )
+                      : _c("img", {
+                          staticStyle: { width: "100%", height: "130px" },
+                          attrs: { src: result.image, alt: "" },
+                        }),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "mt-3 mb-0" }, [
+                      _vm._v(_vm._s(result.name) + " "),
                     ]),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "amount float-right text-right w-100 py-0 my-0",
-                    },
-                    [
-                      _c("h6", { staticClass: "small font-weight-bold" }, [
-                        _vm._v("Amount: "),
-                        _c("span", { staticClass: "font-weight-light" }, [
-                          _c("b", [
-                            _vm._v("$" + _vm._s(result.investment_needed)),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "my-1 text-left small" }, [
+                      _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
+                      _vm._v(_vm._s(result.location)),
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "mb-1" }, [
+                      _c("span", { staticClass: "mt-1 rounded" }, [
+                        _c("i", { staticClass: "mr-2 fa fa-phone" }),
+                        _vm._v(_vm._s(result.contact)),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "amount float-right text-right w-100 py-0 my-0",
+                      },
+                      [
+                        _c("h6", { staticClass: "small font-weight-bold" }, [
+                          _vm._v("Amount: "),
+                          _c("span", { staticClass: "font-weight-light" }, [
+                            _c("b", [
+                              _vm._v("$" + _vm._s(result.investment_needed)),
+                            ]),
                           ]),
                         ]),
-                      ]),
-                    ]
-                  ),
-                ]
-              ),
-            ],
-            1
-          )
-        }),
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "row mt-2 border border-bottom-dark" }),
-  ])
+                      ]
+                    ),
+                  ]
+                ),
+              ],
+              1
+            )
+          }),
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mt-2 border border-bottom-dark" }),
+    ]
+  )
 }
 var staticRenderFns = [
   function () {
@@ -68544,7 +68584,7 @@ var render = function () {
             ),
             _vm._v(" "),
             _c(
-              "button",
+              "a",
               {
                 staticClass:
                   "m-auto border border-dark btn text-dark font-weight-bold",
@@ -69038,7 +69078,13 @@ var render = function () {
                       _vm._v("Amount: "),
                       _c("span", { staticClass: "font-weight-light" }, [
                         _c("b", [
-                          _vm._v("$" + _vm._s(_vm.form.investment_needed)),
+                          _vm._v(
+                            "$" +
+                              _vm._s(_vm.form.investment_needed) +
+                              " (Required:$" +
+                              _vm._s(_vm.amount_required) +
+                              ")"
+                          ),
                         ]),
                       ]),
                     ]),
@@ -69047,18 +69093,21 @@ var render = function () {
               ]
             ),
             _vm._v(" "),
+            _c("p", { staticClass: "my-1" }, [
+              _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
+              _vm._v(
+                _vm._s(_vm.form.location) + "\n\n                            "
+              ),
+            ]),
             _vm.auth_user
               ? _c("div", { staticClass: "float-right w-25" }, [
                   _vm._m(0),
                   _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.share) + "% Invested")]),
+                  _c("span", [_vm._v(_vm._s(_vm.progress) + "% Invested")]),
                 ])
               : _vm._e(),
             _vm._v(" "),
-            _c("p", { staticClass: "my-1" }, [
-              _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
-              _vm._v(_vm._s(_vm.form.location)),
-            ]),
+            _c("p"),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row my-4" }, [
@@ -69233,7 +69282,9 @@ var render = function () {
                                             hidden: "",
                                             id: "listing_id",
                                             name: "listing_id",
-                                            value: "",
+                                          },
+                                          domProps: {
+                                            value: _vm.form.listing_id,
                                           },
                                         }),
                                         _vm._v(" "),
@@ -69414,111 +69465,125 @@ var render = function () {
                       [_vm._v("View Business Milestones")]
                     ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "w-75 mx-auto row" }, [
-                      _vm._m(4),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-12 px-1" }, [
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-sm-3" }, [
-                            _vm._v("Amount:$"),
+                    _vm.running
+                      ? _c("div", { staticClass: "Invest-Payout" }, [
+                          _c("div", { staticClass: "w-75 mx-auto row" }, [
+                            _vm._m(4),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-sm-12 px-1" }, [
+                              _c("div", { staticClass: "row" }, [
+                                _c("div", { staticClass: "col-sm-3" }, [
+                                  _vm._v("Amount:$"),
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-sm-3" }, [
+                                  _c("input", {
+                                    staticStyle: { height: "25px" },
+                                    attrs: {
+                                      value: "",
+                                      id: "bid_amount",
+                                      type: "number",
+                                      name: "bid_amount",
+                                    },
+                                    on: {
+                                      keyup: function ($event) {
+                                        return _vm.calculate(
+                                          $event.target.value
+                                        )
+                                      },
+                                    },
+                                  }),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _vm._m(5),
+                            ]),
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-3" }, [
-                            _c("input", {
-                              staticStyle: { height: "25px" },
-                              attrs: {
-                                value: "",
-                                id: "bid_amount",
-                                type: "number",
-                                name: "bid_amount",
-                              },
+                          _c(
+                            "a",
+                            {
+                              staticClass:
+                                "py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4",
+                              staticStyle: { border: "1px solid black" },
+                              attrs: { id: "convBtn5" },
                               on: {
-                                keyup: function ($event) {
-                                  return _vm.calculate($event.target.value)
+                                mouseleave: function ($event) {
+                                  return _vm.leave()
+                                },
+                                mouseover: function ($event) {
+                                  return _vm.hover5()
+                                },
+                                click: function ($event) {
+                                  return _vm.bidCommits()
                                 },
                               },
-                            }),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(5),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4",
-                        staticStyle: { border: "1px solid black" },
-                        attrs: { id: "convBtn5" },
-                        on: {
-                          mouseleave: function ($event) {
-                            return _vm.leave()
-                          },
-                          mouseover: function ($event) {
-                            return _vm.hover5()
-                          },
-                          click: function ($event) {
-                            return _vm.bidCommits()
-                          },
-                        },
-                      },
-                      [_vm._v("Invest")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "w-75 mx-auto row" }, [
-                      _vm._m(6),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-12 px-1" }, [
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-sm-3" }, [
-                            _vm._v("Amount:$"),
+                            },
+                            [_vm._v("Invest")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "w-75 mx-auto row" }, [
+                            _vm._m(6),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-sm-12 px-1" }, [
+                              _c("div", { staticClass: "row" }, [
+                                _c("div", { staticClass: "col-sm-3" }, [
+                                  _vm._v("Amount:$"),
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-sm-3" }, [
+                                  _c("input", {
+                                    staticStyle: { height: "25px" },
+                                    attrs: {
+                                      value: "",
+                                      id: "bid_amount_eqp",
+                                      type: "number",
+                                      name: "bid_amount_eqp",
+                                    },
+                                    on: {
+                                      keyup: function ($event) {
+                                        return _vm.calculate2(
+                                          $event.target.value
+                                        )
+                                      },
+                                    },
+                                  }),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _vm._m(7),
+                            ]),
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-3" }, [
-                            _c("input", {
-                              staticStyle: { height: "25px" },
-                              attrs: {
-                                value: "",
-                                id: "bid_amount_eqp",
-                                type: "number",
-                                name: "bid_amount_eqp",
-                              },
+                          _c(
+                            "a",
+                            {
+                              staticClass:
+                                "py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4",
+                              staticStyle: { border: "1px solid black" },
+                              attrs: { id: "convBtn6" },
                               on: {
-                                keyup: function ($event) {
-                                  return _vm.calculate2($event.target.value)
+                                mouseleave: function ($event) {
+                                  return _vm.leave()
+                                },
+                                mouseover: function ($event) {
+                                  return _vm.hover6()
+                                },
+                                click: function ($event) {
+                                  return _vm.bidCommitsEQP()
                                 },
                               },
-                            }),
+                            },
+                            [_vm._v("Invest With Equpment")]
+                          ),
+                        ])
+                      : _c("div", { staticClass: "w-75 mx-auto row" }, [
+                          _c("p", { staticClass: "bg-light" }, [
+                            _vm._v(
+                              "Milestone payout is currently off due to milestone completion process, please wait until next milestone is open."
+                            ),
                           ]),
                         ]),
-                        _vm._v(" "),
-                        _vm._m(7),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4",
-                        staticStyle: { border: "1px solid black" },
-                        attrs: { id: "convBtn6" },
-                        on: {
-                          mouseleave: function ($event) {
-                            return _vm.leave()
-                          },
-                          mouseover: function ($event) {
-                            return _vm.hover6()
-                          },
-                          click: function ($event) {
-                            return _vm.bidCommitsEQP()
-                          },
-                        },
-                      },
-                      [_vm._v("Invest With Equpment")]
-                    ),
                   ],
                   1
                 ),
@@ -69602,8 +69667,8 @@ var render = function () {
                         hidden: "",
                         id: "listing_id",
                         name: "listing_id",
-                        value: "",
                       },
+                      domProps: { value: _vm.form.listing_id },
                     }),
                     _vm._v(" "),
                     _c(

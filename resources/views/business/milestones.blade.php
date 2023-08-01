@@ -76,21 +76,22 @@
            
 
         <form action="{{route('mile_status')}}" method="post" class="form-inline">@csrf
-            <select  name="status" style="width:65%;" class=" d-inline rounded border border-dark p-1 ">
-                 
-                
+
             @if($ev->status == 'In Progress')
-            <option selected hidden value="In Progress" class="form-control" >In Progress</option> 
-             <option value="To Do" class="form-control" >To Do</option>
-             <option value="Done" class="form-control" >Done</option>
-
-              @else
-               <option disabled selected hidden value="{{$ev->status}}"class="border-none form-control" >{{$ev->status}}</option>
-
-            @endif
-
-            
+            <select  name="status" style="width:52%;" class=" d-inline rounded border border-dark p-1 ">  
+            <option hidden value="In Progress" class="form-control" >In Progress</option>    
+            <option value="To Do" class="form-control" >To Do</option>
+            <option value="Done" class="form-control" >Done</option>                
            </select>
+           @elseif($ev->status == 'To Do')
+            <select  name="status" style="width:52%;" class=" d-inline rounded border border-dark p-1 ">     
+            <option selected hidden value="To Do" class="form-control" >To Do</option> 
+             <option value="In Progress" class="form-control" >In Progress</option>
+            <option value="Done" class="form-control" >Done</option>                
+           </select>
+           @else
+           <input readonly type='text' name="status" value="{{$ev->status}}" class="btn btn-light"></input>
+           @endif
           
 
            <input type="submit" value="Set" class="ml-2 py-0 mb-1 d-inline btn btn-success w-25">

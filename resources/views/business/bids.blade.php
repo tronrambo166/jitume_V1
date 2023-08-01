@@ -47,13 +47,322 @@
         <tr >
             <td><input onchange="check();" type="checkbox" name="bid_ids[]" value="{{$ev->id}}"></td>
             <td>{{$ev->date }}</td>
-                <td>{{$ev->investor }}</td>
+                <td>
+                <a  data-target="#detailsModal{{$ev->id}}" data-toggle="modal" class="bid_btns bg-light rounded ">{{$ev->investor }}</a>
+                </td>
+
                     <td>{{$ev->business }}</td>
-                        <td>{{$ev->type }}</td>
+                        <td>
+                        @if($ev->type == 'Asset')
+                         <a data-target="#assetModal{{$ev->id}}" data-toggle="modal" class="bid_btns bg-light rounded ">{{$ev->type }}</a>
+                         @else
+                         <a class="bg-light rounded ">{{$ev->type }}</a>
+                         @endif
+                        </td>
+
                         <td>{{$ev->amount }}</td>
                         <td>{{$ev->representation }}</td>
    
         </tr>
+
+
+
+<!-- Table temp end -->
+
+<!-- Details MODAL -->
+  <div  class="detailsModal modal fade" id="detailsModal{{$ev->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+         <div class="card-header w-100">
+           
+        </div>
+
+        </div>
+    
+    
+      <div class="modal-body">
+                <div class="px-3 card-header w-100">             
+            <!-- <input hidden type="number" class="form-control"  name="amount" value=""> -->                     
+
+                <div class="row my-1 row form-group">
+                    <div class="col-sm-12 my-1"> 
+                    <div class="row">
+                           <div class="col-sm-10"><label class="h4" for="name">
+                                <h5 class=""> <b> Full Name: </b> </h5></label>
+                               </div>
+                    
+                    <div class="col-sm-12"> 
+                        <div class="upload-btn-wrapper">
+                        <p>{{$ev->investor_name}}</p>
+                        </div>
+                    </div>
+
+                    </div>
+                    </div> 
+                </div>
+
+
+                <div class="row my-1 row form-group">
+                    <div class="col-sm-12 my-1"> 
+                    <div class="row">
+                           <div class="col-sm-10"><label class="h4" for="name">
+                                <h5 class=""> <b> Investment Range: </b> </h5></label>
+                               </div>
+                    
+                    <div class="col-sm-12"> 
+                        <div class="upload-btn-wrapper">
+                        <p>{{$ev->inv_range}}</p>
+                        </div>
+                    </div>
+
+                    </div>
+                    </div> 
+                </div>
+
+
+                <div class="row my-1 row form-group">
+                    <div class="col-sm-12 my-1"> 
+                    <div class="row">
+                           <div class="col-sm-10"><label class="h4" for="name">
+                                <h5 class=""> <b> Industries Interested In Investing: </b> </h5></label>
+                               </div>
+                    
+                    <div class="col-sm-12"> 
+                        <div class="upload-btn-wrapper">
+                        <p>{{$ev->interested_cats}}</p>
+                        </div>
+                    </div>
+
+                    </div>
+                    </div> 
+                </div>
+
+
+                <div class="row my-1 row form-group">
+                    <div class="col-sm-12 my-1"> 
+                    <div class="row">
+                           <div class="col-sm-10"><label class="h4" for="name">
+                                <h5 class=""> <b> Details of Past Investment And Track Record: </b> </h5></label>
+                               </div>
+                    
+                    <div class="col-sm-12"> 
+                        <div class="upload-btn-wrapper">
+                        <p>{{$ev->past_investment}}</p>
+                        </div>
+                    </div>
+
+                    </div>
+                    </div> 
+                </div>
+
+
+                <div class="row my-1 row form-group">
+                    <div class="col-sm-12 my-1"> 
+                    <div class="row">
+                           <div class="col-sm-10"><label class="h4" for="name">
+                                <h5 class=""> <b> Current Website or Web Presence: </b> </h5></label>
+                               </div>
+                    
+                    <div class="col-sm-12"> 
+                        <div class="upload-btn-wrapper">
+                        <p>{{$ev->website}}</p>
+                        </div>
+                    </div>
+
+                    </div>
+                    </div> 
+                </div>
+
+
+                <div class="row my-1 row form-group">
+                    <div class="col-sm-12 my-1"> 
+                    <div class="row">
+                           <div class="col-sm-10"><label class="h4" for="name">
+                                <h5 class=""> <b> Email: </b> </h5></label>
+                               </div>
+                    
+                    <div class="col-sm-12"> 
+                        <div class="upload-btn-wrapper">
+                        <p>{{$ev->email}}</p>
+                        </div>
+                    </div>
+
+                    </div>
+                    </div> 
+                </div>
+
+
+         </div>
+
+        </div>
+
+        <div class="modal-footer">
+
+        <div class="card-header w-100 text-center">
+            <form action="stripe" method="get">
+       
+                 <input type="text" hidden id="price" name="price" :value="form.investors_fee">
+                  <input type="number" hidden id="listing_id" name="listing_id" :value="form.listing_id">
+
+
+        <button type="button" class=" btn border border-dark w-25 d-inline px-3 font-weight-bold m-0 " data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">Ok</span>
+        </button>
+
+            </form>
+        
+         </div>
+
+      </div>
+
+        </div>
+        </div>
+        </div>
+
+
+<!-- Details MODAL -->
+
+
+
+<!-- Asset MODAL -->
+  <div  class="assetModal modal fade" id="assetModal{{$ev->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+         <div class="card-header w-100">
+           
+        </div>
+
+        </div>
+    
+    
+      <div class="modal-body">
+
+                <div class="px-3 card-header w-100">             
+            <!-- <input hidden type="number" class="form-control"  name="amount" value=""> -->                     
+
+                   <div class="row my-1 row form-group">
+                    <div class="col-sm-12 my-1"> 
+                        <div class="row">
+                           <div class="col-sm-10"><label class="h4" for="name">
+                                <h6 class=""> <b> Download good quality photos of the assets </b> </h6></label>
+                               </div>
+                    
+                    <div class="col-sm-12">
+                        <div class="row">
+                        @if($ev->type == 'Asset')
+                        @foreach($ev->photos as $photo)
+                        @if($photo != null)
+
+                        <div class="col-sm-3">
+                        <img style="height: 50px;" src="../{{$photo}}" width="100%;">
+                          <div class="upload-btn-wrapper mt-1">
+                          <label for="file-upload2" class="btndown_listing">
+                          @php $photo = str_replace('/','__',$photo); @endphp
+                          <a href="{{route('assetEquip/download',['id' => $photo, 'type' => 'photos'] )}}">                  
+                          <img src="../images/down.svg" width="15px"> 
+                          </a>
+                          </label>
+
+                           </div>
+                        </div>
+                        @endif
+                        @endforeach
+                        @endif
+                        </div>
+                        
+
+
+                    </div>
+
+                        </div>
+                    </div> 
+                </div>
+
+
+                  <div class="row my-1 row form-group">
+                    <div class="col-sm-12 my-1"> 
+                        <div class="row">
+                           <div class="col-sm-10"><label class="h4" for="name">
+                                <h6 class=""> <b> Download legal documents that act as evidence of the ownership of the Assets (Original purchase receipt/titles/certificates etc) </b> </h6></label>
+                               </div>
+                    
+                    <div class="col-sm-2"> 
+                        <div class="upload-btn-wrapper">
+                        <label for="file-upload2" class="btndown_listing">
+                        <a href="{{route('assetEquip/download',['id' => $ev->id, 'type' => 'legal_doc'] )}}">
+                        <img src="../images/down.svg" width="15px"> 
+                        </a>
+                      </label>
+                  </div>
+                    </div>
+
+                        </div>
+                    </div> 
+                </div>
+
+
+                  <div class="row my-1 row form-group">
+                    <div class="col-sm-12 my-1"> 
+                        <div class="row">
+                           <div class="col-sm-10"><label class="h4" for="name">
+                                <h6 class=""> <b>Asset’s make, model, and serial number </b> </h6></label>
+                               </div>
+                    
+                    <div class="col-sm-10"> 
+                      <p class="">{{$ev->serial}}</p>
+                        </div>
+                    </div> 
+                </div>
+                </div>
+
+
+                  <div class="row my-1 row form-group">
+                    <div class="col-sm-12 my-1"> 
+                        <div class="row">
+                           <div class="col-sm-10"><label class="h4" for="name">
+                                <h6 class=""> <b> Download other Asset records* </b> </h6></label>
+                               </div>
+                    
+                    <div class="col-sm-2"> 
+                        <div class="upload-btn-wrapper">
+                        <label for="file-upload2" class="btndown_listing">
+                        <a href="{{route('assetEquip/download',['id' => $ev->id, 'type' => 'optional_doc'] )}}">
+                        <img src="../images/down.svg" width="15px"> 
+                        </a>
+                      </label>
+                  </div>
+                    </div>
+
+                        </div>
+                    </div> 
+                </div>
+
+                
+        
+         </div>
+
+      </div>
+
+    <div class="modal-footer">
+
+            <div class="row my-5 w-50 mx-auto text-center"> 
+                    <button type="button" class=" btn border border-dark w-50 mx-auto d-inline px-5 font-weight-bold my-0 " data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">Ok</span>
+                    </button>
+                </div>
+
+      </div>
+
+        </div>
+        </div>
+        </div>
+
+
+<!-- Asset MODAL -->
 
 
          @endforeach
@@ -67,16 +376,23 @@
 </table>
                
 <div class=" ml-auto">
-    <a id="fakeBtn" onclick="accept();" type="submit" class="text-center float-right font-weight-bold btn-secondary text-mute py-1 w-25 mx-auto">Accept</a>
+    <a id="fakeBtn" onclick="accept();" type="submit" class="text-center float-right border border-dark font-weight-bold btn text-mute py-1 w-25 mx-auto">Accept</a>
 
-    <button id="realBtn" type="submit" class="collapse float-right font-weight-bold btn-success w-25 mx-auto">Accept</button>
+    <button id="realBtn" type="submit" class="collapse float-right font-weight-bold btn btn-success w-25 mx-auto">Accept</button>
+</div>
+
+<div class="ml-auto my-3">
+    <a id="fakeBtnR" onclick="accept();" type="submit" class="text-center float-right border border-dark font-weight-bold btn text-mute py-1 w-25 mx-auto">Reject</a>
+
+    <button name="reject" value="1" onclick="return confirm('Are you sure?');" id="realBtnR" type="submit" class="collapse float-right font-weight-bold btn btn-danger w-25 mx-auto">Reject</button>
 </div>
 
 </div>
 </form>
 
 
-                </div>
+</div>
+
 
 <script type="text/javascript">
   function accept() {
@@ -92,11 +408,15 @@
         if(ids != '')
         {
         $('#fakeBtn').hide();
+        $('#fakeBtnR').hide();
         $('#realBtn').show();
+        $('#realBtnR').show();   
         }
         else{
         $('#fakeBtn').show();
+        $('#fakeBtnR').show();
         $('#realBtn').hide();
+        $('#realBtnR').hide();
         }
     }
 </script>

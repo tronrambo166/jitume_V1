@@ -14,6 +14,7 @@ use App\Models\orders;
 use App\Models\Conversation;
 use App\Models\Milestones;
 use App\Models\Smilestones;
+use App\Models\AcceptedBids;
 use Session; 
 use Hash;
 use Auth;
@@ -29,17 +30,40 @@ public function bidsAccepted(Request $request)
 {
 
     try { 
-    $bid_ids = $request->bid_ids;
-    //$investor_mails = array();
-    $business_id = $request->business_id;
-    foreach($bid_ids as $id){
+        $bid_ids = $request->bid_ids;
+        $business_id = $request->business_id;
+
+        //REJECT
+        if(isset($request->reject) && $request->reject == 1){
+        foreach($bid_ids as $id){
+        if($id !=''){
+        $bid = BusinessBids::where('id',$id)->first();
+        $investor = User::where('id',$bid->investor_id)->first();
+        $investor_mail = $investor->email;
+        $list = listing::where('id',$bid->business_id)->first();
+        $info=[ 'business_name'=>$list->name ];
+        $user['to'] = 'tottenham266@gmail.com'; //$investor_mail;
+         Mail::send('bids.rejected', $info, function($msg) use ($user){
+             $msg->to($user['to']);
+             $msg->subject('Bid Rejected!');
+         });
+         $bid_remove = BusinessBids::where('id',$id)->delete();
+         //remove
+           }
+          }
+        Session::put('success','Rejected!');
+        return redirect()->back();
+        }
+        //REJECT 
+
+        foreach($bid_ids as $id){
         if($id !=''){
         $bid = BusinessBids::where('id',$id)->first();
         $investor = User::where('id',$bid->investor_id)->first();
         $investor_mail = $investor->email;
 
         $list = listing::where('id',$bid->business_id)->first();
-        $info=[ 'business_name'=>$list->name ];
+        $info=[ 'business_name'=>$list->name, 'bid_id'=>$id ];
         $user['to'] = 'tottenham266@gmail.com'; //$investor_mail;
          Mail::send('bids.accepted', $info, function($msg) use ($user){
              $msg->to($user['to']);
@@ -47,7 +71,30 @@ public function bidsAccepted(Request $request)
          });
 
          //remove
+        // if($bid->legal_doc !=null)
+        //     unlink($bid->legal_doc);
+        // if($bid->optional_doc !=null)
+        //     unlink($bid->legal_doc);
+        // if($bid->photos !=null){
+        //     $photos = explode(',',$bid->photos);
+        //     foreach($photos as $p) if($p !='')  unlink($p);
+        //     }
+              AcceptedBids::create([
+              'bid_id' => $id,
+              'date' => $bid->date,
+              'investor_id' => $bid->investor_id,
+              'business_id' => $bid->business_id,
+              'type' => $bid->type,
+              'amount' => $bid->amount,
+              'representation' => $bid->representation,
+              'serial' => $bid->serial,
+              'legal_doc' => $bid->legal_doc,
+              'optional_doc' => $bid->optional_doc,
+              'photos' => $bid->photos
+            ]);
+
          $bid_remove = BusinessBids::where('id',$id)->delete();
+         //remove
          }
        }
         Session::put('success','Accepted!');
@@ -55,10 +102,69 @@ public function bidsAccepted(Request $request)
      
        }
         catch(\Exception $e){
-            return response()->json(['failed' =>  $e->getMessage()]);
+            Session::put('failed',$e->getMessage());
+            return redirect()->back();
        }  
 
    }
+
+
+public function agreeToBid($bidId)
+{
+    try { 
+        AcceptedBids::where('bid_id',$bidId)->update([
+              'investor_agree' => 1       
+        ]);
+        Session::put('login_success','Thanks for your review, you will get an email when this milestone completes!');
+        return redirect('/');
+     
+       }
+        catch(\Exception $e){
+            Session::put('failed',$e->getMessage());
+            return redirect()->back();
+       }  
+}
+
+
+public function agreeToNextmile($bidId)
+{
+    try { 
+        AcceptedBids::where('id',$bidId)->update([
+              'next_mile_agree' => 1       
+        ]);
+
+        //Vote
+        $total_vote = 0;
+        $bid = AcceptedBids::where('id',$bidId)->first();
+        $listing = listing::where('id',$bid->business_id)->first();
+        $share = $listing->share;
+        $nextMileAgree = AcceptedBids::where('business_id',$bid->business_id)
+        ->where('next_mile_agree',1)->get();
+        foreach($nextMileAgree as $agree)
+        {   $next_vote = ($agree->representation)/$share;
+            $next_vote = round($next_vote*10,1);
+            if($agree->project_manager == 1)
+                $next_vote = $next_vote+1;
+            $total_vote = $total_vote+$next_vote;
+        }
+        //Vote
+        if($total_vote >= 5.1)
+        {   
+            $milestone = Milestones::where('listing_id',$bid->business_id)
+            ->where('status','To Do')->first();
+            Milestones::where('id',$milestone->id)
+            ->where('status','To Do')->update(['status' => 'In Progress']);
+        }
+
+        Session::put('login_success','Thanks for your review, you will get an email when this milestone completes!');
+        return redirect('/');
+     
+       }
+        catch(\Exception $e){
+            Session::put('failed',$e->getMessage());
+            return redirect()->back();
+       }  
+}  
 
 
 public function milestoneCommits($amount,$business_id,$percent){
@@ -181,12 +287,33 @@ public function bidCommitsEQP(Request $request){
       'serial' => $serial,
       'legal_doc' => $final_legal_doc,
       'optional_doc' => $final_optional_doc,
-      'photos' => json_encode($total_img)
+      'photos' => $total_img
     ]);
 
-    if($bids)
+    if($bids){
+    // Milestone Fulfill check
+    $total_bid_amount = 0; $business_id = $listing_id;
+    $mile1 = Milestones::where('listing_id',$business_id)
+    ->where('status','In Progress')->first();
+    $this_bids = BusinessBids::where('business_id',$business_id)->get();
+    foreach($this_bids as $b)
+    $total_bid_amount = $total_bid_amount+($b->amount);
+
+    if($total_bid_amount >= $mile1->amount){
+        $list = listing::where('id',$business_id)->first();
+        $owner = User::where('id',$list->user_id)->first();
+        $info=[ 'business_name'=>$list->name ];
+        $user['to'] = 'tottenham266@gmail.com'; //$owner->email;
+         Mail::send('bids.mile_fulfill', $info, function($msg) use ($user){
+             $msg->to($user['to']);
+             $msg->subject('Fulfills a milestone!');
+         });
+     }
+     // Milestone Fulfill check
+
       return response()->json(['success' => 'Success! You will get a notification if your bid is accepted!']);
     }
+}
 
     catch(\Exception $e){
       return response()->json(['failed' =>  $e->getMessage()]);

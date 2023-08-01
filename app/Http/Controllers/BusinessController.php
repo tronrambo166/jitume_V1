@@ -12,6 +12,7 @@ use App\Models\businessDocs;
 use App\Models\Milestones;
 use App\Models\Conversation;
 use App\Models\BusinessBids;
+use App\Models\AcceptedBids;
 
 use Response;
 use Session; 
@@ -517,18 +518,20 @@ public function getMilestones($id){
       else $investor_id = null;
     }
 
- $milestones = Milestones::where('listing_id',$id)->get(); 
- $done = 0; $c=0;$d=0; $progress=0;$share=0;
+ $milestones = Milestones::where('listing_id',$id)->get(); $done = 0;
+  $c=0;$d=0; $progress=0;$share=0; $amount_covered = 0; $running = 0;
 
  if($milestones->count() !=0 ){
   foreach($milestones as $mile){
   if($mile->investor_id == $investor_id)
     $mile->access = true;
   //Status Determine
-  //if($mile->status == 'In Progress') $c++;if($mile->status != 'Done') $d++;
-  //Status Determine
+  if($mile->status == 'In Progress') 
+  $running = 1;
 
-if($mile->status == 'Done') $done++;
+  if($mile->status == 'Done') { 
+  $done++; $amount_covered = $amount_covered+$mile->amount;
+ }
 
   //SETTING Time Diffrence
 $time_due_date = date( "Y-m-d H:i:s", strtotime($mile->created_at.' +'.$mile->n_o_days.' days 0 hours 0 minutes'));
@@ -548,12 +551,12 @@ $total_mile = count($milestones);
 $progress = ($done/$total_mile)*100;
 $list = Listing::where('id',$id)->first();
 $share = ($list->share)/100;
+$amount_required = $list->investment_needed - $amount_covered;
 
 }
 
- //if($c==0 && $d!=0){ $milestones[0]->status = 'In Progress';}
 return response()->json([ 'data' => $milestones, 'progress' => $progress,
-'share' => $share ]);
+'share' => $share, 'amount_required' => $amount_required,'running' => $running ]);
 
  }
 
@@ -564,7 +567,6 @@ return response()->json([ 'data' => $milestones, 'progress' => $progress,
     $headers = array('Content-Type'=> 'application/pdf');
     return Response::download($file, 'milestone.pdf', $headers);
     return response()->json(['data'=>'success']);
- 
 
     }
 
@@ -663,17 +665,50 @@ Milestones::create([
 
 
 public function mile_status(Request $request){
-$thisMile = Milestones::where('id',$request->id)->first();
+try{
+  $mile_id = $request->id;
+  $thisMile = Milestones::where('id',$mile_id)->first();
+  $listing_id = $thisMile->listing_id;
+  $milestones = Milestones::where('id',$mile_id)
+  ->update([
+  'status' => $request->status
+  ]);
 
-$milestones = Milestones::where('id',$request->id)
-->update([
-'status' => $request->status
-]);
-$next_mile = Milestones::where('listing_id',$thisMile->listing_id)
-->where('status','To Do')->first();
+  if($request->status == 'Done'){
+    // Release this milestone payment from Escrow
+    // Release this milestone payment from Escrow
 
-if($next_mile && $next_mile->id > $request->id)
-Milestones::where('id',$next_mile->id)->update(['status' => 'In Progress' ]);
+    $bids = AcceptedBids::where('business_id',$listing_id)->get();
+    $nextMileAgree = AcceptedBids::where('business_id',$listing_id)
+    ->where('next_mile_agree',1)->update(['next_mile_agree' => 0]);
+
+    foreach($bids as $bid){
+        $investor = User::where('id',$bid->investor_id)->first();
+        $investor_mail = $investor->email;
+
+        $list = listing::where('id',$bid->business_id)->first();
+        $info=[ 'business_name'=>$list->name, 'mile_name'=>$thisMile->title,
+        'bid_id' => $bid->id ];
+        $user['to'] = 'tottenham266@gmail.com'; //$investor_mail;
+        //Email
+        Mail::send('bids.milecompletion_alert', $info, function($msg) use ($user){
+             $msg->to($user['to']);
+             $msg->subject('Milestone completion alert!');
+         });
+      //Email
+         
+    }
+      
+  }
+}
+catch(\Exception $e){
+  Session::put('failed',$e->getMessage());
+  return redirect()->back();
+ }
+
+//$next_mile = Milestones::where('listing_id',$thisMile->listing_id)->where('status','To Do')->first();
+//if($next_mile && $next_mile->id > $request->id)
+//Milestones::where('id',$next_mile->id)->update(['status' => 'In Progress' ]);
 
 return redirect()->back();
 }
@@ -753,8 +788,23 @@ catch(\Exception $e){
 
 
 //END MILESTONES
+public function remove_bids($id){
+  $bid_remove = BusinessBids::where('id',$id)->delete();       
+  Session::put('success','Removed!');
+  return redirect()->back();
 
-public function business_bids(){
+}
+
+public function my_bids(){
+  if(Auth::check())
+      $investor = User::where('id', Auth::id())->first();
+  else {
+      if(Session::has('investor_email')){   
+      $mail = Session::get('investor_email');
+      $investor = User::where('email',$mail)->first();
+    }
+  }
+
 $res = BusinessBids::get();
 $bids = array();
 try{
@@ -764,8 +814,54 @@ foreach($res as $r){
   $business = listing::where('id',$r->business_id)->first();
   $r->business = $business->name;
 
+  //Business details
+  $r->category = $business->category;
+  $r->details = $business->details;
+  $r->location = $business->location;
+  $r->share = $business->share;
+  $r->investment_needed = $business->investment_needed;
+  //Business details
+  //$r->photos = explode(',',$r->photos);
   $bids[] = $r;
+} 
+return view('business.investor_bids',compact('bids'));
 }
+ catch(\Exception $e){
+  Session::put('failed',$e->getMessage());
+  return redirect()->back();
+ }
+}
+
+public function business_bids(){
+  if(Auth::check())
+      $investor = User::where('id', Auth::id())->first();
+  else {
+      if(Session::has('investor_email')){   
+      $mail = Session::get('investor_email');
+      $investor = User::where('email',$mail)->first();
+    }
+  }
+
+$res = BusinessBids::get();
+$bids = array();
+try{
+foreach($res as $r){
+  $inv = User::where('id',$r->investor_id)->first();
+  $r->investor = $inv->fname.' '.$inv->lname;
+  $business = listing::where('id',$r->business_id)->first();
+  $r->business = $business->name;
+
+  //Investor details
+  $r->investor_name = $inv->fname.' '.$inv->mname.' '.$inv->lname;
+  $r->inv_range = $inv->inv_range;
+  $r->interested_cats = $inv->interested_cats;
+  $r->past_investment = $inv->past_investment;
+  $r->website = $inv->website;
+  $r->email = $inv->email;
+  //Investor details
+  $r->photos = explode(',',$r->photos);
+  $bids[] = $r;
+} 
 return view('business.bids',compact('bids'));
 }
  catch(\Exception $e){
@@ -773,6 +869,55 @@ return view('business.bids',compact('bids'));
   return redirect()->back();
  }
 }
+
+
+public function assetEquip_download($id, $type){
+    
+   try {
+      if($type == 'photos'){
+        $id = str_replace('__','/',$id);
+      //$bid = BusinessBids::where('id',$id)->first();
+      if($id !=''){
+      if(file_exists($id))
+      return Response::download($id);
+      else {
+        Session::put('failed','No file was found!');
+        return redirect()->back();
+      }
+      }
+      }
+
+      if($type == 'legal_doc'){
+      $bid = BusinessBids::where('id',$id)->first();
+      $document=$bid->legal_doc;
+      if($document !=''){
+      $headers = array('Content-Type'=> 'application/pdf');
+      return Response::download($document, 'legal_doc.pdf', $headers);
+       }
+      }
+
+      if($type == 'optional_doc'){
+      $bid = BusinessBids::where('id',$id)->first();
+      $document=$bid->legal_doc;
+      if($document !=''){
+      $headers = array('Content-Type'=> 'application/pdf');
+      return Response::download($document, 'legal_doc.pdf', $headers);
+       }
+       else{
+        Session::put('failed','No file was found!');
+        return redirect()->back();
+      }
+      }
+      
+
+  } catch (Exception $e) {
+      Session::put('failed',$e->getMessage());
+      return redirect()->back();
+    } 
+    
+
+
+    }
 
 
 public function add_docs(Request $request){

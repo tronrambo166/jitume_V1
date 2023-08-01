@@ -85,7 +85,7 @@
                 <div class="row my-5 w-50 mx-auto"> 
                     <button id="ok" style="width: 48%;background:green;border-radius: 2px;" class="m-auto border border-dark btn btn-success text-white font-weight-bold">OK</button>
 
-                <button @click="$router.go(-1)" style="width: 48%;background:yellow;border-radius: 2px;" class="m-auto border border-dark btn text-dark font-weight-bold">Back</button>
+                <a @click="$router.go(-1)" style="width: 48%;background:yellow;border-radius: 2px;" class="m-auto border border-dark btn text-dark font-weight-bold">Back</a>
                 </div>
 
 

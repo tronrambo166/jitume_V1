@@ -84,6 +84,8 @@
                               <label class='control-label'><b>  Amount(USD) </b> <small>5% + tax added</small></label> 
                               <input class='form-control' size='4' name="price" id="price" type='number' value="{{$amount}}" readonly >
 
+                              <input class='form-control' size='4' name="amountReal" id="amountReal" type='number' value="{{$amountReal}}" readonly hidden>
+
                            </div> 
 
                         </div>  

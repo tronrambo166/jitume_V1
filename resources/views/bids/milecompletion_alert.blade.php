@@ -8,26 +8,22 @@
 		<div class="container w-75 m-auto" style="box-shadow: 3px 3px 7px 7px grey; background: #fbfbfb;width:75%; margin:auto; text-align:center">
 		
 		 <h2 style="text-align: left;color: black;font-family: sans-serif;">  
-		 	<br> Bid Accepted!</h2>
+		 	<br> Completion of milestone!</h2>
 			
 			<div class="" style="width:100%; margin:auto;">
 			<h4 style="line-height: 28px;font-weight:500; color: #000000a1;font-family: sans-serif;text-align:left;"> Hi,<br> 
-		            Your bid to invest in the {{$business_name}} has been accepted. <br> 
+		            milestone {{$mile_name}} of business {{$business_name}} is done and you can now review with the entrepreneur. <br> 
 
-		           Proceed to progress with the milestones work?
+		           Do you want to Continue to the Next Milestone?
 		        <div style="width:100%;margin: auto; padding-bottom:20px;padding-top:15px;"> 
-		        	<a target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/agreeToBid/{{$bid_id}}"
+		        	<a target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/agreeToNextmile/{{$bid_id}}"
 				style="width:50%;text-decoration:none;color: aliceblue;background:green;padding:10px 30px;border-radius:5px;margin-left:30px">
-				Ok </a>
+				Continue</a>
 
 				<a
 				style="width:50%;text-decoration:none;color: aliceblue;background:red;padding:10px 30px;border-radius:5px;margin-left:30px">
 				Cancel </a>
 			</div>
-					<p>Please be on alert of completion milestone emails as progress of your investment depends on your review. </p>
-		            If you require a project manager, please click here (Please not that investor with assets must have a project manager) <a target="_blank" href="https://test.jitume.com/#/services"
-				style="text-decoration:none;color: aliceblue;background:navy;padding:8px;border-radius:5px;">
-				Request a Project Manager </a>
 
 			</h4>
 			

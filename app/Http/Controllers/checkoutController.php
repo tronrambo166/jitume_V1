@@ -502,8 +502,9 @@ public function bidCommitsForm($amount,$business_id,$percent)
     $percent = base64_decode($percent);
     $total = $amount+($amount*0.05);
     $amount = round($total,2);
+    $amountReal = $total;
  
-        return view('bids.stripe',compact('amount','business_id','percent'));
+        return view('bids.stripe',compact('amountReal','amount','business_id','percent'));
 }
 
 public function bidCommits(Request $request){
@@ -520,7 +521,7 @@ public function bidCommits(Request $request){
 
     //Stripe
         $curr='USD'; //$request->currency; 
-        $amount=$request->price;
+        $amount=$request->amountReal;
         $amount=$amount-($amount*.05);
         Stripe\Stripe::setApiKey('sk_test_51JFWrpJkjwNxIm6zcIxSq9meJlasHB3MpxJYepYx1RuQnVYpk0zmoXSXz22qS62PK5pryX4ptYGCHaudKePMfGyH00sO7Jwion');
         Stripe\Charge::create ([ 
@@ -546,7 +547,8 @@ public function bidCommits(Request $request){
 
 // Milestone Fulfill check
     $total_bid_amount = 0;
-    $mile1 = Milestones::where('listing_id',$business_id)->first();
+    $mile1 = Milestones::where('listing_id',$business_id)
+    ->where('status','In Progress')->first();
     $this_bids = BusinessBids::where('business_id',$business_id)->get();
     foreach($this_bids as $b)
     $total_bid_amount = $total_bid_amount+($b->amount);

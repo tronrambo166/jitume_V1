@@ -125,6 +125,12 @@ $service = Services::where('shop_id',$user_id)->get();
                                 <a class="navLink" href="{{route('business')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a> 
                             </li>
 
+                        @if(!$business->count() && !$service->count())
+                        <li  class="{{ Request::is('business/my_bids') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('my_bids')}}"><i class="fe fe-layout"></i> <span>My Bids</span></a>
+                            </li>
+                        @endif
+
                         @if($business->count())
                             <li  class="{{ Request::is('business/add-listing') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('add-listing')}}"><i class=" fe fe-layout"></i> <span>Add Business</span></a>
@@ -189,10 +195,10 @@ $service = Services::where('shop_id',$user_id)->get();
    <div class="col-md-9 bg-white">
     <!-- Session -->
     @if(Session::has('success'))
-        <p style="position: absolute;background: #00ff89;right: 0px;border-radius: 0px;" class="text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('success')}} @php Session::forget('success'); @endphp </p>@endif
+        <p class="success_session text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('success')}} @php Session::forget('success'); @endphp </p>@endif
 
         @if(Session::has('failed'))
-        <p style="position: absolute;background: #00ff89;right: 0px;border-radius: 0px;" class="text-danger text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('failed')}} @php Session::forget('failed'); @endphp </p>@endif
+        <p class="failed_session text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('failed')}} @php Session::forget('failed'); @endphp </p>@endif
     <!-- Session -->
 
          @yield('page') </div>  

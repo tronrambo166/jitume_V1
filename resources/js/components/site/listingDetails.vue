@@ -13,20 +13,23 @@
                     <h3 class="mt-2 text-left text-dark font-weight-bold ">{{form.name}} 
                     <div  class="float-right text-right w-25 py-0 my-0">   
 
-                        <h6 class="font-weight-bold" >Amount: <span class="font-weight-light"><b>${{form.investment_needed}}</b></span></h6>
+                        <h6 class="font-weight-bold" >Amount: <span class="font-weight-light"><b>${{form.investment_needed}} (Required:${{amount_required}})</b></span></h6>
                     </div>
                 </h3>
 
                      
 
-                    <div v-if="auth_user" class="float-right w-25">
-                     <div class="" style="background:#e5e5e9; height:21px;">
-                         <span id="progress" class="d-block"></span>
-                     </div>   
-                      <span>{{share}}% Invested</span>
-                    </div>
+                    
         
-                        <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{form.location}}</p>
+                        <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{form.location}}
+
+                            <div v-if="auth_user" class="float-right w-25">
+                             <div class="" style="background:#e5e5e9; height:21px;">
+                                 <span id="progress" class="d-block"></span>
+                             </div>   
+                              <span>{{progress}}% Invested</span>
+                            </div>
+                            </p>
                         </div>
 
                         <div class="row my-4">
@@ -118,7 +121,7 @@
             <form action="stripe" method="get">
        
                  <input type="text" hidden id="price" name="price" :value="form.investors_fee">
-                  <input type="number" hidden id="listing_id" name="listing_id" value="">
+                  <input type="number" hidden id="listing_id" name="listing_id" :value="form.listing_id">
        <button @click="make_session(form.listing_id);" type="submit" class=" btn-primary w-25 d-inline  px-3 font-weight-bold" >
           Ok
         </button>
@@ -171,6 +174,7 @@
 
                 <router-link :to="`/business-milestone/${form.listing_id}`"  @mouseleave.native="leave()" @mouseover.native="hover4" style="border: 1px solid black;" id="convBtn4"  class="py-1 convBtn my-3 text-center mx-auto w-75 btn  px-4">View Business Milestones</router-link>
 
+                <div v-if="running" class="Invest-Payout">
                 <div class="w-75 mx-auto row">
                     <!-- <div class="col-sm-8 px-0"><p class="commitP text-left">Commit to invest in milestones:</p></div>
                     <div class="col-sm-4 px-1">
@@ -227,6 +231,12 @@
 
 
                   <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover6()" @click="bidCommitsEQP()" id="convBtn6" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4">Invest With Equpment</a>
+
+                </div>
+
+                 <div v-else class="w-75 mx-auto row">
+                    <p class="bg-light">Milestone payout is currently off due to milestone completion process, please wait until next milestone is open.</p>
+                 </div>
 
                 
                </div>
@@ -293,7 +303,7 @@
             <form action="stripe" method="get">
        
                  <input type="text" hidden id="price" name="price" :value="form.investors_fee">
-                  <input type="number" hidden id="listing_id" name="listing_id" value="">
+                  <input type="number" hidden id="listing_id" name="listing_id" :value="form.listing_id">
 
 
         <button @click="make_session(form.listing_id);" type="submit" class=" btn-primary w-25 d-inline  px-3 font-weight-bold" >
@@ -346,7 +356,9 @@ export default {
     results:[],  
     details:[],
     progress:'',
-    share:''
+    share:'',
+    amount_required:'',
+    running:0
     }),
 
 created(){
@@ -435,9 +447,11 @@ if(sessionStorage.getItem('invest')!=null)
         console.log(data);
         t.results = data.data.data;
         t.progress = data.data.progress;
-        t.share = (data.data.share)*t.progress;
         $('#progress').css('width',t.progress+'%');
-    
+        t.progress = (data.data.share)*t.progress;
+        t.share = data.data.share;
+        t.amount_required = data.data.amount_required; 
+        t.running = data.data.running;         
     });
     
     },
@@ -517,10 +531,13 @@ if(sessionStorage.getItem('invest')!=null)
 
     calculate:function(bid){
     var total = this.form.investment_needed;
-    var percent = (bid/total)*100
+    var share = this.share*100;
+    var percent = (bid/total)*share;
     var percent = percent.toFixed(2);
-    if(percent >=100)
-        document.getElementById('bid_percent').innerHTML = '<b class="text-danger">Exceeds 100%</b>';
+    if(bid > this.amount_required){
+        document.getElementById('bid_amount').value = 0;
+        document.getElementById('bid_percent').innerHTML = '<b class="text-danger">Amount exceeds the investment required!</b>';
+    }
     else
     document.getElementById('bid_percent').innerHTML = percent+'%';
     document.getElementById('bid_percent2').value = percent;
@@ -528,10 +545,13 @@ if(sessionStorage.getItem('invest')!=null)
 
     calculate2:function(bid){
     var total = this.form.investment_needed;
-    var percent = (bid/total)*100
+    var share = this.share*100;
+    var percent = (bid/total)*share;
     var percent = percent.toFixed(2);
-    if(percent >=100)
-        document.getElementById('bid_percent_eqp').innerHTML = '<b class="text-danger">Exceeds 100%</b>';
+    if(bid > this.amount_required){
+        document.getElementById('bid_amount_eqp').value = 0;
+        document.getElementById('bid_percent_eqp').innerHTML = '<b class="text-danger">Amount exceeds the investment required!</b>';
+    }
     else
     document.getElementById('bid_percent_eqp').innerHTML = percent+'%';
     document.getElementById('bid_percent2_eqp').value = percent;
