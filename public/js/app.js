@@ -8000,6 +8000,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -68218,193 +68244,193 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row w-75 mx-auto my-5 bg-white" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "col-sm-5 elementor-top-column elementor-element elementor-element-ce6f4c7",
-          attrs: { "data-id": "ce6f4c7", "data-element_type": "column" },
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass: "elementor-column-wrap elementor-element-populated",
-            },
-            [
-              _c("div", { staticClass: "elementor-widget-wrap" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "elementor-element elementor-element-ccc6233 elementor-widget elementor-widget-listeo-headline",
-                    attrs: {
-                      "data-id": "ccc6233",
-                      "data-element_type": "widget",
-                      "data-widget_type": "listeo-headline.default",
-                    },
-                  },
-                  [
-                    _c("div", { staticClass: "text-dark" }, [
-                      _c(
-                        "h3",
-                        {
-                          staticClass:
-                            "text-dark headline headline-aligned-to-left headline-box",
-                          staticStyle: {
-                            "font-family": "system-ui",
-                            "text-align": "left",
-                          },
-                        },
-                        [_vm._v(" How It Works? ")]
-                      ),
-                    ]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "elementor-element elementor-element-5df092b elementor-widget elementor-widget-listeo-iconbox",
-                    attrs: {
-                      "data-id": "5df092b",
-                      "data-element_type": "widget",
-                      "data-widget_type": "listeo-iconbox.default",
-                    },
-                  },
-                  [
-                    _c("div", { staticClass: "elementor-widget-container" }, [
-                      _c("div", { staticClass: "icon-box-v3 row" }, [
-                        _c("div", { staticClass: "ibv3-icon col-sm-3" }, [
-                          _c("img", {
-                            attrs: {
-                              width: "60px",
-                              src: "images/CreateAccountGreen.svg",
-                            },
-                          }),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "ibv3-content col-sm-9" }, [
-                          _c("h4", [_vm._v("Create an Account")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Create an Account as as Investor or Business Owner"
-                            ),
-                          ]),
-                        ]),
-                      ]),
-                    ]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "elementor-element elementor-element-9169400 elementor-widget elementor-widget-listeo-iconbox",
-                    attrs: {
-                      "data-id": "9169400",
-                      "data-element_type": "widget",
-                      "data-widget_type": "listeo-iconbox.default",
-                    },
-                  },
-                  [
-                    _c("div", { staticClass: "elementor-widget-container" }, [
-                      _c("div", { staticClass: "icon-box-v3 row" }, [
-                        _c("div", { staticClass: "ibv3-icon col-sm-3" }, [
-                          _c("img", {
-                            attrs: {
-                              width: "60px",
-                              src: "images/AddInvestGreen.svg",
-                            },
-                          }),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "ibv3-content col-sm-9" }, [
-                          _c("h4", [_vm._v("Add/Invest in a Listing")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Add a Listing( Your Business) or Invest in a listing"
-                            ),
-                          ]),
-                        ]),
-                      ]),
-                    ]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "elementor-element elementor-element-b9196ce elementor-widget elementor-widget-listeo-iconbox",
-                    attrs: {
-                      "data-id": "b9196ce",
-                      "data-element_type": "widget",
-                      "data-widget_type": "listeo-iconbox.default",
-                    },
-                  },
-                  [
-                    _c("div", { staticClass: "elementor-widget-container" }, [
-                      _c("div", { staticClass: "icon-box-v3 row" }, [
-                        _c("div", { staticClass: "ibv3-icon col-sm-3" }, [
-                          _c("img", {
-                            attrs: {
-                              width: "60px",
-                              src: "images/ApplyForJitumeGreen.svg",
-                            },
-                          }),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "ibv3-content col-sm-9" }, [
-                          _c("h4", [_vm._v("Apply For Jitume Show")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "You can a apply for a chance to get covered in the JITUME SHOW"
-                            ),
-                          ]),
-                        ]),
-                      ]),
-                    ]),
-                  ]
-                ),
-              ]),
-            ]
-          ),
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-1" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-6" }, [
-        _c("div", { staticClass: "text-dark" }, [
-          _c(
-            "h3",
-            {
-              staticClass:
-                "text-dark headline headline-aligned-to-left headline-box",
-              staticStyle: { "font-family": "system-ui", "text-align": "left" },
-            },
-            [_vm._v(" The Show ")]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("video", {
-          staticClass: "elementor-video",
-          staticStyle: { width: "100%", height: "auto" },
-          attrs: {
-            src: "videos/Jitume.mp4",
-            controls: "",
-            controlslist: "nodownload",
+    return _c(
+      "div",
+      { staticClass: "container-xl row mx-auto my-5 bg-white pt-3" },
+      [
+        _c(
+          "div",
+          {
+            staticClass:
+              "col-md-5 elementor-top-column elementor-element elementor-element-ce6f4c7",
+            attrs: { "data-id": "ce6f4c7", "data-element_type": "column" },
           },
-        }),
-      ]),
-    ])
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "elementor-column-wrap elementor-element-populated",
+              },
+              [
+                _c("div", { staticClass: "elementor-widget-wrap" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "elementor-element elementor-element-ccc6233 elementor-widget elementor-widget-listeo-headline",
+                      attrs: {
+                        "data-id": "ccc6233",
+                        "data-element_type": "widget",
+                        "data-widget_type": "listeo-headline.default",
+                      },
+                    },
+                    [
+                      _c("div", { staticClass: "text-dark mb-md-3" }, [
+                        _c(
+                          "h2",
+                          {
+                            staticClass:
+                              "pb-2 secondary_heading h2 headline headline-aligned-to-left headline-box",
+                            staticStyle: { "text-align": "left" },
+                          },
+                          [_vm._v(" How It Works? ")]
+                        ),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "elementor-element elementor-element-5df092b elementor-widget elementor-widget-listeo-iconbox",
+                      attrs: {
+                        "data-id": "5df092b",
+                        "data-element_type": "widget",
+                        "data-widget_type": "listeo-iconbox.default",
+                      },
+                    },
+                    [
+                      _c("div", { staticClass: "elementor-widget-container" }, [
+                        _c("div", { staticClass: "icon-box-v3 row" }, [
+                          _c("div", { staticClass: "ibv3-icon col-sm-3" }, [
+                            _c("img", {
+                              attrs: {
+                                width: "60px",
+                                src: "images/CreateAccountGreen.svg",
+                              },
+                            }),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "ibv3-content col-sm-9" }, [
+                            _c("h4", [_vm._v("Create an Account")]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "Create an Account as as Investor or Business Owner"
+                              ),
+                            ]),
+                          ]),
+                        ]),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "elementor-element elementor-element-9169400 elementor-widget elementor-widget-listeo-iconbox",
+                      attrs: {
+                        "data-id": "9169400",
+                        "data-element_type": "widget",
+                        "data-widget_type": "listeo-iconbox.default",
+                      },
+                    },
+                    [
+                      _c("div", { staticClass: "elementor-widget-container" }, [
+                        _c("div", { staticClass: "icon-box-v3 row" }, [
+                          _c("div", { staticClass: "ibv3-icon col-sm-3" }, [
+                            _c("img", {
+                              attrs: {
+                                width: "60px",
+                                src: "images/AddInvestGreen.svg",
+                              },
+                            }),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "ibv3-content col-sm-9" }, [
+                            _c("h4", [_vm._v("Add/Invest in a Listing")]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "Add a Listing( Your Business) or Invest in a listing"
+                              ),
+                            ]),
+                          ]),
+                        ]),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "elementor-element elementor-element-b9196ce elementor-widget elementor-widget-listeo-iconbox",
+                      attrs: {
+                        "data-id": "b9196ce",
+                        "data-element_type": "widget",
+                        "data-widget_type": "listeo-iconbox.default",
+                      },
+                    },
+                    [
+                      _c("div", { staticClass: "elementor-widget-container" }, [
+                        _c("div", { staticClass: "icon-box-v3 row" }, [
+                          _c("div", { staticClass: "ibv3-icon col-sm-3" }, [
+                            _c("img", {
+                              attrs: {
+                                width: "60px",
+                                src: "images/ApplyForJitumeGreen.svg",
+                              },
+                            }),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "ibv3-content col-sm-9" }, [
+                            _c("h4", [_vm._v("Apply For Jitume Show")]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "You can a apply for a chance to get covered in the JITUME SHOW"
+                              ),
+                            ]),
+                          ]),
+                        ]),
+                      ]),
+                    ]
+                  ),
+                ]),
+              ]
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-7 mt-5 mt-md-0 pl-md-5" }, [
+          _c("div", { staticClass: "text-dark mb-md-3" }, [
+            _c(
+              "h2",
+              {
+                staticClass:
+                  "secondary_heading h2 headline headline-aligned-to-left headline-box pb-2",
+                staticStyle: { "text-align": "left" },
+              },
+              [_vm._v("\n            The Show ")]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("video", {
+            staticClass: "video_player elementor-video",
+            attrs: {
+              poster: "images/video_preview.png",
+              src: "videos/Jitume.mp4",
+              controls: "",
+              controlslist: "nodownload",
+            },
+          }),
+        ]),
+      ]
+    )
   },
   function () {
     var _vm = this
