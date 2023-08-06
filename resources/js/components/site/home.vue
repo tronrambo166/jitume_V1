@@ -244,27 +244,38 @@
         <h2 style="text-align:left;" class="secondary_heading"> Latest Businesses </h2>
       </div>
 
-      <div v-for="( result, index ) in results" class="listing col-sm-3 my-5">
-        <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
+      <div class="card-group my-4 w-100 d-md-flex justify-content-center">
 
-          <video v-if="result.file" controls style="width:332px; height:230px" alt="">
-            <source :src="result.file" type="video/mp4">
-          </video>
+        <div v-for="( result, index ) in results" class="m-2 listing">
+          <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
 
-          <img v-else :src="result.image" style="width:100%; height:130px" alt="" />
+            <video v-if="result.file" controls style="width:450px; height:230px;" alt="">
+              <source :src="result.file" type="video/mp4">
+            </video>
 
-          <h4 class="mt-3 mb-0">{{ result.name }} </h4>
-          <p class="my-1 text-left small"><i class="mr-2 fa fa-map-marker"></i>{{ result.location }}</p>
-          <p class="mb-1"><span class="mt-1 rounded"><i class="mr-2 fa fa-phone"></i>{{ result.contact }}</span></p>
+            <img v-else :src="result.image" style="width:450; height:230px" class="card-img-top" alt="" />
 
-          <div class="amount float-right text-right w-100 py-0 my-0">
-            <h6 class="small font-weight-bold">Amount: <span class="font-weight-light"><b>${{ result.investment_needed
-            }}</b></span></h6>
-          </div>
+            <div class="p-1 pb-2">
 
-        </router-link>
+              <h4 class="card_heading mb-0 py-3">{{ result.name }} </h4>
+
+              <p class="card_text pt-1"><i class="mr-2 fa fa-map-marker"></i>{{ result.location }}</p>
+
+              <p class="card_text"><span class="rounded"><i class="mr-2 fa fa-phone"></i>{{ result.contact }}</span></p>
+
+            </div>
+
+            <div class="amount float-right text-right w-100 py-0 my-0">
+              <h6 class="small font-weight-bold">Amount: <span class="font-weight-light"><b>${{ result.investment_needed
+              }}</b></span></h6>
+            </div>
+
+          </router-link>
+
+        </div>
 
       </div>
+
     </div>
 
     <div class="row mt-2 border border-bottom-dark"></div>
