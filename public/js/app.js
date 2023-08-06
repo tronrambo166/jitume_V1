@@ -8026,6 +8026,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -10269,6 +10272,10 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -67934,7 +67941,7 @@ var render = function () {
                     _c(
                       "router-link",
                       { attrs: { to: "category/Technology-Communications" } },
-                      [_vm._v("Technology/Communications\n              ")]
+                      [_vm._v("Technology/Communications\n            ")]
                     ),
                   ],
                   1
@@ -67987,7 +67994,7 @@ var render = function () {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "row mt-4 w-75 mx-auto" },
+        { staticClass: "container-xl row mx-auto my-5 bg-white pt-3" },
         [
           _c("hr"),
           _vm._v(" "),
@@ -68415,7 +68422,7 @@ var staticRenderFns = [
                   "secondary_heading h2 headline headline-aligned-to-left headline-box pb-2",
                 staticStyle: { "text-align": "left" },
               },
-              [_vm._v("\n            The Show ")]
+              [_vm._v("\n          The Show ")]
             ),
           ]),
           _vm._v(" "),
@@ -68438,11 +68445,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c(
-        "h3",
+        "h2",
         {
-          staticClass:
-            "text-dark headline headline-aligned-to-left headline-box",
-          staticStyle: { "font-family": "system-ui", "text-align": "left" },
+          staticClass: "secondary_heading",
+          staticStyle: { "text-align": "left" },
         },
         [_vm._v(" Latest Businesses ")]
       ),
@@ -71796,7 +71802,7 @@ var staticRenderFns = [
             "text-shadow": "3px 3px #2a2a2c",
           },
         },
-        [_vm._v("Looking for...\n       ")]
+        [_vm._v("\n                    Looking for...\n                ")]
       ),
     ])
   },
@@ -71891,12 +71897,12 @@ var staticRenderFns = [
                   {
                     attrs: {
                       value:
-                        "Finance, Accounting & \n                Tax Marketing",
+                        "Finance, Accounting & \n            Tax Marketing",
                     },
                   },
                   [
                     _vm._v(
-                      "Finance, Accounting & \n                Tax Marketing"
+                      "Finance, Accounting &\n                                    Tax Marketing"
                     ),
                   ]
                 ),
