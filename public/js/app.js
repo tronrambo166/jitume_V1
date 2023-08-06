@@ -8026,6 +8026,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -10269,6 +10283,10 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -67934,7 +67952,7 @@ var render = function () {
                     _c(
                       "router-link",
                       { attrs: { to: "category/Technology-Communications" } },
-                      [_vm._v("Technology/Communications\n              ")]
+                      [_vm._v("Technology/Communications\n            ")]
                     ),
                   ],
                   1
@@ -67987,83 +68005,93 @@ var render = function () {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "row mt-4 w-75 mx-auto" },
+        { staticClass: "container-xl row mx-auto my-5 bg-white pt-3" },
         [
           _c("hr"),
           _vm._v(" "),
           _vm._m(4),
           _vm._v(" "),
-          _vm._l(_vm.results, function (result, index) {
-            return _c(
-              "div",
-              { staticClass: "listing col-sm-3 my-5" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "shadow card border px-2",
-                    attrs: { to: "/listingDetails/" + result.id },
-                  },
-                  [
-                    result.file
-                      ? _c(
-                          "video",
-                          {
-                            staticStyle: { width: "332px", height: "230px" },
-                            attrs: { controls: "", alt: "" },
-                          },
-                          [
-                            _c("source", {
-                              attrs: { src: result.file, type: "video/mp4" },
-                            }),
-                          ]
-                        )
-                      : _c("img", {
-                          staticStyle: { width: "100%", height: "130px" },
-                          attrs: { src: result.image, alt: "" },
-                        }),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "mt-3 mb-0" }, [
-                      _vm._v(_vm._s(result.name) + " "),
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "my-1 text-left small" }, [
-                      _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
-                      _vm._v(_vm._s(result.location)),
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "mb-1" }, [
-                      _c("span", { staticClass: "mt-1 rounded" }, [
-                        _c("i", { staticClass: "mr-2 fa fa-phone" }),
-                        _vm._v(_vm._s(result.contact)),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "amount float-right text-right w-100 py-0 my-0",
-                      },
-                      [
-                        _c("h6", { staticClass: "small font-weight-bold" }, [
-                          _vm._v("Amount: "),
-                          _c("span", { staticClass: "font-weight-light" }, [
-                            _c("b", [
-                              _vm._v("$" + _vm._s(result.investment_needed)),
-                            ]),
+          _c(
+            "div",
+            {
+              staticClass:
+                "card-group my-4 w-100 d-md-flex justify-content-center",
+            },
+            _vm._l(_vm.results, function (result, index) {
+              return _c(
+                "div",
+                { staticClass: "m-2 listing" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "shadow card border px-2",
+                      attrs: { to: "/listingDetails/" + result.id },
+                    },
+                    [
+                      result.file
+                        ? _c(
+                            "video",
+                            {
+                              staticStyle: { width: "450px", height: "230px" },
+                              attrs: { controls: "", alt: "" },
+                            },
+                            [
+                              _c("source", {
+                                attrs: { src: result.file, type: "video/mp4" },
+                              }),
+                            ]
+                          )
+                        : _c("img", {
+                            staticClass: "card-img-top",
+                            staticStyle: { width: "450", height: "230px" },
+                            attrs: { src: result.image, alt: "" },
+                          }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "p-1 pb-2" }, [
+                        _c("h4", { staticClass: "card_heading mb-0 py-3" }, [
+                          _vm._v(_vm._s(result.name) + " "),
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "card_text pt-1" }, [
+                          _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
+                          _vm._v(_vm._s(result.location)),
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "card_text" }, [
+                          _c("span", { staticClass: "rounded" }, [
+                            _c("i", { staticClass: "mr-2 fa fa-phone" }),
+                            _vm._v(_vm._s(result.contact)),
                           ]),
                         ]),
-                      ]
-                    ),
-                  ]
-                ),
-              ],
-              1
-            )
-          }),
-        ],
-        2
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "amount float-right text-right w-100 py-0 my-0",
+                        },
+                        [
+                          _c("h6", { staticClass: "small font-weight-bold" }, [
+                            _vm._v("Amount: "),
+                            _c("span", { staticClass: "font-weight-light" }, [
+                              _c("b", [
+                                _vm._v("$" + _vm._s(result.investment_needed)),
+                              ]),
+                            ]),
+                          ]),
+                        ]
+                      ),
+                    ]
+                  ),
+                ],
+                1
+              )
+            }),
+            0
+          ),
+        ]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "row mt-2 border border-bottom-dark" }),
@@ -68415,7 +68443,7 @@ var staticRenderFns = [
                   "secondary_heading h2 headline headline-aligned-to-left headline-box pb-2",
                 staticStyle: { "text-align": "left" },
               },
-              [_vm._v("\n            The Show ")]
+              [_vm._v("\n          The Show ")]
             ),
           ]),
           _vm._v(" "),
@@ -68438,11 +68466,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c(
-        "h3",
+        "h2",
         {
-          staticClass:
-            "text-dark headline headline-aligned-to-left headline-box",
-          staticStyle: { "font-family": "system-ui", "text-align": "left" },
+          staticClass: "secondary_heading",
+          staticStyle: { "text-align": "left" },
         },
         [_vm._v(" Latest Businesses ")]
       ),
@@ -71796,7 +71823,7 @@ var staticRenderFns = [
             "text-shadow": "3px 3px #2a2a2c",
           },
         },
-        [_vm._v("Looking for...\n       ")]
+        [_vm._v("\n                    Looking for...\n                ")]
       ),
     ])
   },
@@ -71891,12 +71918,12 @@ var staticRenderFns = [
                   {
                     attrs: {
                       value:
-                        "Finance, Accounting & \n                Tax Marketing",
+                        "Finance, Accounting & \n            Tax Marketing",
                     },
                   },
                   [
                     _vm._v(
-                      "Finance, Accounting & \n                Tax Marketing"
+                      "Finance, Accounting &\n                                    Tax Marketing"
                     ),
                   ]
                 ),

@@ -244,7 +244,7 @@
         font-family: 'Roboto', sans-serif;
     }
 
-    .bar: focus {
+    .bar:focus {
         outline: none;
         box-shadow: none;
     }
@@ -263,7 +263,7 @@
         margin-top: 40px;
     }
 
-    .navy ul li a: hover {
+    .navy ul li a:hover {
         color: white;
         background: #72c537;
         border-radius: 35px;
@@ -557,7 +557,7 @@
         color: black;
     }
 
-    #convBtn2: hover {
+    #convBtn2:hover {
         background-color: green;
     }
 
@@ -801,8 +801,8 @@
 
 
     .primary_bg {
-        background: #03380d; 
-        /*#001C30*/ 
+        background: #03380d;
+        /*#001C30*/
     }
 
     .secondary_bg {
@@ -969,165 +969,181 @@
     }
 
 
-    .navbar ul li .header_buttons{
-    font-family: system-ui;
-    border-radius: 15px;
-    cursor: pointer;
-    font-size: 13px;
-}
-
-.toggole_bar{
-    font-size: 25px;
-    top: -8px;
-}
-.form-check-input:checked {
-    background-color: #11af24;
+    .navbar ul li .header_buttons {
+        font-family: system-ui;
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 13px;
     }
 
-    #add_listing input, #add_listing select {height: 30px;}
-    .business_btns{font-size: 12px; padding: 0 22px;}
+    .toggole_bar {
+        font-size: 25px;
+        top: -8px;
+    }
+
+    .form-check-input:checked {
+        background-color: #11af24;
+    }
+
+    #add_listing input,
+    #add_listing select {
+        height: 30px;
+    }
+
+    .business_btns {
+        font-size: 12px;
+        padding: 0 22px;
+    }
+
     .amount {
-        color: black; font-family: math;
+        color: black;
+        font-family: math;
     }
 
-    .status{
-    font-size: 12px;
-}
+    .status {
+        font-size: 12px;
+    }
 
-.due{
-    font-weight: 600;
-    font-size: 11px;
-}
-        
-.mile{
-    border: 1px solid black;
-    border-radius: 3px;
-    font-size: 13px;
-}
+    .due {
+        font-weight: 600;
+        font-size: 11px;
+    }
 
-.sidebar li{
-    background: #3d423d;
-    padding-left: 30px;
+    .mile {
+        border: 1px solid black;
+        border-radius: 3px;
+        font-size: 13px;
+    }
 
-}
+    .sidebar li {
+        background: #3d423d;
+        padding-left: 30px;
 
-.sidebar .active{
-    background: darkgreen;
-}
+    }
 
-.formLabel {
+    .sidebar .active {
+        background: darkgreen;
+    }
 
-    font-family: "Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
-    font-size: 87%;
-    font-weight: bold;
-    color: #222;
-    line-height: 150%;
-    margin: 0;
-    padding: 0 0 3px 0;
-    border: none;
-    display: block;
-    white-space: normal;
-    width: 100%;
-}
+    .formLabel {
 
-    .showForm input.text, .showForm input.search, .showForm textarea.textarea {
-    border-top: 1px solid #7c7c7c;
-    border-left: 1px solid #c3c3c3;
-    border-right: 1px solid #c3c3c3;
-    border-bottom: 1px solid #ddd;
-    background: #fff;
-}
+        font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
+        font-size: 87%;
+        font-weight: bold;
+        color: #222;
+        line-height: 150%;
+        margin: 0;
+        padding: 0 0 3px 0;
+        border: none;
+        display: block;
+        white-space: normal;
+        width: 100%;
+    }
 
-.showForm input, .showForm select {
-    border-top: 1px solid #7c7c7c;
-    border-left: 1px solid #c3c3c3;
-    border-right: 1px solid #c3c3c3;
-    border-bottom: 1px solid #ddd;
-    background: #fff;
-    height: 22px;
-}
+    .showForm input.text,
+    .showForm input.search,
+    .showForm textarea.textarea {
+        border-top: 1px solid #7c7c7c;
+        border-left: 1px solid #c3c3c3;
+        border-right: 1px solid #c3c3c3;
+        border-bottom: 1px solid #ddd;
+        background: #fff;
+    }
 
-.showFormB input, .showFormB select {
-    border-top: 1px solid #7c7c7c;
-    border-left: 1px solid #c3c3c3;
-    border-right: 1px solid #c3c3c3;
-    border-bottom: 1px solid #ddd;
-    background: #fff;
-    height: 28px;
-}
+    .showForm input,
+    .showForm select {
+        border-top: 1px solid #7c7c7c;
+        border-left: 1px solid #c3c3c3;
+        border-right: 1px solid #c3c3c3;
+        border-bottom: 1px solid #ddd;
+        background: #fff;
+        height: 22px;
+    }
 
- .showForm textarea {
-    border-top: 1px solid #7c7c7c;
-    border-left: 1px solid #c3c3c3;
-    border-right: 1px solid #c3c3c3;
-    border-bottom: 1px solid #ddd;
-    background: #fff;
+    .showFormB input,
+    .showFormB select {
+        border-top: 1px solid #7c7c7c;
+        border-left: 1px solid #c3c3c3;
+        border-right: 1px solid #c3c3c3;
+        border-bottom: 1px solid #ddd;
+        background: #fff;
+        height: 28px;
+    }
 
-}
+    .showForm textarea {
+        border-top: 1px solid #7c7c7c;
+        border-left: 1px solid #c3c3c3;
+        border-right: 1px solid #c3c3c3;
+        border-bottom: 1px solid #ddd;
+        background: #fff;
 
-.fileI{
-    font-size: 12px;
-    border: none;
-}
+    }
 
-.custom-file-upload {
-  border: 1px solid #ccc;
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-}
+    .fileI {
+        font-size: 12px;
+        border: none;
+    }
 
-table tr td .bid_btns{
-    color: #0dab86;
-    cursor:pointer;
-    font-weight: 600;
-}
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+    }
 
-.detailsModal h5, .assetModal h5{
-    color: #5c5959;
-}
+    table tr td .bid_btns {
+        color: #0dab86;
+        cursor: pointer;
+        font-weight: 600;
+    }
 
-.btndown_listing {
-    border: 1px solid gray;
-    color: #2a2929;
-    background-color: whitesmoke;
-    padding: 0px 5px;
-    border-radius: 4px;
-    font-size: 9px;
-    font-weight: bold;
-}
+    .detailsModal h5,
+    .assetModal h5 {
+        color: #5c5959;
+    }
 
-.failed_session{
-    position: absolute;
-    background: #b70e0e;
-    right: 0px;
-    color: white;
-    border-radius: 4px;
-    padding: 5px 20px;
-}
+    .btndown_listing {
+        border: 1px solid gray;
+        color: #2a2929;
+        background-color: whitesmoke;
+        padding: 0px 5px;
+        border-radius: 4px;
+        font-size: 9px;
+        font-weight: bold;
+    }
 
-.success_session{
-    position: absolute;
-    background: green;
-    right: 0px;
-    color: white;
-    border-radius: 4px;
-    padding: 5px 20px;
-}
+    .failed_session {
+        position: absolute;
+        background: #b70e0e;
+        right: 0px;
+        color: white;
+        border-radius: 4px;
+        padding: 5px 20px;
+    }
 
-.success_message{
-position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1040;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(15px);
-}
-.popup_success{
-    border-radius: 4px;
-    width: 80%;
-    margin: auto;
-    background: white;
-}
+    .success_session {
+        position: absolute;
+        background: green;
+        right: 0px;
+        color: white;
+        border-radius: 4px;
+        padding: 5px 20px;
+    }
+
+    .success_message {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1040;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(15px);
+    }
+
+    .popup_success {
+        border-radius: 4px;
+        width: 80%;
+        margin: auto;
+        background: white;
+    }

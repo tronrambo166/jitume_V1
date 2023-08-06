@@ -1,83 +1,85 @@
 <template>
-    <div class="container-fluid px-0" style="overflow:hidden;">
+  <div class="container-fluid px-0" style="overflow:hidden;">
     <div class="home_bg" style="">
 
- 
 
-        <div class="heading">
+
+      <div class="heading">
 
         <div class="row" style="">
 
-         <div class=" col-sm-12 text-center image" style="">
+          <div class=" col-sm-12 text-center image" style="">
 
-         <div class="my-4 w-50 mx-auto text-center">   
-         <h4 style="font-size:27px; font-weight: 500px;" class="text-dark ">
-        <!--  <marquee>Invest in Agriculture | Sports/Gaming | Real State | Entertainment | Auto | Finance/Accounting Security | Pets | Domestic Help | Other</marquee> -->
-       </h4> 
-       <p class="h6 text text-center text-dark ">Your platform to invest in local businesses</p>
+            <div class="my-4 w-50 mx-auto text-center">
+              <h4 style="font-size:27px; font-weight: 500px;" class="text-dark ">
+                <!--  <marquee>Invest in Agriculture | Sports/Gaming | Real State | Entertainment | Auto | Finance/Accounting Security | Pets | Domestic Help | Other</marquee> -->
+              </h4>
+              <p class="h6 text text-center text-dark ">Your platform to invest in local businesses</p>
 
- 
-           </div>
 
-                            <form id="form" @submit.prevent ="search();" class=" w-100" method="post">
-                            <div style="width:75%;" class=" mx-auto text-center row py-0 searchBar text-center">
+            </div>
 
-                            <!-- <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3 bg-white">
+            <form id="form" @submit.prevent="search();" class=" w-100" method="post">
+              <div style="width:75%;" class=" mx-auto text-center row py-0 searchBar text-center">
+
+                <!-- <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3 bg-white">
                               <input  required=""  style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div> -->
 
-                             <div style="border-radius: 35px 0 0 35px;"  class="py-2 col-5 bg-white">
-                              <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="search" value="" placeholder="Location">
+                <div style="border-radius: 35px 0 0 35px;" class="py-2 col-5 bg-white">
+                  <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;"
+                    class="bar bg-white form-control d-inline" type="text" name="search" value="" placeholder="Location">
 
-                          </div>
+                </div>
 
-                          <div class="pt-2 col-4 bg-white">
-                          <div class="dropdown pt-1">
+                <div class="pt-2 col-4 bg-white">
+                  <div class="dropdown pt-1">
 
-            <select required id="category"  name="category" class="border-white form-control">
-            <option class="form-control small" value="" >Category</option>
+                    <select required id="category" name="category" class="border-white form-control">
+                      <option class="form-control small" value="">Category</option>
 
-            <option class="form-control" value="Agriculture" >Agriculture</option>
-            <option value="Arts / Culture" >Arts/Culture </option>
-            <option value="Auto" >Auto</option>
-           <option value="Sports/Gaming" >Sports/Gaming</option>
-           <option value="Real State" >Real State</option>
-           <option value="Food" >Food </option>
-           <option value="Legal" >Legal </option>
-            <option value="Security" >Security </option>
-             <option value="Media / Internet" >Media/Internet </option>
-              
-               <option value="Fashion" >Fashion </option>
-                <option value="Technology / Communications" >Technology/Communications </option>
-                 <option value="Retail" >Retail </option>
-           
-           <option value="Finance/Accounting" >Finance/Accounting</option>
-           <option value="Pets">Pets</option>
-           <option value="Domestic (Home Help etc)">Domestic (Home Help etc)</option>
-           <option value="Other" >Other</option> 
+                      <option class="form-control" value="Agriculture">Agriculture</option>
+                      <option value="Arts / Culture">Arts/Culture </option>
+                      <option value="Auto">Auto</option>
+                      <option value="Sports/Gaming">Sports/Gaming</option>
+                      <option value="Real State">Real State</option>
+                      <option value="Food">Food </option>
+                      <option value="Legal">Legal </option>
+                      <option value="Security">Security </option>
+                      <option value="Media / Internet">Media/Internet </option>
 
-           </select>
+                      <option value="Fashion">Fashion </option>
+                      <option value="Technology / Communications">Technology/Communications </option>
+                      <option value="Retail">Retail </option>
 
-                        </div>
-                        </div>
+                      <option value="Finance/Accounting">Finance/Accounting</option>
+                      <option value="Pets">Pets</option>
+                      <option value="Domestic (Home Help etc)">Domestic (Home Help etc)</option>
+                      <option value="Other">Other</option>
 
-                            <div style="border-radius: 0 35px 35px 0;" class="bg-white col-3 py-2 ">
-                                <button  class="searchListing px-sm-3 px-1 float-right mt-1" type="submit">Search</button>
-                            </div>
+                    </select>
 
-                               </div>               
+                  </div>
+                </div>
 
-                            <div class="row" style="">
-                                <div id="result_list" class="text-left" style="display: none;width:30%; z-index: 1000;height: 600px;position: absolute; margin-left: 174px;top: 139px;">
-                                    
-                                </div>
-                            </div>
-  
-                        </form>
-                        </div>                
+                <div style="border-radius: 0 35px 35px 0;" class="bg-white col-3 py-2 ">
+                  <button class="searchListing px-sm-3 px-1 float-right mt-1" type="submit">Search</button>
+                </div>
 
-                        </div> 
-                    
-                    </div>
+              </div>
+
+              <div class="row" style="">
+                <div id="result_list" class="text-left"
+                  style="display: none;width:30%; z-index: 1000;height: 600px;position: absolute; margin-left: 174px;top: 139px;">
+
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+
+      </div>
 
 
       <div class="mt-4">
@@ -129,7 +131,7 @@
       </div>
 
 
-   </div>
+    </div>
 
 
 
@@ -236,151 +238,163 @@
     </div>
     <!-- How it works -->
 
-   <div class="row mt-4 w-75 mx-auto">
-<hr>
-         <div >
-         <h3 style="font-family: system-ui; text-align:left;" class="text-dark headline  headline-aligned-to-left  headline-box "> Latest Businesses </h3></div>
-             
-                <div v-for="( result, index ) in results" class="listing col-sm-3 my-5">
-                    <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
+    <div class="container-xl row mx-auto my-5 bg-white pt-3">
+      <hr>
+      <div>
+        <h2 style="text-align:left;" class="secondary_heading"> Latest Businesses </h2>
+      </div>
 
-                     <video v-if="result.file" controls style="width:332px; height:230px" alt="">
-                    <source :src="result.file" type="video/mp4">
-                     </video> 
+      <div class="card-group my-4 w-100 d-md-flex justify-content-center">
 
-                     <img v-else :src="result.image" style="width:100%; height:130px" alt=""/>
+        <div v-for="( result, index ) in results" class="m-2 listing">
+          <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
 
-                    <h4 class="mt-3 mb-0">{{result.name}} </h4>
-                    <p class="my-1 text-left small"><i class="mr-2 fa fa-map-marker"></i>{{result.location}}</p>
-                    <p class="mb-1"><span class="mt-1 rounded"><i class="mr-2 fa fa-phone"></i>{{result.contact}}</span></p>
+            <video v-if="result.file" controls style="width:450px; height:230px;" alt="">
+              <source :src="result.file" type="video/mp4">
+            </video>
 
-                    <div class="amount float-right text-right w-100 py-0 my-0">   
-                        <h6 class="small font-weight-bold" >Amount: <span class="font-weight-light"><b>${{result.investment_needed}}</b></span></h6>
-                    </div>
+            <img v-else :src="result.image" style="width:450; height:230px" class="card-img-top" alt="" />
 
-                    </router-link>
-                    
-              </div>
-                </div>
+            <div class="p-1 pb-2">
 
-   <div class="row mt-2 border border-bottom-dark"></div>
+              <h4 class="card_heading mb-0 py-3">{{ result.name }} </h4>
+
+              <p class="card_text pt-1"><i class="mr-2 fa fa-map-marker"></i>{{ result.location }}</p>
+
+              <p class="card_text"><span class="rounded"><i class="mr-2 fa fa-phone"></i>{{ result.contact }}</span></p>
+
+            </div>
+
+            <div class="amount float-right text-right w-100 py-0 my-0">
+              <h6 class="small font-weight-bold">Amount: <span class="font-weight-light"><b>${{ result.investment_needed
+              }}</b></span></h6>
+            </div>
+
+          </router-link>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row mt-2 border border-bottom-dark"></div>
 
 
-   </div>
-
+  </div>
 </template>
 
 
 <script>
-   
+
 export default {
-    
-  props: ['auth_user','business'],  
+
+  props: ['auth_user', 'business'],
   data: () => ({
-  results:[],
-  form: new Form({
-  listing_name:'',
-  search:'',
-  categories:'',
-  
-  }),
-  checkListing:'',
-  serviceDetails:'',
-  milestone:'',
-  commit:''
+    results: [],
+    form: new Form({
+      listing_name: '',
+      search: '',
+      categories: '',
 
     }),
+    checkListing: '',
+    serviceDetails: '',
+    milestone: '',
+    commit: ''
+
+  }),
 
 
-created() {
-            console.log(this.auth_user);
-            this.checkListing = sessionStorage.getItem('invest');
-            if(this.checkListing!=null)
-              this.$router.push(`listingDetails/${this.checkListing}`)
+  created() {
+    console.log(this.auth_user);
+    this.checkListing = sessionStorage.getItem('invest');
+    if (this.checkListing != null)
+      this.$router.push(`listingDetails/${this.checkListing}`)
 
-            this.serviceDetails = sessionStorage.getItem('serviceDetails');
-            if(this.serviceDetails!=null)
-              this.$router.push(`serviceDetails/${this.serviceDetails}`)
+    this.serviceDetails = sessionStorage.getItem('serviceDetails');
+    if (this.serviceDetails != null)
+      this.$router.push(`serviceDetails/${this.serviceDetails}`)
 
-            this.milestone = sessionStorage.getItem('milestone');
-            this.milestoneS = sessionStorage.getItem('milestoneS');
-            if(this.milestone !=null)
-              this.$router.push(`business-milestone/${this.milestone}`);
+    this.milestone = sessionStorage.getItem('milestone');
+    this.milestoneS = sessionStorage.getItem('milestoneS');
+    if (this.milestone != null)
+      this.$router.push(`business-milestone/${this.milestone}`);
 
-           else if(this.milestoneS !=null)
-              this.$router.push(`service-milestone/${this.milestoneS}`);
+    else if (this.milestoneS != null)
+      this.$router.push(`service-milestone/${this.milestoneS}`);
 
 
-      //CALL ACTION
+    //CALL ACTION
     $('#call_to').html('');
     $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> ');
   },
 
-  methods:{
+  methods: {
 
-  async search(){
-  const response = await this.form.post('search');
-  console.log(response.data);
-  toastr.success(response.data.success, { timeout:5000 });
- //this.$router.push('/manage-category');
- //this.$router.push({name: 'listingSearch', params: { id: 1 }})
+    async search() {
+      const response = await this.form.post('search');
+      console.log(response.data);
+      toastr.success(response.data.success, { timeout: 5000 });
+      //this.$router.push('/manage-category');
+      //this.$router.push({name: 'listingSearch', params: { id: 1 }})
 
-  },
-
-search(){
-const form = $('#form');
-var thiss = this;
-var ids='';
-
-$.ajax({
-url:'search',
-method:'POST',
-headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-dataType:'json',
-data:form.serialize(),
-    success: function (response) {
-    console.log(response);
-
-    Object.entries(response.results).forEach(entry => {
-           const [index, row] = entry; 
-           ids = ids+row.id+',';      
-          });console.log(ids);
-
-          if(!ids) ids =0;
-
-    //thiss.$router.push({ path: '/listingResults', query: { result: response } })
-    thiss.$router.push({ name: 'listingResults', params: { results: ids}})
     },
-    error: function (response) {
-    console.log(response);
-      }
-});
+
+    search() {
+      const form = $('#form');
+      var thiss = this;
+      var ids = '';
+
+      $.ajax({
+        url: 'search',
+        method: 'POST',
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        dataType: 'json',
+        data: form.serialize(),
+        success: function (response) {
+          console.log(response);
+
+          Object.entries(response.results).forEach(entry => {
+            const [index, row] = entry;
+            ids = ids + row.id + ',';
+          }); console.log(ids);
+
+          if (!ids) ids = 0;
+
+          //thiss.$router.push({ path: '/listingResults', query: { result: response } })
+          thiss.$router.push({ name: 'listingResults', params: { results: ids } })
+        },
+        error: function (response) {
+          console.log(response);
+        }
+      });
+    },
+
+    latBusiness: function () {
+      let t = this;
+      axios.get('latBusiness').then((data) => {
+        t.results = data.data.data;
+        console.log(data);
+      }).catch((error) => { })
+    },
+
+    routerPush: function () {
+      this.commit = sessionStorage.getItem('commit');
+      if (this.commit != null)
+        this.$router.push(`business-milestone/${this.commit}`);
+    },
+
   },
 
-  latBusiness:function () {
-            let t = this;
-            axios.get('latBusiness').then( (data) =>{
-                t.results = data.data.data;
-                console.log(data);
-              }).catch( (error) =>{})
-        },
-
-        routerPush:function(){
-            this.commit = sessionStorage.getItem('commit');
-            if (this.commit !=null)
-              this.$router.push(`business-milestone/${this.commit}`);
-        },
-
-  },
-
-  mounted() { 
-   this.latBusiness();
-   this.routerPush();
+  mounted() {
+    this.latBusiness();
+    this.routerPush();
 
     //$('#create_investor').html('<a onclick="" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Create Investor Account</span></a> ');
 
-      } 
+  }
 
-     
-    }
+
+}
 </script>
