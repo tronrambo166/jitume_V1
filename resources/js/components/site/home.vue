@@ -61,8 +61,9 @@
                   </div>
                 </div>
 
-                <div style="border-radius: 0 35px 35px 0;" class="bg-white col-3 py-2 ">
-                  <button class="searchListing px-sm-3 px-1 float-right mt-1" type="submit">Search</button>
+                <div style="border-radius: 0 35px 35px 0;"
+                  class="bg-white col-3 py-2 d-flex justify-content-end align-items-center">
+                  <button class="searchListing px-sm-3 px-1" type="submit">Search</button>
                 </div>
 
               </div>
@@ -265,8 +266,8 @@
 
             </div>
 
-            <div class="amount float-right text-right w-100 py-0 my-0">
-              <h6 class="small font-weight-bold">Amount: <span class="font-weight-light"><b>${{ result.investment_needed
+            <div class="amount p-1 pb-2">
+              <h6 class="font-weight-bold">Amount: <span class=""><b>${{ result.investment_needed
               }}</b></span></h6>
             </div>
 

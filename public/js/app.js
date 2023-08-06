@@ -8040,6 +8040,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -68066,23 +68067,16 @@ var render = function () {
                         ]),
                       ]),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "amount float-right text-right w-100 py-0 my-0",
-                        },
-                        [
-                          _c("h6", { staticClass: "small font-weight-bold" }, [
-                            _vm._v("Amount: "),
-                            _c("span", { staticClass: "font-weight-light" }, [
-                              _c("b", [
-                                _vm._v("$" + _vm._s(result.investment_needed)),
-                              ]),
+                      _c("div", { staticClass: "amount p-1 pb-2" }, [
+                        _c("h6", { staticClass: "font-weight-bold" }, [
+                          _vm._v("Amount: "),
+                          _c("span", {}, [
+                            _c("b", [
+                              _vm._v("$" + _vm._s(result.investment_needed)),
                             ]),
                           ]),
-                        ]
-                      ),
+                        ]),
+                      ]),
                     ]
                   ),
                 ],
@@ -68231,14 +68225,15 @@ var staticRenderFns = [
         _c(
           "div",
           {
-            staticClass: "bg-white col-3 py-2",
+            staticClass:
+              "bg-white col-3 py-2 d-flex justify-content-end align-items-center",
             staticStyle: { "border-radius": "0 35px 35px 0" },
           },
           [
             _c(
               "button",
               {
-                staticClass: "searchListing px-sm-3 px-1 float-right mt-1",
+                staticClass: "searchListing px-sm-3 px-1",
                 attrs: { type: "submit" },
               },
               [_vm._v("Search")]
