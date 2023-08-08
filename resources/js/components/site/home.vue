@@ -63,7 +63,7 @@
 
                 <div style="border-radius: 0 35px 35px 0;"
                   class="bg-white col-3 py-2 d-flex justify-content-end align-items-center">
-                  <button class="searchListing px-sm-3 px-1" type="submit">Search</button>
+                  <button class="searchListing px-sm-3 px-2" type="submit">Search</button>
                 </div>
 
               </div>

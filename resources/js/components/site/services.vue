@@ -4,7 +4,7 @@
 
 
         <!-- PAGE CONTENT -->
-        <div class="mb-5 row service_img mx-auto text-center" style="min-height:500px">
+        <div class="mb-5 row service_img mx-auto text-center">
 
             <div class=" col-sm-12 text-center" style="">
 
