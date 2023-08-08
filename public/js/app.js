@@ -68233,7 +68233,7 @@ var staticRenderFns = [
             _c(
               "button",
               {
-                staticClass: "searchListing px-sm-3 px-1",
+                staticClass: "searchListing px-sm-3 px-2",
                 attrs: { type: "submit" },
               },
               [_vm._v("Search")]
@@ -71770,35 +71770,28 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container", attrs: { id: "" } }, [
-    _c(
-      "div",
-      {
-        staticClass: "mb-5 row service_img mx-auto text-center",
-        staticStyle: { "min-height": "500px" },
-      },
-      [
-        _c("div", { staticClass: "col-sm-12 text-center" }, [
-          _c("div", { staticClass: "py-5" }),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "form",
-            {
-              staticClass: "w-100",
-              attrs: { id: "form", method: "post" },
-              on: {
-                submit: function ($event) {
-                  $event.preventDefault()
-                  return _vm.search()
-                },
+    _c("div", { staticClass: "mb-5 row service_img mx-auto text-center" }, [
+      _c("div", { staticClass: "col-sm-12 text-center" }, [
+        _c("div", { staticClass: "py-5" }),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "w-100",
+            attrs: { id: "form", method: "post" },
+            on: {
+              submit: function ($event) {
+                $event.preventDefault()
+                return _vm.search()
               },
             },
-            [_vm._m(1), _vm._v(" "), _vm._m(2)]
-          ),
-        ]),
-      ]
-    ),
+          },
+          [_vm._m(1), _vm._v(" "), _vm._m(2)]
+        ),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = [

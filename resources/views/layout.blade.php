@@ -128,15 +128,15 @@
 
                         <div class="ml-3 ml-md-0 d-flex">
 
-                             <div class="d-inline-block" id="call_to">
-                              <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #176B87; border-radius: 15px;cursor: pointer; " class=" header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">
-                              Add Your Business</span></a> 
-                             </div>
+                            <div class="d-inline-block" id="call_to">
+                                <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #176B87; border-radius: 15px;cursor: pointer; " class=" header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center"><span style="font-weight:bolder;" id="c_to_ac">
+                                        Add Your Business</span></a>
+                            </div>
 
 
                             <div class="d-inline-block" id="create_investor">
-                             <a data-target="#loginmodal2" data-toggle="modal" style="background: #176B87; border-radius: 15px;cursor: pointer; " class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Create Investor Account</span></a>
-                             </div>
+                                <a data-target="#loginmodal2" data-toggle="modal" style="background: #176B87; border-radius: 15px;cursor: pointer; " class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center"><span style="font-weight:bolder;" id="c_to_ac">Create Investor Account</span></a>
+                            </div>
 
                             <a data-target="#loginModal" data-toggle="modal" class=" sign_in_btn px-sm-3 my-1 mr-2 px-1 py-1 d-inline-block  text-center ml-md-3">Sign In</a>
 
@@ -195,38 +195,38 @@
             @endif
 
 
-           @if(Session::has('auth_investor'))
-        <div class="w-50 m-auto alert alert-success alert-dismissible fade show" role="alert">
-          <p class="font-weight-bold">{{Session::get('auth_investor')}}   @php Session::forget('auth_investor'); @endphp </p>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>  
-        @endif
-
-
-        @if(Session::has('login_success'))
-
-        <!-- Pop up Modal -->
-            <div class="success_message modal" style="display:block;" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content popup_success">
-
-                  <div class="modal-body">
-                     <h2 class="my-4 modal-title text-center w-100" id="exampleModalLabel">Success</h2>
-
-                    <p class="text-center">{{Session::get('login_success')}}   @php Session::forget('login_success'); @endphp</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button onclick="popupClose();" type="button" class="w-50 py-2 my-3 h5 m-auto btn text-white" style="background:green;font-size: 18px;" data-dismiss="modal">Ok</button>
-                    
-                  </div>
-                </div>
-              </div>
+            @if(Session::has('auth_investor'))
+            <div class="w-50 m-auto alert alert-success alert-dismissible fade show" role="alert">
+                <p class="font-weight-bold">{{Session::get('auth_investor')}} @php Session::forget('auth_investor'); @endphp </p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-        <!-- Pop up Modal -->
+            @endif
 
-         @endif 
+
+            @if(Session::has('login_success'))
+
+            <!-- Pop up Modal -->
+            <div class="success_message modal" style="display:block;" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content popup_success">
+
+                        <div class="modal-body">
+                            <h2 class="my-4 modal-title text-center w-100" id="exampleModalLabel">Success</h2>
+
+                            <p class="text-center">{{Session::get('login_success')}} @php Session::forget('login_success'); @endphp</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button onclick="popupClose();" type="button" class="w-50 py-2 my-3 h5 m-auto btn text-white" style="background:green;font-size: 18px;" data-dismiss="modal">Ok</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pop up Modal -->
+
+            @endif
 
 
 
@@ -301,7 +301,7 @@
 
     <!-- Vue Body End -->
 
-    <footer class="secondary_bg pt-3 text-light">
+    <footer id="footer" class="secondary_bg pt-3 text-light ">
 
         <div class="container-xl row mx-auto my-3 d-flex align-items-center">
             <div class="col-12 col-sm-6 d-flex justify-content-start">
@@ -1128,7 +1128,7 @@
                         <div class="card-header row my-2">
                             <button style="border: 1px solid darkblue;background: navy;" class="ml-2 w-50 text-center text-white font-weight-bold btn px-4 mr-2">{{ __('Join Jitume') }}</button>
                         </div>
-        
+
                         <button style="border: 1px solid darkblue;background: #72c537;" id="logins" onclick="login()" class=" w-25 btn   px-4 mr-2">{{ __('Log In') }}</button>
                         <button style="border: 1px solid darkblue;" id="registers" onclick="register()" class=" w-50 btn  px-4">{{ __('Create Investor Account') }}</button>
 
@@ -1157,269 +1157,269 @@
                                     <!-- HIDDEN USER REG -->
 
                                     <div id="user_regs" class=" collapse card-body">
-                  <form  method="POST" action="{{route('registerI')}}" enctype="multipart/form-data">
-                        @csrf    
+                                        <form method="POST" action="{{route('registerI')}}" enctype="multipart/form-data">
+                                            @csrf
 
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('First Name') }} <span title="Required" class="text-danger">*</span></label>
+                                            <div class="row mb-3">
+                                                <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('First Name') }} <span title="Required" class="text-danger">*</span></label>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
+                                                <div class="col-md-6">
+                                                    <input id="name" type="text" class="form-control" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
 
-                               
-                            </div>
-                        </div>
 
+                                                </div>
+                                            </div>
 
-                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Middle Name') }} <span title="Required" class="text-danger"></span></label>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="mname" value="{{ old('mname') }}"  autocomplete="name" autofocus>
+                                            <div class="row mb-3">
+                                                <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Middle Name') }} <span title="Required" class="text-danger"></span></label>
 
-                               
-                            </div>
-                        </div>
+                                                <div class="col-md-6">
+                                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="mname" value="{{ old('mname') }}" autocomplete="name" autofocus>
 
 
-                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Last Name') }} <span title="Required" class="text-danger">*</span></label>
+                                                </div>
+                                            </div>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus>
 
-                               
-                            </div>
-                        </div>
+                                            <div class="row mb-3">
+                                                <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Last Name') }} <span title="Required" class="text-danger">*</span></label>
 
+                                                <div class="col-md-6">
+                                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus>
 
-           
 
+                                                </div>
+                                            </div>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('E-Mail') }} <span title="Required" class="text-danger">*</span></label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
-                                
-                            </div>
-                        </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Password') }} <span title="Required" class="text-danger">*</span></label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                            <div class="row mb-3">
+                                                <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('E-Mail') }} <span title="Required" class="text-danger">*</span></label>
 
-                               
-                            </div>
-                        </div>
-                        
-                        
-                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Confirm Password') }}<span title="Required" class="text-danger">*</span></label>
+                                                <div class="col-md-6">
+                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">
 
-                               
-                            </div>
-                        </div>
+                                                </div>
+                                            </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="pr-0 col-md-5 col-form-label text-md-left">{{ __('Enter your passport/Id no*') }}<span title="Required" class="text-danger">*</span></label>
+                                            <div class="row mb-3">
+                                                <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Password') }} <span title="Required" class="text-danger">*</span></label>
 
-                            <div class="col-md-5">
-                                <input required class="text-left form-control" type="text" name="id_no">
+                                                <div class="col-md-6">
+                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                               
-                            </div>
-                        </div>
 
+                                                </div>
+                                            </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="pr-0 col-md-5 col-form-label text-md-left">{{ __('Enter your individual/company tax pin*') }}<span title="Required" class="text-danger">*</span></label>
 
-                            <div class="col-md-5">
-                                <input required class="text-left form-control" type="text" name="tax_pin">
+                                            <div class="row mb-3">
+                                                <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Confirm Password') }}<span title="Required" class="text-danger">*</span></label>
 
-                               
-                            </div>
-                        </div>
+                                                <div class="col-md-6">
+                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">
 
 
+                                                </div>
+                                            </div>
 
+                                            <div class="row mb-3">
+                                                <label for="password" class="pr-0 col-md-5 col-form-label text-md-left">{{ __('Enter your passport/Id no*') }}<span title="Required" class="text-danger">*</span></label>
 
-                        <div class="row mb-1">
-                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Upload Id/Passport') }}<span title="Required" class="text-danger">*</span></label>
-
-                            <div class="col-md-6">
-                            <div class="upload-btn-wrapper ml-2">
-                              <button class="btnUp_listing mr-2"> Id / Passport
-                              <img src="images/up.svg" width="24px"> </button>
-                              <input required="" type="file" name="id_passport" />
-                            </div>
-
-                               
-                            </div>
-                        </div>
-
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Upload Pin') }}<span title="Required" class="text-danger"></span></label>
-
-                            <div class="col-md-6">
-                            <div class="upload-btn-wrapper ml-2">
-                              <button class="btnUp_listing mr-2"> Pin
-                              <img src="images/up.svg" width="24px"> </button>
-                              <input  type="file" name="pin" />
-                            </div>
-
-                               
-                            </div>
-                        </div>
-
-
-                    
-<div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Potential Investment Range') }}<span title="Required" class="text-danger"></span></label>
-
-                        <div class="col-md-6">
-                             
-                        <div class="dropdown show d-block ml-2">
-                          <a class="mile btn mt-2 py-1 w-75 dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             Select 
-                          </a>
-                         <div class="dropdown-menu py-0" aria-labelledby="dropdownMenuLink">
-                            <li style="list-style-type: none;" class="mt-3 nav-item p-0 text-secondary">
-                                 
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c1');" class="mr-2" type="checkbox" name="inv_range[]" value="0-10000" id="inv_range">$0-$10000</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c1');" class="mr-2" type="checkbox" name="inv_range[]" value="10000-100000">$10000-$100000</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c1');" class="mr-2" type="checkbox" name="inv_range[]" value="100000-250000">$100000-$250000</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c1');" class="mr-2" type="checkbox" name="inv_range[]" value="250000-500000">$250000-$500000</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c1');" class="mr-2" type="checkbox" name="inv_range[]" value="500000-">$500000+</a>                          
-
-                            </li>    
-                            </div>
-                            </div>
-                            <p class="text-danger ml-2 small" id="sudo"></p>
-                               
-                        </div>
-
-                    </div>
-                    
-
-
-                    <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Which industries are you interested in investing?') }}<span title="Required" class="text-danger"></span></label>
-
-                        <div class="col-md-6">
-                             
-                        <div class="dropdown show d-block ml-2">
-                          <a class="mile btn mt-2 py-1 w-75 dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             Select 
-                          </a>
-                         <div class="dropdown-menu py-0" aria-labelledby="dropdownMenuLink">
-                            <li style="list-style-type: none;" class="mt-3 nav-item p-0 text-secondary">
-                                 
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Agriculture" >Agriculture</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Arts / Culture" >Arts/Culture</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Auto" >Auto</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Sports/Gaming" >Sports/Gaming</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Real State" >Real State</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Food" >Food</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Legal" >Legal</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Security" >Security</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Media / Internet" >Media/Internet</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Fashion" >Fashion</a>
-
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Technology / Communications" >Technology/Communications</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Retail" >Retail</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[]" value="Finance/Accounting" >Finance/Accounting</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[]" value="Pets">Pets</a>
-                            <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
-                            <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[]" value="Domestic (Home Help etc)">Domestic (Home Help etc)</a>
-
-                            </li>    
-                            </div>
-                            </div>
-                            <p class="text-danger ml-2 small" id="sudo2"></p>
-                               
-                        </div>
-                    </div>
-
-
-                    <div class="row mb-3">
-                            <label for="password" class="col-md-12 col-form-label text-md-left">{{ __('Please Enter details of your past investments & track records') }}<span title="Required" class="text-danger"></span></label>
-
-                            <div class="col-md-12">
-                            <textarea name="past_investment" rows="2" cols="50"></textarea>
-                               
-                            </div>
-                        </div>
-
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-12 col-form-label text-md-left">{{ __('Please Enter your current website or web presence') }}<span title="Required" class="text-danger"></span></label>
-
-                            <div class="col-md-12">
-                            <input type="text" name="website" class="w-75" />
-                               
-                            </div>
-                        </div>
-
-
-
-
-                          <div class="row w-75">
-                            <div class="col-md-1">
-                                <input id="password" type="checkbox" class=" "name="terms" required >     
-                            </div>
-
-                            <div class="col-md-10">
-                                <p style="font-family:system-ui;" class="text-secondary small mb-0">I have read and agree to the<a class="small d-inline"  target="_black" href="terms">Terms of Use</a> and<a class="small d-inline" target="_black" href="privacy-policy">Privacy Policy</a></p>
-                            </div>
-                        </div>
-
-          
-                        <div class="row mb-4">
-                            <div class="col-md-12 text-center">
-                                <button id="b2" onclick="event.preventDefault();inv_range_check();" class="mt-3 w-25 mx-auto btn px-2 create">
-                                    {{ __('Create account') }}
-                                </button>
-
-                                <button id="b1" type="submit" class="collapse mt-3 w-25 mx-auto btn px-2 create">
-                                    {{ __('Create account') }}
-                                </button>
-                            </div>
-
-
-
-                           
-
-                            </div>
-                    </form>
+                                                <div class="col-md-5">
+                                                    <input required class="text-left form-control" type="text" name="id_no">
+
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row mb-3">
+                                                <label for="password" class="pr-0 col-md-5 col-form-label text-md-left">{{ __('Enter your individual/company tax pin*') }}<span title="Required" class="text-danger">*</span></label>
+
+                                                <div class="col-md-5">
+                                                    <input required class="text-left form-control" type="text" name="tax_pin">
+
+
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="row mb-1">
+                                                <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Upload Id/Passport') }}<span title="Required" class="text-danger">*</span></label>
+
+                                                <div class="col-md-6">
+                                                    <div class="upload-btn-wrapper ml-2">
+                                                        <button class="btnUp_listing mr-2"> Id / Passport
+                                                            <img src="images/up.svg" width="24px"> </button>
+                                                        <input required="" type="file" name="id_passport" />
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row mb-3">
+                                                <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Upload Pin') }}<span title="Required" class="text-danger"></span></label>
+
+                                                <div class="col-md-6">
+                                                    <div class="upload-btn-wrapper ml-2">
+                                                        <button class="btnUp_listing mr-2"> Pin
+                                                            <img src="images/up.svg" width="24px"> </button>
+                                                        <input type="file" name="pin" />
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="row mb-3">
+                                                <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Potential Investment Range') }}<span title="Required" class="text-danger"></span></label>
+
+                                                <div class="col-md-6">
+
+                                                    <div class="dropdown show d-block ml-2">
+                                                        <a class="mile btn mt-2 py-1 w-75 dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            Select
+                                                        </a>
+                                                        <div class="dropdown-menu py-0" aria-labelledby="dropdownMenuLink">
+                                                            <li style="list-style-type: none;" class="mt-3 nav-item p-0 text-secondary">
+
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c1');" class="mr-2" type="checkbox" name="inv_range[]" value="0-10000" id="inv_range">$0-$10000</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c1');" class="mr-2" type="checkbox" name="inv_range[]" value="10000-100000">$10000-$100000</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c1');" class="mr-2" type="checkbox" name="inv_range[]" value="100000-250000">$100000-$250000</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c1');" class="mr-2" type="checkbox" name="inv_range[]" value="250000-500000">$250000-$500000</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c1');" class="mr-2" type="checkbox" name="inv_range[]" value="500000-">$500000+</a>
+
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                    <p class="text-danger ml-2 small" id="sudo"></p>
+
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <div class="row mb-3">
+                                                <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Which industries are you interested in investing?') }}<span title="Required" class="text-danger"></span></label>
+
+                                                <div class="col-md-6">
+
+                                                    <div class="dropdown show d-block ml-2">
+                                                        <a class="mile btn mt-2 py-1 w-75 dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            Select
+                                                        </a>
+                                                        <div class="dropdown-menu py-0" aria-labelledby="dropdownMenuLink">
+                                                            <li style="list-style-type: none;" class="mt-3 nav-item p-0 text-secondary">
+
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Agriculture">Agriculture</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Arts / Culture">Arts/Culture</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Auto">Auto</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Sports/Gaming">Sports/Gaming</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Real State">Real State</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Food">Food</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Legal">Legal</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Security">Security</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Media / Internet">Media/Internet</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Fashion">Fashion</a>
+
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Technology / Communications">Technology/Communications</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[][]" value="Retail">Retail</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[]" value="Finance/Accounting">Finance/Accounting</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[]" value="Pets">Pets</a>
+                                                                <a class="pr-0 py-1" style="font-size:13px;" class="dropdown-item">
+                                                                    <input onchange="inv_record('c2');" class="mr-2" type="checkbox" name="interested_cats[]" value="Domestic (Home Help etc)">Domestic (Home Help etc)</a>
+
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                    <p class="text-danger ml-2 small" id="sudo2"></p>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row mb-3">
+                                                <label for="password" class="col-md-12 col-form-label text-md-left">{{ __('Please Enter details of your past investments & track records') }}<span title="Required" class="text-danger"></span></label>
+
+                                                <div class="col-md-12">
+                                                    <textarea name="past_investment" rows="2" cols="50"></textarea>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row mb-3">
+                                                <label for="password" class="col-md-12 col-form-label text-md-left">{{ __('Please Enter your current website or web presence') }}<span title="Required" class="text-danger"></span></label>
+
+                                                <div class="col-md-12">
+                                                    <input type="text" name="website" class="w-75" />
+
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="row w-75">
+                                                <div class="col-md-1">
+                                                    <input id="password" type="checkbox" class=" " name="terms" required>
+                                                </div>
+
+                                                <div class="col-md-10">
+                                                    <p style="font-family:system-ui;" class="text-secondary small mb-0">I have read and agree to the<a class="small d-inline" target="_black" href="terms">Terms of Use</a> and<a class="small d-inline" target="_black" href="privacy-policy">Privacy Policy</a></p>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row mb-4">
+                                                <div class="col-md-12 text-center">
+                                                    <button id="b2" onclick="event.preventDefault();inv_range_check();" class="mt-3 w-25 mx-auto btn px-2 create">
+                                                        {{ __('Create account') }}
+                                                    </button>
+
+                                                    <button id="b1" type="submit" class="collapse mt-3 w-25 mx-auto btn px-2 create">
+                                                        {{ __('Create account') }}
+                                                    </button>
+                                                </div>
+
+
+
+
+
+                                            </div>
+                                        </form>
 
                                     </div>
 
@@ -1718,49 +1718,48 @@
         }
 
         function inv_range_check(event) {
-    var checked  = '';
-    [...document.querySelectorAll('input[name="inv_range"]:checked')]
-   .forEach((cb) => checked = checked+cb.value+',');
+            var checked = '';
+            [...document.querySelectorAll('input[name="inv_range"]:checked')]
+            .forEach((cb) => checked = checked + cb.value + ',');
 
-        var ids = checked;
-        if(ids == '') {
-        //$.alert({title: 'Alert!',content: 'Please select invest range!',});
-        document.getElementById('sudo').innerHTML = 'Please select invest range!';
-    }
+            var ids = checked;
+            if (ids == '') {
+                //$.alert({title: 'Alert!',content: 'Please select invest range!',});
+                document.getElementById('sudo').innerHTML = 'Please select invest range!';
+            }
 
-    [...document.querySelectorAll('input[name="interested_cats"]:checked')]
-   .forEach((cb) => checked = checked+cb.value+',');
+            [...document.querySelectorAll('input[name="interested_cats"]:checked')]
+            .forEach((cb) => checked = checked + cb.value + ',');
 
-        var ids2 = checked;
-        if(ids2 == '') {
-        //$.alert({title: 'Alert!',content: 'Please select invest range!',});
-        document.getElementById('sudo2').innerHTML = 'Please select an industry!';
-    }
+            var ids2 = checked;
+            if (ids2 == '') {
+                //$.alert({title: 'Alert!',content: 'Please select invest range!',});
+                document.getElementById('sudo2').innerHTML = 'Please select an industry!';
+            }
 
- }
+        }
 
- function inv_record(c) {
-  if(c == 'c1') {
-    document.getElementById('c1').value=1;
-   document.getElementById('sudo').innerHTML = '';
-}
-  if(c == 'c2'){
-    document.getElementById('c2').value=1;
-    document.getElementById('sudo2').innerHTML = '';
-}
+        function inv_record(c) {
+            if (c == 'c1') {
+                document.getElementById('c1').value = 1;
+                document.getElementById('sudo').innerHTML = '';
+            }
+            if (c == 'c2') {
+                document.getElementById('c2').value = 1;
+                document.getElementById('sudo2').innerHTML = '';
+            }
 
-  c1 = $('#c1').val();
-  c2 = $('#c2').val();
-  if(c1 ==1 && c2 ==1){
-  $('#b2').hide();
-  $('#b1').show();
-  }
- }
+            c1 = $('#c1').val();
+            c2 = $('#c2').val();
+            if (c1 == 1 && c2 == 1) {
+                $('#b2').hide();
+                $('#b1').show();
+            }
+        }
 
- function popupClose() {
-     $('.success_message').css('display','none');
- }
-
+        function popupClose() {
+            $('.success_message').css('display', 'none');
+        }
     </script>
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
