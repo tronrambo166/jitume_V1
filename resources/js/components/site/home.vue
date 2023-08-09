@@ -14,7 +14,7 @@
               <h4 style="font-size:27px; font-weight: 500px;" class="text-dark ">
                 <!--  <marquee>Invest in Agriculture | Sports/Gaming | Real State | Entertainment | Auto | Finance/Accounting Security | Pets | Domestic Help | Other</marquee> -->
               </h4>
-              <p class="h6 text text-center text-dark ">Your platform to invest in local businesses</p>
+              <p class="h1 text-center text_color_1 py-3 main_heading">Your platform to invest in local businesses</p>
 
 
             </div>
@@ -239,10 +239,10 @@
     </div>
     <!-- How it works -->
 
-    <div class="container-xl row mx-auto my-5 bg-white pt-3">
+    <div class="container-md-xl row mx-auto my-5 bg-white pt-3">
       <hr>
-      <div>
-        <h2 style="text-align:left;" class="secondary_heading"> Latest Businesses </h2>
+      <div class="pt-5">
+        <h2 style="text-align:left;" class="container-xl secondary_heading"> Latest Businesses </h2>
       </div>
 
       <div class="card-group my-4 w-100 d-md-flex justify-content-center">
@@ -250,11 +250,11 @@
         <div v-for="( result, index ) in results" class="m-2 listing">
           <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
 
-            <video v-if="result.file" controls style="width:450px; height:230px;" alt="">
+            <video v-if="result.file" controls style="width:100%; height:230px;" alt="">
               <source :src="result.file" type="video/mp4">
             </video>
 
-            <img v-else :src="result.image" style="width:450; height:230px" class="card-img-top" alt="" />
+            <img v-else :src="result.image" style="width:100%; height:230px" class="card-img-top" alt="" />
 
             <div class="p-1 pb-2">
 

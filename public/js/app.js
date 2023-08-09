@@ -10364,6 +10364,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -10376,7 +10378,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     console.log(this.$router.currentRoute.path);
     document.getElementById('c_to_ac').innerHTML = 'Add Your Service';
     $('#call_to').html('');
-    $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+    $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
   },
   methods: {
     search: function search() {
@@ -10418,7 +10420,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     replaceText: function replaceText() {
       if (this.$router.currentRoute.path == '/services' || this.$router.currentRoute.path == '/serviceResults') {
         $('#call_to').html('');
-        $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+        $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
       }
     }
   },
@@ -68006,7 +68008,7 @@ var render = function () {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "container-xl row mx-auto my-5 bg-white pt-3" },
+        { staticClass: "container-md-xl row mx-auto my-5 bg-white pt-3" },
         [
           _c("hr"),
           _vm._v(" "),
@@ -68034,7 +68036,7 @@ var render = function () {
                         ? _c(
                             "video",
                             {
-                              staticStyle: { width: "450px", height: "230px" },
+                              staticStyle: { width: "100%", height: "230px" },
                               attrs: { controls: "", alt: "" },
                             },
                             [
@@ -68045,7 +68047,7 @@ var render = function () {
                           )
                         : _c("img", {
                             staticClass: "card-img-top",
-                            staticStyle: { width: "450", height: "230px" },
+                            staticStyle: { width: "100%", height: "230px" },
                             attrs: { src: result.image, alt: "" },
                           }),
                       _vm._v(" "),
@@ -68103,9 +68105,11 @@ var staticRenderFns = [
         staticStyle: { "font-size": "27px", "font-weight": "500px" },
       }),
       _vm._v(" "),
-      _c("p", { staticClass: "h6 text text-center text-dark" }, [
-        _vm._v("Your platform to invest in local businesses"),
-      ]),
+      _c(
+        "p",
+        { staticClass: "h1 text-center text_color_1 py-3 main_heading" },
+        [_vm._v("Your platform to invest in local businesses")]
+      ),
     ])
   },
   function () {
@@ -68459,11 +68463,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
+    return _c("div", { staticClass: "pt-5" }, [
       _c(
         "h2",
         {
-          staticClass: "secondary_heading",
+          staticClass: "container-xl secondary_heading",
           staticStyle: { "text-align": "left" },
         },
         [_vm._v(" Latest Businesses ")]
@@ -71769,9 +71773,14 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container", attrs: { id: "" } }, [
-    _c("div", { staticClass: "mb-5 row service_img mx-auto text-center" }, [
-      _c("div", { staticClass: "col-sm-12 text-center" }, [
+  return _c("div", { staticClass: "row service_img mx-auto text-center" }, [
+    _c(
+      "div",
+      {
+        staticClass: "container-xl col-sm-12 text-center p-5",
+        staticStyle: { "min-height": "600px" },
+      },
+      [
         _c("div", { staticClass: "py-5" }),
         _vm._v(" "),
         _vm._m(0),
@@ -71779,7 +71788,7 @@ var render = function () {
         _c(
           "form",
           {
-            staticClass: "w-100",
+            staticClass: "container w-100 mb-5 pb-5",
             attrs: { id: "form", method: "post" },
             on: {
               submit: function ($event) {
@@ -71790,8 +71799,8 @@ var render = function () {
           },
           [_vm._m(1), _vm._v(" "), _vm._m(2)]
         ),
-      ]),
-    ]),
+      ]
+    ),
   ])
 }
 var staticRenderFns = [
@@ -71799,7 +71808,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-5 mb-4 w-50 mx-auto text-center" }, [
+    return _c("div", { staticClass: "mt-5 mb-5 pb-2 mx-auto text-center" }, [
       _c(
         "h2",
         {
@@ -71811,7 +71820,7 @@ var staticRenderFns = [
             "text-shadow": "3px 3px #2a2a2c",
           },
         },
-        [_vm._v("\n                    Looking for...\n                ")]
+        [_vm._v("\n                Looking for...\n            ")]
       ),
     ])
   },
@@ -71822,14 +71831,14 @@ var staticRenderFns = [
     return _c(
       "div",
       {
-        staticClass: "mx-auto text-center row py-4 rounded text-center",
-        staticStyle: { width: "85%" },
+        staticClass:
+          "w-100 text-center py-1 rounded text-center d-md-flex justify-content-between bg-white",
       },
       [
         _c(
           "div",
           {
-            staticClass: "py-2 col-sm-3 bg-white",
+            staticClass: "px-2 py-2 bg-white",
             staticStyle: { "border-radius": "35px 0 0 35px" },
           },
           [
@@ -71846,9 +71855,9 @@ var staticRenderFns = [
           ]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "py-2 col-sm-3 bg-white" }, [
+        _c("div", { staticClass: "px-2 py-2 bg-white" }, [
           _c("input", {
-            staticClass: "bar bg-white form-control d-inline",
+            staticClass: "border-none bar bg-white form-control d-inline",
             staticStyle: { border: "none", height: "42px" },
             attrs: {
               id: "searchbox",
@@ -71862,88 +71871,99 @@ var staticRenderFns = [
           }),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "py-2 col-sm-3 bg-white" }, [
-          _c("div", { staticClass: "dropdown" }, [
-            _c(
-              "select",
-              {
-                staticClass: "mt-2 border-none form-control",
-                attrs: { name: "category", required: "" },
-              },
-              [
-                _c(
-                  "option",
-                  {
-                    staticClass: "form-control",
-                    attrs: { hidden: "", value: "" },
-                  },
-                  [_vm._v("Services")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "option",
-                  {
-                    staticClass: "form-control",
-                    attrs: { value: "Business Planning" },
-                  },
-                  [_vm._v("Business Planning")]
-                ),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "IT" } }, [_vm._v("IT")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "Legal Project Management" } }, [
-                  _vm._v("Legal Project Management"),
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "Branding and Design" } }, [
-                  _vm._v("Branding and Design "),
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "Auto" } }, [_vm._v("Auto")]),
-                _vm._v(" "),
-                _c(
-                  "option",
-                  {
-                    attrs: {
-                      value:
-                        "Finance, Accounting & \n            Tax Marketing",
-                    },
-                  },
-                  [
-                    _vm._v(
-                      "Finance, Accounting &\n                                    Tax Marketing"
-                    ),
-                  ]
-                ),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "Tax Marketing" } }, [
-                  _vm._v("Tax Marketing"),
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "Public Relations" } }, [
-                  _vm._v("Public Relations"),
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "Other" } }, [_vm._v("Other")]),
-              ]
-            ),
-          ]),
-        ]),
-        _vm._v(" "),
         _c(
           "div",
           {
-            staticClass: "bg-white col-sm-3 py-2",
-            staticStyle: { "border-radius": "0 35px 35px 0" },
+            staticClass:
+              "px-2 py-2 bg-white d-flex justify-centent-evenly align-items-center",
           },
           [
+            _c("div", { staticClass: "dropdown d-flex align-items-center" }, [
+              _c(
+                "select",
+                {
+                  staticClass: "border-none form-control",
+                  attrs: { name: "category", required: "" },
+                },
+                [
+                  _c(
+                    "option",
+                    {
+                      staticClass: "form-control",
+                      attrs: { hidden: "", value: "" },
+                    },
+                    [_vm._v("Services")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "option",
+                    {
+                      staticClass: "form-control",
+                      attrs: { value: "Business Planning" },
+                    },
+                    [_vm._v("Business Planning")]
+                  ),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "IT" } }, [_vm._v("IT")]),
+                  _vm._v(" "),
+                  _c(
+                    "option",
+                    { attrs: { value: "Legal Project Management" } },
+                    [_vm._v("Legal Project Management")]
+                  ),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Branding and Design" } }, [
+                    _vm._v("Branding and Design "),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Auto" } }, [_vm._v("Auto")]),
+                  _vm._v(" "),
+                  _c(
+                    "option",
+                    {
+                      attrs: {
+                        value:
+                          "Finance, Accounting & \n            Tax Marketing",
+                      },
+                    },
+                    [
+                      _vm._v(
+                        "Finance, Accounting &\n                                Tax Marketing"
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Tax Marketing" } }, [
+                    _vm._v("Tax Marketing"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Public Relations" } }, [
+                    _vm._v("Public Relations"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Other" } }, [
+                    _vm._v("Other"),
+                  ]),
+                ]
+              ),
+            ]),
+            _vm._v(" "),
             _c(
-              "button",
+              "div",
               {
-                staticClass: "px-sm-3 px-1 searchListing float-right",
-                attrs: { type: "submit" },
+                staticClass: "bg-white d-flex align-items-center px-2",
+                staticStyle: { "border-radius": "0 35px 35px 0" },
               },
-              [_vm._v("Search")]
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "px-sm-3 px-1 searchListing py-1",
+                    attrs: { type: "submit" },
+                  },
+                  [_vm._v("Search")]
+                ),
+              ]
             ),
           ]
         ),
