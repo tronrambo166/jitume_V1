@@ -49,7 +49,7 @@
 
 <body class="">
 
-    <div class="app " style="background: white;">
+    <div class="app" style="background: white; height:100%;">
 
 
         <!-- Layout -->

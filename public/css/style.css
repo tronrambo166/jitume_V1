@@ -139,12 +139,41 @@
         overflow: hidden;
     }
 
+    .services_text {
+        position: relative;
+    }
+
+    .text-overlay {
+        border-radius: 10px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 1rem;
+        font-size: 2rem;
+        font-weight: 100;
+        color:
+            rgba(81, 109, 114, 0.096);
+        backdrop-filter: blur(8px) brightness(80%);
+    }
+
     /* .home_bg {} */
 
     .service_img {
+        height: 100%;
         background: url(../images/service-bg.jpeg) no-repeat;
-        background-size: 100% 530px;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
         background-position: center center;
+    }
+
+    @media (max-width: 768px) {
+        .service_img {
+            height: 100%;
+            background: url(../images/service-bg-small.jpeg) no-repeat;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center center;
+        }
     }
 
     .upload-btn-wrapper {
@@ -804,7 +833,7 @@
 
 
     .primary_bg {
-        background: #03380d;
+        background: #001C30;
         /*#001C30*/
     }
 
