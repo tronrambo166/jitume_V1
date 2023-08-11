@@ -41,41 +41,49 @@
                     <div class=" card"  @click="select(9.99)" id="one" >
                         <p class="text-center font-weight-bold h5 pt-2">$9.99</p>
                     <p class="text-center">10 free "Start conversations" per month from any range.</p>
-                </div> </div>
+
+                    <a @mouseleave="leave()" @mouseover="hover()" style="border: 1px solid black;" id="convBtn1"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
+                </div>
+                 </div>
 
                 <div class="col-sm-4 "    >
                     <div class=" card" @click="select(29.99)" id="two">
                         <p class="text-center font-weight-bold h5 pt-2">$29.99</p>
                     <p class="text-center">Silver + access to all data from one chosen range.</p>
+                    <a @mouseleave="leave()" @mouseover="hover2()" style="border: 1px solid black;" id="convBtn2"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
                 </div> </div>
 
                 <div class="col-sm-4 "  >
                     <div class=" card"  @click="select(69.99)" id="three">
                         <p class="text-center font-weight-bold h5 pt-2">$69.99</p>
                     <p class="text-center">Sivler access + Gold access to all data.</p>
+                    <a @mouseleave="leave()" @mouseover="hover3()" style="border: 1px solid black;" id="convBtn3"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
                 </div> </div>
 
             </div>
 
 
 
-            <div id="yearly" class=" row w-75 mx-auto mb-5" style="display:none;">
+            <div id="yearly" class=" row w-75 mx-auto" style="display:none;">
                 <div class="col-sm-4">
                     <div class=" card"  @click="select(95.99)" id="four" >
                         <p class="text-center font-weight-bold h5 pt-2">$95.99</p>
                     <p class="text-center">10 free "Start conversations" per month from any range.</p>
+                    <a @mouseleave="leave()" @mouseover="hover4()" style="border: 1px solid black;" id="convBtn4"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
                 </div> </div>
 
                 <div class="col-sm-4 ">
                     <div class=" card" @click="select(287.99)" id="five" >
                         <p class="text-center font-weight-bold h5 pt-2">$287.99</p>
                     <p class="text-center">Silver + access to all data from one chosen range.</p>
+                    <a @mouseleave="leave()" @mouseover="hover5()" style="border: 1px solid black;" id="convBtn5"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
                 </div> </div>
 
                 <div class="col-sm-4 ">
                     <div class=" card" @click="select(671.99)" id="six" >
                         <p class="text-center font-weight-bold h5 pt-2">$671.99</p>
                     <p class="text-center">Sivler access + Gold access to all data.</p>
+                    <a @mouseleave="leave()" @mouseover="hover6()" style="border: 1px solid black;" id="convBtn6"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
                 </div> </div>
 
             </div>
@@ -202,6 +210,28 @@
 },
  make_session(id){
             sessionStorage.setItem('invest',id);
+        },
+
+        hover(){
+            $('#convBtn1').css('background','#72c537');
+        },
+        hover2(){
+            $('#convBtn2').css('background','#72c537');
+        },
+        hover3(){
+            $('#convBtn3').css('background','#72c537');
+        },
+        hover4(){
+            $('#convBtn4').css('background','#72c537');
+        },
+        hover5(){
+            $('#convBtn5').css('background','#72c537');
+        },
+        hover6(){
+            $('#convBtn6').css('background','#72c537');
+        },
+        leave(){
+            $('.convBtn').css('background','');
         },
 
 

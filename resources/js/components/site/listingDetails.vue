@@ -4,9 +4,9 @@
              
     
         <div class="heading row my-3"> 
-        <div class="col-sm-7">
+        <div class="col-sm-6">
              <div class="grid images_3_of_2 rounded listing px-3">
-                <img style="width:100%;height:405px" class="shadow card" 
+                <img style="width:100%;max-height:355px" class="shadow card" 
                 :src="form.image" alt="" />
                     
                  <div class="pl-2">
@@ -42,11 +42,6 @@
                             
                       
                 <div class="Overview" id="Overview">
-                    
-                <div  class="w-75 eqp-invest my-4 text-left">
-                <h4 class=" my-3">About Sodaa</h4>
-                <p class=" small text-justify-center  ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
-               </div>
 
                     <p><span class="mt-1 rounded"><i class="mr-2 fa fa-phone"></i>{{form.contact}}</span></p>
                     </div>
@@ -56,9 +51,17 @@
 
                     </div>
 
+         </div>
+
+
+         <div class="col-sm-3"> 
+            <div  class=" eqp-invest my-4 text-left">
+                <h4 class=" my-3">About Sodaa</h4>
+                <p class=" small text-justify-center  ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
+               </div>
          </div> 
 
-         <div class="col-sm-5">
+         <div class="col-sm-3">
 
            <!--  <div class="card bg-light w-75 mx-auto py-3">
              <h5 class="mx-4 text-secondary shadow border border-light py-2 d-block text-center">Seed investors spot open
@@ -78,17 +81,17 @@
          </div> -->
 
 
-          <div v-if="!form.conv" class="card bg-light w-75 mx-auto py-3">
+          <div v-if="!form.conv" class="card bg-light w-100 mx-auto py-3">
 
                 <h5 class="font-weight-bold ml-4 border border-light py-2 d-block ">Business Home Window <p class="d-inline "></p>
                 </h5>
 
                <div v-if="auth_user" class="eqp-invest">
-                <a data-target="#investModal" data-toggle="modal" class="business_btns py-2 text-center text-light buttonListing my-3">Unlock More Business Information To Invest</a>
+                <a data-target="#investModal" data-toggle="modal" class="business_btns py-2 text-center text-light buttonListing my-2">Unlock More Business Information To Invest</a>
 
-                <!-- <router-link :to="`/subscribe/${form.listing_id}`" class="text-light text-center buttonListing my-3 py-2">Subscribe</router-link>
+                 <router-link :to="`/subscribe/${form.listing_id}`" class="business_btns py-2 text-center text-light buttonListing my-2">Subscribe</router-link>
 
-                <router-link :to="`/donate_eqp/${form.listing_id}`" class="text-light text-center buttonListing my-3 py-2">Donate</router-link>
+               <!-- <router-link :to="`/donate_eqp/${form.listing_id}`" class="text-light text-center buttonListing my-3 py-2">Donate</router-link>
                  -->
 
   <!-- INVEST MODAL -->
@@ -122,10 +125,10 @@
        
                  <input type="text" hidden id="price" name="price" :value="form.investors_fee">
                   <input type="number" hidden id="listing_id" name="listing_id" :value="form.listing_id">
-       <button @click="make_session(form.listing_id);" type="submit" class=" btn-primary w-25 d-inline  px-3 font-weight-bold" >
+       <button @click="make_session(form.listing_id);" type="submit" class=" btn rounded btn-primary w-25 d-inline  px-3 font-weight-bold mr-3" >
           Ok
         </button>
-        <button @click="modal_hide()" type="button" class=" btn-danger w-25 d-inline px-3 font-weight-bold m-0 " data-dismiss="modal" aria-label="Close">
+        <button @click="modal_hide()" type="button" class=" btn-danger w-25 btn rounded d-inline px-3 font-weight-bold m-0 " data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">Cancel</span>
         </button>
 
@@ -155,24 +158,24 @@
          </div>
 
 
-         <div v-else class="bg-light w-75 mx-auto py-3 text-center">
+         <div v-else class="bg-light w-100 mx-auto py-3 text-center">
 
 
                <div  class="eqp-invest">
 
                 
 
-                <a @mouseleave="leave()" @mouseover="hover()" style="border: 1px solid black;" id="convBtn1"  class="py-1 convBtn text-center mx-auto w-75 btn  px-4">Message Business Owner</a>
+                <a @mouseleave="leave()" @mouseover="hover()" style="border: 1px solid black;" id="convBtn1"  class="py-1 convBtn text-center mx-auto w-75 btn  px-2">Message Business Owner</a>
 
-                <router-link to="/services"  @mouseleave.native="leave()" @mouseover.native="hover2" style="border: 1px solid black;" id="convBtn2"  class="py-1 convBtn my-3 text-center mx-auto w-75 btn  px-4">Download Financial Statements</router-link>
+                <router-link to="/services"  @mouseleave.native="leave()" @mouseover.native="hover2" style="border: 1px solid black;" id="convBtn2"  class="py-1 convBtn my-3 text-center mx-auto w-75 btn  px-2">Download Financial Statements</router-link>
                </div>
 
 
                <div  class="eqp-invest">
-                <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover3()" @click="download_business()" id="convBtn3" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4">Download Business Documentation</a>
+                <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover3()" @click="download_business()" id="convBtn3" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-2">Download Business Documentation</a>
 
 
-                <router-link :to="`/business-milestone/${form.listing_id}`"  @mouseleave.native="leave()" @mouseover.native="hover4" style="border: 1px solid black;" id="convBtn4"  class="py-1 convBtn my-3 text-center mx-auto w-75 btn  px-4">View Business Milestones</router-link>
+                <router-link :to="`/business-milestone/${form.listing_id}`"  @mouseleave.native="leave()" @mouseover.native="hover4" style="border: 1px solid black;" id="convBtn4"  class="py-1 convBtn my-3 text-center mx-auto w-75 btn  px-2">View Business Milestones</router-link>
 
                 <div v-if="running" class="Invest-Payout">
                 <div class="w-75 mx-auto row">
@@ -206,7 +209,7 @@
                     
                 </div>
 
-                 <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover5()" @click="bidCommits()" id="convBtn5" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4">Invest</a>
+                 <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover5()" @click="bidCommits()" id="convBtn5" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-2">Invest</a>
 
                 <div class="w-75 mx-auto row">
                   <div class="col-sm-12 px-0 mt-3">
@@ -230,7 +233,7 @@
                 </div>
 
 
-                  <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover6()" @click="bidCommitsEQP()" id="convBtn6" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-4">Invest With Equpment</a>
+                  <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover6()" @click="bidCommitsEQP()" id="convBtn6" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-2">Invest With Equpment</a>
 
                 </div>
 
@@ -306,10 +309,10 @@
                   <input type="number" hidden id="listing_id" name="listing_id" :value="form.listing_id">
 
 
-        <button @click="make_session(form.listing_id);" type="submit" class=" btn-primary w-25 d-inline  px-3 font-weight-bold" >
+        <button @click="make_session(form.listing_id);" type="submit" class=" btn-primary w-25 d-inline  btn rounded mr-3 px-3 font-weight-bold" >
           Ok
         </button>
-        <button type="button" class=" btn-danger w-25 d-inline px-3 font-weight-bold m-0 " data-dismiss="modal" aria-label="Close">
+        <button type="button" class=" btn rounded btn-danger w-25 d-inline px-3 font-weight-bold m-0 " data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">Cancel</span>
         </button>
 

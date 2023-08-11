@@ -322,7 +322,7 @@ foreach($ids as $id){
 }
 }
 if($conv!=null)$conv = true;else $conv=false;
-return response()->json([ 'data' => $results, 'conv'=>$conv] );
+return response()->json([ 'data' => $results, 'conv'=>$conv, 'count'=>count($results)] );
 }
 
 

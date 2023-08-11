@@ -9,13 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
+<!-- Slider CSS -->
     <style type="text/css">
-        .btn-success {
-            background: #72c537;
-            color: white;
-        }
-    </style>
-
+        .btn-success { background: #72c537;    color: white;} 
+   
+  </style>
+<!-- Slider CSS -->
 
 
     <link href="slider/dist/nouislider.css" rel="stylesheet">
@@ -95,7 +94,7 @@
                         @if(Auth::check())
                         <div class="ml-3 ml-md-0 d-flex">
 
-                            <div class="nav-item">
+                            <div class="nav-item mr-4">
                                 <a href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1 "><b>Dashboard</b></a>
                             </div>
 
@@ -111,7 +110,7 @@
 
                         <div class="ml-3 ml-md-0 d-flex">
 
-                            <div class="nav-item">
+                            <div class="nav-item mr-4">
 
                                 <a href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><b>Dashboard</b></a>
                             </div>
@@ -310,7 +309,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-sm-3 d-flex justify-content-center">
+            <div class="col-12 col-sm-1 d-flex justify-content-center">
                 <ul class="text-light">
                     <li style="list-style-type:none;">
                         @if(Session::has('business_auth') && Session::get('business_auth') == true)
@@ -337,15 +336,26 @@
                 </ul>
             </div>
 
-            <div class="col-12 col-sm-3 pt-2 d-flex justify-content-center">
-                <ul class="text-light">
+            <div class="col-12 col-sm-5 pt-2 d-flex justify-content-center">
+               <ul class="text-light float-left w-25 p-0">
+                <li style="list-style-type:none;" class="my-2">
+                <a class="d-inline" href="twitter.com" target="_black"><i class="fa fa-twitter fa-2x bg-light p-1 rounded"></i></a>
+                <a class="d-inline" href="twitter.com" target="_black"><i class="fa fa-instagram fa-2x bg-light text-secondary p-1 rounded"></i></a>
+                </li>
+
+                <li style="list-style-type:none;">
+                <a class="d-inline" href="twitter.com" target="_black"><i class="fa fa-youtube fa-2x bg-light text-danger p-1 rounded"></i></a>
+                <a class="d-inline" href="twitter.com" target="_black"><i style="margin-left:2px;" class="px-2 fa fa-facebook fa-2x bg-light text-info p-1 rounded"></i></a>
+                </li>
+
+
+                </ul>
+                 <ul class="text-light float-right w-75 px-4">
 
                     <h3 class="h3">Contact Us</h3>
 
-                    <li style="list-style-type:none;">
-                        <span class="footer_txt text-light">
-                            E-Mail:<a class="footer_txt text-light d-inline" href="mailto:info@thedtagency.com"> info@thedtagency.com</a>
-                        </span>
+                    <li style="list-style-type:none;">                       
+                        <a class="footer_txt text-light d-inline small" href="mailto:info@thedtagency.com"> E-Mail: info@thedtagency.com</a>
 
                     </li>
 
@@ -1126,7 +1136,7 @@
 
                     <div class="card-header w-100">
                         <div class="card-header row my-2">
-                            <button style="border: 1px solid darkblue;background: navy;" class="ml-2 w-50 text-center text-white font-weight-bold btn px-4 mr-2">{{ __('Join Jitume') }}</button>
+                            <button style="border: 1px solid darkblue;background: #001C30;" class="ml-2 w-50 text-center text-white font-weight-bold btn px-4 mr-2">{{ __('Join Jitume') }}</button>
                         </div>
 
                         <button style="border: 1px solid darkblue;background: #72c537;" id="logins" onclick="login()" class=" w-25 btn   px-4 mr-2">{{ __('Log In') }}</button>

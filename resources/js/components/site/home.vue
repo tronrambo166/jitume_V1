@@ -14,7 +14,7 @@
               <h4 style="font-size:27px; font-weight: 500px;" class="text-dark ">
                 <!--  <marquee>Invest in Agriculture | Sports/Gaming | Real State | Entertainment | Auto | Finance/Accounting Security | Pets | Domestic Help | Other</marquee> -->
               </h4>
-              <p class="h1 text-center text_color_1 py-3 main_heading">Your platform to invest in local businesses</p>
+              <p class="h4 text-center text_color_1 py-3 main_heading">Your platform to invest in local businesses</p>
 
 
             </div>
@@ -70,7 +70,7 @@
 
               <div class="row" style="">
                 <div id="result_list" class="text-left"
-                  style="display: none;width:30%; z-index: 1000;height: 600px;position: absolute; margin-left: 174px;top: 139px;">
+                  style="display: none;width:30%; z-index: 1000;height: 600px;position: absolute; margin-left: 174px;top: 227px;">
 
                 </div>
               </div>
@@ -123,10 +123,10 @@
 
       </div>
 
-      <div class="categories cats py-0">
+      <div class="categories cats my-0 py-0">
         <ul class="text-center py-0">
           <li style="list-style-type:none;" class="nav-item py-0 "> <router-link to="category/Renewable-Energy"
-              class="py-0 d-inline h6 renewable_text" style="">Renewable Energy </router-link>
+              class="py-0 my-0 d-inline h6 renewable_text" style="">Renewable Energy </router-link>
           </li>
         </ul>
       </div>
@@ -138,7 +138,7 @@
 
 
 
-    <!-- HOW IT WORKS -->
+   <!-- HOW IT WORKS 
 
     <div class=" mt-4 border border-bottom-dark bg-white"></div>
 
@@ -237,38 +237,38 @@
       </div>
 
     </div>
-    <!-- How it works -->
+     How it works  -->
 
-    <div class="container-md-xl row mx-auto my-5 bg-white pt-3">
+    <div class="container-md-xl row mx-auto my-2 bg-white pt-3">
       <hr>
-      <div class="pt-5">
+      <!-- <div class="pt-1  w-75 mx-auto">
         <h2 style="text-align:left;" class="container-xl secondary_heading"> Latest Businesses </h2>
-      </div>
+      </div> -->
 
-      <div class="card-group my-4 w-100 d-md-flex justify-content-center">
+      <div class="card-group my-2 w-75 mx-auto d-md-flex justify-content-center">
 
-        <div v-for="( result, index ) in results" class="m-2 listing">
+        <div v-for="( result, index ) in results" class=" listing col-md-3">
           <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
 
-            <video v-if="result.file" controls style="width:100%; height:230px;" alt="">
+            <video v-if="result.file" controls style="width:100%; height:104px;" alt="">
               <source :src="result.file" type="video/mp4">
             </video>
 
-            <img v-else :src="result.image" style="width:100%; height:230px" class="card-img-top" alt="" />
+            <img v-else :src="result.image" style="width:100%; height:104px" class="card-img-top" alt="" />
 
             <div class="p-1 pb-2">
 
-              <h4 class="card_heading mb-0 py-3">{{ result.name }} </h4>
+              <h5 class="card_heading mb-0 py-2">{{ result.name }} </h5>
 
-              <p class="card_text pt-1"><i class="mr-2 fa fa-map-marker"></i>{{ result.location }}</p>
+              <p class="card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ result.location }}</p>
 
               <p class="card_text"><span class="rounded"><i class="mr-2 fa fa-phone"></i>{{ result.contact }}</span></p>
 
             </div>
 
-            <div class="amount p-1 pb-2">
-              <h6 class="font-weight-bold">Amount: <span class=""><b>${{ result.investment_needed
-              }}</b></span></h6>
+            <div class="amount p-1 pb-0">
+              <p class="font-weight-bold">Amount: <span class="font-weight-light"><b>${{ result.investment_needed
+              }}</b></span></p>
             </div>
 
           </router-link>
@@ -279,7 +279,141 @@
 
     </div>
 
-    <div class="row mt-2 border border-bottom-dark"></div>
+    
+     <!-- HOW IT WORKS -->
+
+    <div class=" mt-4 border border-bottom-dark bg-white"></div>
+
+    <div class="container-xl row mx-auto my-5 bg-white pt-3">
+
+
+      <div class="elementor-top-column elementor-element elementor-element-ce6f4c7" data-id="ce6f4c7"
+        data-element_type="column">
+
+        <div class=" elementor-column-wrap elementor-element-populated">
+
+          <div class="elementor-widget-wrap row">
+
+            <div class=" elementor-element elementor-element-ccc6233 elementor-widget elementor-widget-listeo-headline"
+              data-id="ccc6233" data-element_type="widget" data-widget_type="listeo-headline.default">
+
+              <div class="text-dark mb-md-3">
+                <h3 style="text-align:center;"
+                  class="pb-2 secondary_heading h2 headline  headline-aligned-to-left  headline-box "> How Jitume Works? </h3>
+              </div>
+
+            </div>
+
+            <div class="elementor-element elementor-element-5df092b elementor-widget elementor-widget-listeo-iconbox"
+              data-id="5df092b" data-element_type="widget" data-widget_type="listeo-iconbox.default">
+              <div class="elementor-widget-container">
+
+                <div class="icon-box-v3 row mx-auto">
+
+                  <div class="col-sm-1"></div>
+
+                  <div class="ibv3-icon col-sm-2 text-center">
+                   <img width="60px" height="75px" src="images/randomIcons/loc.png">
+                   <p class="text-center mt-3 small">Enter Your Location</p>
+                  </div>
+
+
+                  <div class="ibv3-icon col-sm-2 text-center">
+                   <img width="60px" height="75px" src="images/randomIcons/cat.png">
+                   <p class="text-center mt-3 small">Choose a Category</p>
+                  </div>
+
+                  <div class="ibv3-icon col-sm-2 text-center">
+                   <img width="60px" height="75px" src="images/randomIcons/results.webp">
+                   <p class="text-center mt-3 small">Get Results in Your Yocation</p>
+                  </div>
+
+                  <div class="ibv3-icon col-sm-2 text-center">
+                   <img width="60px" height="75px" src="images/randomIcons/choose.png">
+                   <p class="text-center mt-3 small">Choose Your Business</p>
+                  </div>
+
+                  <div class="ibv3-icon col-sm-2 text-center">
+                   <img width="60px" height="75px" src="images/randomIcons/grow.png">
+                   <p class="text-center mt-3 small">Grow Your Business Together</p>
+                  </div>
+
+                  <div class="col-sm-1"></div>
+
+                </div>
+
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="row w-75 mx-auto my-5  pl-md-5">
+        <div class="text-dark mb-md-3">
+          <h2 style="text-align:center;" class="secondary_heading h2 headline  headline-aligned-to-left  headline-box pb-2">
+            The Show </h2>
+        </div>
+        <video poster="images/video_preview.png" style="" class="video_player elementor-video" src="videos/Jitume.mp4"
+          controls="" controlslist="nodownload"></video>
+      </div>
+
+    </div>
+    <!-- How it works -->
+
+    <!-- SLider test -->
+<!--     <div class="slider">
+    <div class="slider__wrapper" >
+      
+        <div v-for="( result, index ) in results" class="slider__item listing col-md-3">
+
+        <div style="height: 250px; "> 
+
+
+         <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
+
+            <video v-if="result.file" controls style="width:100%; height:104px;" alt="">
+              <source :src="result.file" type="video/mp4">
+            </video>
+
+            <img v-else :src="result.image" style="width:100%; height:104px" class="card-img-top" alt="" />
+
+            <div class="p-1 pb-2">
+
+              <h5 class="card_heading mb-0 py-2">{{ result.name }} </h5>
+
+              <p class="card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ result.location }}</p>
+
+              <p class="card_text"><span class="rounded"><i class="mr-2 fa fa-phone"></i>{{ result.contact }}</span></p>
+
+            </div>
+
+            <div class="amount p-1 pb-0">
+              <p class="font-weight-bold">Amount: <span class="font-weight-light"><b>${{ result.investment_needed
+              }}</b></span></p>
+            </div>
+
+          </router-link> 
+
+        </div>
+        </div>
+
+
+
+
+        </div>
+
+        <a class="slider__control slider__control_left" href="#" role="button"></a>
+        <a class="slider__control slider__control_right slider__control_show" href="#" role="button"></a>
+
+        </div> -->
+
+<div style="overflow:hidden" class="py-5 d-md-flex justify-content-center border border-bottom-dark"></div>
 
 
   </div>

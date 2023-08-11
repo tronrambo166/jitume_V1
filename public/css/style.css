@@ -398,6 +398,7 @@
     .convBtn {
         background-color: white;
         border-radius: 3px;
+        font-size: 12px;
     }
 
 
@@ -827,7 +828,7 @@
 
     .card_text {
         font-family: 'Roboto', sans-serif;
-        font-size: 15px;
+        font-size: 11px;
         color: #176B87 !important;
     }
 
@@ -1033,13 +1034,14 @@
     }
 
     .business_btns {
-        font-size: 12px;
+        font-size: 11px;
         padding: 0 22px;
     }
 
     .amount {
         color: black;
         font-family: math;
+        font-size: 12px;
     }
 
     .status {
@@ -1189,3 +1191,23 @@
         margin: auto;
         background: white;
     }
+
+ .noUi-target {
+    height: 10px;
+    background: black;
+ }
+ .noUi-base{
+    height: auto;
+ }
+
+ .noUi-horizontal .noUi-handle {
+    width: 23px;
+    height: 14px;
+    right: -17px;
+    top: -3px;
+}
+
+#price_high,#price_low {
+    font-size: 11px;
+    margin: auto;
+}

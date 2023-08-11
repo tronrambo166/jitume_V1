@@ -21,70 +21,92 @@
 
             <div class="content_bottom">
                 <div class="heading">
-                     <h3 class="my-5 bg-light text-center text-secondary">Listings</h3>
+                     <h3 class="my-5 font-weight-bold text-center text-secondary">Listings</h3>
                 </div>
                 <div class="clear"></div>
             </div>
 
 
-            <div class="row">
-                <div id="" class="col-sm-5 ml-3">
-                <h4 class="btn-light px-2 py-1 mb-3">Filter by Turnover</h4>
+            
 
-                <div id="slider" class="">
+             
+           <div class="row mt-4 px-3">
+            <div class="col-sm-6">
+                <!-- Price Filter -->
+                <div class="row">
+                <div class="col-sm-3"><span style="background:black;" class="btn text-light px-2 py-1 rounded">Filter by Price:</span></div>
+                <div id="" class="col-sm-5  mt-1">
+                <div id="slider" class=""> </div>
+                <div class="row mt-3">
+                <div  class="col-sm-6  mt-1">
+                <span id="price_low" class="py-0 btn btn-light"  name="min" > </span>
+                </div>
+                  <div  class="col-sm-6 mt-1 pr-0">
+                   <span id="price_high" class="float-right py-0 btn btn-light"  name="min" > </span>
+                   </div>
+                </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <a class="py-0 float-right border border-dark rounded" style="width:60px; height:30px;">
+                    <div class="row">
+                    <div class="col-6 pr-0"><p style="font-size:9px;" class="text-dark">More Filters</p> </div>
+                    <div class="col-6 px-1"> <img src="images/randomIcons/filter.jpg" width="16px;" style="margin-left:4px;">
+                    </div>
+                    </div>
+                    </a>
                     
                 </div>
 
-                <div class="row mt-5">
-                <div  class="col-sm-6 ">
-                    <span id="price_low" class="form-control"  name="min" > </span>
-                   </div>
+            </div> 
+            <div class="row"> <p class="ml-1 my-0 text-secondary small">{{count}} businesses in your location</p> </div>
+            <!-- Price Filter -->
 
-                  <div  class="col-sm-6 ">
-                    <span id="price_high" class="form-control"  name="min" > </span>
+            <div class="row">
+               <div v-for="( result, index ) in results" class="listing col-md-6 my-3">
+                    <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-4">
 
-                   </div>
-                </div>
-
-                </div>
-            </div>
-
-             
-         <div class="row mt-4">
-
-         <div v-if="this.ids =='0'">
-         <h3 class="text-center font-weight-bold btn-light btn py-3 d-block">No Results Found! </h3></div>
-             
-                <div v-for="( result, index ) in results" class="listing col-sm-4 my-5">
-                    <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-5">
-
-                     <video v-if="result.file" controls style="width:332px; height:230px" alt="">
+                     <video v-if="result.file" controls style="width:100%; height:230px" alt="">
                     <source :src="result.file" type="video/mp4">
                      </video> 
 
-                     <img v-else :src="result.image" style="width:332px; height:230px" alt=""/>
+                     <img v-else :src="result.image" style="width:100%; height:200px" alt=""/>
 
-                    <h4 class="mt-3 mb-0">{{result.name}} </h4>
-                    <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{result.location}}</p>
-                    <p class="mb-1"><span class="mt-1 rounded"><i class="mr-2 fa fa-phone"></i>{{result.contact}}</span></p>
+                    <div class="p-1 pb-2">
+                      <h5 class="card_heading mb-0 py-2">{{ result.name }} </h5>
 
-                    <div class="amount float-right text-right w-100 py-0 my-0">   
-                        <h6 class="font-weight-bold" >Amount: <span class="font-weight-light"><b>${{result.investment_needed}}</b></span></h6>
+                      <p class="card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ result.location }}</p>
+
+                      <p class="card_text"><span class="rounded"><i class="mr-2 fa fa-phone"></i>{{ result.contact }}</span></p>
                     </div>
 
+                    <div class="amount float-right text-right w-100 py-0 my-0">   
+                        <h6 class="amount font-weight-bold" >Amount: <span class="font-weight-light"><b>${{result.investment_needed}}</b></span></h6>
+                    </div>
                     </router-link>
-
-
-                    
+                  </div>   
               </div>
-                </div>
+              </div>
+
+              <div class="col-sm-6">
+                  <div class=" h-100 m-auto" style="max-height:770px;background:aliceblue;">
+                      <p class="justify-contents-center m-auto d-block text-center">MAP</p>
+                  </div>
+              </div>
+
+            </div>
+
+
+        <div class="row mt-4" v-if="this.ids =='0'">
+         <h3 class="text-center font-weight-bold btn-light btn py-3 d-block">No Results Found! </h3>
+        </div>
                 
                
-            </div>
-           </div>
+     </div>
+     </div>
            
 
-               </div>
+    </div>
    
 </template>
 
@@ -95,7 +117,8 @@ export default {
     data: () => ({
     results:[],
     ids:'',
-    empty:false
+    empty:false,
+    count:''
     }),
 
 
@@ -106,6 +129,7 @@ export default {
              //this.results = this.ids.split(",");
             axios.get('searchResults/'+t.ids).then( (data) =>{
                 t.results = data.data.data;
+                t.count = data.data.count;
                 console.log(data);
               }).catch( (error) =>{})
         },
@@ -132,7 +156,7 @@ export default {
     step: 10000,
      margin: 600,
      pips: {
-        mode: 'steps',
+        //mode: 'steps',
         stepped: true,
         density: 6
     }

@@ -146,14 +146,20 @@ public function agreeToNextmile($bidId)
             if($agree->project_manager == 1)
                 $next_vote = $next_vote+1;
             $total_vote = $total_vote+$next_vote;
-        }
+        } 
         //Vote
         if($total_vote >= 5.1)
         {   
+            try{
             $milestone = Milestones::where('listing_id',$bid->business_id)
             ->where('status','To Do')->first();
             Milestones::where('id',$milestone->id)
-            ->where('status','To Do')->update(['status' => 'In Progress']);
+            ->update(['status' => 'In Progress']);
+        }
+        catch(\Exception $e){
+            Session::put('failed',$e->getMessage());
+            return redirect('/');
+       } 
         }
 
         Session::put('login_success','Thanks for your review, you will get an email when this milestone completes!');
