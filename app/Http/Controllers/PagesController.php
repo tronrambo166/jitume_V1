@@ -331,7 +331,7 @@ $results = array();
     $listings = Listing::latest()->get();$i=1;
     foreach($listings as $listing){
         $listing->file=null;
-        if($i<5)
+        if($i<9)
          $results[] = $listing;$i++;
      }
 

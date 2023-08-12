@@ -1,7 +1,7 @@
 @extends('business.layout')
 
 @section('page')
-    <div class="container" id="">
+  <div class="container px-0" id="">
         
          @if(Session::has('success'))
         <div class="w-50 m-auto alert font-weight-bold alert-info alert-dismissible fade show" role="alert">
@@ -20,7 +20,9 @@
         </div>  @endif
 
         
-        <div class="row pt-4 w-75 m-auto">
+        <h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Add Business</h4>  
+
+        <div class="row w-75 mx-auto my-3">
            
                 <div class="col-sm-12">
                   

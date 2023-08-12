@@ -2,10 +2,10 @@
 
 @section('page')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <div class="container" id="" style="background:white;">
+  <div class="container px-0" id="" >
         
-        
-        <div class="row pt-4  m-auto">
+  <h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Add Business Milestones </h4>         
+<div class="row mx-auto px-5">
 
 <style>
 .btnUp3 {
@@ -39,9 +39,10 @@
 </style> 
     
 <!-- ADD MODAL -->
-  
+ 
+
          <div class="card-header w-100 my-3">
-           <h3>Add Milestones</h3>
+           <h5>Add Milestones</h5>
         </div>       
 
     
@@ -157,7 +158,7 @@
 
 
 <div class="card-header w-100 mt-5">
-           <h3>Recently Added</h3>
+           <h5>Recently Added</h5>
         </div>
 
  <div class="row pt-4  m-auto">
@@ -246,6 +247,9 @@
 
             <div class="clear"></div>
             <div class="clearfix py-5"></div>
+
+            </div>
+            </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 

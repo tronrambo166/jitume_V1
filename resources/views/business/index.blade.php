@@ -9,10 +9,10 @@
     
 
    @if(isset($investor) && $investor == true ) 
-   <div class="row pt-4  m-auto">  
-   <h4 class="text-center pb-3 font-weight-bold"> My Investments</h4>       
-     <table class="eq table table-bordered " id="">
-    <thead>
+   <div class="row m-auto">  
+   <h4 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold"> My Investments</h4>       
+     <table class="eq table " id="">
+    <thead class="table_head">
         <tr>
             <th>Name </th>
             <th>Category </th>
@@ -31,7 +31,7 @@
     
     <tbody>
         @foreach($results as $ev)
-        <tr class="invest_heading">
+        <tr class="invest_heading" onclick="bg_change({{$ev->id}});" id="{{$ev->id}}">
             <td>{{$ev->name }}</td>
                 <td>{{$ev->category }}</td>
                     <td>{{$ev->investment_needed }}</td>
@@ -57,11 +57,11 @@
 @else
  
  @if($services->count())       
-<div class="row pt-4  m-auto">
-     <h4 class="text-center pb-3 font-weight-bold"> My Services</h4> 
+<div class="row m-auto">
+     <h4 class="bid_header text-left my-0 pb-3 py-2 font-weight-bold"> My Services</h4> 
 
-     <table class="eq table table-bordered " id="">
-    <thead>
+     <table class="eq table" id="">
+    <thead  class="table_head">
         <tr>
             <th>Name </th>
             <th>Category </th>
@@ -76,7 +76,7 @@
        
     <tbody>
         @foreach($services as $ev)
-        <tr >
+        <tr onclick="bg_change({{$ev->id}});" id="{{$ev->id}}">
             <td>{{$ev->name }}</td>
                 <td>{{$ev->category }}</td>
                     <td>{{$ev->price }}</td>
@@ -99,18 +99,18 @@
 
 
 @if($business->count())       
-<div class="row pt-4  m-auto">
-     <h4 class="text-center pb-3 font-weight-bold"> My Businesses</h4> 
+<div class="row mx-auto">
+     <h4 class="bid_header text-left my-0 pb-3 pt-3 font-weight-bold"> My Businesses</h4> 
 
-     <table class="eq table table-bordered " id="">
-    <thead>
+     <table class="eq table" id="">
+    <thead class="table_head">
         <tr>
             <th>Name </th>
             <th>Category </th>
-            <th>Value Needed</th>
+            <th>Required</th>
             <th>Details </th>  
             <th>Contact </th> 
-            <th>Share Remaining </th> 
+            <th>Share </th> 
             <th>Image </th> 
             <th width="20%" class="text-center">Action</th>        
         </tr>
@@ -121,7 +121,7 @@
     
     <tbody>
         @foreach($business as $ev)
-        <tr >
+        <tr onclick="bg_changeB({{$ev->id}});" id="b{{$ev->id}}">
             <td>{{$ev->name }}</td>
                 <td>{{$ev->category }}</td>
                     <td>{{$ev->investment_needed }}</td>
@@ -352,5 +352,13 @@
 
     </div>
 
+<script type="text/javascript">
+    function bg_change(id) {
+        $('#'+id).addClass('bg-light');
+     }
+     function bg_changeB(id) {
+        $('#b'+id).addClass('bg-light');
+     }
+</script>
 
 @endsection

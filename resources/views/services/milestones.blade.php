@@ -2,16 +2,16 @@
 
 @section('page')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <div class="container" id="" style="background:white;">
+    <div class="container px-0" id="" >
         
         
 
-<div class="card-header w-100 mt-5">
-           <h4 class="w-50 d-inline">Your Milestones</h4>
+<div class="card-header w-100">
+<h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold">Milestones </h4> 
 
- <div class="w-75 d-inline-block">
-  <div class="dropdown show d-block ml-5 mt-3">
-                  <a class="mile btn py-1 dropdown-toggle float-right" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+ <div class="mx-5 my-2 mx-auto d-block">
+  <div class="dropdown show d-block ml-auto mt-3 d-block" style="width:15%;">
+                  <a class="mile btn py-1 dropdown-toggle ml-auto" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     @if(isset($business_name)) {{$business_name}} @else Select Business @endif
                   </a>
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -43,17 +43,17 @@
             </div>
 
 
- <div class="row pt-4  m-auto">
+ <div class="row px-5 m-auto">
 
             
-    <table class="eq table table-bordered " id="">
-    <thead>
+    <table class="eq table" id="">
+    <thead class="table_head">
         <tr>
             <th>Milestone Name </th>
             <th>Business </th>
             <th>Amount</th>
             <th>Status</th>
-            <th width="20%" class="py-1 text-center">Action</th>        
+            <th width="20%" class="text-center">Action</th>        
         </tr>
 
     </thead>

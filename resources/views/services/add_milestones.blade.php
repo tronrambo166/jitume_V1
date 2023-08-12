@@ -2,10 +2,10 @@
 
 @section('page')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <div class="container" id="" style="background:white;">
+    <div class="container px-0" id="" >
         
-        
-        <div class="row pt-4  m-auto">
+  <h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Add Service Milestones </h4>         
+<div class="row mx-auto px-5">
 
 <style>
 .btnUp3 {

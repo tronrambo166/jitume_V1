@@ -361,6 +361,13 @@
 
     .eq tr th {
         color: #72c537;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .eq tr td {
+
+        padding: 18px;
     }
 
     .myaccount li a {
@@ -641,7 +648,7 @@
     }
 
     .sidebar li .navLink {
-        color: azure;
+        color: #cdcdcd;
         font-weight: 500;
         font-family: 'Roboto', sans-serif;
         font-size: 14px;
@@ -741,6 +748,7 @@
     .eq tr th {
         font-size: 12px;
         padding-x: 0;
+        color: gainsboro;
     }
 
     .header_buttons {
@@ -834,7 +842,7 @@
 
 
     .primary_bg {
-        background: #001C30;
+        background: #083608;
         /*#001C30*/
     }
 
@@ -1066,7 +1074,7 @@
     }
 
     .sidebar .active {
-        background: darkgreen;
+        background: #062406;
     }
 
     .formLabel {
@@ -1210,4 +1218,15 @@
 #price_high,#price_low {
     font-size: 11px;
     margin: auto;
+}
+
+.bid_header{
+    background: #066a4b;
+    color: ghostwhite;
+}
+.table_head{
+    background: #9b9999;
+}
+.bid-accept{
+    border-radius: 35px;
 }

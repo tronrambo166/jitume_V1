@@ -1,7 +1,7 @@
 @extends('business.layout')
 
 @section('page')
-    <div class="container" id="">
+    <div class="container px-0" id="">
         
     
         @if(Session::has('success'))
@@ -22,10 +22,10 @@
 
 
 
+        <h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Add Business</h4>  
 
-        <div class="row pt-4 w-75 m-auto">        
-                <div class="col-sm-12">
-                  
+        <div class="row w-75 mx-auto my-3">
+         <div class="col-sm-12">                
 
             <form id="add_listing" action="{{route('create-listing')}}"  method="post" enctype="multipart/form-data">
             @csrf   
@@ -57,7 +57,7 @@
         <div class="row form-group"> 
                                         
             <div class="col-sm-4">
-            <select  name="category" class="border-none form-control">
+            <select  name="category" class="py-1 border-none form-control">
             <option hidden class="form-control" >Select Category</option>
             <option class="form-control" value="Agriculture" >Agriculture</option>
             <option value="Arts/Culture" >Arts/Culture </option>

@@ -18,7 +18,9 @@ $service = Services::where('shop_id',$user_id)->get();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
  
    <style type="text/css"> 
-   .btn-success{background:#72c537;color:white;}</style>
+   .btn-success{background:#72c537;color:white;}
+   .bg-light{background:grey;}
+   </style>
     
     
     
@@ -48,37 +50,62 @@ $service = Services::where('shop_id',$user_id)->get();
 <div class="container-fluid">
    
 
- <div  class="row p-0 shadow" style="background: black; min-height: 69px;">
+ <div  class="row px-0 shadow primary_bg" style="min-height: 74.5px;">
 
     <div class="col-sm-3">
         <ul class="navbar-nav ">
         <li class="nav-item  px-3">
-            <a href="{{route('business')}}"><img class="bg-dark" src="{{asset('images/logo.png')}}" width="150px" height="55px" style=";"></a>
+            <a href="{{route('business')}}"><img class="img-fluid pb-2" width="170px" height="45px" src="../images/logo.png" style="margin-left: 15px;"></a>
         </li> </ul> 
     </div>
 
-     <div class="col-sm-5" style="background: white;">
-     <div class="navbar navbar-expand-sm p-0 navy  ">
-       <ul class="navbar-nav py-2 ">
+     <div class="col-sm-9 px-0">
+        <nav class="navbar navbar-expand-lg primary_bg">
+            <div class="navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto text-white">
+                    <li class="nav-item py-1 px-3 active ">
+                        <a href="{{route('/')}}" class="header_buttons py-1 px-3"> Home
+                        </a>
+                    </li>
 
-                   <!--  <li class="nav-item py-1 px-3 text-secondary  "><router-link to="/" class="font-weight-bold text-secondary nav-link">Jitume Services</router-link></li>
-
-                    <li class="font-weight-bold nav-item py-1 px-3 text-secondary"><router-link to="/applyShow" class="text-secondary nav-link">Apply for Show
-                    </router-link></li> -->
+                    <li class="nav-item py-1 px-3 text-light ">
+                        <a href=".././#/services" class=" header_buttons py-1 px-3 ">
+                            Jitume Services
+                        </a>
+                    </li>
                 </ul>
-                 </div>
-            </div>
+
+                <div class="my-2 my-lg-0">
+                    <div class="py-1 px-md-3">
+                        <div class="ml-3 ml-md-0 d-flex">
+                            <div class="nav-item ">
+                                <a href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-bell"></i></a>
+                            </div>
+                            <div class="nav-item ">
+
+                                <a href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-envelope"></i></a>
+                            </div>
+
+                            <div class="nav-item mr-4">
+                                <a href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1 "><b>Dashboard</b></a>
+                            </div>
+
+                            <div class="nav-item">
+                                <a v-if="" onclick="event.preventDefault();
+                 document.getElementById('logout-form').submit();" class=" sign_in_btn  px-sm-3 header_buttons my-1 mr-2 px-1 py-1 "><b>Sign Out</b></a>
+                            </div>
+
+                        </div>
+                         </div>
+                          </div>
+                           </div>
+                       </nav>
+     </div>
 
     
     
-    <div class="col-sm-4" style="background: white;">
+    <!-- <div class="col-sm-4" style="background: white;">
               <ul class="myaccount">
-
-                <!-- <li style="list-style-type: none;" class="float-left ml-4 mt-3 nav-item py-1 px-3 text-secondary ">
-                        <a href="{{route('add-listing')}}" style="border-radius: 35px 35px;border: 1px solid green;text-decoration: none;" class="px-3 text-secondary" href="">Add Business</a>
-                    </li> -->
-
-
                 <div class="dropdown show d-block ml-5 mt-3">
                   <a class="btn btn-light dropdown-toggle float-right" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Options
@@ -86,26 +113,18 @@ $service = Services::where('shop_id',$user_id)->get();
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li style="list-style-type: none;" class="float-right mt-3 nav-item py-1 px-3 text-secondary">
                          <a class="font-weight-bold dropdown-item text-secondary" href="{{route('home')}}">Back to Main</a>
-                        <a class="font-weight-bold dropdown-item text-secondary" href="">My Account</a>
-
-                       
+                        <a class="font-weight-bold dropdown-item text-secondary" href="">My Account</a>                       
                         <a v-if="" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" class=" dropdown-item text-secondary" ><b>Logout</b></a>
+                         document.getElementById('logout-form').submit();" class=" dropdown-item text-secondary" ><b>Logout</b></a>
 
- <form id="logout-form " style="cursor: pointer;" action="{{ route('logout') }}" method="POST" class="d-none">
-@csrf
-                                    </form>
-
-                    </li>
-                    
-                  </div>
-                </div> 
-
-
-                     
-
-                </ul>     
-        </div> 
+                                <form id="logout-form " style="cursor: pointer;" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                                </form>
+                            </li>                    
+                          </div>
+                        </div> 
+                 </ul>     
+    </div>  -->
        
 
     </div>
@@ -115,7 +134,7 @@ $service = Services::where('shop_id',$user_id)->get();
 
 
     <div class="row">
-              <div class="pb-4 bg-dark col-sm-3 sidebar-inner slimscroll" style="min-height:600px">
+              <div class="py-4 bid_header col-sm-3 sidebar-inner slimscroll" style="min-height:600px">
                     <div id="sidebar-menu" class="sidebar-menu">
                         <ul class="sidebar text-light px-2" style="color:white;">
                            
@@ -192,7 +211,7 @@ $service = Services::where('shop_id',$user_id)->get();
                 </div>
 
        
-   <div class="col-md-9 bg-white">
+   <div class="col-md-9 bg-white px-0">
     <!-- Session -->
     @if(Session::has('success'))
         <p class="success_session text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('success')}} @php Session::forget('success'); @endphp </p>@endif
@@ -696,9 +715,10 @@ dataType:'json',
 
 
 
-
-
-
+<script type="text/javascript">
+function bg_change(id) {
+        $('#'+id).addClass('bg-light');
+     }
 </script>
 
 

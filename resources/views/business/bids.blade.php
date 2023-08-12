@@ -2,7 +2,7 @@
 
 @section('page')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <div class="container" id="" style="background:white;">
+    <div class="container px-0" id="">
         
         @if(Session::has('success_update'))
         <div class="w-50 m-auto alert font-weight-bold alert-success alert-dismissible fade show" role="alert">
@@ -25,9 +25,10 @@
 </style>
     
  <form action="{{route('bidsAccepted')}}" method="post">  @csrf  
-    <div class="row pt-4  m-auto">        
+    <div class="row m-auto">   
+    <h4 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold">Investment Bids</h4>     
      <table class="eq table table-bordered " id="">
-    <thead>
+    <thead class="table_head">
         <tr>
             <th> </th>
             <th>Date </th>
@@ -44,7 +45,7 @@
     
     <tbody>
         @foreach($bids as $ev)
-        <tr >
+        <tr onclick="bg_change({{$ev->id}});" id="{{$ev->id}}" >
             <td><input onchange="check();" type="checkbox" name="bid_ids[]" value="{{$ev->id}}"></td>
             <td>{{$ev->date }}</td>
                 <td>
@@ -374,17 +375,19 @@
     
     
 </table>
-               
-<div class=" ml-auto">
-    <a id="fakeBtn" onclick="accept();" type="submit" class="text-center float-right border border-dark font-weight-bold btn text-mute py-1 w-25 mx-auto">Accept</a>
+ 
+ <div class="row ml-auto" style="width:35%;">              
+<div class="col-sm-6">
+    <a id="fakeBtn" onclick="accept();" type="submit" class="bid-accept text-center float-right border border-dark font-weight-bold btn text-mute py-1 w-100 mx-auto">Accept Bids</a>
 
-    <button id="realBtn" type="submit" class="collapse float-right font-weight-bold btn btn-success w-25 mx-auto">Accept</button>
+    <button style="background:green;" id="realBtn" type="submit" class="bid-accept collapse float-right font-weight-bold btn text-light w-100 mx-auto">Accept Bids</button>
 </div>
 
-<div class="ml-auto my-3">
-    <a id="fakeBtnR" onclick="accept();" type="submit" class="text-center float-right border border-dark font-weight-bold btn text-mute py-1 w-25 mx-auto">Reject</a>
+<div class="col-sm-6">
+    <a id="fakeBtnR" onclick="accept();" type="submit" class="bid-accept text-center float-right border border-dark font-weight-bold btn text-mute py-1 w-100 mx-auto">Reject Bids</a>
 
-    <button name="reject" value="1" onclick="return confirm('Are you sure?');" id="realBtnR" type="submit" class="collapse float-right font-weight-bold btn btn-danger w-25 mx-auto">Reject</button>
+    <button style="background:red;" name="reject" value="1" onclick="return confirm('Are you sure?');" id="realBtnR" type="submit" class="bid-accept collapse float-right font-weight-bold btn text-light w-100 mx-auto">Reject Bids</button>
+</div>
 </div>
 
 </div>

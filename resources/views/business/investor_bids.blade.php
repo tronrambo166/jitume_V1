@@ -2,7 +2,7 @@
 
 @section('page')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <div class="container" id="" style="background:white;">
+    <div class="container px-0" id="" style="background:white;">
         
         @if(Session::has('success_update'))
         <div class="w-50 m-auto alert font-weight-bold alert-success alert-dismissible fade show" role="alert">
@@ -25,9 +25,10 @@
 </style>
     
  <form action="{{route('bidsAccepted')}}" method="post">  @csrf  
-    <div class="row pt-4  m-auto">        
-     <table class="eq table table-bordered " id="">
-    <thead>
+    <div class="row m-auto">  
+    <h4 class="bid_header text-left my-0 pb-3 py-2 font-weight-bold"> My Investments</h4>      
+     <table class="eq table" id="">
+    <thead class="table_head">
         <tr>
             <th> </th>
             <th>Date </th>
@@ -35,7 +36,8 @@
             <th>Business</th>
             <th>Type </th>  
             <th>Amount </th> 
-            <th>Representaion % </th>        
+            <th>Representaion % </th>
+            <th></th>        
         </tr>
 
     </thead>
@@ -44,7 +46,7 @@
     
     <tbody>
         @foreach($bids as $ev)
-        <tr >
+        <tr onclick="bg_change({{$ev->id}});" id="{{$ev->id}}">
             <td><input onchange="check();" type="checkbox" name="bid_ids[]" value="{{$ev->id}}"></td>
             <td>{{$ev->date }}</td>
                 <td>
@@ -280,7 +282,7 @@
                         title: 'Are you sure?',
                         content: 'Are you sure to remove?',
                         buttons: {
-                           confirm: function () {}
+                           confirm: function () {},
                             cancel: function () {
                                 $.alert('Canceled!');
                             },

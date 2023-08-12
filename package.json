@@ -25,6 +25,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "hooper": "^0.3.4",
         "moment": "^2.29.4",
         "nouislider": "^15.7.0",
         "router": "^1.3.7",

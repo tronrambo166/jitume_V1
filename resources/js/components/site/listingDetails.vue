@@ -14,7 +14,18 @@
                     <div  class="float-right text-right w-25 py-0 my-0">   
 
                         <h6 class="font-weight-bold" >Amount: <span class="font-weight-light"><b>${{form.investment_needed}} (Required:${{amount_required}})</b></span></h6>
+
+                        <div class="float-right d-inline-block" id="staticRating">
+                            <img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">
+                            <img src="rating/images/g-star.svg" style="height: 15px;" class="">
+                            <img src="rating/images/g-star.svg" style="height: 15px;" class="">
+                            <img src="rating/images/g-star.svg" style="height: 15px;" class="">
+                            <img src="rating/images/black-star.png" style="height: 15px;" class="">
+                        </div>
                     </div>
+
+
+
                 </h3>
 
                      
@@ -35,7 +46,7 @@
                         <div class="row my-4">
                             <div class="col-sm-12">
                             <a class="btn border border-bottom-success">Overview</a>
-                            <a class="btn border border-bottom-success">Add review</a>
+                            <a data-toggle="modal" data-target="#reviewModal" class="btn border border-bottom-success">Add review</a>
 
                             <hr>
                             </div>
@@ -327,8 +338,36 @@
         </div>
 
 
-<!-- INVEST MODAL -->  
+<!-- INVEST MODAL --> 
 
+<!-- Review --> 
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Submit a review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+        <h5 class="my-3 font-weight-bold">Service rating 
+        <div class="ml-5 d-inline-block" @click = "rating()" id="demo"></div>
+    </h5>
+        
+
+        <h5 class="font-weight-bold">Leave a review</h5>
+        <textarea name="reply" class="bg-light border border-none" cols="55" rows="3"></textarea>
+        
+        <button type="submit" class="font-weight-bold btn btn-success w-50 m-auto">Submit</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div> 
+<!-- Review --> 
         
         <!-- Body -->
         
@@ -407,7 +446,11 @@ if(sessionStorage.getItem('invest')!=null)
 
         },
 
-  
+  rating()
+  { 
+    var rating = $('#demoRating').val();
+    alert(rating);
+   },
   make_session(id){
             sessionStorage.setItem('invest',id);
             document.getElementById('c_to_action').value = 'loginFromService';

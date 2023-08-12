@@ -1,7 +1,7 @@
 @extends('business.layout')
 
 @section('page')
-<div class="container px-0 ">
+<div class="container px-0">
      
     
     @if(Session::has('failed'))
@@ -10,11 +10,13 @@
         <p class="text-success  btn font-weight-bold float-right">{{Session::get('success')}} @php Session::forget('success'); @endphp</p>@endif
 
 <!-- PAGE CONTENT -->
-<div class="my-5 w-75 mx-auto">
+<h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold">Apply for Show </h4> 
+
+<div class="w-75 mx-auto">
 
   <div class="row my-4">
      <div class="col-sm-6">
-       <div><p class="h4">Apply for Show - Form</p>
+       <div>
         <p id="msg" class="text-success font-weight-bold"></p>
 
       </div>

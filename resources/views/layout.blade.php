@@ -9,12 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
-<!-- Slider CSS -->
+<!-- Rating CSS -->
+<link rel="stylesheet" href="rating/css/rates.css" />
+
     <style type="text/css">
         .btn-success { background: #72c537;    color: white;} 
    
   </style>
-<!-- Slider CSS -->
+<!-- Rating CSS -->
 
 
     <link href="slider/dist/nouislider.css" rel="stylesheet">
@@ -65,34 +67,29 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto text-white">
-
-
-                    <!-- <li class="nav-item active" >
-        <a class="nav-link" href="/home" style="color:white;">Home <span class="sr-only">(current)</span></a>
-      </li> -->
-
                     <li class="nav-item py-1 px-3 active ">
                         <router-link to="/home" class="header_buttons py-1 px-3"> Home
                         </router-link>
                     </li>
-
 
                     <li class="nav-item py-1 px-3 text-light ">
                         <router-link to="/services" class=" header_buttons py-1 px-3 ">
                             Jitume Services
                         </router-link>
                     </li>
-
-
-
                 </ul>
 
                 <div class="my-2 my-lg-0">
-
                     <div class="py-1 px-md-3">
-
                         @if(Auth::check())
                         <div class="ml-3 ml-md-0 d-flex">
+                            <div class="nav-item ">
+                                <a href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-bell"></i></a>
+                            </div>
+                            <div class="nav-item ">
+
+                                <a href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-envelope"></i></a>
+                            </div>
 
                             <div class="nav-item mr-4">
                                 <a href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1 "><b>Dashboard</b></a>
@@ -109,7 +106,6 @@
                         @elseif (Session::has('investor_auth') && Session::get('investor_auth') == true)
 
                         <div class="ml-3 ml-md-0 d-flex">
-
                             <div class="nav-item mr-4">
 
                                 <a href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><b>Dashboard</b></a>
@@ -117,7 +113,7 @@
 
                             <div class="nav-item">
                                 <a v-if="" onclick="event.preventDefault();
-                     document.getElementById('logout-form').submit();" class="sign_in_btn header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><b>Sign Out</b>
+                             document.getElementById('logout-form').submit();" class="sign_in_btn header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><b>Sign Out</b>
                                 </a>
                             </div>
 
@@ -1770,10 +1766,22 @@
         function popupClose() {
             $('.success_message').css('display', 'none');
         }
+
     </script>
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+    <script src="/path/to/cdn/jquery.slim.min.js"></script>
+    <script src="rating/js/jquery-rates.js"></script>
+    <script type="text/javascript">
+         $('#demo').rates({
+        shape:'black-star',
+        imagesFolderLocation:'rating/', 
+        shapeHeight:'20px',   
+        shadeColor:'rates-green',   
+        });
+    </script>
 </body>
 
 </html>

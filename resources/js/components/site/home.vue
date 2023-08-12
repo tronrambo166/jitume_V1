@@ -366,16 +366,12 @@
     </div>
     <!-- How it works -->
 
-    <!-- SLider test -->
-<!--     <div class="slider">
-    <div class="slider__wrapper" >
-      
-        <div v-for="( result, index ) in results" class="slider__item listing col-md-3">
-
-        <div style="height: 250px; "> 
-
-
-         <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
+     <!-- SLider test -->
+    <div class="card-group my-2 w-75 mx-auto d-md-flex justify-content-center">
+    <hooper :settings="hooperSettings" :itemsToShow="4" :centerMode="true" pagination="no">
+    <slide class="listing text-center" v-for="( result, index ) in results" :key="indx" :index="indx">
+      <!-- Loop -->
+                <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
 
             <video v-if="result.file" controls style="width:100%; height:104px;" alt="">
               <source :src="result.file" type="video/mp4">
@@ -398,20 +394,17 @@
               }}</b></span></p>
             </div>
 
-          </router-link> 
+          </router-link>
+      <!-- Loop -->
 
-        </div>
-        </div>
+    </slide>
+    
+    <hooper-navigation slot="hooper-addons"></hooper-navigation>
+  </hooper>
+</div>
 
+   
 
-
-
-        </div>
-
-        <a class="slider__control slider__control_left" href="#" role="button"></a>
-        <a class="slider__control slider__control_right slider__control_show" href="#" role="button"></a>
-
-        </div> -->
 
 <div style="overflow:hidden" class="py-5 d-md-flex justify-content-center border border-bottom-dark"></div>
 
@@ -421,11 +414,32 @@
 
 
 <script>
-
+import { Hooper, Slide, Navigation as HooperNavigation } from 'hooper';
+import 'hooper/dist/hooper.css';
 export default {
-
+components: {
+      Hooper,
+      Slide,
+      HooperNavigation
+    },
   props: ['auth_user', 'business'],
   data: () => ({
+    //Hooper
+      hooperSettings: {
+        itemsToShow: 4,
+        centerMode: true,
+        breakpoints: {
+          800: {
+            centerMode: true,
+            itemsToShow: 4
+          },
+          1000: {
+            itemsToShow: 6,
+            pagination: 'fraction'
+          }
+        }
+    },
+    //Hooper
     results: [],
     form: new Form({
       listing_name: '',

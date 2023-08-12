@@ -19,6 +19,8 @@ const store = new Vuex.Store(
 // routes
 import {routes} from './routes/routes';
 // routes
+//import { Hooper, Slide } from 'hooper';
+//import 'hooper/dist/hooper.css';
 
 const router = new VueRouter({
 routes, //mode:'history',
