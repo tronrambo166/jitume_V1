@@ -1230,3 +1230,22 @@
 .bid-accept{
     border-radius: 35px;
 }
+.hooper-prev{
+margin-left: -21px;
+    fill: grey;
+}
+.icon-arrowLeft, .icon-arrowRight{
+    width: 35px;
+    height: 35px;
+    fill: grey;
+}
+.hooper-next{
+    margin-right: -38px;
+    fill: grey;
+}
+.hooper{
+    min-height: 325px;
+}
+.hooper-list{
+    padding-top: 20px;
+}

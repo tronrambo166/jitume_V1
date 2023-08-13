@@ -8174,6 +8174,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -8188,14 +8192,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       //Hooper
       hooperSettings: {
         itemsToShow: 4,
-        centerMode: true,
+        centerMode: false,
         breakpoints: {
           800: {
-            centerMode: true,
+            centerMode: false,
             itemsToShow: 4
           },
           1000: {
-            itemsToShow: 6,
+            itemsToShow: 4,
             pagination: 'fraction'
           }
         }
@@ -10446,6 +10450,64 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -10465,6 +10527,38 @@ __webpack_require__.r(__webpack_exports__);
         console.log(data);
       })["catch"](function (error) {});
     },
+    range: function range() {
+      this.ids = this.$route.params.results;
+      var t = this;
+      var slider = document.getElementById('slider');
+      noUiSlider.create(slider, {
+        start: [0, 500000],
+        connect: true,
+        range: {
+          'min': 0,
+          'max': 500000
+        },
+        step: 10000,
+        margin: 600,
+        pips: {
+          //mode: 'steps',
+          stepped: true,
+          density: 6
+        }
+      });
+      var skipValues = [document.getElementById('price_low'), document.getElementById('price_high')];
+      slider.noUiSlider.on('update', function (values, handle) {
+        skipValues[handle].innerHTML = '$' + values[handle]; //console.log(values[1] - values[0]);
+
+        axios.get('priceFilter/' + values[0] + '/' + values[1] + '/' + t.ids).then(function (data) {
+          // if(values[0]==0.00 && values[1]==500000.00){}
+          //else{ 
+          t.results = '';
+          t.results = data.data.data; //}
+          //console.log(data);
+        })["catch"](function (error) {});
+      });
+    },
     getPhoto: function getPhoto() {
       return '../';
     },
@@ -10480,7 +10574,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.replaceText();
-    this.setRes();
+    this.setRes(); //this.range()
+
     this.cart(); //return this.$store.dispatch("fetchpro")
   }
 });
@@ -69862,74 +69957,135 @@ var render = function () {
             "div",
             {
               staticClass:
-                "card-group my-2 w-75 mx-auto d-md-flex justify-content-center",
+                "row card-group px-3 w-75 mx-auto d-md-flex justify-content-center",
+              staticStyle: { overflow: "hidden" },
             },
-            _vm._l(_vm.results, function (result, index) {
-              return _c(
-                "div",
-                { staticClass: "listing col-md-3" },
+            [
+              _c(
+                "hooper",
+                {
+                  attrs: {
+                    settings: _vm.hooperSettings,
+                    itemsToShow: 4,
+                    centerMode: true,
+                    pagination: "no",
+                  },
+                },
                 [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "shadow card border px-2",
-                      attrs: { to: "/listingDetails/" + result.id },
-                    },
-                    [
-                      result.file
-                        ? _c(
-                            "video",
-                            {
-                              staticStyle: { width: "100%", height: "104px" },
-                              attrs: { controls: "", alt: "" },
-                            },
-                            [
-                              _c("source", {
-                                attrs: { src: result.file, type: "video/mp4" },
-                              }),
-                            ]
-                          )
-                        : _c("img", {
-                            staticClass: "card-img-top",
-                            staticStyle: { width: "100%", height: "104px" },
-                            attrs: { src: result.image, alt: "" },
-                          }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "p-1 pb-2" }, [
-                        _c("h5", { staticClass: "card_heading mb-0 py-2" }, [
-                          _vm._v(_vm._s(result.name) + " "),
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "card_text pt-1 text-left" }, [
-                          _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
-                          _vm._v(_vm._s(result.location)),
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "card_text" }, [
-                          _c("span", { staticClass: "rounded" }, [
-                            _c("i", { staticClass: "mr-2 fa fa-phone" }),
-                            _vm._v(_vm._s(result.contact)),
-                          ]),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "amount p-1 pb-0" }, [
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Amount: "),
-                          _c("span", { staticClass: "font-weight-light" }, [
-                            _c("b", [
-                              _vm._v("$" + _vm._s(result.investment_needed)),
-                            ]),
-                          ]),
-                        ]),
-                      ]),
-                    ]
-                  ),
+                  _vm._l(_vm.results, function (result, index) {
+                    return _c(
+                      "slide",
+                      {
+                        key: _vm.indx,
+                        staticClass: "listing text-center col-sm-4 px-3",
+                        attrs: { index: _vm.indx },
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "mx-auto" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "shadow card border px-2",
+                                attrs: { to: "/listingDetails/" + result.id },
+                              },
+                              [
+                                result.file
+                                  ? _c(
+                                      "video",
+                                      {
+                                        staticStyle: {
+                                          width: "100%",
+                                          height: "104px",
+                                        },
+                                        attrs: { controls: "", alt: "" },
+                                      },
+                                      [
+                                        _c("source", {
+                                          attrs: {
+                                            src: result.file,
+                                            type: "video/mp4",
+                                          },
+                                        }),
+                                      ]
+                                    )
+                                  : _c("img", {
+                                      staticClass: "card-img-top",
+                                      staticStyle: {
+                                        width: "100%",
+                                        height: "104px",
+                                      },
+                                      attrs: { src: result.image, alt: "" },
+                                    }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "p-1 pb-2" }, [
+                                  _c(
+                                    "h5",
+                                    {
+                                      staticClass:
+                                        "card_heading text-left mb-0 py-2",
+                                    },
+                                    [_vm._v(_vm._s(result.name) + " ")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    { staticClass: "card_text pt-1 text-left" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "mr-2 fa fa-map-marker",
+                                      }),
+                                      _vm._v(_vm._s(result.location)),
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("p", { staticClass: "card_text" }, [
+                                    _c("span", { staticClass: "rounded" }, [
+                                      _c("i", {
+                                        staticClass: "mr-2 fa fa-phone",
+                                      }),
+                                      _vm._v(_vm._s(result.contact)),
+                                    ]),
+                                  ]),
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "amount p-1 pb-0" }, [
+                                  _c("p", { staticClass: "font-weight-bold" }, [
+                                    _vm._v("Amount: "),
+                                    _c(
+                                      "span",
+                                      { staticClass: "font-weight-light" },
+                                      [
+                                        _c("b", [
+                                          _vm._v(
+                                            "$" +
+                                              _vm._s(result.investment_needed)
+                                          ),
+                                        ]),
+                                      ]
+                                    ),
+                                  ]),
+                                ]),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _c("hooper-navigation", {
+                    attrs: { slot: "hooper-addons" },
+                    slot: "hooper-addons",
+                  }),
                 ],
-                1
-              )
-            }),
-            0
+                2
+              ),
+            ],
+            1
           ),
         ]
       ),
@@ -69938,113 +70094,9 @@ var render = function () {
       _vm._v(" "),
       _vm._m(3),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "card-group my-2 w-75 mx-auto d-md-flex justify-content-center",
-        },
-        [
-          _c(
-            "hooper",
-            {
-              attrs: {
-                settings: _vm.hooperSettings,
-                itemsToShow: 4,
-                centerMode: true,
-                pagination: "no",
-              },
-            },
-            [
-              _vm._l(_vm.results, function (result, index) {
-                return _c(
-                  "slide",
-                  {
-                    key: _vm.indx,
-                    staticClass: "listing text-center",
-                    attrs: { index: _vm.indx },
-                  },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "shadow card border px-2",
-                        attrs: { to: "/listingDetails/" + result.id },
-                      },
-                      [
-                        result.file
-                          ? _c(
-                              "video",
-                              {
-                                staticStyle: { width: "100%", height: "104px" },
-                                attrs: { controls: "", alt: "" },
-                              },
-                              [
-                                _c("source", {
-                                  attrs: {
-                                    src: result.file,
-                                    type: "video/mp4",
-                                  },
-                                }),
-                              ]
-                            )
-                          : _c("img", {
-                              staticClass: "card-img-top",
-                              staticStyle: { width: "100%", height: "104px" },
-                              attrs: { src: result.image, alt: "" },
-                            }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "p-1 pb-2" }, [
-                          _c("h5", { staticClass: "card_heading mb-0 py-2" }, [
-                            _vm._v(_vm._s(result.name) + " "),
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "card_text pt-1 text-left" }, [
-                            _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
-                            _vm._v(_vm._s(result.location)),
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "card_text" }, [
-                            _c("span", { staticClass: "rounded" }, [
-                              _c("i", { staticClass: "mr-2 fa fa-phone" }),
-                              _vm._v(_vm._s(result.contact)),
-                            ]),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "amount p-1 pb-0" }, [
-                          _c("p", { staticClass: "font-weight-bold" }, [
-                            _vm._v("Amount: "),
-                            _c("span", { staticClass: "font-weight-light" }, [
-                              _c("b", [
-                                _vm._v("$" + _vm._s(result.investment_needed)),
-                              ]),
-                            ]),
-                          ]),
-                        ]),
-                      ]
-                    ),
-                  ],
-                  1
-                )
-              }),
-              _vm._v(" "),
-              _c("hooper-navigation", {
-                attrs: { slot: "hooper-addons" },
-                slot: "hooper-addons",
-              }),
-            ],
-            2
-          ),
-        ],
-        1
-      ),
+      _c("div", { staticClass: "py-5 d-md-flex border-bottom-dark" }),
       _vm._v(" "),
-      _c("div", {
-        staticClass:
-          "py-5 d-md-flex justify-content-center border border-bottom-dark",
-        staticStyle: { overflow: "hidden" },
-      }),
+      _c("div", { staticClass: "py-5 d-md-flex border border-bottom-dark" }),
     ]
   )
 }
@@ -73862,49 +73914,96 @@ var render = function () {
     _vm._v(" "),
     _vm._m(1),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row mt-5" },
-      _vm._l(_vm.results, function (result, index) {
-        return _c(
+    _c("div", { staticClass: "row mt-4 px-3" }, [
+      _c("div", { staticClass: "col-sm-6" }, [
+        _vm._m(2),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("p", { staticClass: "ml-1 my-0 text-secondary small" }, [
+            _vm._v(_vm._s(_vm.count) + " businesses in your location"),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c(
           "div",
-          { staticClass: "listing col-sm-4 my-5" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "shadow card border px-5",
-                attrs: { to: "/serviceDetails/" + result.id },
-              },
+          { staticClass: "row" },
+          _vm._l(_vm.results, function (result, index) {
+            return _c(
+              "div",
+              { staticClass: "listing col-md-6 my-3" },
               [
-                _c("img", {
-                  staticStyle: { width: "332px", height: "230px" },
-                  attrs: { src: result.image, alt: "" },
-                }),
-                _vm._v(" "),
-                _c("h4", { staticClass: "mt-3 mb-0" }, [
-                  _vm._v(_vm._s(result.name) + " "),
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "my-1" }, [
-                  _c("i", { staticClass: "mr-2 fa fa-dollar" }),
-                  _vm._v(_vm._s(result.price) + " Kshs"),
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _c("span", { staticClass: "mt-1 rounded" }, [
-                    _c("i", { staticClass: "mr-2 fa fa-category" }),
-                    _vm._v("Category: " + _vm._s(result.category)),
-                  ]),
-                ]),
-              ]
-            ),
-          ],
-          1
-        )
-      }),
-      0
-    ),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "shadow card border px-4",
+                    attrs: { to: "/serviceDetails/" + result.id },
+                  },
+                  [
+                    result.file
+                      ? _c(
+                          "video",
+                          {
+                            staticStyle: { width: "100%", height: "230px" },
+                            attrs: { controls: "", alt: "" },
+                          },
+                          [
+                            _c("source", {
+                              attrs: { src: result.file, type: "video/mp4" },
+                            }),
+                          ]
+                        )
+                      : _c("img", {
+                          staticStyle: { width: "100%", height: "200px" },
+                          attrs: { src: result.image, alt: "" },
+                        }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "p-1 pb-2" }, [
+                      _c("h5", { staticClass: "card_heading mb-0 py-2" }, [
+                        _vm._v(_vm._s(result.name) + " "),
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "my-1 font-weight-bold" }, [
+                        _c("i", { staticClass: "mr-2 fa fa-dollar" }),
+                        _vm._v(_vm._s(result.price)),
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card_text pt-1 text-left" }, [
+                        _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
+                        _vm._v(_vm._s(result.location)),
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _c("span", { staticClass: "mt-1 rounded small" }, [
+                          _c("i", { staticClass: "mr-2 fa fa-category" }),
+                          _vm._v("Category: " + _vm._s(result.category)),
+                        ]),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ],
+              1
+            )
+          }),
+          0
+        ),
+      ]),
+      _vm._v(" "),
+      _vm._m(3),
+    ]),
+    _vm._v(" "),
+    this.ids == "0"
+      ? _c("div", { staticClass: "row mt-4" }, [
+          _c(
+            "h3",
+            {
+              staticClass:
+                "text-center font-weight-bold btn-light btn py-3 d-block",
+            },
+            [_vm._v("No Results Found! ")]
+          ),
+        ])
+      : _vm._e(),
   ])
 }
 var staticRenderFns = [
@@ -73922,12 +74021,108 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "content_bottom" }, [
       _c("div", { staticClass: "heading" }, [
-        _c("h3", { staticClass: "my-5 bg-light text-center text-secondary" }, [
-          _vm._v("Services"),
-        ]),
+        _c(
+          "h3",
+          { staticClass: "my-5 font-weight-bold text-center text-secondary" },
+          [_vm._v("Listings")]
+        ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "clear" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-3" }, [
+        _c(
+          "span",
+          {
+            staticClass: "btn text-light px-2 py-1 rounded",
+            staticStyle: { background: "black" },
+          },
+          [_vm._v("Filter by Price:")]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-5 mt-1", attrs: { id: "" } }, [
+        _c("div", { attrs: { id: "slider" } }),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "col-sm-6 mt-1" }, [
+            _c("span", {
+              staticClass: "py-0 btn btn-light",
+              attrs: { id: "price_low", name: "min" },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6 mt-1 pr-0" }, [
+            _c("span", {
+              staticClass: "float-right py-0 btn btn-light",
+              attrs: { id: "price_high", name: "min" },
+            }),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-4" }, [
+        _c(
+          "a",
+          {
+            staticClass: "py-0 float-right border border-dark rounded",
+            staticStyle: { width: "60px", height: "30px" },
+          },
+          [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-6 pr-0" }, [
+                _c(
+                  "p",
+                  {
+                    staticClass: "text-dark",
+                    staticStyle: { "font-size": "9px" },
+                  },
+                  [_vm._v("More Filters")]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-6 px-1" }, [
+                _c("img", {
+                  staticStyle: { "margin-left": "4px" },
+                  attrs: {
+                    src: "images/randomIcons/filter.jpg",
+                    width: "16px;",
+                  },
+                }),
+              ]),
+            ]),
+          ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-6" }, [
+      _c(
+        "div",
+        {
+          staticClass: "h-100 m-auto",
+          staticStyle: { "max-height": "770px", background: "aliceblue" },
+        },
+        [
+          _c(
+            "p",
+            {
+              staticClass: "justify-contents-center m-auto d-block text-center",
+            },
+            [_vm._v("MAP")]
+          ),
+        ]
+      ),
     ])
   },
 ]

@@ -245,7 +245,7 @@
         <h2 style="text-align:left;" class="container-xl secondary_heading"> Latest Businesses </h2>
       </div> -->
 
-      <div class="card-group my-2 w-75 mx-auto d-md-flex justify-content-center">
+  <!--     <div class="card-group my-2 w-75 mx-auto d-md-flex justify-content-center">
 
         <div v-for="( result, index ) in results" class=" listing col-md-3">
           <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
@@ -275,7 +275,48 @@
 
         </div>
 
-      </div>
+      </div> -->
+
+      <!-- SLider test -->
+    <div style="overflow:hidden;" class="row card-group px-3 w-75 mx-auto d-md-flex justify-content-center">
+    <hooper :settings="hooperSettings" :itemsToShow="4" :centerMode="true" pagination="no">
+    <slide class="listing text-center col-sm-4 px-3" v-for="( result, index ) in results" :key="indx" :index="indx">
+      <!-- Loop -->
+           <div class="mx-auto">
+                <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
+
+            <video v-if="result.file" controls style="width:100%; height:104px;" alt="">
+              <source :src="result.file" type="video/mp4">
+            </video>
+
+            <img v-else :src="result.image" style="width:100%; height:104px" class="card-img-top" alt="" />
+
+            <div class="p-1 pb-2">
+
+              <h5 class="card_heading text-left mb-0 py-2">{{ result.name }} </h5>
+
+              <p class="card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ result.location }}</p>
+
+              <p class="card_text"><span class="rounded"><i class="mr-2 fa fa-phone"></i>{{ result.contact }}</span></p>
+
+            </div>
+
+            <div class="amount p-1 pb-0">
+              <p class="font-weight-bold">Amount: <span class="font-weight-light"><b>${{ result.investment_needed
+              }}</b></span></p>
+            </div>
+
+          </router-link>
+          </div>
+      <!-- Loop -->
+
+    </slide>
+    
+    <hooper-navigation slot="hooper-addons"></hooper-navigation>
+  </hooper>
+
+</div>
+
 
     </div>
 
@@ -366,47 +407,10 @@
     </div>
     <!-- How it works -->
 
-     <!-- SLider test -->
-    <div class="card-group my-2 w-75 mx-auto d-md-flex justify-content-center">
-    <hooper :settings="hooperSettings" :itemsToShow="4" :centerMode="true" pagination="no">
-    <slide class="listing text-center" v-for="( result, index ) in results" :key="indx" :index="indx">
-      <!-- Loop -->
-                <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
-
-            <video v-if="result.file" controls style="width:100%; height:104px;" alt="">
-              <source :src="result.file" type="video/mp4">
-            </video>
-
-            <img v-else :src="result.image" style="width:100%; height:104px" class="card-img-top" alt="" />
-
-            <div class="p-1 pb-2">
-
-              <h5 class="card_heading mb-0 py-2">{{ result.name }} </h5>
-
-              <p class="card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ result.location }}</p>
-
-              <p class="card_text"><span class="rounded"><i class="mr-2 fa fa-phone"></i>{{ result.contact }}</span></p>
-
-            </div>
-
-            <div class="amount p-1 pb-0">
-              <p class="font-weight-bold">Amount: <span class="font-weight-light"><b>${{ result.investment_needed
-              }}</b></span></p>
-            </div>
-
-          </router-link>
-      <!-- Loop -->
-
-    </slide>
-    
-    <hooper-navigation slot="hooper-addons"></hooper-navigation>
-  </hooper>
-</div>
-
    
 
-
-<div style="overflow:hidden" class="py-5 d-md-flex justify-content-center border border-bottom-dark"></div>
+<div  class="py-5 d-md-flex  border-bottom-dark"></div>
+<div  class="py-5 d-md-flex  border border-bottom-dark"></div>
 
 
   </div>
@@ -427,14 +431,14 @@ components: {
     //Hooper
       hooperSettings: {
         itemsToShow: 4,
-        centerMode: true,
+        centerMode: false,
         breakpoints: {
           800: {
-            centerMode: true,
+            centerMode: false,
             itemsToShow: 4
           },
           1000: {
-            itemsToShow: 6,
+            itemsToShow: 4,
             pagination: 'fraction'
           }
         }
