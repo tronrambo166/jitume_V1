@@ -1,5 +1,5 @@
 @extends('business.layout')
-@php echo 'Dashboard is under maintanance!'; exit; @endphp
+@php //echo 'Dashboard is under maintanance!'; exit; @endphp
 
 @section('page')
     <div class="container px-0 h-100">

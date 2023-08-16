@@ -158,7 +158,7 @@ export default {
     skipValues[handle].innerHTML = '$'+values[handle]; 
     //console.log(values[1] - values[0]);
 
-     axios.get('priceFilter/'+values[0]+'/'+values[1]+'/'+t.ids).then( (data) =>{
+     axios.get('priceFilterS/'+values[0]+'/'+values[1]+'/'+t.ids).then( (data) =>{
                
              // if(values[0]==0.00 && values[1]==500000.00){}
               //else{ 
@@ -194,7 +194,7 @@ export default {
    mounted() { 
    this.replaceText();
    this.setRes()
-   //this.range()
+   this.range()
    this.cart()
      //return this.$store.dispatch("fetchpro")
       } 

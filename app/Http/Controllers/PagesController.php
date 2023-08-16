@@ -473,6 +473,25 @@ public function priceFilter($min, $max, $ids){
 }
 
 
+public function priceFilterS($min, $max, $ids){
+    $results = array();
+    $ids = explode(',',$ids); 
+    foreach($ids as $id){ 
+    if($id!=''){ 
+    $listing = Services::where('id',$id)->first();
+    $range = $listing->price;
+    $db_price = $range;  
+  
+    if((int)$min <= $db_price && (int)$max >= $db_price)
+        //return response()->json([ 'data' => (int)$min .'<='. $db_min .'//'.(int)$max .'>='. $db_max]);
+    $results[] = $listing;
+}
+}
+
+    return response()->json([ 'data' => $results]);
+}
+
+
 public function create_service(){
 $events = Events::latest()->get();
 return view('create_service',compact('events'));

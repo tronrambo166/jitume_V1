@@ -5,10 +5,10 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     
-        <div class="heading row w-75 mx-auto my-3"> 
-        <div class="col-sm-10">
+        <div class="heading row mx-auto my-3"> 
+        <div class="col-sm-12">
             <div class="row">
-                <div class="col-sm-7">
+                <div class="col-sm-4">
                     
                         <div class="grid images_3_of_2 rounded listing px-3">
                 <img style="width:100%;height:280px" class="shadow card" 
@@ -17,13 +17,26 @@
                                           
 
                     </div>
-                </div>
 
-                <div class="col-sm-5">
-                    <div class="pl-2">
-                    <h3 class="mt-2 text-left text-dark font-weight-bold ">{{form.name}}</h3>
+                    <div class="pl-4 row mt-4">
+                    <div class="col-sm-6">
+                    <h5 class="text-left text-dark font-weight-bold ">{{form.name}}</h5>
         
-                        <p class="font-weight-bold my-1">{{form.price}} Kshs</p>
+                        <p class="font-weight-bold my-1 small">${{form.price}} </p>
+                        </div>
+
+                    <div class="col-sm-6 text-center">
+                    <p class="font-weight-bold small text-left">{{form.location}}</p>
+        
+                        <div class="] d-inline-block" id="staticRating">
+                            <img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">
+                            <img src="rating/images/g-star.svg" style="height: 15px;" class="">
+                            <img src="rating/images/g-star.svg" style="height: 15px;" class="">
+                            <img src="rating/images/g-star.svg" style="height: 15px;" class="">
+                            <img src="rating/images/black-star.png" style="height: 15px;" class="">
+                        </div>
+                        </div>
+
                         </div>
 
                         <div class="row my-5">
@@ -32,13 +45,22 @@
                             <a class="btn border border-bottom-success">Add review</a>
 
                             <hr>
+                            <!-- <p> <span class="ml-2 font-weight-bold">Details:{{form.details}}</span></p> -->
+
                             </div>
+                            </div>  
                             
+
+                </div>
+
+                <div class="col-sm-5">
+
                       
                    <div class="Overview" id="Overview">
-                    <p> <span class="ml-2 font-weight-bold">Details:{{form.details}}</span></p>
+                    <h4 class="text-center font-weight-bold">About</h4>
+                    <p class="font-weight-bold small text-left">{{form.details}}</p>
 
-                    <div class="cart">
+                    <div class="cart text-center">
                         <form>
                            <!--  <input id="qty" min="1" class="w-25 form-control d-inline" type="number" name="qty" value="1"> -->
                            
@@ -56,8 +78,28 @@
                     </div>
 
                       
-                          </div>         
+                                 
                 </div>
+
+                 <div class="col-sm-3" style="background:black;">
+                    <div class="py-2">
+                    <div class="row">
+                    <button class="ml-auto my-3 w-50 btn header_buttons text-light float-right">Message</button>
+                     </div>
+                    <div class="row">
+                        <p class="d-inline w-50 text-left text-light">Desired start date: </p> 
+                        <span class="d-inline w-50"><input type="date" name="book-date"></span>
+                    </div>
+
+                    <div class="row">
+                        <p class="text-right text-light">Enter additional notes </p> 
+                        <span class="text-center"><textarea name="notes" cols="30" rows="10"></textarea></span>
+                    </div>
+
+                    <button class="my-3 py-1 btn-success w-50 btn header_buttons text-light float-right">Book</button>
+
+                    </div>
+                 </div>
             </div>
 
 
@@ -143,7 +185,7 @@ if(sessionStorage.getItem('serviceDetails')!=null)
     t.form.price = data.data.data[0].price;
     t.form.name = data.data.data[0].name;
     t.form.details = data.data.data[0].details;
-    //t.form.location = data.data.data[0].location;
+    t.form.location = data.data.data[0].location;
     //t.form.contact = data.data.data[0].contact;
     t.form.image = data.data.data[0].image;
     t.form.category = data.data.data[0].category;

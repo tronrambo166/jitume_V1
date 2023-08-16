@@ -64,6 +64,7 @@ Route::get('/get_suggest/{search}', 'PagesController@getAddress')->name('get_sug
 Route::post('search', 'PagesController@search')->name('search');
 Route::get('searchResults/{ids}', 'PagesController@searchResults')->name('searchResults');
 Route::get('priceFilter/{min}/{max}/{ids}', 'PagesController@priceFilter')->name('priceFilter');
+Route::get('priceFilterS/{min}/{max}/{ids}', 'PagesController@priceFilterS')->name('priceFilterS');
 
 Route::post('searchService', 'PagesController@searchService')->name('searchService');
 Route::get('ServiceResults/{ids}', 'PagesController@ServiceResults')->name('ServiceResults'); 
