@@ -67,6 +67,7 @@ Route::get('priceFilter/{min}/{max}/{ids}', 'PagesController@priceFilter')->name
 Route::get('priceFilterS/{min}/{max}/{ids}', 'PagesController@priceFilterS')->name('priceFilterS');
 
 Route::post('searchService', 'PagesController@searchService')->name('searchService');
+Route::post('serviceBook', 'ServiceController@serviceBook')->name('serviceBook');
 Route::get('ServiceResults/{ids}', 'PagesController@ServiceResults')->name('ServiceResults'); 
 Route::get('categoryResults/{catName}', 'PagesController@categoryResults')->name('categoryResults');
 
@@ -149,6 +150,10 @@ Route::post('up_milestones', 'ServiceController@up_milestone')->name('up_s_miles
 Route::get('delete_s_milestone/{id}', 'ServiceController@delete_milestone')->name('delete_milestone');
 Route::post('mile_s_status', 'ServiceController@mile_status')->name('mile_s_status');
 // --- MILESTONE
+Route::get('service_booking', 'ServiceController@service_booking')->name('service_booking');
+Route::get('my_booking', 'ServiceController@my_booking')->name('my_booking');
+Route::get('booker-milestones', 'ServiceController@booker_milestones')->name('booker-milestones');
+
 Route::get('/', 'BusinessController@home')->name('services/index');
 Route::get('services', 'ServiceController@listings')->name('services');
 //Route::post('add_eqp', 'ServiceController@add_eqp')->name('add_eqp');
@@ -214,6 +219,7 @@ Route::get('bidCommits/{amount}/{business_id}/{percent}', 'checkoutController@bi
 Route::post('bidCommits', 'checkoutController@bidCommits')->name('bidCommits');
 Route::get('agreeToBid/{bidId}', 'bidsEmailController@agreeToBid')->name('agreeToBid');
 Route::get('agreeToNextmile/{bidId}', 'bidsEmailController@agreeToNextmile')->name('agreeToNextmile');
+Route::post('bookingAccepted', 'bidsEmailController@bookingAccepted')->name('bookingAccepted');
 
 //<!-- BIDS -->
 

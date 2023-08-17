@@ -15,6 +15,7 @@ use App\Models\Conversation;
 use App\Models\Milestones;
 use App\Models\Smilestones;
 use App\Models\AcceptedBids;
+use App\Models\serviceBook;
 use Session; 
 use Hash;
 use Auth;
@@ -326,6 +327,41 @@ public function bidCommitsEQP(Request $request){
     }
 
 }
+
+
+public function bookingAccepted(Request $request)
+{
+
+    try { 
+        $bid_ids = $request->bid_ids;
+        foreach($bid_ids as $id){
+        if($id !=''){
+        $bid = serviceBook::where('id',$id)->first();
+        $investor = User::where('id',$bid->booker_id)->first();
+        $investor_mail = $investor->email;
+
+         $list = Services::where('id',$bid->service_id)->first();
+        // $info=[ 'business_name'=>$list->name, 'bid_id'=>$id ];
+        // $user['to'] = 'tottenham266@gmail.com'; //$investor_mail;
+        //  Mail::send('bids.accepted', $info, function($msg) use ($user){
+        //      $msg->to($user['to']);
+        //      $msg->subject('Bid accepted!');
+        //  });
+
+           $confirm = serviceBook::where('id',$id)->update(['status' => 'Confirmed']);
+         }
+       }
+        Session::put('success','Confirmed!');
+        return redirect()->back();
+     
+       }
+        catch(\Exception $e){
+            Session::put('failed',$e->getMessage());
+            return redirect()->back();
+       }  
+
+   }
+
 
 
     //Class Ends Below

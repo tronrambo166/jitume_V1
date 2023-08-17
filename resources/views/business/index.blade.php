@@ -7,7 +7,6 @@
   @if(Session::has('file_error'))
   <p class="d-block mx-auto btn btn btn-light text-danger font-weight-bold text-center">
       {{Session::get('file_error')}} @php Session::forget('file_error'); @endphp</p>@endif
-    
 
    @if(isset($investor) && $investor == true ) 
    <div class="row m-auto">  

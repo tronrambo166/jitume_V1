@@ -58,23 +58,23 @@
                       
                    <div class="Overview" id="Overview">
                     <h4 class="text-center font-weight-bold">About</h4>
-                    <p class="font-weight-bold small text-left">{{form.details}}</p>
+                    <p class="my-4 font-weight-bold small text-left">{{form.details}} Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. </p>
 
                     <div class="cart text-center">
                         <form>
                            <!--  <input id="qty" min="1" class="w-25 form-control d-inline" type="number" name="qty" value="1"> -->
                            
-                            <a  v-if="auth_user" @click="service_milestones(form.id)" class="text-light font-weight-bold w-75 text-center buttonEq2">Purchase by Milestones</a>
+                            <a  v-if="auth_user" @click="service_milestones(form.id)" class="border border-dark font-weight-bold w-50 text-center convBtn rounded">Service Milestone Breakdown</a>
 
                             <!--
                             <a  v-if="auth_user" @click="addToCart(form.id)" class="text-light font-weight-bold btn buttonEq2">Add to cart</a>
                             <a v-else @click="make_session()" class="text-light font-weight-bold btn buttonEq2" data-target="#loginModal" data-toggle="modal">Add to cart</a> -->
 
-                            <a v-else @click="make_session()" class="text-light font-weight-bold w-75 text-center buttonEq2" data-target="#loginModal" data-toggle="modal">Purchase by Milestones</a>
+                            <a v-else @click="make_session()" class="border border-dark font-weight-bold w-50 text-center convBtn" data-target="#loginModal" data-toggle="modal">Service Milestone Breakdown</a>
 
                         </form>
                     </div>
-                    <p><span class="mt-1 rounded"><i class="mr-2 fa fa-category"></i>Category: {{form.category}}</span></p>
+                    <!-- <p><span class="mt-1 rounded"><i class="mr-2 fa fa-category"></i>Category: {{form.category}}</span></p> -->
                     </div>
 
                       
@@ -82,21 +82,27 @@
                 </div>
 
                  <div class="col-sm-3" style="background:black;">
-                    <div class="py-2">
+                    <div class="p-2">
+                    <form @submit.prevent="serviceBook">
                     <div class="row">
                     <button class="ml-auto my-3 w-50 btn header_buttons text-light float-right">Message</button>
                      </div>
-                    <div class="row">
+                    <div class="row p-2">
                         <p class="d-inline w-50 text-left text-light">Desired start date: </p> 
-                        <span class="d-inline w-50"><input type="date" name="book-date"></span>
+                        <span class="pl-0 d-inline w-50"><input v-model="formBook.date" type="date" name="date"></span>
                     </div>
 
                     <div class="row">
                         <p class="text-right text-light">Enter additional notes </p> 
-                        <span class="text-center"><textarea name="notes" cols="30" rows="10"></textarea></span>
+                        <span class="text-center">
+                            <textarea v-model="formBook.note" name="note" cols="30" rows="10" class="rounded"></textarea>
+                        </span>
                     </div>
+                    <input hidden type="number" name="service_id" v-model="formBook.service_id">
+                    <button v-if="auth_user" class="my-3 py-1 btn-success w-50 btn header_buttons text-light float-right">Book</button>
 
-                    <button class="my-3 py-1 btn-success w-50 btn header_buttons text-light float-right">Book</button>
+                    <a v-else @click="make_session()" data-target="#loginModal" data-toggle="modal" class="my-3 py-1 btn-success w-50 btn header_buttons text-light float-right">Book</a>
+                </form>
 
                     </div>
                  </div>
@@ -107,7 +113,7 @@
                 <h3>Reviews</h3>
                 <p class="text-secondary my-3">There are no reviews yet.</p>
 
-                <button class="w-50 searchListing">Add Review</button>
+                <button class="w-25 searchListing">Add Review</button>
             </div>
 
          
@@ -169,7 +175,13 @@ export default {
         category:'',
         image:''
     }),
-    details:[] 
+    formBook: new Form({
+        date:'',
+        service_id:'',
+        note:''
+    }),
+    details:[],
+    service_id:''
     }),
 
 created(){
@@ -179,7 +191,9 @@ if(sessionStorage.getItem('serviceDetails')!=null)
     methods:{
 
    getDetails:function(){ 
-    var id=this.$route.params.id; var t=this;
+    var id=this.$route.params.id;
+    this.formBook.service_id = this.$route.params.id;
+     var t=this;
     axios.get('ServiceResults/'+id).then( (data) =>{console.log(data);
     //t.details = data.data.data;
     t.form.price = data.data.data[0].price;
@@ -233,6 +247,21 @@ if(sessionStorage.getItem('serviceDetails')!=null)
     replaceText(){
     $('#call_to').html('');
     $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+    },
+
+    async serviceBook(){
+    const response = await this.formBook.post('serviceBook');
+    console.log(response.data);
+    if(response.data.success){
+        toastr.success(response.data.success, { timeout:5000 });
+        //$('#bookmsg').css('display','none');
+    }
+    else
+    toastr.success(response.data.failed, { timeout:5000 });
+    
+
+ // this.$router.push('/manage-category');
+
     }
 
         },
