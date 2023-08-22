@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "05937aff6d77414c84d92f8ba0cd9bc8",
+    "content-hash": "ffa7d2fb70fa394fe6194c0944989e64",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3409,16 +3409,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v10.12.1",
+            "version": "v12.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "9e8055d55e8212ad844f48d7cf525b630689be35"
+                "reference": "732996be0714154716f19f73f956d77bafc99334"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/9e8055d55e8212ad844f48d7cf525b630689be35",
-                "reference": "9e8055d55e8212ad844f48d7cf525b630689be35",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/732996be0714154716f19f73f956d77bafc99334",
+                "reference": "732996be0714154716f19f73f956d77bafc99334",
                 "shasum": ""
             },
             "require": {
@@ -3464,9 +3464,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v10.12.1"
+                "source": "https://github.com/stripe/stripe-php/tree/v12.0.0"
             },
-            "time": "2023-04-04T19:13:21+00:00"
+            "time": "2023-08-18T18:55:28+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

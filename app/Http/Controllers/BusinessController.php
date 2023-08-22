@@ -54,8 +54,13 @@ return view('business.index',compact('business','services'));
 }
 
 public function add_listing(){
-//$events = Events::latest()->get();
-return view('business.add-listing');
+$user = User::where('id',Auth::id())->first();
+if($user->connect_id)
+$connected = 1;
+else $connected = 0;
+
+$user_id = Auth::id();
+return view('business.add-listing', compact('connected','user_id'));
 
 }
 

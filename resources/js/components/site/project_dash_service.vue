@@ -215,7 +215,7 @@
     }),
 
     created(){
-    if(sessionStorage.getItem('milestone')!=null)
+    if(sessionStorage.getItem('milestoneS')!=null)
     sessionStorage.clear();
 
          var id=this.$route.params.id;
@@ -256,7 +256,8 @@ getMilestones:function(){
 
  mounted() { 
      this.getMilestones();
-    
+    if(sessionStorage.getItem('milestoneS')!=null)
+    sessionStorage.clear();
       }
 
 

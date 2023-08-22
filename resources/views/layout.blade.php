@@ -285,7 +285,24 @@
 
 
         @if(Session::has('Stripe_pay'))
-        <p style="position: absolute;background: #00ff89;right: 0px;border-radius: 0px;" class="text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('Stripe_pay')}} @php Session::forget('Stripe_pay'); @endphp </p>
+        <!-- Pop up Modal -->
+            <div class="success_message modal" style="display:block;" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content popup_success">
+
+                        <div class="modal-body">
+                            <h2 class="my-4 modal-title text-center w-100" id="exampleModalLabel">Success</h2>
+
+                            <p class="text-center">{{Session::get('Stripe_pay')}} @php Session::forget('Stripe_pay'); @endphp</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button onclick="popupClose();" type="button" class="w-50 py-2 my-3 h5 m-auto btn text-white" style="background:green;font-size: 18px;" data-dismiss="modal">Ok</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pop up Modal -->
         @endif
 
         <!-- yield('page') -->

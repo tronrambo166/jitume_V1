@@ -193,9 +193,11 @@ Auth::routes();
 
 // <!-- Payment Routes -->
 
+
+//Unlock small fee
 Route::get('/stripe', 'checkoutController@goCheckout')->name('stripe');
-//Invest
 Route::post('/stripe', 'checkoutController@stripePost')->name('stripe.post');
+
 //Subscribe
 Route::post('/stripe', 'checkoutController@stripeConversation')->name('stripe.post.coversation');
 
@@ -209,8 +211,6 @@ Route::post('milestonestripe', 'checkoutController@milestoneStripePost')->name('
 Route::get('milestoneService', 'checkoutController@milestoneCheckoutS')->name('milestoneService');
 Route::post('milestoneService', 'checkoutController@milestoneStripePostS')->name('milestoneService.post');
 Route::get('milestoneInvestEQP/{listing_id}/{mile_id}/{investor_id}/{owner_id}', 'checkoutController@milestoneInvestEQP')->name('milestoneInvestEQP');
-// Payment Routes
-
 
 //<!-- BIDS -->
 Route::post('bidsAccepted', 'bidsEmailController@bidsAccepted')->name('bidsAccepted');
@@ -222,6 +222,13 @@ Route::get('agreeToNextmile/{bidId}', 'bidsEmailController@agreeToNextmile')->na
 Route::post('bookingAccepted', 'bidsEmailController@bookingAccepted')->name('bookingAccepted');
 
 //<!-- BIDS -->
+
+// Payment Routes
+
+
+//Stripe-Connect
+Route::get('/connect/{id}', 'checkoutController@connect')->name('connect.stripe');
+Route::get('/saveStripe/{token}', 'checkoutController@saveStripe')->name('return.stripe');
 
 
 //SOCIAL

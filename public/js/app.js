@@ -10146,7 +10146,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    if (sessionStorage.getItem('milestone') != null) sessionStorage.clear();
+    if (sessionStorage.getItem('milestoneS') != null) sessionStorage.clear();
     var id = this.$route.params.id;
     var t = this;
     t.form.id = id;
@@ -10175,6 +10175,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getMilestones();
+    if (sessionStorage.getItem('milestoneS') != null) sessionStorage.clear();
   }
 });
 
