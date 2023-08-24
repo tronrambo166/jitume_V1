@@ -14,6 +14,7 @@ use App\Models\Conversation;
 use App\Models\BusinessBids;
 use App\Models\AcceptedBids;
 
+use Stripe\StripeClient;
 use Response;
 use Session; 
 use Hash;
@@ -30,8 +31,9 @@ class BusinessController extends Controller
   }
 
 //private $auth_id;
-   public function __construct()
-    { 
+   public function __construct(StripeClient $client)
+    {   
+        $this->Client = $client;
         $this->middleware('business');   
     }
 
@@ -44,6 +46,28 @@ public function auth_id(){
 public function logoutB(){
   Session::forget('service_login');
   return redirect('home');
+}
+
+
+public function account(){
+$user = User::where('id',Auth::id())->first();
+if($user->connect_id)
+$connected = 1;
+else $connected = 0;
+
+if($user->connect_id){
+$balanceA= $this->Client->balance->retrieve(null,
+  ['stripe_account'=>$user->connect_id])->available[0]->amount;
+$balanceA = '$'.(float)($balanceA/100);
+
+$balanceP= $this->Client->balance->retrieve(null,
+  ['stripe_account'=>$user->connect_id])->pending[0]->amount;
+//echo '<pre>'; print_r($balance2); echo '<pre>';exit;
+$balanceP = '$'.(float)($balanceP/100);
+}
+else $balanceA = $balanceP ='N/A';
+$user_id = $user->id;
+return view('business.account', compact('user', 'balanceA','balanceP', 'connected', 'user_id'));
 }
 
 
@@ -1025,6 +1049,21 @@ $user_id = Auth::id();
 
 }
 
+//Rating
+public function ratingListing($id, $rating){
+$user_id = Auth::id();
+$listing = Listing::where('id',$id)->first();
+$new_rating = $rating + $listing->rating;
+$rating_count = 1 + $listing->rating_count;
+$new_rating = $new_rating/$rating_count;
+        $listing = Listing::where('id',$id)->update([
+        'rating' => $new_rating,
+        'rating_count' => $rating_count,
+       ]);
+
+        return response()->json(['success' => 'Success!']);
+
+}
 
 //Class Bracket
 }

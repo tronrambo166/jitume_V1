@@ -9185,8 +9185,11 @@ __webpack_require__.r(__webpack_exports__);
       return '../';
     },
     rating: function rating() {
+      var id = this.$route.params.id;
       var rating = $('#demoRating').val();
-      alert(rating);
+      axios.get('ratingListing/' + id + '/' + rating).then(function (data) {
+        console.log(data);
+      });
     },
     make_session: function make_session(id) {
       sessionStorage.setItem('invest', id);
@@ -71889,18 +71892,7 @@ var render = function () {
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("form", [
-                  _c("h5", { staticClass: "my-3 font-weight-bold" }, [
-                    _vm._v("Service rating \n        "),
-                    _c("div", {
-                      staticClass: "ml-5 d-inline-block",
-                      attrs: { id: "demo" },
-                      on: {
-                        click: function ($event) {
-                          return _vm.rating()
-                        },
-                      },
-                    }),
-                  ]),
+                  _vm._m(12),
                   _vm._v(" "),
                   _c("h5", { staticClass: "font-weight-bold" }, [
                     _vm._v("Leave a review"),
@@ -71912,11 +71904,15 @@ var render = function () {
                   }),
                   _vm._v(" "),
                   _c(
-                    "button",
+                    "a",
                     {
                       staticClass:
                         "font-weight-bold btn btn-success w-50 m-auto",
-                      attrs: { type: "submit" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.rating()
+                        },
+                      },
                     },
                     [_vm._v("Submit")]
                   ),
@@ -72142,6 +72138,15 @@ var staticRenderFns = [
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", { staticClass: "my-3 font-weight-bold" }, [
+      _vm._v("Service rating \n        "),
+      _c("div", { staticClass: "ml-5 d-inline-block", attrs: { id: "demo" } }),
     ])
   },
 ]

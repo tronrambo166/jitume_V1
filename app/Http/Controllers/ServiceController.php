@@ -46,8 +46,13 @@ return view('services.listings',compact('listings'));
 }
 
 public function add_listing(){
-//$events = Events::latest()->get();
-return view('services.add-listing');
+$user = User::where('id',Auth::id())->first();
+if($user->connect_id)
+$connected = 1;
+else $connected = 0;
+
+$user_id = Auth::id();
+return view('services.add-listing', compact('connected','user_id'));
 
 }
 

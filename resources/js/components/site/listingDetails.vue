@@ -351,16 +351,16 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form >
         <h5 class="my-3 font-weight-bold">Service rating 
-        <div class="ml-5 d-inline-block" @click = "rating()" id="demo"></div>
+        <div class="ml-5 d-inline-block" id="demo"></div>
     </h5>
         
 
         <h5 class="font-weight-bold">Leave a review</h5>
         <textarea name="reply" class="bg-light border border-none" cols="55" rows="3"></textarea>
         
-        <button type="submit" class="font-weight-bold btn btn-success w-50 m-auto">Submit</button>
+        <a @click = "rating()"  class="font-weight-bold btn btn-success w-50 m-auto">Submit</a>
         </form>
 
       </div>
@@ -448,9 +448,12 @@ if(sessionStorage.getItem('invest')!=null)
 
   rating()
   { 
+    var id=this.$route.params.id;
     var rating = $('#demoRating').val();
-    alert(rating);
+    axios.get('ratingListing/'+id+'/'+rating).then( (data) =>{console.log(data);
+    });
    },
+
   make_session(id){
             sessionStorage.setItem('invest',id);
             document.getElementById('c_to_action').value = 'loginFromService';

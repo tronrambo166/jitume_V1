@@ -89,6 +89,7 @@ Route::get('download_milestoneDoc/{id}/{mile_id}', 'BusinessController@download_
 Route::get('download_milestoneDocS/{id}/{mile_id}', 'ServiceController@download_milestone_doc')->name('download_milestoneDocS');
 // <--milestones-->
 Route::get('latBusiness', 'PagesController@latBusiness')->name('latBusiness');
+Route::get('ratingListing/{id}/{rating}', 'BusinessController@ratingListing')->name('ratingListing');
 
 //MAIN/BACKEND/VUE
 
@@ -122,6 +123,7 @@ Route::get('business_bids', 'BusinessController@business_bids')->name('business_
 Route::get('my_bids', 'BusinessController@my_bids')->name('my_bids');
 Route::get('remove_bids/{id}', 'BusinessController@remove_bids')->name('remove_bids');
 Route::get('assetEquip/download/{id}/{type}', 'BusinessController@assetEquip_download')->name('assetEquip/download');
+Route::get('account', 'BusinessController@account')->name('account');
 
 // --- MILESTONE
 Route::get('add_milestones', 'BusinessController@add_milestones')->name('add_milestones');
