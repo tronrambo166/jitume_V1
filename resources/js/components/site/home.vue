@@ -280,7 +280,7 @@
       <!-- SLider test -->
     <div style="overflow:hidden;" class="row card-group px-3 w-75 mx-auto d-md-flex justify-content-center">
     <hooper :settings="hooperSettings" :itemsToShow="4" :centerMode="true" pagination="no">
-    <slide class="listing text-center col-sm-4 px-3" v-for="( result, index ) in results" :key="indx" :index="indx">
+    <slide class="listing text-center col-sm-4 px-3" v-for="( result, index ) in results" :key="index" :index="index">
       <!-- Loop -->
            <div class="mx-auto">
                 <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">

@@ -1789,15 +1789,10 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
-    <script src="/path/to/cdn/jquery.slim.min.js"></script>
+    <!-- <script src="/path/to/cdn/jquery.slim.min.js"></script> -->
     <script src="rating/js/jquery-rates.js"></script>
     <script type="text/javascript">
-         $('#demo').rates({
-        shape:'black-star',
-        imagesFolderLocation:'rating/', 
-        shapeHeight:'20px',   
-        shadeColor:'rates-green',   
-        });
+         
     </script>
 </body>
 

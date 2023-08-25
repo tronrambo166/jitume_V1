@@ -593,11 +593,12 @@ else {
 
 public function bidCommitsForm($amount,$business_id,$percent)
 {   $amount = base64_decode($amount);
+    $amountBase = $amount;
     $business_id = base64_decode($business_id);
     $percent = base64_decode($percent);
     $total = $amount+($amount*0.05);
     $amount = round($total,2);
-    $amountReal = $total;
+    $amountReal = $amountBase;
  
         return view('bids.stripe',compact('amountReal','amount','business_id','percent'));
 }
@@ -616,10 +617,11 @@ public function bidCommits(Request $request){
 
  try{
     //Stripe
-        $curr='USD'; //$request->currency; 
-        $amount=$request->price;
-        $transferAmount=round($amount-($amount*.05))
-        ;
+        $curr='USD'; //$request->currency;
+        $amount=$request->price; 
+        $amountReal=$request->amountReal;
+        $transferAmount=round($amountReal,2);
+        $amount = round($amount,2);
 
         $this->validate($request, [
             'stripeToken' => ['required', 'string']
@@ -644,24 +646,6 @@ catch(\Exception $e){
     $Business = listing::where('id',$business_id)->first();
     $owner = User::where('id', $Business->user_id)->first();
 
- try{
-    //Split
-        $curr='USD'; //$request->currency; 
-        $tranfer = $this->Client->transfers->create ([ 
-                //"billing_address_collection": null,
-                "amount" => $transferAmount*100, //100 * 100,
-                "currency" => $curr,
-                "source_transaction" => $charge->id,
-                'destination' => $owner->connect_id
-        ]);
-    //Stripe
-
-        }
-
-catch(\Exception $e){
-  return response()->json(['failed' =>  $e->getMessage()]);
-}
-
 $business_id = $request->listing;
 $percent = $request->percent;
 
@@ -672,8 +656,9 @@ $percent = $request->percent;
       'investor_id' => $investor_id,
       'business_id' => $business_id,
       'type' => $type,
-      'amount' => $amount,
-      'representation' => $percent
+      'amount' => $transferAmount,
+      'representation' => $percent,
+      'stripe_charge_id' => $charge->id
     ]);
 
 // Milestone Fulfill check

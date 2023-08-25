@@ -9324,7 +9324,90 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getDetails();
-    this.getMilestones();
+    this.getMilestones(); // SCRIPT
+
+    (function ($) {
+      $.fn.rates = function (options) {
+        // Default settings for the plugin if none are provided by the user
+        var settings = $.extend({
+          shadeColor: 'rates-yellow',
+          shapeHeight: '25px',
+          shapeCount: 5,
+          shape: 'white-star',
+          imagesFolderLocation: ''
+        }, options);
+        return this.each(function () {
+          var container = this;
+          $(container).addClass('rates-container');
+          var $containerName = $(this).attr('id');
+          var score = {
+            value: 0
+          };
+          createStars(settings.shapeCount);
+          setSize();
+          var $eachStar = $(this).find('img'); // Colors in the rating shape on hover
+          // Removes the color from above the selected rating on mouse out
+
+          $(this).find('img').hover(function () {
+            var starIndex = $eachStar.index(this);
+            colorShapesToIndex(starIndex);
+          }, function () {
+            colorShapesToScore();
+          }); // Sets the score rating based on which rating shape was clicked
+
+          $(this).find('img').on('click', function () {
+            var starIndex = $eachStar.index(this);
+            colorShapesToIndex(starIndex);
+            score.value = starIndex + 1;
+            $("#".concat($containerName, "Rating")).val(score.value);
+          }); // Sets the size of stars indicated in the settings
+
+          function setSize() {
+            $(container).find('img').css('height', settings.shapeHeight);
+          } // Dynamically creates the html markup based on the number of stars indicated
+
+
+          function createStars(count) {
+            var starInput = $("<input type=\"hidden\" id = \"".concat($containerName, "Rating\" name=\"").concat($containerName, "Rating\" value=\"0\" >"));
+            $(container).append(starInput);
+
+            for (var i = 0; i < count; i++) {
+              var $imageStar = $('<img>');
+              $imageStar.attr('src', "".concat(settings.imagesFolderLocation, "images/").concat(settings.shape, ".png"));
+              $(container).append($imageStar);
+            }
+          } // Resets the shading class on the shapes to color only those up until a designated index
+
+
+          function colorShapesToIndex(starIndexValue) {
+            $eachStar.removeClass(settings.shadeColor);
+
+            for (var i = 0; i <= starIndexValue; i++) {
+              var star = $eachStar.get(i);
+              $(star).toggleClass(settings.shadeColor);
+            }
+          } // Resets the shading class on the shapes to color only those up to and including the selected score
+
+
+          function colorShapesToScore() {
+            $eachStar.removeClass(settings.shadeColor);
+
+            for (var j = 0; j < score.value; j++) {
+              var star = $eachStar.get(j);
+              $(star).toggleClass(settings.shadeColor);
+            }
+          }
+        });
+      };
+    })(jQuery); // SCRIPT
+
+
+    $('#demo').rates({
+      shape: 'black-star',
+      imagesFolderLocation: 'rating/',
+      shapeHeight: '20px',
+      shadeColor: 'rates-green'
+    });
   }
 });
 
@@ -70076,9 +70159,9 @@ var render = function () {
                     return _c(
                       "slide",
                       {
-                        key: _vm.indx,
+                        key: index,
                         staticClass: "listing text-center col-sm-4 px-3",
-                        attrs: { index: _vm.indx },
+                        attrs: { index: index },
                       },
                       [
                         _c(

@@ -20,13 +20,18 @@ use Session;
 use Hash;
 use Auth;
 use Mail;
-use Stripe;
+use Stripe\StripeClient;
 use App\Models\taxes;
 use App\Models\BusinessBids;
 
 class bidsEmailController extends Controller
 {
-    
+
+public function __construct(StripeClient $client)
+    {
+        $this->Client = $client;
+    }
+
 public function bidsAccepted(Request $request)
 {
 
@@ -80,6 +85,25 @@ public function bidsAccepted(Request $request)
         //     $photos = explode(',',$bid->photos);
         //     foreach($photos as $p) if($p !='')  unlink($p);
         //     }
+
+         $owner = User::where('id',$list->user_id)->first();
+                 try{
+                //Split
+                    $curr='USD'; //$request->currency; 
+                    $tranfer = $this->Client->transfers->create ([ 
+                            //"billing_address_collection": null,
+                            "amount" => $bid->amount*100, //100 * 100,
+                            "currency" => $curr,
+                            "source_transaction" => $bid->stripe_charge_id,
+                            'destination' => $owner->connect_id
+                    ]);
+                //Stripe
+                    }
+            catch(\Exception $e){
+              Session::put('failed',$e->getMessage());
+              return redirect()->back();
+            }
+
               AcceptedBids::create([
               'bid_id' => $id,
               'date' => $bid->date,
@@ -93,6 +117,8 @@ public function bidsAccepted(Request $request)
               'optional_doc' => $bid->optional_doc,
               'photos' => $bid->photos
             ]);
+                
+
 
          $bid_remove = BusinessBids::where('id',$id)->delete();
          //remove
