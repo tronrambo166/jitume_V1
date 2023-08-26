@@ -9120,10 +9120,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -9138,6 +9134,7 @@ __webpack_require__.r(__webpack_exports__);
         image: '',
         investment_needed: '',
         investors_fee: '',
+        rating: '',
         conv: ''
       }),
       results: [],
@@ -9168,6 +9165,13 @@ __webpack_require__.r(__webpack_exports__);
         t.form.listing_id = data.data.data[0].id;
         t.form.investment_needed = data.data.data[0].investment_needed;
         t.form.investors_fee = data.data.data[0].investors_fee;
+        t.form.rating = data.data.data[0].rating;
+        var i;
+
+        for (i = 1; i < 6; i++) {
+          console.log(parseInt(t.form.rating));
+          if (i <= parseInt(t.form.rating)) $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');else $('#staticRating').append('<img src="rating/images/black-star.png" style="height: 15px;" class="">');
+        }
       });
     },
     select: function select() {
@@ -71326,7 +71330,10 @@ var render = function () {
                       ]),
                     ]),
                     _vm._v(" "),
-                    _vm._m(0),
+                    _c("div", {
+                      staticClass: "float-right d-inline-block",
+                      attrs: { id: "staticRating" },
+                    }),
                   ]
                 ),
               ]
@@ -71340,7 +71347,7 @@ var render = function () {
             ]),
             _vm.auth_user
               ? _c("div", { staticClass: "float-right w-25" }, [
-                  _vm._m(1),
+                  _vm._m(0),
                   _vm._v(" "),
                   _c("span", [_vm._v(_vm._s(_vm.progress) + "% Invested")]),
                 ])
@@ -71350,7 +71357,7 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row my-4" }, [
-            _vm._m(2),
+            _vm._m(1),
             _vm._v(" "),
             _c("div", { staticClass: "Overview", attrs: { id: "Overview" } }, [
               _c("p", [
@@ -71364,12 +71371,12 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _vm._m(3),
+      _vm._m(2),
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-3" }, [
         !_vm.form.conv
           ? _c("div", { staticClass: "card bg-light w-100 mx-auto py-3" }, [
-              _vm._m(4),
+              _vm._m(3),
               _vm._v(" "),
               _vm.auth_user
                 ? _c(
@@ -71725,7 +71732,7 @@ var render = function () {
                     _vm.running
                       ? _c("div", { staticClass: "Invest-Payout" }, [
                           _c("div", { staticClass: "w-75 mx-auto row" }, [
-                            _vm._m(5),
+                            _vm._m(4),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-sm-12 px-1" }, [
                               _c("div", { staticClass: "row" }, [
@@ -71753,7 +71760,7 @@ var render = function () {
                                 ]),
                               ]),
                               _vm._v(" "),
-                              _vm._m(6),
+                              _vm._m(5),
                             ]),
                           ]),
                           _vm._v(" "),
@@ -71780,7 +71787,7 @@ var render = function () {
                           ),
                           _vm._v(" "),
                           _c("div", { staticClass: "w-75 mx-auto row" }, [
-                            _vm._m(7),
+                            _vm._m(6),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-sm-12 px-1" }, [
                               _c("div", { staticClass: "row" }, [
@@ -71808,7 +71815,7 @@ var render = function () {
                                 ]),
                               ]),
                               _vm._v(" "),
-                              _vm._m(8),
+                              _vm._m(7),
                             ]),
                           ]),
                           _vm._v(" "),
@@ -71867,7 +71874,7 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(9),
+              _vm._m(8),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "row" }, [
@@ -71943,7 +71950,7 @@ var render = function () {
                       [_vm._v("\n          Ok\n        ")]
                     ),
                     _vm._v(" "),
-                    _vm._m(10),
+                    _vm._m(9),
                   ]),
                 ]),
               ]),
@@ -71971,11 +71978,11 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(11),
+              _vm._m(10),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("form", [
-                  _vm._m(12),
+                  _vm._m(11),
                   _vm._v(" "),
                   _c("h5", { staticClass: "font-weight-bold" }, [
                     _vm._v("Leave a review"),
@@ -72009,44 +72016,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "float-right d-inline-block",
-        attrs: { id: "staticRating" },
-      },
-      [
-        _c("img", {
-          staticStyle: { height: "15px", color: "green" },
-          attrs: { src: "rating/images/g-star.svg" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticStyle: { height: "15px" },
-          attrs: { src: "rating/images/g-star.svg" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticStyle: { height: "15px" },
-          attrs: { src: "rating/images/g-star.svg" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticStyle: { height: "15px" },
-          attrs: { src: "rating/images/g-star.svg" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticStyle: { height: "15px" },
-          attrs: { src: "rating/images/black-star.png" },
-        }),
-      ]
-    )
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

@@ -818,6 +818,17 @@ catch(\Exception $e){
 
 //END MILESTONES
 public function remove_bids($id){
+  $bid = BusinessBids::where('id',$id)->first();
+//   $charge = $this->Client->charges->retrieve(
+//   $bid->stripe_charge_id,
+//   []
+// );
+  //echo '<pre>'; print_r($charge);  echo '<pre>'; exit;
+  
+  //Refund
+         $this->Client->refunds->create(['charge' => $bid->stripe_charge_id ]);
+  //Refund
+         
   $bid_remove = BusinessBids::where('id',$id)->delete();       
   Session::put('success','Removed!');
   return redirect()->back();

@@ -53,6 +53,11 @@ public function bidsAccepted(Request $request)
              $msg->to($user['to']);
              $msg->subject('Bid Rejected!');
          });
+
+         //Refund
+         $this->Client->refunds->create(['charge' => $bid->stripe_charge_id ]);
+         //Refund
+         
          $bid_remove = BusinessBids::where('id',$id)->delete();
          //remove
            }

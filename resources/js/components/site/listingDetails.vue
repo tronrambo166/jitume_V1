@@ -16,11 +16,7 @@
                         <h6 class="font-weight-bold" >Amount: <span class="font-weight-light"><b>${{form.investment_needed}} (Required:${{amount_required}})</b></span></h6>
 
                         <div class="float-right d-inline-block" id="staticRating">
-                            <img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">
-                            <img src="rating/images/g-star.svg" style="height: 15px;" class="">
-                            <img src="rating/images/g-star.svg" style="height: 15px;" class="">
-                            <img src="rating/images/g-star.svg" style="height: 15px;" class="">
-                            <img src="rating/images/black-star.png" style="height: 15px;" class="">
+
                         </div>
                     </div>
 
@@ -392,6 +388,7 @@ export default {
         image:'',
         investment_needed:'',
         investors_fee:'',
+        rating:'',
         conv:'',
     }),
 
@@ -427,6 +424,15 @@ if(sessionStorage.getItem('invest')!=null)
     t.form.listing_id = data.data.data[0].id;
     t.form.investment_needed = data.data.data[0].investment_needed;
     t.form.investors_fee = data.data.data[0].investors_fee;
+    t.form.rating = data.data.data[0].rating;
+
+    var i;
+    for(i = 1; i<6; i++){console.log(parseInt(t.form.rating));
+    if(i<= parseInt(t.form.rating))
+    $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');
+    else
+    $('#staticRating').append('<img src="rating/images/black-star.png" style="height: 15px;" class="">');
+    }
     
     });
     
