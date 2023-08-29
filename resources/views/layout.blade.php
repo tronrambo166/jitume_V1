@@ -124,13 +124,13 @@
                         <div class="ml-3 ml-md-0 d-flex">
 
                             <div class="d-inline-block" id="call_to">
-                                <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #176B87; border-radius: 15px;cursor: pointer; " class=" header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center"><span style="font-weight:bolder;" id="c_to_ac">
+                                <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: ; border-radius: 15px;cursor: pointer; " class=" header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center"><span style="font-weight:bolder;" id="c_to_ac">
                                         Add Your Business</span></a>
                             </div>
 
 
                             <div class="d-inline-block" id="create_investor">
-                                <a data-target="#loginmodal2" data-toggle="modal" style="background: #176B87; border-radius: 15px;cursor: pointer; " class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center"><span style="font-weight:bolder;" id="c_to_ac">Create Investor Account</span></a>
+                                <a data-target="#loginmodal2" data-toggle="modal" style="background: ; border-radius: 15px;cursor: pointer; " class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center"><span style="font-weight:bolder;" id="c_to_ac">Create Investor Account</span></a>
                             </div>
 
                             <a data-target="#loginModal" data-toggle="modal" class=" sign_in_btn px-sm-3 my-1 mr-2 px-1 py-1 d-inline-block  text-center ml-md-3">Sign In</a>

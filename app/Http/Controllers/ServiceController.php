@@ -761,6 +761,22 @@ public function serviceBook(Request $request){
 }
 
 
+//Rating
+public function ratingService($id, $rating){
+$user_id = Auth::id();
+$listing = Services::where('id',$id)->first();
+$new_rating = $rating + $listing->rating;
+$rating_count = 1 + $listing->rating_count;
+//$new_rating = $new_rating/$rating_count;
+        $listing = Services::where('id',$id)->update([
+        'rating' => $new_rating,
+        'rating_count' => $rating_count,
+       ]);
+
+        return response()->json(['success' => 'Success!']);
+
+}
+
 
 //CLASS
 

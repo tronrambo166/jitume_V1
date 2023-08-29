@@ -47,7 +47,7 @@
     <tbody>
         @foreach($bids as $ev)
         <tr onclick="bg_change({{$ev->id}});" id="{{$ev->id}}">
-            <td><input onchange="check();" type="checkbox" name="bid_ids[]" value="{{$ev->id}}"></td>
+            <!-- <td><input onchange="check();" type="checkbox" name="bid_ids[]" value="{{$ev->id}}"></td> -->
             <td>{{$ev->date }}</td>
                 <td>
                 {{$ev->investor }}
@@ -64,7 +64,7 @@
                         <td>{{$ev->amount }}</td>
                         <td>{{$ev->representation }}</td>
                         <td>
-                            <a onclick="return confirm('Are you sure to remove?')" class="btn-light rounded py-1 text-center small" href="{{route('remove_bids',$ev->id)}}">Remove</a>
+                            <a class="btn-light rounded py-1 text-center small" href="{{route('remove_bids',$ev->id)}}" onclick="return confirm('Are you sure?');">Remove</a>
                         </td>
    
         </tr>
@@ -250,6 +250,7 @@
 
 </div>
 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
   function accept() {

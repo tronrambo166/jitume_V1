@@ -28,13 +28,10 @@
                     <div class="col-sm-6 text-center">
                     <p class="font-weight-bold small text-left">{{form.location}}</p>
         
-                        <div class="] d-inline-block" id="staticRating">
-                            <img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">
-                            <img src="rating/images/g-star.svg" style="height: 15px;" class="">
-                            <img src="rating/images/g-star.svg" style="height: 15px;" class="">
-                            <img src="rating/images/g-star.svg" style="height: 15px;" class="">
-                            <img src="rating/images/black-star.png" style="height: 15px;" class="">
+                      <div class="float-right d-inline-block" id="staticRating">
+
                         </div>
+                        
                         </div>
 
                         </div>
@@ -42,7 +39,9 @@
                         <div class="row my-5">
                             <div class="col-sm-12">
                             <a class="btn border border-bottom-success">Overview</a>
-                            <a class="btn border border-bottom-success">Add review</a>
+                            <a v-if="auth_user" data-toggle="modal" data-target="#reviewModal" class="btn border border-bottom-success">Add review</a>
+
+                           <a v-else @click="make_session(form.id);" data-target="#loginmodal2" data-toggle="modal" class="btn border border-bottom-success">Add review</a>
 
                             <hr>
                             <!-- <p> <span class="ml-2 font-weight-bold">Details:{{form.details}}</span></p> -->
@@ -64,13 +63,13 @@
                         <form>
                            <!--  <input id="qty" min="1" class="w-25 form-control d-inline" type="number" name="qty" value="1"> -->
                            
-                            <a  v-if="auth_user" @click="service_milestones(form.id)" class="border border-dark font-weight-bold w-50 text-center convBtn rounded">Service Milestone Breakdown</a>
+                            <a style="cursor:pointer;" v-if="auth_user" @click="service_milestones(form.id)" class="border border-dark font-weight-bold w-50 text-center convBtn rounded">Service Milestone Breakdown</a>
 
                             <!--
                             <a  v-if="auth_user" @click="addToCart(form.id)" class="text-light font-weight-bold btn buttonEq2">Add to cart</a>
                             <a v-else @click="make_session()" class="text-light font-weight-bold btn buttonEq2" data-target="#loginModal" data-toggle="modal">Add to cart</a> -->
 
-                            <a v-else @click="make_session()" class="border border-dark font-weight-bold w-50 text-center convBtn" data-target="#loginModal" data-toggle="modal">Service Milestone Breakdown</a>
+                            <a style="cursor:pointer;" v-else @click="make_session()" class="border border-dark font-weight-bold w-50 text-center convBtn" data-target="#loginModal" data-toggle="modal">Service Milestone Breakdown</a>
 
                         </form>
                     </div>
@@ -81,21 +80,21 @@
                                  
                 </div>
 
-                 <div class="col-sm-3" style="background:black;">
+                 <div class="col-sm-3 rounded" style="background:black;">
                     <div class="p-2">
                     <form @submit.prevent="serviceBook">
                     <div class="row">
-                    <button class="ml-auto my-3 w-50 btn header_buttons text-light float-right">Message</button>
+                    <a class="ml-auto my-3 w-50 btn header_buttons text-light float-right">Message</a>
                      </div>
                     <div class="row p-2">
                         <p class="d-inline w-50 text-left text-light">Desired start date: </p> 
-                        <span class="pl-0 d-inline w-50"><input v-model="formBook.date" type="date" name="date"></span>
+                        <span class="pl-0 d-inline w-50"><input required v-model="formBook.date" type="date" name="date"></span>
                     </div>
 
                     <div class="row">
                         <p class="text-right text-light">Enter additional notes </p> 
                         <span class="text-center">
-                            <textarea v-model="formBook.note" name="note" cols="30" rows="10" class="rounded"></textarea>
+                            <textarea required v-model="formBook.note" name="note" cols="32" rows="10" class="rounded"></textarea>
                         </span>
                     </div>
                     <input hidden type="number" name="service_id" v-model="formBook.service_id">
@@ -109,12 +108,12 @@
             </div>
 
 
-            <div class="row my-5 card shadow p-3">
+            <!-- <div class="row my-5 card shadow p-3">
                 <h3>Reviews</h3>
                 <p class="text-secondary my-3">There are no reviews yet.</p>
 
                 <button class="w-25 searchListing">Add Review</button>
-            </div>
+            </div> -->
 
          
 
@@ -151,7 +150,34 @@
         
         
         
+     <!-- Review --> 
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Submit a review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form >
+        <h5 class="my-3 font-weight-bold">Service rating 
+        <div class="ml-5 d-inline-block" id="demo"></div>
+    </h5>
         
+
+        <h5 class="font-weight-bold">Leave a review</h5>
+        <textarea name="reply" class="bg-light border border-none" cols="55" rows="3"></textarea>
+        
+        <a @click = "rating()"  class="font-weight-bold btn btn-light w-50 m-auto">Submit</a>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div> 
+<!-- Review -->    
         
         <!-- Body -->
         
@@ -204,6 +230,16 @@ if(sessionStorage.getItem('serviceDetails')!=null)
     t.form.image = data.data.data[0].image;
     t.form.category = data.data.data[0].category;
     t.form.shop_id = data.data.data[0].shop_id;
+    t.form.rating = data.data.data[0].rating/data.data.data[0].rating_count;
+    t.form.rating = t.form.rating.toFixed();
+
+    var i;
+    for(i = 1; i<6; i++){console.log(parseInt(t.form.rating));
+    if(i<= parseInt(t.form.rating))
+    $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');
+    else
+    $('#staticRating').append('<img src="rating/images/black-star.png" style="height: 15px;" class="">');
+    }
     
     });
     
@@ -223,6 +259,19 @@ if(sessionStorage.getItem('serviceDetails')!=null)
         var t=this; 
          this.$router.push('/service-milestone/'+id);
     },
+
+    rating()
+      { 
+        var id=this.$route.params.id;
+        var rating = $('#demoRating').val();
+        axios.get('ratingService/'+id+'/'+rating).then( (data) =>{console.log(data);
+            $.alert({
+                    title: 'Alert!',
+                    content: 'Rating submitted successfully!',
+                });
+            //location.reload();
+        });
+       },
 
     getPhoto(){
    
@@ -246,7 +295,7 @@ if(sessionStorage.getItem('serviceDetails')!=null)
 
     replaceText(){
     $('#call_to').html('');
-    $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+    $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
     },
 
     async serviceBook(){
@@ -271,6 +320,97 @@ if(sessionStorage.getItem('serviceDetails')!=null)
      this.replaceText();
      this.getDetails();
      this.cart();
+
+          // SCRIPT
+
+  (function ($) {
+  $.fn.rates = function (options) {
+    // Default settings for the plugin if none are provided by the user
+    const settings = $.extend({
+      shadeColor: 'rates-yellow',
+      shapeHeight: '25px',
+      shapeCount: 5,
+      shape: 'white-star',
+      imagesFolderLocation: '',
+
+    }, options);
+
+    return this.each(function () {
+      const container = this;
+      $(container).addClass('rates-container');
+      const $containerName = $(this).attr('id');
+
+      const score = {
+        value: 0,
+      };
+
+      createStars(settings.shapeCount);
+      setSize();
+
+      const $eachStar = $(this).find('img');
+
+      // Colors in the rating shape on hover
+      // Removes the color from above the selected rating on mouse out
+      $(this).find('img').hover(function () {
+        const starIndex = $eachStar.index(this);
+        colorShapesToIndex(starIndex);
+      }, () => {
+        colorShapesToScore();
+      });
+
+      // Sets the score rating based on which rating shape was clicked
+      $(this).find('img').on('click', function () {
+        const starIndex = $eachStar.index(this);
+        colorShapesToIndex(starIndex);
+        score.value = starIndex + 1;
+        $(`#${$containerName}Rating`).val(score.value);
+      });
+
+      // Sets the size of stars indicated in the settings
+      function setSize() {
+        $(container).find('img').css('height', settings.shapeHeight);
+      }
+
+      // Dynamically creates the html markup based on the number of stars indicated
+      function createStars(count) {
+        const starInput = $(`<input type="hidden" id = "${$containerName}Rating" name="${$containerName}Rating" value="0" >`);
+        $(container).append(starInput);
+        for (let i = 0; i < count; i++) {
+          const $imageStar = $('<img>');
+          $imageStar.attr('src', `${settings.imagesFolderLocation}images/${settings.shape}.png`);
+          $(container).append($imageStar);
+        }
+      }
+
+      // Resets the shading class on the shapes to color only those up until a designated index
+      function colorShapesToIndex(starIndexValue) {
+        $eachStar.removeClass(settings.shadeColor);
+        for (let i = 0; i <= starIndexValue; i++) {
+          const star = $eachStar.get(i);
+          $(star).toggleClass(settings.shadeColor);
+        }
+      }
+
+      // Resets the shading class on the shapes to color only those up to and including the selected score
+      function colorShapesToScore() {
+        $eachStar.removeClass(settings.shadeColor);
+        for (let j = 0; j < score.value; j++) {
+          const star = $eachStar.get(j);
+          $(star).toggleClass(settings.shadeColor);
+        }
+      }
+    });
+  };
+}(jQuery));
+
+     // SCRIPT
+    
+     $('#demo').rates({
+        shape:'black-star',
+        imagesFolderLocation:'rating/', 
+        shapeHeight:'20px',   
+        shadeColor:'rates-green',   
+        });
     
       }
 

@@ -819,12 +819,8 @@ catch(\Exception $e){
 //END MILESTONES
 public function remove_bids($id){
   $bid = BusinessBids::where('id',$id)->first();
-//   $charge = $this->Client->charges->retrieve(
-//   $bid->stripe_charge_id,
-//   []
-// );
-  //echo '<pre>'; print_r($charge);  echo '<pre>'; exit;
-  
+
+try {
   //Refund
          $this->Client->refunds->create(['charge' => $bid->stripe_charge_id ]);
   //Refund
@@ -832,6 +828,11 @@ public function remove_bids($id){
   $bid_remove = BusinessBids::where('id',$id)->delete();       
   Session::put('success','Removed!');
   return redirect()->back();
+  }
+ catch(\Exception $e){
+  Session::put('failed',$e->getMessage());
+  return redirect()->back();
+ }
 
 }
 
@@ -1066,7 +1067,7 @@ $user_id = Auth::id();
 $listing = Listing::where('id',$id)->first();
 $new_rating = $rating + $listing->rating;
 $rating_count = 1 + $listing->rating_count;
-$new_rating = $new_rating/$rating_count;
+//$new_rating = $new_rating/$rating_count;
         $listing = Listing::where('id',$id)->update([
         'rating' => $new_rating,
         'rating_count' => $rating_count,

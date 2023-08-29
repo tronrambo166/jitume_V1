@@ -90,6 +90,7 @@ Route::get('download_milestoneDocS/{id}/{mile_id}', 'ServiceController@download_
 // <--milestones-->
 Route::get('latBusiness', 'PagesController@latBusiness')->name('latBusiness');
 Route::get('ratingListing/{id}/{rating}', 'BusinessController@ratingListing')->name('ratingListing');
+Route::get('ratingService/{id}/{rating}', 'ServiceController@ratingService')->name('ratingService');
 
 //MAIN/BACKEND/VUE
 

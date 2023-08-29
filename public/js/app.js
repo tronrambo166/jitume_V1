@@ -9120,6 +9120,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -9165,7 +9168,8 @@ __webpack_require__.r(__webpack_exports__);
         t.form.listing_id = data.data.data[0].id;
         t.form.investment_needed = data.data.data[0].investment_needed;
         t.form.investors_fee = data.data.data[0].investors_fee;
-        t.form.rating = data.data.data[0].rating;
+        t.form.rating = data.data.data[0].rating / data.data.data[0].rating_count;
+        t.form.rating = t.form.rating.toFixed();
         var i;
 
         for (i = 1; i < 6; i++) {
@@ -9193,6 +9197,10 @@ __webpack_require__.r(__webpack_exports__);
       var rating = $('#demoRating').val();
       axios.get('ratingListing/' + id + '/' + rating).then(function (data) {
         console.log(data);
+        $.alert({
+          title: 'Alert!',
+          content: 'Rating submitted successfully!'
+        }); //location.reload();
       });
     },
     make_session: function make_session(id) {
@@ -10452,6 +10460,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -10493,6 +10527,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         t.form.image = data.data.data[0].image;
         t.form.category = data.data.data[0].category;
         t.form.shop_id = data.data.data[0].shop_id;
+        t.form.rating = data.data.data[0].rating / data.data.data[0].rating_count;
+        t.form.rating = t.form.rating.toFixed();
+        var i;
+
+        for (i = 1; i < 6; i++) {
+          console.log(parseInt(t.form.rating));
+          if (i <= parseInt(t.form.rating)) $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');else $('#staticRating').append('<img src="rating/images/black-star.png" style="height: 15px;" class="">');
+        }
       });
     },
     addToCart: function addToCart(id) {
@@ -10513,6 +10555,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var t = this;
       this.$router.push('/service-milestone/' + id);
     },
+    rating: function rating() {
+      var id = this.$route.params.id;
+      var rating = $('#demoRating').val();
+      axios.get('ratingService/' + id + '/' + rating).then(function (data) {
+        console.log(data);
+        $.alert({
+          title: 'Alert!',
+          content: 'Rating submitted successfully!'
+        }); //location.reload();
+      });
+    },
     getPhoto: function getPhoto() {
       return '../';
     },
@@ -10529,7 +10582,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     replaceText: function replaceText() {
       $('#call_to').html('');
-      $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+      $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
     },
     serviceBook: function serviceBook() {
       var _this2 = this;
@@ -10568,7 +10621,90 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     this.replaceText();
     this.getDetails();
-    this.cart();
+    this.cart(); // SCRIPT
+
+    (function ($) {
+      $.fn.rates = function (options) {
+        // Default settings for the plugin if none are provided by the user
+        var settings = $.extend({
+          shadeColor: 'rates-yellow',
+          shapeHeight: '25px',
+          shapeCount: 5,
+          shape: 'white-star',
+          imagesFolderLocation: ''
+        }, options);
+        return this.each(function () {
+          var container = this;
+          $(container).addClass('rates-container');
+          var $containerName = $(this).attr('id');
+          var score = {
+            value: 0
+          };
+          createStars(settings.shapeCount);
+          setSize();
+          var $eachStar = $(this).find('img'); // Colors in the rating shape on hover
+          // Removes the color from above the selected rating on mouse out
+
+          $(this).find('img').hover(function () {
+            var starIndex = $eachStar.index(this);
+            colorShapesToIndex(starIndex);
+          }, function () {
+            colorShapesToScore();
+          }); // Sets the score rating based on which rating shape was clicked
+
+          $(this).find('img').on('click', function () {
+            var starIndex = $eachStar.index(this);
+            colorShapesToIndex(starIndex);
+            score.value = starIndex + 1;
+            $("#".concat($containerName, "Rating")).val(score.value);
+          }); // Sets the size of stars indicated in the settings
+
+          function setSize() {
+            $(container).find('img').css('height', settings.shapeHeight);
+          } // Dynamically creates the html markup based on the number of stars indicated
+
+
+          function createStars(count) {
+            var starInput = $("<input type=\"hidden\" id = \"".concat($containerName, "Rating\" name=\"").concat($containerName, "Rating\" value=\"0\" >"));
+            $(container).append(starInput);
+
+            for (var i = 0; i < count; i++) {
+              var $imageStar = $('<img>');
+              $imageStar.attr('src', "".concat(settings.imagesFolderLocation, "images/").concat(settings.shape, ".png"));
+              $(container).append($imageStar);
+            }
+          } // Resets the shading class on the shapes to color only those up until a designated index
+
+
+          function colorShapesToIndex(starIndexValue) {
+            $eachStar.removeClass(settings.shadeColor);
+
+            for (var i = 0; i <= starIndexValue; i++) {
+              var star = $eachStar.get(i);
+              $(star).toggleClass(settings.shadeColor);
+            }
+          } // Resets the shading class on the shapes to color only those up to and including the selected score
+
+
+          function colorShapesToScore() {
+            $eachStar.removeClass(settings.shadeColor);
+
+            for (var j = 0; j < score.value; j++) {
+              var star = $eachStar.get(j);
+              $(star).toggleClass(settings.shadeColor);
+            }
+          }
+        });
+      };
+    })(jQuery); // SCRIPT
+
+
+    $('#demo').rates({
+      shape: 'black-star',
+      imagesFolderLocation: 'rating/',
+      shapeHeight: '20px',
+      shadeColor: 'rates-green'
+    });
   }
 });
 
@@ -10756,7 +10892,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     replaceText: function replaceText() {
       $('#call_to').html('');
-      $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+      $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
     }
   },
   mounted: function mounted() {
@@ -71357,7 +71493,42 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row my-4" }, [
-            _vm._m(1),
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("a", { staticClass: "btn border border-bottom-success" }, [
+                _vm._v("Overview"),
+              ]),
+              _vm._v(" "),
+              _vm.auth_user
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "btn border border-bottom-success",
+                      attrs: {
+                        "data-toggle": "modal",
+                        "data-target": "#reviewModal",
+                      },
+                    },
+                    [_vm._v("Add review")]
+                  )
+                : _c(
+                    "a",
+                    {
+                      staticClass: "btn border border-bottom-success",
+                      attrs: {
+                        "data-target": "#loginmodal2",
+                        "data-toggle": "modal",
+                      },
+                      on: {
+                        click: function ($event) {
+                          return _vm.make_session(_vm.form.listing_id)
+                        },
+                      },
+                    },
+                    [_vm._v("Add review")]
+                  ),
+              _vm._v(" "),
+              _c("hr"),
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "Overview", attrs: { id: "Overview" } }, [
               _c("p", [
@@ -71371,12 +71542,12 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _vm._m(2),
+      _vm._m(1),
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-3" }, [
         !_vm.form.conv
           ? _c("div", { staticClass: "card bg-light w-100 mx-auto py-3" }, [
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _vm.auth_user
                 ? _c(
@@ -71732,7 +71903,7 @@ var render = function () {
                     _vm.running
                       ? _c("div", { staticClass: "Invest-Payout" }, [
                           _c("div", { staticClass: "w-75 mx-auto row" }, [
-                            _vm._m(4),
+                            _vm._m(3),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-sm-12 px-1" }, [
                               _c("div", { staticClass: "row" }, [
@@ -71760,7 +71931,7 @@ var render = function () {
                                 ]),
                               ]),
                               _vm._v(" "),
-                              _vm._m(5),
+                              _vm._m(4),
                             ]),
                           ]),
                           _vm._v(" "),
@@ -71787,7 +71958,7 @@ var render = function () {
                           ),
                           _vm._v(" "),
                           _c("div", { staticClass: "w-75 mx-auto row" }, [
-                            _vm._m(6),
+                            _vm._m(5),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-sm-12 px-1" }, [
                               _c("div", { staticClass: "row" }, [
@@ -71815,7 +71986,7 @@ var render = function () {
                                 ]),
                               ]),
                               _vm._v(" "),
-                              _vm._m(7),
+                              _vm._m(6),
                             ]),
                           ]),
                           _vm._v(" "),
@@ -71874,7 +72045,7 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(8),
+              _vm._m(7),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "row" }, [
@@ -71950,7 +72121,7 @@ var render = function () {
                       [_vm._v("\n          Ok\n        ")]
                     ),
                     _vm._v(" "),
-                    _vm._m(9),
+                    _vm._m(8),
                   ]),
                 ]),
               ]),
@@ -71978,11 +72149,11 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(10),
+              _vm._m(9),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("form", [
-                  _vm._m(11),
+                  _vm._m(10),
                   _vm._v(" "),
                   _c("h5", { staticClass: "font-weight-bold" }, [
                     _vm._v("Leave a review"),
@@ -71996,8 +72167,7 @@ var render = function () {
                   _c(
                     "a",
                     {
-                      staticClass:
-                        "font-weight-bold btn btn-success w-50 m-auto",
+                      staticClass: "font-weight-bold btn btn-light w-50 m-auto",
                       on: {
                         click: function ($event) {
                           return _vm.rating()
@@ -72025,27 +72195,6 @@ var staticRenderFns = [
       { staticStyle: { background: "#e5e5e9", height: "21px" } },
       [_c("span", { staticClass: "d-block", attrs: { id: "progress" } })]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-12" }, [
-      _c("a", { staticClass: "btn border border-bottom-success" }, [
-        _vm._v("Overview"),
-      ]),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "btn border border-bottom-success",
-          attrs: { "data-toggle": "modal", "data-target": "#reviewModal" },
-        },
-        [_vm._v("Add review")]
-      ),
-      _vm._v(" "),
-      _c("hr"),
-    ])
   },
   function () {
     var _vm = this
@@ -73932,11 +74081,51 @@ var render = function () {
                   _vm._v(_vm._s(_vm.form.location)),
                 ]),
                 _vm._v(" "),
-                _vm._m(0),
+                _c("div", {
+                  staticClass: "float-right d-inline-block",
+                  attrs: { id: "staticRating" },
+                }),
               ]),
             ]),
             _vm._v(" "),
-            _vm._m(1),
+            _c("div", { staticClass: "row my-5" }, [
+              _c("div", { staticClass: "col-sm-12" }, [
+                _c("a", { staticClass: "btn border border-bottom-success" }, [
+                  _vm._v("Overview"),
+                ]),
+                _vm._v(" "),
+                _vm.auth_user
+                  ? _c(
+                      "a",
+                      {
+                        staticClass: "btn border border-bottom-success",
+                        attrs: {
+                          "data-toggle": "modal",
+                          "data-target": "#reviewModal",
+                        },
+                      },
+                      [_vm._v("Add review")]
+                    )
+                  : _c(
+                      "a",
+                      {
+                        staticClass: "btn border border-bottom-success",
+                        attrs: {
+                          "data-target": "#loginmodal2",
+                          "data-toggle": "modal",
+                        },
+                        on: {
+                          click: function ($event) {
+                            return _vm.make_session(_vm.form.id)
+                          },
+                        },
+                      },
+                      [_vm._v("Add review")]
+                    ),
+                _vm._v(" "),
+                _c("hr"),
+              ]),
+            ]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-5" }, [
@@ -73964,6 +74153,7 @@ var render = function () {
                         {
                           staticClass:
                             "border border-dark font-weight-bold w-50 text-center convBtn rounded",
+                          staticStyle: { cursor: "pointer" },
                           on: {
                             click: function ($event) {
                               return _vm.service_milestones(_vm.form.id)
@@ -73977,6 +74167,7 @@ var render = function () {
                         {
                           staticClass:
                             "border border-dark font-weight-bold w-50 text-center convBtn",
+                          staticStyle: { cursor: "pointer" },
                           attrs: {
                             "data-target": "#loginModal",
                             "data-toggle": "modal",
@@ -73996,7 +74187,10 @@ var render = function () {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-sm-3", staticStyle: { background: "black" } },
+            {
+              staticClass: "col-sm-3 rounded",
+              staticStyle: { background: "black" },
+            },
             [
               _c("div", { staticClass: "p-2" }, [
                 _c(
@@ -74010,7 +74204,7 @@ var render = function () {
                     },
                   },
                   [
-                    _vm._m(2),
+                    _vm._m(0),
                     _vm._v(" "),
                     _c("div", { staticClass: "row p-2" }, [
                       _c(
@@ -74029,7 +74223,7 @@ var render = function () {
                               expression: "formBook.date",
                             },
                           ],
-                          attrs: { type: "date", name: "date" },
+                          attrs: { required: "", type: "date", name: "date" },
                           domProps: { value: _vm.formBook.date },
                           on: {
                             input: function ($event) {
@@ -74063,7 +74257,12 @@ var render = function () {
                             },
                           ],
                           staticClass: "rounded",
-                          attrs: { name: "note", cols: "30", rows: "10" },
+                          attrs: {
+                            required: "",
+                            name: "note",
+                            cols: "32",
+                            rows: "10",
+                          },
                           domProps: { value: _vm.formBook.note },
                           on: {
                             input: function ($event) {
@@ -74138,12 +74337,63 @@ var render = function () {
             ]
           ),
         ]),
-        _vm._v(" "),
-        _vm._m(3),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-5" }),
     ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "reviewModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true",
+        },
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("form", [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "font-weight-bold" }, [
+                    _vm._v("Leave a review"),
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    staticClass: "bg-light border border-none",
+                    attrs: { name: "reply", cols: "55", rows: "3" },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "font-weight-bold btn btn-light w-50 m-auto",
+                      on: {
+                        click: function ($event) {
+                          return _vm.rating()
+                        },
+                      },
+                    },
+                    [_vm._v("Submit")]
+                  ),
+                ]),
+              ]),
+            ]),
+          ]
+        ),
+      ]
+    ),
   ])
 }
 var staticRenderFns = [
@@ -74151,62 +74401,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "] d-inline-block", attrs: { id: "staticRating" } },
-      [
-        _c("img", {
-          staticStyle: { height: "15px", color: "green" },
-          attrs: { src: "rating/images/g-star.svg" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticStyle: { height: "15px" },
-          attrs: { src: "rating/images/g-star.svg" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticStyle: { height: "15px" },
-          attrs: { src: "rating/images/g-star.svg" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticStyle: { height: "15px" },
-          attrs: { src: "rating/images/g-star.svg" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticStyle: { height: "15px" },
-          attrs: { src: "rating/images/black-star.png" },
-        }),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row my-5" }, [
-      _c("div", { staticClass: "col-sm-12" }, [
-        _c("a", { staticClass: "btn border border-bottom-success" }, [
-          _vm._v("Overview"),
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "btn border border-bottom-success" }, [
-          _vm._v("Add review"),
-        ]),
-        _vm._v(" "),
-        _c("hr"),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c(
-        "button",
+        "a",
         {
           staticClass:
             "ml-auto my-3 w-50 btn header_buttons text-light float-right",
@@ -74219,16 +74416,34 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row my-5 card shadow p-3" }, [
-      _c("h3", [_vm._v("Reviews")]),
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Submit a review")]
+      ),
       _vm._v(" "),
-      _c("p", { staticClass: "text-secondary my-3" }, [
-        _vm._v("There are no reviews yet."),
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "w-25 searchListing" }, [
-        _vm._v("Add Review"),
-      ]),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close",
+          },
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", { staticClass: "my-3 font-weight-bold" }, [
+      _vm._v("Service rating \n        "),
+      _c("div", { staticClass: "ml-5 d-inline-block", attrs: { id: "demo" } }),
     ])
   },
 ]

@@ -42,7 +42,10 @@
                         <div class="row my-4">
                             <div class="col-sm-12">
                             <a class="btn border border-bottom-success">Overview</a>
-                            <a data-toggle="modal" data-target="#reviewModal" class="btn border border-bottom-success">Add review</a>
+
+                           <a v-if="auth_user" data-toggle="modal" data-target="#reviewModal" class="btn border border-bottom-success">Add review</a>
+
+                           <a v-else @click="make_session(form.listing_id);" data-target="#loginmodal2" data-toggle="modal" class="btn border border-bottom-success">Add review</a>
 
                             <hr>
                             </div>
@@ -356,7 +359,7 @@
         <h5 class="font-weight-bold">Leave a review</h5>
         <textarea name="reply" class="bg-light border border-none" cols="55" rows="3"></textarea>
         
-        <a @click = "rating()"  class="font-weight-bold btn btn-success w-50 m-auto">Submit</a>
+        <a @click = "rating()"  class="font-weight-bold btn btn-light w-50 m-auto">Submit</a>
         </form>
 
       </div>
@@ -424,7 +427,8 @@ if(sessionStorage.getItem('invest')!=null)
     t.form.listing_id = data.data.data[0].id;
     t.form.investment_needed = data.data.data[0].investment_needed;
     t.form.investors_fee = data.data.data[0].investors_fee;
-    t.form.rating = data.data.data[0].rating;
+    t.form.rating = data.data.data[0].rating/data.data.data[0].rating_count;
+    t.form.rating = t.form.rating.toFixed();
 
     var i;
     for(i = 1; i<6; i++){console.log(parseInt(t.form.rating));
@@ -460,6 +464,11 @@ if(sessionStorage.getItem('invest')!=null)
     var id=this.$route.params.id;
     var rating = $('#demoRating').val();
     axios.get('ratingListing/'+id+'/'+rating).then( (data) =>{console.log(data);
+        $.alert({
+                title: 'Alert!',
+                content: 'Rating submitted successfully!',
+            });
+        //location.reload();
     });
    },
 
