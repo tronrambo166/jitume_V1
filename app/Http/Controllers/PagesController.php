@@ -331,7 +331,19 @@ $results = array();
     $listings = Listing::latest()->get();$i=1;
     foreach($listings as $listing){
         $listing->file=null;
-        if($i<9)
+        if($i<11)
+         $results[] = $listing;$i++;
+     }
+
+return response()->json([ 'data' => $results] );
+}
+
+public function latServices(){
+$results = array();
+    $listings = Services::latest()->get();$i=1;
+    foreach($listings as $listing){
+        $listing->file=null;
+        if($i<11)
          $results[] = $listing;$i++;
      }
 

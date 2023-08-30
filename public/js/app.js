@@ -10916,6 +10916,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var hooper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! hooper */ "./node_modules/hooper/dist/hooper.esm.js");
+/* harmony import */ var hooper_dist_hooper_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! hooper/dist/hooper.css */ "./node_modules/hooper/dist/hooper.css");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -11010,11 +11012,75 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Hooper: hooper__WEBPACK_IMPORTED_MODULE_0__.Hooper,
+    Slide: hooper__WEBPACK_IMPORTED_MODULE_0__.Slide,
+    HooperNavigation: hooper__WEBPACK_IMPORTED_MODULE_0__.Navigation
+  },
   props: ['auth_user'],
   data: function data() {
     return {
+      //Hooper
+      hooperSettings: {
+        itemsToShow: 4,
+        centerMode: false,
+        breakpoints: {
+          800: {
+            centerMode: false,
+            itemsToShow: 4
+          },
+          1000: {
+            itemsToShow: 4,
+            pagination: 'fraction'
+          }
+        }
+      },
+      //Hooper
       res: [],
+      results: [],
       emptyCat: false
     };
   },
@@ -11066,11 +11132,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         $('#call_to').html('');
         $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
       }
+    },
+    latBusiness: function latBusiness() {
+      var t = this;
+      axios.get('latServices').then(function (data) {
+        t.results = data.data.data;
+        console.log(data);
+      })["catch"](function (error) {});
     }
   },
   mounted: function mounted() {
     //return this.$store.dispatch("fetchpro")
-    this.replaceText(); //$('#create_investor').html('');
+    this.replaceText();
+    this.latBusiness();
   }
 });
 
@@ -74719,11 +74793,12 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row service_img mx-auto text-center" }, [
+  return _c("div", { staticClass: "row mx-auto text-center" }, [
     _c(
       "div",
       {
-        staticClass: "container-xl col-sm-12 text-center p-5",
+        staticClass:
+          "container-xl service_img mx-auto col-sm-12 text-center p-5",
         staticStyle: { "min-height": "600px" },
       },
       [
@@ -74747,6 +74822,118 @@ var render = function () {
         ),
       ]
     ),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("div", { staticClass: "container-xl col-sm-12 text-center py-5" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "row card-group px-3 w-75 mx-auto d-md-flex justify-content-center",
+          staticStyle: { overflow: "hidden" },
+        },
+        [
+          _c(
+            "hooper",
+            {
+              attrs: {
+                settings: _vm.hooperSettings,
+                itemsToShow: 4,
+                centerMode: true,
+                pagination: "no",
+              },
+            },
+            [
+              _vm._l(_vm.results, function (result, index) {
+                return _c(
+                  "slide",
+                  {
+                    key: index,
+                    staticClass: "listing text-center col-sm-4 px-3",
+                    attrs: { index: index },
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "mx-auto mt-4" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "shadow card border px-2",
+                            attrs: { to: "/serviceDetails/" + result.id },
+                          },
+                          [
+                            result.file
+                              ? _c(
+                                  "video",
+                                  {
+                                    staticStyle: {
+                                      width: "100%",
+                                      height: "104px",
+                                    },
+                                    attrs: { controls: "", alt: "" },
+                                  },
+                                  [
+                                    _c("source", {
+                                      attrs: {
+                                        src: result.file,
+                                        type: "video/mp4",
+                                      },
+                                    }),
+                                  ]
+                                )
+                              : _c("img", {
+                                  staticClass: "card-img-top",
+                                  staticStyle: {
+                                    width: "100%",
+                                    height: "104px",
+                                  },
+                                  attrs: { src: result.image, alt: "" },
+                                }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "p-1 pb-2" }, [
+                              _c(
+                                "h5",
+                                {
+                                  staticClass:
+                                    "card_heading text-left mb-0 py-2",
+                                },
+                                [_vm._v(_vm._s(result.name) + " ")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                { staticClass: "card_text pt-1 text-left" },
+                                [
+                                  _c("i", {
+                                    staticClass: "mr-2 fa fa-map-marker",
+                                  }),
+                                  _vm._v(_vm._s(result.location)),
+                                ]
+                              ),
+                            ]),
+                          ]
+                        ),
+                      ],
+                      1
+                    ),
+                  ]
+                )
+              }),
+              _vm._v(" "),
+              _c("hooper-navigation", {
+                attrs: { slot: "hooper-addons" },
+                slot: "hooper-addons",
+              }),
+            ],
+            2
+          ),
+        ],
+        1
+      ),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -74766,7 +74953,7 @@ var staticRenderFns = [
             "text-shadow": "3px 3px #2a2a2c",
           },
         },
-        [_vm._v("\n                Looking for...\n            ")]
+        [_vm._v("\n                    Looking for...\n                ")]
       ),
     ])
   },
@@ -74869,12 +75056,12 @@ var staticRenderFns = [
                     {
                       attrs: {
                         value:
-                          "Finance, Accounting & \n            Tax Marketing",
+                          "Finance, Accounting & \n                Tax Marketing",
                       },
                     },
                     [
                       _vm._v(
-                        "Finance, Accounting &\n                                Tax Marketing"
+                        "Finance, Accounting &\n                                    Tax Marketing"
                       ),
                     ]
                   ),

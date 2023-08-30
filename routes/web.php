@@ -89,6 +89,7 @@ Route::get('download_milestoneDoc/{id}/{mile_id}', 'BusinessController@download_
 Route::get('download_milestoneDocS/{id}/{mile_id}', 'ServiceController@download_milestone_doc')->name('download_milestoneDocS');
 // <--milestones-->
 Route::get('latBusiness', 'PagesController@latBusiness')->name('latBusiness');
+Route::get('latServices', 'PagesController@latServices')->name('latServices');
 Route::get('ratingListing/{id}/{rating}', 'BusinessController@ratingListing')->name('ratingListing');
 Route::get('ratingService/{id}/{rating}', 'ServiceController@ratingService')->name('ratingService');
 
