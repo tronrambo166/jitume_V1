@@ -60,7 +60,7 @@ jobs:
       run: |
         aws deploy create-deployment \
           --application-name JitumeCICD \
-          --deployment-group-name JitumeCICDGroup2 \
-          --deployment-config-name CodeDeployDefault.OneAtATime \
+          --deployment-group-name JitumeCICDGroup \
+          --deployment-config-name CodeDeployDefault.AllAtOnce \
           --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
            
