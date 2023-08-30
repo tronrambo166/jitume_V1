@@ -54,13 +54,5 @@ jobs:
         aws-access-key-id: ${{ secrets.SSH_ACCESS_KEY }}
         aws-secret-access-key: ${{ secrets.SSH_PRIVATE_KEY }}
         aws-region: us-east-1
-     # Step 2
-    - name: Create CodeDeploy Deployment
-      id: deploy
-      run: |
-        aws deploy create-deployment \
-          --application-name JitumeCICD \
-          --deployment-group-name JitumeCICDGroup \
-          --deployment-config-name CodeDeployDefault.OneAtATime \
-          --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
+     
            
