@@ -244,7 +244,7 @@ if(sessionStorage.getItem('serviceDetails')!=null)
     if(i<= parseInt(t.form.rating))
     $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');
     else
-    $('#staticRating').append('<img src="rating/images/black-star.png" style="height: 15px;" class="">');
+    $('#staticRating').append('<img src="rating/images/white.png" style="height: 15px;" class="">');
     }
     
     });

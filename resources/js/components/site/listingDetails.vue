@@ -25,11 +25,7 @@
 
                 </h3>
 
-                     
-
-                    
-        
-                        <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{form.location}}
+                     <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{form.location}}
 
                             <div v-if="auth_user" class="float-right w-25">
                              <div class="" style="background:#e5e5e9; height:21px;">
@@ -439,7 +435,7 @@ if(sessionStorage.getItem('invest')!=null)
     if(i<= parseInt(t.form.rating))
     $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');
     else
-    $('#staticRating').append('<img src="rating/images/black-star.png" style="height: 15px;" class="">');
+    $('#staticRating').append('<img src="rating/images/white.png" style="height: 15px;" class="">');
     }
     
     });

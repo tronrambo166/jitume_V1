@@ -9120,10 +9120,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -9177,7 +9173,7 @@ __webpack_require__.r(__webpack_exports__);
 
         for (i = 1; i < 6; i++) {
           console.log(parseInt(t.form.rating));
-          if (i <= parseInt(t.form.rating)) $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');else $('#staticRating').append('<img src="rating/images/black-star.png" style="height: 15px;" class="">');
+          if (i <= parseInt(t.form.rating)) $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');else $('#staticRating').append('<img src="rating/images/white.png" style="height: 15px;" class="">');
         }
       });
     },
@@ -10540,7 +10536,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         for (i = 1; i < 6; i++) {
           console.log(parseInt(t.form.rating));
-          if (i <= parseInt(t.form.rating)) $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');else $('#staticRating').append('<img src="rating/images/black-star.png" style="height: 15px;" class="">');
+          if (i <= parseInt(t.form.rating)) $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');else $('#staticRating').append('<img src="rating/images/white.png" style="height: 15px;" class="">');
         }
       });
     },
