@@ -30,7 +30,9 @@
         
                       <div class="float-right d-inline-block" id="staticRating">
 
-                        </div>
+                        </div> <br>
+
+                        <p class="text-dark d-block float-right" style="font-size:11px;">({{form.rating_count}} reviews)</p>
                         
                         </div>
 
@@ -199,7 +201,8 @@ export default {
         price:'',
         contact:'',
         category:'',
-        image:''
+        image:'',
+        rating_count:'',
     }),
     formBook: new Form({
         date:'',
@@ -232,6 +235,9 @@ if(sessionStorage.getItem('serviceDetails')!=null)
     t.form.shop_id = data.data.data[0].shop_id;
     t.form.rating = data.data.data[0].rating/data.data.data[0].rating_count;
     t.form.rating = t.form.rating.toFixed();
+
+    t.form.rating_count = data.data.data[0].rating_count;
+
 
     var i;
     for(i = 1; i<6; i++){console.log(parseInt(t.form.rating));

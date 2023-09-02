@@ -282,8 +282,19 @@ public function search(Request $request){
 $location = $request->search;
 $category = $request->category;
 $results = array();
-//return response()->json(['success' => $category]);
 
+if($location =='' && $category == '')
+$check_listing = Listing::get();
+
+else if($location !='' && $category == '')
+$check_listing = Listing::where('location',$location)
+->get();
+
+else if($location =='' && $category != '')
+$check_listing = Listing::where('category',$category)
+->get();
+
+else
 $check_listing = Listing::where('location',$location)
 ->where('category',$category)
 ->get();
@@ -293,12 +304,7 @@ $check_listing = Listing::where('location',$location)
 //         $results[] = $service;
 // } }
 
-// foreach($check_listing as $service){ 
-//     if (!str_contains(strtolower($service->name), $listing_name)) {
-//         $results[] = $service;
-// } }
-
-$listings = $check_listing; // $results;
+$listings = $check_listing;
 return response()->json(['results'=>$listings, 'success' => "Success"]);
 
 }
@@ -357,6 +363,14 @@ $category = $request->category;
 $results = array();
 //return response()->json(['success' => $category]);
 
+if($listing_name =='' && $location == '' && $category == ''){
+  $check_listing = Services::get();
+  return response()->json(['results'=>$check_listing, 'success' => "Success", 'count'=>count($check_listing)]);  
+}
+
+
+
+
 $check_listing = Services::where('category',$category)
 //->where('category',$category)
 ->get();
@@ -385,7 +399,7 @@ foreach($ids as $id){
     $results[] = $listing;
 }
 }
-return response()->json([ 'data' => $results] );
+return response()->json([ 'data' => $results, 'count'=>count($results)] );
 }
 
 

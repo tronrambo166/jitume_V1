@@ -26,7 +26,7 @@
                               <input  required=""  style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div> -->
 
                 <div style="border-radius: 35px 0 0 35px;" class="py-2 col-5 bg-white">
-                  <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;"
+                  <input id="searchbox" onkeyup="suggest(this.value);" style="border: none;height: 42px;"
                     class="bar bg-white form-control d-inline" type="text" name="search" value="" placeholder="Location">
 
                 </div>
@@ -34,7 +34,7 @@
                 <div class="pt-2 col-4 bg-white">
                   <div class="dropdown pt-1">
 
-                    <select required id="category" name="category" class="border-white form-control">
+                    <select id="category" name="category" class="border-white form-control">
                       <option class="form-control small" value="">Category</option>
 
                       <option class="form-control" value="Agriculture">Agriculture</option>
@@ -516,7 +516,7 @@ components: {
           if (!ids) ids = 0;
 
           //thiss.$router.push({ path: '/listingResults', query: { result: response } })
-          thiss.$router.push({ name: 'listingResults', params: { results: ids } })
+          thiss.$router.push({ name: 'listingResults', params: { results: btoa(ids) } })
         },
         error: function (response) {
           console.log(response);

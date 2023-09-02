@@ -21,7 +21,7 @@
 
             <div class="content_bottom">
                 <div class="heading">
-                     <h3 class="my-5 font-weight-bold text-center text-secondary">Listings</h3>
+                     <h3 class="my-5 font-weight-bold text-center text-secondary">Services</h3>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -59,7 +59,7 @@
                 </div>
 
             </div> 
-            <div class="row"> <p class="ml-1 my-0 text-secondary small">{{count}} businesses in your location</p> </div>
+            <div class="row"> <p class="ml-1 my-0 text-secondary small">{{count}} Services in your location</p> </div>
             <!-- Price Filter -->
 
             <div class="row">
@@ -115,15 +115,17 @@ export default {
     data: () => ({
     results:[],
     ids:'',
-    empty:false
+    empty:false,
+    count:''
     }),
     methods:{
     setRes:function () {
             let t = this;
-            this.ids = this.$route.params.results;
+            this.ids = atob(this.$route.params.results);
              //this.results = this.ids.split(",");
             axios.get('ServiceResults/'+t.ids).then( (data) =>{
                 t.results = data.data.data;
+                t.count = data.data.count;
                 console.log(data);
               }).catch( (error) =>{})
         },

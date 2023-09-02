@@ -18,7 +18,8 @@
                         <div class="float-right d-inline-block" id="staticRating">
 
                         </div>
-                    </div>
+                        <p class="text-dark d-block float-right" style="font-size:11px;">({{form.rating_count}} reviews)</p>
+                    </div>  
 
 
 
@@ -392,6 +393,7 @@ export default {
         investment_needed:'',
         investors_fee:'',
         rating:'',
+        rating_count:'',
         conv:'',
     }),
 
@@ -429,6 +431,8 @@ if(sessionStorage.getItem('invest')!=null)
     t.form.investors_fee = data.data.data[0].investors_fee;
     t.form.rating = data.data.data[0].rating/data.data.data[0].rating_count;
     t.form.rating = t.form.rating.toFixed();
+
+    t.form.rating_count = data.data.data[0].rating_count;
 
     var i;
     for(i = 1; i<6; i++){console.log(parseInt(t.form.rating));

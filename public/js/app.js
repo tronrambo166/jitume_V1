@@ -8286,7 +8286,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         thiss.$router.push({
           name: 'listingResults',
           params: {
-            results: ids
+            results: btoa(ids)
           }
         });
       },
@@ -9123,6 +9123,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -9138,6 +9139,7 @@ __webpack_require__.r(__webpack_exports__);
         investment_needed: '',
         investors_fee: '',
         rating: '',
+        rating_count: '',
         conv: ''
       }),
       results: [],
@@ -9170,6 +9172,7 @@ __webpack_require__.r(__webpack_exports__);
         t.form.investors_fee = data.data.data[0].investors_fee;
         t.form.rating = data.data.data[0].rating / data.data.data[0].rating_count;
         t.form.rating = t.form.rating.toFixed();
+        t.form.rating_count = data.data.data[0].rating_count;
         var i;
 
         for (i = 1; i < 6; i++) {
@@ -9561,7 +9564,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     setRes: function setRes() {
       var t = this;
-      this.ids = this.$route.params.results; //this.results = this.ids.split(",");
+      this.ids = atob(this.$route.params.results); //this.results = this.ids.split(",");
 
       axios.get('searchResults/' + t.ids).then(function (data) {
         t.results = data.data.data;
@@ -10486,6 +10489,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -10497,7 +10502,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         price: '',
         contact: '',
         category: '',
-        image: ''
+        image: '',
+        rating_count: ''
       }),
       formBook: new Form({
         date: '',
@@ -10529,6 +10535,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         t.form.shop_id = data.data.data[0].shop_id;
         t.form.rating = data.data.data[0].rating / data.data.data[0].rating_count;
         t.form.rating = t.form.rating.toFixed();
+        t.form.rating_count = data.data.data[0].rating_count;
         var i;
 
         for (i = 1; i < 6; i++) {
@@ -10837,16 +10844,18 @@ __webpack_require__.r(__webpack_exports__);
     return {
       results: [],
       ids: '',
-      empty: false
+      empty: false,
+      count: ''
     };
   },
   methods: {
     setRes: function setRes() {
       var t = this;
-      this.ids = this.$route.params.results; //this.results = this.ids.split(",");
+      this.ids = atob(this.$route.params.results); //this.results = this.ids.split(",");
 
       axios.get('ServiceResults/' + t.ids).then(function (data) {
         t.results = data.data.data;
+        t.count = data.data.count;
         console.log(data);
       })["catch"](function (error) {});
     },
@@ -11118,7 +11127,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           thiss.$router.push({
             name: 'serviceResults',
             params: {
-              results: ids
+              results: btoa(ids)
             }
           });
         },
@@ -70538,7 +70547,6 @@ var staticRenderFns = [
               staticStyle: { border: "none", height: "42px" },
               attrs: {
                 id: "searchbox",
-                required: "",
                 onkeyup: "suggest(this.value);",
                 type: "text",
                 name: "search",
@@ -70555,7 +70563,7 @@ var staticRenderFns = [
               "select",
               {
                 staticClass: "border-white form-control",
-                attrs: { required: "", id: "category", name: "category" },
+                attrs: { id: "category", name: "category" },
               },
               [
                 _c(
@@ -71544,6 +71552,19 @@ var render = function () {
                       staticClass: "float-right d-inline-block",
                       attrs: { id: "staticRating" },
                     }),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      {
+                        staticClass: "text-dark d-block float-right",
+                        staticStyle: { "font-size": "11px" },
+                      },
+                      [
+                        _vm._v(
+                          "(" + _vm._s(_vm.form.rating_count) + " reviews)"
+                        ),
+                      ]
+                    ),
                   ]
                 ),
               ]
@@ -72492,7 +72513,7 @@ var render = function () {
                       ? _c(
                           "video",
                           {
-                            staticStyle: { width: "100%", height: "230px" },
+                            staticStyle: { width: "100%", height: "200px" },
                             attrs: { controls: "", alt: "" },
                           },
                           [
@@ -74159,6 +74180,17 @@ var render = function () {
                   staticClass: "float-right d-inline-block",
                   attrs: { id: "staticRating" },
                 }),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    staticClass: "text-dark d-block float-right",
+                    staticStyle: { "font-size": "11px" },
+                  },
+                  [_vm._v("(" + _vm._s(_vm.form.rating_count) + " reviews)")]
+                ),
               ]),
             ]),
             _vm._v(" "),
@@ -74565,7 +74597,7 @@ var render = function () {
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("p", { staticClass: "ml-1 my-0 text-secondary small" }, [
-            _vm._v(_vm._s(_vm.count) + " businesses in your location"),
+            _vm._v(_vm._s(_vm.count) + " Services in your location"),
           ]),
         ]),
         _vm._v(" "),
@@ -74669,7 +74701,7 @@ var staticRenderFns = [
         _c(
           "h3",
           { staticClass: "my-5 font-weight-bold text-center text-secondary" },
-          [_vm._v("Listings")]
+          [_vm._v("Services")]
         ),
       ]),
       _vm._v(" "),
@@ -74979,7 +75011,6 @@ var staticRenderFns = [
               staticClass: "bar bg-white form-control d-inline",
               staticStyle: { border: "none", height: "42px" },
               attrs: {
-                required: "",
                 type: "text",
                 name: "listing_name",
                 placeholder: "What are you looking for?",
@@ -74994,7 +75025,6 @@ var staticRenderFns = [
             staticStyle: { border: "none", height: "42px" },
             attrs: {
               id: "searchbox",
-              required: "",
               onkeyup: "suggest(this.value);",
               type: "text",
               name: "search",
@@ -75016,7 +75046,7 @@ var staticRenderFns = [
                 "select",
                 {
                   staticClass: "border-none form-control",
-                  attrs: { name: "category", required: "" },
+                  attrs: { name: "category" },
                 },
                 [
                   _c(

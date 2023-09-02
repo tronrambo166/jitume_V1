@@ -20,12 +20,12 @@
                 <div class="w-100 text-center py-1 rounded text-center d-md-flex justify-content-between bg-white">
 
                     <div style="border-radius: 35px 0 0 35px;" class="px-2 py-2 bg-white">
-                        <input required="" style="border: none;height: 42px;" class="bar bg-white form-control d-inline"
+                        <input style="border: none;height: 42px;" class="bar bg-white form-control d-inline"
                             type="text" name="listing_name" placeholder="What are you looking for?">
                     </div>
 
                     <div style="" class="px-2 py-2 bg-white">
-                        <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;"
+                        <input id="searchbox" onkeyup="suggest(this.value);" style="border: none;height: 42px;"
                             class="border-none bar bg-white form-control d-inline" type="text" name="search" value=""
                             placeholder="Location">
 
@@ -34,7 +34,7 @@
                     <div class="px-2 py-2 bg-white d-flex justify-centent-evenly align-items-center">
                         <div class="dropdown d-flex align-items-center">
 
-                            <select name="category" required class="border-none form-control">
+                            <select name="category" class="border-none form-control">
                                 <option hidden value="" class="form-control">Services</option>
                                 <option class="form-control" value="Business Planning">Business Planning</option>
                                 <option value="IT">IT</option>
@@ -187,7 +187,7 @@ export default {
                     if (ids == '')
                         ids = 'no-results'
                     //thiss.$router.push({ path: '/listingResults', query: { result: response } })
-                    thiss.$router.push({ name: 'serviceResults', params: { results: ids } })
+                    thiss.$router.push({ name: 'serviceResults', params: { results: btoa(ids) } })
                 },
                 error: function (response) {
                     console.log(response);
