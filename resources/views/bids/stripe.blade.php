@@ -262,6 +262,10 @@
         }
     }
 });
+
+      function popupClose() {
+            $('.success_message').css('display', 'none');
+        }
    </script>
 
 </body>

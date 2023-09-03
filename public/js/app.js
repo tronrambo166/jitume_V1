@@ -70385,7 +70385,7 @@ var render = function () {
                       [
                         _c(
                           "div",
-                          { staticClass: "mx-auto" },
+                          { staticClass: "mx-auto mt-4" },
                           [
                             _c(
                               "router-link",
@@ -70850,30 +70850,6 @@ var staticRenderFns = [
             ),
           ]
         ),
-        _vm._v(" "),
-        _c("div", { staticClass: "row w-75 mx-auto my-5 pl-md-5" }, [
-          _c("div", { staticClass: "text-dark mb-md-3" }, [
-            _c(
-              "h2",
-              {
-                staticClass:
-                  "secondary_heading h2 headline headline-aligned-to-left headline-box pb-2",
-                staticStyle: { "text-align": "center" },
-              },
-              [_vm._v("\n            The Show ")]
-            ),
-          ]),
-          _vm._v(" "),
-          _c("video", {
-            staticClass: "video_player elementor-video",
-            attrs: {
-              poster: "images/video_preview.png",
-              src: "videos/Jitume.mp4",
-              controls: "",
-              controlslist: "nodownload",
-            },
-          }),
-        ]),
       ]
     )
   },
@@ -71548,6 +71524,8 @@ var render = function () {
                       staticClass: "float-right d-inline-block",
                       attrs: { id: "staticRating" },
                     }),
+                    _vm._v(" "),
+                    _c("br"),
                     _vm._v(" "),
                     _c(
                       "p",
@@ -74851,6 +74829,8 @@ var render = function () {
       ]
     ),
     _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
     _c("hr"),
     _vm._v(" "),
     _c("div", { staticClass: "container-xl col-sm-12 text-center py-5" }, [
@@ -74884,7 +74864,7 @@ var render = function () {
                   [
                     _c(
                       "div",
-                      { staticClass: "mx-auto mt-4" },
+                      { staticClass: "mx-auto mt-5" },
                       [
                         _c(
                           "router-link",

@@ -282,7 +282,7 @@
     <hooper :settings="hooperSettings" :itemsToShow="4" :centerMode="true" pagination="no">
     <slide class="listing text-center col-sm-4 px-3" v-for="( result, index ) in results" :key="index" :index="index">
       <!-- Loop -->
-           <div class="mx-auto">
+           <div class="mx-auto mt-4">
                 <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
 
             <video v-if="result.file" controls style="width:100%; height:104px;" alt="">
@@ -395,14 +395,14 @@
       </div>
 
 
-      <div class="row w-75 mx-auto my-5  pl-md-5">
+      <!-- <div class="row w-75 mx-auto my-5  pl-md-5">
         <div class="text-dark mb-md-3">
           <h2 style="text-align:center;" class="secondary_heading h2 headline  headline-aligned-to-left  headline-box pb-2">
             The Show </h2>
         </div>
         <video poster="images/video_preview.png" style="" class="video_player elementor-video" src="videos/Jitume.mp4"
           controls="" controlslist="nodownload"></video>
-      </div>
+      </div> -->
 
     </div>
     <!-- How it works -->

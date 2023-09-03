@@ -71,7 +71,7 @@
             </form>
         </div>
 
-
+<br>
 
   <!-- SLider test --> <hr>
   <div class="container-xl col-sm-12 text-center py-5">
@@ -79,7 +79,7 @@
     <hooper :settings="hooperSettings" :itemsToShow="4" :centerMode="true" pagination="no">
     <slide class="listing text-center col-sm-4 px-3" v-for="( result, index ) in results" :key="index" :index="index">
       <!-- Loop -->
-           <div class="mx-auto mt-4">
+           <div class="mx-auto mt-5">
                 <router-link :to="`/serviceDetails/${result.id}`" class="shadow card border px-2">
 
             <video v-if="result.file" controls style="width:100%; height:104px;" alt="">

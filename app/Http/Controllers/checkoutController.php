@@ -78,7 +78,8 @@ class checkoutController extends Controller
         ]);
         }
       catch(\Exception $e){
-      return response()->json(['failed' =>  $e->getMessage()]);
+      Session::put('Stripe_failed',$e->getMessage());
+      return redirect()->back();
     }
 
     $business_id = $request->listing;
@@ -99,7 +100,8 @@ class checkoutController extends Controller
         }
 
 catch(\Exception $e){
-  return response()->json(['failed' =>  $e->getMessage()]);
+  Session::put('Stripe_failed',$e->getMessage());
+    return redirect()->back();
 }
 
  //Stripe
@@ -157,7 +159,8 @@ catch(\Exception $e){
         ]);
         }
       catch(\Exception $e){
-      return response()->json(['failed' =>  $e->getMessage()]);
+      Session::put('Stripe_failed',$e->getMessage());
+      return redirect()->back();
     }
 
     $business_id = $request->listing;
@@ -178,7 +181,8 @@ catch(\Exception $e){
         }
 
 catch(\Exception $e){
-  return response()->json(['failed' =>  $e->getMessage()]);
+  Session::put('Stripe_failed',$e->getMessage());
+    return redirect()->back();
 }
 
  //Stripe
@@ -422,8 +426,8 @@ catch(\Exception $e){
                return redirect("/");
          }
             catch(\Exception $e){
-            Session::put('Stripe_pay', $e->getMessage());
-            return redirect("/");
+            Session::put('Stripe_failed',$e->getMessage());
+            return redirect()->back();
         }
 
     }
@@ -485,7 +489,8 @@ catch(\Exception $e){
         ]);
         }
       catch(\Exception $e){
-      return response()->json(['failed' =>  $e->getMessage()]);
+      Session::put('Stripe_failed',$e->getMessage());
+      return redirect()->back();
     }
 
     $business_id = $mile->listing_id;
@@ -506,7 +511,8 @@ catch(\Exception $e){
         }
 
 catch(\Exception $e){
-  return response()->json(['failed' =>  $e->getMessage()]);
+    Session::put('Stripe_failed',$e->getMessage());
+    return redirect()->back();
 }
 
  //Stripe

@@ -17,7 +17,7 @@
 
                         <div class="float-right d-inline-block" id="staticRating">
 
-                        </div>
+                        </div> <br>
                         <p class="text-dark d-block float-right" style="font-size:11px;">({{form.rating_count}} reviews)</p>
                     </div>  
 
