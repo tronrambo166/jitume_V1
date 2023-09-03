@@ -684,7 +684,8 @@ $percent = $request->percent;
 }
 
 catch(\Exception $e){
-  return response()->json(['failed' =>  $e->getMessage()]);
+  Session::put('Stripe_failed',$e->getMessage());
+    return redirect()->back();
 }
 
 if($bids){
