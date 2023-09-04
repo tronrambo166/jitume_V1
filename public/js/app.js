@@ -9572,7 +9572,7 @@ __webpack_require__.r(__webpack_exports__);
       return '../';
     },
     range: function range() {
-      this.ids = this.$route.params.results;
+      this.ids = atob(this.$route.params.results);
       var t = this;
       var slider = document.getElementById('slider');
       noUiSlider.create(slider, {
