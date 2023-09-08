@@ -21,7 +21,7 @@
 
             <div class="content_bottom">
                 <div class="heading">
-                     <h3 class="my-5 font-weight-bold text-center text-secondary">Listings</h3>
+                     <h3 class="my-5 font-weight-bold text-center text-secondary">Services</h3>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -59,7 +59,7 @@
                 </div>
 
             </div> 
-            <div class="row"> <p class="ml-1 my-0 text-secondary small">{{count}} businesses in your location</p> </div>
+            <div class="row"> <p class="ml-1 my-0 text-secondary small">{{count}} Services in your location</p> </div>
             <!-- Price Filter -->
 
             <div class="row">
@@ -115,22 +115,24 @@ export default {
     data: () => ({
     results:[],
     ids:'',
-    empty:false
+    empty:false,
+    count:''
     }),
     methods:{
     setRes:function () {
             let t = this;
-            this.ids = this.$route.params.results;
+            this.ids = atob(this.$route.params.results);
              //this.results = this.ids.split(",");
             axios.get('ServiceResults/'+t.ids).then( (data) =>{
                 t.results = data.data.data;
+                t.count = data.data.count;
                 console.log(data);
               }).catch( (error) =>{})
         },
 
 
     range(){ 
-     this.ids = this.$route.params.results;
+     this.ids = atob(this.$route.params.results);
      let t = this;
 
     var slider = document.getElementById('slider');
@@ -158,7 +160,7 @@ export default {
     skipValues[handle].innerHTML = '$'+values[handle]; 
     //console.log(values[1] - values[0]);
 
-     axios.get('priceFilter/'+values[0]+'/'+values[1]+'/'+t.ids).then( (data) =>{
+     axios.get('priceFilterS/'+values[0]+'/'+values[1]+'/'+t.ids).then( (data) =>{
                
              // if(values[0]==0.00 && values[1]==500000.00){}
               //else{ 
@@ -186,7 +188,7 @@ export default {
 
     replaceText(){
     $('#call_to').html('');
-    $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+    $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
     }
   
   },
@@ -194,7 +196,7 @@ export default {
    mounted() { 
    this.replaceText();
    this.setRes()
-   //this.range()
+   this.range()
    this.cart()
      //return this.$store.dispatch("fetchpro")
       } 

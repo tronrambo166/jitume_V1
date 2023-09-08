@@ -8286,7 +8286,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         thiss.$router.push({
           name: 'listingResults',
           params: {
-            results: ids
+            results: btoa(ids)
           }
         });
       },
@@ -9120,10 +9120,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -9138,6 +9134,8 @@ __webpack_require__.r(__webpack_exports__);
         image: '',
         investment_needed: '',
         investors_fee: '',
+        rating: '',
+        rating_count: '',
         conv: ''
       }),
       results: [],
@@ -9168,6 +9166,15 @@ __webpack_require__.r(__webpack_exports__);
         t.form.listing_id = data.data.data[0].id;
         t.form.investment_needed = data.data.data[0].investment_needed;
         t.form.investors_fee = data.data.data[0].investors_fee;
+        t.form.rating = data.data.data[0].rating / data.data.data[0].rating_count;
+        t.form.rating = t.form.rating.toFixed();
+        t.form.rating_count = data.data.data[0].rating_count;
+        var i;
+
+        for (i = 1; i < 6; i++) {
+          console.log(parseInt(t.form.rating));
+          if (i <= parseInt(t.form.rating)) $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');else $('#staticRating').append('<img src="rating/images/white.png" style="height: 15px;" class="">');
+        }
       });
     },
     select: function select() {
@@ -9185,8 +9192,15 @@ __webpack_require__.r(__webpack_exports__);
       return '../';
     },
     rating: function rating() {
+      var id = this.$route.params.id;
       var rating = $('#demoRating').val();
-      alert(rating);
+      axios.get('ratingListing/' + id + '/' + rating).then(function (data) {
+        console.log(data);
+        $.alert({
+          title: 'Alert!',
+          content: 'Rating submitted successfully!'
+        }); //location.reload();
+      });
     },
     make_session: function make_session(id) {
       sessionStorage.setItem('invest', id);
@@ -9321,7 +9335,90 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getDetails();
-    this.getMilestones();
+    this.getMilestones(); // SCRIPT
+
+    (function ($) {
+      $.fn.rates = function (options) {
+        // Default settings for the plugin if none are provided by the user
+        var settings = $.extend({
+          shadeColor: 'rates-yellow',
+          shapeHeight: '25px',
+          shapeCount: 5,
+          shape: 'white-star',
+          imagesFolderLocation: ''
+        }, options);
+        return this.each(function () {
+          var container = this;
+          $(container).addClass('rates-container');
+          var $containerName = $(this).attr('id');
+          var score = {
+            value: 0
+          };
+          createStars(settings.shapeCount);
+          setSize();
+          var $eachStar = $(this).find('img'); // Colors in the rating shape on hover
+          // Removes the color from above the selected rating on mouse out
+
+          $(this).find('img').hover(function () {
+            var starIndex = $eachStar.index(this);
+            colorShapesToIndex(starIndex);
+          }, function () {
+            colorShapesToScore();
+          }); // Sets the score rating based on which rating shape was clicked
+
+          $(this).find('img').on('click', function () {
+            var starIndex = $eachStar.index(this);
+            colorShapesToIndex(starIndex);
+            score.value = starIndex + 1;
+            $("#".concat($containerName, "Rating")).val(score.value);
+          }); // Sets the size of stars indicated in the settings
+
+          function setSize() {
+            $(container).find('img').css('height', settings.shapeHeight);
+          } // Dynamically creates the html markup based on the number of stars indicated
+
+
+          function createStars(count) {
+            var starInput = $("<input type=\"hidden\" id = \"".concat($containerName, "Rating\" name=\"").concat($containerName, "Rating\" value=\"0\" >"));
+            $(container).append(starInput);
+
+            for (var i = 0; i < count; i++) {
+              var $imageStar = $('<img>');
+              $imageStar.attr('src', "".concat(settings.imagesFolderLocation, "images/").concat(settings.shape, ".png"));
+              $(container).append($imageStar);
+            }
+          } // Resets the shading class on the shapes to color only those up until a designated index
+
+
+          function colorShapesToIndex(starIndexValue) {
+            $eachStar.removeClass(settings.shadeColor);
+
+            for (var i = 0; i <= starIndexValue; i++) {
+              var star = $eachStar.get(i);
+              $(star).toggleClass(settings.shadeColor);
+            }
+          } // Resets the shading class on the shapes to color only those up to and including the selected score
+
+
+          function colorShapesToScore() {
+            $eachStar.removeClass(settings.shadeColor);
+
+            for (var j = 0; j < score.value; j++) {
+              var star = $eachStar.get(j);
+              $(star).toggleClass(settings.shadeColor);
+            }
+          }
+        });
+      };
+    })(jQuery); // SCRIPT
+
+
+    $('#demo').rates({
+      shape: 'black-star',
+      imagesFolderLocation: 'rating/',
+      shapeHeight: '20px',
+      shadeColor: 'rates-green'
+    });
   }
 });
 
@@ -9463,7 +9560,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     setRes: function setRes() {
       var t = this;
-      this.ids = this.$route.params.results; //this.results = this.ids.split(",");
+      this.ids = atob(this.$route.params.results); //this.results = this.ids.split(",");
 
       axios.get('searchResults/' + t.ids).then(function (data) {
         t.results = data.data.data;
@@ -9475,7 +9572,7 @@ __webpack_require__.r(__webpack_exports__);
       return '../';
     },
     range: function range() {
-      this.ids = this.$route.params.results;
+      this.ids = atob(this.$route.params.results);
       var t = this;
       var slider = document.getElementById('slider');
       noUiSlider.create(slider, {
@@ -10146,7 +10243,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    if (sessionStorage.getItem('milestone') != null) sessionStorage.clear();
+    if (sessionStorage.getItem('milestoneS') != null) sessionStorage.clear();
     var id = this.$route.params.id;
     var t = this;
     t.form.id = id;
@@ -10175,6 +10272,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getMilestones();
+    if (sessionStorage.getItem('milestoneS') != null) sessionStorage.clear();
   }
 });
 
@@ -10191,6 +10289,90 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -10316,9 +10498,16 @@ __webpack_require__.r(__webpack_exports__);
         price: '',
         contact: '',
         category: '',
-        image: ''
+        image: '',
+        rating_count: ''
       }),
-      details: []
+      formBook: new Form({
+        date: '',
+        service_id: '',
+        note: ''
+      }),
+      details: [],
+      service_id: ''
     };
   },
   created: function created() {
@@ -10327,18 +10516,28 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getDetails: function getDetails() {
       var id = this.$route.params.id;
+      this.formBook.service_id = this.$route.params.id;
       var t = this;
       axios.get('ServiceResults/' + id).then(function (data) {
         console.log(data); //t.details = data.data.data;
 
         t.form.price = data.data.data[0].price;
         t.form.name = data.data.data[0].name;
-        t.form.details = data.data.data[0].details; //t.form.location = data.data.data[0].location;
-        //t.form.contact = data.data.data[0].contact;
+        t.form.details = data.data.data[0].details;
+        t.form.location = data.data.data[0].location; //t.form.contact = data.data.data[0].contact;
 
         t.form.image = data.data.data[0].image;
         t.form.category = data.data.data[0].category;
         t.form.shop_id = data.data.data[0].shop_id;
+        t.form.rating = data.data.data[0].rating / data.data.data[0].rating_count;
+        t.form.rating = t.form.rating.toFixed();
+        t.form.rating_count = data.data.data[0].rating_count;
+        var i;
+
+        for (i = 1; i < 6; i++) {
+          console.log(parseInt(t.form.rating));
+          if (i <= parseInt(t.form.rating)) $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');else $('#staticRating').append('<img src="rating/images/white.png" style="height: 15px;" class="">');
+        }
       });
     },
     addToCart: function addToCart(id) {
@@ -10359,6 +10558,17 @@ __webpack_require__.r(__webpack_exports__);
       var t = this;
       this.$router.push('/service-milestone/' + id);
     },
+    rating: function rating() {
+      var id = this.$route.params.id;
+      var rating = $('#demoRating').val();
+      axios.get('ratingService/' + id + '/' + rating).then(function (data) {
+        console.log(data);
+        $.alert({
+          title: 'Alert!',
+          content: 'Rating submitted successfully!'
+        }); //location.reload();
+      });
+    },
     getPhoto: function getPhoto() {
       return '../';
     },
@@ -10375,13 +10585,129 @@ __webpack_require__.r(__webpack_exports__);
     },
     replaceText: function replaceText() {
       $('#call_to').html('');
-      $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+      $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+    },
+    serviceBook: function serviceBook() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var response;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this2.formBook.post('serviceBook');
+
+              case 2:
+                response = _context.sent;
+                console.log(response.data);
+
+                if (response.data.success) {
+                  toastr.success(response.data.success, {
+                    timeout: 5000
+                  }); //$('#bookmsg').css('display','none');
+                } else toastr.success(response.data.failed, {
+                  timeout: 5000
+                }); // this.$router.push('/manage-category');
+
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   },
   mounted: function mounted() {
     this.replaceText();
     this.getDetails();
-    this.cart();
+    this.cart(); // SCRIPT
+
+    (function ($) {
+      $.fn.rates = function (options) {
+        // Default settings for the plugin if none are provided by the user
+        var settings = $.extend({
+          shadeColor: 'rates-yellow',
+          shapeHeight: '25px',
+          shapeCount: 5,
+          shape: 'white-star',
+          imagesFolderLocation: ''
+        }, options);
+        return this.each(function () {
+          var container = this;
+          $(container).addClass('rates-container');
+          var $containerName = $(this).attr('id');
+          var score = {
+            value: 0
+          };
+          createStars(settings.shapeCount);
+          setSize();
+          var $eachStar = $(this).find('img'); // Colors in the rating shape on hover
+          // Removes the color from above the selected rating on mouse out
+
+          $(this).find('img').hover(function () {
+            var starIndex = $eachStar.index(this);
+            colorShapesToIndex(starIndex);
+          }, function () {
+            colorShapesToScore();
+          }); // Sets the score rating based on which rating shape was clicked
+
+          $(this).find('img').on('click', function () {
+            var starIndex = $eachStar.index(this);
+            colorShapesToIndex(starIndex);
+            score.value = starIndex + 1;
+            $("#".concat($containerName, "Rating")).val(score.value);
+          }); // Sets the size of stars indicated in the settings
+
+          function setSize() {
+            $(container).find('img').css('height', settings.shapeHeight);
+          } // Dynamically creates the html markup based on the number of stars indicated
+
+
+          function createStars(count) {
+            var starInput = $("<input type=\"hidden\" id = \"".concat($containerName, "Rating\" name=\"").concat($containerName, "Rating\" value=\"0\" >"));
+            $(container).append(starInput);
+
+            for (var i = 0; i < count; i++) {
+              var $imageStar = $('<img>');
+              $imageStar.attr('src', "".concat(settings.imagesFolderLocation, "images/").concat(settings.shape, ".png"));
+              $(container).append($imageStar);
+            }
+          } // Resets the shading class on the shapes to color only those up until a designated index
+
+
+          function colorShapesToIndex(starIndexValue) {
+            $eachStar.removeClass(settings.shadeColor);
+
+            for (var i = 0; i <= starIndexValue; i++) {
+              var star = $eachStar.get(i);
+              $(star).toggleClass(settings.shadeColor);
+            }
+          } // Resets the shading class on the shapes to color only those up to and including the selected score
+
+
+          function colorShapesToScore() {
+            $eachStar.removeClass(settings.shadeColor);
+
+            for (var j = 0; j < score.value; j++) {
+              var star = $eachStar.get(j);
+              $(star).toggleClass(settings.shadeColor);
+            }
+          }
+        });
+      };
+    })(jQuery); // SCRIPT
+
+
+    $('#demo').rates({
+      shape: 'black-star',
+      imagesFolderLocation: 'rating/',
+      shapeHeight: '20px',
+      shadeColor: 'rates-green'
+    });
   }
 });
 
@@ -10514,21 +10840,23 @@ __webpack_require__.r(__webpack_exports__);
     return {
       results: [],
       ids: '',
-      empty: false
+      empty: false,
+      count: ''
     };
   },
   methods: {
     setRes: function setRes() {
       var t = this;
-      this.ids = this.$route.params.results; //this.results = this.ids.split(",");
+      this.ids = atob(this.$route.params.results); //this.results = this.ids.split(",");
 
       axios.get('ServiceResults/' + t.ids).then(function (data) {
         t.results = data.data.data;
+        t.count = data.data.count;
         console.log(data);
       })["catch"](function (error) {});
     },
     range: function range() {
-      this.ids = this.$route.params.results;
+      this.ids = atob(this.$route.params.results);
       var t = this;
       var slider = document.getElementById('slider');
       noUiSlider.create(slider, {
@@ -10550,7 +10878,7 @@ __webpack_require__.r(__webpack_exports__);
       slider.noUiSlider.on('update', function (values, handle) {
         skipValues[handle].innerHTML = '$' + values[handle]; //console.log(values[1] - values[0]);
 
-        axios.get('priceFilter/' + values[0] + '/' + values[1] + '/' + t.ids).then(function (data) {
+        axios.get('priceFilterS/' + values[0] + '/' + values[1] + '/' + t.ids).then(function (data) {
           // if(values[0]==0.00 && values[1]==500000.00){}
           //else{ 
           t.results = '';
@@ -10569,13 +10897,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     replaceText: function replaceText() {
       $('#call_to').html('');
-      $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 ml-5 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+      $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
     }
   },
   mounted: function mounted() {
     this.replaceText();
-    this.setRes(); //this.range()
-
+    this.setRes();
+    this.range();
     this.cart(); //return this.$store.dispatch("fetchpro")
   }
 });
@@ -10593,6 +10921,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var hooper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! hooper */ "./node_modules/hooper/dist/hooper.esm.js");
+/* harmony import */ var hooper_dist_hooper_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! hooper/dist/hooper.css */ "./node_modules/hooper/dist/hooper.css");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -10687,11 +11017,75 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Hooper: hooper__WEBPACK_IMPORTED_MODULE_0__.Hooper,
+    Slide: hooper__WEBPACK_IMPORTED_MODULE_0__.Slide,
+    HooperNavigation: hooper__WEBPACK_IMPORTED_MODULE_0__.Navigation
+  },
   props: ['auth_user'],
   data: function data() {
     return {
+      //Hooper
+      hooperSettings: {
+        itemsToShow: 4,
+        centerMode: false,
+        breakpoints: {
+          800: {
+            centerMode: false,
+            itemsToShow: 4
+          },
+          1000: {
+            itemsToShow: 4,
+            pagination: 'fraction'
+          }
+        }
+      },
+      //Hooper
       res: [],
+      results: [],
       emptyCat: false
     };
   },
@@ -10729,7 +11123,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           thiss.$router.push({
             name: 'serviceResults',
             params: {
-              results: ids
+              results: btoa(ids)
             }
           });
         },
@@ -10743,11 +11137,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         $('#call_to').html('');
         $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
       }
+    },
+    latBusiness: function latBusiness() {
+      var t = this;
+      axios.get('latServices').then(function (data) {
+        t.results = data.data.data;
+        console.log(data);
+      })["catch"](function (error) {});
     }
   },
   mounted: function mounted() {
     //return this.$store.dispatch("fetchpro")
-    this.replaceText(); //$('#create_investor').html('');
+    this.replaceText();
+    this.latBusiness();
   }
 });
 
@@ -69976,14 +70378,14 @@ var render = function () {
                     return _c(
                       "slide",
                       {
-                        key: _vm.indx,
+                        key: index,
                         staticClass: "listing text-center col-sm-4 px-3",
-                        attrs: { index: _vm.indx },
+                        attrs: { index: index },
                       },
                       [
                         _c(
                           "div",
-                          { staticClass: "mx-auto" },
+                          { staticClass: "mx-auto mt-4" },
                           [
                             _c(
                               "router-link",
@@ -70141,7 +70543,6 @@ var staticRenderFns = [
               staticStyle: { border: "none", height: "42px" },
               attrs: {
                 id: "searchbox",
-                required: "",
                 onkeyup: "suggest(this.value);",
                 type: "text",
                 name: "search",
@@ -70158,7 +70559,7 @@ var staticRenderFns = [
               "select",
               {
                 staticClass: "border-white form-control",
-                attrs: { required: "", id: "category", name: "category" },
+                attrs: { id: "category", name: "category" },
               },
               [
                 _c(
@@ -70449,30 +70850,6 @@ var staticRenderFns = [
             ),
           ]
         ),
-        _vm._v(" "),
-        _c("div", { staticClass: "row w-75 mx-auto my-5 pl-md-5" }, [
-          _c("div", { staticClass: "text-dark mb-md-3" }, [
-            _c(
-              "h2",
-              {
-                staticClass:
-                  "secondary_heading h2 headline headline-aligned-to-left headline-box pb-2",
-                staticStyle: { "text-align": "center" },
-              },
-              [_vm._v("\n            The Show ")]
-            ),
-          ]),
-          _vm._v(" "),
-          _c("video", {
-            staticClass: "video_player elementor-video",
-            attrs: {
-              poster: "images/video_preview.png",
-              src: "videos/Jitume.mp4",
-              controls: "",
-              controlslist: "nodownload",
-            },
-          }),
-        ]),
       ]
     )
   },
@@ -71143,7 +71520,25 @@ var render = function () {
                       ]),
                     ]),
                     _vm._v(" "),
-                    _vm._m(0),
+                    _c("div", {
+                      staticClass: "float-right d-inline-block",
+                      attrs: { id: "staticRating" },
+                    }),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      {
+                        staticClass: "text-dark d-block float-right",
+                        staticStyle: { "font-size": "11px" },
+                      },
+                      [
+                        _vm._v(
+                          "(" + _vm._s(_vm.form.rating_count) + " reviews)"
+                        ),
+                      ]
+                    ),
                   ]
                 ),
               ]
@@ -71157,7 +71552,7 @@ var render = function () {
             ]),
             _vm.auth_user
               ? _c("div", { staticClass: "float-right w-25" }, [
-                  _vm._m(1),
+                  _vm._m(0),
                   _vm._v(" "),
                   _c("span", [_vm._v(_vm._s(_vm.progress) + "% Invested")]),
                 ])
@@ -71167,7 +71562,42 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row my-4" }, [
-            _vm._m(2),
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("a", { staticClass: "btn border border-bottom-success" }, [
+                _vm._v("Overview"),
+              ]),
+              _vm._v(" "),
+              _vm.auth_user
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "btn border border-bottom-success",
+                      attrs: {
+                        "data-toggle": "modal",
+                        "data-target": "#reviewModal",
+                      },
+                    },
+                    [_vm._v("Add review")]
+                  )
+                : _c(
+                    "a",
+                    {
+                      staticClass: "btn border border-bottom-success",
+                      attrs: {
+                        "data-target": "#loginmodal2",
+                        "data-toggle": "modal",
+                      },
+                      on: {
+                        click: function ($event) {
+                          return _vm.make_session(_vm.form.listing_id)
+                        },
+                      },
+                    },
+                    [_vm._v("Add review")]
+                  ),
+              _vm._v(" "),
+              _c("hr"),
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "Overview", attrs: { id: "Overview" } }, [
               _c("p", [
@@ -71181,12 +71611,12 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _vm._m(3),
+      _vm._m(1),
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-3" }, [
         !_vm.form.conv
           ? _c("div", { staticClass: "card bg-light w-100 mx-auto py-3" }, [
-              _vm._m(4),
+              _vm._m(2),
               _vm._v(" "),
               _vm.auth_user
                 ? _c(
@@ -71542,7 +71972,7 @@ var render = function () {
                     _vm.running
                       ? _c("div", { staticClass: "Invest-Payout" }, [
                           _c("div", { staticClass: "w-75 mx-auto row" }, [
-                            _vm._m(5),
+                            _vm._m(3),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-sm-12 px-1" }, [
                               _c("div", { staticClass: "row" }, [
@@ -71570,7 +72000,7 @@ var render = function () {
                                 ]),
                               ]),
                               _vm._v(" "),
-                              _vm._m(6),
+                              _vm._m(4),
                             ]),
                           ]),
                           _vm._v(" "),
@@ -71597,7 +72027,7 @@ var render = function () {
                           ),
                           _vm._v(" "),
                           _c("div", { staticClass: "w-75 mx-auto row" }, [
-                            _vm._m(7),
+                            _vm._m(5),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-sm-12 px-1" }, [
                               _c("div", { staticClass: "row" }, [
@@ -71625,7 +72055,7 @@ var render = function () {
                                 ]),
                               ]),
                               _vm._v(" "),
-                              _vm._m(8),
+                              _vm._m(6),
                             ]),
                           ]),
                           _vm._v(" "),
@@ -71684,7 +72114,7 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(9),
+              _vm._m(7),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "row" }, [
@@ -71760,7 +72190,7 @@ var render = function () {
                       [_vm._v("\n          Ok\n        ")]
                     ),
                     _vm._v(" "),
-                    _vm._m(10),
+                    _vm._m(8),
                   ]),
                 ]),
               ]),
@@ -71788,22 +72218,11 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(11),
+              _vm._m(9),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("form", [
-                  _c("h5", { staticClass: "my-3 font-weight-bold" }, [
-                    _vm._v("Service rating \n        "),
-                    _c("div", {
-                      staticClass: "ml-5 d-inline-block",
-                      attrs: { id: "demo" },
-                      on: {
-                        click: function ($event) {
-                          return _vm.rating()
-                        },
-                      },
-                    }),
-                  ]),
+                  _vm._m(10),
                   _vm._v(" "),
                   _c("h5", { staticClass: "font-weight-bold" }, [
                     _vm._v("Leave a review"),
@@ -71815,11 +72234,14 @@ var render = function () {
                   }),
                   _vm._v(" "),
                   _c(
-                    "button",
+                    "a",
                     {
-                      staticClass:
-                        "font-weight-bold btn btn-success w-50 m-auto",
-                      attrs: { type: "submit" },
+                      staticClass: "font-weight-bold btn btn-light w-50 m-auto",
+                      on: {
+                        click: function ($event) {
+                          return _vm.rating()
+                        },
+                      },
                     },
                     [_vm._v("Submit")]
                   ),
@@ -71839,68 +72261,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      {
-        staticClass: "float-right d-inline-block",
-        attrs: { id: "staticRating" },
-      },
-      [
-        _c("img", {
-          staticStyle: { height: "15px", color: "green" },
-          attrs: { src: "rating/images/g-star.svg" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticStyle: { height: "15px" },
-          attrs: { src: "rating/images/g-star.svg" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticStyle: { height: "15px" },
-          attrs: { src: "rating/images/g-star.svg" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticStyle: { height: "15px" },
-          attrs: { src: "rating/images/g-star.svg" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticStyle: { height: "15px" },
-          attrs: { src: "rating/images/black-star.png" },
-        }),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
       { staticStyle: { background: "#e5e5e9", height: "21px" } },
       [_c("span", { staticClass: "d-block", attrs: { id: "progress" } })]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-12" }, [
-      _c("a", { staticClass: "btn border border-bottom-success" }, [
-        _vm._v("Overview"),
-      ]),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "btn border border-bottom-success",
-          attrs: { "data-toggle": "modal", "data-target": "#reviewModal" },
-        },
-        [_vm._v("Add review")]
-      ),
-      _vm._v(" "),
-      _c("hr"),
-    ])
   },
   function () {
     var _vm = this
@@ -72047,6 +72410,15 @@ var staticRenderFns = [
       ),
     ])
   },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", { staticClass: "my-3 font-weight-bold" }, [
+      _vm._v("Service rating \n        "),
+      _c("div", { staticClass: "ml-5 d-inline-block", attrs: { id: "demo" } }),
+    ])
+  },
 ]
 render._withStripped = true
 
@@ -72115,7 +72487,7 @@ var render = function () {
                       ? _c(
                           "video",
                           {
-                            staticStyle: { width: "100%", height: "230px" },
+                            staticStyle: { width: "100%", height: "200px" },
                             attrs: { controls: "", alt: "" },
                           },
                           [
@@ -73744,10 +74116,10 @@ var render = function () {
       },
     }),
     _vm._v(" "),
-    _c("div", { staticClass: "heading row w-75 mx-auto my-3" }, [
-      _c("div", { staticClass: "col-sm-10" }, [
+    _c("div", { staticClass: "heading row mx-auto my-3" }, [
+      _c("div", { staticClass: "col-sm-12" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-7" }, [
+          _c("div", { staticClass: "col-sm-4" }, [
             _c(
               "div",
               { staticClass: "grid images_3_of_2 rounded listing px-3" },
@@ -73759,87 +74131,349 @@ var render = function () {
                 }),
               ]
             ),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-5" }, [
-            _c("div", { staticClass: "pl-2" }, [
-              _c(
-                "h3",
-                { staticClass: "mt-2 text-left text-dark font-weight-bold" },
-                [_vm._v(_vm._s(_vm.form.name))]
-              ),
+            _vm._v(" "),
+            _c("div", { staticClass: "pl-4 row mt-4" }, [
+              _c("div", { staticClass: "col-sm-6" }, [
+                _c(
+                  "h5",
+                  { staticClass: "text-left text-dark font-weight-bold" },
+                  [_vm._v(_vm._s(_vm.form.name))]
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "font-weight-bold my-1 small" }, [
+                  _vm._v("$" + _vm._s(_vm.form.price) + " "),
+                ]),
+              ]),
               _vm._v(" "),
-              _c("p", { staticClass: "font-weight-bold my-1" }, [
-                _vm._v(_vm._s(_vm.form.price) + " Kshs"),
+              _c("div", { staticClass: "col-sm-6 text-center" }, [
+                _c("p", { staticClass: "font-weight-bold small text-left" }, [
+                  _vm._v(_vm._s(_vm.form.location)),
+                ]),
+                _vm._v(" "),
+                _c("div", {
+                  staticClass: "float-right d-inline-block",
+                  attrs: { id: "staticRating" },
+                }),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    staticClass: "text-dark d-block float-right",
+                    staticStyle: { "font-size": "11px" },
+                  },
+                  [_vm._v("(" + _vm._s(_vm.form.rating_count) + " reviews)")]
+                ),
               ]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row my-5" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "Overview", attrs: { id: "Overview" } },
-                [
-                  _c("p", [
-                    _c("span", { staticClass: "ml-2 font-weight-bold" }, [
-                      _vm._v("Details:" + _vm._s(_vm.form.details)),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "cart" }, [
-                    _c("form", [
-                      _vm.auth_user
-                        ? _c(
-                            "a",
-                            {
-                              staticClass:
-                                "text-light font-weight-bold w-75 text-center buttonEq2",
-                              on: {
-                                click: function ($event) {
-                                  return _vm.service_milestones(_vm.form.id)
-                                },
-                              },
-                            },
-                            [_vm._v("Purchase by Milestones")]
-                          )
-                        : _c(
-                            "a",
-                            {
-                              staticClass:
-                                "text-light font-weight-bold w-75 text-center buttonEq2",
-                              attrs: {
-                                "data-target": "#loginModal",
-                                "data-toggle": "modal",
-                              },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.make_session()
-                                },
-                              },
-                            },
-                            [_vm._v("Purchase by Milestones")]
-                          ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _c("span", { staticClass: "mt-1 rounded" }, [
-                      _c("i", { staticClass: "mr-2 fa fa-category" }),
-                      _vm._v("Category: " + _vm._s(_vm.form.category)),
-                    ]),
-                  ]),
-                ]
-              ),
+              _c("div", { staticClass: "col-sm-12" }, [
+                _c("a", { staticClass: "btn border border-bottom-success" }, [
+                  _vm._v("Overview"),
+                ]),
+                _vm._v(" "),
+                _vm.auth_user
+                  ? _c(
+                      "a",
+                      {
+                        staticClass: "btn border border-bottom-success",
+                        attrs: {
+                          "data-toggle": "modal",
+                          "data-target": "#reviewModal",
+                        },
+                      },
+                      [_vm._v("Add review")]
+                    )
+                  : _c(
+                      "a",
+                      {
+                        staticClass: "btn border border-bottom-success",
+                        attrs: {
+                          "data-target": "#loginmodal2",
+                          "data-toggle": "modal",
+                        },
+                        on: {
+                          click: function ($event) {
+                            return _vm.make_session(_vm.form.id)
+                          },
+                        },
+                      },
+                      [_vm._v("Add review")]
+                    ),
+                _vm._v(" "),
+                _c("hr"),
+              ]),
             ]),
           ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-5" }, [
+            _c("div", { staticClass: "Overview", attrs: { id: "Overview" } }, [
+              _c("h4", { staticClass: "text-center font-weight-bold" }, [
+                _vm._v("About"),
+              ]),
+              _vm._v(" "),
+              _c(
+                "p",
+                { staticClass: "my-4 font-weight-bold small text-left" },
+                [
+                  _vm._v(
+                    _vm._s(_vm.form.details) +
+                      " Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. "
+                  ),
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "cart text-center" }, [
+                _c("form", [
+                  _vm.auth_user
+                    ? _c(
+                        "a",
+                        {
+                          staticClass:
+                            "border border-dark font-weight-bold w-50 text-center convBtn rounded",
+                          staticStyle: { cursor: "pointer" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.service_milestones(_vm.form.id)
+                            },
+                          },
+                        },
+                        [_vm._v("Service Milestone Breakdown")]
+                      )
+                    : _c(
+                        "a",
+                        {
+                          staticClass:
+                            "border border-dark font-weight-bold w-50 text-center convBtn",
+                          staticStyle: { cursor: "pointer" },
+                          attrs: {
+                            "data-target": "#loginModal",
+                            "data-toggle": "modal",
+                          },
+                          on: {
+                            click: function ($event) {
+                              return _vm.make_session()
+                            },
+                          },
+                        },
+                        [_vm._v("Service Milestone Breakdown")]
+                      ),
+                ]),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "col-sm-3 rounded",
+              staticStyle: { background: "black" },
+            },
+            [
+              _c("div", { staticClass: "p-2" }, [
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function ($event) {
+                        $event.preventDefault()
+                        return _vm.serviceBook.apply(null, arguments)
+                      },
+                    },
+                  },
+                  [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row p-2" }, [
+                      _c(
+                        "p",
+                        { staticClass: "d-inline w-50 text-left text-light" },
+                        [_vm._v("Desired start date: ")]
+                      ),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "pl-0 d-inline w-50" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formBook.date,
+                              expression: "formBook.date",
+                            },
+                          ],
+                          attrs: { required: "", type: "date", name: "date" },
+                          domProps: { value: _vm.formBook.date },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.formBook,
+                                "date",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("p", { staticClass: "text-right text-light" }, [
+                        _vm._v("Enter additional notes "),
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "text-center" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formBook.note,
+                              expression: "formBook.note",
+                            },
+                          ],
+                          staticClass: "rounded",
+                          attrs: {
+                            required: "",
+                            name: "note",
+                            cols: "32",
+                            rows: "10",
+                          },
+                          domProps: { value: _vm.formBook.note },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.formBook,
+                                "note",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formBook.service_id,
+                          expression: "formBook.service_id",
+                        },
+                      ],
+                      attrs: { hidden: "", type: "number", name: "service_id" },
+                      domProps: { value: _vm.formBook.service_id },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.formBook,
+                            "service_id",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
+                    _vm._v(" "),
+                    _vm.auth_user
+                      ? _c(
+                          "button",
+                          {
+                            staticClass:
+                              "my-3 py-1 btn-success w-50 btn header_buttons text-light float-right",
+                          },
+                          [_vm._v("Book")]
+                        )
+                      : _c(
+                          "a",
+                          {
+                            staticClass:
+                              "my-3 py-1 btn-success w-50 btn header_buttons text-light float-right",
+                            attrs: {
+                              "data-target": "#loginModal",
+                              "data-toggle": "modal",
+                            },
+                            on: {
+                              click: function ($event) {
+                                return _vm.make_session()
+                              },
+                            },
+                          },
+                          [_vm._v("Book")]
+                        ),
+                  ]
+                ),
+              ]),
+            ]
+          ),
         ]),
-        _vm._v(" "),
-        _vm._m(1),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-5" }),
     ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "reviewModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true",
+        },
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("form", [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "font-weight-bold" }, [
+                    _vm._v("Leave a review"),
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    staticClass: "bg-light border border-none",
+                    attrs: { name: "reply", cols: "55", rows: "3" },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "font-weight-bold btn btn-light w-50 m-auto",
+                      on: {
+                        click: function ($event) {
+                          return _vm.rating()
+                        },
+                      },
+                    },
+                    [_vm._v("Submit")]
+                  ),
+                ]),
+              ]),
+            ]),
+          ]
+        ),
+      ]
+    ),
   ])
 }
 var staticRenderFns = [
@@ -73847,32 +74481,49 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-12" }, [
-      _c("a", { staticClass: "btn border border-bottom-success" }, [
-        _vm._v("Overview"),
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "btn border border-bottom-success" }, [
-        _vm._v("Add review"),
-      ]),
-      _vm._v(" "),
-      _c("hr"),
+    return _c("div", { staticClass: "row" }, [
+      _c(
+        "a",
+        {
+          staticClass:
+            "ml-auto my-3 w-50 btn header_buttons text-light float-right",
+        },
+        [_vm._v("Message")]
+      ),
     ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row my-5 card shadow p-3" }, [
-      _c("h3", [_vm._v("Reviews")]),
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Submit a review")]
+      ),
       _vm._v(" "),
-      _c("p", { staticClass: "text-secondary my-3" }, [
-        _vm._v("There are no reviews yet."),
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "w-50 searchListing" }, [
-        _vm._v("Add Review"),
-      ]),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close",
+          },
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", { staticClass: "my-3 font-weight-bold" }, [
+      _vm._v("Service rating \n        "),
+      _c("div", { staticClass: "ml-5 d-inline-block", attrs: { id: "demo" } }),
     ])
   },
 ]
@@ -73920,7 +74571,7 @@ var render = function () {
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("p", { staticClass: "ml-1 my-0 text-secondary small" }, [
-            _vm._v(_vm._s(_vm.count) + " businesses in your location"),
+            _vm._v(_vm._s(_vm.count) + " Services in your location"),
           ]),
         ]),
         _vm._v(" "),
@@ -74024,7 +74675,7 @@ var staticRenderFns = [
         _c(
           "h3",
           { staticClass: "my-5 font-weight-bold text-center text-secondary" },
-          [_vm._v("Listings")]
+          [_vm._v("Services")]
         ),
       ]),
       _vm._v(" "),
@@ -74148,11 +74799,12 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row service_img mx-auto text-center" }, [
+  return _c("div", { staticClass: "row mx-auto text-center" }, [
     _c(
       "div",
       {
-        staticClass: "container-xl col-sm-12 text-center p-5",
+        staticClass:
+          "container-xl service_img mx-auto col-sm-12 text-center p-5",
         staticStyle: { "min-height": "600px" },
       },
       [
@@ -74176,6 +74828,120 @@ var render = function () {
         ),
       ]
     ),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("div", { staticClass: "container-xl col-sm-12 text-center py-5" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "row card-group px-3 w-75 mx-auto d-md-flex justify-content-center",
+          staticStyle: { overflow: "hidden" },
+        },
+        [
+          _c(
+            "hooper",
+            {
+              attrs: {
+                settings: _vm.hooperSettings,
+                itemsToShow: 4,
+                centerMode: true,
+                pagination: "no",
+              },
+            },
+            [
+              _vm._l(_vm.results, function (result, index) {
+                return _c(
+                  "slide",
+                  {
+                    key: index,
+                    staticClass: "listing text-center col-sm-4 px-3",
+                    attrs: { index: index },
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "mx-auto mt-5" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "shadow card border px-2",
+                            attrs: { to: "/serviceDetails/" + result.id },
+                          },
+                          [
+                            result.file
+                              ? _c(
+                                  "video",
+                                  {
+                                    staticStyle: {
+                                      width: "100%",
+                                      height: "104px",
+                                    },
+                                    attrs: { controls: "", alt: "" },
+                                  },
+                                  [
+                                    _c("source", {
+                                      attrs: {
+                                        src: result.file,
+                                        type: "video/mp4",
+                                      },
+                                    }),
+                                  ]
+                                )
+                              : _c("img", {
+                                  staticClass: "card-img-top",
+                                  staticStyle: {
+                                    width: "100%",
+                                    height: "104px",
+                                  },
+                                  attrs: { src: result.image, alt: "" },
+                                }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "p-1 pb-2" }, [
+                              _c(
+                                "h5",
+                                {
+                                  staticClass:
+                                    "card_heading text-left mb-0 py-2",
+                                },
+                                [_vm._v(_vm._s(result.name) + " ")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                { staticClass: "card_text pt-1 text-left" },
+                                [
+                                  _c("i", {
+                                    staticClass: "mr-2 fa fa-map-marker",
+                                  }),
+                                  _vm._v(_vm._s(result.location)),
+                                ]
+                              ),
+                            ]),
+                          ]
+                        ),
+                      ],
+                      1
+                    ),
+                  ]
+                )
+              }),
+              _vm._v(" "),
+              _c("hooper-navigation", {
+                attrs: { slot: "hooper-addons" },
+                slot: "hooper-addons",
+              }),
+            ],
+            2
+          ),
+        ],
+        1
+      ),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -74195,7 +74961,7 @@ var staticRenderFns = [
             "text-shadow": "3px 3px #2a2a2c",
           },
         },
-        [_vm._v("\n                Looking for...\n            ")]
+        [_vm._v("\n                    Looking for...\n                ")]
       ),
     ])
   },
@@ -74221,7 +74987,6 @@ var staticRenderFns = [
               staticClass: "bar bg-white form-control d-inline",
               staticStyle: { border: "none", height: "42px" },
               attrs: {
-                required: "",
                 type: "text",
                 name: "listing_name",
                 placeholder: "What are you looking for?",
@@ -74236,7 +75001,6 @@ var staticRenderFns = [
             staticStyle: { border: "none", height: "42px" },
             attrs: {
               id: "searchbox",
-              required: "",
               onkeyup: "suggest(this.value);",
               type: "text",
               name: "search",
@@ -74258,7 +75022,7 @@ var staticRenderFns = [
                 "select",
                 {
                   staticClass: "border-none form-control",
-                  attrs: { name: "category", required: "" },
+                  attrs: { name: "category" },
                 },
                 [
                   _c(
@@ -74298,12 +75062,12 @@ var staticRenderFns = [
                     {
                       attrs: {
                         value:
-                          "Finance, Accounting & \n            Tax Marketing",
+                          "Finance, Accounting & \n                Tax Marketing",
                       },
                     },
                     [
                       _vm._v(
-                        "Finance, Accounting &\n                                Tax Marketing"
+                        "Finance, Accounting &\n                                    Tax Marketing"
                       ),
                     ]
                   ),

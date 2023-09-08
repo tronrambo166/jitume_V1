@@ -282,8 +282,19 @@ public function search(Request $request){
 $location = $request->search;
 $category = $request->category;
 $results = array();
-//return response()->json(['success' => $category]);
 
+if($location =='' && $category == '')
+$check_listing = Listing::get();
+
+else if($location !='' && $category == '')
+$check_listing = Listing::where('location',$location)
+->get();
+
+else if($location =='' && $category != '')
+$check_listing = Listing::where('category',$category)
+->get();
+
+else
 $check_listing = Listing::where('location',$location)
 ->where('category',$category)
 ->get();
@@ -293,12 +304,7 @@ $check_listing = Listing::where('location',$location)
 //         $results[] = $service;
 // } }
 
-// foreach($check_listing as $service){ 
-//     if (!str_contains(strtolower($service->name), $listing_name)) {
-//         $results[] = $service;
-// } }
-
-$listings = $check_listing; // $results;
+$listings = $check_listing;
 return response()->json(['results'=>$listings, 'success' => "Success"]);
 
 }
@@ -331,7 +337,19 @@ $results = array();
     $listings = Listing::latest()->get();$i=1;
     foreach($listings as $listing){
         $listing->file=null;
-        if($i<9)
+        if($i<11)
+         $results[] = $listing;$i++;
+     }
+
+return response()->json([ 'data' => $results] );
+}
+
+public function latServices(){
+$results = array();
+    $listings = Services::latest()->get();$i=1;
+    foreach($listings as $listing){
+        $listing->file=null;
+        if($i<11)
          $results[] = $listing;$i++;
      }
 
@@ -344,6 +362,14 @@ $location = $request->search;
 $category = $request->category;
 $results = array();
 //return response()->json(['success' => $category]);
+
+if($listing_name =='' && $location == '' && $category == ''){
+  $check_listing = Services::get();
+  return response()->json(['results'=>$check_listing, 'success' => "Success", 'count'=>count($check_listing)]);  
+}
+
+
+
 
 $check_listing = Services::where('category',$category)
 //->where('category',$category)
@@ -373,7 +399,7 @@ foreach($ids as $id){
     $results[] = $listing;
 }
 }
-return response()->json([ 'data' => $results] );
+return response()->json([ 'data' => $results, 'count'=>count($results)] );
 }
 
 
@@ -464,6 +490,25 @@ public function priceFilter($min, $max, $ids){
 //Video check  
   
     if((int)$min <= $db_min && (int)$max >= $db_max)
+        //return response()->json([ 'data' => (int)$min .'<='. $db_min .'//'.(int)$max .'>='. $db_max]);
+    $results[] = $listing;
+}
+}
+
+    return response()->json([ 'data' => $results]);
+}
+
+
+public function priceFilterS($min, $max, $ids){
+    $results = array();
+    $ids = explode(',',$ids); 
+    foreach($ids as $id){ 
+    if($id!=''){ 
+    $listing = Services::where('id',$id)->first();
+    $range = $listing->price;
+    $db_price = $range;  
+  
+    if((int)$min <= $db_price && (int)$max >= $db_price)
         //return response()->json([ 'data' => (int)$min .'<='. $db_min .'//'.(int)$max .'>='. $db_max]);
     $results[] = $listing;
 }

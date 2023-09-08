@@ -124,13 +124,13 @@
                         <div class="ml-3 ml-md-0 d-flex">
 
                             <div class="d-inline-block" id="call_to">
-                                <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: #176B87; border-radius: 15px;cursor: pointer; " class=" header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center"><span style="font-weight:bolder;" id="c_to_ac">
+                                <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: ; border-radius: 15px;cursor: pointer; " class=" header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center"><span style="font-weight:bolder;" id="c_to_ac">
                                         Add Your Business</span></a>
                             </div>
 
 
                             <div class="d-inline-block" id="create_investor">
-                                <a data-target="#loginmodal2" data-toggle="modal" style="background: #176B87; border-radius: 15px;cursor: pointer; " class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center"><span style="font-weight:bolder;" id="c_to_ac">Create Investor Account</span></a>
+                                <a data-target="#loginmodal2" data-toggle="modal" style="background: ; border-radius: 15px;cursor: pointer; " class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center"><span style="font-weight:bolder;" id="c_to_ac">Create Investor Account</span></a>
                             </div>
 
                             <a data-target="#loginModal" data-toggle="modal" class=" sign_in_btn px-sm-3 my-1 mr-2 px-1 py-1 d-inline-block  text-center ml-md-3">Sign In</a>
@@ -285,7 +285,24 @@
 
 
         @if(Session::has('Stripe_pay'))
-        <p style="position: absolute;background: #00ff89;right: 0px;border-radius: 0px;" class="text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('Stripe_pay')}} @php Session::forget('Stripe_pay'); @endphp </p>
+        <!-- Pop up Modal -->
+            <div class="success_message modal" style="display:block;" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content popup_success">
+
+                        <div class="modal-body">
+                            <h2 class="my-4 modal-title text-center w-100" id="exampleModalLabel">Success</h2>
+
+                            <p class="text-center">{{Session::get('Stripe_pay')}} @php Session::forget('Stripe_pay'); @endphp</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button onclick="popupClose();" type="button" class="w-50 py-2 my-3 h5 m-auto btn text-white" style="background:green;font-size: 18px;" data-dismiss="modal">Ok</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pop up Modal -->
         @endif
 
         <!-- yield('page') -->
@@ -1772,15 +1789,10 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
-    <script src="/path/to/cdn/jquery.slim.min.js"></script>
+    <!-- <script src="/path/to/cdn/jquery.slim.min.js"></script> -->
     <script src="rating/js/jquery-rates.js"></script>
     <script type="text/javascript">
-         $('#demo').rates({
-        shape:'black-star',
-        imagesFolderLocation:'rating/', 
-        shapeHeight:'20px',   
-        shadeColor:'rates-green',   
-        });
+         
     </script>
 </body>
 

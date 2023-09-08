@@ -64,8 +64,10 @@ Route::get('/get_suggest/{search}', 'PagesController@getAddress')->name('get_sug
 Route::post('search', 'PagesController@search')->name('search');
 Route::get('searchResults/{ids}', 'PagesController@searchResults')->name('searchResults');
 Route::get('priceFilter/{min}/{max}/{ids}', 'PagesController@priceFilter')->name('priceFilter');
+Route::get('priceFilterS/{min}/{max}/{ids}', 'PagesController@priceFilterS')->name('priceFilterS');
 
 Route::post('searchService', 'PagesController@searchService')->name('searchService');
+Route::post('serviceBook', 'ServiceController@serviceBook')->name('serviceBook');
 Route::get('ServiceResults/{ids}', 'PagesController@ServiceResults')->name('ServiceResults'); 
 Route::get('categoryResults/{catName}', 'PagesController@categoryResults')->name('categoryResults');
 
@@ -87,6 +89,9 @@ Route::get('download_milestoneDoc/{id}/{mile_id}', 'BusinessController@download_
 Route::get('download_milestoneDocS/{id}/{mile_id}', 'ServiceController@download_milestone_doc')->name('download_milestoneDocS');
 // <--milestones-->
 Route::get('latBusiness', 'PagesController@latBusiness')->name('latBusiness');
+Route::get('latServices', 'PagesController@latServices')->name('latServices');
+Route::get('ratingListing/{id}/{rating}', 'BusinessController@ratingListing')->name('ratingListing');
+Route::get('ratingService/{id}/{rating}', 'ServiceController@ratingService')->name('ratingService');
 
 //MAIN/BACKEND/VUE
 
@@ -120,6 +125,7 @@ Route::get('business_bids', 'BusinessController@business_bids')->name('business_
 Route::get('my_bids', 'BusinessController@my_bids')->name('my_bids');
 Route::get('remove_bids/{id}', 'BusinessController@remove_bids')->name('remove_bids');
 Route::get('assetEquip/download/{id}/{type}', 'BusinessController@assetEquip_download')->name('assetEquip/download');
+Route::get('account', 'BusinessController@account')->name('account');
 
 // --- MILESTONE
 Route::get('add_milestones', 'BusinessController@add_milestones')->name('add_milestones');
@@ -148,6 +154,10 @@ Route::post('up_milestones', 'ServiceController@up_milestone')->name('up_s_miles
 Route::get('delete_s_milestone/{id}', 'ServiceController@delete_milestone')->name('delete_milestone');
 Route::post('mile_s_status', 'ServiceController@mile_status')->name('mile_s_status');
 // --- MILESTONE
+Route::get('service_booking', 'ServiceController@service_booking')->name('service_booking');
+Route::get('my_booking', 'ServiceController@my_booking')->name('my_booking');
+Route::get('booker-milestones', 'ServiceController@booker_milestones')->name('booker-milestones');
+
 Route::get('/', 'BusinessController@home')->name('services/index');
 Route::get('services', 'ServiceController@listings')->name('services');
 //Route::post('add_eqp', 'ServiceController@add_eqp')->name('add_eqp');
@@ -187,9 +197,11 @@ Auth::routes();
 
 // <!-- Payment Routes -->
 
+
+//Unlock small fee
 Route::get('/stripe', 'checkoutController@goCheckout')->name('stripe');
-//Invest
 Route::post('/stripe', 'checkoutController@stripePost')->name('stripe.post');
+
 //Subscribe
 Route::post('/stripe', 'checkoutController@stripeConversation')->name('stripe.post.coversation');
 
@@ -203,8 +215,6 @@ Route::post('milestonestripe', 'checkoutController@milestoneStripePost')->name('
 Route::get('milestoneService', 'checkoutController@milestoneCheckoutS')->name('milestoneService');
 Route::post('milestoneService', 'checkoutController@milestoneStripePostS')->name('milestoneService.post');
 Route::get('milestoneInvestEQP/{listing_id}/{mile_id}/{investor_id}/{owner_id}', 'checkoutController@milestoneInvestEQP')->name('milestoneInvestEQP');
-// Payment Routes
-
 
 //<!-- BIDS -->
 Route::post('bidsAccepted', 'bidsEmailController@bidsAccepted')->name('bidsAccepted');
@@ -213,8 +223,16 @@ Route::get('bidCommits/{amount}/{business_id}/{percent}', 'checkoutController@bi
 Route::post('bidCommits', 'checkoutController@bidCommits')->name('bidCommits');
 Route::get('agreeToBid/{bidId}', 'bidsEmailController@agreeToBid')->name('agreeToBid');
 Route::get('agreeToNextmile/{bidId}', 'bidsEmailController@agreeToNextmile')->name('agreeToNextmile');
+Route::post('bookingAccepted', 'bidsEmailController@bookingAccepted')->name('bookingAccepted');
 
 //<!-- BIDS -->
+
+// Payment Routes
+
+
+//Stripe-Connect
+Route::get('/connect/{id}', 'checkoutController@connect')->name('connect.stripe');
+Route::get('/saveStripe/{token}', 'checkoutController@saveStripe')->name('return.stripe');
 
 
 //SOCIAL

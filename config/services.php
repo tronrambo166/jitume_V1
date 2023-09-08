@@ -47,4 +47,10 @@ return [
     'redirect' => env('GOOGLE_RDR'),
     ],
 
+     'stripe' => [
+        'secret_key' => env('STRIPE_SECRET_KEY'),
+        'publishable' => env('STRIPE_KEY'),
+        
+    ],
+
 ];

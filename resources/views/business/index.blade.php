@@ -1,5 +1,5 @@
 @extends('business.layout')
-@php echo 'Dashboard is under maintanance!'; exit; @endphp
+@php //echo 'Dashboard is under maintanance!'; exit; @endphp
 
 @section('page')
     <div class="container px-0 h-100">
@@ -7,7 +7,6 @@
   @if(Session::has('file_error'))
   <p class="d-block mx-auto btn btn btn-light text-danger font-weight-bold text-center">
       {{Session::get('file_error')}} @php Session::forget('file_error'); @endphp</p>@endif
-    
 
    @if(isset($investor) && $investor == true ) 
    <div class="row m-auto">  
@@ -142,7 +141,7 @@
 </div>
 @endif
 
-@if(!$business->count() && !$service->count())
+@if(!$business->count() && !$services->count())
 <div class="h-75 w-75 m-auto d-flex align-items-center justify-content-center">
         <div class="mb-5 pb-3 w-50 text-center mx-auto"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary ">
                         <a href="{{route('add-listing')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold" href="">Add Business</a>

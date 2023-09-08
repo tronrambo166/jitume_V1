@@ -18,13 +18,18 @@ use Session;
 use Hash;
 use Auth;
 use Mail;
-use Stripe;
+use Stripe\StripeClient;
 use App\Models\taxes;
 use App\Models\BusinessBids;
 
 
 class checkoutController extends Controller
 {
+     public function __construct(StripeClient $client)
+    {
+        $this->Client = $client;
+    }
+
     // PAYMENT
      public function goCheckout(Request $request)
     {
@@ -35,7 +40,7 @@ class checkoutController extends Controller
       $listing=$request->listing_id;
 
       $base_price=$request->price;
-      $price = round( $base_price+($base_price*0.07),2 );
+      $price = round( $base_price+($base_price*0.05),2 );
       //$ids=Crypt::decryptString($ids);
       
         return view('checkout.stripe',compact('price','listing'));
@@ -54,28 +59,60 @@ class checkoutController extends Controller
         $listing_id=$request->listing;
         $package=$request->package;
 
-        //STRIPE
-         $curr='USD'; //$request->currency; 
-         $price=round($request->price);
+        //Stripe
+    try{
 
-        Stripe\Stripe::setApiKey('sk_test_51JFWrpJkjwNxIm6zcIxSq9meJlasHB3MpxJYepYx1RuQnVYpk0zmoXSXz22qS62PK5pryX4ptYGCHaudKePMfGyH00sO7Jwion');
+        $curr='USD'; //$request->currency; 
+        $amount=$request->price;
+        $transferAmount=round($amount-($amount*.05),2);
 
-        Stripe\Charge::create ([ 
-
+        $this->validate($request, [
+            'stripeToken' => ['required', 'string']
+        ]);
+        $charge = $this->Client->charges->create ([ 
                 //"billing_address_collection": null,
-                "amount" => $price*100, //100 * 100,
+                "amount" => $amount*100, //100 * 100,
                 "currency" => $curr,
                 "source" => $request->stripeToken,
-                "description" => "This payment is tested purpose only!"
+                "description" => "This payment is test purpose only!"
         ]);
-   
+        }
+      catch(\Exception $e){
+      Session::put('Stripe_failed',$e->getMessage());
+      return redirect()->back();
+    }
+
+    $business_id = $request->listing;
+    $Business = listing::where('id',$business_id)->first();
+    $owner = User::where('id', $Business->user_id)->first();
+
+//Split
+ try{
+
+        $curr='USD'; //$request->currency; 
+        $tranfer = $this->Client->transfers->create ([ 
+                //"billing_address_collection": null,
+                "amount" => $transferAmount*100, //100 * 100,
+                "currency" => $curr,
+                "source_transaction" => $charge->id,
+                'destination' => $owner->connect_id
+        ]);
+        }
+
+catch(\Exception $e){
+  Session::put('Stripe_failed',$e->getMessage());
+    return redirect()->back();
+}
+
+ //Stripe
+
 
 //DB INSERT
     Conversation::create([
         'investor_id' => Auth::id(),
         'listing_id' => $listing_id,
         'package' => $package,
-        'price' => $price
+        'price' => $amount
     ]);
 
         // $info=['eq_name'=>$Equipment->eq_name, 
@@ -102,22 +139,54 @@ class checkoutController extends Controller
     $amount = $request->value;
     $realAmount = $request->realAmount;
 
-    
 
-        //STRIPE
-         $curr='USD'; //$request->currency; 
-         $price=round($request->price);
+    //Stripe
+    try{
 
-        Stripe\Stripe::setApiKey('sk_test_51JFWrpJkjwNxIm6zcIxSq9meJlasHB3MpxJYepYx1RuQnVYpk0zmoXSXz22qS62PK5pryX4ptYGCHaudKePMfGyH00sO7Jwion');
+        $curr='USD'; //$request->currency; 
+        $amount=$request->price;
+        $transferAmount=$amount-($amount*.05);
 
-        Stripe\Charge::create ([ 
-
+        $this->validate($request, [
+            'stripeToken' => ['required', 'string']
+        ]);
+        $charge = $this->Client->charges->create ([ 
                 //"billing_address_collection": null,
-                "amount" => $price*100, //100 * 100,
+                "amount" => $amount*100, //100 * 100,
                 "currency" => $curr,
                 "source" => $request->stripeToken,
-                "description" => "This payment is tested purpose only!"
+                "description" => "This payment is test purpose only!"
         ]);
+        }
+      catch(\Exception $e){
+      Session::put('Stripe_failed',$e->getMessage());
+      return redirect()->back();
+    }
+
+    $business_id = $request->listing;
+    $Business = listing::where('id',$business_id)->first();
+    $owner = User::where('id', $Business->user_id)->first();
+
+//Split
+ try{
+
+        $curr='USD'; //$request->currency; 
+        $tranfer = $this->Client->transfers->create ([ 
+                //"billing_address_collection": null,
+                "amount" => $transferAmount*100, //100 * 100,
+                "currency" => $curr,
+                "source_transaction" => $charge->id,
+                'destination' => $owner->connect_id
+        ]);
+        }
+
+catch(\Exception $e){
+  Session::put('Stripe_failed',$e->getMessage());
+    return redirect()->back();
+}
+
+ //Stripe
+
    
 
 //DB INSERT
@@ -357,8 +426,8 @@ class checkoutController extends Controller
                return redirect("/");
          }
             catch(\Exception $e){
-            Session::put('Stripe_pay', $e->getMessage());
-            return redirect("/");
+            Session::put('Stripe_failed',$e->getMessage());
+            return redirect()->back();
         }
 
     }
@@ -371,7 +440,7 @@ class checkoutController extends Controller
      public function milestoneCheckoutS(Request $request)
     {
     $tax = taxes::where('id',1)->first();
-    $tax = $tax->tax+$tax->vat;
+    $tax = $tax->tax;
     $amount =($request->amount)+($request->amount)*($tax/100);
     $milestone_id =$request->milestone_id;
  
@@ -401,20 +470,52 @@ class checkoutController extends Controller
     $user_id = $mile->user_id;
 
 
-        //STRIPE
-         $curr='USD'; //$request->currency; 
-         $amount=round($amount);
+    //Stripe
+    try{
 
-        Stripe\Stripe::setApiKey('sk_test_51JFWrpJkjwNxIm6zcIxSq9meJlasHB3MpxJYepYx1RuQnVYpk0zmoXSXz22qS62PK5pryX4ptYGCHaudKePMfGyH00sO7Jwion');
+        $curr='USD'; //$request->currency; 
+        $amount=round($request->price);
+        $transferAmount=round($amount-($amount*.05),2);
 
-        Stripe\Charge::create ([ 
-
+        $this->validate($request, [
+            'stripeToken' => ['required', 'string']
+        ]);
+        $charge = $this->Client->charges->create ([ 
                 //"billing_address_collection": null,
                 "amount" => $amount*100, //100 * 100,
                 "currency" => $curr,
                 "source" => $request->stripeToken,
-                "description" => "This payment is tested purpose only!"
+                "description" => "This payment is test purpose only!"
         ]);
+        }
+      catch(\Exception $e){
+      Session::put('Stripe_failed',$e->getMessage());
+      return redirect()->back();
+    }
+
+    $business_id = $mile->listing_id;
+    $Business = Services::where('id',$business_id)->first();
+    $owner = User::where('id', $Business->shop_id)->first();
+
+//Split
+ try{
+
+        $curr='USD'; //$request->currency; 
+        $tranfer = $this->Client->transfers->create ([ 
+                //"billing_address_collection": null,
+                "amount" => $transferAmount*100, //100 * 100,
+                "currency" => $curr,
+                "source_transaction" => $charge->id,
+                'destination' => $owner->connect_id
+        ]);
+        }
+
+catch(\Exception $e){
+    Session::put('Stripe_failed',$e->getMessage());
+    return redirect()->back();
+}
+
+ //Stripe
    
 
 
@@ -498,17 +599,18 @@ else {
 
 public function bidCommitsForm($amount,$business_id,$percent)
 {   $amount = base64_decode($amount);
+    $amountBase = $amount;
     $business_id = base64_decode($business_id);
     $percent = base64_decode($percent);
     $total = $amount+($amount*0.05);
     $amount = round($total,2);
-    $amountReal = $total;
+    $amountReal = $amountBase;
  
         return view('bids.stripe',compact('amountReal','amount','business_id','percent'));
 }
 
 public function bidCommits(Request $request){
-  try{
+ //return config('services.stripe.secret_key');
    if(Auth::check())
         $investor_id = Auth::id();
     else {
@@ -519,30 +621,50 @@ public function bidCommits(Request $request){
       }
     }
 
+ try{
     //Stripe
-        $curr='USD'; //$request->currency; 
-        $amount=$request->amountReal;
-        $amount=$amount-($amount*.05);
-        Stripe\Stripe::setApiKey('sk_test_51JFWrpJkjwNxIm6zcIxSq9meJlasHB3MpxJYepYx1RuQnVYpk0zmoXSXz22qS62PK5pryX4ptYGCHaudKePMfGyH00sO7Jwion');
-        Stripe\Charge::create ([ 
+        $curr='USD'; //$request->currency;
+        $amount=$request->price; 
+        $amountReal=$request->amountReal;
+        $transferAmount=round($amountReal,2);
+        $amount = round($amount,2);
+
+        $this->validate($request, [
+            'stripeToken' => ['required', 'string']
+        ]);
+        $charge = $this->Client->charges->create ([ 
                 //"billing_address_collection": null,
                 "amount" => $amount*100, //100 * 100,
                 "currency" => $curr,
                 "source" => $request->stripeToken,
-                "description" => "This payment is tested purpose only!"
+                "description" => "This payment is test purpose only!"
         ]);
     //Stripe
 
+        }
+
+catch(\Exception $e){
+  return response()->json(['failed' =>  $e->getMessage()]);
+}
+
+
     $business_id = $request->listing;
-    $percent = $request->percent;
+    $Business = listing::where('id',$business_id)->first();
+    $owner = User::where('id', $Business->user_id)->first();
+
+$business_id = $request->listing;
+$percent = $request->percent;
+
+ try{
     $type = 'Monetery';
     $bids = BusinessBids::create([
       'date' => date('Y-m-d'),
       'investor_id' => $investor_id,
       'business_id' => $business_id,
       'type' => $type,
-      'amount' => $amount,
-      'representation' => $percent
+      'amount' => $transferAmount,
+      'representation' => $percent,
+      'stripe_charge_id' => $charge->id
     ]);
 
 // Milestone Fulfill check
@@ -565,17 +687,81 @@ public function bidCommits(Request $request){
      }
 // Milestone Fulfill check
 
+}
+
+catch(\Exception $e){
+  Session::put('Stripe_failed',$e->getMessage());
+    return redirect()->back();
+}
+
 if($bids){
     Session::put('Stripe_pay','Bid placed! you will get a notification if your bid is accepted!');
     return redirect("/");
          }
-}
 
-catch(\Exception $e){
-  return response()->json(['failed' =>  $e->getMessage()]);
-}
 
 }
+
+
+
+// Onboarding / Connect to stripe 
+ public function connect($id) {
+    $seller = User::where('id',$id)->first();
+    if(!$seller->completed_onboarding){
+        $token = hexdec(uniqid());
+        User::where('id',$id)->update(['token'=>$token]);
+    }
+
+   if(!$seller->connect_id){
+    try{
+    $account = $this->Client->accounts->create([
+                'country' => 'us',
+                'type' => 'express',
+                'settings' => [
+                  'payouts' => [
+                    'schedule' => [
+                      'interval' => 'manual',
+                    ],
+                  ],
+                ],
+              ]);
+              
+$account_id=$account['id']; 
+User::where('id',$id)->update(['connect_id'=>$account_id]);
+
+$account_links = $this->Client->accountLinks->create([
+              'account' => $account_id,
+              'refresh_url' => route('connect.stripe',['id'=>$id]),
+              'return_url' => route('return.stripe',['token'=>$token]),
+              'type' => 'account_onboarding',
+            ]);
+    return redirect($account_links->url);
+
+    }
+    catch(\Exception $e){
+    Session::put('loginFailed', $e->getMessage());
+    return redirect()->back();
+    }
+    }
+
+    
+
+    $login_link = $this->Client->accounts->createLoginLink($seller->connect_id);
+    return redirect($login_link->url);
+//echo '<pre>'; print_r($account_links); echo '<pre>';
+}
+
+
+//After return 
+public function saveStripe($token) {
+    $seller = User::where('token',$token)->first();
+    if($seller){
+        DB::table('users')->where('id',$seller->id)
+        ->update(['completed_onboarding'=>1]);
+    }
+    return redirect('business/add-listing');
+ }
+// CONNECT
 
 
 }

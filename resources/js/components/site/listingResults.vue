@@ -66,7 +66,7 @@
                <div v-for="( result, index ) in results" class="listing col-md-6 my-3">
                     <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-4">
 
-                     <video v-if="result.file" controls style="width:100%; height:230px" alt="">
+                     <video v-if="result.file" controls style="width:100%; height:200px" alt="">
                     <source :src="result.file" type="video/mp4">
                      </video> 
 
@@ -125,7 +125,7 @@ export default {
     methods:{
     setRes:function () {
             let t = this;
-            this.ids = this.$route.params.results;
+            this.ids = atob(this.$route.params.results);
              //this.results = this.ids.split(",");
             axios.get('searchResults/'+t.ids).then( (data) =>{
                 t.results = data.data.data;
@@ -141,7 +141,7 @@ export default {
         },
 
     range(){ 
-     this.ids = this.$route.params.results;
+     this.ids = atob(this.$route.params.results);
      let t = this;
 
     var slider = document.getElementById('slider');

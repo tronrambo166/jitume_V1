@@ -9,6 +9,7 @@ use App\Models\Shop;
 use App\Models\Equipments;
 use App\Models\Smilestones;
 use App\Models\serviceDocs;
+use App\Models\serviceBook;
 use App\Models\User;
 use DateTime;
 use Session; 
@@ -45,8 +46,13 @@ return view('services.listings',compact('listings'));
 }
 
 public function add_listing(){
-//$events = Events::latest()->get();
-return view('services.add-listing');
+$user = User::where('id',Auth::id())->first();
+if($user->connect_id)
+$connected = 1;
+else $connected = 0;
+
+$user_id = Auth::id();
+return view('services.add-listing', compact('connected','user_id'));
 
 }
 
@@ -571,6 +577,23 @@ return view('services.milestones',compact('milestones','business', 'business_nam
 }
 
 
+public function booker_milestones(){
+  $booker_id = Auth::id();
+  $book = serviceBook::where('booker_id', $booker_id)->first();
+  $results = [];
+  $milestones = Smilestones::where('listing_id', $book->service_id)->
+  where('status', 'In Progress')->get();
+ 
+ foreach($milestones as $miles){
+  $listing = Services::where('id', $miles->listing_id)->first();
+  $miles->service = $listing->name;
+  $results[] = $miles;
+}
+
+return view('services.booker-milestones',compact('results'));
+}
+
+
 
 public function save_milestone(Request $request){
 $title = $request->title;
@@ -681,6 +704,78 @@ Smilestones::where('id',$id)->update([
 }
 
 //END MILESTONES
+public function my_booking(){ 
+$booking = serviceBook::where('booker_id',Auth::id())->get();
+$results = [];
+foreach($booking as $book)
+{
+  $service =Services::where('id',$book->service_id)->first();
+  $book->location = $service->location;
+  $book->service = $service->name;
+  $book->category = $service->category;
+  $results[] = $book;
+}
+return view('services.my_booking',compact('results'));
+}
+
+public function service_booking(){ 
+$results = [];
+$booking = serviceBook::where('service_owner_id',Auth::id())
+->where('status', 'Pending')->get();
+foreach($booking as $book)
+{
+  $service =Services::where('id',$book->service_id)->first();
+  $book->location = $service->location;
+  $book->service = $service->name;
+  $book->category = $service->category;
+  $results[] = $book;
+}
+
+return view('services.service_booking',compact('results'));
+}
+
+public function serviceBook(Request $request){ 
+
+  try{
+   if(Auth::check())
+        $booker_id = Auth::id();
+    else {
+        return response()->json(['failed' => 'You must sign in to book!']);
+    }
+    $owner = Services::where('id',$request->service_id)->first();
+
+    $booking = serviceBook::create([
+      'date' => $request->date,
+      'booker_id' => $booker_id,
+      'service_id' => $request->service_id,
+      'service_owner_id' => $owner->shop_id,
+      'note' => $request->note
+    ]); 
+    if($booking)
+    return response()->json(['success' => 'Booking Success! Go to dashboard to see status']);
+    }
+
+    catch(\Exception $e){
+      return response()->json(['failed' => $e->getMessage()]);
+    }
+}
+
+
+//Rating
+public function ratingService($id, $rating){
+$user_id = Auth::id();
+$listing = Services::where('id',$id)->first();
+$new_rating = $rating + $listing->rating;
+$rating_count = 1 + $listing->rating_count;
+//$new_rating = $new_rating/$rating_count;
+        $listing = Services::where('id',$id)->update([
+        'rating' => $new_rating,
+        'rating_count' => $rating_count,
+       ]);
+
+        return response()->json(['success' => 'Success!']);
+
+}
 
 
 //CLASS

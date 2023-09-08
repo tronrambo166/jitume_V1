@@ -1,10 +1,12 @@
 @php $user_id = Auth::id();
 use App\Models\Listing;
 use App\Models\Services;
+use App\Models\serviceBook;
 use App\Models\User;
 
 $business = Listing::where('user_id',$user_id)->get();
 $service = Services::where('shop_id',$user_id)->get();
+$booking = serviceBook::where('booker_id',$user_id)->get();
 @endphp
 
 <!DOCTYPE HTML>
@@ -79,7 +81,7 @@ $service = Services::where('shop_id',$user_id)->get();
                     <div class="py-1 px-md-3">
                         <div class="ml-3 ml-md-0 d-flex">
                             <div class="nav-item ">
-                                <a href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-bell"></i></a>
+                                <a href="{{route('account')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-dollar-sign"></i></a>
                             </div>
                             <div class="nav-item ">
 
@@ -200,6 +202,20 @@ $service = Services::where('shop_id',$user_id)->get();
                                 <a class="navLink" href="{{route('s_milestones','all')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
                             </li>
 
+                             <li  class="{{ Request::is('business/service_booking') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('service_booking')}}"><i class=" fe fe-layout"></i> <span>Service Booking</span></a>
+                            </li>
+
+                            @endif
+
+                            @if($booking->count())
+                            <li  class="{{ Request::is('business/my_booking') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('my_booking')}}"><i class=" fe fe-layout"></i> <span>My Booking</span></a>
+                            </li>
+
+                            <li  class="{{ Request::is('business/booker-milestones') ? 'active' : '' }}"> 
+                                <a class="navLink" href="{{route('booker-milestones')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
+                            </li>
                             @endif
 
                             <li  class="{{ Request::is('business/applyForShow') ? 'active' : '' }}"> 

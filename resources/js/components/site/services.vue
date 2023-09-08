@@ -4,9 +4,9 @@
 
 
     <!-- PAGE CONTENT -->
-    <div class="row service_img mx-auto text-center">
+    <div class="row  mx-auto text-center">
 
-        <div class="container-xl col-sm-12 text-center p-5" style="min-height: 600px;">
+        <div class="container-xl service_img mx-auto col-sm-12 text-center p-5" style="min-height: 600px;">
 
             <div class="py-5"></div>
             <div class=" mt-5 mb-5 pb-2 mx-auto text-center">
@@ -20,12 +20,12 @@
                 <div class="w-100 text-center py-1 rounded text-center d-md-flex justify-content-between bg-white">
 
                     <div style="border-radius: 35px 0 0 35px;" class="px-2 py-2 bg-white">
-                        <input required="" style="border: none;height: 42px;" class="bar bg-white form-control d-inline"
+                        <input style="border: none;height: 42px;" class="bar bg-white form-control d-inline"
                             type="text" name="listing_name" placeholder="What are you looking for?">
                     </div>
 
                     <div style="" class="px-2 py-2 bg-white">
-                        <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;"
+                        <input id="searchbox" onkeyup="suggest(this.value);" style="border: none;height: 42px;"
                             class="border-none bar bg-white form-control d-inline" type="text" name="search" value=""
                             placeholder="Location">
 
@@ -34,7 +34,7 @@
                     <div class="px-2 py-2 bg-white d-flex justify-centent-evenly align-items-center">
                         <div class="dropdown d-flex align-items-center">
 
-                            <select name="category" required class="border-none form-control">
+                            <select name="category" class="border-none form-control">
                                 <option hidden value="" class="form-control">Services</option>
                                 <option class="form-control" value="Business Planning">Business Planning</option>
                                 <option value="IT">IT</option>
@@ -71,6 +71,46 @@
             </form>
         </div>
 
+<br>
+
+  <!-- SLider test --> <hr>
+  <div class="container-xl col-sm-12 text-center py-5">
+    <div style="overflow:hidden;" class="row card-group px-3 w-75 mx-auto d-md-flex justify-content-center">
+    <hooper :settings="hooperSettings" :itemsToShow="4" :centerMode="true" pagination="no">
+    <slide class="listing text-center col-sm-4 px-3" v-for="( result, index ) in results" :key="index" :index="index">
+      <!-- Loop -->
+           <div class="mx-auto mt-5">
+                <router-link :to="`/serviceDetails/${result.id}`" class="shadow card border px-2">
+
+            <video v-if="result.file" controls style="width:100%; height:104px;" alt="">
+              <source :src="result.file" type="video/mp4">
+            </video>
+
+            <img v-else :src="result.image" style="width:100%; height:104px" class="card-img-top" alt="" />
+
+            <div class="p-1 pb-2">
+
+              <h5 class="card_heading text-left mb-0 py-2">{{ result.name }} </h5>
+
+              <p class="card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ result.location }}</p>
+
+            </div>
+
+            
+
+          </router-link>
+          </div>
+      <!-- Loop -->
+
+    </slide>
+    
+    <hooper-navigation slot="hooper-addons"></hooper-navigation>
+  </hooper>
+
+</div>
+</div>
+<!--Slider-->
+
     </div>
 
     <!-- PAGE CONTENT -->
@@ -81,11 +121,36 @@
 </template>
 
 <script>
+import { Hooper, Slide, Navigation as HooperNavigation } from 'hooper';
+import 'hooper/dist/hooper.css';
 
 export default {
+    components: {
+      Hooper,
+      Slide,
+      HooperNavigation
+    },
+
     props: ['auth_user'],
     data: () => ({
+        //Hooper
+      hooperSettings: {
+        itemsToShow: 4,
+        centerMode: false,
+        breakpoints: {
+          800: {
+            centerMode: false,
+            itemsToShow: 4
+          },
+          1000: {
+            itemsToShow: 4,
+            pagination: 'fraction'
+          }
+        }
+    },
+    //Hooper
         res: [],
+        results:[],
         emptyCat: false
     }),
 
@@ -122,7 +187,7 @@ export default {
                     if (ids == '')
                         ids = 'no-results'
                     //thiss.$router.push({ path: '/listingResults', query: { result: response } })
-                    thiss.$router.push({ name: 'serviceResults', params: { results: ids } })
+                    thiss.$router.push({ name: 'serviceResults', params: { results: btoa(ids) } })
                 },
                 error: function (response) {
                     console.log(response);
@@ -136,14 +201,22 @@ export default {
                 $('#call_to').html('');
                 $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
             }
-        }
+        },
+
+    latBusiness: function () {
+      let t = this;
+      axios.get('latServices').then((data) => {
+        t.results = data.data.data;
+        console.log(data);
+      }).catch((error) => { })
+    },
 
     },
 
     mounted() {
         //return this.$store.dispatch("fetchpro")
         this.replaceText();
-        //$('#create_investor').html('');
+        this.latBusiness();
     }
 
 }

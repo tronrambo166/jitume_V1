@@ -15,17 +15,23 @@ use App\Models\Conversation;
 use App\Models\Milestones;
 use App\Models\Smilestones;
 use App\Models\AcceptedBids;
+use App\Models\serviceBook;
 use Session; 
 use Hash;
 use Auth;
 use Mail;
-use Stripe;
+use Stripe\StripeClient;
 use App\Models\taxes;
 use App\Models\BusinessBids;
 
 class bidsEmailController extends Controller
 {
-    
+
+public function __construct(StripeClient $client)
+    {
+        $this->Client = $client;
+    }
+
 public function bidsAccepted(Request $request)
 {
 
@@ -47,6 +53,11 @@ public function bidsAccepted(Request $request)
              $msg->to($user['to']);
              $msg->subject('Bid Rejected!');
          });
+
+         //Refund
+         $this->Client->refunds->create(['charge' => $bid->stripe_charge_id ]);
+         //Refund
+         
          $bid_remove = BusinessBids::where('id',$id)->delete();
          //remove
            }
@@ -79,6 +90,25 @@ public function bidsAccepted(Request $request)
         //     $photos = explode(',',$bid->photos);
         //     foreach($photos as $p) if($p !='')  unlink($p);
         //     }
+
+         $owner = User::where('id',$list->user_id)->first();
+                 try{
+                //Split
+                    $curr='USD'; //$request->currency; 
+                    $tranfer = $this->Client->transfers->create ([ 
+                            //"billing_address_collection": null,
+                            "amount" => $bid->amount*100, //100 * 100,
+                            "currency" => $curr,
+                            "source_transaction" => $bid->stripe_charge_id,
+                            'destination' => $owner->connect_id
+                    ]);
+                //Stripe
+                    }
+            catch(\Exception $e){
+              Session::put('failed',$e->getMessage());
+              return redirect()->back();
+            }
+
               AcceptedBids::create([
               'bid_id' => $id,
               'date' => $bid->date,
@@ -92,6 +122,8 @@ public function bidsAccepted(Request $request)
               'optional_doc' => $bid->optional_doc,
               'photos' => $bid->photos
             ]);
+                
+
 
          $bid_remove = BusinessBids::where('id',$id)->delete();
          //remove
@@ -326,6 +358,41 @@ public function bidCommitsEQP(Request $request){
     }
 
 }
+
+
+public function bookingAccepted(Request $request)
+{
+
+    try { 
+        $bid_ids = $request->bid_ids;
+        foreach($bid_ids as $id){
+        if($id !=''){
+        $bid = serviceBook::where('id',$id)->first();
+        $investor = User::where('id',$bid->booker_id)->first();
+        $investor_mail = $investor->email;
+
+         $list = Services::where('id',$bid->service_id)->first();
+        // $info=[ 'business_name'=>$list->name, 'bid_id'=>$id ];
+        // $user['to'] = 'tottenham266@gmail.com'; //$investor_mail;
+        //  Mail::send('bids.accepted', $info, function($msg) use ($user){
+        //      $msg->to($user['to']);
+        //      $msg->subject('Bid accepted!');
+        //  });
+
+           $confirm = serviceBook::where('id',$id)->update(['status' => 'Confirmed']);
+         }
+       }
+        Session::put('success','Confirmed!');
+        return redirect()->back();
+     
+       }
+        catch(\Exception $e){
+            Session::put('failed',$e->getMessage());
+            return redirect()->back();
+       }  
+
+   }
+
 
 
     //Class Ends Below

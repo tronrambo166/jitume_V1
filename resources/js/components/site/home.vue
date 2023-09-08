@@ -26,7 +26,7 @@
                               <input  required=""  style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div> -->
 
                 <div style="border-radius: 35px 0 0 35px;" class="py-2 col-5 bg-white">
-                  <input id="searchbox" required="" onkeyup="suggest(this.value);" style="border: none;height: 42px;"
+                  <input id="searchbox" onkeyup="suggest(this.value);" style="border: none;height: 42px;"
                     class="bar bg-white form-control d-inline" type="text" name="search" value="" placeholder="Location">
 
                 </div>
@@ -34,7 +34,7 @@
                 <div class="pt-2 col-4 bg-white">
                   <div class="dropdown pt-1">
 
-                    <select required id="category" name="category" class="border-white form-control">
+                    <select id="category" name="category" class="border-white form-control">
                       <option class="form-control small" value="">Category</option>
 
                       <option class="form-control" value="Agriculture">Agriculture</option>
@@ -280,9 +280,9 @@
       <!-- SLider test -->
     <div style="overflow:hidden;" class="row card-group px-3 w-75 mx-auto d-md-flex justify-content-center">
     <hooper :settings="hooperSettings" :itemsToShow="4" :centerMode="true" pagination="no">
-    <slide class="listing text-center col-sm-4 px-3" v-for="( result, index ) in results" :key="indx" :index="indx">
+    <slide class="listing text-center col-sm-4 px-3" v-for="( result, index ) in results" :key="index" :index="index">
       <!-- Loop -->
-           <div class="mx-auto">
+           <div class="mx-auto mt-4">
                 <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
 
             <video v-if="result.file" controls style="width:100%; height:104px;" alt="">
@@ -395,14 +395,14 @@
       </div>
 
 
-      <div class="row w-75 mx-auto my-5  pl-md-5">
+      <!-- <div class="row w-75 mx-auto my-5  pl-md-5">
         <div class="text-dark mb-md-3">
           <h2 style="text-align:center;" class="secondary_heading h2 headline  headline-aligned-to-left  headline-box pb-2">
             The Show </h2>
         </div>
         <video poster="images/video_preview.png" style="" class="video_player elementor-video" src="videos/Jitume.mp4"
           controls="" controlslist="nodownload"></video>
-      </div>
+      </div> -->
 
     </div>
     <!-- How it works -->
@@ -516,7 +516,7 @@ components: {
           if (!ids) ids = 0;
 
           //thiss.$router.push({ path: '/listingResults', query: { result: response } })
-          thiss.$router.push({ name: 'listingResults', params: { results: ids } })
+          thiss.$router.push({ name: 'listingResults', params: { results: btoa(ids) } })
         },
         error: function (response) {
           console.log(response);

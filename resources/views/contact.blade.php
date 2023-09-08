@@ -10,8 +10,7 @@
              @if(Session::has('email')) <p class="text-danger ml-5">{{Session::get('email')}} @php Session::forget('email'); @endphp </p> @endif
         </div>
 
-              
-
+             
         <button type="button" class="m-0 close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

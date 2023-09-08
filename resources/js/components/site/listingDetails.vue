@@ -16,23 +16,16 @@
                         <h6 class="font-weight-bold" >Amount: <span class="font-weight-light"><b>${{form.investment_needed}} (Required:${{amount_required}})</b></span></h6>
 
                         <div class="float-right d-inline-block" id="staticRating">
-                            <img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">
-                            <img src="rating/images/g-star.svg" style="height: 15px;" class="">
-                            <img src="rating/images/g-star.svg" style="height: 15px;" class="">
-                            <img src="rating/images/g-star.svg" style="height: 15px;" class="">
-                            <img src="rating/images/black-star.png" style="height: 15px;" class="">
-                        </div>
-                    </div>
+
+                        </div> <br>
+                        <p class="text-dark d-block float-right" style="font-size:11px;">({{form.rating_count}} reviews)</p>
+                    </div>  
 
 
 
                 </h3>
 
-                     
-
-                    
-        
-                        <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{form.location}}
+                     <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{form.location}}
 
                             <div v-if="auth_user" class="float-right w-25">
                              <div class="" style="background:#e5e5e9; height:21px;">
@@ -46,7 +39,10 @@
                         <div class="row my-4">
                             <div class="col-sm-12">
                             <a class="btn border border-bottom-success">Overview</a>
-                            <a data-toggle="modal" data-target="#reviewModal" class="btn border border-bottom-success">Add review</a>
+
+                           <a v-if="auth_user" data-toggle="modal" data-target="#reviewModal" class="btn border border-bottom-success">Add review</a>
+
+                           <a v-else @click="make_session(form.listing_id);" data-target="#loginmodal2" data-toggle="modal" class="btn border border-bottom-success">Add review</a>
 
                             <hr>
                             </div>
@@ -351,16 +347,16 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form >
         <h5 class="my-3 font-weight-bold">Service rating 
-        <div class="ml-5 d-inline-block" @click = "rating()" id="demo"></div>
+        <div class="ml-5 d-inline-block" id="demo"></div>
     </h5>
         
 
         <h5 class="font-weight-bold">Leave a review</h5>
         <textarea name="reply" class="bg-light border border-none" cols="55" rows="3"></textarea>
         
-        <button type="submit" class="font-weight-bold btn btn-success w-50 m-auto">Submit</button>
+        <a @click = "rating()"  class="font-weight-bold btn btn-light w-50 m-auto">Submit</a>
         </form>
 
       </div>
@@ -392,6 +388,8 @@ export default {
         image:'',
         investment_needed:'',
         investors_fee:'',
+        rating:'',
+        rating_count:'',
         conv:'',
     }),
 
@@ -404,8 +402,11 @@ export default {
     }),
 
 created(){
+
+
 if(sessionStorage.getItem('invest')!=null)
     sessionStorage.clear(); 
+ 
 },
     methods:{
 
@@ -424,6 +425,18 @@ if(sessionStorage.getItem('invest')!=null)
     t.form.listing_id = data.data.data[0].id;
     t.form.investment_needed = data.data.data[0].investment_needed;
     t.form.investors_fee = data.data.data[0].investors_fee;
+    t.form.rating = data.data.data[0].rating/data.data.data[0].rating_count;
+    t.form.rating = t.form.rating.toFixed();
+
+    t.form.rating_count = data.data.data[0].rating_count;
+
+    var i;
+    for(i = 1; i<6; i++){console.log(parseInt(t.form.rating));
+    if(i<= parseInt(t.form.rating))
+    $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');
+    else
+    $('#staticRating').append('<img src="rating/images/white.png" style="height: 15px;" class="">');
+    }
     
     });
     
@@ -448,9 +461,17 @@ if(sessionStorage.getItem('invest')!=null)
 
   rating()
   { 
+    var id=this.$route.params.id;
     var rating = $('#demoRating').val();
-    alert(rating);
+    axios.get('ratingListing/'+id+'/'+rating).then( (data) =>{console.log(data);
+        $.alert({
+                title: 'Alert!',
+                content: 'Rating submitted successfully!',
+            });
+        //location.reload();
+    });
    },
+
   make_session(id){
             sessionStorage.setItem('invest',id);
             document.getElementById('c_to_action').value = 'loginFromService';
@@ -609,6 +630,97 @@ if(sessionStorage.getItem('invest')!=null)
      mounted() { 
      this.getDetails();
      this.getMilestones();
+    
+     // SCRIPT
+
+  (function ($) {
+  $.fn.rates = function (options) {
+    // Default settings for the plugin if none are provided by the user
+    const settings = $.extend({
+      shadeColor: 'rates-yellow',
+      shapeHeight: '25px',
+      shapeCount: 5,
+      shape: 'white-star',
+      imagesFolderLocation: '',
+
+    }, options);
+
+    return this.each(function () {
+      const container = this;
+      $(container).addClass('rates-container');
+      const $containerName = $(this).attr('id');
+
+      const score = {
+        value: 0,
+      };
+
+      createStars(settings.shapeCount);
+      setSize();
+
+      const $eachStar = $(this).find('img');
+
+      // Colors in the rating shape on hover
+      // Removes the color from above the selected rating on mouse out
+      $(this).find('img').hover(function () {
+        const starIndex = $eachStar.index(this);
+        colorShapesToIndex(starIndex);
+      }, () => {
+        colorShapesToScore();
+      });
+
+      // Sets the score rating based on which rating shape was clicked
+      $(this).find('img').on('click', function () {
+        const starIndex = $eachStar.index(this);
+        colorShapesToIndex(starIndex);
+        score.value = starIndex + 1;
+        $(`#${$containerName}Rating`).val(score.value);
+      });
+
+      // Sets the size of stars indicated in the settings
+      function setSize() {
+        $(container).find('img').css('height', settings.shapeHeight);
+      }
+
+      // Dynamically creates the html markup based on the number of stars indicated
+      function createStars(count) {
+        const starInput = $(`<input type="hidden" id = "${$containerName}Rating" name="${$containerName}Rating" value="0" >`);
+        $(container).append(starInput);
+        for (let i = 0; i < count; i++) {
+          const $imageStar = $('<img>');
+          $imageStar.attr('src', `${settings.imagesFolderLocation}images/${settings.shape}.png`);
+          $(container).append($imageStar);
+        }
+      }
+
+      // Resets the shading class on the shapes to color only those up until a designated index
+      function colorShapesToIndex(starIndexValue) {
+        $eachStar.removeClass(settings.shadeColor);
+        for (let i = 0; i <= starIndexValue; i++) {
+          const star = $eachStar.get(i);
+          $(star).toggleClass(settings.shadeColor);
+        }
+      }
+
+      // Resets the shading class on the shapes to color only those up to and including the selected score
+      function colorShapesToScore() {
+        $eachStar.removeClass(settings.shadeColor);
+        for (let j = 0; j < score.value; j++) {
+          const star = $eachStar.get(j);
+          $(star).toggleClass(settings.shadeColor);
+        }
+      }
+    });
+  };
+}(jQuery));
+
+     // SCRIPT
+    
+     $('#demo').rates({
+        shape:'black-star',
+        imagesFolderLocation:'rating/', 
+        shapeHeight:'20px',   
+        shadeColor:'rates-green',   
+        });
     
       }
    
