@@ -166,6 +166,12 @@
         background-position: center center;
     }
 
+    .map_style {
+
+        height: 770px;
+        background: #f0fff2
+    }
+
     @media (max-width: 768px) {
         .service_img {
             height: 100%;
@@ -173,6 +179,12 @@
             background-repeat: no-repeat;
             background-size: 100% 100%;
             background-position: center center;
+        }
+
+        .map_style {
+            margin: 1.5rem 0rem !important;
+            height: 370px;
+            background: #f0fff2
         }
     }
 
@@ -792,12 +804,13 @@
     }
 
     .main_heading {
-        text-shadow: .5px .5px .5px rgb(21 68 81 / 80%);
+        text-shadow: 0px 0px 0.5px rgb(21 68 81 / 80%);
     }
 
     .secondary_heading {
         color: #001C30 !important;
-        text-shadow: .5px .5px .5px rgb(21 68 81 / 80%);
+        text-shadow: 0px 0px 0.5px rgb(21 68 81 / 80%);
+
     }
 
 
@@ -827,7 +840,7 @@
     }
 
     .renewable_text {
-        color: #176B87 !important;
+        color: #083608 !important;
         /*    text-shadow: 3px 4px 7px rgba(81,67,21,0.8);*/
         text-shadow: 0px 0px .5px rgb(21 68 81 / 80%);
         font-weight: bold;
@@ -836,8 +849,8 @@
 
     .card_text {
         font-family: 'Roboto', sans-serif;
-        font-size: 11px;
-        color: #176B87 !important;
+        font-size: 14px;
+        color: #266A2E !important;
     }
 
 
@@ -847,11 +860,15 @@
     }
 
     .secondary_bg {
-        background: #176B87;
+        background: #266A2E;
     }
 
     .text_color_1 {
         color: #001C30;
+    }
+
+    .text_color_p {
+        color: #083608 !important;
     }
 
     .text_color_2 {
@@ -1047,9 +1064,9 @@
     }
 
     .amount {
-        color: black;
-        font-family: math;
-        font-size: 12px;
+        color: rgb(0, 31, 4);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 14px;
     }
 
     .status {
@@ -1193,6 +1210,10 @@
         backdrop-filter: blur(15px);
     }
 
+    .pointer {
+        cursor: pointer;
+    }
+
     .popup_success {
         border-radius: 4px;
         width: 80%;
@@ -1200,52 +1221,62 @@
         background: white;
     }
 
- .noUi-target {
-    height: 10px;
-    background: black;
- }
- .noUi-base{
-    height: auto;
- }
+    .noUi-target {
+        height: 10px;
+        background: black;
+    }
 
- .noUi-horizontal .noUi-handle {
-    width: 23px;
-    height: 14px;
-    right: -17px;
-    top: -3px;
-}
+    .noUi-base {
+        height: auto;
+    }
 
-#price_high,#price_low {
-    font-size: 11px;
-    margin: auto;
-}
+    .noUi-horizontal .noUi-handle {
+        width: 23px;
+        height: 14px;
+        right: -17px;
+        top: -3px;
+    }
 
-.bid_header{
-    background: #066a4b;
-    color: ghostwhite;
-}
-.table_head{
-    background: #9b9999;
-}
-.bid-accept{
-    border-radius: 35px;
-}
-.hooper-prev{
-margin-left: -21px;
-    fill: grey;
-}
-.icon-arrowLeft, .icon-arrowRight{
-    width: 35px;
-    height: 35px;
-    fill: grey;
-}
-.hooper-next{
-    margin-right: -38px;
-    fill: grey;
-}
-.hooper{
-    min-height: 325px;
-}
-.hooper-list{
-    padding-top: 20px;
-}
+    #price_high,
+    #price_low {
+        font-size: 13px;
+        margin: auto;
+    }
+
+    .bid_header {
+        background: #066a4b;
+        color: ghostwhite;
+    }
+
+    .table_head {
+        background: #9b9999;
+    }
+
+    .bid-accept {
+        border-radius: 35px;
+    }
+
+    .hooper-prev {
+        margin-left: -21px;
+        fill: grey;
+    }
+
+    .icon-arrowLeft,
+    .icon-arrowRight {
+        width: 35px;
+        height: 35px;
+        fill: grey;
+    }
+
+    .hooper-next {
+        margin-right: -38px;
+        fill: grey;
+    }
+
+    .hooper {
+        min-height: 325px;
+    }
+
+    .hooper-list {
+        padding-top: 20px;
+    }
