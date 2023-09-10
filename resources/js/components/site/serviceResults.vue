@@ -121,18 +121,20 @@ export default {
         results: [],
         ids: '',
         empty: false,
-        count: ''
+        count: 0
     }),
     methods: {
         setRes: function () {
             let t = this;
             this.ids = atob(this.$route.params.results);
             //this.results = this.ids.split(",");
-            axios.get('ServiceResults/' + t.ids).then((data) => {
-                t.results = data.data.data;
+            axios.get('ServiceResults/' + t.ids).then((data) => {            
+                if(t.count != 0){
                 t.count = data.data.count;
+                t.results = data.data.data;
                 console.log(data);
-            }).catch((error) => { })
+            }
+            }).catch((error) => { console.log(error); })
         },
 
 
@@ -140,6 +142,8 @@ export default {
             this.ids = atob(this.$route.params.results);
             let t = this;
 
+            if(t.ids != 'no-results')
+            {
             var slider = document.getElementById('slider');
             noUiSlider.create(slider, {
                 start: [0, 500000],
@@ -176,6 +180,7 @@ export default {
                 }).catch((error) => { })
 
             });
+        }
 
         },
 
@@ -185,10 +190,8 @@ export default {
 
         },
         cart() {
-            axios.get('cart').then((data) => {
-                document.getElementById('cart').innerHTML = data.data.cart;
-
-            });
+            //axios.get('cart').then((data) => {
+               // document.getElementById('cart').innerHTML = data.data.cart;});
         },
 
         replaceText() {

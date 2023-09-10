@@ -110,7 +110,7 @@ Auth::routes();
 Route::post('loginB', 'PagesController@loginB')->name('loginB');
 //Route::get('logoutB', 'BusinessController@logoutB')->name('logoutB'); 
 Route::post('registerB', 'PagesController@registerB')->name('registerB'); 
-Route::post('registerI', 'PagesController@registerI')->name('registerI');
+//Route::post('registerI', 'PagesController@registerI')->name('registerI');
 Route::get('business', 'BusinessController@business')->name('business');
 
 Route::prefix('/business')->group(function(){

@@ -136,12 +136,12 @@ Session::put('login_err',$e->getMessage());
 }
 
 public function registerI(Request $request){
-$investor = 1;
+$investor = 1; 
 $user = User::where('email',$request->email)->first();
     if($user!=''){ 
     Session::put('login_err','User already exists!');
-     return redirect('home');
-     }
+     return redirect('/');
+     } 
 
  $inv_range = $request->inv_range;
  $interested_cats = $request->interested_cats;  
@@ -204,8 +204,8 @@ try {
             'investor' => $investor,
             'id_no' => $id_no,
             'tax_pin' => $tax_pin,
-            'inv_range' =>  $inv_range,
-            'interested_cats' =>  $interested_cats, 
+            'inv_range' =>  json_encode($inv_range),
+            'interested_cats' =>  json_encode($interested_cats), 
             'past_investment' => $past_investment,
             'website' => $website         
            ]);  
@@ -215,13 +215,13 @@ try {
 
         Session::put('investor_email', $user->email);    
         Session::put('investor_auth',true);
-         return redirect('home');             
+         return redirect('/');             
 
 
 } catch (\Exception $e) {
    return $e->getMessage();
     Session::put('login_err',$e->getMessage());
-     return redirect('home'); 
+     return redirect('/'); 
 }
 
 }

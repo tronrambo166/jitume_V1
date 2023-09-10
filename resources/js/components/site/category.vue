@@ -77,6 +77,10 @@
                     </router-link>
                     
               </div>
+
+              <div v-if = "empty" class="col-sm-12 mx-auto">
+                <h4 class="bg-light py-4 text-center my-5">No Listing Available Under This Category!</h4>
+             </div>
                 </div>
 
 
@@ -138,7 +142,8 @@ export default {
             axios.get('categoryResults/'+t.catName).then( (data) =>{
                 t.results = data.data.data;
                 t.services = data.data.services;
-                console.log(data);
+                if(data.data.data.length == 0)
+                    t.empty = true;;
               }).catch( (error) =>{})
         },
 
