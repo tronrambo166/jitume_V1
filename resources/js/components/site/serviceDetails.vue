@@ -271,11 +271,8 @@ if(sessionStorage.getItem('serviceDetails')!=null)
         var id=this.$route.params.id;
         var rating = $('#demoRating').val();
         axios.get('ratingService/'+id+'/'+rating).then( (data) =>{console.log(data);
-            $.alert({
-                    title: 'Alert!',
-                    content: 'Rating submitted successfully!',
-                });
-            //location.reload();
+           sessionStorage.setItem('alert','Rating submitted successfully!');
+            location.reload();
         });
        },
 
@@ -326,6 +323,11 @@ if(sessionStorage.getItem('serviceDetails')!=null)
      this.replaceText();
      this.getDetails();
      this.cart();
+
+      if (sessionStorage.getItem('alert') != null) {
+        alert('Review successfully taken!');
+        sessionStorage.clear();
+     }
 
           // SCRIPT
 

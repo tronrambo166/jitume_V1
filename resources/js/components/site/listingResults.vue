@@ -127,7 +127,7 @@ export default {
         results: [],
         ids: '',
         empty: false,
-        count: ''
+        count: 0
     }),
 
 
@@ -136,11 +136,13 @@ export default {
             let t = this;
             this.ids = atob(this.$route.params.results);
             //this.results = this.ids.split(",");
+            if(t.ids != 0) {
             axios.get('searchResults/' + t.ids).then((data) => {
                 t.results = data.data.data;
                 t.count = data.data.count;
                 console.log(data);
             }).catch((error) => { })
+        }
         },
 
         getPhoto() {
@@ -153,6 +155,7 @@ export default {
             this.ids = atob(this.$route.params.results);
             let t = this;
 
+            if(t.ids != 0) {
             var slider = document.getElementById('slider');
             noUiSlider.create(slider, {
                 start: [0, 500000],
@@ -189,6 +192,7 @@ export default {
                 }).catch((error) => { })
 
             });
+        }
 
         },
 

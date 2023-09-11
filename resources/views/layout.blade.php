@@ -163,13 +163,13 @@
 
         <div class="">
 
-            <!--  @if(Session::has('login_err'))
+              @if(Session::has('login_err'))
         <div class="w-50 m-auto alert alert-danger alert-dismissible fade show" role="alert">
           <p class="font-weight-bold">{{Session::get('login_err')}}   @php Session::forget('login_err'); @endphp </p>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        </div>  @endif -->
+        </div>  @endif 
 
 
             @if(Session::has('auth_service'))
@@ -427,9 +427,11 @@
                 method: 'get',
                 dataType: 'json',
                 success: function(response) {
-                    console.log(response);
+                   // console.log(response);
 
-                    for (i = 0; i < 10; i++) { //console.log(response.data[i].name);
+                    for (i = 0; i < 10; i++) {
+                     //console.log(response.data.length);
+                     if(response.data.length > i){
                         var name = response.data[i].name;
                         var city = response.data[i].city;
                         var country = response.data[i].country;
@@ -438,7 +440,7 @@
                         $("#result_list").append(' <div onclick="address(\'' + name + ',' + city + ',' + country + '\');" style="" data-id="' + response.data[i].name + '" class="address  py-0 my-0 border broder-dark bg-light shadow single_comms">  <h6 class="font-weight-bold text-dark d-inline" ><i class="fa fa-map-marker text-success" aria-hidden="true"></i> ' + name + '</h6> <p  class="d-inline text-dark"> Loc: <small>' + city + ', ' + country + '</small> </p> </div>');
 
 
-
+                      }
                     }
                     //document.getElementById('result_list').style.overflowY="scroll";   
 
@@ -1427,6 +1429,9 @@
                                                 </div>
                                             </div>
 
+
+                                            <input type="number" hidden id="c1">
+                                            <input type="number" hidden id="c2">
 
                                             <div class="row mb-4">
                                                 <div class="col-md-12 text-center">

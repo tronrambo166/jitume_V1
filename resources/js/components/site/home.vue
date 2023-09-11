@@ -4,7 +4,7 @@
 
 
 
-      <div class="heading">
+      <div class="heading"> 
 
         <div class="row" style="">
 
@@ -509,7 +509,7 @@ export default {
         dataType: 'json',
         data: form.serialize(),
         success: function (response) {
-          console.log(response);
+          //console.log(response);
 
           Object.entries(response.results).forEach(entry => {
             const [index, row] = entry;
@@ -531,7 +531,7 @@ export default {
       let t = this;
       axios.get('latBusiness').then((data) => {
         t.results = data.data.data;
-        console.log(data);
+        //console.log(data);
       }).catch((error) => { })
     },
 
