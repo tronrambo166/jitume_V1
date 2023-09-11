@@ -4,7 +4,7 @@
 
 
 
-      <div class="heading"> 
+      <div class="heading">
 
         <div class="row" style="">
 
@@ -34,7 +34,7 @@
                 <div class="pt-2 col-4 bg-white">
                   <div class="dropdown pt-1">
 
-                    <select id="category" name="category" class="border-white form-control">
+                    <select id="category" name="category" class="border-white form-control home_category_listings">
                       <option class="form-control small" value="">Category</option>
 
                       <option class="form-control" value="Agriculture">Agriculture</option>
@@ -124,7 +124,7 @@
       </div>
 
       <div class="categories cats my-0 py-0">
-        <ul class="text-center py-0">
+        <ul class="text-center py-0 mr-5">
           <li style="list-style-type:none;" class="nav-item py-0 "> <router-link to="category/Renewable-Energy"
               class="py-0 my-0 d-inline h6 renewable_text" style="">Renewable Energy </router-link>
           </li>

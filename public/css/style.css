@@ -177,6 +177,8 @@
         width: auto;
     }
 
+    .home_category_listings {}
+
     @media (max-width: 991px) {
         .header_btn_width {
             width: 70% !important;
@@ -186,6 +188,11 @@
             margin-left: 0rem !important;
             margin-right: 1.5rem !important;
             width: 95% !important;
+        }
+
+        .hlist {
+            margin-left: 0rem !important;
+            margin-right: 1.5rem !important;
         }
     }
 
@@ -882,6 +889,7 @@
         /* padding: 0; margin: 0;*/
         /*    color: lightgray !important;*/
         text-shadow: 0px 0px .5px rgb(21 68 81 / 80%);
+
     }
 
     .hlist li {
