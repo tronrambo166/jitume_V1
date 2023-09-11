@@ -8183,6 +8183,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -8750,6 +8753,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -70150,7 +70189,7 @@ var render = function () {
               _c(
                 "form",
                 {
-                  staticClass: "w-100",
+                  staticClass: "d-flex justify-content-center w-100",
                   attrs: { id: "form", method: "post" },
                   on: {
                     submit: function ($event) {
@@ -70349,7 +70388,7 @@ var render = function () {
                     _c(
                       "router-link",
                       { attrs: { to: "category/Technology-Communications" } },
-                      [_vm._v("Technology/Communications\n              ")]
+                      [_vm._v("Technology/Communications\n            ")]
                     ),
                   ],
                   1
@@ -70561,7 +70600,7 @@ var staticRenderFns = [
       }),
       _vm._v(" "),
       _c(
-        "p",
+        "h4",
         { staticClass: "h4 text-center text_color_1 py-3 main_heading" },
         [_vm._v("Your platform to invest in local businesses")]
       ),
@@ -70573,10 +70612,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      {
-        staticClass: "mx-auto text-center row py-0 searchBar text-center",
-        staticStyle: { width: "75%" },
-      },
+      { staticClass: "mx-4 text-center row py-0 searchBar text-center" },
       [
         _c(
           "div",
@@ -70765,7 +70801,7 @@ var staticRenderFns = [
                               "pb-2 secondary_heading h2 headline headline-aligned-to-left headline-box",
                             staticStyle: { "text-align": "center" },
                           },
-                          [_vm._v(" How Jitume Works? ")]
+                          [_vm._v(" How Jitume Works?\n              ")]
                         ),
                       ]),
                     ]
@@ -71533,21 +71569,21 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "heading row my-3" }, [
-      _c("div", { staticClass: "col-sm-6" }, [
+    _c("div", { staticClass: "heading row my-3 pt-3" }, [
+      _c("div", { staticClass: "col-md-6" }, [
         _c("div", { staticClass: "grid images_3_of_2 rounded listing px-3" }, [
           _c("img", {
             staticClass: "shadow card",
-            staticStyle: { width: "100%", "max-height": "355px" },
+            staticStyle: { width: "100%", "max-height": "500px" },
             attrs: { src: _vm.form.image, alt: "" },
           }),
           _vm._v(" "),
-          _c("div", { staticClass: "pl-2" }, [
+          _c("div", { staticClass: "pl-2 pt-4" }, [
             _c(
               "h3",
               { staticClass: "mt-2 text-left text-dark font-weight-bold" },
               [
-                _vm._v(_vm._s(_vm.form.name) + " \n                    "),
+                _vm._v(_vm._s(_vm.form.name) + "\n            "),
                 _c(
                   "div",
                   { staticClass: "float-right text-right w-25 py-0 my-0" },
@@ -71559,7 +71595,7 @@ var render = function () {
                           _vm._v(
                             "$" +
                               _vm._s(_vm.form.investment_needed) +
-                              " (Required:$" +
+                              "\n                    (Required:$" +
                               _vm._s(_vm.amount_required) +
                               ")"
                           ),
@@ -71578,7 +71614,7 @@ var render = function () {
                       "p",
                       {
                         staticClass: "text-dark d-block float-right",
-                        staticStyle: { "font-size": "11px" },
+                        staticStyle: { "font-size": "14px" },
                       },
                       [
                         _vm._v(
@@ -71593,9 +71629,7 @@ var render = function () {
             _vm._v(" "),
             _c("p", { staticClass: "my-1" }, [
               _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
-              _vm._v(
-                _vm._s(_vm.form.location) + "\n\n                            "
-              ),
+              _vm._v(_vm._s(_vm.form.location) + "\n\n          "),
             ]),
             _vm.auth_user
               ? _c("div", { staticClass: "float-right w-25" }, [
@@ -71609,7 +71643,7 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row my-4" }, [
-            _c("div", { staticClass: "col-sm-12" }, [
+            _c("div", { staticClass: "col-md-12" }, [
               _c("a", { staticClass: "btn border border-bottom-success" }, [
                 _vm._v("Overview"),
               ]),
@@ -71660,7 +71694,7 @@ var render = function () {
       _vm._v(" "),
       _vm._m(1),
       _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
+      _c("div", { staticClass: "col-md-3" }, [
         !_vm.form.conv
           ? _c("div", { staticClass: "card bg-light w-100 mx-auto py-3" }, [
               _vm._m(2),
@@ -71680,7 +71714,11 @@ var render = function () {
                             "data-toggle": "modal",
                           },
                         },
-                        [_vm._v("Unlock More Business Information To Invest")]
+                        [
+                          _vm._v(
+                            "Unlock More Business\n            Information To\n            Invest"
+                          ),
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -71715,46 +71753,45 @@ var render = function () {
                             [
                               _c("div", { staticClass: "modal-content" }, [
                                 _c("div", { staticClass: "modal-header" }, [
-                                  _c("div", {
-                                    staticClass: "card-header w-100",
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "m-0 close",
-                                      attrs: {
-                                        type: "button",
-                                        "data-dismiss": "modal",
-                                        "aria-label": "Close",
-                                      },
-                                      on: {
-                                        click: function ($event) {
-                                          return _vm.modal_hide()
+                                  _c("div", { staticClass: "w-100" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "m-0 close",
+                                        attrs: {
+                                          type: "button",
+                                          "data-dismiss": "modal",
+                                          "aria-label": "Close",
+                                        },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.modal_hide()
+                                          },
                                         },
                                       },
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        { attrs: { "aria-hidden": "true" } },
-                                        [_vm._v("×")]
-                                      ),
-                                    ]
-                                  ),
+                                      [
+                                        _c(
+                                          "span",
+                                          { attrs: { "aria-hidden": "true" } },
+                                          [_vm._v("×")]
+                                        ),
+                                      ]
+                                    ),
+                                  ]),
                                 ]),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "modal-body" }, [
                                   _c("div", { staticClass: "row" }, [
                                     _c(
                                       "div",
-                                      { staticClass: "col-sm-12 w-75 mx-auto" },
+                                      {
+                                        staticClass: "col-sm-12 w-100 mx-auto",
+                                      },
                                       [
                                         _c(
                                           "div",
                                           {
-                                            staticClass:
-                                              "single card shadow p-3",
+                                            staticClass: "p-3",
                                             staticStyle: {
                                               cursor: "pointer",
                                               background: "white",
@@ -71766,12 +71803,12 @@ var render = function () {
                                               {
                                                 staticClass: "text-dark smalls",
                                                 staticStyle: {
-                                                  "font-size": "12px",
+                                                  "font-size": "16px",
                                                 },
                                               },
                                               [
                                                 _vm._v(
-                                                  "This business requests a small fee of "
+                                                  "This business requests a small fee of\n                          "
                                                 ),
                                                 _c("b", [
                                                   _vm._v(
@@ -71783,12 +71820,10 @@ var render = function () {
                                                   ),
                                                 ]),
                                                 _vm._v(
-                                                  " to view their full business information. Do you want to pay now?"
+                                                  " to view their full business information. Do you want to pay\n                          now?\n                        "
                                                 ),
                                               ]
                                             ),
-                                            _vm._v(" "),
-                                            _c("hr"),
                                           ]
                                         ),
                                       ]
@@ -71841,7 +71876,7 @@ var render = function () {
                                             "button",
                                             {
                                               staticClass:
-                                                "btn rounded btn-primary w-25 d-inline px-3 font-weight-bold mr-3",
+                                                "modal_ok_btn btn rounded w-25 d-inline px-3 text-white mr-3",
                                               attrs: { type: "submit" },
                                               on: {
                                                 click: function ($event) {
@@ -71851,14 +71886,18 @@ var render = function () {
                                                 },
                                               },
                                             },
-                                            [_vm._v("\n          Ok\n        ")]
+                                            [
+                                              _vm._v(
+                                                "\n                        Ok\n                      "
+                                              ),
+                                            ]
                                           ),
                                           _vm._v(" "),
                                           _c(
                                             "button",
                                             {
                                               staticClass:
-                                                "btn-danger w-25 btn rounded d-inline px-3 font-weight-bold m-0",
+                                                "modal_cancel_btn w-25 btn rounded d-inline px-3 m-0",
                                               attrs: {
                                                 type: "button",
                                                 "data-dismiss": "modal",
@@ -71912,9 +71951,9 @@ var render = function () {
                         },
                       },
                       [
-                        _c("b", [
-                          _vm._v("Unlock More Business Information To Invest"),
-                        ]),
+                        _vm._v(
+                          "Unlock More Business Information To\n            Invest"
+                        ),
                       ]
                     ),
                   ]),
@@ -71991,7 +72030,7 @@ var render = function () {
                           },
                         },
                       },
-                      [_vm._v("Download Business Documentation")]
+                      [_vm._v("Download Business\n            Documentation")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -72131,7 +72170,7 @@ var render = function () {
                       : _c("div", { staticClass: "w-75 mx-auto row" }, [
                           _c("p", { staticClass: "bg-light" }, [
                             _vm._v(
-                              "Milestone payout is currently off due to milestone completion process, please wait until next milestone is open."
+                              "Milestone payout is currently off due to milestone completion process, please wait until\n              next milestone is open."
                             ),
                           ]),
                         ]),
@@ -72165,11 +72204,11 @@ var render = function () {
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-sm-12 w-75 mx-auto" }, [
+                  _c("div", { staticClass: "col-sm-12 w-100 mx-auto" }, [
                     _c(
                       "div",
                       {
-                        staticClass: "single card shadow p-3",
+                        staticClass: "p-3",
                         staticStyle: { cursor: "pointer", background: "white" },
                       },
                       [
@@ -72177,22 +72216,22 @@ var render = function () {
                           "p",
                           {
                             staticClass: "text-dark smalls",
-                            staticStyle: { "font-size": "12px" },
+                            staticStyle: { "font-size": "16px" },
                           },
                           [
-                            _vm._v("This business requests a small fee of "),
+                            _vm._v(
+                              "This business requests a small fee of\n                  "
+                            ),
                             _c("b", [
                               _vm._v(
                                 "$" + _vm._s(_vm.form.investors_fee) + " "
                               ),
                             ]),
                             _vm._v(
-                              " to view their full business information. Do you want to pay now?"
+                              " to view their full business information. Do you want to pay now?\n                "
                             ),
                           ]
                         ),
-                        _vm._v(" "),
-                        _c("hr"),
                       ]
                     ),
                   ]),
@@ -72226,7 +72265,7 @@ var render = function () {
                       "button",
                       {
                         staticClass:
-                          "btn-primary w-25 d-inline btn rounded mr-3 px-3 font-weight-bold",
+                          "modal_ok_btn w-25 d-inline btn rounded mr-3 px-3 font-weight-bold",
                         attrs: { type: "submit" },
                         on: {
                           click: function ($event) {
@@ -72234,7 +72273,7 @@ var render = function () {
                           },
                         },
                       },
-                      [_vm._v("\n          Ok\n        ")]
+                      [_vm._v("\n                Ok\n              ")]
                     ),
                     _vm._v(" "),
                     _vm._m(8),
@@ -72316,13 +72355,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-3" }, [
+    return _c("div", { staticClass: "col-md-3" }, [
       _c("div", { staticClass: "eqp-invest my-4 text-left" }, [
-        _c("h4", { staticClass: "my-3" }, [_vm._v("About Sodaa")]),
+        _c("h3", { staticClass: "secondary_heading my-3" }, [
+          _vm._v("About Sodaa"),
+        ]),
         _vm._v(" "),
-        _c("p", { staticClass: "small text-justify-center" }, [
+        _c("p", { staticClass: "text-justify-center" }, [
           _vm._v(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip"
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\n          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco\n          laboris nisi ut aliquip"
           ),
         ]),
       ]),
@@ -72333,8 +72374,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "h5",
-      { staticClass: "font-weight-bold ml-4 border border-light py-2 d-block" },
+      "h4",
+      {
+        staticClass: "secondary_heading ml-4 border border-light py-2 d-block",
+      },
       [_vm._v("Business Home Window "), _c("p", { staticClass: "d-inline" })]
     )
   },
@@ -72422,7 +72465,7 @@ var staticRenderFns = [
       "button",
       {
         staticClass:
-          "btn rounded btn-danger w-25 d-inline px-3 font-weight-bold m-0",
+          "modal_cancel_btn btn rounded w-25 d-inline px-3 font-weight-bold m-0",
         attrs: {
           type: "button",
           "data-dismiss": "modal",
@@ -72462,7 +72505,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h5", { staticClass: "my-3 font-weight-bold" }, [
-      _vm._v("Service rating \n        "),
+      _vm._v("Service rating\n              "),
       _c("div", { staticClass: "ml-5 d-inline-block", attrs: { id: "demo" } }),
     ])
   },

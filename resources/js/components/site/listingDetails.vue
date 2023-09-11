@@ -1,76 +1,77 @@
 <template>
-    <div class="container">
-        
-             
-    
-        <div class="heading row my-3"> 
-        <div class="col-sm-6">
-             <div class="grid images_3_of_2 rounded listing px-3">
-                <img style="width:100%;max-height:355px" class="shadow card" 
-                :src="form.image" alt="" />
-                    
-                 <div class="pl-2">
-                    <h3 class="mt-2 text-left text-dark font-weight-bold ">{{form.name}} 
-                    <div  class="float-right text-right w-25 py-0 my-0">   
+  <div class="container">
 
-                        <h6 class="font-weight-bold" >Amount: <span class="font-weight-light"><b>${{form.investment_needed}} (Required:${{amount_required}})</b></span></h6>
-
-                        <div class="float-right d-inline-block" id="staticRating">
-
-                        </div> <br>
-                        <p class="text-dark d-block float-right" style="font-size:11px;">({{form.rating_count}} reviews)</p>
-                    </div>  
+    <div class="heading row my-3 pt-3">
+      <div class="col-md-6">
+        <div class="grid images_3_of_2 rounded listing px-3">
+          <img style="width:100%; max-height: 500px;" class="shadow card" :src="form.image" alt="" />
 
 
+          <div class="pl-2 pt-4">
+            <h3 class="mt-2 text-left text-dark font-weight-bold ">{{ form.name }}
+              <div class="float-right text-right w-25 py-0 my-0">
 
-                </h3>
+                <h6 class="font-weight-bold">Amount: <span class="font-weight-light"><b>${{ form.investment_needed }}
+                      (Required:${{ amount_required }})</b></span></h6>
 
-                     <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{form.location}}
+                <div class="float-right d-inline-block" id="staticRating">
 
-                            <div v-if="auth_user" class="float-right w-25">
-                             <div class="" style="background:#e5e5e9; height:21px;">
-                                 <span id="progress" class="d-block"></span>
-                             </div>   
-                              <span>{{progress}}% Invested</span>
-                            </div>
-                            </p>
-                        </div>
+                </div> <br>
+                <p class="text-dark d-block float-right" style="font-size:14px;">({{ form.rating_count }} reviews)</p>
+              </div>
 
-                        <div class="row my-4">
-                            <div class="col-sm-12">
-                            <a class="btn border border-bottom-success">Overview</a>
+            </h3>
 
-                           <a v-if="auth_user" data-toggle="modal" data-target="#reviewModal" class="btn border border-bottom-success">Add review</a>
+            <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{ form.location }}
 
-                           <a v-else @click="make_session(form.listing_id);" data-target="#loginmodal2" data-toggle="modal" class="btn border border-bottom-success">Add review</a>
+            <div v-if="auth_user" class="float-right w-25">
+              <div class="" style="background:#e5e5e9; height:21px;">
+                <span id="progress" class="d-block"></span>
+              </div>
+              <span>{{ progress }}% Invested</span>
+            </div>
+            </p>
+          </div>
 
-                            <hr>
-                            </div>
-                            
-                      
-                <div class="Overview" id="Overview">
+          <div class="row my-4">
+            <div class="col-md-12">
+              <a class="btn border border-bottom-success">Overview</a>
 
-                    <p><span class="mt-1 rounded"><i class="mr-2 fa fa-phone"></i>{{form.contact}}</span></p>
-                    </div>
+              <a v-if="auth_user" data-toggle="modal" data-target="#reviewModal"
+                class="btn border border-bottom-success">Add review</a>
 
-                      
-                          </div>                                  
+              <a v-else @click="make_session(form.listing_id);" data-target="#loginmodal2" data-toggle="modal"
+                class="btn border border-bottom-success">Add review</a>
 
-                    </div>
-
-         </div>
+              <hr>
+            </div>
 
 
-         <div class="col-sm-3"> 
-            <div  class=" eqp-invest my-4 text-left">
-                <h4 class=" my-3">About Sodaa</h4>
-                <p class=" small text-justify-center  ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
-               </div>
-         </div> 
+            <div class="Overview" id="Overview">
 
-         <div class="col-sm-3">
+              <p><span class="mt-1 rounded"><i class="mr-2 fa fa-phone"></i>{{ form.contact }}</span></p>
+            </div>
 
-           <!--  <div class="card bg-light w-75 mx-auto py-3">
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-md-3">
+        <div class=" eqp-invest my-4 text-left">
+          <h3 class="secondary_heading my-3">About Sodaa</h3>
+          <p class="text-justify-center  ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+
+        <!--  <div class="card bg-light w-75 mx-auto py-3">
              <h5 class="mx-4 text-secondary shadow border border-light py-2 d-block text-center">Seed investors spot open
                 <i class="ml-1 fa fa-angle-up"></i></h5>
                 <button class="buttonListing my-3">Login to book</button><hr>
@@ -88,105 +89,126 @@
          </div> -->
 
 
-          <div v-if="!form.conv" class="card bg-light w-100 mx-auto py-3">
+        <div v-if="!form.conv" class="card bg-light w-100 mx-auto py-3">
 
-                <h5 class="font-weight-bold ml-4 border border-light py-2 d-block ">Business Home Window <p class="d-inline "></p>
-                </h5>
+          <h4 class="secondary_heading ml-4 border border-light py-2 d-block ">Business Home Window <p class="d-inline ">
+            </p>
+          </h4>
 
-               <div v-if="auth_user" class="eqp-invest">
-                <a data-target="#investModal" data-toggle="modal" class="business_btns py-2 text-center text-light buttonListing my-2">Unlock More Business Information To Invest</a>
+          <div v-if="auth_user" class="eqp-invest">
+            <a data-target="#investModal" data-toggle="modal"
+              class=" business_btns py-2 text-center text-light buttonListing my-2">Unlock More Business
+              Information To
+              Invest</a>
 
-                 <router-link :to="`/subscribe/${form.listing_id}`" class="business_btns py-2 text-center text-light buttonListing my-2">Subscribe</router-link>
+            <router-link :to="`/subscribe/${form.listing_id}`"
+              class=" business_btns py-2 text-center text-light buttonListing my-2">Subscribe</router-link>
 
-               <!-- <router-link :to="`/donate_eqp/${form.listing_id}`" class="text-light text-center buttonListing my-3 py-2">Donate</router-link>
+            <!-- <router-link :to="`/donate_eqp/${form.listing_id}`" class="text-light text-center buttonListing my-3 py-2">Donate</router-link>
                  -->
 
-  <!-- INVEST MODAL -->
-  <div  class="modal d-block" id="investModalShow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-         <div class="card-header w-100">      
-        </div>
-        <button @click="modal_hide()" type="button" class="m-0 close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    
-      <div class="modal-body">
-        <div class="row">
-            <div class="col-sm-12 w-75 mx-auto">
-                <div style="cursor:pointer;background:white;" class="single card shadow p-3">
-                    
-                    <p style="font-size:12px;" class="text-dark smalls">This business requests a small fee of <b>${{form.investors_fee}} </b> to view their full business information. Do you want to pay now?</p> <hr>
-                   
+            <!-- INVEST MODAL -->
+            <div class="modal d-block" id="investModalShow" tabindex="-1" role="dialog"
+              aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <div class=" w-100">
+                      <button @click="modal_hide()" type="button" class="m-0  close" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-sm-12 w-100 mx-auto">
+                        <div style="cursor:pointer;background:white;" class="p-3">
+
+                          <p style="font-size:16px;" class="text-dark smalls">This business requests a small fee of
+                            <b>${{ form.investors_fee }} </b> to view their full business information. Do you want to pay
+                            now?
+                          </p>
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <div class="card-header w-100 text-center">
+                      <form action="stripe" method="get">
+
+                        <input type="text" hidden id="price" name="price" :value="form.investors_fee">
+                        <input type="number" hidden id="listing_id" name="listing_id" :value="form.listing_id">
+                        <button @click="make_session(form.listing_id);" type="submit"
+                          class="modal_ok_btn btn rounded w-25 d-inline  px-3 text-white  mr-3">
+                          Ok
+                        </button>
+                        <button @click="modal_hide()" type="button"
+                          class="modal_cancel_btn w-25 btn rounded d-inline px-3 m-0 " data-dismiss="modal"
+                          aria-label="Close">
+                          <span aria-hidden="true">Cancel</span>
+                        </button>
+
+                      </form>
+
+                    </div>
+                  </div>
 
                 </div>
+              </div>
             </div>
+            <!-- INVEST MODAL -->
 
-        </div>
-        </div>
-        <div class="modal-footer">
-        <div class="card-header w-100 text-center">
-            <form action="stripe" method="get">
-       
-                 <input type="text" hidden id="price" name="price" :value="form.investors_fee">
-                  <input type="number" hidden id="listing_id" name="listing_id" :value="form.listing_id">
-       <button @click="make_session(form.listing_id);" type="submit" class=" btn rounded btn-primary w-25 d-inline  px-3 font-weight-bold mr-3" >
-          Ok
-        </button>
-        <button @click="modal_hide()" type="button" class=" btn-danger w-25 btn rounded d-inline px-3 font-weight-bold m-0 " data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">Cancel</span>
-        </button>
-
-            </form>
-        
-         </div>
-      </div>
-
-        </div>
-        </div>
-        </div>
-<!-- INVEST MODAL -->  
-
-                </div> 
+          </div>
 
 
-                <div v-else class="eqp-invest">
-                <a @click="make_session(form.listing_id);" data-target="#loginmodal2" data-toggle="modal" class="business_btns py-2 text-center text-light buttonListing my-3"><b>Unlock More Business Information To Invest</b></a>
+          <div v-else class="eqp-invest">
+            <a @click="make_session(form.listing_id);" data-target="#loginmodal2" data-toggle="modal"
+              class="business_btns py-2 text-center text-light buttonListing my-3">Unlock More Business Information To
+              Invest</a>
 
-                <!-- <a  @click="make_session(form.listing_id);" data-target="#loginmodal2" data-toggle="modal" class="py-2 text-center text-light buttonListing my-3"><b>Subscribe</b></a>
+            <!-- <a  @click="make_session(form.listing_id);" data-target="#loginmodal2" data-toggle="modal" class="py-2 text-center text-light buttonListing my-3"><b>Subscribe</b></a>
 
                 <a  @click="make_session(form.listing_id);" data-target="#loginmodal2" data-toggle="modal" class="py-2 text-center text-light buttonListing my-3"><b>Donate</b></a> -->
 
 
-                </div>
+          </div>
 
-         </div>
-
-
-         <div v-else class="bg-light w-100 mx-auto py-3 text-center">
+        </div>
 
 
-               <div  class="eqp-invest">
-
-                
-
-                <a @mouseleave="leave()" @mouseover="hover()" style="border: 1px solid black;" id="convBtn1"  class="py-1 convBtn text-center mx-auto w-75 btn  px-2">Message Business Owner</a>
-
-                <router-link to="/services"  @mouseleave.native="leave()" @mouseover.native="hover2" style="border: 1px solid black;" id="convBtn2"  class="py-1 convBtn my-3 text-center mx-auto w-75 btn  px-2">Download Financial Statements</router-link>
-               </div>
+        <div v-else class="bg-light w-100 mx-auto py-3 text-center">
 
 
-               <div  class="eqp-invest">
-                <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover3()" @click="download_business()" id="convBtn3" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-2">Download Business Documentation</a>
+          <div class="eqp-invest">
 
 
-                <router-link :to="`/business-milestone/${form.listing_id}`"  @mouseleave.native="leave()" @mouseover.native="hover4" style="border: 1px solid black;" id="convBtn4"  class="py-1 convBtn my-3 text-center mx-auto w-75 btn  px-2">View Business Milestones</router-link>
 
-                <div v-if="running" class="Invest-Payout">
-                <div class="w-75 mx-auto row">
-                    <!-- <div class="col-sm-8 px-0"><p class="commitP text-left">Commit to invest in milestones:</p></div>
+            <a @mouseleave="leave()" @mouseover="hover()" style="border: 1px solid black;" id="convBtn1"
+              class="py-1 convBtn text-center mx-auto w-75 btn  px-2">Message Business Owner</a>
+
+            <router-link to="/services" @mouseleave.native="leave()" @mouseover.native="hover2"
+              style="border: 1px solid black;" id="convBtn2"
+              class="py-1 convBtn my-3 text-center mx-auto w-75 btn  px-2">Download Financial Statements</router-link>
+          </div>
+
+
+          <div class="eqp-invest">
+            <a style="border: 1px solid black;" @mouseleave="leave()" @mouseover="hover3()" @click="download_business()"
+              id="convBtn3" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-2">Download Business
+              Documentation</a>
+
+
+            <router-link :to="`/business-milestone/${form.listing_id}`" @mouseleave.native="leave()"
+              @mouseover.native="hover4" style="border: 1px solid black;" id="convBtn4"
+              class="py-1 convBtn my-3 text-center mx-auto w-75 btn  px-2">View Business Milestones</router-link>
+
+            <div v-if="running" class="Invest-Payout">
+              <div class="w-75 mx-auto row">
+                <!-- <div class="col-sm-8 px-0"><p class="commitP text-left">Commit to invest in milestones:</p></div>
                     <div class="col-sm-4 px-1">
                     <div v-for="result in results" class="d-flex">
                     <input  v-if="result.investor_id == null" :value="result.id" type="checkbox" name="miles" class="float-left mr-2" > 
@@ -194,99 +216,111 @@
                     <label style="font-size:12px;" class="mt-2 float-left">{{result.title}}</label>
                     </div>
                     </div> -->
-                    
-                    <div class="col-sm-12 px-0">
-                        <p class="text-center"><b>Enter A Bid To Invest</b></p>
-                    </div>
-                    <div class="col-sm-12 px-1">
-                        <div class="row">
-                            <div class="col-sm-3">Amount:$</div>
-                            <div class="col-sm-3">
-                                <input v-on:keyup="calculate($event.target.value);" value="" id="bid_amount" style="height:25px;" type="number" name="bid_amount"></div>
-                        </div>
 
-                        <div class="row mt-3">
-                            <div class="col-sm-3">Represents:</div>
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-5"><p id="bid_percent"> %</p>
-                            <input step="0.01" hidden value="" id="bid_percent2" type="number" >
-                        </div>
-                        </div>
+                <div class="col-sm-12 px-0">
+                  <p class="text-center"><b>Enter A Bid To Invest</b></p>
+                </div>
+                <div class="col-sm-12 px-1">
+                  <div class="row">
+                    <div class="col-sm-3">Amount:$</div>
+                    <div class="col-sm-3">
+                      <input v-on:keyup="calculate($event.target.value);" value="" id="bid_amount" style="height:25px;"
+                        type="number" name="bid_amount">
                     </div>
-                    
+                  </div>
+
+                  <div class="row mt-3">
+                    <div class="col-sm-3">Represents:</div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-5">
+                      <p id="bid_percent"> %</p>
+                      <input step="0.01" hidden value="" id="bid_percent2" type="number">
+                    </div>
+                  </div>
                 </div>
 
-                 <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover5()" @click="bidCommits()" id="convBtn5" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-2">Invest</a>
+              </div>
 
-                <div class="w-75 mx-auto row">
-                  <div class="col-sm-12 px-0 mt-3">
-                        <p class="text-center"><b>Enter Equipment Equivalent Bid To Invest</b></p>
+              <a style="border: 1px solid black;" @mouseleave="leave()" @mouseover="hover5()" @click="bidCommits()"
+                id="convBtn5" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-2">Invest</a>
+
+              <div class="w-75 mx-auto row">
+                <div class="col-sm-12 px-0 mt-3">
+                  <p class="text-center"><b>Enter Equipment Equivalent Bid To Invest</b></p>
+                </div>
+                <div class="col-sm-12 px-1">
+                  <div class="row">
+                    <div class="col-sm-3">Amount:$</div>
+                    <div class="col-sm-3">
+                      <input v-on:keyup="calculate2($event.target.value);" value="" id="bid_amount_eqp"
+                        style="height:25px;" type="number" name="bid_amount_eqp">
                     </div>
-                    <div class="col-sm-12 px-1">
-                        <div class="row">
-                            <div class="col-sm-3">Amount:$</div>
-                            <div class="col-sm-3">
-                                <input v-on:keyup="calculate2($event.target.value);" value="" id="bid_amount_eqp" style="height:25px;" type="number" name="bid_amount_eqp"></div>
-                        </div>
+                  </div>
 
-                        <div class="row mt-3">
-                            <div class="col-sm-3">Represents:</div>
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-5"><p id="bid_percent_eqp"> %</p>
-                            <input step="0.01" hidden value="" id="bid_percent2_eqp" type="number" >
-                        </div>
-                        </div>
+                  <div class="row mt-3">
+                    <div class="col-sm-3">Represents:</div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-5">
+                      <p id="bid_percent_eqp"> %</p>
+                      <input step="0.01" hidden value="" id="bid_percent2_eqp" type="number">
                     </div>
+                  </div>
                 </div>
+              </div>
 
 
-                  <a style="border: 1px solid black;" @mouseleave="leave()"  @mouseover="hover6()" @click="bidCommitsEQP()" id="convBtn6" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-2">Invest With Equpment</a>
+              <a style="border: 1px solid black;" @mouseleave="leave()" @mouseover="hover6()" @click="bidCommitsEQP()"
+                id="convBtn6" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-2">Invest With Equpment</a>
 
-                </div>
-
-                 <div v-else class="w-75 mx-auto row">
-                    <p class="bg-light">Milestone payout is currently off due to milestone completion process, please wait until next milestone is open.</p>
-                 </div>
-
-                
-               </div>
-
-         </div>
-
-
-
-         </div>
-        
-        </div>
-  
-    
-
-    <!-- INVEST MODAL -->
-  <div  class="modal fade" id="investModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-
-         <div class="card-header w-100">
-           
-        </div>
-
-        </div>
-    
-    
-      <div class="modal-body">
-
-        <div class="row">
-            <div class="col-sm-12 w-75 mx-auto">
-                <div style="cursor:pointer;background:white;" class="single card shadow p-3">
-                    
-                    <p style="font-size:12px;" class="text-dark smalls">This business requests a small fee of <b>${{form.investors_fee}} </b> to view their full business information. Do you want to pay now?</p> <hr>
-                   
-
-                </div>
             </div>
 
-          <!--  <div class="col-sm-6">
+            <div v-else class="w-75 mx-auto row">
+              <p class="bg-light">Milestone payout is currently off due to milestone completion process, please wait until
+                next milestone is open.</p>
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+
+
+    <!-- INVEST MODAL -->
+    <div class="modal fade" id="investModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <div class="card-header w-100">
+
+            </div>
+
+          </div>
+
+
+          <div class="modal-body">
+
+            <div class="row">
+              <div class="col-sm-12 w-100 mx-auto">
+                <div style="cursor:pointer;background:white;" class="p-3">
+
+                  <p style="font-size:16px;" class="text-dark smalls">This business requests a small fee of
+                    <b>${{ form.investors_fee }} </b> to view their full business information. Do you want to pay now?
+                  </p>
+
+
+                </div>
+              </div>
+
+              <!--  <div class="col-sm-6">
                  <div @click="select2()" style="cursor:pointer;" class="multiple card shadow p-3">
                     <h5>Tiered Subscription</h5>
                     <p style="min-height: 50px;" class="text-secondary small">Access multiple businesses records</p> <hr>
@@ -303,427 +337,369 @@
                 </div>
             </div> -->
 
-        </div>
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+
+            <div class="card-header w-100 text-center">
+              <form action="stripe" method="get">
+
+                <input type="text" hidden id="price" name="price" :value="form.investors_fee">
+                <input type="number" hidden id="listing_id" name="listing_id" :value="form.listing_id">
+
+
+                <button @click="make_session(form.listing_id);" type="submit"
+                  class="modal_ok_btn w-25 d-inline  btn rounded mr-3 px-3 font-weight-bold">
+                  Ok
+                </button>
+                <button type="button" class="modal_cancel_btn btn rounded w-25 d-inline px-3 font-weight-bold m-0 "
+                  data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">Cancel</span>
+                </button>
+
+              </form>
+
+            </div>
+
+          </div>
 
         </div>
-
-        <div class="modal-footer">
-
-        <div class="card-header w-100 text-center">
-            <form action="stripe" method="get">
-       
-                 <input type="text" hidden id="price" name="price" :value="form.investors_fee">
-                  <input type="number" hidden id="listing_id" name="listing_id" :value="form.listing_id">
-
-
-        <button @click="make_session(form.listing_id);" type="submit" class=" btn-primary w-25 d-inline  btn rounded mr-3 px-3 font-weight-bold" >
-          Ok
-        </button>
-        <button type="button" class=" btn rounded btn-danger w-25 d-inline px-3 font-weight-bold m-0 " data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">Cancel</span>
-        </button>
-
-            </form>
-        
-         </div>
-
-      </div>
-
-        </div>
-        </div>
-        </div>
-
-
-<!-- INVEST MODAL --> 
-
-<!-- Review --> 
-<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Submit a review</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form >
-        <h5 class="my-3 font-weight-bold">Service rating 
-        <div class="ml-5 d-inline-block" id="demo"></div>
-    </h5>
-        
-
-        <h5 class="font-weight-bold">Leave a review</h5>
-        <textarea name="reply" class="bg-light border border-none" cols="55" rows="3"></textarea>
-        
-        <a @click = "rating()"  class="font-weight-bold btn btn-light w-50 m-auto">Submit</a>
-        </form>
-
       </div>
     </div>
+
+
+    <!-- INVEST MODAL -->
+
+    <!-- Review -->
+    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Submit a review</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <h5 class="my-3 font-weight-bold">Service rating
+                <div class="ml-5 d-inline-block" id="demo"></div>
+              </h5>
+
+
+              <h5 class="font-weight-bold">Leave a review</h5>
+              <textarea name="reply" class="bg-light border border-none" cols="55" rows="3"></textarea>
+
+              <a @click="rating()" class="font-weight-bold btn btn-light w-50 m-auto">Submit</a>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Review -->
+
+    <!-- Body -->
+
+
   </div>
-</div> 
-<!-- Review --> 
-        
-        <!-- Body -->
-        
-        
-    </div> 
-   
 </template>
 
-<script> 
-   
+<script>
+
 export default {
-    
-   props: ['auth_user','business'],
-   data: () =>({
+
+  props: ['auth_user', 'business'],
+  data: () => ({
     form: new Form({
-        name:'',
-        listing_id:'',
-        details:'',
-        location:'',
-        contact:'',
-        category:'',
-        image:'',
-        investment_needed:'',
-        investors_fee:'',
-        rating:'',
-        rating_count:'',
-        conv:'',
+      name: '',
+      listing_id: '',
+      details: '',
+      location: '',
+      contact: '',
+      category: '',
+      image: '',
+      investment_needed: '',
+      investors_fee: '',
+      rating: '',
+      rating_count: '',
+      conv: '',
     }),
 
-    results:[],  
-    details:[],
-    progress:'',
-    share:'',
-    amount_required:'',
-    running:0
-    }),
+    results: [],
+    details: [],
+    progress: '',
+    share: '',
+    amount_required: '',
+    running: 0
+  }),
 
-created(){
-if(sessionStorage.getItem('invest')!=null)
-    sessionStorage.clear(); 
- 
-},
-    methods:{
+  created() {
+    if (sessionStorage.getItem('invest') != null)
+      sessionStorage.clear();
 
-   getDetails:function(){ 
-    var id=this.$route.params.id; var t=this;
-    document.getElementById('listing_id').value = id;
+  },
+  methods: {
 
-    axios.get('searchResults/'+id).then( (data) =>{console.log(data);
-    t.form.conv = data.data.conv;
-    t.form.name = data.data.data[0].name;
-    t.form.details = data.data.data[0].details;
-    t.form.location = data.data.data[0].location;
-    t.form.contact = data.data.data[0].contact;
-    t.form.image = data.data.data[0].image;
-    t.form.category = data.data.data[0].category;
-    t.form.listing_id = data.data.data[0].id;
-    t.form.investment_needed = data.data.data[0].investment_needed;
-    t.form.investors_fee = data.data.data[0].investors_fee;
-    t.form.rating = data.data.data[0].rating/data.data.data[0].rating_count;
-    t.form.rating = t.form.rating.toFixed();
+    getDetails: function () {
+      var id = this.$route.params.id; var t = this;
+      document.getElementById('listing_id').value = id;
 
-    t.form.rating_count = data.data.data[0].rating_count;
+      axios.get('searchResults/' + id).then((data) => {
+        console.log(data);
+        t.form.conv = data.data.conv;
+        t.form.name = data.data.data[0].name;
+        t.form.details = data.data.data[0].details;
+        t.form.location = data.data.data[0].location;
+        t.form.contact = data.data.data[0].contact;
+        t.form.image = data.data.data[0].image;
+        t.form.category = data.data.data[0].category;
+        t.form.listing_id = data.data.data[0].id;
+        t.form.investment_needed = data.data.data[0].investment_needed;
+        t.form.investors_fee = data.data.data[0].investors_fee;
+        t.form.rating = data.data.data[0].rating / data.data.data[0].rating_count;
+        t.form.rating = t.form.rating.toFixed();
 
-    var i;
-    for(i = 1; i<6; i++){console.log(parseInt(t.form.rating));
-    if(i<= parseInt(t.form.rating))
-    $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');
-    else
-    $('#staticRating').append('<img src="rating/images/white.png" style="height: 15px;" class="">');
-    }
-    
-    });
-    
+        t.form.rating_count = data.data.data[0].rating_count;
+
+        var i;
+        for (i = 1; i < 6; i++) {
+          console.log(parseInt(t.form.rating));
+          if (i <= parseInt(t.form.rating))
+            $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');
+          else
+            $('#staticRating').append('<img src="rating/images/white.png" style="height: 15px;" class="">');
+        }
+
+      });
+
     },
 
-    select(){ 
-    $('.single').css('background','#72c537');
-    $('.multiple').css('background','');},
-        
-    select2(){ 
-    $('.single').css('background','');
-    $('.multiple').css('background','#72c537');},
-    price(ev){
-    document.getElementById('price').value = ev.target.value;
+    select2() {
+      $('.single').css('background', '');
+      $('.multiple').css('background', '#72c537');
+    },
+    price(ev) {
+      document.getElementById('price').value = ev.target.value;
     },
 
-    getPhoto(){
-   
-        return '../';
+    getPhoto() {
 
-        },
+      return '../';
 
-  rating()
-  { 
-    var id=this.$route.params.id;
-    var rating = $('#demoRating').val();
-    axios.get('ratingListing/'+id+'/'+rating).then( (data) =>{console.log(data);
-        sessionStorage.setItem('alert','Rating submitted successfully!');
+    },
+
+    rating() {
+      var id = this.$route.params.id;
+      var rating = $('#demoRating').val();
+      axios.get('ratingListing/' + id + '/' + rating).then((data) => {
+        console.log(data);
+        sessionStorage.setItem('alert', 'Rating submitted successfully!');
         location.reload();
-    });
-   },
+      });
+    },
 
-  make_session(id){
-            sessionStorage.setItem('invest',id);
-            document.getElementById('c_to_action').value = 'loginFromService';
-            document.getElementById('c_to_action_login2').value = 'loginFromService';
-        },
+    make_session(id) {
+      sessionStorage.setItem('invest', id);
+      document.getElementById('c_to_action').value = 'loginFromService';
+      document.getElementById('c_to_action_login2').value = 'loginFromService';
+    },
 
-        hover(){
-            $('#convBtn1').css('background','#72c537');
-        },
-        hover2(){
-            $('#convBtn2').css('background','#72c537');
-        },
-        hover3(){
-            $('#convBtn3').css('background','#72c537');
-        },
-        hover4(){
-            $('#convBtn4').css('background','#72c537');
-        },
-        hover5(){
-            $('#convBtn5').css('background','#72c537');
-        },
-        hover6(){
-            $('#convBtn6').css('background','#72c537');
-        },
-        leave(){
-            $('.convBtn').css('background','');
-        },
+    hover() {
+      $('#convBtn1').css('background', '#72c537');
+    },
+    hover2() {
+      $('#convBtn2').css('background', '#72c537');
+    },
+    hover3() {
+      $('#convBtn3').css('background', '#72c537');
+    },
+    hover4() {
+      $('#convBtn4').css('background', '#72c537');
+    },
+    hover5() {
+      $('#convBtn5').css('background', '#72c537');
+    },
+    hover6() {
+      $('#convBtn6').css('background', '#72c537');
+    },
+    leave() {
+      $('.convBtn').css('background', '');
+    },
 
-    download_business(){
-    var id=this.$route.params.id; var t=this;
-    axios.get('download_business/'+id).then( (data) =>{console.log(data);
-    
-    });
-        },
+    download_business() {
+      var id = this.$route.params.id; var t = this;
+      axios.get('download_business/' + id).then((data) => {
+        console.log(data);
 
-    getMilestones:function(){ 
-    var id=this.$route.params.id; var t=this;
+      });
+    },
 
-    axios.get('getMilestones/'+id).then( (data) =>{
+    getMilestones: function () {
+      var id = this.$route.params.id; var t = this;
+
+      axios.get('getMilestones/' + id).then((data) => {
         console.log(data);
         t.results = data.data.data;
         t.progress = data.data.progress;
-        $('#progress').css('width',t.progress+'%');
-        t.progress = (data.data.share)*t.progress;
+        $('#progress').css('width', t.progress + '%');
+        t.progress = (data.data.share) * t.progress;
         t.share = data.data.share;
-        t.amount_required = data.data.amount_required; 
-        t.running = data.data.running;         
-    });
-    
-    },
-
-
-    bidCommits:function(){
-    var checked  = '';
-    //[...document.querySelectorAll('input[name="miles"]:checked')]
-   //.forEach((cb) => checked = checked+cb.value+',');
-
-        var amount = $('#bid_amount').val();
-        var percent = $('#bid_percent2').val();
-        var business_id = this.$route.params.id;
-        if(amount == '' || amount == 0)
-            $.alert({
-                title: 'Alert!',
-                content: 'Please enter a bid to invest!',
-            });
-        else
-        {
-            var amount = btoa(amount);
-            var business_id = btoa(business_id)
-            var percent = btoa(percent)
-            $.confirm({
-                        title: 'Are you sure?',
-                        content: 'Are you sure to bid?',
-                        buttons: {
-                           confirm: function () {
-                           window.location.href = './bidCommits/'+amount+'/'+business_id+'/'+percent;  
-                            },
-                            cancel: function () {
-                                $.alert('Canceled!');
-                            },
-                        }
-                    });
-            
-            //$('#convBtn4 a').trigger('click');
-        }
+        t.amount_required = data.data.amount_required;
+        t.running = data.data.running;
+      });
 
     },
 
 
-    bidCommitsEQP:function(){
-    var amount = $('#bid_amount_eqp').val();
-        var percent = $('#bid_percent2_eqp').val();
-        var business_id = this.$route.params.id;
-        if(amount == '' || amount == 0)
-            $.alert({
-                title: 'Alert!',
-                content: 'Please enter a bid to invest!',
-            });
-        else
-        {
-            var amount = btoa(amount);
-            var id = btoa(business_id);
-            var percent = btoa(percent);
-            let t = this;
-            $.confirm({
-                        title: 'Are you sure?',
-                        content: 'Are you sure to bid?',
-                        buttons: {
-                           confirm: function () {
-                           t.$router.push(`../investEQUIP/${amount}/${id}/${percent}`);
-                            },
-                            cancel: function () {
-                                $.alert('Canceled!');
-                            },
-                        }
-                    });
-        }
+    bidCommits: function () {
+      var checked = '';
+      //[...document.querySelectorAll('input[name="miles"]:checked')]
+      //.forEach((cb) => checked = checked+cb.value+',');
+
+      var amount = $('#bid_amount').val();
+      var percent = $('#bid_percent2').val();
+      var business_id = this.$route.params.id;
+      if (amount == '' || amount == 0)
+        $.alert({
+          title: 'Alert!',
+          content: 'Please enter a bid to invest!',
+        });
+      else {
+        var amount = btoa(amount);
+        var business_id = btoa(business_id)
+        var percent = btoa(percent)
+        $.confirm({
+          title: 'Are you sure?',
+          content: 'Are you sure to bid?',
+          buttons: {
+            confirm: function () {
+              window.location.href = './bidCommits/' + amount + '/' + business_id + '/' + percent;
+            },
+            cancel: function () {
+              $.alert('Canceled!');
+            },
+          }
+        });
+
+        //$('#convBtn4 a').trigger('click');
+      }
 
     },
 
-    modal_hide:function(){
-    $('#investModalShow').removeClass('d-block');
+
+    bidCommitsEQP: function () {
+      var amount = $('#bid_amount_eqp').val();
+      var percent = $('#bid_percent2_eqp').val();
+      var business_id = this.$route.params.id;
+      if (amount == '' || amount == 0)
+        $.alert({
+          title: 'Alert!',
+          content: 'Please enter a bid to invest!',
+        });
+      else {
+        var amount = btoa(amount);
+        var id = btoa(business_id);
+        var percent = btoa(percent);
+        let t = this;
+        $.confirm({
+          title: 'Are you sure?',
+          content: 'Are you sure to bid?',
+          buttons: {
+            confirm: function () {
+              t.$router.push(`../investEQUIP/${amount}/${id}/${percent}`);
+            },
+            cancel: function () {
+              $.alert('Canceled!');
+            },
+          }
+        });
+      }
+
     },
 
-    calculate:function(bid){
-    var total = this.form.investment_needed;
-    var share = this.share*100;
-    var percent = (bid/total)*share;
-    var percent = percent.toFixed(2);
-    if(bid > this.amount_required){
+    modal_hide: function () {
+      $('#investModalShow').removeClass('d-block');
+    },
+
+    calculate: function (bid) {
+      var total = this.form.investment_needed;
+      var share = this.share * 100;
+      var percent = (bid / total) * share;
+      var percent = percent.toFixed(2);
+      if (bid > this.amount_required) {
         document.getElementById('bid_amount').value = 0;
         document.getElementById('bid_percent').innerHTML = '<b class="text-danger">Amount exceeds the investment required!</b>';
-    }
-    else
-    document.getElementById('bid_percent').innerHTML = percent+'%';
-    document.getElementById('bid_percent2').value = percent;
+      }
+      else
+        document.getElementById('bid_percent').innerHTML = percent + '%';
+      document.getElementById('bid_percent2').value = percent;
     },
 
-    calculate2:function(bid){
-    var total = this.form.investment_needed;
-    var share = this.share*100;
-    var percent = (bid/total)*share;
-    var percent = percent.toFixed(2);
-    if(bid > this.amount_required){
+    calculate2: function (bid) {
+      var total = this.form.investment_needed;
+      var share = this.share * 100;
+      var percent = (bid / total) * share;
+      var percent = percent.toFixed(2);
+      if (bid > this.amount_required) {
         document.getElementById('bid_amount_eqp').value = 0;
         document.getElementById('bid_percent_eqp').innerHTML = '<b class="text-danger">Amount exceeds the investment required!</b>';
+      }
+      else
+        document.getElementById('bid_percent_eqp').innerHTML = percent + '%';
+      document.getElementById('bid_percent2_eqp').value = percent;
     }
-    else
-    document.getElementById('bid_percent_eqp').innerHTML = percent+'%';
-    document.getElementById('bid_percent2_eqp').value = percent;
+
+  },
+
+
+  mounted() {
+    this.getDetails();
+    this.getMilestones();
+
+    if (sessionStorage.getItem('alert') != null) {
+      alert('Review successfully taken!');
+      sessionStorage.clear();
     }
 
-        },
-  
+    // SCRIPT
 
-     mounted() { 
-     this.getDetails();
-     this.getMilestones();
+    (function ($) {
+      $.fn.rates = function (options) {
+        // Default settings for the plugin if none are provided by the user
+        const settings = $.extend({
+          shadeColor: 'rates-yellow',
+          shapeHeight: '25px',
+          shapeCount: 5,
+          shape: 'white-star',
+          imagesFolderLocation: '',
 
-     if (sessionStorage.getItem('alert') != null) {
-        alert('Review successfully taken!');
-        sessionStorage.clear();
-     }
-    
-     // SCRIPT
+        }, options);
 
-  (function ($) {
-  $.fn.rates = function (options) {
-    // Default settings for the plugin if none are provided by the user
-    const settings = $.extend({
-      shadeColor: 'rates-yellow',
-      shapeHeight: '25px',
-      shapeCount: 5,
-      shape: 'white-star',
-      imagesFolderLocation: '',
+        return this.each(function () {
+          const container = this;
+          $(container).addClass('rates-container');
+          const $containerName = $(this).attr('id');
 
-    }, options);
+          const score = {
+            value: 0,
+          };
+        }(jQuery));
 
-    return this.each(function () {
-      const container = this;
-      $(container).addClass('rates-container');
-      const $containerName = $(this).attr('id');
+        // SCRIPT
 
-      const score = {
-        value: 0,
-      };
-
-      createStars(settings.shapeCount);
-      setSize();
-
-      const $eachStar = $(this).find('img');
-
-      // Colors in the rating shape on hover
-      // Removes the color from above the selected rating on mouse out
-      $(this).find('img').hover(function () {
-        const starIndex = $eachStar.index(this);
-        colorShapesToIndex(starIndex);
-      }, () => {
-        colorShapesToScore();
-      });
-
-      // Sets the score rating based on which rating shape was clicked
-      $(this).find('img').on('click', function () {
-        const starIndex = $eachStar.index(this);
-        colorShapesToIndex(starIndex);
-        score.value = starIndex + 1;
-        $(`#${$containerName}Rating`).val(score.value);
-      });
-
-      // Sets the size of stars indicated in the settings
-      function setSize() {
-        $(container).find('img').css('height', settings.shapeHeight);
-      }
-
-      // Dynamically creates the html markup based on the number of stars indicated
-      function createStars(count) {
-        const starInput = $(`<input type="hidden" id = "${$containerName}Rating" name="${$containerName}Rating" value="0" >`);
-        $(container).append(starInput);
-        for (let i = 0; i < count; i++) {
-          const $imageStar = $('<img>');
-          $imageStar.attr('src', `${settings.imagesFolderLocation}images/${settings.shape}.png`);
-          $(container).append($imageStar);
-        }
-      }
-
-      // Resets the shading class on the shapes to color only those up until a designated index
-      function colorShapesToIndex(starIndexValue) {
-        $eachStar.removeClass(settings.shadeColor);
-        for (let i = 0; i <= starIndexValue; i++) {
-          const star = $eachStar.get(i);
-          $(star).toggleClass(settings.shadeColor);
-        }
-      }
-
-      // Resets the shading class on the shapes to color only those up to and including the selected score
-      function colorShapesToScore() {
-        $eachStar.removeClass(settings.shadeColor);
-        for (let j = 0; j < score.value; j++) {
-          const star = $eachStar.get(j);
-          $(star).toggleClass(settings.shadeColor);
-        }
-      }
-    });
-  };
-}(jQuery));
-
-     // SCRIPT
-    
-     $('#demo').rates({
-        shape:'black-star',
-        imagesFolderLocation:'rating/', 
-        shapeHeight:'20px',   
-        shadeColor:'rates-green',   
+        $('#demo').rates({
+          shape: 'black-star',
+          imagesFolderLocation: 'rating/',
+          shapeHeight: '20px',
+          shadeColor: 'rates-green',
         });
-    
+
       }
-   
+
 
     }
 </script>
