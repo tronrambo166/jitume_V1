@@ -14,13 +14,13 @@
               <h4 style="font-size:27px; font-weight: 500px;" class="text-dark ">
                 <!--  <marquee>Invest in Agriculture | Sports/Gaming | Real State | Entertainment | Auto | Finance/Accounting Security | Pets | Domestic Help | Other</marquee> -->
               </h4>
-              <p class="h4 text-center text_color_1 py-3 main_heading">Your platform to invest in local businesses</p>
+              <h4 class="h4 text-center text_color_1 py-3 main_heading">Your platform to invest in local businesses</h4>
 
 
             </div>
 
-            <form id="form" @submit.prevent="search();" class=" w-100" method="post">
-              <div style="width:75%;" class=" mx-auto text-center row py-0 searchBar text-center">
+            <form id="form" @submit.prevent="search();" class="d-flex justify-content-center w-100" method="post">
+              <div class=" mx-4 text-center row py-0 searchBar text-center">
 
                 <!-- <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3 bg-white">
                               <input  required=""  style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div> -->
@@ -138,7 +138,7 @@
 
 
 
-   <!-- HOW IT WORKS 
+    <!-- HOW IT WORKS 
 
     <div class=" mt-4 border border-bottom-dark bg-white"></div>
 
@@ -245,7 +245,7 @@
         <h2 style="text-align:left;" class="container-xl secondary_heading"> Latest Businesses </h2>
       </div> -->
 
-  <!--     <div class="card-group my-2 w-75 mx-auto d-md-flex justify-content-center">
+      <!--     <div class="card-group my-2 w-75 mx-auto d-md-flex justify-content-center">
 
         <div v-for="( result, index ) in results" class=" listing col-md-3">
           <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
@@ -278,50 +278,52 @@
       </div> -->
 
       <!-- SLider test -->
-    <div style="overflow:hidden;" class="row card-group px-3 w-75 mx-auto d-md-flex justify-content-center">
-    <hooper :settings="hooperSettings" :itemsToShow="4" :centerMode="true" pagination="no">
-    <slide class="listing text-center col-sm-4 px-3" v-for="( result, index ) in results" :key="index" :index="index">
-      <!-- Loop -->
-           <div class="mx-auto mt-4">
-                <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
+      <div style="overflow:hidden;" class="row card-group px-3 w-75 mx-auto d-md-flex justify-content-center">
+        <hooper :settings="hooperSettings" :itemsToShow="4" :centerMode="true" pagination="no">
+          <slide class="listing text-center col-sm-4 px-3" v-for="( result, index ) in results" :key="index"
+            :index="index">
+            <!-- Loop -->
+            <div class="mx-auto mt-4">
+              <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
 
-            <video v-if="result.file" controls style="width:100%; height:104px;" alt="">
-              <source :src="result.file" type="video/mp4">
-            </video>
+                <video v-if="result.file" controls style="width:100%; height:104px;" alt="">
+                  <source :src="result.file" type="video/mp4">
+                </video>
 
-            <img v-else :src="result.image" style="width:100%; height:104px" class="card-img-top" alt="" />
+                <img v-else :src="result.image" style="width:100%; height:104px" class="card-img-top" alt="" />
 
-            <div class="p-1 pb-2">
+                <div class="p-1 pb-2">
 
-              <h5 class="card_heading text-left mb-0 py-2">{{ result.name }} </h5>
+                  <h5 class="card_heading text-left mb-0 py-2">{{ result.name }} </h5>
 
-              <p class="card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ result.location }}</p>
+                  <p class="card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ result.location }}</p>
 
-              <p class="card_text"><span class="rounded"><i class="mr-2 fa fa-phone"></i>{{ result.contact }}</span></p>
+                  <p class="card_text"><span class="rounded"><i class="mr-2 fa fa-phone"></i>{{ result.contact }}</span>
+                  </p>
 
+                </div>
+
+                <div class="amount p-1 pb-0">
+                  <p class="font-weight-bold">Amount: <span class="font-weight-light"><b>${{ result.investment_needed
+                  }}</b></span></p>
+                </div>
+
+              </router-link>
             </div>
+            <!-- Loop -->
 
-            <div class="amount p-1 pb-0">
-              <p class="font-weight-bold">Amount: <span class="font-weight-light"><b>${{ result.investment_needed
-              }}</b></span></p>
-            </div>
+          </slide>
 
-          </router-link>
-          </div>
-      <!-- Loop -->
+          <hooper-navigation slot="hooper-addons"></hooper-navigation>
+        </hooper>
 
-    </slide>
-    
-    <hooper-navigation slot="hooper-addons"></hooper-navigation>
-  </hooper>
-
-</div>
+      </div>
 
 
     </div>
 
-    
-     <!-- HOW IT WORKS -->
+
+    <!-- HOW IT WORKS -->
 
     <div class=" mt-4 border border-bottom-dark bg-white"></div>
 
@@ -340,7 +342,8 @@
 
               <div class="text-dark mb-md-3">
                 <h3 style="text-align:center;"
-                  class="pb-2 secondary_heading h2 headline  headline-aligned-to-left  headline-box "> How Jitume Works? </h3>
+                  class="pb-2 secondary_heading h2 headline  headline-aligned-to-left  headline-box "> How Jitume Works?
+                </h3>
               </div>
 
             </div>
@@ -354,29 +357,29 @@
                   <div class="col-sm-1"></div>
 
                   <div class="ibv3-icon col-sm-2 text-center">
-                   <img width="60px" height="75px" src="images/randomIcons/loc.png">
-                   <p class="text-center mt-3 small">Enter Your Location</p>
+                    <img width="60px" height="75px" src="images/randomIcons/loc.png">
+                    <p class="text-center mt-3 small">Enter Your Location</p>
                   </div>
 
 
                   <div class="ibv3-icon col-sm-2 text-center">
-                   <img width="60px" height="75px" src="images/randomIcons/cat.png">
-                   <p class="text-center mt-3 small">Choose a Category</p>
+                    <img width="60px" height="75px" src="images/randomIcons/cat.png">
+                    <p class="text-center mt-3 small">Choose a Category</p>
                   </div>
 
                   <div class="ibv3-icon col-sm-2 text-center">
-                   <img width="60px" height="75px" src="images/randomIcons/results.webp">
-                   <p class="text-center mt-3 small">Get Results in Your Yocation</p>
+                    <img width="60px" height="75px" src="images/randomIcons/results.webp">
+                    <p class="text-center mt-3 small">Get Results in Your Yocation</p>
                   </div>
 
                   <div class="ibv3-icon col-sm-2 text-center">
-                   <img width="60px" height="75px" src="images/randomIcons/choose.png">
-                   <p class="text-center mt-3 small">Choose Your Business</p>
+                    <img width="60px" height="75px" src="images/randomIcons/choose.png">
+                    <p class="text-center mt-3 small">Choose Your Business</p>
                   </div>
 
                   <div class="ibv3-icon col-sm-2 text-center">
-                   <img width="60px" height="75px" src="images/randomIcons/grow.png">
-                   <p class="text-center mt-3 small">Grow Your Business Together</p>
+                    <img width="60px" height="75px" src="images/randomIcons/grow.png">
+                    <p class="text-center mt-3 small">Grow Your Business Together</p>
                   </div>
 
                   <div class="col-sm-1"></div>
@@ -407,10 +410,10 @@
     </div>
     <!-- How it works -->
 
-   
 
-<div  class="py-5 d-md-flex  border-bottom-dark"></div>
-<div  class="py-5 d-md-flex  border border-bottom-dark"></div>
+
+    <div class="py-5 d-md-flex  border-bottom-dark"></div>
+    <div class="py-5 d-md-flex  border border-bottom-dark"></div>
 
 
   </div>
@@ -421,27 +424,27 @@
 import { Hooper, Slide, Navigation as HooperNavigation } from 'hooper';
 import 'hooper/dist/hooper.css';
 export default {
-components: {
-      Hooper,
-      Slide,
-      HooperNavigation
-    },
+  components: {
+    Hooper,
+    Slide,
+    HooperNavigation
+  },
   props: ['auth_user', 'business'],
   data: () => ({
     //Hooper
-      hooperSettings: {
-        itemsToShow: 4,
-        centerMode: false,
-        breakpoints: {
-          800: {
-            centerMode: false,
-            itemsToShow: 4
-          },
-          1000: {
-            itemsToShow: 4,
-            pagination: 'fraction'
-          }
+    hooperSettings: {
+      itemsToShow: 4,
+      centerMode: false,
+      breakpoints: {
+        800: {
+          centerMode: false,
+          itemsToShow: 4
+        },
+        1000: {
+          itemsToShow: 4,
+          pagination: 'fraction'
         }
+      }
     },
     //Hooper
     results: [],

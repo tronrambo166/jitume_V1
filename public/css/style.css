@@ -172,7 +172,25 @@
         background: #f0fff2
     }
 
+    .header_btn_width {
+        /* max-width: 50%; */
+        width: auto;
+    }
+
+    @media (max-width: 991px) {
+        .header_btn_width {
+            width: 70% !important;
+        }
+
+        .searchBar {
+            margin-left: 0rem !important;
+            margin-right: 1.5rem !important;
+            width: 95% !important;
+        }
+    }
+
     @media (max-width: 768px) {
+
         .service_img {
             height: 100%;
             background: url(../images/service-bg-small.jpeg) no-repeat;
@@ -185,6 +203,13 @@
             margin: 1.5rem 0rem !important;
             height: 370px;
             background: #f0fff2
+        }
+
+        .sign_in_btn {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            border-radius: 15px !important;
         }
     }
 
@@ -251,25 +276,28 @@
     }
 
     .searchListing {
+        height: 32px;
         font-size: 15px;
         /*    font-weight: 600;*/
-        max-padding: 0 40px;
+        /* max-padding: 0 40px; */
         margin-right: 1px;
         /*    height: 37px;*/
         outline: none;
-        background-color: #176B87;
+        background-color: #266A2E;
         border-radius: 35px;
         border: none;
         color: white;
     }
 
     .searchListing:hover {
-        background-color: #64CCC5;
+        background-color: #083608;
     }
 
     .searchBar {
-        border: 2px solid #176B87;
+        width: 75%;
+        border: 2px solid #083608;
         border-radius: 12px;
+
     }
 
     .text {
@@ -332,15 +360,16 @@
         width: 85%;
         margin: auto;
         font-size: 15px;
-        font-weight: 600;
+        /* font-weight: 600; */
         padding: 0 40px;
 
         outline: none;
-        background-color: #72c537;
+        background-color: #266A2E;
         border-radius: 35px;
         border: none;
-        text-color: black;
+        /* text-color: black; */
         text-decoration: none;
+        cursor: pointer;
     }
 
     .buttonListing:hover {
@@ -444,6 +473,29 @@
         width: 100%;
         text-align: left;
         height: 27px;
+    }
+
+    .modal_ok_btn {
+        color: white !important;
+        background: #083608;
+        border: 2px solid #ffff !important;
+    }
+
+    .modal_ok_btn:hover {
+        color: #000000 !important;
+        border: 2px solid #000000 !important;
+    }
+
+    .modal_cancel_btn {
+        color: white !important;
+        background: #6c757d !important;
+        border: 2px #ffff !important;
+    }
+
+    .modal_cancel_btn:hover {
+        color: #000000 !important;
+        border: 2px solid #000000 !important;
+        background: #ffff !important;
     }
 
 
@@ -789,10 +841,14 @@
         cursor: pointer;
         font-size: 13px;
         font-weight: bold;
+        text-wrap: nowrap;
+        font-stretch: semi-expanded;
+        letter-spacing: 1px;
     }
 
     .sign_in_btn:hover {
-        color: #707070 !important;
+        background: #083608 !important;
+        color: white !important;
     }
 
 
@@ -1059,7 +1115,7 @@
     }
 
     .business_btns {
-        font-size: 11px;
+        font-size: 14px;
         padding: 0 22px;
     }
 

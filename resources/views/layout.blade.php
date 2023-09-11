@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
-<!-- Rating CSS -->
-<link rel="stylesheet" href="rating/css/rates.css" />
+    <!-- Rating CSS -->
+    <link rel="stylesheet" href="rating/css/rates.css" />
 
     <style type="text/css">
-        .btn-success { background: #72c537;    color: white;} 
-   
-  </style>
-<!-- Rating CSS -->
+        .btn-success {
+            background: #72c537;
+            color: white;
+        }
+    </style>
+    <!-- Rating CSS -->
 
 
     <link href="slider/dist/nouislider.css" rel="stylesheet">
@@ -67,12 +69,12 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto text-white">
-                    <li class="nav-item py-1 px-3 active ">
+                    <li class="nav-item py-1 px-3 active header_btn_width ">
                         <router-link to="/home" class="header_buttons py-1 px-3"> Home
                         </router-link>
                     </li>
 
-                    <li class="nav-item py-1 px-3 text-light ">
+                    <li class="nav-item py-1 px-3 text-light header_btn_width ">
                         <router-link to="/services" class=" header_buttons py-1 px-3 ">
                             Jitume Services
                         </router-link>
@@ -124,13 +126,13 @@
                         <div class="ml-3 ml-md-0 d-flex">
 
                             <div class="d-inline-block" id="call_to">
-                                <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: ; border-radius: 15px;cursor: pointer; " class=" header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center"><span style="font-weight:bolder;" id="c_to_ac">
+                                <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: ; border-radius: 15px;cursor: pointer; " class=" header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center"><span id="c_to_ac">
                                         Add Your Business</span></a>
                             </div>
 
 
                             <div class="d-inline-block" id="create_investor">
-                                <a data-target="#loginmodal2" data-toggle="modal" style="background: ; border-radius: 15px;cursor: pointer; " class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center"><span style="font-weight:bolder;" id="c_to_ac">Create Investor Account</span></a>
+                                <a data-target="#loginmodal2" data-toggle="modal" style="background: ; border-radius: 15px;cursor: pointer; " class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center"><span id="c_to_ac">Create Investor Account</span></a>
                             </div>
 
                             <a data-target="#loginModal" data-toggle="modal" class=" sign_in_btn px-sm-3 my-1 mr-2 px-1 py-1 d-inline-block  text-center ml-md-3">Sign In</a>
@@ -286,23 +288,23 @@
 
         @if(Session::has('Stripe_pay'))
         <!-- Pop up Modal -->
-            <div class="success_message modal" style="display:block;" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content popup_success">
+        <div class="success_message modal" style="display:block;" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content popup_success">
 
-                        <div class="modal-body">
-                            <h2 class="my-4 modal-title text-center w-100" id="exampleModalLabel">Success</h2>
+                    <div class="modal-body">
+                        <h2 class="my-4 modal-title text-center w-100" id="exampleModalLabel">Success</h2>
 
-                            <p class="text-center">{{Session::get('Stripe_pay')}} @php Session::forget('Stripe_pay'); @endphp</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button onclick="popupClose();" type="button" class="w-50 py-2 my-3 h5 m-auto btn text-white" style="background:green;font-size: 18px;" data-dismiss="modal">Ok</button>
+                        <p class="text-center">{{Session::get('Stripe_pay')}} @php Session::forget('Stripe_pay'); @endphp</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button onclick="popupClose();" type="button" class="w-50 py-2 my-3 h5 m-auto btn text-white" style="background:green;font-size: 18px;" data-dismiss="modal">Ok</button>
 
-                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Pop up Modal -->
+        </div>
+        <!-- Pop up Modal -->
         @endif
 
         <!-- yield('page') -->
@@ -350,24 +352,24 @@
             </div>
 
             <div class="col-12 col-sm-5 pt-2 d-flex justify-content-center">
-               <ul class="text-light float-left w-25 p-0">
-                <li style="list-style-type:none;" class="my-2">
-                <a class="d-inline" href="twitter.com" target="_black"><i class="fa fa-twitter fa-2x bg-light p-1 rounded"></i></a>
-                <a class="d-inline" href="twitter.com" target="_black"><i class="fa fa-instagram fa-2x bg-light text-secondary p-1 rounded"></i></a>
-                </li>
+                <ul class="text-light float-left w-25 p-0">
+                    <li style="list-style-type:none;" class="my-2">
+                        <a class="d-inline" href="twitter.com" target="_black"><i class="fa fa-twitter fa-2x bg-light p-1 rounded"></i></a>
+                        <a class="d-inline" href="twitter.com" target="_black"><i class="fa fa-instagram fa-2x bg-light text-secondary p-1 rounded"></i></a>
+                    </li>
 
-                <li style="list-style-type:none;">
-                <a class="d-inline" href="twitter.com" target="_black"><i class="fa fa-youtube fa-2x bg-light text-danger p-1 rounded"></i></a>
-                <a class="d-inline" href="twitter.com" target="_black"><i style="margin-left:2px;" class="px-2 fa fa-facebook fa-2x bg-light text-info p-1 rounded"></i></a>
-                </li>
+                    <li style="list-style-type:none;">
+                        <a class="d-inline" href="twitter.com" target="_black"><i class="fa fa-youtube fa-2x bg-light text-danger p-1 rounded"></i></a>
+                        <a class="d-inline" href="twitter.com" target="_black"><i style="margin-left:2px;" class="px-2 fa fa-facebook fa-2x bg-light text-info p-1 rounded"></i></a>
+                    </li>
 
 
                 </ul>
-                 <ul class="text-light float-right w-75 px-4">
+                <ul class="text-light float-right w-75 px-4">
 
                     <h3 class="h3">Contact Us</h3>
 
-                    <li style="list-style-type:none;">                       
+                    <li style="list-style-type:none;">
                         <a class="footer_txt text-light d-inline small" href="mailto:info@thedtagency.com"> E-Mail: info@thedtagency.com</a>
 
                     </li>
@@ -1783,7 +1785,6 @@
         function popupClose() {
             $('.success_message').css('display', 'none');
         }
-
     </script>
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -1792,7 +1793,7 @@
     <!-- <script src="/path/to/cdn/jquery.slim.min.js"></script> -->
     <script src="rating/js/jquery-rates.js"></script>
     <script type="text/javascript">
-         
+
     </script>
 </body>
 
