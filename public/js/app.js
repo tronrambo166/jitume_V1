@@ -8746,9 +8746,724 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/site/listingDetails.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\xampp_updated\\htdocs\\jitume\\resources\\js\\components\\site\\listingDetails.vue: Unexpected token, expected \",\" (705:0)\n\n\u001b[0m \u001b[90m 703 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 704 |\u001b[39m     }\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 705 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     |\u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n    at instantiate (C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:72:32)\n    at constructor (C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:367:12)\n    at Parser.raise (C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:3678:19)\n    at Parser.unexpected (C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:3716:16)\n    at Parser.expect (C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:4129:28)\n    at Parser.parseParenAndDistinguishExpression (C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:13528:14)\n    at Parser.parseExprAtom (C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:13118:23)\n    at Parser.parseExprSubscripts (C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:12790:23)\n    at Parser.parseUpdate (C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:12769:21)\n    at Parser.parseMaybeUnary (C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:12739:23)\n    at Parser.parseMaybeUnaryOrPrivate (C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:12530:61)\n    at Parser.parseExprOps (C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:12537:23)\n    at Parser.parseMaybeConditional (C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:12507:23)\n    at Parser.parseMaybeAssign (C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:12459:21)\n    at Parser.parseExpressionBase (C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:12395:23)\n    at C:\\xampp_updated\\htdocs\\jitume\\node_modules\\@babel\\parser\\lib\\index.js:12389:39");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['auth_user', 'business'],
+  data: function data() {
+    return {
+      form: new Form({
+        name: '',
+        listing_id: '',
+        details: '',
+        location: '',
+        contact: '',
+        category: '',
+        image: '',
+        investment_needed: '',
+        investors_fee: '',
+        rating: '',
+        rating_count: '',
+        conv: ''
+      }),
+      results: [],
+      details: [],
+      progress: '',
+      share: '',
+      amount_required: '',
+      running: 0
+    };
+  },
+  created: function created() {
+    if (sessionStorage.getItem('invest') != null) sessionStorage.clear();
+  },
+  methods: {
+    getDetails: function getDetails() {
+      var id = this.$route.params.id;
+      var t = this;
+      document.getElementById('listing_id').value = id;
+      axios.get('searchResults/' + id).then(function (data) {
+        console.log(data);
+        t.form.conv = data.data.conv;
+        t.form.name = data.data.data[0].name;
+        t.form.details = data.data.data[0].details;
+        t.form.location = data.data.data[0].location;
+        t.form.contact = data.data.data[0].contact;
+        t.form.image = data.data.data[0].image;
+        t.form.category = data.data.data[0].category;
+        t.form.listing_id = data.data.data[0].id;
+        t.form.investment_needed = data.data.data[0].investment_needed;
+        t.form.investors_fee = data.data.data[0].investors_fee;
+        t.form.rating = data.data.data[0].rating / data.data.data[0].rating_count;
+        t.form.rating = t.form.rating.toFixed();
+        t.form.rating_count = data.data.data[0].rating_count;
+        var i;
+
+        for (i = 1; i < 6; i++) {
+          console.log(parseInt(t.form.rating));
+          if (i <= parseInt(t.form.rating)) $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');else $('#staticRating').append('<img src="rating/images/white.png" style="height: 15px;" class="">');
+        }
+      });
+    },
+    select: function select() {
+      $('.single').css('background', '#72c537');
+      $('.multiple').css('background', '');
+    },
+    select2: function select2() {
+      $('.single').css('background', '');
+      $('.multiple').css('background', '#72c537');
+    },
+    price: function price(ev) {
+      document.getElementById('price').value = ev.target.value;
+    },
+    getPhoto: function getPhoto() {
+      return '../';
+    },
+    rating: function rating() {
+      var id = this.$route.params.id;
+      var rating = $('#demoRating').val();
+      axios.get('ratingListing/' + id + '/' + rating).then(function (data) {
+        console.log(data);
+        $.alert({
+          title: 'Alert!',
+          content: 'Rating submitted successfully!'
+        }); //location.reload();
+      });
+    },
+    make_session: function make_session(id) {
+      sessionStorage.setItem('invest', id);
+      document.getElementById('c_to_action').value = 'loginFromService';
+      document.getElementById('c_to_action_login2').value = 'loginFromService';
+    },
+    hover: function hover() {
+      $('#convBtn1').css('background', '#72c537');
+    },
+    hover2: function hover2() {
+      $('#convBtn2').css('background', '#72c537');
+    },
+    hover3: function hover3() {
+      $('#convBtn3').css('background', '#72c537');
+    },
+    hover4: function hover4() {
+      $('#convBtn4').css('background', '#72c537');
+    },
+    hover5: function hover5() {
+      $('#convBtn5').css('background', '#72c537');
+    },
+    hover6: function hover6() {
+      $('#convBtn6').css('background', '#72c537');
+    },
+    leave: function leave() {
+      $('.convBtn').css('background', '');
+    },
+    download_business: function download_business() {
+      var id = this.$route.params.id;
+      var t = this;
+      axios.get('download_business/' + id).then(function (data) {
+        console.log(data);
+      });
+    },
+    getMilestones: function getMilestones() {
+      var id = this.$route.params.id;
+      var t = this;
+      axios.get('getMilestones/' + id).then(function (data) {
+        console.log(data);
+        t.results = data.data.data;
+        t.progress = data.data.progress;
+        $('#progress').css('width', t.progress + '%');
+        t.progress = data.data.share * t.progress;
+        t.share = data.data.share;
+        t.amount_required = data.data.amount_required;
+        t.running = data.data.running;
+      });
+    },
+    bidCommits: function bidCommits() {
+      var checked = ''; //[...document.querySelectorAll('input[name="miles"]:checked')]
+      //.forEach((cb) => checked = checked+cb.value+',');
+
+      var amount = $('#bid_amount').val();
+      var percent = $('#bid_percent2').val();
+      var business_id = this.$route.params.id;
+      if (amount == '' || amount == 0) $.alert({
+        title: 'Alert!',
+        content: 'Please enter a bid to invest!'
+      });else {
+        var amount = btoa(amount);
+        var business_id = btoa(business_id);
+        var percent = btoa(percent);
+        $.confirm({
+          title: 'Are you sure?',
+          content: 'Are you sure to bid?',
+          buttons: {
+            confirm: function confirm() {
+              window.location.href = './bidCommits/' + amount + '/' + business_id + '/' + percent;
+            },
+            cancel: function cancel() {
+              $.alert('Canceled!');
+            }
+          }
+        }); //$('#convBtn4 a').trigger('click');
+      }
+    },
+    bidCommitsEQP: function bidCommitsEQP() {
+      var amount = $('#bid_amount_eqp').val();
+      var percent = $('#bid_percent2_eqp').val();
+      var business_id = this.$route.params.id;
+      if (amount == '' || amount == 0) $.alert({
+        title: 'Alert!',
+        content: 'Please enter a bid to invest!'
+      });else {
+        var amount = btoa(amount);
+        var id = btoa(business_id);
+        var percent = btoa(percent);
+        var t = this;
+        $.confirm({
+          title: 'Are you sure?',
+          content: 'Are you sure to bid?',
+          buttons: {
+            confirm: function confirm() {
+              t.$router.push("../investEQUIP/".concat(amount, "/").concat(id, "/").concat(percent));
+            },
+            cancel: function cancel() {
+              $.alert('Canceled!');
+            }
+          }
+        });
+      }
+    },
+    modal_hide: function modal_hide() {
+      $('#investModalShow').removeClass('d-block');
+    },
+    calculate: function calculate(bid) {
+      var total = this.form.investment_needed;
+      var share = this.share * 100;
+      var percent = bid / total * share;
+      var percent = percent.toFixed(2);
+
+      if (bid > this.amount_required) {
+        document.getElementById('bid_amount').value = 0;
+        document.getElementById('bid_percent').innerHTML = '<b class="text-danger">Amount exceeds the investment required!</b>';
+      } else document.getElementById('bid_percent').innerHTML = percent + '%';
+
+      document.getElementById('bid_percent2').value = percent;
+    },
+    calculate2: function calculate2(bid) {
+      var total = this.form.investment_needed;
+      var share = this.share * 100;
+      var percent = bid / total * share;
+      var percent = percent.toFixed(2);
+
+      if (bid > this.amount_required) {
+        document.getElementById('bid_amount_eqp').value = 0;
+        document.getElementById('bid_percent_eqp').innerHTML = '<b class="text-danger">Amount exceeds the investment required!</b>';
+      } else document.getElementById('bid_percent_eqp').innerHTML = percent + '%';
+
+      document.getElementById('bid_percent2_eqp').value = percent;
+    }
+  },
+  mounted: function mounted() {
+    this.getDetails();
+    this.getMilestones(); // SCRIPT
+
+    (function ($) {
+      $.fn.rates = function (options) {
+        // Default settings for the plugin if none are provided by the user
+        var settings = $.extend({
+          shadeColor: 'rates-yellow',
+          shapeHeight: '25px',
+          shapeCount: 5,
+          shape: 'white-star',
+          imagesFolderLocation: ''
+        }, options);
+        return this.each(function () {
+          var container = this;
+          $(container).addClass('rates-container');
+          var $containerName = $(this).attr('id');
+          var score = {
+            value: 0
+          };
+          createStars(settings.shapeCount);
+          setSize();
+          var $eachStar = $(this).find('img'); // Colors in the rating shape on hover
+          // Removes the color from above the selected rating on mouse out
+
+          $(this).find('img').hover(function () {
+            var starIndex = $eachStar.index(this);
+            colorShapesToIndex(starIndex);
+          }, function () {
+            colorShapesToScore();
+          }); // Sets the score rating based on which rating shape was clicked
+
+          $(this).find('img').on('click', function () {
+            var starIndex = $eachStar.index(this);
+            colorShapesToIndex(starIndex);
+            score.value = starIndex + 1;
+            $("#".concat($containerName, "Rating")).val(score.value);
+          }); // Sets the size of stars indicated in the settings
+
+          function setSize() {
+            $(container).find('img').css('height', settings.shapeHeight);
+          } // Dynamically creates the html markup based on the number of stars indicated
+
+
+          function createStars(count) {
+            var starInput = $("<input type=\"hidden\" id = \"".concat($containerName, "Rating\" name=\"").concat($containerName, "Rating\" value=\"0\" >"));
+            $(container).append(starInput);
+
+            for (var i = 0; i < count; i++) {
+              var $imageStar = $('<img>');
+              $imageStar.attr('src', "".concat(settings.imagesFolderLocation, "images/").concat(settings.shape, ".png"));
+              $(container).append($imageStar);
+            }
+          } // Resets the shading class on the shapes to color only those up until a designated index
+
+
+          function colorShapesToIndex(starIndexValue) {
+            $eachStar.removeClass(settings.shadeColor);
+
+            for (var i = 0; i <= starIndexValue; i++) {
+              var star = $eachStar.get(i);
+              $(star).toggleClass(settings.shadeColor);
+            }
+          } // Resets the shading class on the shapes to color only those up to and including the selected score
+
+
+          function colorShapesToScore() {
+            $eachStar.removeClass(settings.shadeColor);
+
+            for (var j = 0; j < score.value; j++) {
+              var star = $eachStar.get(j);
+              $(star).toggleClass(settings.shadeColor);
+            }
+          }
+        });
+      };
+    })(jQuery); // SCRIPT
+
+
+    $('#demo').rates({
+      shape: 'black-star',
+      imagesFolderLocation: 'rating/',
+      shapeHeight: '20px',
+      shadeColor: 'rates-green'
+    });
+  }
+});
 
 /***/ }),
 
@@ -63518,9 +64233,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _listingDetails_vue_vue_type_template_id_2a59a1eb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./listingDetails.vue?vue&type=template&id=2a59a1eb& */ "./resources/js/components/site/listingDetails.vue?vue&type=template&id=2a59a1eb&");
 /* harmony import */ var _listingDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./listingDetails.vue?vue&type=script&lang=js& */ "./resources/js/components/site/listingDetails.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _listingDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _listingDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -64111,11 +64823,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_listingDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./listingDetails.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/site/listingDetails.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_listingDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_listingDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_listingDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_listingDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_listingDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default())); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_listingDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
