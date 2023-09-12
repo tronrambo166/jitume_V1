@@ -95,8 +95,8 @@
 
                         <!-- Shipping address  starts -->
 
-                         
-     
+  
+                              <div class="row error mx-1 text-center collapse"><p style="color:#e31313; background: #cfcfcf82;font-weight: 600;" class="alert my-2 py-1 w-100"></p></div> 
 
                          
                         <div class='form-row row my-2'>
@@ -226,7 +226,7 @@
    <script type="text/javascript">
 
 
-      $(function() {
+    $(function() {
     var $form = $(".require-validation");
     $('form.require-validation').bind('submit', function(e) {
         var $form = $(".require-validation"),
@@ -259,9 +259,9 @@
         }
     });
     function stripeResponseHandler(status, response) {
-        if (response.error) {
+        if (response.error) { 
             $('.error')
-                .removeClass('hide')
+                .removeClass('collapse')
                 .find('.alert')
                 .text(response.error.message);
         } else {

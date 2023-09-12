@@ -95,7 +95,7 @@
 
                     <div class="row">
                         <p class="text-right text-light">Enter additional notes </p> 
-                        <span class="text-center">
+                        <span class="text-right">
                             <textarea required v-model="formBook.note" name="note" cols="32" rows="10" class="rounded"></textarea>
                         </span>
                     </div>

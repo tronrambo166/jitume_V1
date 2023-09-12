@@ -129,7 +129,7 @@ export default {
             this.ids = atob(this.$route.params.results);
             //this.results = this.ids.split(",");
             axios.get('ServiceResults/' + t.ids).then((data) => {            
-                if(t.count != 0){
+                if(data.data.count != 0){
                 t.count = data.data.count;
                 t.results = data.data.data;
                 console.log(data);

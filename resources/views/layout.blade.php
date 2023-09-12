@@ -1153,7 +1153,7 @@
 
                     <div class="card-header w-100">
                         <div class="card-header row my-2">
-                            <button style="border: 1px solid darkblue;background: #001C30;" class="ml-2 w-50 text-center text-white font-weight-bold btn px-4 mr-2">{{ __('Join Jitume') }}</button>
+                            <button style="" class="ml-2 w-50 text-center text-dark bg-light font-weight-bold btn px-4 mr-2">{{ __('Join Jitume') }}</button>
                         </div>
 
                         <button style="border: 1px solid darkblue;background: #72c537;" id="logins" onclick="login()" class=" w-25 btn   px-4 mr-2">{{ __('Log In') }}</button>
