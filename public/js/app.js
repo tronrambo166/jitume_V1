@@ -10016,6 +10016,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -72938,7 +72966,7 @@ var render = function () {
   return _c("div", { staticClass: "main" }, [
     _c(
       "div",
-      { staticClass: "container" },
+      { staticClass: "container mt-3 mb-5" },
       [
         _vm.no_mile
           ? _c(
@@ -72955,7 +72983,7 @@ var render = function () {
             )
           : _vm._e(),
         _vm._v(" "),
-        _c("div", { staticClass: "root py-5 mb-5 ml-4" }, [
+        _c("div", { staticClass: "root py-5 mb-5 mr-4 ml-md-4 mr-md-0" }, [
           _c("div", { staticClass: "progressbar-wrapper" }, [
             _c(
               "ul",
@@ -72969,7 +72997,7 @@ var render = function () {
                         ? "active"
                         : "",
                   },
-                  [_vm._v(" Step ")]
+                  [_vm._v(" Step\n                    ")]
                 )
               }),
               0
@@ -72980,7 +73008,7 @@ var render = function () {
         _vm._l(_vm.results, function (result) {
           return _c(
             "div",
-            { staticClass: "w-75 m-auto row mt-4 text-center" },
+            { staticClass: "w-md-75 m-auto row mt-4 text-center" },
             [
               result.status == "In Progress"
                 ? _c("div", { staticClass: "modal-body" }, [
@@ -72997,134 +73025,158 @@ var render = function () {
                       [
                         _c(
                           "div",
-                          { staticClass: "row pt-2", attrs: { width: "90%" } },
+                          {
+                            staticClass: "row pt-2 my-auto mr-1 mr-md-0",
+                            attrs: { width: "" },
+                          },
                           [
-                            _c("div", { staticClass: "col-sm-2 px-1" }, [
-                              _c("div", { staticClass: "" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: result.title,
-                                      expression: "result.title",
+                            _c(
+                              "div",
+                              { staticClass: "col px-1 my-2 my-sm-0" },
+                              [
+                                _c("div", { staticClass: "" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: result.title,
+                                        expression: "result.title",
+                                      },
+                                    ],
+                                    staticClass:
+                                      "placeH placeH_active w-100 py-1 border border-dark",
+                                    attrs: {
+                                      readonly: "",
+                                      required: "",
+                                      name: "title",
+                                      type: "text",
                                     },
-                                  ],
-                                  staticClass:
-                                    "placeH placeH_active w-100 py-1 border border-dark",
-                                  attrs: {
-                                    readonly: "",
-                                    required: "",
-                                    name: "title",
-                                    type: "text",
-                                  },
-                                  domProps: { value: result.title },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        result,
-                                        "title",
-                                        $event.target.value
-                                      )
-                                    },
-                                  },
-                                }),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-1 px-0" }, [
-                              _c("div", {}, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: result.amount,
-                                      expression: "result.amount",
-                                    },
-                                  ],
-                                  staticClass:
-                                    "placeH placeH_active w-100 py-1 border border-dark",
-                                  attrs: {
-                                    readonly: "",
-                                    required: "",
-                                    type: "number",
-                                    name: "amount",
-                                  },
-                                  domProps: { value: result.amount },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        result,
-                                        "amount",
-                                        $event.target.value
-                                      )
-                                    },
-                                  },
-                                }),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-3 px-1" }, [
-                              _c(
-                                "div",
-                                { staticClass: "upload-btn-wrapper w-100" },
-                                [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "text-white placeH btnUp3 w-100",
-                                      on: {
-                                        click: function ($event) {
-                                          return _vm.download_milestone_doc(
-                                            result.id
-                                          )
-                                        },
+                                    domProps: { value: result.title },
+                                    on: {
+                                      input: function ($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          result,
+                                          "title",
+                                          $event.target.value
+                                        )
                                       },
                                     },
-                                    [
-                                      _vm._v(
-                                        "Download Milestone Documentaion "
-                                      ),
-                                      _c("i", {
-                                        staticClass: "ml-2 fa fa-arrow-down",
-                                      }),
-                                    ]
-                                  ),
-                                ]
-                              ),
-                            ]),
+                                  }),
+                                ]),
+                              ]
+                            ),
                             _vm._v(" "),
-                            result.access && result.time_left != "L A T E !"
-                              ? _c("div", { staticClass: "col-2 px-1" }, [
-                                  _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col px-0 my-2 my-sm-0" },
+                              [
+                                _c("div", {}, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: result.amount,
+                                        expression: "result.amount",
+                                      },
+                                    ],
+                                    staticClass:
+                                      "placeH placeH_active w-100 py-1 border border-dark",
+                                    attrs: {
+                                      readonly: "",
+                                      required: "",
+                                      type: "number",
+                                      name: "amount",
+                                    },
+                                    domProps: { value: result.amount },
+                                    on: {
+                                      input: function ($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          result,
+                                          "amount",
+                                          $event.target.value
+                                        )
+                                      },
+                                    },
+                                  }),
+                                ]),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col px-1 mt-2 mt-sm-0" },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "upload-btn-wrapper w-100 d-flex justify-content-start",
+                                  },
+                                  [
                                     _c(
-                                      "button",
+                                      "a",
                                       {
                                         staticClass:
-                                          "pay_btn placeH_active text-center border border-dark px-2 py-1 btn btn-light",
-                                        attrs: { type: "submit" },
+                                          "text-white placeH btnUp3 w-100 d-flex align-items-center",
                                         on: {
                                           click: function ($event) {
-                                            return _vm.make_session(_vm.form.id)
+                                            return _vm.download_milestone_doc(
+                                              result.id
+                                            )
                                           },
                                         },
                                       },
                                       [
                                         _vm._v(
-                                          "PAY\n                                        "
+                                          "Download Milestone\n                                    Documentaion "
                                         ),
+                                        _c("i", {
+                                          staticClass: "ml-2 fa fa-arrow-down",
+                                        }),
                                       ]
                                     ),
-                                  ]),
-                                ])
+                                  ]
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            result.access && result.time_left != "L A T E !"
+                              ? _c(
+                                  "div",
+                                  { staticClass: "col px-1 mt-2 mt-sm-0" },
+                                  [
+                                    _c("div", { staticClass: "form-group" }, [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "pay_btn placeH_active text-center border border-dark px-2 py-1 btn btn-light",
+                                          attrs: { type: "submit" },
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.make_session(
+                                                _vm.form.id
+                                              )
+                                            },
+                                          },
+                                        },
+                                        [
+                                          _vm._v(
+                                            "PAY\n                                "
+                                          ),
+                                        ]
+                                      ),
+                                    ]),
+                                  ]
+                                )
                               : _vm._e(),
                             _vm._v(" "),
                             _c("input", {
@@ -73179,49 +73231,50 @@ var render = function () {
                             _vm._v(" "),
                             _vm._m(0, true),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-3 px-1" }, [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "border border-dark px-2 d-inline-block",
-                                },
-                                [
-                                  _c(
-                                    "p",
-                                    {
-                                      staticClass:
-                                        "placeH_active text-success due small d-inline",
-                                      staticStyle: { "font-size": "12px" },
-                                    },
-                                    [_vm._v("Due in: ")]
-                                  ),
-                                  _vm._v(" "),
-                                  result.time_left == "L A T E !"
-                                    ? _c(
-                                        "p",
-                                        {
-                                          staticClass:
-                                            "placeH_active due d-inline",
-                                          staticStyle: { color: "red" },
-                                        },
-                                        [
-                                          _vm._v(
-                                            " " + _vm._s(result.time_left) + " "
+                            _c(
+                              "div",
+                              { staticClass: "col px-1 mt-2 mt-sm-0" },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "border border-dark px-2 d-inline-block d-flex align-items-center",
+                                    staticStyle: { padding: "3px" },
+                                  },
+                                  [
+                                    _vm._m(1, true),
+                                    _vm._v(" "),
+                                    _c("div", [
+                                      result.time_left == "L A T E !"
+                                        ? _c(
+                                            "p",
+                                            {
+                                              staticClass:
+                                                "placeH_active due d-inline",
+                                              staticStyle: { color: "red" },
+                                            },
+                                            [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(result.time_left) +
+                                                  "\n                                    "
+                                              ),
+                                            ]
+                                          )
+                                        : _c(
+                                            "p",
+                                            {
+                                              staticClass:
+                                                "placeH_active small due d-inline",
+                                            },
+                                            [_vm._v(_vm._s(result.time_left))]
                                           ),
-                                        ]
-                                      )
-                                    : _c(
-                                        "p",
-                                        {
-                                          staticClass:
-                                            "placeH_active small due d-inline",
-                                        },
-                                        [_vm._v(_vm._s(result.time_left))]
-                                      ),
-                                ]
-                              ),
-                            ]),
+                                    ]),
+                                  ]
+                                ),
+                              ]
+                            ),
                           ]
                         ),
                       ]
@@ -73242,10 +73295,10 @@ var render = function () {
                       [
                         _c(
                           "div",
-                          { staticClass: "row pt-2", attrs: { width: "85%" } },
+                          { staticClass: "row pt-2 my-auto mr-1 mr-md-0" },
                           [
-                            _c("div", { staticClass: "col-sm-3 px-1" }, [
-                              _c("div", { staticClass: "" }, [
+                            _c("div", { staticClass: "col mt-2 mt-sm-0" }, [
+                              _c("div", {}, [
                                 _c("input", {
                                   directives: [
                                     {
@@ -73280,43 +73333,45 @@ var render = function () {
                               ]),
                             ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-2 px-0" }, [
-                              _c("div", {}, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: result.amount,
-                                      expression: "result.amount",
+                            _c(
+                              "div",
+                              { staticClass: "col px-0 my-2 mt-sm-0" },
+                              [
+                                _c("div", {}, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: result.amount,
+                                        expression: "result.amount",
+                                      },
+                                    ],
+                                    staticClass:
+                                      "placeH_done placeH_active w-100 py-1 border border-dark",
+                                    attrs: {
+                                      readonly: "",
+                                      required: "",
+                                      type: "number",
+                                      name: "amount",
                                     },
-                                  ],
-                                  staticClass:
-                                    "placeH_done placeH_active w-100 py-1 border border-dark",
-                                  attrs: {
-                                    readonly: "",
-                                    required: "",
-                                    type: "number",
-                                    name: "amount",
-                                  },
-                                  domProps: { value: result.amount },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        result,
-                                        "amount",
-                                        $event.target.value
-                                      )
+                                    domProps: { value: result.amount },
+                                    on: {
+                                      input: function ($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          result,
+                                          "amount",
+                                          $event.target.value
+                                        )
+                                      },
                                     },
-                                  },
-                                }),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _vm._m(1, true),
+                                  }),
+                                ]),
+                              ]
+                            ),
                             _vm._v(" "),
                             _vm._m(2, true),
                             _vm._v(" "),
@@ -73338,87 +73393,83 @@ var render = function () {
                         },
                       },
                       [
-                        _c(
-                          "div",
-                          { staticClass: "row pt-2", attrs: { width: "85%" } },
-                          [
-                            _c("div", { staticClass: "col-sm-3 px-1" }, [
-                              _c("div", { staticClass: "" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: result.title,
-                                      expression: "result.title",
-                                    },
-                                  ],
-                                  staticClass:
-                                    "placeH_inactive w-100 py-1 border border-dark",
-                                  attrs: {
-                                    readonly: "",
-                                    required: "",
-                                    name: "title",
-                                    type: "text",
+                        _c("div", { staticClass: "row pt-2 mr-1 mr-sm-0" }, [
+                          _c("div", { staticClass: "col px-1 my-2 my-sm-0" }, [
+                            _c("div", { staticClass: "" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: result.title,
+                                    expression: "result.title",
                                   },
-                                  domProps: { value: result.title },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        result,
-                                        "title",
-                                        $event.target.value
-                                      )
-                                    },
+                                ],
+                                staticClass:
+                                  "placeH_inactive w-100 py-1 border border-dark",
+                                attrs: {
+                                  readonly: "",
+                                  required: "",
+                                  name: "title",
+                                  type: "text",
+                                },
+                                domProps: { value: result.title },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      result,
+                                      "title",
+                                      $event.target.value
+                                    )
                                   },
-                                }),
-                              ]),
+                                },
+                              }),
                             ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-2 px-0" }, [
-                              _c("div", {}, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: result.amount,
-                                      expression: "result.amount",
-                                    },
-                                  ],
-                                  staticClass:
-                                    "placeH_inactive w-100 py-1 border border-dark",
-                                  attrs: {
-                                    readonly: "",
-                                    required: "",
-                                    type: "number",
-                                    name: "amount",
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col px-0 my-2 my-sm-0" }, [
+                            _c("div", {}, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: result.amount,
+                                    expression: "result.amount",
                                   },
-                                  domProps: { value: result.amount },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        result,
-                                        "amount",
-                                        $event.target.value
-                                      )
-                                    },
+                                ],
+                                staticClass:
+                                  "placeH_inactive w-100 py-1 border border-dark",
+                                attrs: {
+                                  readonly: "",
+                                  required: "",
+                                  type: "number",
+                                  name: "amount",
+                                },
+                                domProps: { value: result.amount },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      result,
+                                      "amount",
+                                      $event.target.value
+                                    )
                                   },
-                                }),
-                              ]),
+                                },
+                              }),
                             ]),
-                            _vm._v(" "),
-                            _vm._m(4, true),
-                            _vm._v(" "),
-                            _vm._m(5, true),
-                          ]
-                        ),
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(4, true),
+                          _vm._v(" "),
+                          _vm._m(5, true),
+                        ]),
                       ]
                     ),
                   ]),
@@ -73435,7 +73486,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 px-1" }, [
+    return _c("div", { staticClass: "col px-1 mt-2 mt-sm-0" }, [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "span",
@@ -73443,7 +73494,7 @@ var staticRenderFns = [
             staticClass:
               "placeH_active status text-center border border-dark px-0 py-1 btn btn-success btn-block",
           },
-          [_vm._v("In Progress")]
+          [_vm._v("In\n                                    Progress")]
         ),
       ]),
     ])
@@ -73452,16 +73503,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-3 px-1" }, [
-      _c("div", { staticClass: "upload-btn-wrapper w-100" }, [
-        _c(
-          "a",
-          { staticClass: "text-white disabled placeH_done btnUp_done w-100" },
-          [
-            _vm._v("Download Milestone Documentaion "),
-            _c("i", { staticClass: "ml-2 fa fa-arrow-down" }),
-          ]
-        ),
+    return _c("div", [
+      _c("p", { staticClass: "placeH_active text-success due d-inline" }, [
+        _vm._v("Due in:\n                                    "),
       ]),
     ])
   },
@@ -73469,8 +73513,34 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 px-1" }, [
-      _c("div", { staticClass: "form-group" }, [
+    return _c("div", { staticClass: "col my-2 my-sm-0" }, [
+      _c(
+        "div",
+        { staticClass: "upload-btn-wrapper d-flex justify-content-start" },
+        [
+          _c(
+            "a",
+            {
+              staticClass:
+                "text-white disabled placeH_done btnUp_done w-100 d-flex align-items-center",
+            },
+            [
+              _vm._v(
+                "Download\n                                    Milestone Documentaion "
+              ),
+              _c("i", { staticClass: "ml-2 fa fa-arrow-down" }),
+            ]
+          ),
+        ]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col d-flex" }, [
+      _c("div", { staticClass: "form-group mr-1" }, [
         _c(
           "a",
           {
@@ -73481,14 +73551,8 @@ var staticRenderFns = [
           [_vm._v("PAID")]
         ),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 px-1" }, [
-      _c("div", { staticClass: "form-group" }, [
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group ml-1" }, [
         _c(
           "span",
           {
@@ -73496,7 +73560,7 @@ var staticRenderFns = [
               "placeH_active status text-center border text-light border-dark px-2 py-1 btn-block",
             staticStyle: { background: "black" },
           },
-          [_vm._v("Done!")]
+          [_vm._v("DONE!")]
         ),
       ]),
     ])
@@ -73505,7 +73569,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-3 px-1" }, [
+    return _c("div", { staticClass: "col px-1 my-2 my-sm-0" }, [
       _c("div", { staticClass: "upload-btn-wrapper w-100" }, [
         _c("a", { staticClass: "pl-4 disabled placeH_inactive btnUp4 w-100" }, [
           _vm._v("Download Milestone Documentaion "),
@@ -73518,7 +73582,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 px-1" }, [
+    return _c("div", { staticClass: "col px-1" }, [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "span",
@@ -73526,7 +73590,7 @@ var staticRenderFns = [
             staticClass:
               "status text-center border border-dark px-2 py-1 btn-light placeH_inactive btn-block",
           },
-          [_vm._v("To Do")]
+          [_vm._v("To\n                                    Do")]
         ),
       ]),
     ])

@@ -458,9 +458,11 @@
 
 
     .placeH_done {
+        min-width: 60px;
+        text-wrap: nowrap;
         background: black;
         color: white;
-        font-weight: bold;
+        /* font-weight: bold; */
         padding-left: 6px;
     }
 
@@ -473,13 +475,14 @@
         border: 1px solid black;
         color: white;
         background-color: #14a914;
-        padding: 5px;
+        padding: 4px;
         border-radius: 2px;
-        font-size: 10px;
-        font-weight: bold;
+        font-size: 13px;
+        /* font-weight: bold; */
         width: 100%;
         text-align: left;
-        height: 27px;
+        /* height: 27px; */
+        text-wrap: nowrap;
     }
 
     .modal_ok_btn {
@@ -510,52 +513,55 @@
         border: 1px solid black;
         color: white;
         background-color: lightgray;
-        padding: 5px;
+        padding: 4px;
         border-radius: 2px;
-        font-size: 10px;
+        font-size: 13px;
         font-weight: bold;
         width: 100%;
         text-align: left;
-        height: 27px;
+        /* height: 27px; */
     }
 
     .btnUp_done {
         border: 1px solid black;
         color: white;
         background-color: black;
-        padding: 5px;
+        padding: 4px;
         border-radius: 2px;
-        font-size: 10px;
-        font-weight: bold;
+        font-size: 13px;
+        /* font-weight: bold; */
         width: 100%;
         text-align: left;
-        height: 27px;
+        /* height: 27px; */
     }
 
     .placeH {
-        font-weight: bold;
+        min-width: 60px;
+        /* font-weight: bold; */
         color: aliceblue;
         background: #14a914;
         padding-left: 6px;
     }
 
     .placeH_inactive {
+        min-width: 60px;
         background: #f3f3f3;
         color: #585857;
         font-weight: 500;
         padding-left: 6px;
-        font-size: 11px;
+        font-size: 13px;
         border-radius: 2px;
-        height: 27px;
+        /* height: 27px; */
+        text-wrap: nowrap;
     }
 
     .placeH_active {
-
+        text-wrap: nowrap;
         font-weight: 500;
         padding-left: 6px;
-        font-size: 11px;
+        font-size: 13px;
         border-radius: 2px;
-        height: 27px;
+        /* height: 27px; */
     }
 
     .commitP {
@@ -589,16 +595,18 @@
         list-style-type: none;
         width: 20%;
         float: left;
-        font-size: 12px;
+        font-size: 14px;
         position: relative;
         text-align: center;
         text-transform: uppercase;
-        color: #7d7d7d;
+        color: #000000;
     }
 
     .progressbar li:before {
-        width: 50px;
-        height: 50px;
+        width: 85%;
+        max-width: 50px;
+        height: 20%;
+        max-height: 50px;
         content: "";
         line-height: 50px;
         border: 2px solid #7d7d7d;
@@ -609,7 +617,7 @@
         position: relative;
         z-index: 2;
         background-color: #fff;
-        font-weight: bold;
+        /* font-weight: bold; */
     }
 
     .progressbar li:after {
@@ -628,17 +636,17 @@
     }
 
     .progressbar li.active {
-        color: green;
-        font-weight: bold;
+        color: rgb(255, 255, 255);
+        /* font-weight: bold; */
     }
 
     .progressbar li.active:before {
-        border-color: #55b776;
-        background: green;
+        border-color: #0e5c0e;
+        background: #266A2E;
     }
 
     .progressbar li.active+li:after {
-        background-color: #55b776;
+        background-color: #266A2E;
     }
 
     .progressbar li.active:before {
@@ -723,10 +731,6 @@
         font-weight: 500;
         font-family: 'Roboto', sans-serif;
         font-size: 14px;
-    }
-
-    .status {
-        font-size: 12px;
     }
 
     .due {
@@ -1134,7 +1138,7 @@
     }
 
     .status {
-        font-size: 12px;
+        font-size: 13px;
     }
 
     .due {
