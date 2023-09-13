@@ -9239,11 +9239,9 @@ __webpack_require__.r(__webpack_exports__);
       var id = this.$route.params.id;
       var rating = $('#demoRating').val();
       axios.get('ratingListing/' + id + '/' + rating).then(function (data) {
-        console.log(data);
-        $.alert({
-          title: 'Alert!',
-          content: 'Rating submitted successfully!'
-        }); //location.reload();
+        sessionStorage.setItem('alert', 'Rating submitted successfully!');
+        location.reload();
+        ;
       });
     },
     make_session: function make_session(id) {
@@ -9379,7 +9377,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getDetails();
-    this.getMilestones(); // SCRIPT
+    this.getMilestones();
+
+    if (sessionStorage.getItem('alert') != null) {
+      alert('Review successfully taken!');
+      sessionStorage.clear();
+    } // SCRIPT
+
 
     (function ($) {
       $.fn.rates = function (options) {
@@ -10698,7 +10702,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var id = this.$route.params.id;
       var rating = $('#demoRating').val();
       axios.get('ratingService/' + id + '/' + rating).then(function (data) {
-        console.log(data);
+        //console.log(data);
         sessionStorage.setItem('alert', 'Rating submitted successfully!');
         location.reload();
       });
@@ -71040,7 +71044,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "heading card row px-4 my-3 w-50 mx-auto" }, [
+    _c("div", { staticClass: "heading card row px-4 my-3 w-75 mx-auto" }, [
       _c(
         "form",
         {
@@ -71120,8 +71124,8 @@ var render = function () {
                     attrs: {
                       required: "",
                       name: "serial",
-                      rows: "3",
-                      cols: "60",
+                      rows: "2",
+                      cols: "35",
                     },
                     domProps: { value: _vm.form.serial },
                     on: {
@@ -71166,12 +71170,8 @@ var render = function () {
               "button",
               {
                 staticClass:
-                  "m-auto border border-dark btn btn-success text-white font-weight-bold",
-                staticStyle: {
-                  width: "48%",
-                  background: "green",
-                  "border-radius": "2px",
-                },
+                  "modal_ok m-auto border border-dark btn btn-success text-white font-weight-bold",
+                staticStyle: { width: "38%" },
                 attrs: { id: "ok" },
               },
               [_vm._v("OK")]
@@ -71181,12 +71181,8 @@ var render = function () {
               "a",
               {
                 staticClass:
-                  "m-auto border border-dark btn text-dark font-weight-bold",
-                staticStyle: {
-                  width: "48%",
-                  background: "yellow",
-                  "border-radius": "2px",
-                },
+                  "m-auto border border-dark btn modal_cancel_btn px-1 font-weight-bold",
+                staticStyle: { width: "48%" },
                 on: {
                   click: function ($event) {
                     return _vm.$router.go(-1)

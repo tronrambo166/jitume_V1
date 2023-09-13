@@ -291,7 +291,7 @@ export default {
       var id = this.$route.params.id;
       var rating = $('#demoRating').val();
       axios.get('ratingService/' + id + '/' + rating).then((data) => {
-        console.log(data);
+        //console.log(data);
         sessionStorage.setItem('alert', 'Rating submitted successfully!');
         location.reload();
       });

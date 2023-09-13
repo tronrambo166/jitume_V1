@@ -504,12 +504,8 @@ export default {
       var id = this.$route.params.id;
       var rating = $('#demoRating').val();
       axios.get('ratingListing/' + id + '/' + rating).then((data) => {
-        console.log(data);
-        $.alert({
-          title: 'Alert!',
-          content: 'Rating submitted successfully!',
-        });
-        //location.reload();
+        sessionStorage.setItem('alert', 'Rating submitted successfully!');
+        location.reload();;
       });
     },
 
@@ -670,6 +666,11 @@ export default {
   mounted() {
     this.getDetails();
     this.getMilestones();
+
+    if (sessionStorage.getItem('alert') != null) {
+      alert('Review successfully taken!');
+      sessionStorage.clear();
+    }
 
     // SCRIPT
 

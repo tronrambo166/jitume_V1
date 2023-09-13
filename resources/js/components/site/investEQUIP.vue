@@ -2,7 +2,7 @@
     <div class="container">
         
              
-        <div class="heading card row px-4 my-3 w-50 mx-auto"> 
+        <div class="heading card row px-4 my-3 w-75 mx-auto"> 
         
             <form @submit.prevent="bidCommitsEQP" method="post" enctype="multipart/form-data">             
 
@@ -56,7 +56,7 @@
                                </div>
                     
                     <div class="col-sm-10"> 
-                      <textarea  required="" v-model="form.serial" name="serial" rows="3" cols="60"></textarea>
+                      <textarea  required="" v-model="form.serial" name="serial" rows="2" cols="35"></textarea>
                         </div>
                     </div> 
                 </div>
@@ -83,9 +83,9 @@
                 </div>
 
                 <div class="row my-5 w-50 mx-auto"> 
-                    <button id="ok" style="width: 48%;background:green;border-radius: 2px;" class="m-auto border border-dark btn btn-success text-white font-weight-bold">OK</button>
+                    <button id="ok" style="width: 38%;" class="modal_ok m-auto border border-dark btn btn-success text-white font-weight-bold">OK</button>
 
-                <a @click="$router.go(-1)" style="width: 48%;background:yellow;border-radius: 2px;" class="m-auto border border-dark btn text-dark font-weight-bold">Back</a>
+                <a @click="$router.go(-1)" style="width: 48%;" class="m-auto border border-dark btn modal_cancel_btn px-1 font-weight-bold">Back</a>
                 </div>
 
 
