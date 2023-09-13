@@ -76,7 +76,7 @@
                             <a v-else @click="make_session()" class="text-light font-weight-bold btn buttonEq2" data-target="#loginModal" data-toggle="modal">Add to cart</a> -->
 
                   <a style="cursor:pointer;" v-else @click="make_session()"
-                    class="border border-dark w-50 text-center convBtn" data-target="#loginModal"
+                    class="border border-dark w-50 mx-auto text-center convBtn" data-target="#loginModal"
                     data-toggle="modal">Service Milestone Breakdown</a>
 
                 </form>

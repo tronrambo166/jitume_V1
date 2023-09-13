@@ -386,12 +386,12 @@
 
 
                 </ul> -->
-                <ul class="text-light px-4">
+                <ul class="text-light px-2">
 
                     <h3 class="h3">Contact Us</h3>
 
                     <li style="list-style-type:none;">
-                        <a class="footer_txt text-light d-inline small" href="mailto:info@thedtagency.com"> E-Mail: info@thedtagency.com</a>
+                        <a class="footer_txt px-0 text-light d-inline small" href="mailto:info@thedtagency.com"> E-Mail: info@thedtagency.com</a>
 
                     </li>
 
@@ -592,8 +592,8 @@
                 <div id="header" class="modal-header">
 
                     <div class="card-header w-100">
-                        <button id="login" onclick="logins()" class="w-25 btn   px-4 mr-2">{{ __('Sign In') }}</button>
-                        <button id="register" onclick="registers()" class="w-25 btn  px-4">{{ __('Register') }}</button>
+                        <button id="login" onclick="logins()" class="w-25 btn   px-1 mr-2">{{ __('Sign In') }}</button>
+                        <button id="register" onclick="registers()" class="w-50 btn  px-2">{{ __('Register') }}</button>
 
                         @if(Session::has('email')) <p class="text-danger ml-5">{{Session::get('email')}} @php Session::forget('email'); @endphp </p> @endif
                     </div>
@@ -1177,8 +1177,8 @@
                             <button style="" class="ml-2 w-50 text-center text-dark bg-light font-weight-bold btn px-4 mr-2">{{ __('Join Jitume') }}</button>
                         </div>
 
-                        <button style="border: 1px solid darkblue;background: #72c537;" id="logins" onclick="login()" class=" w-25 btn   px-4 mr-2">{{ __('Log In') }}</button>
-                        <button style="border: 1px solid darkblue;" id="registers" onclick="register()" class=" w-50 btn  px-4">{{ __('Create Investor Account') }}</button>
+                        <button style="border: 1px solid darkblue;background: #72c537;" id="logins" onclick="login()" class=" w-25 btn   px-1 mr-2">{{ __('Log In') }}</button>
+                        <button style="border: 1px solid darkblue;width:70%;" id="registers" onclick="register()" class=" btn  px-1 py-2 ">{{ __('Create Investor Account') }}</button>
 
                         @if(Session::has('email')) <p class="text-danger ml-5">{{Session::get('email')}} @php Session::forget('email'); @endphp </p> @endif
                     </div>

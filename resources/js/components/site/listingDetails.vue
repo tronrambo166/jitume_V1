@@ -11,18 +11,19 @@
             <h3 class="mt-2 text-left text-dark font-weight-bold ">{{ form.name }}
               <div class="float-right text-right w-25 py-0 my-0">
 
-                <h6 class="font-weight-bold">Amount: <span class="font-weight-light"><b>${{ form.investment_needed }}
-                      (Required:${{ amount_required }})</b></span></h6>
+                <h6 class="font-weight-bold">Amount: <span class="font-weight-light"><b>${{ form.investment_needed }} </b></span>
 
-                <div class="float-right d-inline-block" id="staticRating">
+                   <span style="font-size:11px;" class="font-weight-light"><b>   (Required):${{ amount_required }}</b></span></h6>
+
+                <div class="float-right d-inline-block mt-2 ml-1" id="staticRating">
 
                 </div> <br>
-                <p class="text-dark d-block float-right" style="font-size:14px;">({{ form.rating_count }} reviews)</p>
+                <p class="text-dark d-block float-right" style="font-size:13px;">({{ form.rating_count }} reviews)</p>
               </div>
 
             </h3>
 
-            <p class="my-1"><i class="mr-2 fa fa-map-marker"></i>{{ form.location }}
+            <p class="my-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ form.location }}
 
             <div v-if="auth_user" class="float-right w-25">
               <div class="" style="background:#e5e5e9; height:21px;">
@@ -222,8 +223,8 @@
                 </div>
                 <div class="col-sm-12 px-1">
                   <div class="row">
-                    <div class="col-sm-3">Amount:$</div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">Amount:$</div>
+                    <div class="col-sm-8">
                       <input v-on:keyup="calculate($event.target.value);" value="" id="bid_amount" style="height:25px;"
                         type="number" name="bid_amount">
                     </div>
@@ -233,7 +234,7 @@
                     <div class="col-sm-3">Represents:</div>
                     <div class="col-sm-2"></div>
                     <div class="col-sm-5">
-                      <p id="bid_percent"> %</p>
+                      <p id="bid_percent" class="text-center" > %</p>
                       <input step="0.01" hidden value="" id="bid_percent2" type="number">
                     </div>
                   </div>
@@ -250,8 +251,8 @@
                 </div>
                 <div class="col-sm-12 px-1">
                   <div class="row">
-                    <div class="col-sm-3">Amount:$</div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">Amount:$</div>
+                    <div class="col-sm-8">
                       <input v-on:keyup="calculate2($event.target.value);" value="" id="bid_amount_eqp"
                         style="height:25px;" type="number" name="bid_amount_eqp">
                     </div>
@@ -261,7 +262,7 @@
                     <div class="col-sm-3">Represents:</div>
                     <div class="col-sm-2"></div>
                     <div class="col-sm-5">
-                      <p id="bid_percent_eqp"> %</p>
+                      <p id="bid_percent_eqp" class="text-center"> %</p>
                       <input step="0.01" hidden value="" id="bid_percent2_eqp" type="number">
                     </div>
                   </div>

@@ -918,7 +918,7 @@
     .card_text {
         font-family: 'Roboto', sans-serif;
         font-size: 14px;
-        color: #266A2E !important;
+        color: #585858f0 !important;
     }
 
 
@@ -936,7 +936,7 @@
     }
 
     .text_color_p {
-        color: #083608 !important;
+        color: #585858f0 !important;
     }
 
     .text_color_2 {
