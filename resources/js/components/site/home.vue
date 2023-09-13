@@ -20,18 +20,19 @@
             </div>
 
             <form id="form" @submit.prevent="search();" class="d-flex justify-content-center w-100" method="post">
+
               <div class=" mx-4 text-center row py-0 searchBar text-center">
 
                 <!-- <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3 bg-white">
                               <input  required=""  style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div> -->
 
-                <div style="border-radius: 35px 0 0 35px;" class="py-2 col-5 bg-white">
+                <div class="col-12 col-sm-5 my-1 py-1 bg-white rounded">
                   <input id="searchbox" onkeyup="suggest(this.value);" style="border: none;height: 42px;"
-                    class="bar bg-white form-control d-inline" type="text" name="search" value="" placeholder="Location">
-
+                    class="bar bg-white form-control d-inline ml-1" type="text" name="search" value=""
+                    placeholder="Location">
                 </div>
 
-                <div class="pt-2 col-4 bg-white">
+                <div class="col-12 col-sm-5 my-1 pt-1  bg-white">
                   <div class="dropdown pt-1">
 
                     <select id="category" name="category" class="border-white form-control home_category_listings">
@@ -61,9 +62,8 @@
                   </div>
                 </div>
 
-                <div style="border-radius: 0 35px 35px 0;"
-                  class="bg-white col-3 py-2 d-flex justify-content-end align-items-center">
-                  <button class="searchListing px-sm-3 px-2" type="submit">Search</button>
+                <div class="col-12 col-sm-2 my-1 bg-white py-1 d-flex justify-content-center align-items-center rounded">
+                  <button class="w-100 searchListing px-sm-3 px-2" type="submit">Search</button>
                 </div>
 
               </div>

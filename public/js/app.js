@@ -10044,6 +10044,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -10314,6 +10318,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -10382,6 +10414,24 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -11034,6 +11084,15 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -70640,13 +70699,10 @@ var staticRenderFns = [
       [
         _c(
           "div",
-          {
-            staticClass: "py-2 col-5 bg-white",
-            staticStyle: { "border-radius": "35px 0 0 35px" },
-          },
+          { staticClass: "col-12 col-sm-5 my-1 py-1 bg-white rounded" },
           [
             _c("input", {
-              staticClass: "bar bg-white form-control d-inline",
+              staticClass: "bar bg-white form-control d-inline ml-1",
               staticStyle: { border: "none", height: "42px" },
               attrs: {
                 id: "searchbox",
@@ -70660,7 +70716,7 @@ var staticRenderFns = [
           ]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "pt-2 col-4 bg-white" }, [
+        _c("div", { staticClass: "col-12 col-sm-5 my-1 pt-1 bg-white" }, [
           _c("div", { staticClass: "dropdown pt-1" }, [
             _c(
               "select",
@@ -70744,14 +70800,13 @@ var staticRenderFns = [
           "div",
           {
             staticClass:
-              "bg-white col-3 py-2 d-flex justify-content-end align-items-center",
-            staticStyle: { "border-radius": "0 35px 35px 0" },
+              "col-12 col-sm-2 my-1 bg-white py-1 d-flex justify-content-center align-items-center rounded",
           },
           [
             _c(
               "button",
               {
-                staticClass: "searchListing px-sm-3 px-2",
+                staticClass: "w-100 searchListing px-sm-3 px-2",
                 attrs: { type: "submit" },
               },
               [_vm._v("Search")]
@@ -73671,240 +73726,236 @@ var render = function () {
                         },
                       },
                       [
-                        _c(
-                          "div",
-                          { staticClass: "row pt-2", attrs: { width: "90%" } },
-                          [
-                            _c("div", { staticClass: "col-sm-2 px-1" }, [
-                              _c("div", { staticClass: "" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: result.title,
-                                      expression: "result.title",
-                                    },
-                                  ],
-                                  staticClass:
-                                    "placeH w-100 rounded border border-dark",
-                                  attrs: {
-                                    readonly: "",
-                                    required: "",
-                                    name: "title",
-                                    type: "text",
+                        _c("div", { staticClass: "row pt-2" }, [
+                          _c("div", { staticClass: "col px-1 my-2 my-sm-0" }, [
+                            _c("div", { staticClass: "" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: result.title,
+                                    expression: "result.title",
                                   },
-                                  domProps: { value: result.title },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        result,
-                                        "title",
-                                        $event.target.value
-                                      )
-                                    },
+                                ],
+                                staticClass:
+                                  "placeH w-100 border border-dark py-1",
+                                attrs: {
+                                  readonly: "",
+                                  required: "",
+                                  name: "title",
+                                  type: "text",
+                                },
+                                domProps: { value: result.title },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      result,
+                                      "title",
+                                      $event.target.value
+                                    )
                                   },
-                                }),
-                              ]),
+                                },
+                              }),
                             ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-2 px-0" }, [
-                              _c("div", {}, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: result.amount,
-                                      expression: "result.amount",
-                                    },
-                                  ],
-                                  staticClass:
-                                    "placeH w-100 rounded border border-dark",
-                                  attrs: {
-                                    readonly: "",
-                                    required: "",
-                                    type: "number",
-                                    name: "amount",
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col px-0 my-2 my-sm-0" }, [
+                            _c("div", {}, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: result.amount,
+                                    expression: "result.amount",
                                   },
-                                  domProps: { value: result.amount },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        result,
-                                        "amount",
-                                        $event.target.value
-                                      )
-                                    },
+                                ],
+                                staticClass:
+                                  "placeH w-100 border border-dark py-1",
+                                attrs: {
+                                  readonly: "",
+                                  required: "",
+                                  type: "number",
+                                  name: "amount",
+                                },
+                                domProps: { value: result.amount },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      result,
+                                      "amount",
+                                      $event.target.value
+                                    )
                                   },
-                                }),
-                              ]),
+                                },
+                              }),
                             ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-3 px-1" }, [
-                              _c(
-                                "div",
-                                { staticClass: "upload-btn-wrapper w-100" },
-                                [
-                                  _c(
-                                    "a",
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col px-1 mt-2 mt-sm-0" }, [
+                            _c(
+                              "div",
+                              { staticClass: "upload-btn-wrapper w-100" },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass:
+                                      "text-white placeH btnUp3 w-100",
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.download_milestone_doc(
+                                          result.id
+                                        )
+                                      },
+                                    },
+                                  },
+                                  [
+                                    _vm._v("Download Milestone Documentaion "),
+                                    _c("i", {
+                                      staticClass: "ml-2 fa fa-arrow-down",
+                                    }),
+                                  ]
+                                ),
+                              ]
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col px-1 mt-2 mt-sm-0" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              result.time_left == "L A T E !"
+                                ? _c(
+                                    "button",
                                     {
                                       staticClass:
-                                        "text-white placeH btnUp3 w-100",
+                                        "text-center border border-dark p-0 btn btn-light btn-block disabled",
+                                      attrs: { type: "submit" },
                                       on: {
                                         click: function ($event) {
-                                          return _vm.download_milestone_doc(
-                                            result.id
-                                          )
+                                          return _vm.make_session(_vm.form.id)
                                         },
                                       },
                                     },
-                                    [
-                                      _vm._v(
-                                        "Download Milestone Documentaion "
-                                      ),
-                                      _c("i", {
-                                        staticClass: "ml-2 fa fa-arrow-down",
-                                      }),
-                                    ]
-                                  ),
-                                ]
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-1 py-1" }, [
-                              _c("div", { staticClass: "form-group" }, [
-                                result.time_left == "L A T E !"
-                                  ? _c(
-                                      "button",
-                                      {
-                                        staticClass:
-                                          "text-center border border-dark p-0 btn btn-light btn-block disabled",
-                                        attrs: { type: "submit" },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.make_session(_vm.form.id)
-                                          },
-                                        },
-                                      },
-                                      [_vm._v("PAY")]
-                                    )
-                                  : _c(
-                                      "button",
-                                      {
-                                        staticClass:
-                                          "text-center border border-dark p-0 btn btn-light btn-block",
-                                        attrs: { type: "submit" },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.make_session(_vm.form.id)
-                                          },
-                                        },
-                                      },
-                                      [_vm._v("PAY")]
-                                    ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.id,
-                                  expression: "form.id",
-                                },
-                              ],
-                              attrs: {
-                                type: "number",
-                                hidden: "",
-                                name: "lisitng_id",
-                              },
-                              domProps: { value: _vm.form.id },
-                              on: {
-                                input: function ($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(_vm.form, "id", $event.target.value)
-                                },
-                              },
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: result.id,
-                                  expression: "result.id",
-                                },
-                              ],
-                              attrs: {
-                                type: "number",
-                                hidden: "",
-                                name: "milestone_id",
-                              },
-                              domProps: { value: result.id },
-                              on: {
-                                input: function ($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(result, "id", $event.target.value)
-                                },
-                              },
-                            }),
-                            _vm._v(" "),
-                            _vm._m(0, true),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-3 p-1" }, [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "rounded border border-dark px-2 d-inline-block",
-                                },
-                                [
-                                  _c(
-                                    "p",
+                                    [_vm._v("PAY")]
+                                  )
+                                : _c(
+                                    "button",
                                     {
                                       staticClass:
-                                        "text-success due small d-inline",
-                                      staticStyle: { "font-size": "12px" },
-                                    },
-                                    [_vm._v("Due in: ")]
-                                  ),
-                                  _vm._v(" "),
-                                  result.time_left == "L A T E !"
-                                    ? _c(
-                                        "p",
-                                        {
-                                          staticClass: "due d-inline",
-                                          staticStyle: { color: "red" },
+                                        "text-center border border-dark p-0 btn btn-light btn-block",
+                                      attrs: { type: "submit" },
+                                      on: {
+                                        click: function ($event) {
+                                          return _vm.make_session(_vm.form.id)
                                         },
-                                        [
-                                          _vm._v(
-                                            " " + _vm._s(result.time_left) + " "
-                                          ),
-                                        ]
-                                      )
-                                    : _c(
-                                        "p",
-                                        { staticClass: "small due d-inline" },
-                                        [_vm._v(_vm._s(result.time_left))]
-                                      ),
-                                ]
-                              ),
+                                      },
+                                    },
+                                    [_vm._v("PAY")]
+                                  ),
                             ]),
-                          ]
-                        ),
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.id,
+                                expression: "form.id",
+                              },
+                            ],
+                            attrs: {
+                              type: "number",
+                              hidden: "",
+                              name: "lisitng_id",
+                            },
+                            domProps: { value: _vm.form.id },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "id", $event.target.value)
+                              },
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: result.id,
+                                expression: "result.id",
+                              },
+                            ],
+                            attrs: {
+                              type: "number",
+                              hidden: "",
+                              name: "milestone_id",
+                            },
+                            domProps: { value: result.id },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(result, "id", $event.target.value)
+                              },
+                            },
+                          }),
+                          _vm._v(" "),
+                          _vm._m(0, true),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col px-1 mt-2 mt-sm-0" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "rounded border border-dark px-2 d-inline-block",
+                              },
+                              [
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass:
+                                      "text-success due small d-inline",
+                                    staticStyle: { "font-size": "12px" },
+                                  },
+                                  [_vm._v("Due in: ")]
+                                ),
+                                _vm._v(" "),
+                                result.time_left == "L A T E !"
+                                  ? _c(
+                                      "p",
+                                      {
+                                        staticClass: "due d-inline",
+                                        staticStyle: { color: "red" },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                    " +
+                                            _vm._s(result.time_left) +
+                                            " "
+                                        ),
+                                      ]
+                                    )
+                                  : _c(
+                                      "p",
+                                      { staticClass: "small due d-inline" },
+                                      [_vm._v(_vm._s(result.time_left))]
+                                    ),
+                              ]
+                            ),
+                          ]),
+                        ]),
                       ]
                     ),
                   ])
@@ -73923,9 +73974,9 @@ var render = function () {
                       [
                         _c(
                           "div",
-                          { staticClass: "row pt-2", attrs: { width: "85%" } },
+                          { staticClass: "row pt-2 my-auto mr-1 mr-md-0" },
                           [
-                            _c("div", { staticClass: "col-sm-3 px-1" }, [
+                            _c("div", { staticClass: "col mt-2 mt-sm-0" }, [
                               _c("div", { staticClass: "" }, [
                                 _c("input", {
                                   directives: [
@@ -73937,7 +73988,7 @@ var render = function () {
                                     },
                                   ],
                                   staticClass:
-                                    "placeH_done w-100 rounded border border-dark",
+                                    "placeH_done w-100 border py-1 border-dark",
                                   attrs: {
                                     readonly: "",
                                     required: "",
@@ -73961,47 +74012,49 @@ var render = function () {
                               ]),
                             ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-2 px-0" }, [
-                              _c("div", {}, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: result.amount,
-                                      expression: "result.amount",
+                            _c(
+                              "div",
+                              { staticClass: "col px-0 my-2 mt-sm-0" },
+                              [
+                                _c("div", {}, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: result.amount,
+                                        expression: "result.amount",
+                                      },
+                                    ],
+                                    staticClass:
+                                      "placeH_done w-100 border py-1 border-dark",
+                                    attrs: {
+                                      readonly: "",
+                                      required: "",
+                                      type: "number",
+                                      name: "amount",
                                     },
-                                  ],
-                                  staticClass:
-                                    "placeH_done w-100 rounded border border-dark",
-                                  attrs: {
-                                    readonly: "",
-                                    required: "",
-                                    type: "number",
-                                    name: "amount",
-                                  },
-                                  domProps: { value: result.amount },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        result,
-                                        "amount",
-                                        $event.target.value
-                                      )
+                                    domProps: { value: result.amount },
+                                    on: {
+                                      input: function ($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          result,
+                                          "amount",
+                                          $event.target.value
+                                        )
+                                      },
                                     },
-                                  },
-                                }),
-                              ]),
-                            ]),
+                                  }),
+                                ]),
+                              ]
+                            ),
                             _vm._v(" "),
                             _vm._m(1, true),
                             _vm._v(" "),
                             _vm._m(2, true),
-                            _vm._v(" "),
-                            _vm._m(3, true),
                           ]
                         ),
                       ]
@@ -74019,89 +74072,85 @@ var render = function () {
                         },
                       },
                       [
-                        _c(
-                          "div",
-                          { staticClass: "row pt-2", attrs: { width: "85%" } },
-                          [
-                            _c("div", { staticClass: "col-sm-3 px-1" }, [
-                              _c("div", { staticClass: "" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: result.title,
-                                      expression: "result.title",
-                                    },
-                                  ],
-                                  staticClass:
-                                    "placeH_inactive w-100 rounded border border-dark",
-                                  attrs: {
-                                    readonly: "",
-                                    required: "",
-                                    name: "title",
-                                    type: "text",
+                        _c("div", { staticClass: "row pt-2 mr-1 mr-sm-0" }, [
+                          _c("div", { staticClass: "col px-1 my-2 my-sm-0" }, [
+                            _c("div", { staticClass: "" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: result.title,
+                                    expression: "result.title",
                                   },
-                                  domProps: { value: result.title },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        result,
-                                        "title",
-                                        $event.target.value
-                                      )
-                                    },
+                                ],
+                                staticClass:
+                                  "placeH_inactive w-100 py-1 border border-dark",
+                                attrs: {
+                                  readonly: "",
+                                  required: "",
+                                  name: "title",
+                                  type: "text",
+                                },
+                                domProps: { value: result.title },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      result,
+                                      "title",
+                                      $event.target.value
+                                    )
                                   },
-                                }),
-                              ]),
+                                },
+                              }),
                             ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-2 px-0" }, [
-                              _c("div", {}, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: result.amount,
-                                      expression: "result.amount",
-                                    },
-                                  ],
-                                  staticClass:
-                                    "placeH_inactive w-100 rounded border border-dark",
-                                  attrs: {
-                                    readonly: "",
-                                    required: "",
-                                    type: "number",
-                                    name: "amount",
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col px-0 my-2 my-sm-0" }, [
+                            _c("div", {}, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: result.amount,
+                                    expression: "result.amount",
                                   },
-                                  domProps: { value: result.amount },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        result,
-                                        "amount",
-                                        $event.target.value
-                                      )
-                                    },
+                                ],
+                                staticClass:
+                                  "placeH_inactive w-100 py-1 border border-dark",
+                                attrs: {
+                                  readonly: "",
+                                  required: "",
+                                  type: "number",
+                                  name: "amount",
+                                },
+                                domProps: { value: result.amount },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      result,
+                                      "amount",
+                                      $event.target.value
+                                    )
                                   },
-                                }),
-                              ]),
+                                },
+                              }),
                             ]),
-                            _vm._v(" "),
-                            _vm._m(4, true),
-                            _vm._v(" "),
-                            _vm._m(5, true),
-                            _vm._v(" "),
-                            _vm._m(6, true),
-                          ]
-                        ),
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(3, true),
+                          _vm._v(" "),
+                          _vm._m(4, true),
+                          _vm._v(" "),
+                          _vm._m(5, true),
+                        ]),
                       ]
                     ),
                   ]),
@@ -74118,7 +74167,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 p-1" }, [
+    return _c("div", { staticClass: "col px-1 mt-2 mt-sm-0" }, [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "span",
@@ -74126,7 +74175,7 @@ var staticRenderFns = [
             staticClass:
               "status text-center border border-dark p-0 btn btn-success btn-block",
           },
-          [_vm._v("In Progress")]
+          [_vm._v("In\n                                    Progress")]
         ),
       ]),
     ])
@@ -74135,48 +74184,51 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-3 px-1" }, [
-      _c("div", { staticClass: "upload-btn-wrapper w-100" }, [
-        _c(
-          "a",
-          { staticClass: "text-white disabled placeH_done btnUp_done w-100" },
-          [
-            _vm._v("Download Milestone Documentaion "),
-            _c("i", { staticClass: "ml-2 fa fa-arrow-down" }),
-          ]
-        ),
-      ]),
+    return _c("div", { staticClass: "col my-2 my-sm-0" }, [
+      _c(
+        "div",
+        { staticClass: "upload-btn-wrapper d-flex justify-content-start" },
+        [
+          _c(
+            "a",
+            {
+              staticClass:
+                "text-white disabled placeH_done btnUp_done w-100 d-flex align-items-center",
+            },
+            [
+              _vm._v(
+                "Download\n                                    Milestone\n                                    Documentaion "
+              ),
+              _c("i", { staticClass: "ml-2 fa fa-arrow-down" }),
+            ]
+          ),
+        ]
+      ),
     ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 py-1" }, [
-      _c("div", { staticClass: "form-group" }, [
+    return _c("div", { staticClass: "col my-2 my-sm-0 d-flex" }, [
+      _c("div", { staticClass: "form-group mr-1" }, [
         _c(
           "a",
           {
             staticClass:
-              "text-center border border-dark py-0 btn btn-light btn-block",
+              "placeH_active text-center border border-dark px-2 py-1 btn btn-light btn-block",
             attrs: { disabled: "" },
           },
           [_vm._v("PAID")]
         ),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 p-1" }, [
-      _c("div", { staticClass: "form-group" }, [
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group ml-1" }, [
         _c(
           "span",
           {
             staticClass:
-              "status text-center border text-light border-dark p-0 btn btn-block",
+              "placeH_active status text-center border text-light border-dark px-2 py-1 btn-block",
             staticStyle: { background: "black" },
           },
           [_vm._v("Done!")]
@@ -74188,13 +74240,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-3 px-1" }, [
+    return _c("div", { staticClass: "col px-0 my-2 my-sm-0" }, [
       _c("div", { staticClass: "upload-btn-wrapper w-100" }, [
         _c(
           "a",
           { staticClass: "text-white disabled placeH_inactive btnUp4 w-100" },
           [
-            _vm._v("Download Milestone Documentaion "),
+            _vm._v(
+              "Download Milestone\n                                    Documentaion "
+            ),
             _c("i", { staticClass: "ml-2 fa fa-arrow-down" }),
           ]
         ),
@@ -74205,7 +74259,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 py-1" }, [
+    return _c("div", { staticClass: "col px-0 my-2 my-sm-0" }, [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "a",
@@ -74223,7 +74277,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1 p-1" }, [
+    return _c("div", { staticClass: "col px-0 my-2 my-sm-0" }, [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "span",
@@ -74231,7 +74285,7 @@ var staticRenderFns = [
             staticClass:
               "status text-center border border-dark p-0 btn btn-light btn-block",
           },
-          [_vm._v("On Hold")]
+          [_vm._v("On\n                                    Hold")]
         ),
       ]),
     ])
@@ -74267,16 +74321,16 @@ var render = function () {
       },
     }),
     _vm._v(" "),
-    _c("div", { staticClass: "heading row mx-auto my-3" }, [
-      _c("div", { staticClass: "col-sm-12" }, [
+    _c("div", { staticClass: "heading row mx-auto my-3 pt-4" }, [
+      _c("div", {}, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-4" }, [
+          _c("div", { staticClass: "col-md-4" }, [
             _c(
               "div",
               { staticClass: "grid images_3_of_2 rounded listing px-3" },
               [
                 _c("img", {
-                  staticClass: "shadow card",
+                  staticClass: "card",
                   staticStyle: { width: "100%", height: "280px" },
                   attrs: { src: _vm.form.image, alt: "" },
                 }),
@@ -74285,19 +74339,17 @@ var render = function () {
             _vm._v(" "),
             _c("div", { staticClass: "pl-4 row mt-4" }, [
               _c("div", { staticClass: "col-sm-6" }, [
-                _c(
-                  "h5",
-                  { staticClass: "text-left text-dark font-weight-bold" },
-                  [_vm._v(_vm._s(_vm.form.name))]
-                ),
+                _c("h5", { staticClass: "text-left text-dark" }, [
+                  _vm._v(_vm._s(_vm.form.name)),
+                ]),
                 _vm._v(" "),
-                _c("p", { staticClass: "font-weight-bold my-1 small" }, [
+                _c("p", { staticClass: "my-1 small" }, [
                   _vm._v("$" + _vm._s(_vm.form.price) + " "),
                 ]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-sm-6 text-center" }, [
-                _c("p", { staticClass: "font-weight-bold small text-left" }, [
+                _c("p", { staticClass: "small text-left" }, [
                   _vm._v(_vm._s(_vm.form.location)),
                 ]),
                 _vm._v(" "),
@@ -74319,7 +74371,7 @@ var render = function () {
               ]),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "row my-5" }, [
+            _c("div", { staticClass: "row my-2" }, [
               _c("div", { staticClass: "col-sm-12" }, [
                 _c("a", { staticClass: "btn border border-bottom-success" }, [
                   _vm._v("Overview"),
@@ -74359,22 +74411,18 @@ var render = function () {
             ]),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-sm-5" }, [
+          _c("div", { staticClass: "col-md-4 col-lg-5" }, [
             _c("div", { staticClass: "Overview", attrs: { id: "Overview" } }, [
-              _c("h4", { staticClass: "text-center font-weight-bold" }, [
+              _c("h4", { staticClass: "text-center secondary_heading" }, [
                 _vm._v("About"),
               ]),
               _vm._v(" "),
-              _c(
-                "p",
-                { staticClass: "my-4 font-weight-bold small text-left" },
-                [
-                  _vm._v(
-                    _vm._s(_vm.form.details) +
-                      " Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. "
-                  ),
-                ]
-              ),
+              _c("p", { staticClass: "my-4 text-left h6" }, [
+                _vm._v(
+                  _vm._s(_vm.form.details) +
+                    " Lorem ipsum dolor. Lorem ipsum dolor.\n              Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. "
+                ),
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "cart text-center" }, [
                 _c("form", [
@@ -74383,7 +74431,7 @@ var render = function () {
                         "a",
                         {
                           staticClass:
-                            "border border-dark font-weight-bold w-50 text-center convBtn rounded",
+                            "border border-dark w-50 text-center convBtn rounded",
                           staticStyle: { cursor: "pointer" },
                           on: {
                             click: function ($event) {
@@ -74391,13 +74439,17 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Service Milestone Breakdown")]
+                        [
+                          _vm._v(
+                            "Service Milestone\n                  Breakdown"
+                          ),
+                        ]
                       )
                     : _c(
                         "a",
                         {
                           staticClass:
-                            "border border-dark font-weight-bold w-50 text-center convBtn",
+                            "border border-dark w-50 text-center convBtn",
                           staticStyle: { cursor: "pointer" },
                           attrs: {
                             "data-target": "#loginModal",
@@ -74419,8 +74471,7 @@ var render = function () {
           _c(
             "div",
             {
-              staticClass: "col-sm-3 rounded",
-              staticStyle: { background: "black" },
+              staticClass: "col-md-4 col-lg-3 rounded my-3 my-md-0 primary_bg",
             },
             [
               _c("div", { staticClass: "p-2" }, [
@@ -74437,79 +74488,93 @@ var render = function () {
                   [
                     _vm._m(0),
                     _vm._v(" "),
-                    _c("div", { staticClass: "row p-2" }, [
-                      _c(
-                        "p",
-                        { staticClass: "d-inline w-50 text-left text-light" },
-                        [_vm._v("Desired start date: ")]
-                      ),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "pl-0 d-inline w-50" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.formBook.date,
-                              expression: "formBook.date",
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex p-2 justify-content-center justify-content-md-end",
+                      },
+                      [
+                        _c(
+                          "p",
+                          { staticClass: "d-inline text-left text-light mr-2" },
+                          [_vm._v("Desired start date: ")]
+                        ),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "pl-0 d-inline" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.formBook.date,
+                                expression: "formBook.date",
+                              },
+                            ],
+                            attrs: { required: "", type: "date", name: "date" },
+                            domProps: { value: _vm.formBook.date },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.formBook,
+                                  "date",
+                                  $event.target.value
+                                )
+                              },
                             },
-                          ],
-                          attrs: { required: "", type: "date", name: "date" },
-                          domProps: { value: _vm.formBook.date },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.formBook,
-                                "date",
-                                $event.target.value
-                              )
-                            },
-                          },
-                        }),
-                      ]),
-                    ]),
+                          }),
+                        ]),
+                      ]
+                    ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("p", { staticClass: "text-right text-light" }, [
-                        _vm._v("Enter additional notes "),
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "text-right" }, [
-                        _c("textarea", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.formBook.note,
-                              expression: "formBook.note",
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex p-2 justify-content-center justify-content-md-end",
+                      },
+                      [
+                        _c("div", {}, [
+                          _c("p", { staticClass: "text-start text-light" }, [
+                            _vm._v("Enter additional notes "),
+                          ]),
+                          _vm._v(" "),
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.formBook.note,
+                                expression: "formBook.note",
+                              },
+                            ],
+                            staticClass: "rounded",
+                            attrs: {
+                              rows: "10",
+                              cols: "32",
+                              required: "",
+                              name: "note",
                             },
-                          ],
-                          staticClass: "rounded",
-                          attrs: {
-                            required: "",
-                            name: "note",
-                            cols: "32",
-                            rows: "10",
-                          },
-                          domProps: { value: _vm.formBook.note },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.formBook,
-                                "note",
-                                $event.target.value
-                              )
+                            domProps: { value: _vm.formBook.note },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.formBook,
+                                  "note",
+                                  $event.target.value
+                                )
+                              },
                             },
-                          },
-                        }),
-                      ]),
-                    ]),
+                          }),
+                        ]),
+                      ]
+                    ),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -74536,32 +74601,41 @@ var render = function () {
                       },
                     }),
                     _vm._v(" "),
-                    _vm.auth_user
-                      ? _c(
-                          "button",
-                          {
-                            staticClass:
-                              "my-3 py-1 btn-success w-50 btn header_buttons text-light float-right",
-                          },
-                          [_vm._v("Book")]
-                        )
-                      : _c(
-                          "a",
-                          {
-                            staticClass:
-                              "my-3 py-1 btn-success w-50 btn header_buttons text-light float-right",
-                            attrs: {
-                              "data-target": "#loginModal",
-                              "data-toggle": "modal",
-                            },
-                            on: {
-                              click: function ($event) {
-                                return _vm.make_session()
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "p-2 d-flex justify-content-center justify-content-md-end",
+                      },
+                      [
+                        _vm.auth_user
+                          ? _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "my-3 py-1 btn-success w-50 btn header_buttons text-light float-right",
                               },
-                            },
-                          },
-                          [_vm._v("Book")]
-                        ),
+                              [_vm._v("Book\n                ")]
+                            )
+                          : _c(
+                              "a",
+                              {
+                                staticClass:
+                                  "my-3 py-1 btn-success w-50 btn header_buttons text-light float-right",
+                                attrs: {
+                                  "data-target": "#loginModal",
+                                  "data-toggle": "modal",
+                                },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.make_session()
+                                  },
+                                },
+                              },
+                              [_vm._v("Book")]
+                            ),
+                      ]
+                    ),
                   ]
                 ),
               ]),
@@ -74570,7 +74644,7 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-sm-5" }),
+      _c("div", { staticClass: "col-md-5" }),
     ]),
     _vm._v(" "),
     _c(
@@ -74632,16 +74706,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c(
-        "a",
-        {
-          staticClass:
-            "ml-auto my-3 w-50 btn header_buttons text-light float-right",
-        },
-        [_vm._v("Message")]
-      ),
-    ])
+    return _c(
+      "div",
+      {
+        staticClass: "d-flex p-2 justify-content-center justify-content-md-end",
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "w-50 my-3 btn header_buttons text-light float-right",
+          },
+          [_vm._v("Message")]
+        ),
+      ]
+    )
   },
   function () {
     var _vm = this
@@ -74673,7 +74752,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h5", { staticClass: "my-3 font-weight-bold" }, [
-      _vm._v("Service rating \n        "),
+      _vm._v("Service rating\n              "),
       _c("div", { staticClass: "ml-5 d-inline-block", attrs: { id: "demo" } }),
     ])
   },
@@ -74952,7 +75031,7 @@ var render = function () {
       "div",
       {
         staticClass:
-          "container-xl service_img mx-auto col-sm-12 text-center p-5",
+          "container-xl service_img mx-auto col-sm-12 text-center p-md-5",
         staticStyle: { "min-height": "600px" },
       },
       [
@@ -74963,7 +75042,8 @@ var render = function () {
         _c(
           "form",
           {
-            staticClass: "container w-100 mb-5 pb-5",
+            staticClass:
+              "container w-100 mb-5 pb-5 d-flex justify-content-center",
             attrs: { id: "form", method: "post" },
             on: {
               submit: function ($event) {
@@ -75109,7 +75189,7 @@ var staticRenderFns = [
             "text-shadow": "3px 3px #2a2a2c",
           },
         },
-        [_vm._v("\n                    Looking for...\n                ")]
+        [_vm._v("\n                Looking for...\n            ")]
       ),
     ])
   },
@@ -75121,13 +75201,13 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "w-100 text-center py-1 rounded text-center d-md-flex justify-content-between bg-white",
+          "w-100 text-center py-1 rounded text-center row justify-content-between bg-white mr-2 mr-sm-0",
       },
       [
         _c(
           "div",
           {
-            staticClass: "px-2 py-2 bg-white",
+            staticClass: "px-2 py-2 bg-white col-12 col-sm-4",
             staticStyle: { "border-radius": "35px 0 0 35px" },
           },
           [
@@ -75143,7 +75223,7 @@ var staticRenderFns = [
           ]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "px-2 py-2 bg-white" }, [
+        _c("div", { staticClass: "px-2 py-2 bg-white col-12 col-sm-4" }, [
           _c("input", {
             staticClass: "border-none bar bg-white form-control d-inline",
             staticStyle: { border: "none", height: "42px" },
@@ -75162,96 +75242,90 @@ var staticRenderFns = [
           "div",
           {
             staticClass:
-              "px-2 py-2 bg-white d-flex justify-centent-evenly align-items-center",
+              "px-2 py-2 bg-white col-12 col-sm-4 d-flex align-items-center",
           },
           [
-            _c("div", { staticClass: "dropdown d-flex align-items-center" }, [
-              _c(
-                "select",
-                {
-                  staticClass: "border-none form-control",
-                  attrs: { name: "category" },
-                },
-                [
-                  _c(
-                    "option",
-                    {
-                      staticClass: "form-control",
-                      attrs: { hidden: "", value: "" },
-                    },
-                    [_vm._v("Services")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "option",
-                    {
-                      staticClass: "form-control",
-                      attrs: { value: "Business Planning" },
-                    },
-                    [_vm._v("Business Planning")]
-                  ),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "IT" } }, [_vm._v("IT")]),
-                  _vm._v(" "),
-                  _c(
-                    "option",
-                    { attrs: { value: "Legal Project Management" } },
-                    [_vm._v("Legal Project Management")]
-                  ),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Branding and Design" } }, [
-                    _vm._v("Branding and Design "),
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Auto" } }, [_vm._v("Auto")]),
-                  _vm._v(" "),
-                  _c(
-                    "option",
-                    {
-                      attrs: {
-                        value:
-                          "Finance, Accounting & \n                Tax Marketing",
+            _c("div", { staticClass: "w-100 row" }, [
+              _c("div", { staticClass: "dropdown col-8" }, [
+                _c(
+                  "select",
+                  {
+                    staticClass: "border-none form-control",
+                    attrs: { name: "category" },
+                  },
+                  [
+                    _c(
+                      "option",
+                      {
+                        staticClass: "form-control",
+                        attrs: { hidden: "", value: "" },
                       },
-                    },
-                    [
-                      _vm._v(
-                        "Finance, Accounting &\n                                    Tax Marketing"
-                      ),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Tax Marketing" } }, [
-                    _vm._v("Tax Marketing"),
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Public Relations" } }, [
-                    _vm._v("Public Relations"),
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Other" } }, [
-                    _vm._v("Other"),
-                  ]),
-                ]
-              ),
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "bg-white d-flex align-items-center px-2",
-                staticStyle: { "border-radius": "0 35px 35px 0" },
-              },
-              [
+                      [_vm._v("Services")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "option",
+                      {
+                        staticClass: "form-control",
+                        attrs: { value: "Business Planning" },
+                      },
+                      [_vm._v("Business Planning")]
+                    ),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "IT" } }, [_vm._v("IT")]),
+                    _vm._v(" "),
+                    _c(
+                      "option",
+                      { attrs: { value: "Legal Project Management" } },
+                      [_vm._v("Legal Project Management")]
+                    ),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Branding and Design" } }, [
+                      _vm._v("Branding and Design "),
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Auto" } }, [
+                      _vm._v("Auto"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "option",
+                      {
+                        attrs: { value: "Finance, Accounting & Tax Marketing" },
+                      },
+                      [
+                        _vm._v(
+                          "Finance, Accounting &\n                                    Tax Marketing"
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Tax Marketing" } }, [
+                      _vm._v("Tax Marketing"),
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Public Relations" } }, [
+                      _vm._v("Public Relations"),
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Other" } }, [
+                      _vm._v("Other"),
+                    ]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "bg-white px-1 px-md-2 col-4" }, [
                 _c(
                   "button",
                   {
-                    staticClass: "px-sm-3 px-1 searchListing py-1",
+                    staticClass: "searchListing py-1 w-100",
                     attrs: { type: "submit" },
                   },
                   [_vm._v("Search")]
                 ),
-              ]
-            ),
+              ]),
+            ]),
           ]
         ),
       ]
@@ -89042,7 +89116,7 @@ var index = {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp_updated\\\\htdocs\\\\jitume"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp_updated\\\\htdocs\\\\jitume","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

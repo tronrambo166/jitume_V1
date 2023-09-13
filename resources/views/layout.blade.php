@@ -163,13 +163,13 @@
 
         <div class="">
 
-              @if(Session::has('login_err'))
-        <div class="w-50 m-auto alert alert-danger alert-dismissible fade show" role="alert">
-          <p class="font-weight-bold">{{Session::get('login_err')}}   @php Session::forget('login_err'); @endphp </p>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>  @endif 
+            @if(Session::has('login_err'))
+            <div class="w-50 m-auto alert alert-danger alert-dismissible fade show" role="alert">
+                <p class="font-weight-bold">{{Session::get('login_err')}} @php Session::forget('login_err'); @endphp </p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> @endif
 
 
             @if(Session::has('auth_service'))
@@ -352,20 +352,41 @@
             </div>
 
             <div class="col-12 col-sm-5 pt-2 d-flex justify-content-center">
-                <ul class="text-light float-left w-25 p-0">
+
+                <div class="d-flex flex-wrap">
+                    <a href="twitter.com" target="_black"><i style="width: 35px;" class="fa fa-twitter fa-2x bg-light p-1 rounded"></i></a>
+
+                    <a href="twitter.com" target="_black"><i style="width: 35px;" class="fa fa-instagram fa-2x bg-light text-secondary p-1 rounded"></i></a>
+
+                    <a href="twitter.com" target="_black">
+                        <i style="width: 35px;" class="fa fa-youtube fa-2x bg-light text-danger p-1 rounded"></i>
+                    </a>
+
+                    <a href="twitter.com" target="_black">
+                        <i style="width: 35px;" class="fa fa-facebook fa-2x bg-light text-info p-1 rounded"></i>
+                    </a>
+
+                </div>
+
+                <!-- <ul class="text-light float-left p-0">
                     <li style="list-style-type:none;" class="my-2">
-                        <a class="d-inline" href="twitter.com" target="_black"><i class="fa fa-twitter fa-2x bg-light p-1 rounded"></i></a>
-                        <a class="d-inline" href="twitter.com" target="_black"><i class="fa fa-instagram fa-2x bg-light text-secondary p-1 rounded"></i></a>
+                        <a class="d-inline" href="twitter.com" target="_black"><i class="mr-1 fa fa-twitter fa-2x bg-light p-1 rounded"></i></a>
+                        <a class="d-inline" href="twitter.com" target="_black"><i class="mt-1 fa fa-instagram fa-2x bg-light text-secondary p-1 rounded"></i></a>
                     </li>
 
                     <li style="list-style-type:none;">
-                        <a class="d-inline" href="twitter.com" target="_black"><i class="fa fa-youtube fa-2x bg-light text-danger p-1 rounded"></i></a>
-                        <a class="d-inline" href="twitter.com" target="_black"><i style="margin-left:2px;" class="px-2 fa fa-facebook fa-2x bg-light text-info p-1 rounded"></i></a>
+                        <a class="d-inline" href="twitter.com" target="_black">
+                            <i class="mt-1 fa fa-youtube fa-2x bg-light text-danger p-1 rounded"></i>
+                        </a>
+
+                        <a class="d-inline" href="twitter.com" target="_black">
+                            <i class="ml-0 ml-md-1 mt-1 px-2 fa fa-facebook fa-2x bg-light text-info p-1 rounded"></i>
+                        </a>
                     </li>
 
 
-                </ul>
-                <ul class="text-light float-right w-75 px-4">
+                </ul> -->
+                <ul class="text-light px-4">
 
                     <h3 class="h3">Contact Us</h3>
 
@@ -427,20 +448,20 @@
                 method: 'get',
                 dataType: 'json',
                 success: function(response) {
-                   // console.log(response);
+                    // console.log(response);
 
                     for (i = 0; i < 10; i++) {
-                     //console.log(response.data.length);
-                     if(response.data.length > i){
-                        var name = response.data[i].name;
-                        var city = response.data[i].city;
-                        var country = response.data[i].country;
-                        $("#result_list").show();
+                        //console.log(response.data.length);
+                        if (response.data.length > i) {
+                            var name = response.data[i].name;
+                            var city = response.data[i].city;
+                            var country = response.data[i].country;
+                            $("#result_list").show();
 
-                        $("#result_list").append(' <div onclick="address(\'' + name + ',' + city + ',' + country + '\');" style="" data-id="' + response.data[i].name + '" class="address  py-0 my-0 border broder-dark bg-light shadow single_comms">  <h6 class="font-weight-bold text-dark d-inline" ><i class="fa fa-map-marker text-success" aria-hidden="true"></i> ' + name + '</h6> <p  class="d-inline text-dark"> Loc: <small>' + city + ', ' + country + '</small> </p> </div>');
+                            $("#result_list").append(' <div onclick="address(\'' + name + ',' + city + ',' + country + '\');" style="" data-id="' + response.data[i].name + '" class="address  py-0 my-0 border broder-dark bg-light shadow single_comms">  <h6 class="font-weight-bold text-dark d-inline" ><i class="fa fa-map-marker text-success" aria-hidden="true"></i> ' + name + '</h6> <p  class="d-inline text-dark"> Loc: <small>' + city + ', ' + country + '</small> </p> </div>');
 
 
-                      }
+                        }
                     }
                     //document.getElementById('result_list').style.overflowY="scroll";   
 
