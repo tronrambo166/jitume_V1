@@ -1,128 +1,146 @@
 <template>
-    <div class="container">
-        
-              
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    
-        <div class="heading row mx-auto my-3"> 
-        <div class="col-sm-12">
-            <div class="row">
-                <div class="col-sm-4">
-                    
-                        <div class="grid images_3_of_2 rounded listing px-3">
-                <img style="width:100%;height:280px" class="shadow card" 
-                :src="form.image" alt="" />
-                    
-                                          
+  <div class="container">
 
-                    </div>
 
-                    <div class="pl-4 row mt-4">
-                    <div class="col-sm-6">
-                    <h5 class="text-left text-dark font-weight-bold ">{{form.name}}</h5>
-        
-                        <p class="font-weight-bold my-1 small">${{form.price}} </p>
-                        </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-                    <div class="col-sm-6 text-center">
-                    <p class="font-weight-bold small text-left">{{form.location}}</p>
-        
-                      <div class="float-right d-inline-block" id="staticRating">
 
-                        </div> <br>
+    <div class="heading row mx-auto my-3 pt-4">
 
-                        <p class="text-dark d-block float-right" style="font-size:11px;">({{form.rating_count}} reviews)</p>
-                        
-                        </div>
+      <div class="">
 
-                        </div>
+        <div class="row">
 
-                        <div class="row my-5">
-                            <div class="col-sm-12">
-                            <a class="btn border border-bottom-success">Overview</a>
-                            <a v-if="auth_user" data-toggle="modal" data-target="#reviewModal" class="btn border border-bottom-success">Add review</a>
+          <div class="col-md-4">
 
-                           <a v-else @click="make_session(form.id);" data-target="#loginmodal2" data-toggle="modal" class="btn border border-bottom-success">Add review</a>
+            <div class="grid images_3_of_2 rounded listing px-3">
+              <img style="width:100%;height:280px" class="card" :src="form.image" alt="" />
+            </div>
 
-                            <hr>
-                            <!-- <p> <span class="ml-2 font-weight-bold">Details:{{form.details}}</span></p> -->
+            <div class="pl-4 row mt-4">
+              <div class="col-sm-6">
+                <h5 class="text-left text-dark ">{{ form.name }}</h5>
 
-                            </div>
-                            </div>  
-                            
+                <p class="my-1 small">${{ form.price }} </p>
+              </div>
 
-                </div>
+              <div class="col-sm-6 text-center">
+                <p class="small text-left">{{ form.location }}</p>
 
-                <div class="col-sm-5">
+                <div class="float-right d-inline-block" id="staticRating">
 
-                      
-                   <div class="Overview" id="Overview">
-                    <h4 class="text-center font-weight-bold">About</h4>
-                    <p class="my-4 font-weight-bold small text-left">{{form.details}} Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. </p>
+                </div> <br>
 
-                    <div class="cart text-center">
-                        <form>
-                           <!--  <input id="qty" min="1" class="w-25 form-control d-inline" type="number" name="qty" value="1"> -->
-                           
-                            <a style="cursor:pointer;" v-if="auth_user" @click="service_milestones(form.id)" class="border border-dark font-weight-bold w-50 text-center convBtn rounded">Service Milestone Breakdown</a>
+                <p class="text-dark d-block float-right" style="font-size:11px;">({{ form.rating_count }} reviews)</p>
 
-                            <!--
-                            <a  v-if="auth_user" @click="addToCart(form.id)" class="text-light font-weight-bold btn buttonEq2">Add to cart</a>
-                            <a v-else @click="make_session()" class="text-light font-weight-bold btn buttonEq2" data-target="#loginModal" data-toggle="modal">Add to cart</a> -->
+              </div>
 
-                            <a style="cursor:pointer;" v-else @click="make_session()" class="border border-dark font-weight-bold w-50 text-center convBtn" data-target="#loginModal" data-toggle="modal">Service Milestone Breakdown</a>
+            </div>
 
-                        </form>
-                    </div>
-                    <!-- <p><span class="mt-1 rounded"><i class="mr-2 fa fa-category"></i>Category: {{form.category}}</span></p> -->
-                    </div>
+            <div class="row my-2">
+              <div class="col-sm-12">
+                <a class="btn border border-bottom-success">Overview</a>
+                <a v-if="auth_user" data-toggle="modal" data-target="#reviewModal"
+                  class="btn border border-bottom-success">Add review</a>
 
-                      
-                                 
-                </div>
+                <a v-else @click="make_session(form.id);" data-target="#loginmodal2" data-toggle="modal"
+                  class="btn border border-bottom-success">Add review</a>
 
-                 <div class="col-sm-3 rounded" style="background:black;">
-                    <div class="p-2">
-                    <form @submit.prevent="serviceBook">
-                    <div class="row">
-                    <a class="ml-auto my-3 w-50 btn header_buttons text-light float-right">Message</a>
-                     </div>
-                    <div class="row p-2">
-                        <p class="d-inline w-50 text-left text-light">Desired start date: </p> 
-                        <span class="pl-0 d-inline w-50"><input required v-model="formBook.date" type="date" name="date"></span>
-                    </div>
+                <hr>
+                <!-- <p> <span class="ml-2 font-weight-bold">Details:{{form.details}}</span></p> -->
 
-                    <div class="row">
-                        <p class="text-right text-light">Enter additional notes </p> 
-                        <span class="text-right">
-                            <textarea required v-model="formBook.note" name="note" cols="32" rows="10" class="rounded"></textarea>
-                        </span>
-                    </div>
-                    <input hidden type="number" name="service_id" v-model="formBook.service_id">
-                    <button v-if="auth_user" class="my-3 py-1 btn-success w-50 btn header_buttons text-light float-right">Book</button>
-
-                    <a v-else @click="make_session()" data-target="#loginModal" data-toggle="modal" class="my-3 py-1 btn-success w-50 btn header_buttons text-light float-right">Book</a>
-                </form>
-
-                    </div>
-                 </div>
+              </div>
             </div>
 
 
-            <!-- <div class="row my-5 card shadow p-3">
+          </div>
+
+          <div class="col-md-4 col-lg-5">
+
+
+            <div class="Overview" id="Overview">
+              <h4 class="text-center secondary_heading">About</h4>
+              <p class="my-4 text-left h6">{{ form.details }} Lorem ipsum dolor. Lorem ipsum dolor.
+                Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. </p>
+
+              <div class="cart text-center">
+                <form>
+                  <!--  <input id="qty" min="1" class="w-25 form-control d-inline" type="number" name="qty" value="1"> -->
+
+                  <a style="cursor:pointer;" v-if="auth_user" @click="service_milestones(form.id)"
+                    class="border border-dark w-50 text-center convBtn rounded">Service Milestone
+                    Breakdown</a>
+
+                  <!--
+                            <a  v-if="auth_user" @click="addToCart(form.id)" class="text-light font-weight-bold btn buttonEq2">Add to cart</a>
+                            <a v-else @click="make_session()" class="text-light font-weight-bold btn buttonEq2" data-target="#loginModal" data-toggle="modal">Add to cart</a> -->
+
+                  <a style="cursor:pointer;" v-else @click="make_session()"
+                    class="border border-dark w-50 text-center convBtn" data-target="#loginModal"
+                    data-toggle="modal">Service Milestone Breakdown</a>
+
+                </form>
+              </div>
+              <!-- <p><span class="mt-1 rounded"><i class="mr-2 fa fa-category"></i>Category: {{form.category}}</span></p> -->
+            </div>
+
+
+
+          </div>
+
+          <div class="col-md-4 col-lg-3 rounded my-3 my-md-0 primary_bg">
+            <div class="p-2">
+              <form @submit.prevent="serviceBook">
+
+                <div class="d-flex p-2 justify-content-center justify-content-md-end">
+                  <a class="w-50 my-3 btn header_buttons text-light float-right">Message</a>
+                </div>
+
+                <div class="d-flex p-2 justify-content-center justify-content-md-end">
+                  <p class="d-inline  text-left text-light mr-2">Desired start date: </p>
+                  <span class="pl-0 d-inline "><input required v-model="formBook.date" type="date" name="date"></span>
+                </div>
+
+                <div class="d-flex p-2 justify-content-center justify-content-md-end">
+                  <div class="">
+                    <p class="text-start text-light">Enter additional notes </p>
+                    <textarea rows="10" cols="32" required v-model="formBook.note" name="note" class="rounded"></textarea>
+                  </div>
+
+                </div>
+
+                <input hidden type="number" name="service_id" v-model="formBook.service_id">
+
+                <div class="p-2 d-flex justify-content-center justify-content-md-end">
+                  <button v-if="auth_user"
+                    class="my-3 py-1 btn-success w-50 btn header_buttons text-light float-right">Book
+                  </button>
+
+                  <a v-else @click="make_session()" data-target="#loginModal" data-toggle="modal"
+                    class="my-3 py-1 btn-success w-50 btn header_buttons text-light float-right">Book</a>
+                </div>
+
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+
+        <!-- <div class="row my-5 card shadow p-3">
                 <h3>Reviews</h3>
                 <p class="text-secondary my-3">There are no reviews yet.</p>
 
                 <button class="w-25 searchListing">Add Review</button>
             </div> -->
 
-         
 
-         </div> 
 
-         <div class="col-sm-5">
-           <!--  <div class="card bg-light w-75 mx-auto py-3">
+      </div>
+
+      <div class="col-md-5">
+        <!--  <div class="card bg-light w-75 mx-auto py-3">
              <h5 class="mx-4 text-secondary shadow border border-light py-2 d-block text-center">Seed investors spot open
                 <i class="ml-1 fa fa-angle-up"></i></h5>
                 <button class="buttonListing my-3">Login to book</button>
@@ -142,289 +160,292 @@
                 </div>
 
          </div> -->
-         </div>
-        
-        </div>   
-
-
-
-
-        
-        
-        
-     <!-- Review --> 
-<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Submit a review</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
-      <div class="modal-body">
-        <form >
-        <h5 class="my-3 font-weight-bold">Service rating 
-        <div class="ml-5 d-inline-block" id="demo"></div>
-    </h5>
-        
 
-        <h5 class="font-weight-bold">Leave a review</h5>
-        <textarea name="reply" class="bg-light border border-none" cols="55" rows="3"></textarea>
-        
-        <a @click = "rating()"  class="font-weight-bold btn btn-light w-50 m-auto">Submit</a>
-        </form>
+    </div>
 
+
+
+
+
+
+
+    <!-- Review -->
+    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Submit a review</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <h5 class="my-3 font-weight-bold">Service rating
+                <div class="ml-5 d-inline-block" id="demo"></div>
+              </h5>
+
+
+              <h5 class="font-weight-bold">Leave a review</h5>
+              <textarea name="reply" class="bg-light border border-none" cols="55" rows="3"></textarea>
+
+              <a @click="rating()" class="font-weight-bold btn btn-light w-50 m-auto">Submit</a>
+            </form>
+
+          </div>
+        </div>
       </div>
     </div>
+    <!-- Review -->
+
+    <!-- Body -->
+
+
   </div>
-</div> 
-<!-- Review -->    
-        
-        <!-- Body -->
-        
-        
-    </div> 
-   
 </template>
 
-<script> 
-   
+<script>
+
 export default {
-    
-   props: ['auth_user'],
-   data: () =>({
+
+  props: ['auth_user'],
+  data: () => ({
     form: new Form({
-        name:'',
-        shop_id:'',
-        details:'',
-        price:'',
-        contact:'',
-        category:'',
-        image:'',
-        rating_count:'',
+      name: '',
+      shop_id: '',
+      details: '',
+      price: '',
+      contact: '',
+      category: '',
+      image: '',
+      rating_count: '',
     }),
     formBook: new Form({
-        date:'',
-        service_id:'',
-        note:''
+      date: '',
+      service_id: '',
+      note: ''
     }),
-    details:[],
-    service_id:''
-    }),
+    details: [],
+    service_id: ''
+  }),
 
-created(){
-if(sessionStorage.getItem('serviceDetails')!=null)
-    sessionStorage.clear();
-},
-    methods:{
+  created() {
+    if (sessionStorage.getItem('serviceDetails') != null)
+      sessionStorage.clear();
+  },
+  methods: {
 
-   getDetails:function(){ 
-    var id=this.$route.params.id;
-    this.formBook.service_id = this.$route.params.id;
-     var t=this;
-    axios.get('ServiceResults/'+id).then( (data) =>{console.log(data);
-    //t.details = data.data.data;
-    t.form.price = data.data.data[0].price;
-    t.form.name = data.data.data[0].name;
-    t.form.details = data.data.data[0].details;
-    t.form.location = data.data.data[0].location;
-    //t.form.contact = data.data.data[0].contact;
-    t.form.image = data.data.data[0].image;
-    t.form.category = data.data.data[0].category;
-    t.form.shop_id = data.data.data[0].shop_id;
-    t.form.rating = data.data.data[0].rating/data.data.data[0].rating_count;
-    t.form.rating = t.form.rating.toFixed();
+    getDetails: function () {
+      var id = this.$route.params.id;
+      this.formBook.service_id = this.$route.params.id;
+      var t = this;
+      axios.get('ServiceResults/' + id).then((data) => {
+        console.log(data);
+        //t.details = data.data.data;
+        t.form.price = data.data.data[0].price;
+        t.form.name = data.data.data[0].name;
+        t.form.details = data.data.data[0].details;
+        t.form.location = data.data.data[0].location;
+        //t.form.contact = data.data.data[0].contact;
+        t.form.image = data.data.data[0].image;
+        t.form.category = data.data.data[0].category;
+        t.form.shop_id = data.data.data[0].shop_id;
+        t.form.rating = data.data.data[0].rating / data.data.data[0].rating_count;
+        t.form.rating = t.form.rating.toFixed();
 
-    t.form.rating_count = data.data.data[0].rating_count;
+        t.form.rating_count = data.data.data[0].rating_count;
 
 
-    var i;
-    for(i = 1; i<6; i++){console.log(parseInt(t.form.rating));
-    if(i<= parseInt(t.form.rating))
-    $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');
-    else
-    $('#staticRating').append('<img src="rating/images/white.png" style="height: 15px;" class="">');
-    }
-    
-    });
-    
+        var i;
+        for (i = 1; i < 6; i++) {
+          console.log(parseInt(t.form.rating));
+          if (i <= parseInt(t.form.rating))
+            $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');
+          else
+            $('#staticRating').append('<img src="rating/images/white.png" style="height: 15px;" class="">');
+        }
+
+      });
+
     },
 
-    addToCart(id){
-        var qty = $('#qty').val();
-        var id=this.$route.params.id; var t=this;
-    axios.get('addToCart/'+id+'-'+qty).then( (data) =>{console.log(data);
-         toastr.success(data.data.response) 
-         this.$router.push('/cart')
-    });
+    addToCart(id) {
+      var qty = $('#qty').val();
+      var id = this.$route.params.id; var t = this;
+      axios.get('addToCart/' + id + '-' + qty).then((data) => {
+        console.log(data);
+        toastr.success(data.data.response)
+        this.$router.push('/cart')
+      });
     },
 
-    service_milestones(id){
-        var id=this.$route.params.id;
-        var t=this; 
-         this.$router.push('/service-milestone/'+id);
+    service_milestones(id) {
+      var id = this.$route.params.id;
+      var t = this;
+      this.$router.push('/service-milestone/' + id);
     },
 
-    rating()
-      { 
-        var id=this.$route.params.id;
-        var rating = $('#demoRating').val();
-        axios.get('ratingService/'+id+'/'+rating).then( (data) =>{console.log(data);
-           sessionStorage.setItem('alert','Rating submitted successfully!');
-            location.reload();
-        });
-       },
-
-    getPhoto(){
-   
-        return '../';
-
-        },
-
-  
-  make_session(){ 
-            var id=this.$route.params.id;
-            sessionStorage.setItem('serviceDetails',id);
-            document.getElementById('c_to_action').value = 'loginFromService';
-            document.getElementById('c_to_action_login').value = 'loginFromService';
-        },
-        cart(){
-           axios.get('cart').then( (data) =>{
-            document.getElementById('cart').innerHTML = data.data.cart;
-        
-    });
+    rating() {
+      var id = this.$route.params.id;
+      var rating = $('#demoRating').val();
+      axios.get('ratingService/' + id + '/' + rating).then((data) => {
+        console.log(data);
+        sessionStorage.setItem('alert', 'Rating submitted successfully!');
+        location.reload();
+      });
     },
 
-    replaceText(){
-    $('#call_to').html('');
-    $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+    getPhoto() {
+
+      return '../';
+
     },
 
-    async serviceBook(){
-    const response = await this.formBook.post('serviceBook');
-    console.log(response.data);
-    if(response.data.success){
-        toastr.success(response.data.success, { timeout:5000 });
+
+    make_session() {
+      var id = this.$route.params.id;
+      sessionStorage.setItem('serviceDetails', id);
+      document.getElementById('c_to_action').value = 'loginFromService';
+      document.getElementById('c_to_action_login').value = 'loginFromService';
+    },
+    cart() {
+      axios.get('cart').then((data) => {
+        document.getElementById('cart').innerHTML = data.data.cart;
+
+      });
+    },
+
+    replaceText() {
+      $('#call_to').html('');
+      $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+    },
+
+    async serviceBook() {
+      const response = await this.formBook.post('serviceBook');
+      console.log(response.data);
+      if (response.data.success) {
+        toastr.success(response.data.success, { timeout: 5000 });
         //$('#bookmsg').css('display','none');
+      }
+      else
+        toastr.success(response.data.failed, { timeout: 5000 });
+
+
+      // this.$router.push('/manage-category');
+
     }
-    else
-    toastr.success(response.data.failed, { timeout:5000 });
-    
 
- // this.$router.push('/manage-category');
+  },
 
+
+  mounted() {
+    this.replaceText();
+    this.getDetails();
+    this.cart();
+
+    if (sessionStorage.getItem('alert') != null) {
+      alert('Review successfully taken!');
+      sessionStorage.clear();
     }
 
-        },
-  
+    // SCRIPT
 
-     mounted() { 
-     this.replaceText();
-     this.getDetails();
-     this.cart();
+    (function ($) {
+      $.fn.rates = function (options) {
+        // Default settings for the plugin if none are provided by the user
+        const settings = $.extend({
+          shadeColor: 'rates-yellow',
+          shapeHeight: '25px',
+          shapeCount: 5,
+          shape: 'white-star',
+          imagesFolderLocation: '',
 
-      if (sessionStorage.getItem('alert') != null) {
-        alert('Review successfully taken!');
-        sessionStorage.clear();
-     }
+        }, options);
 
-          // SCRIPT
+        return this.each(function () {
+          const container = this;
+          $(container).addClass('rates-container');
+          const $containerName = $(this).attr('id');
 
-  (function ($) {
-  $.fn.rates = function (options) {
-    // Default settings for the plugin if none are provided by the user
-    const settings = $.extend({
-      shadeColor: 'rates-yellow',
-      shapeHeight: '25px',
-      shapeCount: 5,
-      shape: 'white-star',
-      imagesFolderLocation: '',
+          const score = {
+            value: 0,
+          };
 
-    }, options);
+          createStars(settings.shapeCount);
+          setSize();
 
-    return this.each(function () {
-      const container = this;
-      $(container).addClass('rates-container');
-      const $containerName = $(this).attr('id');
+          const $eachStar = $(this).find('img');
 
-      const score = {
-        value: 0,
-      };
+          // Colors in the rating shape on hover
+          // Removes the color from above the selected rating on mouse out
+          $(this).find('img').hover(function () {
+            const starIndex = $eachStar.index(this);
+            colorShapesToIndex(starIndex);
+          }, () => {
+            colorShapesToScore();
+          });
 
-      createStars(settings.shapeCount);
-      setSize();
+          // Sets the score rating based on which rating shape was clicked
+          $(this).find('img').on('click', function () {
+            const starIndex = $eachStar.index(this);
+            colorShapesToIndex(starIndex);
+            score.value = starIndex + 1;
+            $(`#${$containerName}Rating`).val(score.value);
+          });
 
-      const $eachStar = $(this).find('img');
+          // Sets the size of stars indicated in the settings
+          function setSize() {
+            $(container).find('img').css('height', settings.shapeHeight);
+          }
 
-      // Colors in the rating shape on hover
-      // Removes the color from above the selected rating on mouse out
-      $(this).find('img').hover(function () {
-        const starIndex = $eachStar.index(this);
-        colorShapesToIndex(starIndex);
-      }, () => {
-        colorShapesToScore();
-      });
+          // Dynamically creates the html markup based on the number of stars indicated
+          function createStars(count) {
+            const starInput = $(`<input type="hidden" id = "${$containerName}Rating" name="${$containerName}Rating" value="0" >`);
+            $(container).append(starInput);
+            for (let i = 0; i < count; i++) {
+              const $imageStar = $('<img>');
+              $imageStar.attr('src', `${settings.imagesFolderLocation}images/${settings.shape}.png`);
+              $(container).append($imageStar);
+            }
+          }
 
-      // Sets the score rating based on which rating shape was clicked
-      $(this).find('img').on('click', function () {
-        const starIndex = $eachStar.index(this);
-        colorShapesToIndex(starIndex);
-        score.value = starIndex + 1;
-        $(`#${$containerName}Rating`).val(score.value);
-      });
+          // Resets the shading class on the shapes to color only those up until a designated index
+          function colorShapesToIndex(starIndexValue) {
+            $eachStar.removeClass(settings.shadeColor);
+            for (let i = 0; i <= starIndexValue; i++) {
+              const star = $eachStar.get(i);
+              $(star).toggleClass(settings.shadeColor);
+            }
+          }
 
-      // Sets the size of stars indicated in the settings
-      function setSize() {
-        $(container).find('img').css('height', settings.shapeHeight);
-      }
-
-      // Dynamically creates the html markup based on the number of stars indicated
-      function createStars(count) {
-        const starInput = $(`<input type="hidden" id = "${$containerName}Rating" name="${$containerName}Rating" value="0" >`);
-        $(container).append(starInput);
-        for (let i = 0; i < count; i++) {
-          const $imageStar = $('<img>');
-          $imageStar.attr('src', `${settings.imagesFolderLocation}images/${settings.shape}.png`);
-          $(container).append($imageStar);
-        }
-      }
-
-      // Resets the shading class on the shapes to color only those up until a designated index
-      function colorShapesToIndex(starIndexValue) {
-        $eachStar.removeClass(settings.shadeColor);
-        for (let i = 0; i <= starIndexValue; i++) {
-          const star = $eachStar.get(i);
-          $(star).toggleClass(settings.shadeColor);
-        }
-      }
-
-      // Resets the shading class on the shapes to color only those up to and including the selected score
-      function colorShapesToScore() {
-        $eachStar.removeClass(settings.shadeColor);
-        for (let j = 0; j < score.value; j++) {
-          const star = $eachStar.get(j);
-          $(star).toggleClass(settings.shadeColor);
-        }
-      }
-    });
-  };
-}(jQuery));
-
-     // SCRIPT
-    
-     $('#demo').rates({
-        shape:'black-star',
-        imagesFolderLocation:'rating/', 
-        shapeHeight:'20px',   
-        shadeColor:'rates-green',   
+          // Resets the shading class on the shapes to color only those up to and including the selected score
+          function colorShapesToScore() {
+            $eachStar.removeClass(settings.shadeColor);
+            for (let j = 0; j < score.value; j++) {
+              const star = $eachStar.get(j);
+              $(star).toggleClass(settings.shadeColor);
+            }
+          }
         });
-    
-      }
+      };
+    }(jQuery));
 
-    
+    // SCRIPT
 
-     
+    $('#demo').rates({
+      shape: 'black-star',
+      imagesFolderLocation: 'rating/',
+      shapeHeight: '20px',
+      shadeColor: 'rates-green',
+    });
 
-    }
+  }
+
+
+
+
+
+}
 </script>

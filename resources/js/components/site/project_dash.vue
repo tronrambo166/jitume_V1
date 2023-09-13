@@ -121,6 +121,8 @@
                     <form action="" method="post" enctype="multipart/form-data" class="vueform form-group form">
 
                         <div class="row pt-2 my-auto mr-1 mr-md-0">
+
+
                             <div class="col mt-2 mt-sm-0">
                                 <div class="">
                                     <input readonly required="" name="title" type="text" v-model="result.title"
@@ -178,6 +180,8 @@
 
 
                         <div class="row pt-2 mr-1 mr-sm-0">
+
+
                             <div class="col px-1 my-2 my-sm-0">
                                 <div class=" ">
                                     <input readonly required="" name="title" type="text" v-model="result.title"
