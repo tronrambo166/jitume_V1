@@ -98,7 +98,7 @@
                             </div>
 
                             <div class="nav-item">
-                                <a v-if="" onclick="event.preventDefault();
+                            <a v-if="" onclick="event.preventDefault();
                  document.getElementById('logout-form').submit();" class=" sign_in_btn  px-sm-3 header_buttons my-1 mr-2 px-1 py-1 "><b>Sign Out</b></a>
                             </div>
 

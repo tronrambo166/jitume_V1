@@ -9,15 +9,21 @@
 
           <div class="pl-2 pt-4">
             <h3 class="mt-2 text-left text-dark font-weight-bold ">{{ form.name }}
-              <div class="float-right text-right w-25 py-0 my-0">
+              <div class="float-right text-rightpy-0 my-0" style="width:30%;">
 
                 <h6 class="font-weight-bold">Amount: <span class="font-weight-light"><b>${{ form.investment_needed }} </b></span>
 
                    <span style="font-size:11px;" class="font-weight-light"><b>   (Required):${{ amount_required }}</b></span></h6>
 
-                <div class="float-right d-inline-block mt-2 ml-1" id="staticRating">
+                <div class="row ">
+                  <div class="col-10" id="">
+                    <div class="float-right" id="staticRating">
 
-                </div> <br>
+                </div> 
+                </div>
+                <div class="col-2"> <p class="rating-star text-dark d-inline float-right" >({{ form.rating }})</p></div>
+                </div>
+                 
                 <p class="text-dark d-block float-right" style="font-size:13px;">({{ form.rating_count }} reviews)</p>
               </div>
 
@@ -26,7 +32,7 @@
             <p class="my-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ form.location }}
 
             <div v-if="auth_user" class="float-right w-25">
-              <div class="" style="background:#e5e5e9; height:21px;">
+              <div class="" style="background:#e5e5e9; height:19px;">
                 <span id="progress" class="d-block"></span>
               </div>
               <span>{{ progress }}% Invested</span>
@@ -463,14 +469,17 @@ export default {
         t.form.listing_id = data.data.data[0].id;
         t.form.investment_needed = data.data.data[0].investment_needed;
         t.form.investors_fee = data.data.data[0].investors_fee;
-        t.form.rating = data.data.data[0].rating / data.data.data[0].rating_count;
-        t.form.rating = t.form.rating.toFixed();
-
+        if(t.form.investors_fee == null)
+          t.form.conv = true;
+        
+        t.form.rating = parseFloat(data.data.data[0].rating) / parseFloat(data.data.data[0].rating_count);
+        t.form.rating = t.form.rating.toFixed(2);
+        console.log(t.form.rating);
         t.form.rating_count = data.data.data[0].rating_count;
 
         var i;
         for (i = 1; i < 6; i++) {
-          console.log(parseInt(t.form.rating));
+          //console.log(parseInt(t.form.rating));
           if (i <= parseInt(t.form.rating))
             $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');
           else

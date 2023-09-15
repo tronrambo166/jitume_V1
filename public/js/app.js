@@ -9164,6 +9164,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -9210,13 +9216,15 @@ __webpack_require__.r(__webpack_exports__);
         t.form.listing_id = data.data.data[0].id;
         t.form.investment_needed = data.data.data[0].investment_needed;
         t.form.investors_fee = data.data.data[0].investors_fee;
-        t.form.rating = data.data.data[0].rating / data.data.data[0].rating_count;
-        t.form.rating = t.form.rating.toFixed();
+        if (t.form.investors_fee == null) t.form.conv = true;
+        t.form.rating = parseFloat(data.data.data[0].rating) / parseFloat(data.data.data[0].rating_count);
+        t.form.rating = t.form.rating.toFixed(2);
+        console.log(t.form.rating);
         t.form.rating_count = data.data.data[0].rating_count;
         var i;
 
         for (i = 1; i < 6; i++) {
-          console.log(parseInt(t.form.rating));
+          //console.log(parseInt(t.form.rating));
           if (i <= parseInt(t.form.rating)) $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');else $('#staticRating').append('<img src="rating/images/white.png" style="height: 15px;" class="">');
         }
       });
@@ -71662,7 +71670,10 @@ var render = function () {
                 _vm._v(_vm._s(_vm.form.name) + "\n            "),
                 _c(
                   "div",
-                  { staticClass: "float-right text-right w-25 py-0 my-0" },
+                  {
+                    staticClass: "float-right text-rightpy-0 my-0",
+                    staticStyle: { width: "30%" },
+                  },
                   [
                     _c("h6", { staticClass: "font-weight-bold" }, [
                       _vm._v("Amount: "),
@@ -71690,12 +71701,20 @@ var render = function () {
                       ),
                     ]),
                     _vm._v(" "),
-                    _c("div", {
-                      staticClass: "float-right d-inline-block mt-2 ml-1",
-                      attrs: { id: "staticRating" },
-                    }),
-                    _vm._v(" "),
-                    _c("br"),
+                    _c("div", { staticClass: "row" }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-2" }, [
+                        _c(
+                          "p",
+                          {
+                            staticClass:
+                              "rating-star text-dark d-inline float-right",
+                          },
+                          [_vm._v("(" + _vm._s(_vm.form.rating) + ")")]
+                        ),
+                      ]),
+                    ]),
                     _vm._v(" "),
                     _c(
                       "p",
@@ -71720,7 +71739,7 @@ var render = function () {
             ]),
             _vm.auth_user
               ? _c("div", { staticClass: "float-right w-25" }, [
-                  _vm._m(0),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c("span", [_vm._v(_vm._s(_vm.progress) + "% Invested")]),
                 ])
@@ -71779,12 +71798,12 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _vm._m(1),
+      _vm._m(2),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-3" }, [
         !_vm.form.conv
           ? _c("div", { staticClass: "card bg-light w-100 mx-auto py-3" }, [
-              _vm._m(2),
+              _vm._m(3),
               _vm._v(" "),
               _vm.auth_user
                 ? _c(
@@ -72145,7 +72164,7 @@ var render = function () {
                     _vm.running
                       ? _c("div", { staticClass: "Invest-Payout" }, [
                           _c("div", { staticClass: "w-75 mx-auto row" }, [
-                            _vm._m(3),
+                            _vm._m(4),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-sm-12 px-1" }, [
                               _c("div", { staticClass: "row" }, [
@@ -72173,7 +72192,7 @@ var render = function () {
                                 ]),
                               ]),
                               _vm._v(" "),
-                              _vm._m(4),
+                              _vm._m(5),
                             ]),
                           ]),
                           _vm._v(" "),
@@ -72200,7 +72219,7 @@ var render = function () {
                           ),
                           _vm._v(" "),
                           _c("div", { staticClass: "w-75 mx-auto row" }, [
-                            _vm._m(5),
+                            _vm._m(6),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-sm-12 px-1" }, [
                               _c("div", { staticClass: "row" }, [
@@ -72228,7 +72247,7 @@ var render = function () {
                                 ]),
                               ]),
                               _vm._v(" "),
-                              _vm._m(6),
+                              _vm._m(7),
                             ]),
                           ]),
                           _vm._v(" "),
@@ -72287,7 +72306,7 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(7),
+              _vm._m(8),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "row" }, [
@@ -72363,7 +72382,7 @@ var render = function () {
                       [_vm._v("\n                Ok\n              ")]
                     ),
                     _vm._v(" "),
-                    _vm._m(8),
+                    _vm._m(9),
                   ]),
                 ]),
               ]),
@@ -72391,11 +72410,11 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(9),
+              _vm._m(10),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("form", [
-                  _vm._m(10),
+                  _vm._m(11),
                   _vm._v(" "),
                   _c("h5", { staticClass: "font-weight-bold" }, [
                     _vm._v("Leave a review"),
@@ -72432,9 +72451,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-10", attrs: { id: "" } }, [
+      _c("div", { staticClass: "float-right", attrs: { id: "staticRating" } }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticStyle: { background: "#e5e5e9", height: "21px" } },
+      { staticStyle: { background: "#e5e5e9", height: "19px" } },
       [_c("span", { staticClass: "d-block", attrs: { id: "progress" } })]
     )
   },
@@ -75040,151 +75067,158 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row mx-auto text-center" }, [
-    _c(
-      "div",
-      {
-        staticClass:
-          "container-xl service_img mx-auto col-sm-12 text-center p-md-5",
-        staticStyle: { "min-height": "600px" },
-      },
-      [
-        _c("div", { staticClass: "py-5" }),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "form",
-          {
-            staticClass:
-              "container w-100 mb-5 pb-5 d-flex justify-content-center",
-            attrs: { id: "form", method: "post" },
-            on: {
-              submit: function ($event) {
-                $event.preventDefault()
-                return _vm.search()
-              },
-            },
-          },
-          [_vm._m(1), _vm._v(" "), _vm._m(2)]
-        ),
-      ]
-    ),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("hr"),
-    _vm._v(" "),
-    _c("div", { staticClass: "container-xl col-sm-12 text-center py-5" }, [
+  return _c(
+    "div",
+    {
+      staticClass: "row mx-auto text-center",
+      staticStyle: { overflow: "hidden" },
+    },
+    [
       _c(
         "div",
         {
           staticClass:
-            "row card-group px-3 w-75 mx-auto d-md-flex justify-content-center",
-          staticStyle: { overflow: "hidden" },
+            "container-xl service_img mx-auto col-sm-12 text-center p-md-5",
+          staticStyle: { "min-height": "600px" },
         },
         [
+          _c("div", { staticClass: "py-5" }),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
           _c(
-            "hooper",
+            "form",
             {
-              attrs: {
-                settings: _vm.hooperSettings,
-                itemsToShow: 4,
-                centerMode: true,
-                pagination: "no",
+              staticClass:
+                "container w-100 mb-5 pb-5 d-flex justify-content-center",
+              attrs: { id: "form", method: "post" },
+              on: {
+                submit: function ($event) {
+                  $event.preventDefault()
+                  return _vm.search()
+                },
               },
             },
-            [
-              _vm._l(_vm.results, function (result, index) {
-                return _c(
-                  "slide",
-                  {
-                    key: index,
-                    staticClass: "listing text-center col-sm-4 px-3",
-                    attrs: { index: index },
-                  },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "mx-auto mt-5" },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "shadow card border px-2",
-                            attrs: { to: "/serviceDetails/" + result.id },
-                          },
-                          [
-                            result.file
-                              ? _c(
-                                  "video",
-                                  {
+            [_vm._m(1), _vm._v(" "), _vm._m(2)]
+          ),
+        ]
+      ),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("div", { staticClass: "container-xl col-sm-12 text-center py-5" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "row card-group px-3 w-75 mx-auto d-md-flex justify-content-center",
+            staticStyle: { overflow: "hidden" },
+          },
+          [
+            _c(
+              "hooper",
+              {
+                attrs: {
+                  settings: _vm.hooperSettings,
+                  itemsToShow: 4,
+                  centerMode: true,
+                  pagination: "no",
+                },
+              },
+              [
+                _vm._l(_vm.results, function (result, index) {
+                  return _c(
+                    "slide",
+                    {
+                      key: index,
+                      staticClass: "listing text-center col-sm-4 px-3",
+                      attrs: { index: index },
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "mx-auto mt-5" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "shadow card border px-2",
+                              attrs: { to: "/serviceDetails/" + result.id },
+                            },
+                            [
+                              result.file
+                                ? _c(
+                                    "video",
+                                    {
+                                      staticStyle: {
+                                        width: "100%",
+                                        height: "104px",
+                                      },
+                                      attrs: { controls: "", alt: "" },
+                                    },
+                                    [
+                                      _c("source", {
+                                        attrs: {
+                                          src: result.file,
+                                          type: "video/mp4",
+                                        },
+                                      }),
+                                    ]
+                                  )
+                                : _c("img", {
+                                    staticClass: "card-img-top",
                                     staticStyle: {
                                       width: "100%",
                                       height: "104px",
                                     },
-                                    attrs: { controls: "", alt: "" },
-                                  },
-                                  [
-                                    _c("source", {
-                                      attrs: {
-                                        src: result.file,
-                                        type: "video/mp4",
-                                      },
-                                    }),
-                                  ]
-                                )
-                              : _c("img", {
-                                  staticClass: "card-img-top",
-                                  staticStyle: {
-                                    width: "100%",
-                                    height: "104px",
-                                  },
-                                  attrs: { src: result.image, alt: "" },
-                                }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "p-1 pb-2" }, [
-                              _c(
-                                "h5",
-                                {
-                                  staticClass:
-                                    "card_heading text-left mb-0 py-2",
-                                },
-                                [_vm._v(_vm._s(result.name) + " ")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "p",
-                                { staticClass: "card_text pt-1 text-left" },
-                                [
-                                  _c("i", {
-                                    staticClass: "mr-2 fa fa-map-marker",
+                                    attrs: { src: result.image, alt: "" },
                                   }),
-                                  _vm._v(_vm._s(result.location)),
-                                ]
-                              ),
-                            ]),
-                          ]
-                        ),
-                      ],
-                      1
-                    ),
-                  ]
-                )
-              }),
-              _vm._v(" "),
-              _c("hooper-navigation", {
-                attrs: { slot: "hooper-addons" },
-                slot: "hooper-addons",
-              }),
-            ],
-            2
-          ),
-        ],
-        1
-      ),
-    ]),
-  ])
+                              _vm._v(" "),
+                              _c("div", { staticClass: "p-1 pb-2" }, [
+                                _c(
+                                  "h5",
+                                  {
+                                    staticClass:
+                                      "card_heading text-left mb-0 py-2",
+                                  },
+                                  [_vm._v(_vm._s(result.name) + " ")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  { staticClass: "card_text pt-1 text-left" },
+                                  [
+                                    _c("i", {
+                                      staticClass: "mr-2 fa fa-map-marker",
+                                    }),
+                                    _vm._v(_vm._s(result.location)),
+                                  ]
+                                ),
+                              ]),
+                            ]
+                          ),
+                        ],
+                        1
+                      ),
+                    ]
+                  )
+                }),
+                _vm._v(" "),
+                _c("hooper-navigation", {
+                  attrs: { slot: "hooper-addons" },
+                  slot: "hooper-addons",
+                }),
+              ],
+              2
+            ),
+          ],
+          1
+        ),
+      ]),
+    ]
+  )
 }
 var staticRenderFns = [
   function () {
@@ -75396,7 +75430,13 @@ var render = function () {
         _c("div", { staticClass: "col-sm-12 my-3" }, [
           _c("input", {
             staticStyle: { "font-size": "20px" },
-            attrs: { name: "type", type: "radio", value: "M", id: "month" },
+            attrs: {
+              checked: "",
+              name: "type",
+              type: "radio",
+              value: "M",
+              id: "month",
+            },
             on: {
               change: function ($event) {
                 return _vm.type($event)

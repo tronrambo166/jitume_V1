@@ -1348,3 +1348,8 @@
     .hooper-list {
         padding-top: 20px;
     }
+
+    .rating-star{
+    font-size: 11px;
+    margin-top: 12px;
+    }

@@ -4,7 +4,7 @@
 
 
     <!-- PAGE CONTENT -->
-    <div class="row  mx-auto text-center">
+    <div class="row  mx-auto text-center" style="overflow:hidden;">
 
         <div class="container-xl service_img mx-auto col-sm-12 text-center p-md-5" style="min-height: 600px;">
 

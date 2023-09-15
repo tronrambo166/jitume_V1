@@ -582,10 +582,11 @@ $list = Listing::where('id',$id)->first();
 $share = ($list->share)/100;
 $amount_required = $list->investment_needed - $amount_covered;
 
-}
-
 return response()->json([ 'data' => $milestones, 'progress' => $progress,
 'share' => $share, 'amount_required' => $amount_required,'running' => $running ]);
+}
+
+return response()->json([ 'data' => 'Failed!' ]);
 
  }
 

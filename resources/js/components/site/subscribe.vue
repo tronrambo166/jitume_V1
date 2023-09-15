@@ -11,7 +11,7 @@
                 </div>
 
                  <div class="col-sm-12 my-3">
-                    <input @change="type($event);" style="font-size:20px;" name="type" type="radio"  value="M" id="month"> <span class="mr-3">Monthly</span>
+                    <input checked @change="type($event);" style="font-size:20px;" name="type" type="radio"  value="M" id="month"> <span class="mr-3">Monthly</span>
                      <input @change="type($event);" name="type" type="radio" value="Y" id="year">
                      <span class="">Annualy (Save 20%)</span> 
                 </div>
