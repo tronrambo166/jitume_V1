@@ -17,6 +17,7 @@ use Hash;
 use Auth;
 use Mail;
 use PDF;
+use Response;
 
 
 
@@ -571,13 +572,21 @@ public function removeCart($id){
 
 
   public function download_business($id){
-    $data = '';
-    $pdf = PDF::loadView('download.business_details'); 
-    return $pdf->download('business_details.pdf'); 
-
+    $doc = Listing::where('id',$id)->first();
+    $file=$doc->document; 
+    $headers = array('Content-Type'=> 'application/pdf');
+    return Response::download($file, 'business_details.pdf', $headers); 
     //return response()->json(['data'=>'success']);
 
     }
+
+    public function download_statement($id){
+    $doc = Listing::where('id',$id)->first();
+    $file=$doc->yeary_fin_statement;
+    $headers = array('Content-Type'=> 'application/pdf');
+    return Response::download($file, 'business_statement.pdf', $headers); 
+
+    } 
 
 public function save_service(Request $request){
 $s_name = $request->s_name;

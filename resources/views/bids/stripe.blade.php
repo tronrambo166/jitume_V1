@@ -10,24 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
     <meta name="keywords" content="bibimcart, ">
     <meta name="author" content="">
-
-    <!-- favicon -->
-    <link rel="apple-touch-icon" href="{{ asset('images/favicon.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}">
-    <!-- Bootstrap -->
-    <link href="{{ asset('backend/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('backend/css/colors.min.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/font-awesome.min.css') }}">
-    <!-- Icons -->
-    <link href="{{ asset('themes/landrick/css/materialdesignicons.min.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
-    <!-- Slider -->
-    {{-- <link rel="stylesheet" href="{{ asset('themes/landrick/css/owl.carousel.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('themes/landrick/css/owl.theme.default.min.css') }}" /> --}}
-    <!-- Main Css -->
-    <link href="{{ asset('themes/landrick/css/style.css') }}" rel="stylesheet" type="text/css" id="theme-opt" />
-    <link href="{{ asset('themes/landrick/css/colors/default.css') }}" rel="stylesheet" id="color-opt">
-    <link href="{{ asset('themes/landrick/css/colors/cyan.css') }}" rel="stylesheet" id="color-opt">
     
    </head>
 

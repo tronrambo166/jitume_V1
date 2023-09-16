@@ -77,6 +77,7 @@ Route::get('addToCart/{id}-{qty}', 'PagesController@addToCart')->name('addToCart
 Route::get('removeCart/{id}', 'PagesController@removeCart')->name('removeCart');
 Route::get('cart', 'PagesController@cart')->name('cart');
 Route::get('download_business/{id}', 'PagesController@download_business')->name('download_business');
+Route::get('download_statement/{id}', 'PagesController@download_statement')->name('download_statement'); 
 
 // <--milestones-->
 Route::get('getMilestones/{id}', 'BusinessController@getMilestones')->name('getMilestones');

@@ -290,11 +290,19 @@ export default {
     rating() {
       var id = this.$route.params.id;
       var rating = $('#demoRating').val();
+      if(rating == 0){
+        $.alert({
+          title: 'Alert!',
+          content: 'A rating cannot be 0!',
+        });
+      }
+      else{
       axios.get('ratingService/' + id + '/' + rating).then((data) => {
         //console.log(data);
         sessionStorage.setItem('alert', 'Rating submitted successfully!');
         location.reload();
       });
+     }
     },
 
     getPhoto() {

@@ -197,9 +197,9 @@
             <a @mouseleave="leave()" @mouseover="hover()" style="border: 1px solid black;" id="convBtn1"
               class="py-1 convBtn text-center mx-auto w-75 btn  px-2">Message Business Owner</a>
 
-            <router-link to="/services" @mouseleave.native="leave()" @mouseover.native="hover2"
+            <a @click="download_statement()" @mouseleave="leave()" @mouseover="hover2"
               style="border: 1px solid black;" id="convBtn2"
-              class="py-1 convBtn my-3 text-center mx-auto w-75 btn  px-2">Download Financial Statements</router-link>
+              class="py-1 convBtn my-3 text-center mx-auto w-75 btn  px-2">Download Financial Statements</a>
           </div>
 
 
@@ -458,7 +458,7 @@ export default {
       document.getElementById('listing_id').value = id;
 
       axios.get('searchResults/' + id).then((data) => {
-        console.log(data);
+        //console.log(data);
         t.form.conv = data.data.conv;
         t.form.name = data.data.data[0].name;
         t.form.details = data.data.data[0].details;
@@ -474,8 +474,8 @@ export default {
         
         t.form.rating = parseFloat(data.data.data[0].rating) / parseFloat(data.data.data[0].rating_count);
         t.form.rating = t.form.rating.toFixed(2);
-        console.log(t.form.rating);
         t.form.rating_count = data.data.data[0].rating_count;
+        if(t.form.rating_count == 0) t.form.rating = 0;
 
         var i;
         for (i = 1; i < 6; i++) {
@@ -512,10 +512,18 @@ export default {
     rating() {
       var id = this.$route.params.id;
       var rating = $('#demoRating').val();
+      if(rating == 0){
+        $.alert({
+          title: 'Alert!',
+          content: 'A rating cannot be 0!',
+        });
+      }
+      else{
       axios.get('ratingListing/' + id + '/' + rating).then((data) => {
         sessionStorage.setItem('alert', 'Rating submitted successfully!');
         location.reload();;
       });
+     }
     },
 
     make_session(id) {
@@ -549,16 +557,24 @@ export default {
     download_business() {
       var id = this.$route.params.id; var t = this;
       axios.get('download_business/' + id).then((data) => {
-        console.log(data);
+        //console.log(data);
 
       });
     },
 
+    download_statement() {
+      var id = this.$route.params.id; var t = this;
+      axios.get('download_statement/' + id).then((data) => {
+        //console.log(data);
+
+      });
+    },
+    
     getMilestones: function () {
       var id = this.$route.params.id; var t = this;
 
       axios.get('getMilestones/' + id).then((data) => {
-        console.log(data);
+        //console.log(data);
         t.results = data.data.data;
         t.progress = data.data.progress;
         $('#progress').css('width', t.progress + '%');
@@ -566,6 +582,8 @@ export default {
         t.share = data.data.share;
         t.amount_required = data.data.amount_required;
         t.running = data.data.running;
+        if(data.data.data == "Failed!")
+          t.progress = 0;
       });
 
     },

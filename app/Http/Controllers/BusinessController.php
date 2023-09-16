@@ -559,7 +559,7 @@ public function getMilestones($id){
   $running = 1;
 
   if($mile->status == 'Done') { 
-  $done++; $amount_covered = $amount_covered+$mile->amount;
+  $done++; 
  }
 
   //SETTING Time Diffrence
@@ -576,6 +576,13 @@ if($time_now > $time_due_date)
 
 }
 
+//Covered
+$accepted = AcceptedBids::where('business_id',$id)->get();
+foreach($accepted as $acc){
+$amount_covered = $amount_covered+$acc->amount;
+}
+//Covered
+
 $total_mile = count($milestones);
 $progress = ($done/$total_mile)*100;
 $list = Listing::where('id',$id)->first();
@@ -586,7 +593,8 @@ return response()->json([ 'data' => $milestones, 'progress' => $progress,
 'share' => $share, 'amount_required' => $amount_required,'running' => $running ]);
 }
 
-return response()->json([ 'data' => 'Failed!' ]);
+else
+return response()->json([ 'data' => 'Failed!', 'length' => 0 ]);
 
  }
 

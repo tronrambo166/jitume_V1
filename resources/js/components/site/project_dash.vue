@@ -6,7 +6,7 @@
                 <h4 class="font-weight-bold text-success">No Milestones Yet!</h4>
             </div>
 
-            <div class="root py-5 mb-5 mr-4 ml-md-4  mr-md-0">
+            <div v-else class="root py-5 mb-5 mr-4 ml-md-4  mr-md-0">
                 <div class="progressbar-wrapper ">
                     <ul class="progressbar">
 
@@ -19,7 +19,7 @@
             </div>
 
 
-            <div v-for="result in results" class="w-md-75 m-auto row mt-4 text-center">
+            <div v-if="!no_mile" v-for="result in results" class="w-md-75 m-auto row mt-4 text-center">
 
                 <!--Active Download form -->
                 <div v-if="result.status == 'In Progress'" class="modal-body">
@@ -265,9 +265,9 @@ export default {
             var id = this.$route.params.id; var t = this;
 
             axios.get('getMilestones/' + id).then((data) => {
-                //console.log(data.data.data);
+                //console.log(data);
                 t.results = data.data.data;
-                if (data.data.data.length == 0)
+                if (data.data.length == 0)
                     t.no_mile = true;
 
             });
