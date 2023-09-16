@@ -71823,7 +71823,7 @@ var render = function () {
       _vm._m(2),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-3" }, [
-        !_vm.form.conv
+        !_vm.form.conv || !_vm.auth_user
           ? _c("div", { staticClass: "card bg-light w-100 mx-auto py-3" }, [
               _vm._m(3),
               _vm._v(" "),

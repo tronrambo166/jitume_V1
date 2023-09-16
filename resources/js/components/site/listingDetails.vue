@@ -96,7 +96,7 @@
          </div> -->
 
 
-        <div v-if="!form.conv" class="card bg-light w-100 mx-auto py-3">
+        <div v-if="!form.conv || !auth_user" class="card bg-light w-100 mx-auto py-3">
 
           <h4 class="secondary_heading ml-4 border border-light py-2 d-block ">Business Home Window <p class="d-inline ">
             </p>
