@@ -392,15 +392,17 @@ return response()->json(['results'=>$listings, 'success' => "Success"]);
 }
 
 public function serviceResults($ids){
-$results = array();
+$results = array();$count = 0;
 $ids = explode(',',$ids); 
 foreach($ids as $id){ 
     if($id!=''){ 
     $listing = Services::where('id',$id)->first();
+    if($listing) $count++;
     $results[] = $listing;
 }
 }
-return response()->json([ 'data' => $results, 'count'=>count($results)] );
+
+return response()->json([ 'data' => $results, 'count'=>$count] );
 }
 
 
@@ -574,6 +576,10 @@ public function removeCart($id){
   public function download_business($id){
     $doc = Listing::where('id',$id)->first();
     $file=$doc->document; 
+    if($file == null){
+        return response()->json(['status'=>404]);
+    }
+
     $headers = array('Content-Type'=> 'application/pdf');
     return Response::download($file, 'business_details.pdf', $headers); 
     //return response()->json(['data'=>'success']);
@@ -583,6 +589,10 @@ public function removeCart($id){
     public function download_statement($id){
     $doc = Listing::where('id',$id)->first();
     $file=$doc->yeary_fin_statement;
+    if($file == null){
+        return response()->json(['status'=>404]);
+    }
+    
     $headers = array('Content-Type'=> 'application/pdf');
     return Response::download($file, 'business_statement.pdf', $headers); 
 

@@ -31,15 +31,15 @@ class checkoutController extends Controller
     }
 
     // PAYMENT
-     public function goCheckout(Request $request)
+     public function goCheckout($amount, $listing_id)
     {
       // $id=$request->id;
       // $listing=$request->listing;
       // $value=$request->value;
       // $amount=$request->amount;
-      $listing=$request->listing_id;
+      $listing=base64_decode($listing_id);
 
-      $base_price=$request->price;
+      $base_price=base64_decode($amount);
       $price = round( $base_price+($base_price*0.05),2 );
       //$ids=Crypt::decryptString($ids);
       

@@ -149,15 +149,15 @@
 
                         <input type="text" hidden id="price" name="price" :value="form.investors_fee">
                         <input type="number" hidden id="listing_id" name="listing_id" :value="form.listing_id">
-                        <button @click="make_session(form.listing_id);" type="submit"
+                        <a @click="make_session(form.listing_id); stripeFee(form.listing_id, form.investors_fee);" type="submit"
                           class="modal_ok_btn btn rounded w-25 d-inline  px-3 text-white  mr-3">
                           Ok
-                        </button>
-                        <button @click="modal_hide()" type="button"
+                        </a>
+                        <a @click="modal_hide()" type="button"
                           class="modal_cancel_btn w-25 btn rounded d-inline px-3 m-0 " data-dismiss="modal"
                           aria-label="Close">
                           <span aria-hidden="true">Cancel</span>
-                        </button>
+                        </a>
 
                       </form>
 
@@ -558,6 +558,20 @@ export default {
       var id = this.$route.params.id; var t = this;
       axios.get('download_business/' + id).then((data) => {
         //console.log(data);
+        if(data.data.status == 404){
+           $.alert({
+          title: 'Alert!',
+          content: 'The business has no such document or the file not found!',
+           type: 'red',
+            buttons: {
+            tryAgain: {
+            text: 'Close',
+            btnClass: 'btn-red',
+            action: function(){
+            }
+        }}  
+        });
+        }
 
       });
     },
@@ -565,6 +579,20 @@ export default {
     download_statement() {
       var id = this.$route.params.id; var t = this;
       axios.get('download_statement/' + id).then((data) => {
+        if(data.data.status == 404){
+          $.alert({
+          title: 'Alert!',
+          content: 'The business has no such document or the file not found!',
+           type: 'red',
+            buttons: {
+            tryAgain: {
+            text: 'Close',
+            btnClass: 'btn-red',
+            action: function(){
+            }
+        }}  
+        });
+        }
         //console.log(data);
 
       });
@@ -579,6 +607,7 @@ export default {
         t.progress = data.data.progress;
         $('#progress').css('width', t.progress + '%');
         t.progress = (data.data.share) * t.progress;
+        t.progress = t.progress.toFixed(2);
         t.share = data.data.share;
         t.amount_required = data.data.amount_required;
         t.running = data.data.running;
@@ -652,6 +681,24 @@ export default {
           }
         });
       }
+
+    },
+
+      stripeFee: function (business_id,amount) {
+        var amount = btoa(amount);
+        var business_id = btoa(business_id)
+        $.confirm({
+          title: 'Are you sure?',
+          content: 'Are you sure to bid?',
+          buttons: {
+            confirm: function () {
+              window.location.href = './stripe/' + amount + '/' + business_id;
+            },
+            cancel: function () {
+              $.alert('Canceled!');
+            },
+          }
+        });
 
     },
 

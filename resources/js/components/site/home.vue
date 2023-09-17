@@ -70,7 +70,7 @@
 
               <div class="row" style="">
                 <div id="result_list" class="text-left"
-                  style="display: none;width:30%; z-index: 1000;height: 600px;position: absolute; margin-left: 174px;top: 227px;">
+                  style="display: none;width:30%; z-index: 1000;height: 600px;position: absolute; left: 185px;top: 165px;">
 
                 </div>
               </div>
@@ -463,7 +463,7 @@ export default {
 
 
   created() {
-    console.log(this.auth_user);
+    //console.log(this.auth_user);
     this.checkListing = sessionStorage.getItem('invest');
     if (this.checkListing != null)
       this.$router.push(`listingDetails/${this.checkListing}`)

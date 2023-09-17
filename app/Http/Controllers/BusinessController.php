@@ -102,7 +102,7 @@ else if(Session::has('c_to_actionS') && Session::get('c_to_actionS') == true){
   Session::forget('c_to_actionS');
   return redirect('business/add-services');
 }
-else if(Session::has('c_to_action_Service') && Session::get('c_to_action_Service') == true){ exit;
+else if(Session::has('c_to_action_Service') && Session::get('c_to_action_Service') == true){
   Session::forget('c_to_action_Service');
   return redirect('/');
 }

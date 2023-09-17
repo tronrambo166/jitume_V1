@@ -200,7 +200,7 @@ Auth::routes();
 
 
 //Unlock small fee
-Route::get('/stripe', 'checkoutController@goCheckout')->name('stripe');
+Route::get('/stripe/{amount}/{business_id}', 'checkoutController@goCheckout')->name('stripe');
 Route::post('/stripe', 'checkoutController@stripePost')->name('stripe.post');
 
 //Subscribe

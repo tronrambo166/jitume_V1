@@ -69,7 +69,7 @@
 
                 <div class="row" style="">
                     <div id="result_list" class="text-left"
-                        style="display: none;width:32%; z-index: 1000;height: 600px;position: absolute; margin-left: 378px;top: 330px;">
+                        style="display: none;width:32%; z-index: 1000;height: 600px;position: absolute; left: 476px;top: 394px;">
                     </div>
                 </div>
 
@@ -164,7 +164,11 @@ export default {
     }),
 
     created() {
+        var button = $('#c_to_ac').length;
+        //console.log(button);
+        if(button != 0)
         document.getElementById('c_to_ac').innerHTML = 'Add Your Service';
+
         $('#call_to').html('');
         $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span  id="c_to_ac">Add Your Service</span></a> ');
 

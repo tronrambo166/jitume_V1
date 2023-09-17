@@ -69,7 +69,7 @@
                 </div>
                 <!-- Price Filter -->
 
-                <div class="row">
+                <div class="row" v-if="count != 0">
                     <div v-for="( result, index ) in results" class="listing col-md-6 my-3">
                         <router-link :to="`/serviceDetails/${result.id}`" class="shadow card border px-4">
 
@@ -132,7 +132,7 @@ export default {
                 if(data.data.count != 0){
                 t.count = data.data.count;
                 t.results = data.data.data;
-                console.log(data);
+                //console.log(data);
             }
             }).catch((error) => { console.log(error); })
         },
