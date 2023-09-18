@@ -1213,7 +1213,8 @@
                                                 <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('First Name') }} <span title="Required" class="text-danger">*</span></label>
 
                                                 <div class="col-md-6">
-                                                    <input id="name" type="text" class="form-control" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
+                                                    <input id="name" type="text" class="form-control" name="fname" 
+                                                    @if(Session::has('old_fname')) value="{{Session::get('old_fname')}}" @endif required autocomplete="name" autofocus>
 
 
                                                 </div>
@@ -1224,7 +1225,7 @@
                                                 <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Middle Name') }} <span title="Required" class="text-danger"></span></label>
 
                                                 <div class="col-md-6">
-                                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="mname" value="{{ old('mname') }}" autocomplete="name" autofocus>
+                                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="mname" @if(Session::has('old_mname')) value="{{Session::get('old_mname')}}" @endif autocomplete="name" autofocus>
 
 
                                                 </div>
@@ -1235,7 +1236,7 @@
                                                 <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Last Name') }} <span title="Required" class="text-danger">*</span></label>
 
                                                 <div class="col-md-6">
-                                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus>
+                                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lname" @if(Session::has('old_lname')) value="{{Session::get('old_lname')}}" @endif required autocomplete="name" autofocus>
 
 
                                                 </div>
@@ -1249,7 +1250,7 @@
                                                 <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('E-Mail') }} <span title="Required" class="text-danger">*</span></label>
 
                                                 <div class="col-md-6">
-                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" @if(Session::has('old_email')) value="{{Session::get('old_email')}}" @endif required autocomplete="email">
 
 
                                                 </div>
@@ -1280,7 +1281,7 @@
                                                 <label for="password" class="pr-0 col-md-5 col-form-label text-md-left">{{ __('Enter your passport/Id no*') }}<span title="Required" class="text-danger">*</span></label>
 
                                                 <div class="col-md-5">
-                                                    <input required class="text-left form-control" type="text" name="id_no">
+                                                    <input required class="text-left form-control" type="text" name="id_no" @if(Session::has('old_id_no')) value="{{Session::get('old_id_no')}}" @endif >
 
 
                                                 </div>
@@ -1291,7 +1292,7 @@
                                                 <label for="password" class="pr-0 col-md-5 col-form-label text-md-left">{{ __('Enter your individual/company tax pin*') }}<span title="Required" class="text-danger">*</span></label>
 
                                                 <div class="col-md-5">
-                                                    <input required class="text-left form-control" type="text" name="tax_pin">
+                                                    <input required class="text-left form-control" type="text" name="tax_pin" @if(Session::has('old_tax_pin')) value="{{Session::get('old_tax_pin')}}" @endif >
 
 
                                                 </div>
@@ -1422,7 +1423,9 @@
                                                 <label for="password" class="col-md-12 col-form-label text-md-left">{{ __('Please Enter details of your past investments & track records') }}<span title="Required" class="text-danger"></span></label>
 
                                                 <div class="col-md-12">
-                                                    <textarea name="past_investment" rows="2" cols="50"></textarea>
+                                                    <textarea name="past_investment" rows="2" cols="50">
+                                                        @if(Session::has('old_past_investment')) value="{{Session::get('old_past_investment')}}" @endif
+                                                    </textarea>
 
                                                 </div>
                                             </div>
@@ -1432,7 +1435,7 @@
                                                 <label for="password" class="col-md-12 col-form-label text-md-left">{{ __('Please Enter your current website or web presence') }}<span title="Required" class="text-danger"></span></label>
 
                                                 <div class="col-md-12">
-                                                    <input type="text" name="website" class="w-75" />
+                                                    <input type="text" name="website" class="w-75" @if(Session::has('old_website')) value="{{Session::get('old_website')}}" @endif />
 
                                                 </div>
                                             </div>

@@ -42,6 +42,8 @@ class checkoutController extends Controller
       $base_price=base64_decode($amount);
       $price = round( $base_price+($base_price*0.05),2 );
       //$ids=Crypt::decryptString($ids);
+
+    Session::put('small_fee_new_price', $price);
       
         return view('checkout.stripe',compact('price','listing'));
     }
@@ -63,8 +65,8 @@ class checkoutController extends Controller
     try{
 
         $curr='USD'; //$request->currency; 
-        $amount=$request->price;
-        $transferAmount=round($amount-($amount*.05),2);
+        $amount= Session::get('small_fee_new_price'); //$request->price;
+        $transferAmount= round($amount-($amount*.05),2);
 
         $this->validate($request, [
             'stripeToken' => ['required', 'string']
@@ -605,6 +607,9 @@ public function bidCommitsForm($amount,$business_id,$percent)
     $total = $amount+($amount*0.05);
     $amount = round($total,2);
     $amountReal = $amountBase;
+
+    Session::put('bid_new_price', $amount);
+    Session::put('bid_original_price', $amountReal);
  
         return view('bids.stripe',compact('amountReal','amount','business_id','percent'));
 }
@@ -624,8 +629,9 @@ public function bidCommits(Request $request){
  try{
     //Stripe
         $curr='USD'; //$request->currency;
-        $amount=$request->price; 
-        $amountReal=$request->amountReal;
+        $amount= Session::get('bid_new_price');//$request->price; 
+        $amountReal= Session::get('bid_original_price'); //$request->amountReal;
+
         $transferAmount=round($amountReal,2);
         $amount = round($amount,2);
 

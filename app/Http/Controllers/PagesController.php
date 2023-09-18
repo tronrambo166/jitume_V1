@@ -137,6 +137,18 @@ Session::put('login_err',$e->getMessage());
 }
 
 public function registerI(Request $request){
+
+//Session
+ Session::put('old_fname',$request->fname);
+ Session::put('old_lname',$request->lname);
+ Session::put('old_mname',$request->mname);
+ Session::put('old_email',$request->email);
+ Session::put('old_id_no',$request->id_no);
+ Session::put('old_tax_pin',$request->tax_pin);
+ Session::put('old_past_investment',$request->past_investment);
+ Session::put('old_website',$request->website);
+//Session
+
 $investor = 1; 
 $user = User::where('email',$request->email)->first();
     if($user!=''){ 

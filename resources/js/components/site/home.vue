@@ -69,8 +69,8 @@
               </div>
 
               <div class="row" style="">
-                <div id="result_list" class="text-left"
-                  style="display: none;width:30%; z-index: 1000;height: 600px;position: absolute; left: 185px;top: 165px;">
+                <div id="result_list" class="text-left search_results"
+                  style="">
 
                 </div>
               </div>

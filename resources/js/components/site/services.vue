@@ -68,8 +68,8 @@
                 </div>
 
                 <div class="row" style="">
-                    <div id="result_list" class="text-left"
-                        style="display: none;width:32%; z-index: 1000;height: 600px;position: absolute; left: 476px;top: 394px;">
+                    <div id="result_list" class="text-left search_resultsS"
+                        style="">
                     </div>
                 </div>
 

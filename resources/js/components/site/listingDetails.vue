@@ -357,14 +357,14 @@
                 <input type="number" hidden id="listing_id" name="listing_id" :value="form.listing_id">
 
 
-                <button @click="make_session(form.listing_id);" type="submit"
+                <a @click="make_session(form.listing_id);stripeFee(form.listing_id, form.investors_fee);" type="submit"
                   class="modal_ok_btn w-25 d-inline  btn rounded mr-3 px-3 font-weight-bold">
                   Ok
-                </button>
-                <button type="button" class="modal_cancel_btn btn rounded w-25 d-inline px-3 font-weight-bold m-0 "
+                </a>
+                <a type="button" class="modal_cancel_btn btn rounded w-25 d-inline px-3 font-weight-bold m-0 "
                   data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">Cancel</span>
-                </button>
+                </a>
 
               </form>
 

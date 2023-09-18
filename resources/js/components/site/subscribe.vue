@@ -106,13 +106,13 @@
                  <input type="text" hidden id="price" name="price" value="">
                   <input type="number" hidden id="listing_id" name="listing_id" value="">
          
-         <button v-if="form.select" @click="make_session(form.id);" type="submit" class="btn btn-primary px-3 font-weight-bold" >
+         <a v-if="form.select" @click="make_session(form.id);stripeFee(form.id, form.price);" type="submit" class="btn btn-primary px-3 font-weight-bold" >
           Checkout
-        </button>
+        </a>
 
-        <button v-else onclick="alert('Please select a package!');" type="button" class="btn btn-primary px-3 font-weight-bold" >
+        <a v-else onclick="alert('Please select a package!');" type="button" class="btn btn-primary px-3 font-weight-bold" >
           Checkout
-        </button>
+        </a>
 
             </form>
                 </div>
@@ -136,6 +136,8 @@
     data: () => ({
     form: new Form({
         id:'',
+        pacage:'',
+        price:'',
         select:false
     }),
     empty:false
@@ -164,13 +166,15 @@
     this.form.select = true;
 
     if(event == '9.99'){
-        var pacage = 'silver-month';
+        this.form.price = 9.99
+    var pacage = 'silver-month';
     $('#one').css('background','#e0edd8');
     $('#two').css('background','');
     $('#three').css('background','');
   }
 
    if(event == '29.99'){
+    this.form.price = 29.99
     var pacage = 'gold-month';
     $('#two').css('background','#e0edd8');
     $('#one').css('background','');
@@ -178,6 +182,7 @@
   }
 
    if(event == '69.99'){
+    this.form.price = 69.99
     var pacage = 'platinum-month';
     $('#three').css('background','#e0edd8');
     $('#two').css('background','');
@@ -185,6 +190,7 @@
   }
 
    if(event == '95.99'){
+    this.form.price = 95.99
     var pacage = 'silver-year';
     $('#four').css('background','#e0edd8');
     $('#five').css('background','');
@@ -192,6 +198,7 @@
   }
 
   if(event == '287.99'){
+    this.form.price = 287.99
     var pacage = 'gold-year';
     $('#five').css('background','#e0edd8');
     $('#four').css('background','');
@@ -199,6 +206,7 @@
   }
 
   if(event == '671.99'){
+    this.form.price = 671.99
     var pacage = 'platinum-year';
     $('#six').css('background','#e0edd8');
     $('#five').css('background','');
@@ -208,6 +216,25 @@
     document.getElementById('listing_id').value = this.form.id;
     document.getElementById('package').value = pacage;
 },
+
+stripeFee: function (business_id,amount) {
+        var amount = btoa(amount);
+        var business_id = btoa(business_id)
+        $.confirm({
+          title: 'Are you sure?',
+          content: 'Are you sure to bid?',
+          buttons: {
+            confirm: function () {
+              window.location.href = './stripe/' + amount + '/' + business_id;
+            },
+            cancel: function () {
+              $.alert('Canceled!');
+            },
+          }
+        });
+
+    },
+
  make_session(id){
             sessionStorage.setItem('invest',id);
         },

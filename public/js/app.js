@@ -11542,6 +11542,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: new Form({
         id: '',
+        pacage: '',
+        price: '',
         select: false
       }),
       empty: false
@@ -11567,6 +11569,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.select = true;
 
       if (event == '9.99') {
+        this.form.price = 9.99;
         var pacage = 'silver-month';
         $('#one').css('background', '#e0edd8');
         $('#two').css('background', '');
@@ -11574,6 +11577,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (event == '29.99') {
+        this.form.price = 29.99;
         var pacage = 'gold-month';
         $('#two').css('background', '#e0edd8');
         $('#one').css('background', '');
@@ -11581,6 +11585,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (event == '69.99') {
+        this.form.price = 69.99;
         var pacage = 'platinum-month';
         $('#three').css('background', '#e0edd8');
         $('#two').css('background', '');
@@ -11588,6 +11593,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (event == '95.99') {
+        this.form.price = 95.99;
         var pacage = 'silver-year';
         $('#four').css('background', '#e0edd8');
         $('#five').css('background', '');
@@ -11595,6 +11601,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (event == '287.99') {
+        this.form.price = 287.99;
         var pacage = 'gold-year';
         $('#five').css('background', '#e0edd8');
         $('#four').css('background', '');
@@ -11602,6 +11609,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (event == '671.99') {
+        this.form.price = 671.99;
         var pacage = 'platinum-year';
         $('#six').css('background', '#e0edd8');
         $('#five').css('background', '');
@@ -11611,6 +11619,22 @@ __webpack_require__.r(__webpack_exports__);
       document.getElementById('price').value = event;
       document.getElementById('listing_id').value = this.form.id;
       document.getElementById('package').value = pacage;
+    },
+    stripeFee: function stripeFee(business_id, amount) {
+      var amount = btoa(amount);
+      var business_id = btoa(business_id);
+      $.confirm({
+        title: 'Are you sure?',
+        content: 'Are you sure to bid?',
+        buttons: {
+          confirm: function confirm() {
+            window.location.href = './stripe/' + amount + '/' + business_id;
+          },
+          cancel: function cancel() {
+            $.alert('Canceled!');
+          }
+        }
+      });
     },
     make_session: function make_session(id) {
       sessionStorage.setItem('invest', id);
@@ -70905,16 +70929,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", {
-        staticClass: "text-left",
-        staticStyle: {
-          display: "none",
-          width: "30%",
-          "z-index": "1000",
-          height: "600px",
-          position: "absolute",
-          left: "185px",
-          top: "165px",
-        },
+        staticClass: "text-left search_results",
         attrs: { id: "result_list" },
       }),
     ])
@@ -72438,14 +72453,18 @@ var render = function () {
                     }),
                     _vm._v(" "),
                     _c(
-                      "button",
+                      "a",
                       {
                         staticClass:
                           "modal_ok_btn w-25 d-inline btn rounded mr-3 px-3 font-weight-bold",
                         attrs: { type: "submit" },
                         on: {
                           click: function ($event) {
-                            return _vm.make_session(_vm.form.listing_id)
+                            _vm.make_session(_vm.form.listing_id)
+                            _vm.stripeFee(
+                              _vm.form.listing_id,
+                              _vm.form.investors_fee
+                            )
                           },
                         },
                       },
@@ -72652,7 +72671,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "button",
+      "a",
       {
         staticClass:
           "modal_cancel_btn btn rounded w-25 d-inline px-3 font-weight-bold m-0",
@@ -73821,8 +73840,8 @@ var render = function () {
       [
         _vm.done_msg != null
           ? _c("div", { staticClass: "w-75 my-2 text-center mx-auto" }, [
-              _c("h4", { staticClass: "font-weight-bold text-success" }, [
-                _vm._v("Milestones completed! Service delivered!"),
+              _c("h5", { staticClass: "bg-light py-2 my-3 text-success" }, [
+                _vm._v("Milestones completed, Service delivered!"),
               ]),
             ])
           : _vm._e(),
@@ -75492,16 +75511,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", {
-        staticClass: "text-left",
-        staticStyle: {
-          display: "none",
-          width: "32%",
-          "z-index": "1000",
-          height: "600px",
-          position: "absolute",
-          left: "476px",
-          top: "394px",
-        },
+        staticClass: "text-left search_resultsS",
         attrs: { id: "result_list" },
       }),
     ])
@@ -75891,20 +75901,21 @@ var render = function () {
               _vm._v(" "),
               _vm.form.select
                 ? _c(
-                    "button",
+                    "a",
                     {
                       staticClass: "btn btn-primary px-3 font-weight-bold",
                       attrs: { type: "submit" },
                       on: {
                         click: function ($event) {
-                          return _vm.make_session(_vm.form.id)
+                          _vm.make_session(_vm.form.id)
+                          _vm.stripeFee(_vm.form.id, _vm.form.price)
                         },
                       },
                     },
                     [_vm._v("\n      Checkout\n    ")]
                   )
                 : _c(
-                    "button",
+                    "a",
                     {
                       staticClass: "btn btn-primary px-3 font-weight-bold",
                       attrs: {

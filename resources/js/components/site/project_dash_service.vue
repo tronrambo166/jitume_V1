@@ -3,7 +3,7 @@
         <div class="container">
 
             <div v-if="done_msg != null" class="w-75 my-2 text-center mx-auto">
-                <h4 class="font-weight-bold text-success">Milestones completed! Service delivered!</h4>
+                <h5 class="bg-light py-2 my-3 text-success">Milestones completed, Service delivered!</h5>
             </div>
 
 
