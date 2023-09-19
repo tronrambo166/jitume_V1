@@ -152,7 +152,7 @@ Route::get('add_s_milestones', 'ServiceController@add_milestones')->name('add_s_
 Route::get('s_milestones-{id}', 'ServiceController@milestones')->name('s_milestones');
 Route::post('save_s_milestone', 'ServiceController@save_milestone')->name('save_s_milestone');
 Route::post('up_milestones', 'ServiceController@up_milestone')->name('up_s_milestones');
-Route::get('delete_s_milestone/{id}', 'ServiceController@delete_milestone')->name('delete_milestone');
+Route::get('delete_s_milestone/{id}', 'ServiceController@delete_milestone')->name('delete_s_milestone');
 Route::post('mile_s_status', 'ServiceController@mile_status')->name('mile_s_status');
 // --- MILESTONE
 Route::get('service_booking', 'ServiceController@service_booking')->name('service_booking');

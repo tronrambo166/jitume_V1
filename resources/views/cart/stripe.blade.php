@@ -40,7 +40,7 @@
    
 	
   <div class="col-sm-12">
-         <div class="row float-right"> <a class="btn btn-primary float-right" href="./">Back to home</a></div>
+         <div class="row float-right"> <a class="btn btn-primary float-right" href="{{route('/')}}">Back to home</a></div>
          <div class="row w-50 bg-light m-auto ">
 
             <div class="col-md-9 m-auto col-md-offset-3 py-2">

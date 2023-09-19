@@ -9403,7 +9403,7 @@ __webpack_require__.r(__webpack_exports__);
       var business_id = btoa(business_id);
       $.confirm({
         title: 'Are you sure?',
-        content: 'Are you sure to bid?',
+        content: 'Are you sure?',
         buttons: {
           confirm: function confirm() {
             window.location.href = './stripe/' + amount + '/' + business_id;
@@ -10728,8 +10728,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.formBook.service_id = this.$route.params.id;
       var t = this;
       axios.get('ServiceResults/' + id).then(function (data) {
-        console.log(data); //t.details = data.data.data;
-
+        //console.log(data);
+        //t.details = data.data.data;
         t.form.price = data.data.data[0].price;
         t.form.name = data.data.data[0].name;
         t.form.details = data.data.data[0].details;
@@ -10793,11 +10793,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       document.getElementById('c_to_action').value = 'loginFromService';
       document.getElementById('c_to_action_login').value = 'loginFromService';
     },
-    cart: function cart() {
-      axios.get('cart').then(function (data) {
-        document.getElementById('cart').innerHTML = data.data.cart;
-      });
-    },
     replaceText: function replaceText() {
       $('#call_to').html('');
       $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
@@ -10839,7 +10834,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     this.replaceText();
     this.getDetails();
-    this.cart();
 
     if (sessionStorage.getItem('alert') != null) {
       alert('Review successfully taken!');
@@ -74554,12 +74548,12 @@ var render = function () {
                       {
                         staticClass: "btn border border-bottom-success",
                         attrs: {
-                          "data-target": "#loginmodal2",
+                          "data-target": "#loginModal",
                           "data-toggle": "modal",
                         },
                         on: {
                           click: function ($event) {
-                            return _vm.make_session(_vm.form.id)
+                            return _vm.make_session()
                           },
                         },
                       },

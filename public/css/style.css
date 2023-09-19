@@ -2,11 +2,9 @@
         margin:0;
         padding:0;
     } */
-
-
     /* /*Calling Fonts*/
 
-    @font-face {
+    /*@font-face {
 
         font-family: 'OpenSans';
         src: url('font/OpenSans-Regular.eot') format('eot'),
@@ -43,7 +41,7 @@
 
             url('font/OpenSans-ExtraBold.svg') format('svg');
 
-    }
+    }*/
 
 
 

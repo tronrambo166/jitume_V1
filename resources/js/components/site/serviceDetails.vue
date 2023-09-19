@@ -43,7 +43,7 @@
                 <a v-if="auth_user" data-toggle="modal" data-target="#reviewModal"
                   class="btn border border-bottom-success">Add review</a>
 
-                <a v-else @click="make_session(form.id);" data-target="#loginmodal2" data-toggle="modal"
+                <a v-else @click="make_session();" data-target="#loginModal" data-toggle="modal"
                   class="btn border border-bottom-success">Add review</a>
 
                 <hr>
@@ -242,7 +242,7 @@ export default {
       this.formBook.service_id = this.$route.params.id;
       var t = this;
       axios.get('ServiceResults/' + id).then((data) => {
-        console.log(data);
+        //console.log(data);
         //t.details = data.data.data;
         t.form.price = data.data.data[0].price;
         t.form.name = data.data.data[0].name;
@@ -318,12 +318,6 @@ export default {
       document.getElementById('c_to_action').value = 'loginFromService';
       document.getElementById('c_to_action_login').value = 'loginFromService';
     },
-    cart() {
-      axios.get('cart').then((data) => {
-        document.getElementById('cart').innerHTML = data.data.cart;
-
-      });
-    },
 
     replaceText() {
       $('#call_to').html('');
@@ -351,7 +345,6 @@ export default {
   mounted() {
     this.replaceText();
     this.getDetails();
-    this.cart();
 
     if (sessionStorage.getItem('alert') != null) {
       alert('Review successfully taken!');

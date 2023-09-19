@@ -689,7 +689,7 @@ export default {
         var business_id = btoa(business_id)
         $.confirm({
           title: 'Are you sure?',
-          content: 'Are you sure to bid?',
+          content: 'Are you sure?',
           buttons: {
             confirm: function () {
               window.location.href = './stripe/' + amount + '/' + business_id;

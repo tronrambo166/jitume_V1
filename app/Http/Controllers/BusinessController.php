@@ -614,7 +614,7 @@ public function milestones($id){
 if($id == 'all'){
   $listing = listing::where('user_id', Auth::id())->latest()->first();
   if($listing !=null){
-  $milestones = Milestones::where('listing_id', $listing->id)->get();
+  $milestones = Milestones::where('user_id', Auth::id())->get();
  }
   else $milestones = [];
   $business_name = 'Select Business';//$listing->name;

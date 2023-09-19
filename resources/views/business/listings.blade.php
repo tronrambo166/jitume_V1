@@ -56,7 +56,7 @@
                         <td><img width="100px" height="60px" src="../{{$ev->image}}"></td>
    
             <td class="text-center">
-            <button data-target="#add{{$ev->id}}" data-toggle="modal" style="cursor:pointer;" id="invest" class="rounded text-light buttonEq2 my-1"><i class="fa fa-plus"></i>Resource</button>
+            <!-- <button data-target="#add{{$ev->id}}" data-toggle="modal" style="cursor:pointer;" id="invest" class="rounded text-light buttonEq2 my-1"><i class="fa fa-plus"></i>Resource</button> -->
 
             <button data-target="#edit{{$ev->id}}" data-toggle="modal" style="cursor:pointer;" id="invest" class="rounded text-light buttonEq2 my-1">Edit</button>
                 
