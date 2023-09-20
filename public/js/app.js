@@ -10420,6 +10420,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -73155,9 +73159,14 @@ var render = function () {
                   "w-75 h-100 py-5 my-5 my-auto justify-content-center my-2 text-center mx-auto",
               },
               [
-                _c("h4", { staticClass: "font-weight-bold text-success" }, [
-                  _vm._v("No Milestones Yet!"),
-                ]),
+                _c(
+                  "h5",
+                  {
+                    staticClass:
+                      "w-75 mx-auto bg-light py-3 my-3 text-secondary",
+                  },
+                  [_vm._v("No Milestones Yet!")]
+                ),
               ]
             )
           : _c("div", { staticClass: "root py-5 mb-5 mr-4 ml-md-4 mr-md-0" }, [
@@ -73832,11 +73841,35 @@ var render = function () {
       "div",
       { staticClass: "container" },
       [
+        _vm.no_mile
+          ? _c(
+              "div",
+              {
+                staticClass:
+                  "w-75 h-100 py-5 my-5 my-auto justify-content-center my-2 text-center mx-auto",
+              },
+              [
+                _c(
+                  "h5",
+                  {
+                    staticClass:
+                      "w-75 mx-auto bg-light py-3 my-3 text-secondary",
+                  },
+                  [_vm._v("No Milestones Yet!")]
+                ),
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
         _vm.done_msg != null
-          ? _c("div", { staticClass: "w-75 my-2 text-center mx-auto" }, [
-              _c("h5", { staticClass: "bg-light py-2 my-3 text-success" }, [
-                _vm._v("Milestones completed, Service delivered!"),
-              ]),
+          ? _c("div", { staticClass: "w-75 my-5 h-100 text-center mx-auto" }, [
+              _c(
+                "h5",
+                {
+                  staticClass: "w-75 mx-auto bg-light py-3 my-3 text-secondary",
+                },
+                [_vm._v("Milestones completed, Service delivered!")]
+              ),
             ])
           : _vm._e(),
         _vm._v(" "),

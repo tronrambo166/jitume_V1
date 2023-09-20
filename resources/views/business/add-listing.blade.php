@@ -250,6 +250,7 @@
                         Upload Company/Individual Pin *
                       <img src="../images/up.svg" width="30px"> </label>
                       <input style="" id="file-upload2" required type="file" name="pin" />
+                        <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
                     </div>
 
                     </div>
@@ -261,6 +262,7 @@
                       <label for="file-upload3" class="btnUp_listing"> Upload Directors Identification(Id/Passport)*
                       <img src="../images/up.svg" width="30px"> </label>
                       <input style="" id="file-upload3" required="" type="file" name="identification" />
+                      <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
                     </div>
 
                     </div>
@@ -275,9 +277,10 @@
               <div class="col-sm-12 mx-auto"> 
 
                     <div class="upload-btn-wrapper w-75  d-block">
-                      <label for="file-upload4" class="text-center w-100 btnUp_listing">  Upload 12 Months Financial Statements (Bnak/Mpesa etc)*
+                      <label for="file-upload4" class="text-center w-100 btnUp_listing">  Upload 12 Months Financial Statements (Bank/Mpesa etc)*
                       <img src="../images/up.svg" width="30px"> </label>
                       <input style="" id="file-upload4" required="" type="file" name="yeary_fin_statement" />
+                      <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
                     </div>
 
                     </div>
@@ -289,6 +292,7 @@
                       <label for="file-upload4" class="text-center w-100 btnUp_listing">  Upload Supporting Business Documentation*
                       <img src="../images/up.svg" width="30px"> </label>
                       <input style="" id="file-upload4" required="" type="file" name="document" />
+                      <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
                     </div>
 
                     </div>

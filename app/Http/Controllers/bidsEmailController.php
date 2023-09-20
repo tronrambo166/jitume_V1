@@ -72,14 +72,7 @@ public function bidsAccepted(Request $request)
         $bid = BusinessBids::where('id',$id)->first();
         $investor = User::where('id',$bid->investor_id)->first();
         $investor_mail = $investor->email;
-
-        $list = listing::where('id',$bid->business_id)->first();
-        $info=[ 'business_name'=>$list->name, 'bid_id'=>$id ];
-        $user['to'] = 'tottenham266@gmail.com'; //$investor_mail;
-         Mail::send('bids.accepted', $info, function($msg) use ($user){
-             $msg->to($user['to']);
-             $msg->subject('Bid accepted!');
-         });
+        
 
          //remove
         // if($bid->legal_doc !=null)
@@ -108,6 +101,18 @@ public function bidsAccepted(Request $request)
               Session::put('failed',$e->getMessage());
               return redirect()->back();
             }
+
+        //Mail
+        $list = listing::where('id',$bid->business_id)->first();
+        $info=[ 'business_name'=>$list->name, 'bid_id'=>$id ];
+        $user['to'] = 'tottenham266@gmail.com'; //$investor_mail;
+         Mail::send('bids.accepted', $info, function($msg) use ($user){
+             $msg->to($user['to']);
+             $msg->subject('Bid accepted!');
+         });
+        
+        //Mail
+
 
               AcceptedBids::create([
               'bid_id' => $id,

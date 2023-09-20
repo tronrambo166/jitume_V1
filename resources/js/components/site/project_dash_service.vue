@@ -2,8 +2,12 @@
     <div class="main">
         <div class="container">
 
-            <div v-if="done_msg != null" class="w-75 my-2 text-center mx-auto">
-                <h5 class="bg-light py-2 my-3 text-success">Milestones completed, Service delivered!</h5>
+            <div v-if="no_mile" class="w-75 h-100 py-5 my-5 my-auto justify-content-center my-2 text-center mx-auto">
+                <h5 class="w-75 mx-auto bg-light py-3 my-3 text-secondary">No Milestones Yet!</h5>
+            </div>
+
+            <div v-if="done_msg != null" class="w-75 my-5 h-100 text-center mx-auto">
+                <h5 class="w-75 mx-auto bg-light py-3 my-3 text-secondary">Milestones completed, Service delivered!</h5>
             </div>
 
 

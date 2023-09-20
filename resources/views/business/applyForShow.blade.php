@@ -793,7 +793,7 @@
   <div class="col-sm-12">
     <label class="formLabel">Please describe your business in detail <span style="color:red;">*</span></label>
    <div>
-    <textarea placeholder="255 letters max" required class="w-100" name="business_details" rows="3"></textarea>
+    <textarea maxlength="255" placeholder="255 letters max" required class="w-100" name="business_details" rows="3"></textarea>
       </div>
      </div>
    </div>
@@ -802,7 +802,7 @@
   <div class="col-sm-12">
     <label class="formLabel">How did you come up with the idea for your business? <span style="color:red;">*</span></label>
    <div>
-    <textarea required class="w-100" name="business_idea" rows="3"></textarea>
+    <textarea maxlength="255" required class="w-100" name="business_idea" rows="3"></textarea>
       </div>
      </div>
    </div>
@@ -811,7 +811,7 @@
     <div class="row my-3">
      <div class="col-sm-6">
        <div><label class="formLabel">How long have you been in business? <span style="color:red;">*</span></label>
-        <input required class="w-100 py-0" type="text" name="how_long">
+        <input maxlength="255" required class="w-100 py-0" type="text" name="how_long">
       </div>
      </div>
    </div>
@@ -820,7 +820,7 @@
     <div class="row my-3">
      <div class="col-sm-6">
        <div><label class="formLabel">Do you have any business partners? <span style="color:red;">*</span></label>
-        <input required class="w-100 py-0" type="text" name="business_partners">
+        <input maxlength="255"  required class="w-100 py-0" type="text" name="business_partners">
       </div>
      </div>
    </div>
@@ -828,7 +828,7 @@
    <div class="row my-3">
      <div class="col-sm-6">
        <div><label class="formLabel">How many employees do you have besides yourself or your partner(s)? <span style="color:red;">*</span></label>
-        <input required class="w-100 py-0" type="text" name="employees">
+        <input maxlength="255" required class="w-100 py-0" type="text" name="employees">
       </div>
      </div>
    </div>
@@ -837,7 +837,7 @@
    <div class="row my-3">
      <div class="col-sm-6">
        <div><label class="formLabel">How much have you invested into your company? <span style="color:red;">*</span></label>
-        <input required class="w-100 py-0" type="text" name="how_m_invested">
+        <input maxlength="255" required class="w-100 py-0" type="text" name="how_m_invested">
       </div>
      </div>
    </div>
@@ -847,7 +847,7 @@
   <div class="col-sm-12">
     <label class="formLabel">What has been your biggest challenge with your business? <span style="color:red;">*</span></label>
    <div>
-    <textarea required class="w-100" name="challenge" rows="3"></textarea>
+    <textarea maxlength="255" required class="w-100" name="challenge" rows="3"></textarea>
       </div>
      </div>
    </div>
@@ -856,7 +856,7 @@
   <div class="col-sm-12">
     <label class="formLabel">How do you feel your business could be improved?  <span style="color:red;">*</span></label>
    <div>
-    <textarea required class="w-100" name="business_improved" rows="3"></textarea>
+    <textarea maxlength="255" required class="w-100" name="business_improved" rows="3"></textarea>
       </div>
      </div>
    </div>
@@ -865,7 +865,7 @@
   <div class="col-sm-12">
     <label class="formLabel">What part of your business do you feel is suffering the most (staff, customer service, etc.)? <span style="color:red;">*</span></label>
    <div>
-    <textarea required class="w-100" name="business_suffering" rows="3"></textarea>
+    <textarea maxlength="255" required class="w-100" name="business_suffering" rows="3"></textarea>
       </div>
      </div>
    </div>
@@ -874,7 +874,7 @@
   <div class="col-sm-12">
     <label class="formLabel">Is your business currently profitable? If so, what is your annual profit margin? <span style="color:red;">*</span></label>
    <div>
-    <textarea required class="w-100" name="business_profitable" rows="3"></textarea>
+    <textarea maxlength="255" required class="w-100" name="business_profitable" rows="3"></textarea>
       </div>
      </div>
    </div>
@@ -883,7 +883,7 @@
   <div class="col-sm-12">
     <label class="formLabel">What are your short-term goals for your business?  <span style="color:red;">*</span></label>
    <div>
-    <textarea required class="w-100" name="short_term_goals" rows="3"></textarea>
+    <textarea maxlength="255" required class="w-100" name="short_term_goals" rows="3"></textarea>
       </div>
      </div>
    </div>
@@ -892,7 +892,7 @@
   <div class="col-sm-12">
     <label class="formLabel">What are your long-term goals for your business? <span style="color:red;">*</span></label>
    <div>
-    <textarea required class="w-100" name="long_term_goals" rows="3"></textarea>
+    <textarea maxlength="255" required class="w-100" name="long_term_goals" rows="3"></textarea>
       </div>
      </div>
    </div> <hr>
@@ -1039,65 +1039,65 @@ confidentiality provisions of this application by me.
 
 <script>
    
-export default {
-    props: ['auth_user'],
-    data: () => ({
-    category:{},
-    catIds:[],
-    emptyCat:false,
-    image:[]
-    }),
-methods:{
+// export default {
+//     props: ['auth_user'],
+//     data: () => ({
+//     category:{},
+//     catIds:[],
+//     emptyCat:false,
+//     image:[]
+//     }),
+// methods:{
 
-handleFile (event) {
-      let t = this
-      const file = event.target.files[0]
-      this.image = file
+// handleFile (event) {
+//       let t = this
+//       const file = event.target.files[0]
+//       this.image = file
 
-      let filereader = new FileReader();
-      filereader.onload = function(e) {
-      t.form.showImage = e.target.result
-      }
-      filereader.readAsDataURL(event.target.files[0])
-    },
+//       let filereader = new FileReader();
+//       filereader.onload = function(e) {
+//       t.form.showImage = e.target.result
+//       }
+//       filereader.readAsDataURL(event.target.files[0])
+//     },
 
-ApplyForShow(){
- let t = this; 
-const form = $('#form');
-form.image = t.image;    
-$.ajax({
-url:'ApplyForShow',
-method:'POST',
-headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-dataType:'json',
-data:form.serialize(),
-    success: function (response) {
-    console.log(response.data);
-    document.getElementById('msg').innerHTML = 'Apply Success!';
-    },
-    error: function (response) {
-    console.log(response);
+// ApplyForShow(){
+//  let t = this; 
+// const form = $('#form');
+// form.image = t.image;    
+// $.ajax({
+// url:'ApplyForShow',
+// method:'POST',
+// headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+// dataType:'json',
+// data:form.serialize(),
+//     success: function (response) {
+//     console.log(response.data);
+//     document.getElementById('msg').innerHTML = 'Apply Success!';
+//     },
+//     error: function (response) {
+//     console.log(response);
 
-      }
-      });
+//       }
+//       });
     
-  }
+//   }
   
-  },
+//   },
   
 
-     mounted() { 
-    // this.getCats(),
-     return this.$store.dispatch("fetchpro")
-      },
+//      mounted() { 
+//     // this.getCats(),
+//      return this.$store.dispatch("fetchpro")
+//       },
 
-     computed:{ 
-      allpro(){  return this.$store.getters.getpro }
-     }
+//      computed:{ 
+//       allpro(){  return this.$store.getters.getpro }
+//      }
 
      
 
-    }
+//     }
 </script>
 
     </div>

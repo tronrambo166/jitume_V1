@@ -3,7 +3,7 @@
         <div class="container mt-3 mb-5">
 
             <div v-if="no_mile" class="w-75 h-100 py-5 my-5 my-auto justify-content-center my-2 text-center mx-auto">
-                <h4 class="font-weight-bold text-success">No Milestones Yet!</h4>
+                <h5 class="w-75 mx-auto bg-light py-3 my-3 text-secondary">No Milestones Yet!</h5>
             </div>
 
             <div v-else class="root py-5 mb-5 mr-4 ml-md-4  mr-md-0">

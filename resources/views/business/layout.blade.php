@@ -286,41 +286,47 @@ $booking = serviceBook::where('booker_id',$user_id)->get();
  
 <!-- DATEPICKER -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <!-- DATEPICKER -->
   
  <script type="text/javascript">
-    function suggest(search){  $("#result_list").html('');  
-        var searchText=search;
+       function suggest(search) {
+            $("#result_list").html('');
+            var searchText = search;
 
-$.ajax({
-url:'../get_suggest/'+searchText,
-method:'get',
-dataType:'json',
-                success: function (response) {
-                    console.log(response);
-                
-               for (i=0; i < 10; i++){ //console.log(response.data[i].name);
-                    var name=response.data[i].name;
-                    var city=response.data[i].city;
-                    var country=response.data[i].country;
-                    $("#result_list").show();
+            $.ajax({
+                url: '../get_suggest/' + searchText,
+                method: 'get',
+                dataType: 'json',
+                success: function(response) {
+                    // console.log(response);
 
-        $("#result_list").append(' <div onclick="address(\'' + name +','+ city +','+ country + '\');" style="" data-id="'+response.data[i].name+'" class="address  py-0 my-0 border broder-dark bg-light shadow single_comms">  <h6 class="font-weight-bold text-dark d-inline" ><i class="fa fa-map-marker text-success" aria-hidden="true"></i> '+name+'</h6> <p  class="d-inline text-dark"> Loc: <small>'+city+', '+country+'</small> </p> </div>');
+                    for (i = 0; i < 10; i++) {
+                        //console.log(response.data.length);
+                        if (response.data.length > i) {
+                            var name = response.data[i].name;
+                            var city = response.data[i].city;
+                            var country = response.data[i].country;
+                            $("#result_list").show();
+
+                            $("#result_list").append(' <div onclick="address(\'' + name + ',' + city + ',' + country + '\');" style="" data-id="' + response.data[i].name + '" class="address  py-0 my-0 border broder-dark bg-light shadow single_comms">  <h6 class="font-weight-bold text-dark d-inline" ><i class="fa fa-map-marker text-success" aria-hidden="true"></i> ' + name + '</h6> <p  class="d-inline text-dark"> Loc: <small>' + city + ', ' + country + '</small> </p> </div>');
 
 
+                        }
+                        else $("#result_list").hide();
+                    }
 
-                        }  
                     //document.getElementById('result_list').style.overflowY="scroll";   
 
-     },
-      error:function(error){  console.log(error);}
+                },
+                error: function(error) {
+                    console.log(error);
+                }
 
-});
+            });
 
-    }
+        }
 
   
 </script>
