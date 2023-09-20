@@ -370,7 +370,7 @@
             <div class="col-sm-12 w-75  d-block"> <span class="my-3 d-block font-weight-bold text-center m-auto"> OR </span>
 
           <label class="labels font-weight-bold">Video Link</label>
-           <input class="w-100 d-blocks d-inline form-control" value="{{$ev->link}}" name="link" /> 
+           <input type="text" class="w-100 d-blocks d-inline form-control" value="{{$ev->link}}" name="link" /> 
 
         </div>
 

@@ -751,9 +751,15 @@ $account_links = $this->Client->accountLinks->create([
     }
 
     
-
-    $login_link = $this->Client->accounts->createLoginLink($seller->connect_id);
-    return redirect($login_link->url);
+    try{
+        $login_link = $this->Client->accounts->createLoginLink($seller->connect_id);
+        return redirect($login_link->url);
+    }
+    catch(\Exception $e){
+              Session::put('failed',$e->getMessage());
+              return redirect()->back();
+}
+    
 //echo '<pre>'; print_r($account_links); echo '<pre>';
 }
 
