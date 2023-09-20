@@ -718,7 +718,7 @@ if($bids){
         User::where('id',$id)->update(['token'=>$token]);
     }
 
-   if(!$seller->connect_id){
+   if(!$seller->connect_id || !$seller->completed_onboarding){
     try{
     $account = $this->Client->accounts->create([
                 'country' => 'us',
