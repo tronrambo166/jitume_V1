@@ -757,6 +757,8 @@ $account_links = $this->Client->accountLinks->create([
     }
     catch(\Exception $e){
               Session::put('failed',$e->getMessage());
+              DB::table('users')->where('id',$seller->id)
+              ->update(['completed_onboarding'=>0]);
               return redirect()->back();
 }
     

@@ -1254,6 +1254,7 @@
         color: white;
         border-radius: 4px;
         padding: 5px 20px;
+        z-index: 1000;
     }
 
     .success_session {
