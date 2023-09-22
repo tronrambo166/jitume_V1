@@ -48,7 +48,7 @@ public function bidsAccepted(Request $request)
         $investor_mail = $investor->email;
         $list = listing::where('id',$bid->business_id)->first();
         $info=[ 'business_name'=>$list->name ];
-        $user['to'] = 'tottenham266@gmail.com'; //$investor_mail;
+        $user['to'] = $investor_mail; //'tottenham266@gmail.com'; //
          Mail::send('bids.rejected', $info, function($msg) use ($user){
              $msg->to($user['to']);
              $msg->subject('Bid Rejected!');
@@ -105,7 +105,7 @@ public function bidsAccepted(Request $request)
         //Mail
         $list = listing::where('id',$bid->business_id)->first();
         $info=[ 'business_name'=>$list->name, 'bid_id'=>$id ];
-        $user['to'] = 'tottenham266@gmail.com'; //$investor_mail;
+        $user['to'] = $investor_mail; //'tottenham266@gmail.com'; //
          Mail::send('bids.accepted', $info, function($msg) use ($user){
              $msg->to($user['to']);
              $msg->subject('Bid accepted!');
@@ -346,7 +346,7 @@ public function bidCommitsEQP(Request $request){
         $list = listing::where('id',$business_id)->first();
         $owner = User::where('id',$list->user_id)->first();
         $info=[ 'business_name'=>$list->name ];
-        $user['to'] = 'tottenham266@gmail.com'; //$owner->email;
+        $user['to'] = $owner->email; //'tottenham266@gmail.com'; //$owner->email;
          Mail::send('bids.mile_fulfill', $info, function($msg) use ($user){
              $msg->to($user['to']);
              $msg->subject('Fulfills a milestone!');

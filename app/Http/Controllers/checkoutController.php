@@ -439,12 +439,16 @@ catch(\Exception $e){
 
     //CART
 
-     public function milestoneCheckoutS(Request $request)
+     public function milestoneCheckoutS($milestone_id, $amount)
     {
     $tax = taxes::where('id',1)->first();
     $tax = $tax->tax;
-    $amount =($request->amount)+($request->amount)*($tax/100);
-    $milestone_id =$request->milestone_id;
+    $amountReal = base64_decode($amount);
+    $amount =($amountReal)+($amountReal*($tax/100));
+    $milestone_id =base64_decode($milestone_id);
+
+    Session::put('service_part_amount', $amount);
+    Session::put('service_part_amount_real', $amountReal);
  
         return view('milestoneS.stripe',compact('amount','milestone_id','tax'));
     }
@@ -467,7 +471,10 @@ catch(\Exception $e){
 
     $mile = Smilestones::where('id',$id)->first();    
     $tax = taxes::where('id',1)->first();$tax = $tax->tax+$tax->vat;
-    $amount =($mile->amount)+($mile->amount)*($tax/100);
+
+        $amount= Session::get('service_part_amount');//$request->price; 
+        $amountReal= Session::get('service_part_amount_real');
+    //$amount =($mile->amount)+($mile->amount)*($tax/100);
 
     $user_id = $mile->user_id;
 
@@ -476,8 +483,8 @@ catch(\Exception $e){
     try{
 
         $curr='USD'; //$request->currency; 
-        $amount=round($request->price);
-        $transferAmount=round($amount-($amount*.05),2);
+        $amount=round($amount,2);
+        $transferAmount=round($amountReal,2);
 
         $this->validate($request, [
             'stripeToken' => ['required', 'string']
@@ -582,7 +589,7 @@ else {
         'inv_name'=>$investor_name, 
         'inv_contact'=>$investor->email ];
 
-        $user['to'] = 'tottenham266@gmail.com'; //$owner->email;
+        $user['to'] =  $owner->email; //'tottenham266@gmail.com';
 
          Mail::send('milestone.milestone_eqp', $info, function($msg) use ($user){
              $msg->to($user['to']);
@@ -685,7 +692,7 @@ $percent = $request->percent;
         $list = listing::where('id',$business_id)->first();
         $owner = User::where('id',$list->user_id)->first();
         $info=[ 'business_name'=>$list->name ];
-        $user['to'] = 'tottenham266@gmail.com'; //$owner->email;
+        $user['to'] = $owner->email; //'tottenham266@gmail.com'; //
          Mail::send('bids.mile_fulfill', $info, function($msg) use ($user){
              $msg->to($user['to']);
              $msg->subject('Fulfills a milestone!');

@@ -10463,6 +10463,22 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('download_milestoneDocS/' + id + '/' + mile_id).then(function (data) {
         console.log(data);
       });
+    },
+    pay_milestone: function pay_milestone(mile_id, amount) {
+      var amount = btoa(amount);
+      var mile_id = btoa(mile_id);
+      $.confirm({
+        title: 'Please Confirm',
+        content: 'Are you sure?',
+        buttons: {
+          confirm: function confirm() {
+            window.location.href = './milestoneService/' + mile_id + '/' + amount;
+          },
+          cancel: function cancel() {
+            $.alert('Canceled!');
+          }
+        }
+      });
     }
   },
   mounted: function mounted() {
@@ -74033,14 +74049,18 @@ var render = function () {
                                     [_vm._v("PAY")]
                                   )
                                 : _c(
-                                    "button",
+                                    "a",
                                     {
                                       staticClass:
                                         "text-center border border-dark p-0 btn btn-light btn-block",
                                       attrs: { type: "submit" },
                                       on: {
                                         click: function ($event) {
-                                          return _vm.make_session(_vm.form.id)
+                                          _vm.make_session(_vm.form.id)
+                                          _vm.pay_milestone(
+                                            result.id,
+                                            result.amount
+                                          )
                                         },
                                       },
                                     },
@@ -74446,7 +74466,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col px-0 my-2 my-sm-0" }, [
+    return _c("div", { staticClass: "col px-1 my-2 my-sm-0" }, [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "a",

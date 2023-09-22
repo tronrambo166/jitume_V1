@@ -670,7 +670,7 @@ Session::put('failed','The amount exceeds the total investment needed!');
           $ext=strtolower($single_img->getClientOriginalExtension());
           if($ext!='pdf' && $ext!= 'docx')
           {
-            Session::put('file_error','Only pdf & docx are allowed!');
+            Session::put('error','Only pdf & docx are allowed!');
             return redirect()->back();
           }
 
@@ -727,7 +727,7 @@ try{
         $list = listing::where('id',$bid->business_id)->first();
         $info=[ 'business_name'=>$list->name, 'mile_name'=>$thisMile->title,
         'bid_id' => $bid->id ];
-        $user['to'] = 'tottenham266@gmail.com'; //$investor_mail;
+        $user['to'] =  $investor_mail; //'tottenham266@gmail.com';
         //Email
         Mail::send('bids.milecompletion_alert', $info, function($msg) use ($user){
              $msg->to($user['to']);

@@ -67,8 +67,8 @@
                                         type="submit"
                                         class="text-center border border-dark p-0 btn btn-light btn-block disabled">PAY</button>
 
-                                    <button v-else @click="make_session(form.id);" type="submit"
-                                        class="text-center border border-dark p-0 btn btn-light btn-block">PAY</button>
+                                    <a v-else @click="make_session(form.id); pay_milestone(result.id,result.amount)" type="submit"
+                                        class="text-center border border-dark p-0 btn btn-light btn-block">PAY</a>
                                 </div>
                             </div>
 
@@ -197,7 +197,7 @@
                             </div>
 
 
-                            <div class="col px-0 my-2 my-sm-0">
+                            <div class="col px-1 my-2 my-sm-0">
                                 <div class="form-group">
                                     <a disabled class="text-center border border-dark p-0 btn btn-light btn-block">PAY</a>
                                 </div>
@@ -282,7 +282,25 @@ export default {
                 console.log(data);
 
             });
-        }
+        },
+
+        pay_milestone: function (mile_id,amount) {
+        var amount = btoa(amount);
+        var mile_id = btoa(mile_id)
+        $.confirm({
+          title: 'Please Confirm',
+          content: 'Are you sure?',
+          buttons: {
+            confirm: function () {
+              window.location.href = './milestoneService/' + mile_id + '/' + amount;
+            },
+            cancel: function () {
+              $.alert('Canceled!');
+            },
+          }
+        });
+
+    },
 
 
     },

@@ -213,7 +213,7 @@ Route::post('cartstripe', 'checkoutController@cartStripePost')->name('cartstripe
 Route::get('milestoneStripe', 'checkoutController@milestoneCheckout')->name('milestoneStripe');
 Route::post('milestonestripe', 'checkoutController@milestoneStripePost')->name('milestonestripe.post');
 
-Route::get('milestoneService', 'checkoutController@milestoneCheckoutS')->name('milestoneService');
+Route::get('milestoneService/{milestone_id}/{amount}', 'checkoutController@milestoneCheckoutS')->name('milestoneService');
 Route::post('milestoneService', 'checkoutController@milestoneStripePostS')->name('milestoneService.post');
 Route::get('milestoneInvestEQP/{listing_id}/{mile_id}/{investor_id}/{owner_id}', 'checkoutController@milestoneInvestEQP')->name('milestoneInvestEQP');
 

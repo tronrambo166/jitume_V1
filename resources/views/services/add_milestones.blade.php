@@ -39,6 +39,15 @@
 </style> 
     
 <!-- ADD MODAL -->
+
+ @if(Session::has('error'))
+        <div class="w-50 m-auto alert font-weight-bold text-danger alert-warning alert-dismissible fade show" role="alert">
+          <p class="font-weight-bold">{{Session::get('error')}}   @php Session::forget('error'); @endphp </p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>  @endif
+        
   
          <div class="card-header w-100 my-3">
            <h3>Add Milestones</h3>
@@ -122,7 +131,9 @@
                                 <label for="file-upload" class="btnUp3 custom-file-upload">
                                 Upload Milestone Documentaion <i class="ml-2 fa fa-arrow-up"></i>
                               </label>
-                              <input id="file-upload" name='file' type="file" style="display:none;">
+                              <input required="" id="file-upload" name='file' type="file" style="display:none;">
+
+                              <p id="file_alert" class="text-danger text-center font-weight-bold bg-light"></p>
                                 </div>
                             </div>
 
@@ -143,7 +154,7 @@
 
                                     <div class="col-1 px-1">
                                         <div class="form-group">
-                                        <input id="addBtn" type="submit" class="disabled text-center p-0 btn btn-warning btn-block" value="Add" />
+                                        <input id="addBtn" onclick="file_check();" type="submit" class="disabled text-center p-0 btn py-1 sign_in_btn btn-block" value="Add" />
                                     </div>
                                 </div>
                            
@@ -259,6 +270,14 @@
               var file = $('#file-upload')[0].files[0].name;
               $(this).prev('label').text(file);
             });
+
+
+           //File Check
+           function file_check() {
+           if( document.getElementById("file-upload").files.length == 0 ){
+                $('#file_alert').html("No files selected!");
+            }
+          }
         </script>
 
 

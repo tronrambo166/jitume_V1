@@ -609,6 +609,20 @@ $n_o_days = 7*$n_o_days;
 if($time_type == 'Months')
 $n_o_days = 30*$n_o_days;
 
+//Amount check
+$serv = Services::where('shop_id', $business_id)->first();
+$mile_shares = Smilestones::where('listing_id',$business_id)->get();
+$total_share_amount = 0;
+foreach($mile_shares as $single){
+$total_share_amount = $total_share_amount+$single->amount;
+}
+$total_share_amount = $total_share_amount+$amount;
+if($total_share_amount>$serv->price){
+Session::put('error','The amount exceeds the total service price!');
+        return redirect()->back();
+}
+//Amount
+
 $mile = Smilestones::where('listing_id',$business_id)->where('status','Created')->first();
 
 if(isset($mile->status) &&  $mile->status ==  'Created')
@@ -621,7 +635,7 @@ try{
           $ext=strtolower($single_img->getClientOriginalExtension());
           if($ext!='pdf' && $ext!= 'docx')
           {
-            Session::put('file_error','Only pdf & docx are allowed!');
+            Session::put('error','Only pdf & docx are allowed!');
             return redirect()->back();
           }
 
