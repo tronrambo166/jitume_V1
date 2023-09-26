@@ -1824,6 +1824,25 @@
     <script type="text/javascript">
 
     </script>
+
+
+<!-- GOOGLE MAP -->
+<script>
+function myMap() {
+var mapProp= {
+  center:new google.maps.LatLng(51.508742,-0.120850),
+  zoom:5,
+};
+
+var div = $("#googleMap").length;
+if(div)
+var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnKB7p3g8iG6IGE9nXX4PqlZ6EPHNUo3w&callback=myMap"></script>
+<!-- GOOGLE MAP -->
+
 </body>
 
 </html>

@@ -9733,11 +9733,23 @@ __webpack_require__.r(__webpack_exports__);
           })["catch"](function (error) {});
         });
       }
-    }
+    } // myMap() {
+    // var mapProp= {
+    //   center:new google.maps.LatLng(51.508742,-0.120850),
+    //   zoom:5,
+    // };
+    // var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    // }
+
   },
   mounted: function mounted() {
     this.setRes();
-    this.range(); //return this.$store.dispatch("fetchpro")
+    this.range();
+    var mapProp = {
+      center: new google.maps.LatLng(51.508742, -0.120850),
+      zoom: 5
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp); //return this.$store.dispatch("fetchpro")
   }
 });
 
@@ -11148,7 +11160,12 @@ __webpack_require__.r(__webpack_exports__);
     this.replaceText();
     this.setRes();
     this.range();
-    this.cart(); //return this.$store.dispatch("fetchpro")
+    this.cart();
+    var mapProp = {
+      center: new google.maps.LatLng(51.508742, -0.120850),
+      zoom: 5
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp); //return this.$store.dispatch("fetchpro")
   }
 });
 
@@ -72988,11 +73005,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-6" }, [
       _c("div", { staticClass: "m-auto map_style" }, [
-        _c(
-          "p",
-          { staticClass: "justify-contents-center m-auto d-block text-center" },
-          [_vm._v("MAP")]
-        ),
+        _c("div", {
+          staticStyle: { width: "100%", height: "95%" },
+          attrs: { id: "googleMap" },
+        }),
       ]),
     ])
   },
@@ -75209,11 +75225,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-6" }, [
       _c("div", { staticClass: "map_style m-auto" }, [
-        _c(
-          "p",
-          { staticClass: "justify-contents-center m-auto d-block text-center" },
-          [_vm._v("MAP")]
-        ),
+        _c("div", {
+          staticStyle: { width: "100%", height: "95%" },
+          attrs: { id: "googleMap" },
+        }),
       ]),
     ])
   },

@@ -104,7 +104,7 @@
 
             <div class="col-md-6">
                 <div class="m-auto map_style">
-                    <p class="justify-contents-center m-auto d-block text-center">MAP</p>
+                    <div id="googleMap" style="width:100%;height:95%;"></div>
                 </div>
             </div>
 
@@ -130,7 +130,7 @@ export default {
         count: 0
     }),
 
-
+    
     methods: {
         setRes: function () {
             let t = this;
@@ -194,13 +194,27 @@ export default {
             });
         }
 
-        },
+        }
+
+        // myMap() {
+        // var mapProp= {
+        //   center:new google.maps.LatLng(51.508742,-0.120850),
+        //   zoom:5,
+        // };
+        // var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        // }
 
     },
 
     mounted() {
         this.setRes()
         this.range()
+
+        var mapProp= {
+          center:new google.maps.LatLng(51.508742,-0.120850),
+          zoom:5,
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
         //return this.$store.dispatch("fetchpro")
     }
 

@@ -98,7 +98,7 @@
 
             <div class="col-md-6">
                 <div class="map_style m-auto">
-                    <p class="justify-contents-center m-auto d-block text-center">MAP</p>
+                    <div id="googleMap" style="width:100%;height:95%;"></div>
                 </div>
             </div>
 
@@ -206,6 +206,12 @@ export default {
         this.setRes()
         this.range()
         this.cart()
+
+        var mapProp= {
+          center:new google.maps.LatLng(51.508742,-0.120850),
+          zoom:5,
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
         //return this.$store.dispatch("fetchpro")
     }
 
