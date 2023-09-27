@@ -64,6 +64,116 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     { 
+
+// INVESTOR
+if(isset($data['investor']) && $data['investor'] == 1)
+{
+//Session
+ Session::put('old_fname',$data['fname']);
+ Session::put('old_lname',$data['lname']);
+ Session::put('old_mname',$data['mname']);
+ Session::put('old_email',$data['email']);
+ Session::put('old_id_no',$data['id_no']);
+ Session::put('old_tax_pin',$data['tax_pin']);
+ Session::put('old_past_investment',$data['past_investment']);
+ Session::put('old_website',$data['website']);
+//Session
+
+$investor = 1; 
+$user = User::where('email',$data['email'])->first();
+    if($user!=''){ 
+    Session::put('login_err','User already exists!');
+     return redirect('/');
+     } 
+
+ $inv_range = $data['inv_range'];
+ $interested_cats = $data['interested_cats'];  
+ $past_investment = $data['past_investment'];
+ $website = $data['website'];
+ $id_no = $data['id_no'];
+ $tax_pin = $data['tax_pin'];  
+
+//Upload
+$user = User::latest()->first();
+$inv_id = $user->id+1;
+
+ try {
+ $passport=$data['id_passport'];
+
+ if(isset($data['pin']))
+ $pin=$data['pin']; 
+
+ if (!file_exists('files/investor/'.$inv_id)) 
+          mkdir('files/investor/'.$inv_id, 0777, true);
+          $loc='files/investor/'.$inv_id.'/';
+
+ if(isset($pin) && $pin !=null) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($pin->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('login_err','For pin, Only pdf & docx are allowed!');
+            return redirect('/');
+          }
+
+          $create_name=$uniqid.'.'.$ext;    
+          //Move uploaded file
+          $pin->move($loc, $create_name);
+          $final_pin=$loc.$create_name;
+             } else $final_pin=null;
+
+    if($passport) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($passport->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('login_err','For passport, Only pdf & docx are allowed!');
+            return redirect('/');
+          }
+
+          $create_name=$uniqid.'.'.$ext;
+          $passport->move($loc, $create_name);
+          $final_passport=$loc.$create_name;
+             }else $final_passport=''; 
+        //Upload
+
+        Session::put('investor_email', $user->email);    
+        Session::put('investor_auth',true);
+
+        if($data['c_to_listing_reg'] == 'True')
+           Session::put('c_to_action_Service', true);
+
+            return User::create([
+            'fname' => $data['fname'],
+            'mname' => $data['mname'],
+            'lname' => $data['lname'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'pin' => $final_pin,
+            'id_passport' => $final_passport,
+            'investor' => $investor,
+            'id_no' => $id_no,
+            'tax_pin' => $tax_pin,
+            'inv_range' =>  json_encode($inv_range),
+            'interested_cats' =>  json_encode($interested_cats), 
+            'past_investment' => $past_investment,
+            'website' => $website         
+           ]);  
+       
+       //Session::put('login_success','Registration successfull! Please login to continue.');
+       //return redirect('/');            
+
+
+    } catch (\Exception $e) {
+       return $e->getMessage();
+        Session::put('login_err',$e->getMessage());
+         //return redirect('/'); 
+    }
+
+}
+// INVESTOR
+
+
         if($data['c_to_action'] == 'True')
             Session::put('c_to_action', true);
         else if($data['c_to_action'] == 'TrueS')
@@ -79,8 +189,6 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
-            //'pin' => $final_pin,
-            //'id_passport' => $final_passport,
         ]);
     }
 }

@@ -674,6 +674,7 @@ $percent = $request->percent;
       'date' => date('Y-m-d'),
       'investor_id' => $investor_id,
       'business_id' => $business_id,
+      'owner_id' => $Business->user_id,
       'type' => $type,
       'amount' => $transferAmount,
       'representation' => $percent,

@@ -530,6 +530,7 @@ export default {
       sessionStorage.setItem('invest', id);
       document.getElementById('c_to_action').value = 'loginFromService';
       document.getElementById('c_to_action_login2').value = 'loginFromService';
+      document.getElementById('c_to_listing_reg').value = 'True';
     },
 
     hover() {
@@ -606,7 +607,7 @@ export default {
         t.results = data.data.data;
         t.progress = data.data.progress;
         $('#progress').css('width', t.progress + '%');
-        t.progress = (data.data.share) * t.progress;
+        //t.progress = (data.data.share) * t.progress;
         t.progress = t.progress.toFixed(2);
         t.share = data.data.share;
         t.amount_required = data.data.amount_required;

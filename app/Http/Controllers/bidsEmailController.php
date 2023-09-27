@@ -84,6 +84,7 @@ public function bidsAccepted(Request $request)
         //     foreach($photos as $p) if($p !='')  unlink($p);
         //     }
 
+         $list = listing::where('id',$bid->business_id)->first();
          $owner = User::where('id',$list->user_id)->first();
                  try{
                 //Split
@@ -103,7 +104,6 @@ public function bidsAccepted(Request $request)
             }
 
         //Mail
-        $list = listing::where('id',$bid->business_id)->first();
         $info=[ 'business_name'=>$list->name, 'bid_id'=>$id ];
         $user['to'] = $investor_mail; //'tottenham266@gmail.com'; //
          Mail::send('bids.accepted', $info, function($msg) use ($user){

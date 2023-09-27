@@ -584,10 +584,11 @@ $amount_covered = $amount_covered+$acc->amount;
 //Covered
 
 $total_mile = count($milestones);
-$progress = ($done/$total_mile)*100;
+
 $list = Listing::where('id',$id)->first();
 $share = ($list->share)/100;
 $amount_required = $list->investment_needed - $amount_covered;
+$progress = ($amount_covered/$list->investment_needed)*100;
 
 return response()->json([ 'data' => $milestones, 'progress' => $progress,
 'share' => $share, 'amount_required' => $amount_required,'running' => $running ]);
@@ -892,7 +893,7 @@ public function business_bids(){
     }
   }
 
-$res = BusinessBids::get();
+$res = BusinessBids::where('owner_id', Auth::id())->get();
 $bids = array();
 try{
 foreach($res as $r){

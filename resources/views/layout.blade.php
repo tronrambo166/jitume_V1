@@ -841,65 +841,6 @@
 
                                     <!-- HIDDEN Investor REG -->
 
-                                    <div id="investor_reg" class=" collapse card-body">
-                                        <form method="POST" action="{{route('registerI')}}" enctype="multipart/form-data">
-                                            @csrf
-
-                                            <div class="row mb-1">
-                                                <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Upload Id/Passport') }}<span title="Required" class="text-danger">*</span></label>
-
-                                                <div class="col-md-6">
-                                                    <div class="upload-btn-wrapper ml-2">
-                                                        <button class="btnUp_listing mr-2"> Id / Passport
-                                                            <img src="images/up.svg" width="24px"> </button>
-                                                        <input required="" type="file" name="id_passport" />
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-
-
-                                            <div class="row mb-3">
-                                                <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Upload Pin') }}<span title="Required" class="text-danger"></span></label>
-
-                                                <div class="col-md-6">
-                                                    <div class="upload-btn-wrapper ml-2">
-                                                        <button class="btnUp_listing mr-2"> Pin
-                                                            <img src="images/up.svg" width="24px"> </button>
-                                                        <input type="file" name="pin" />
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-4">
-                                                <div class="col-md-12 ">
-                                                    <button type="submit" class="mt-3 w-25 d-block mx-auto btn px-2 create">
-                                                        {{ __('Create account') }}
-                                                    </button>
-                                                </div>
-
-                                                <div class="col-md-12 ">
-                                                    <p class="text-center mb-0 mt-2">Or
-                                                    </p>
-                                                </div>
-
-                                                <div class="col-md-12 ">
-                                                    <a href="{{route('home')}}" class="py-1 mt-0 w-25 d-block mx-auto btn px-2 create">
-                                                        {{ __('Skip') }}
-                                                    </a>
-                                                </div>
-
-                                                <div class="col-md-12 ">
-                                                    <p class="text-center w-75 mx-auto my-2">To create regular Jitume account and donate/puchase business services
-                                                    </p>
-                                                </div>
-
-                                            </div>
-                                        </form>
-                                    </div>
                                     <!-- HIDDEN Investor REG -->
 
 
@@ -1205,9 +1146,11 @@
                                     <!-- HIDDEN USER REG -->
 
                                     <div id="user_regs" class=" collapse card-body">
-                                        <form method="POST" action="{{route('registerI')}}" enctype="multipart/form-data">
+                                        <form method="POST" action="{{route('register')}}" enctype="multipart/form-data">
                                             @csrf
 
+                                    <input hidden type="number" name="investor" value="1">
+                                    <input type="text" hidden name="c_to_listing_reg" id="c_to_listing_reg" value="">
 
                                             <div class="row mb-3">
                                                 <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('First Name') }} <span title="Required" class="text-danger">*</span></label>
