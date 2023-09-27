@@ -131,6 +131,7 @@ Route::get('account', 'BusinessController@account')->name('account');
 // --- MILESTONE
 Route::get('add_milestones', 'BusinessController@add_milestones')->name('add_milestones');
 
+Route::get('activate_milestone/{id}', 'BusinessController@activate_milestone')->name('activate_milestone');
 Route::get('milestones-{id}', 'BusinessController@milestones')->name('milestones');
 Route::post('save_milestone', 'BusinessController@save_milestone')->name('save_milestone');
 Route::post('up_milestones', 'BusinessController@up_milestone')->name('up_milestones');

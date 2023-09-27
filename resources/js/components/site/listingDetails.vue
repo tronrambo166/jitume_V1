@@ -608,6 +608,7 @@ export default {
         t.progress = data.data.progress;
         $('#progress').css('width', t.progress + '%');
         //t.progress = (data.data.share) * t.progress;
+        if(progress != 0)
         t.progress = t.progress.toFixed(2);
         t.share = data.data.share;
         t.amount_required = data.data.amount_required;

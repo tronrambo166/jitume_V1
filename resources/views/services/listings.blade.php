@@ -36,9 +36,9 @@
    
             <td class="text-center">
 
-            <button data-target="#edit{{$ev->id}}" data-toggle="modal" style="cursor:pointer;" id="invest" class="rounded text-light buttonEq2 my-1">Edit</button>
+            <button data-target="#edit{{$ev->id}}" data-toggle="modal" style="cursor:pointer;" id="invest" class="px-2 py-1 border border-dark rounded text-light buttonEq2 my-1">Edit</button>
                 
-            <a onclick="return confirm('Are you sure?');" href="{{route('delete_service',$ev->id)}}" class="rounded text-danger buttonEq2 my-1 d-inline-block py-0">Delete</a >
+            <a onclick="return confirm('Are you sure?');" href="{{route('delete_service',$ev->id)}}" class="rounded bg-light text-danger buttonEq2 my-1 d-inline-block px-2 py-1 border border-dark">Delete</a >
             
 
             </td>

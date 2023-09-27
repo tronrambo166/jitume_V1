@@ -148,6 +148,15 @@ return view('business.index',compact('business','investor','results','services')
 
 public function listings(){
 $listings = Listing::where('user_id',Auth::id())->latest()->get();
+
+foreach($listings as $list){
+  $mile = Milestones::where('listing_id',$list->id)
+  ->where('status','In Progress')->first();
+
+  if($mile) 
+  $list->active = true;
+  else $list->active = false;
+}
 return view('business.listings',compact('listings'));
 }
 
@@ -524,6 +533,19 @@ Equipments::create([
 
 
 //MILESTONES
+public function activate_milestone($id){
+  $thisMile = Milestones::where('listing_id',$id)
+  ->where('status','To Do')->first();
+  
+  $milestones = Milestones::where('id',$thisMile->id)
+  ->update([
+  'status' => 'In Progress'
+  ]);
+
+  Session::put('success','Business Milestone Activated!');
+  return redirect()->back();
+}
+
 public function delete_milestone($id){
 $milestones = Milestones::where('id',$id)->delete();
 return redirect()->back();
@@ -595,7 +617,7 @@ return response()->json([ 'data' => $milestones, 'progress' => $progress,
 }
 
 else
-return response()->json([ 'data' => 'Failed!', 'length' => 0 ]);
+return response()->json([ 'data' => 'Failed!', 'progress' => 0, 'length' => 0 ]);
 
  }
 
