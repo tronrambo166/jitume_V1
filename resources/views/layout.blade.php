@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
 
 <head>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnKB7p3g8iG6IGE9nXX4PqlZ6EPHNUo3w&callback=initMap" async ></script>
+
     <title>JITUME</title>
     <link rel="icon" href="images/favicon2.ico" type="image/x-icon" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -44,7 +46,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
 
 </head>
 
@@ -1769,22 +1770,10 @@
     </script>
 
 
-<!-- GOOGLE MAP -->
-<script>
-function myMap() {
-var mapProp= {
-  center:new google.maps.LatLng(51.508742,-0.120850),
-  zoom:5,
-};
-
-var div = $("#googleMap").length;
-if(div)
-var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-}
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnKB7p3g8iG6IGE9nXX4PqlZ6EPHNUo3w&callback=myMap"></script>
-<!-- GOOGLE MAP -->
+<!-- GOOGLE MAP 
+<script src="sddjs/map.js"> </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnKB7p3g8iG6IGE9nXX4PqlZ6EPHNUo3w&callback=myMap" async ></script>
+ GOOGLE MAP -->
 
 </body>
 

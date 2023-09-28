@@ -9338,7 +9338,7 @@ __webpack_require__.r(__webpack_exports__);
         t.progress = data.data.progress;
         $('#progress').css('width', t.progress + '%'); //t.progress = (data.data.share) * t.progress;
 
-        t.progress = t.progress.toFixed(2);
+        if (progress != 0) t.progress = t.progress.toFixed(2);
         t.share = data.data.share;
         t.amount_required = data.data.amount_required;
         t.running = data.data.running;
@@ -9553,6 +9553,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 //
 //
 //
@@ -9674,11 +9686,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//import {myMap,success,failure,addMarker,addMarkerHome} from '../../../../public/js/map'
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'app_url'],
   data: function data() {
     return {
       results: [],
+      results2: [],
       ids: '',
       empty: false,
       count: 0
@@ -9691,9 +9711,9 @@ __webpack_require__.r(__webpack_exports__);
 
       if (t.ids != 0) {
         axios.get('searchResults/' + t.ids).then(function (data) {
+          //t.results2 = data.data.data;
           t.results = data.data.data;
-          t.count = data.data.count;
-          console.log(data);
+          t.count = data.data.count; //console.log(t.results);
         })["catch"](function (error) {});
       }
     },
@@ -9728,29 +9748,84 @@ __webpack_require__.r(__webpack_exports__);
           axios.get('priceFilter/' + values[0] + '/' + values[1] + '/' + t.ids).then(function (data) {
             // if(values[0]==0.00 && values[1]==500000.00){}
             //else{ 
+            t.count = data.data.data.length;
             t.results = '';
             t.results = data.data.data; //}
-            //console.log(data);
+            //console.log(t.results);
           })["catch"](function (error) {});
         });
       }
-    } // myMap() {
-    // var mapProp= {
-    //   center:new google.maps.LatLng(51.508742,-0.120850),
-    //   zoom:5,
-    // };
-    // var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-    // }
+    },
+    //MAP -- MAP
+    success: function success(position) {
+      var myLat = position.coords.latitude;
+      var myLong = position.coords.longitude;
+      var coords = new google.maps.LatLng(myLat, myLong);
+      var mapOptions = {
+        zoom: 5,
+        center: coords,
+        //center:new google.maps.LatLng(51.508742,-0.120850),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var div = $("#googleMap").length;
+      if (div) var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+      console.log(this.results);
+
+      for (var _i = 0, _Object$entries = Object.entries(this.results); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+
+        this.addMarker({
+          lat: value.lat,
+          lng: value.lng
+        }, map, value.name, value.investors_fee); //"lat": 48.353783,"lng": 11.79
+      }
+
+      this.addMarkerHome(coords, map);
+    },
+    addMarker: function addMarker(coords, map, title, fee) {
+      var icon = {
+        url: "images/map/other_business.png",
+        // url
+        scaledSize: new google.maps.Size(55, 27) // scaled size
+
+      };
+      var marker = new google.maps.Marker({
+        map: map,
+        position: coords,
+        title: title,
+        label: '$' + fee,
+        icon: icon
+      });
+    },
+    addMarkerHome: function addMarkerHome(coords, map) {
+      var icon = {
+        url: "images/map/myloc.png",
+        // url
+        scaledSize: new google.maps.Size(40, 40) // scaled size
+
+      };
+      var marker = new google.maps.Marker({
+        map: map,
+        position: coords,
+        icon: icon
+      });
+    },
+    failure: function failure() {} //MAP -- MAP
 
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.setRes();
-    this.range();
-    var mapProp = {
-      center: new google.maps.LatLng(51.508742, -0.120850),
-      zoom: 5
-    };
-    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp); //return this.$store.dispatch("fetchpro")
+    this.range(); //MAP -- MAP
+
+    var x = navigator.geolocation;
+    setTimeout(function () {
+      return x.getCurrentPosition(_this.success, _this.failure);
+    }, 1000); //MAP -- MAP
+    //return this.$store.dispatch("fetchpro")
   }
 });
 

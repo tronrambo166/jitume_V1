@@ -323,6 +323,13 @@ return response()->json(['results'=>$listings, 'success' => "Success"]);
 }
 
 public function searchResults($ids){
+
+//TEMP
+$json = file_get_contents("js/airports.json");
+$array = json_decode($json, true);
+$i=0;
+//TEMP
+
 $results = array();
 $ids = explode(',',$ids); 
 foreach($ids as $id){ 
@@ -336,6 +343,16 @@ foreach($ids as $id){
     if(isset($files->file))
     $listing->file = $files->file;
     else $listing->file = false;
+
+    //TEMP***
+    foreach ($array as $loc) {
+    $full_loc = $loc['name'].','.$loc['city'].','.$loc['country'];
+    if($full_loc == $listing->location){
+    $listing->lat = $loc['_geoloc']['lat'];
+    $listing->lng = $loc['_geoloc']['lng'];
+    } 
+    }
+    //TEMP***
 
     $results[] = $listing;
 }
@@ -488,6 +505,12 @@ public function invest($listing_id,$id,$amount,$realAmount,$type){
 
 
 public function priceFilter($min, $max, $ids){
+    //TEMP
+    $json = file_get_contents("js/airports.json");
+    $array = json_decode($json, true);
+    $i=0;
+    //TEMP
+
     $results = array();
     $ids = explode(',',$ids); 
     foreach($ids as $id){ 
@@ -503,6 +526,17 @@ public function priceFilter($min, $max, $ids){
     $listing->file = $files->file;
     else $listing->file = false;
 //Video check  
+
+    //TEMP***
+    foreach ($array as $loc) {
+    $full_loc = $loc['name'].','.$loc['city'].','.$loc['country'];
+    if($full_loc == $listing->location){
+    $listing->lat = $loc['_geoloc']['lat'];
+    $listing->lng = $loc['_geoloc']['lng'];
+    } 
+    }
+    //TEMP***
+    
   
     if((int)$min <= $db_min && (int)$max >= $db_max)
         //return response()->json([ 'data' => (int)$min .'<='. $db_min .'//'.(int)$max .'>='. $db_max]);
