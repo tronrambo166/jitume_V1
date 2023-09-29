@@ -102,7 +102,7 @@
                     </div>
 
                          <div class="row" style="">
-                                <div id="result_list" class="" style="display: none;left: 340px;width:41%; z-index: 1000;height: 600px;position: absolute;">
+                                <div id="result_list" class="" style="display: none;left: 382px;width:41%; z-index: 1000;height: 600px;position: absolute;">
                                     
                                 </div>
                             </div>
