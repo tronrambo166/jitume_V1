@@ -878,7 +878,7 @@ public function my_bids(){
     }
   }
 
-$res = BusinessBids::get();
+$res = BusinessBids::where('investor_id',Auth::id())->get();
 $bids = array();
 try{
 foreach($res as $r){
