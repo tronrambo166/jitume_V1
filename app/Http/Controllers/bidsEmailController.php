@@ -86,6 +86,9 @@ public function bidsAccepted(Request $request)
 
          $list = listing::where('id',$bid->business_id)->first();
          $owner = User::where('id',$list->user_id)->first();
+
+         if($bid->type == 'Monetery')
+         {
                  try{
                 //Split
                     $curr='USD'; //$request->currency; 
@@ -102,6 +105,7 @@ public function bidsAccepted(Request $request)
               Session::put('failed',$e->getMessage());
               return redirect()->back();
             }
+        }
 
         //Mail
         $info=[ 'business_name'=>$list->name, 'bid_id'=>$id ];
@@ -318,12 +322,13 @@ public function bidCommitsEQP(Request $request){
             }
            }  
 // DOCS UPLOAD
-
+    $Business = listing::where('id',$listing_id)->first();
     $type = 'Asset';
     $bids = BusinessBids::create([
       'date' => date('Y-m-d'),
       'investor_id' => $investor_id,
       'business_id' => $listing_id,
+      'owner_id' => $Business->user_id,
       'type' => $type,
       'amount' => $amount,
       'representation' => $percent,

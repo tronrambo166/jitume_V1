@@ -197,7 +197,67 @@ export default {
         replaceText() {
             $('#call_to').html('');
             $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+        },
+
+        //MAP -- MAP
+
+        success(position){
+        var myLat = position.coords.latitude;
+        var myLong = position.coords.longitude;
+
+        var coords = new google.maps.LatLng(myLat,myLong);
+        var mapOptions = {
+        zoom:5,
+        center:coords,
+        //center:new google.maps.LatLng(51.508742,-0.120850),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
         }
+
+        var div = $("#googleMap").length;
+        if(div)
+        var map = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+ 
+
+        console.log(this.results);
+        for (const [key, value] of Object.entries(this.results)) {
+              this.addMarker({lat:value.lat, lng:value.lng},map,value.name,value.price);
+              //"lat": 48.353783,"lng": 11.79
+            }
+        
+
+            this.addMarkerHome(coords,map);
+        },
+
+        addMarker(coords,map,title,fee){
+        const icon = {
+            url: "images/map/other_business.png", // url
+            scaledSize: new google.maps.Size(55, 27), // scaled size
+        };
+
+        var marker = new google.maps.Marker({
+        map:map,
+        position:coords,
+        title:title,
+        label:'$'+fee,
+        icon:icon
+        });
+        },
+
+         addMarkerHome(coords,map){
+        const icon = {
+            url: "images/map/myloc.png", // url
+            scaledSize: new google.maps.Size(40, 40), // scaled size
+        };
+
+        var marker = new google.maps.Marker({
+        map:map,
+        position:coords,
+        icon:icon
+        });
+        },
+
+         failure(){},
+        //MAP -- MAP
 
     },
 
@@ -205,13 +265,13 @@ export default {
         this.replaceText();
         this.setRes()
         this.range()
-        this.cart()
+        //this.cart()
 
-        var mapProp= {
-          center:new google.maps.LatLng(51.508742,-0.120850),
-          zoom:5,
-        };
-        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        //MAP -- MAP
+        var x = navigator.geolocation;
+        setTimeout(() => x.getCurrentPosition(this.success, this.failure), 1000);
+        //MAP -- MAP
+
         //return this.$store.dispatch("fetchpro")
     }
 

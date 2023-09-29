@@ -421,11 +421,28 @@ return response()->json(['results'=>$listings, 'success' => "Success"]);
 }
 
 public function serviceResults($ids){
+//TEMP
+$json = file_get_contents("js/airports.json");
+$array = json_decode($json, true);
+$i=0;
+//TEMP
+
 $results = array();$count = 0;
 $ids = explode(',',$ids); 
 foreach($ids as $id){ 
     if($id!=''){ 
     $listing = Services::where('id',$id)->first();
+
+    //TEMP***
+    foreach ($array as $loc) {
+    $full_loc = $loc['name'].','.$loc['city'].','.$loc['country'];
+    if($full_loc == $listing->location){
+    $listing->lat = $loc['_geoloc']['lat'];
+    $listing->lng = $loc['_geoloc']['lng'];
+    } 
+    }
+    //TEMP***
+
     if($listing) $count++;
     $results[] = $listing;
 }
@@ -549,6 +566,12 @@ public function priceFilter($min, $max, $ids){
 
 
 public function priceFilterS($min, $max, $ids){
+    //TEMP
+    $json = file_get_contents("js/airports.json");
+    $array = json_decode($json, true);
+    $i=0;
+    //TEMP
+
     $results = array();
     $ids = explode(',',$ids); 
     foreach($ids as $id){ 
@@ -556,6 +579,16 @@ public function priceFilterS($min, $max, $ids){
     $listing = Services::where('id',$id)->first();
     $range = $listing->price;
     $db_price = $range;  
+
+    //TEMP***
+    foreach ($array as $loc) {
+    $full_loc = $loc['name'].','.$loc['city'].','.$loc['country'];
+    if($full_loc == $listing->location){
+    $listing->lat = $loc['_geoloc']['lat'];
+    $listing->lng = $loc['_geoloc']['lng'];
+    } 
+    }
+    //TEMP***
   
     if((int)$min <= $db_price && (int)$max >= $db_price)
         //return response()->json([ 'data' => (int)$min .'<='. $db_min .'//'.(int)$max .'>='. $db_max]);

@@ -971,7 +971,7 @@ public function assetEquip_download($id, $type){
 
       if($type == 'optional_doc'){
       $bid = BusinessBids::where('id',$id)->first();
-      $document=$bid->legal_doc;
+      $document=$bid->optional_doc;
       if($document !=''){
       $headers = array('Content-Type'=> 'application/pdf');
       return Response::download($document, 'legal_doc.pdf', $headers);

@@ -52,7 +52,7 @@
                 <a  data-target="#detailsModal{{$ev->id}}" data-toggle="modal" class="bid_btns bg-light rounded ">{{$ev->investor }}</a>
                 </td>
 
-                    <td>{{$ev->business }}</td>
+                    <td class="">{{$ev->business }}</td>
                         <td>
                         @if($ev->type == 'Asset')
                          <a data-target="#assetModal{{$ev->id}}" data-toggle="modal" class="bid_btns bg-light rounded ">{{$ev->type }}</a>
@@ -258,8 +258,8 @@
                         @foreach($ev->photos as $photo)
                         @if($photo != null)
 
-                        <div class="col-sm-3">
-                        <img style="height: 50px;" src="../{{$photo}}" width="100%;">
+                        <div class="col-sm-3 text-center">
+                        <img style="height: 50px;" src="../{{$photo}}" width="70%;">
                           <div class="upload-btn-wrapper mt-1">
                           <label for="file-upload2" class="btndown_listing">
                           @php $photo = str_replace('/','__',$photo); @endphp
@@ -325,9 +325,10 @@
                     <div class="col-sm-12 my-1"> 
                         <div class="row">
                            <div class="col-sm-10"><label class="h4" for="name">
-                                <h6 class=""> <b> Download other Asset records* </b> </h6></label>
+                                <h6 class=""> <b> Download other Asset records </b> </h6></label>
                                </div>
                     
+                    @if($ev->optional_doc)
                     <div class="col-sm-2"> 
                         <div class="upload-btn-wrapper">
                         <label for="file-upload2" class="btndown_listing">
@@ -335,8 +336,9 @@
                         <img src="../images/down.svg" width="15px"> 
                         </a>
                       </label>
-                  </div>
                     </div>
+                    </div>
+                    @endif
 
                         </div>
                     </div> 

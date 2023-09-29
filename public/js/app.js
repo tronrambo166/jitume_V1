@@ -8517,8 +8517,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 console.log(response.data);
 
                 if (response.data.success) {
-                  toastr.success(response.data.success, {
-                    timeout: 5000
+                  $.alert({
+                    title: 'Alert!',
+                    content: response.data.success
                   });
                   $('#ok').css('display', 'none');
                 } else toastr.success(response.data.failed, {
@@ -11047,6 +11048,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 //
 //
 //
@@ -11230,18 +11243,79 @@ __webpack_require__.r(__webpack_exports__);
     replaceText: function replaceText() {
       $('#call_to').html('');
       $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
-    }
+    },
+    //MAP -- MAP
+    success: function success(position) {
+      var myLat = position.coords.latitude;
+      var myLong = position.coords.longitude;
+      var coords = new google.maps.LatLng(myLat, myLong);
+      var mapOptions = {
+        zoom: 5,
+        center: coords,
+        //center:new google.maps.LatLng(51.508742,-0.120850),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var div = $("#googleMap").length;
+      if (div) var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+      console.log(this.results);
+
+      for (var _i = 0, _Object$entries = Object.entries(this.results); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+
+        this.addMarker({
+          lat: value.lat,
+          lng: value.lng
+        }, map, value.name, value.price); //"lat": 48.353783,"lng": 11.79
+      }
+
+      this.addMarkerHome(coords, map);
+    },
+    addMarker: function addMarker(coords, map, title, fee) {
+      var icon = {
+        url: "images/map/other_business.png",
+        // url
+        scaledSize: new google.maps.Size(55, 27) // scaled size
+
+      };
+      var marker = new google.maps.Marker({
+        map: map,
+        position: coords,
+        title: title,
+        label: '$' + fee,
+        icon: icon
+      });
+    },
+    addMarkerHome: function addMarkerHome(coords, map) {
+      var icon = {
+        url: "images/map/myloc.png",
+        // url
+        scaledSize: new google.maps.Size(40, 40) // scaled size
+
+      };
+      var marker = new google.maps.Marker({
+        map: map,
+        position: coords,
+        icon: icon
+      });
+    },
+    failure: function failure() {} //MAP -- MAP
+
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.replaceText();
     this.setRes();
-    this.range();
-    this.cart();
-    var mapProp = {
-      center: new google.maps.LatLng(51.508742, -0.120850),
-      zoom: 5
-    };
-    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp); //return this.$store.dispatch("fetchpro")
+    this.range(); //this.cart()
+    //MAP -- MAP
+
+    var x = navigator.geolocation;
+    setTimeout(function () {
+      return x.getCurrentPosition(_this.success, _this.failure);
+    }, 1000); //MAP -- MAP
+    //return this.$store.dispatch("fetchpro")
   }
 });
 
@@ -71470,7 +71544,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-10" }, [
       _c("label", { staticClass: "h4", attrs: { for: "name" } }, [
-        _c("h6", {}, [_c("b", [_vm._v(" Any other Asset records* ")])]),
+        _c("h6", {}, [
+          _c("b", [_vm._v(" Any other Asset records ")]),
+          _vm._v("(Optional) "),
+        ]),
       ]),
     ])
   },

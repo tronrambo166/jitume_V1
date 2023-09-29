@@ -67,7 +67,7 @@
                     <div class="col-sm-12 my-3"> 
                         <div class="row">
                            <div class="col-sm-10"><label class="h4" for="name">
-                                <h6 class=""> <b> Any other Asset records* </b> </h6></label>
+                                <h6 class=""> <b> Any other Asset records </b>(Optional) </h6></label>
                                </div>
                     
                     <div class="col-sm-2"> 
@@ -172,7 +172,10 @@ if(sessionStorage.getItem('invest')!=null)
     const response = await this.form.post('bidCommitsEQP');
     console.log(response.data);
     if(response.data.success){
-        toastr.success(response.data.success, { timeout:5000 });
+        $.alert({
+          title: 'Alert!',
+          content: response.data.success,
+        });
         $('#ok').css('display','none');
     }
     else

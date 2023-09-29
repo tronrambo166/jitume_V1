@@ -236,8 +236,10 @@
                         <div class="row">
                     
                     <div class="col-sm-12"> 
-                    <label class="labels font-weight-bold">Investment Needed</label>    
-                    <input required=""  class=" form-control border border-none rounded form-group" type="number" max="1000000" name="investment_needed" id="title" value="{{$ev->investment_needed}}" /> 
+                    <label class="labels font-weight-bold">Investment Needed</label>
+
+                    <p class="bg-light py-2">{{$ev->investment_needed}}</p>    
+                    <input hidden  class=" form-control border border-none rounded form-group" type="number" max="1000000" name="investment_needed" id="title" value="{{$ev->investment_needed}}" /> 
                     </div>
                         </div>
                     </div>
