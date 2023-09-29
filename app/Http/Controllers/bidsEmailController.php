@@ -382,12 +382,12 @@ public function bookingAccepted(Request $request)
         $investor_mail = $investor->email;
 
          $list = Services::where('id',$bid->service_id)->first();
-        // $info=[ 'business_name'=>$list->name, 'bid_id'=>$id ];
-        // $user['to'] = 'tottenham266@gmail.com'; //$investor_mail;
-        //  Mail::send('bids.accepted', $info, function($msg) use ($user){
-        //      $msg->to($user['to']);
-        //      $msg->subject('Bid accepted!');
-        //  });
+        $info=[ 'business_name'=>$list->name];
+        $user['to'] = $investor_mail;
+         Mail::send('services.booking_mail', $info, function($msg) use ($user){
+             $msg->to($user['to']);
+             $msg->subject('Booking accepted!');
+         });
 
            $confirm = serviceBook::where('id',$id)->update(['status' => 'Confirmed']);
          }
