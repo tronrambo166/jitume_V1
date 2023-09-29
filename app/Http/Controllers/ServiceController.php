@@ -610,7 +610,8 @@ if($time_type == 'Months')
 $n_o_days = 30*$n_o_days;
 
 //Amount check
-$serv = Services::where('shop_id', $business_id)->first();
+$serv = Services::where('id', $business_id)->first();
+
 $mile_shares = Smilestones::where('listing_id',$business_id)->get();
 $total_share_amount = 0;
 foreach($mile_shares as $single){

@@ -50,7 +50,7 @@
     <thead class="table_head">
         <tr>
             <th>Milestone Name </th>
-            <th>Business </th>
+            <th>Service </th>
             <th>Amount</th>
             <th>Status</th>
             <th width="20%" class="text-center">Action</th>        
