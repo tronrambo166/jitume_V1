@@ -16,7 +16,7 @@
 
 		           Proceed to progress with the milestones work?
 		        <div style="width:100%;margin: auto; padding-bottom:20px;padding-top:15px;"> 
-		        	<a target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/agreeToBid/{{$bid_id}}"
+		        	<a target="_blank" href="https://test.jitume.com/agreeToBid/{{$bid_id}}"
 				style="width:50%;text-decoration:none;color: aliceblue;background:green;padding:10px 30px;border-radius:5px;margin-left:30px">
 				Ok </a>
 
