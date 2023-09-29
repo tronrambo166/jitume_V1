@@ -129,17 +129,17 @@ else $investor = false;
 $results = []; $t_share = 0;
 if ($investor_ck->investor == 1) {
 $convs = Conversation::where('investor_id',Auth::id())->get();
-foreach($convs as $conv){ 
-  $miles = Milestones::where('investor_id',Auth::id())
-  ->where('listing_id',$conv->listing_id)->get();
+foreach($convs as $conv){
+  $miles = AcceptedBids::where('investor_id',Auth::id())
+  ->where('business_id',$conv->listing_id)->get();
   foreach($miles as $share)
-    $t_share = $t_share+$share->share;
+    $t_share = $t_share+$share->representation;
 
   $my_listing =listing::where('id',$conv->listing_id)->first();
   $my_listing->myShare = $t_share;
   $results[] = $my_listing;
-}
 //echo '<pre>'; print_r($results); echo '<pre>';exit;
+}
 }
 //Investments
 return view('business.index',compact('business','investor','results','services'));
