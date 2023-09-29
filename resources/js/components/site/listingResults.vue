@@ -68,7 +68,7 @@
 
                 </div>
                 <div class="row">
-                    <p class="ml-1 my-0 text-secondary small">{{ count }} businesses in your location</p>
+                    <p class="ml-1 my-0 text-secondary small">{{ count }} businesses found<!-- in your location --></p>
                 </div>
                 <!-- Price Filter -->
 

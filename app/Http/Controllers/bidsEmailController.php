@@ -89,7 +89,7 @@ public function bidsAccepted(Request $request)
 
          if($bid->type == 'Monetery')
          {
-                 try{
+
                 //Split
                     $curr='USD'; //$request->currency; 
                     $tranfer = $this->Client->transfers->create ([ 
@@ -100,11 +100,6 @@ public function bidsAccepted(Request $request)
                             'destination' => $owner->connect_id
                     ]);
                 //Stripe
-                    }
-            catch(\Exception $e){
-              Session::put('failed',$e->getMessage());
-              return redirect()->back();
-            }
         }
 
         //Mail
