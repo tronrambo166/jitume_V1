@@ -22,7 +22,7 @@
 
 
 
-        <h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Add Business</h4>  
+        <h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold">Add Business</h4>  
 
         @if($connected == 0)
         <div class="row w-75 mx-auto my-3">
