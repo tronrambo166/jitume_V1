@@ -54,21 +54,21 @@
                                 <div class="upload-btn-wrapper w-100">
                                     <a @click="download_milestone_doc(result.id)"
                                         class="text-white  placeH btnUp3 w-100">Download Milestone Documentaion <i
-                                            class="ml-2 fa fa-arrow-down"></i></a>
+                                            class="ml-2 fa fa-arrow-down pb-2"></i></a>
 
                                 </div>
                             </div>
 
 
-                            <div class="col px-1 mt-2 mt-sm-0">
+                            <div v-if="booked" class="col px-1 mt-2 mt-sm-0">
                                 <div class="form-group">
 
-                                    <button v-if="result.time_left == 'L A T E !'" @click="make_session(form.id);"
-                                        type="submit"
-                                        class="text-center border border-dark p-0 btn btn-light btn-block disabled">PAY</button>
+                                    <a v-if="result.time_left == 'L A T E !'" @click="make_session(form.id);"
+                                        
+                                        class="placeH_active status text-center border border-dark btn btn-light btn-block disabled">PAY</a>
 
                                     <a v-else @click="make_session(form.id); pay_milestone(result.id,result.amount)" type="submit"
-                                        class="text-center border border-dark p-0 btn btn-light btn-block">PAY</a>
+                                        class="placeH_active status text-center border border-dark btn btn-light btn-block">PAY</a>
                                 </div>
                             </div>
 
@@ -77,14 +77,14 @@
 
                             <div class="col px-1 mt-2 mt-sm-0">
                                 <div class="form-group">
-                                    <span class="status text-center border border-dark p-0 btn btn-success btn-block">In
+                                    <span class="placeH_active status text-center border border-dark btn btn-success btn-block">In
                                         Progress</span>
                                 </div>
                             </div>
 
                             <div class="col px-1 mt-2 mt-sm-0">
                                 <div class="rounded border border-dark px-2 d-inline-block">
-                                    <p style="font-size:12px;" class="text-success due small d-inline">Due in: </p>
+                                    <p style="font-size:12px;" class="placeH_active status text-success due small d-inline">Due in: </p>
 
                                     <p v-if="result.time_left == 'L A T E !'" style="color:red;" class="due d-inline">
                                         {{ result.time_left }} </p>
@@ -132,7 +132,7 @@
                                 <div class="upload-btn-wrapper d-flex justify-content-start">
                                     <a class="text-white disabled placeH_done btnUp_done  w-100 d-flex align-items-center ">Download
                                         Milestone
-                                        Documentaion <i class="ml-2 fa fa-arrow-down"></i></a>
+                                        Documentaion <i class="ml-2 fa fa-arrow-down  pb-2"></i></a>
 
                                 </div>
                             </div>
@@ -140,10 +140,10 @@
 
                             <div class="col my-2 my-sm-0 d-flex">
 
-                                <div class="form-group mr-1">
+                                <!-- <div class="form-group mr-1">
                                     <a disabled
                                         class="placeH_active text-center border border-dark px-2 py-1 btn btn-light btn-block">PAID</a>
-                                </div>
+                                </div> -->
 
                                 <div class="form-group ml-1">
                                     <span style="background:black;"
@@ -243,7 +243,8 @@ export default {
         results: [],
         status: false,
         done_msg: '',
-        no_mile: false
+        no_mile: false,
+        booked:false
     }),
 
     created() {
@@ -265,8 +266,10 @@ export default {
                 console.log(data);
                 t.results = data.data.data;
                 t.done_msg = data.data.done_msg;
+                t.booked = data.data.booked;
                 if (data.data.data.length == 0)
                     t.no_mile = true;
+
 
             });
 

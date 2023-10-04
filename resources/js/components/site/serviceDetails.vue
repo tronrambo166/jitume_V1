@@ -89,7 +89,7 @@
           </div>
 
           <div class="col-md-4 col-lg-3 rounded my-3 my-md-0 primary_bg">
-            <div class="p-2">
+            <div id="booked" v-if="!booked" class="p-2">
               <form @submit.prevent="serviceBook">
 
                 <div class="d-flex p-2 justify-content-center justify-content-md-end">
@@ -124,7 +124,13 @@
               </form>
 
             </div>
+
+            <div id="booked" v-else class=" p-2">
+              <p class="font-weight-bold text-center bg-light border border-dark py-3 text-dark"> You booked this service. </p>
+            </div>
+
           </div>
+
         </div>
 
 
@@ -228,7 +234,8 @@ export default {
       note: ''
     }),
     details: [],
-    service_id: ''
+    service_id: '',
+    booked:false
   }),
 
   created() {
@@ -242,7 +249,7 @@ export default {
       this.formBook.service_id = this.$route.params.id;
       var t = this;
       axios.get('ServiceResults/' + id).then((data) => {
-        //console.log(data);
+        console.log(data);
         //t.details = data.data.data;
         t.form.price = data.data.data[0].price;
         t.form.name = data.data.data[0].name;
@@ -256,6 +263,7 @@ export default {
         t.form.rating = t.form.rating.toFixed();
 
         t.form.rating_count = data.data.data[0].rating_count;
+        t.booked = data.data.data[0].booked;
 
 
         var i;
@@ -328,11 +336,25 @@ export default {
       const response = await this.formBook.post('serviceBook');
       console.log(response.data);
       if (response.data.success) {
-        toastr.success(response.data.success, { timeout: 5000 });
-        //$('#bookmsg').css('display','none');
+        $.alert({
+          title: 'Alert!',
+          content: response.data.success,
+        });
+        this.booked = 1;
       }
       else
-        toastr.success(response.data.failed, { timeout: 5000 });
+        $.alert({
+          title: 'Alert!',
+          content: response.data.failed,
+           type: 'red',
+            buttons: {
+            tryAgain: {
+            text: 'Close',
+            btnClass: 'btn-red',
+            action: function(){
+            }
+        }}  
+        });
 
 
       // this.$router.push('/manage-category');

@@ -22,6 +22,7 @@ use Auth;
 use Mail;
 use DB;
 use DateTime;
+use Illuminate\Support\Facades\File;
 
 class BusinessController extends Controller
 {
@@ -149,14 +150,11 @@ return view('business.index',compact('business','investor','results','services')
 public function listings(){
 $listings = Listing::where('user_id',Auth::id())->latest()->get();
 
-foreach($listings as $list){
-  $mile = Milestones::where('listing_id',$list->id)
-  ->where('status','In Progress')->first();
-
-  if($mile) 
-  $list->active = true;
-  else $list->active = false;
-}
+// foreach($listings as $list){
+//   $mile = Milestones::where('listing_id',$list->id)
+//   ->where('status','In Progress')->first();
+//   if($mile) $list->active = true;else $list->active = false;
+// }
 return view('business.listings',compact('listings'));
 }
 
@@ -492,20 +490,15 @@ return redirect()->back();
 
 public function delete_listing($id){
 
-$milestone = Listing::where('id',$id)->first();
-
-if($milestone->document!= null && file_exists($milestone->document)) 
-  unlink($milestone->document);  
+// $milestone = Listing::where('id',$id)->first();
+// if($milestone->document!= null && file_exists($milestone->document)) 
+//   unlink($milestone->document);  
   
-if($milestone->image!= null && file_exists($milestone->image)) 
-  unlink($milestone->image);
+$loc = public_path('files/business/'.$id);
+File::deleteDirectory($loc);
 
-if($milestone->pin!= null && file_exists($milestone->pin)) unlink($milestone->pin);
-
-if($milestone->identification  != null && file_exists($milestone->identification)) 
-  unlink($milestone->identification);
-if($milestone->video!= null && file_exists($milestone->video)) 
-  unlink($milestone->video);
+$locM = public_path('files/milestones/'.$id);
+File::deleteDirectory($locM);
 
 $milestones = Listing::where('id',$id)->delete();
 return redirect()->back();
@@ -536,13 +529,19 @@ Equipments::create([
 public function activate_milestone($id){
   $thisMile = Milestones::where('listing_id',$id)
   ->where('status','To Do')->first();
+
+  if(!$thisMile){
+    Session::put('failed','A business must have at least 1 milestone to be activated!');
+            return redirect()->back();
+  }
   
   $milestones = Milestones::where('id',$thisMile->id)
   ->update([
   'status' => 'In Progress'
   ]);
+   Listing::where('id',$id)->update(['active' => 1]);
 
-  Session::put('success','Business Milestone Activated!');
+  Session::put('success','The business is activated and ready to accept investment!');
   return redirect()->back();
 }
 

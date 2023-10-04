@@ -230,10 +230,10 @@ $booking = serviceBook::where('booker_id',$user_id)->get();
    <div class="col-md-9 bg-white px-0">
     <!-- Session -->
     @if(Session::has('success'))
-        <p class="success_session text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('success')}} @php Session::forget('success'); @endphp </p>@endif
+        <p class="success_session text-center mb-2 w-100 shadow font-weight-bold float-right">{{Session::get('success')}} @php Session::forget('success'); @endphp </p>@endif
 
         @if(Session::has('failed'))
-        <p class="failed_session text-center mb-2 w-25 shadow font-weight-bold float-right">{{Session::get('failed')}} @php Session::forget('failed'); @endphp </p>@endif
+        <p class="failed_session text-center mb-2 w-100 shadow font-weight-bold float-right">{{Session::get('failed')}} @php Session::forget('failed'); @endphp </p>@endif
     <!-- Session -->
 
          @yield('page') </div>  

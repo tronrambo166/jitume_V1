@@ -94,7 +94,7 @@
            @endif
           
 
-           <input type="submit" value="Set" class="ml-2 py-0 mb-1 d-inline btn btn-success w-25">
+           <input type="submit" value="Set" class="ml-2 py-1 mb-0 d-inline btn btn-success w-25">
 
             <input hidden type="number" name="id" value="{{$ev->id}}">
            </form> 

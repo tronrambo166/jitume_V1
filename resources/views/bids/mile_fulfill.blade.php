@@ -12,7 +12,7 @@
 			
 			<div class="" style="width:100%; margin:auto;">
 			<h4 style="line-height: 28px;font-weight:500; color: #000000a1;font-family: sans-serif;text-align:left;"> Hi,<br> 
-            A milestone now can be fulfilled for your business {{$business_name}}. Start accepting bids!
+            Hi, A milestone now can be fulfilled for your business {{$business_name}}. You can also start reviewing other bids!
 					</h4>
 			
 			

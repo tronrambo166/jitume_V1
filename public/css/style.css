@@ -413,7 +413,7 @@
 
     .eq tr td {
 
-        padding: 18px;
+        padding: 5px;
     }
 
     .myaccount li a {
@@ -1249,9 +1249,9 @@
 
     .failed_session {
         position: absolute;
-        background: #b70e0e;
+        background: #fff3cded;
         right: 0px;
-        color: white;
+        color: #d90707;
         border-radius: 4px;
         padding: 5px 20px;
         z-index: 1000;

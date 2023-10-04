@@ -12,6 +12,7 @@ use App\Models\Equipments;
 use App\Models\businessDocs;
 use App\Models\User;
 use App\Models\Conversation;
+use App\Models\serviceBook;
 use Session; 
 use Hash;
 use Auth;
@@ -297,18 +298,18 @@ $category = $request->category;
 $results = array();
 
 if($location =='' && $category == '')
-$check_listing = Listing::get();
+$check_listing = Listing::where('active',1)->get();
 
 else if($location !='' && $category == '')
-$check_listing = Listing::where('location',$location)
+$check_listing = Listing::where('active',1)->where('location',$location)
 ->get();
 
 else if($location =='' && $category != '')
-$check_listing = Listing::where('category',$category)
+$check_listing = Listing::where('active',1)->where('category',$category)
 ->get();
 
 else
-$check_listing = Listing::where('location',$location)
+$check_listing = Listing::where('active',1)->where('location',$location)
 ->where('category',$category)
 ->get();
 
@@ -364,7 +365,7 @@ return response()->json([ 'data' => $results, 'conv'=>$conv, 'count'=>count($res
 
 public function latBusiness(){
 $results = array();
-    $listings = Listing::latest()->get();$i=1;
+    $listings = Listing::where('active',1)->latest()->get();$i=1;
     foreach($listings as $listing){
         $listing->file=null;
         if($i<11)
@@ -443,6 +444,11 @@ foreach($ids as $id){
     }
     //TEMP***
 
+//Booking check
+$booking = serviceBook::where('service_id',$id)
+->where('booker_id', Auth::id())->first();
+if($booking) $listing->booked = 1; else $listing->booked = 0;
+
     if($listing) $count++;
     $results[] = $listing;
 }
@@ -457,7 +463,7 @@ $results = array();
 $name = str_replace('-','/',$name);
 $name = str_replace('_',' ',$name);
 
-$listing = Listing::where('category',$name)->get();
+$listing = Listing::where('active',1)->where('category',$name)->get();
 foreach($listing as $list){ 
 
     $files = businessDocs::where('business_id',$list->id)

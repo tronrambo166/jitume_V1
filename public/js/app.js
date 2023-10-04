@@ -10523,7 +10523,8 @@ __webpack_require__.r(__webpack_exports__);
       results: [],
       status: false,
       done_msg: '',
-      no_mile: false
+      no_mile: false,
+      booked: false
     };
   },
   created: function created() {
@@ -10540,6 +10541,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(data);
         t.results = data.data.data;
         t.done_msg = data.data.done_msg;
+        t.booked = data.data.booked;
         if (data.data.data.length == 0) t.no_mile = true;
       });
     },
@@ -10805,6 +10807,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -10825,7 +10833,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         note: ''
       }),
       details: [],
-      service_id: ''
+      service_id: '',
+      booked: false
     };
   },
   created: function created() {
@@ -10837,8 +10846,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.formBook.service_id = this.$route.params.id;
       var t = this;
       axios.get('ServiceResults/' + id).then(function (data) {
-        //console.log(data);
-        //t.details = data.data.data;
+        console.log(data); //t.details = data.data.data;
+
         t.form.price = data.data.data[0].price;
         t.form.name = data.data.data[0].name;
         t.form.details = data.data.data[0].details;
@@ -10850,6 +10859,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         t.form.rating = data.data.data[0].rating / data.data.data[0].rating_count;
         t.form.rating = t.form.rating.toFixed();
         t.form.rating_count = data.data.data[0].rating_count;
+        t.booked = data.data.data[0].booked;
         var i;
 
         for (i = 1; i < 6; i++) {
@@ -10923,11 +10933,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 console.log(response.data);
 
                 if (response.data.success) {
-                  toastr.success(response.data.success, {
-                    timeout: 5000
-                  }); //$('#bookmsg').css('display','none');
-                } else toastr.success(response.data.failed, {
-                  timeout: 5000
+                  $.alert({
+                    title: 'Alert!',
+                    content: response.data.success
+                  });
+                  _this2.booked = 1;
+                } else $.alert({
+                  title: 'Alert!',
+                  content: response.data.failed,
+                  type: 'red',
+                  buttons: {
+                    tryAgain: {
+                      text: 'Close',
+                      btnClass: 'btn-red',
+                      action: function action() {}
+                    }
+                  }
                 }); // this.$router.push('/manage-category');
 
 
@@ -72950,7 +72971,7 @@ var render = function () {
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("p", { staticClass: "ml-1 my-0 text-secondary small" }, [
-              _vm._v(_vm._s(_vm.count) + " businesses in your location"),
+              _vm._v(_vm._s(_vm.count) + " businesses found"),
             ]),
           ]),
           _vm._v(" "),
@@ -74192,7 +74213,7 @@ var render = function () {
                                   [
                                     _vm._v("Download Milestone Documentaion "),
                                     _c("i", {
-                                      staticClass: "ml-2 fa fa-arrow-down",
+                                      staticClass: "ml-2 fa fa-arrow-down pb-2",
                                     }),
                                   ]
                                 ),
@@ -74200,43 +74221,50 @@ var render = function () {
                             ),
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col px-1 mt-2 mt-sm-0" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              result.time_left == "L A T E !"
-                                ? _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "text-center border border-dark p-0 btn btn-light btn-block disabled",
-                                      attrs: { type: "submit" },
-                                      on: {
-                                        click: function ($event) {
-                                          return _vm.make_session(_vm.form.id)
-                                        },
-                                      },
-                                    },
-                                    [_vm._v("PAY")]
-                                  )
-                                : _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "text-center border border-dark p-0 btn btn-light btn-block",
-                                      attrs: { type: "submit" },
-                                      on: {
-                                        click: function ($event) {
-                                          _vm.make_session(_vm.form.id)
-                                          _vm.pay_milestone(
-                                            result.id,
-                                            result.amount
-                                          )
-                                        },
-                                      },
-                                    },
-                                    [_vm._v("PAY")]
-                                  ),
-                            ]),
-                          ]),
+                          _vm.booked
+                            ? _c(
+                                "div",
+                                { staticClass: "col px-1 mt-2 mt-sm-0" },
+                                [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    result.time_left == "L A T E !"
+                                      ? _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "placeH_active status text-center border border-dark btn btn-light btn-block disabled",
+                                            on: {
+                                              click: function ($event) {
+                                                return _vm.make_session(
+                                                  _vm.form.id
+                                                )
+                                              },
+                                            },
+                                          },
+                                          [_vm._v("PAY")]
+                                        )
+                                      : _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "placeH_active status text-center border border-dark btn btn-light btn-block",
+                                            attrs: { type: "submit" },
+                                            on: {
+                                              click: function ($event) {
+                                                _vm.make_session(_vm.form.id)
+                                                _vm.pay_milestone(
+                                                  result.id,
+                                                  result.amount
+                                                )
+                                              },
+                                            },
+                                          },
+                                          [_vm._v("PAY")]
+                                        ),
+                                  ]),
+                                ]
+                              )
+                            : _vm._e(),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -74302,7 +74330,7 @@ var render = function () {
                                   "p",
                                   {
                                     staticClass:
-                                      "text-success due small d-inline",
+                                      "placeH_active status text-success due small d-inline",
                                     staticStyle: { "font-size": "12px" },
                                   },
                                   [_vm._v("Due in: ")]
@@ -74549,7 +74577,7 @@ var staticRenderFns = [
           "span",
           {
             staticClass:
-              "status text-center border border-dark p-0 btn btn-success btn-block",
+              "placeH_active status text-center border border-dark btn btn-success btn-block",
           },
           [_vm._v("In\n                                    Progress")]
         ),
@@ -74575,7 +74603,7 @@ var staticRenderFns = [
               _vm._v(
                 "Download\n                                    Milestone\n                                    Documentaion "
               ),
-              _c("i", { staticClass: "ml-2 fa fa-arrow-down" }),
+              _c("i", { staticClass: "ml-2 fa fa-arrow-down pb-2" }),
             ]
           ),
         ]
@@ -74587,18 +74615,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col my-2 my-sm-0 d-flex" }, [
-      _c("div", { staticClass: "form-group mr-1" }, [
-        _c(
-          "a",
-          {
-            staticClass:
-              "placeH_active text-center border border-dark px-2 py-1 btn btn-light btn-block",
-            attrs: { disabled: "" },
-          },
-          [_vm._v("PAID")]
-        ),
-      ]),
-      _vm._v(" "),
       _c("div", { staticClass: "form-group ml-1" }, [
         _c(
           "span",
@@ -74850,171 +74866,195 @@ var render = function () {
               staticClass: "col-md-4 col-lg-3 rounded my-3 my-md-0 primary_bg",
             },
             [
-              _c("div", { staticClass: "p-2" }, [
-                _c(
-                  "form",
-                  {
-                    on: {
-                      submit: function ($event) {
-                        $event.preventDefault()
-                        return _vm.serviceBook.apply(null, arguments)
-                      },
-                    },
-                  },
-                  [
-                    _vm._m(0),
-                    _vm._v(" "),
+              !_vm.booked
+                ? _c("div", { staticClass: "p-2", attrs: { id: "booked" } }, [
                     _c(
-                      "div",
+                      "form",
                       {
-                        staticClass:
-                          "d-flex p-2 justify-content-center justify-content-md-end",
+                        on: {
+                          submit: function ($event) {
+                            $event.preventDefault()
+                            return _vm.serviceBook.apply(null, arguments)
+                          },
+                        },
                       },
                       [
-                        _c(
-                          "p",
-                          { staticClass: "d-inline text-left text-light mr-2" },
-                          [_vm._v("Desired start date: ")]
-                        ),
+                        _vm._m(0),
                         _vm._v(" "),
-                        _c("span", { staticClass: "pl-0 d-inline" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.formBook.date,
-                                expression: "formBook.date",
-                              },
-                            ],
-                            attrs: { required: "", type: "date", name: "date" },
-                            domProps: { value: _vm.formBook.date },
-                            on: {
-                              input: function ($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.formBook,
-                                  "date",
-                                  $event.target.value
-                                )
-                              },
-                            },
-                          }),
-                        ]),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "d-flex p-2 justify-content-center justify-content-md-end",
-                      },
-                      [
-                        _c("div", {}, [
-                          _c("p", { staticClass: "text-start text-light" }, [
-                            _vm._v("Enter additional notes "),
-                          ]),
-                          _vm._v(" "),
-                          _c("textarea", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.formBook.note,
-                                expression: "formBook.note",
-                              },
-                            ],
-                            staticClass: "rounded",
-                            attrs: {
-                              rows: "10",
-                              cols: "32",
-                              required: "",
-                              name: "note",
-                            },
-                            domProps: { value: _vm.formBook.note },
-                            on: {
-                              input: function ($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.formBook,
-                                  "note",
-                                  $event.target.value
-                                )
-                              },
-                            },
-                          }),
-                        ]),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formBook.service_id,
-                          expression: "formBook.service_id",
-                        },
-                      ],
-                      attrs: { hidden: "", type: "number", name: "service_id" },
-                      domProps: { value: _vm.formBook.service_id },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.formBook,
-                            "service_id",
-                            $event.target.value
-                          )
-                        },
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "p-2 d-flex justify-content-center justify-content-md-end",
-                      },
-                      [
-                        _vm.auth_user
-                          ? _c(
-                              "button",
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "d-flex p-2 justify-content-center justify-content-md-end",
+                          },
+                          [
+                            _c(
+                              "p",
                               {
                                 staticClass:
-                                  "my-3 py-1 btn-success w-50 btn header_buttons text-light float-right",
+                                  "d-inline text-left text-light mr-2",
                               },
-                              [_vm._v("Book\n                ")]
-                            )
-                          : _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "my-3 py-1 btn-success w-50 btn header_buttons text-light float-right",
+                              [_vm._v("Desired start date: ")]
+                            ),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "pl-0 d-inline" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.formBook.date,
+                                    expression: "formBook.date",
+                                  },
+                                ],
                                 attrs: {
-                                  "data-target": "#loginModal",
-                                  "data-toggle": "modal",
+                                  required: "",
+                                  type: "date",
+                                  name: "date",
                                 },
+                                domProps: { value: _vm.formBook.date },
                                 on: {
-                                  click: function ($event) {
-                                    return _vm.make_session()
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.formBook,
+                                      "date",
+                                      $event.target.value
+                                    )
                                   },
                                 },
-                              },
-                              [_vm._v("Book")]
-                            ),
+                              }),
+                            ]),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "d-flex p-2 justify-content-center justify-content-md-end",
+                          },
+                          [
+                            _c("div", {}, [
+                              _c(
+                                "p",
+                                { staticClass: "text-start text-light" },
+                                [_vm._v("Enter additional notes ")]
+                              ),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.formBook.note,
+                                    expression: "formBook.note",
+                                  },
+                                ],
+                                staticClass: "rounded",
+                                attrs: {
+                                  rows: "10",
+                                  cols: "32",
+                                  required: "",
+                                  name: "note",
+                                },
+                                domProps: { value: _vm.formBook.note },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.formBook,
+                                      "note",
+                                      $event.target.value
+                                    )
+                                  },
+                                },
+                              }),
+                            ]),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formBook.service_id,
+                              expression: "formBook.service_id",
+                            },
+                          ],
+                          attrs: {
+                            hidden: "",
+                            type: "number",
+                            name: "service_id",
+                          },
+                          domProps: { value: _vm.formBook.service_id },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.formBook,
+                                "service_id",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "p-2 d-flex justify-content-center justify-content-md-end",
+                          },
+                          [
+                            _vm.auth_user
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "my-3 py-1 btn-success w-50 btn header_buttons text-light float-right",
+                                  },
+                                  [_vm._v("Book\n                ")]
+                                )
+                              : _c(
+                                  "a",
+                                  {
+                                    staticClass:
+                                      "my-3 py-1 btn-success w-50 btn header_buttons text-light float-right",
+                                    attrs: {
+                                      "data-target": "#loginModal",
+                                      "data-toggle": "modal",
+                                    },
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.make_session()
+                                      },
+                                    },
+                                  },
+                                  [_vm._v("Book")]
+                                ),
+                          ]
+                        ),
                       ]
                     ),
-                  ]
-                ),
-              ]),
+                  ])
+                : _c("div", { staticClass: "p-2", attrs: { id: "booked" } }, [
+                    _c(
+                      "p",
+                      {
+                        staticClass:
+                          "font-weight-bold text-center bg-light border border-dark py-3 text-dark",
+                      },
+                      [_vm._v(" You booked this service. ")]
+                    ),
+                  ]),
             ]
           ),
         ]),
@@ -75177,7 +75217,7 @@ var render = function () {
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("p", { staticClass: "ml-1 my-0 text-secondary small" }, [
-            _vm._v(_vm._s(_vm.count) + " Services in your location"),
+            _vm._v(_vm._s(_vm.count) + " Services in found"),
           ]),
         ]),
         _vm._v(" "),

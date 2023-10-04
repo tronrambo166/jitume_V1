@@ -19,6 +19,7 @@ use Mail;
 use DB;
 use Exception;
 use Response;
+use Illuminate\Support\Facades\File;
 
 class ServiceController extends Controller
 {
@@ -80,8 +81,18 @@ $document = $request->document;
 $video = $request->video;
 $user_id = Auth::id();
 
-$listing = Services::latest()->first();
-$listing = ($listing->id)+1;
+$listing = Services::create([
+            'name' => $title,
+            'shop_id' => $user_id,
+            'price' => $price,
+            'category' => $category,
+            'details' => $details,
+            'location' => $location
+          ]);
+            
+
+  //$listing = Services::latest()->first();
+  $listing = $listing->id;     
 
 //FILES 
  $image=$request->file('image');
@@ -91,6 +102,7 @@ $listing = ($listing->id)+1;
           if($ext!='jpg' && $ext!= 'png' && $ext!='jpeg' && $ext!= 'svg'&& $ext!='gif')
           {
             Session::put('error','For Cover, Only images are allowed!');
+            Services::where('id',$listing)->delete();
             return redirect()->back();
           }
           $create_name=$uniqid.'.'.$ext;
@@ -109,6 +121,7 @@ $listing = ($listing->id)+1;
           if($ext!='pdf' && $ext!= 'docx')
           {
             Session::put('error','For pin, Only pdf & docx are allowed!');
+            Services::where('id',$listing)->delete();
             return redirect()->back();
           }
 
@@ -130,6 +143,7 @@ $listing = ($listing->id)+1;
           if($ext!='pdf' && $ext!= 'docx')
           {
             Session::put('error','For identification, Only pdf & docx are allowed!');
+            Services::where('id',$listing)->delete();
             return redirect()->back();
           }
 
@@ -151,6 +165,7 @@ $listing = ($listing->id)+1;
           if($ext!='pdf' && $ext!= 'docx')
           {
             Session::put('error','For service document, Only pdf & docx are allowed!');
+            Services::where('id',$listing)->delete();
             return redirect()->back();
           }
 
@@ -175,6 +190,7 @@ $listing = ($listing->id)+1;
           { 
             Session::put('error','For video, Only mpg || mpeg || webm || mp4 
             avi || wmv are allowed!');
+            Services::where('id',$listing)->delete();
             return redirect()->back();
           }
 
@@ -190,15 +206,8 @@ $listing = ($listing->id)+1;
 
           
 
-//FILES         
-
-Services::create([
-            'name' => $title,
-            'shop_id' => $user_id,
-            'price' => $price,
-            'category' => $category,
-            'details' => $details,
-            'location' => $location,
+//FILES 
+Services::where('id',$listing)->update([
             'image' => $final_img,
             'pin' => $final_pin,
             'identification' => $final_identification,
@@ -352,20 +361,16 @@ Services::where('id',$id)->update($data);
 
 
 public function delete_service($id){
-$milestone = Services::where('id',$id)->first();
 
-if($milestone->document!= null && file_exists($milestone->document)) 
-  unlink($milestone->document);
+//$milestone = Services::where('id',$id)->first();
+// if($milestone->document!= null && file_exists($milestone->document)) 
+//   unlink($milestone->document);
 
-if($milestone->image!= null && file_exists($milestone->image)) 
-  unlink($milestone->image);
+$loc = public_path('files/services/'.$id);
+File::deleteDirectory($loc);
 
-if($milestone->pin!= null && file_exists($milestone->pin)) unlink($milestone->pin);
-
-if($milestone->identification  != null && file_exists($milestone->identification)) 
-  unlink($milestone->identification);
-if($milestone->video!= null && file_exists($milestone->video)) 
-  unlink($milestone->video);
+$locM = public_path('files/Smilestones/'.$id);
+File::deleteDirectory($locM);
 
 $milestones = Services::where('id',$id)->delete();
 return redirect()->back();
@@ -504,7 +509,8 @@ return view('services.add_milestones',compact('business','milestones'));
 }
 
 public function getMilestones($id){ 
- $milestones = Smilestones::where('listing_id',$id)->get(); $c=0;$d=0;$test='';
+ $milestones = Smilestones::where('listing_id',$id)->get(); 
+ $c=0;$d=0;$test='';
 
 try{
   foreach($milestones as $mile){
@@ -536,12 +542,21 @@ if($d == 0 && count($milestones)!=0)
 }
 else $done_msg = null;
 
+//Booking check
+$booking = serviceBook::where('service_id',$id)
+->where('booker_id', Auth::id())
+->where('status', 'Confirmed')->first();
+
+if($booking) $booked = 1;
+else $booked = 0;
+
 }
 catch(\Exception $e){
   return response()->json([ 'data' => $e->getMessage() ]);
 }
 
-return response()->json([ 'data' => $milestones, 'done_msg' => $done_msg ]);
+return response()->json([ 'data' => $milestones, 'done_msg' => $done_msg,
+'booked' => $booked ]);
 
  }
 
