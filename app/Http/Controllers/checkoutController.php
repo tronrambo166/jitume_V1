@@ -477,6 +477,7 @@ catch(\Exception $e){
     //$amount =($mile->amount)+($mile->amount)*($tax/100);
 
     $user_id = $mile->user_id;
+    $business_id = $mile->listing_id;
 
 
     //Stripe
@@ -502,7 +503,7 @@ catch(\Exception $e){
       return redirect()->back();
     }
 
-    $business_id = $mile->listing_id;
+    
     $Business = Services::where('id',$business_id)->first();
     $owner = User::where('id', $Business->shop_id)->first();
 
@@ -517,6 +518,8 @@ catch(\Exception $e){
                 "source_transaction" => $charge->id,
                 'destination' => $owner->connect_id
         ]);
+        Smilestones::where('id',$id)->update([ 'status' => 'Done']);
+        
         }
 
 catch(\Exception $e){
@@ -531,7 +534,7 @@ catch(\Exception $e){
    //MAIL
         $business = Services::where('id',$mile->listing_id)->first();
 
-        $info=[  'name'=>$mile->title,  'amount'=>$mile->amount, 'business'=>$business->name, ]; 
+        $info=[  'name'=>$mile->title,  'amount'=>$mile->amount, 'business'=>$business->name, 's_id' => $business_id ]; 
         $user['to'] = $request->email;//'sohaankane@gmail.com';
 
          Mail::send('milestoneS.milestone_mail', $info, function($msg) use ($user){
@@ -541,13 +544,11 @@ catch(\Exception $e){
 
 
 //DB INSERT
-        
-    Smilestones::where('id',$id)->update([ 'status' => 'Done']);
-    $mileLat = Smilestones::where('user_id',$user_id)->where('status','On Hold')->first();
+    $mileLat = Smilestones::where('listing_id',$business_id)->where('status','On Hold')->first();
 
-if($mileLat != null)
-    Smilestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
-else {
+if($mileLat == null) 
+{
+    //Smilestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
     //Completed, order place
     try{
         $total = 0;

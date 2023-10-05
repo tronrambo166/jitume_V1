@@ -2,7 +2,7 @@
 
         
 
-<!--Hidden Cart view-->
+<!--Hidden Cart view--> 
 
         <div class="row  w-75 m-auto border shadow text-center bg-light" style=" box-shadow: 3px 3px 7px 7px grey; width:70%; background: #72c537;border: 1px solid black;">
 		<div class="container w-75 m-auto" style="box-shadow: 3px 3px 7px 7px grey; background: #72c537;width:80%; margin:auto; text-align:center">
@@ -14,6 +14,18 @@
 			<h4 style="color: darkgreen;font-family:  sans-serif;text-align:left;"> Milestone Name: {{$name}} </h4>
 			<h4 style="color: darkgreen;font-family: sans-serif;text-align:left;"> Amount: {{$amount}} </h4>
 			<h4 style="color: darkgreen;font-family: sans-serif;text-align:left;"> Business Name: {{$business}} </h4>
+			</div>
+
+
+			Do you want to Continue to the Next Milestone?
+		        <div style="width:100%;margin: auto; padding-bottom:20px;padding-top:15px;"> 
+		        	<a target="_blank" href="https://test.jitume.com/agreeToMileS/{{$s_id}}"
+				style="width:50%;text-decoration:none;color: aliceblue;background:green;padding:10px 30px;border-radius:5px;margin-left:30px">
+				Continue</a>
+
+				<a
+				style="width:50%;text-decoration:none;color: aliceblue;background:red;padding:10px 30px;border-radius:5px;margin-left:30px">
+				Cancel </a>
 			</div>
 		
 		

@@ -161,6 +161,13 @@ public function agreeToBid($bidId)
        }  
 }
 
+public function agreeToMileS($s_id)
+{
+    $mileLat = Smilestones::where('listing_id',$s_id)->where('status','On Hold')->first();
+    Smilestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
+    Session::put('login_success','Thanks for your review, next milestone started!');
+        return redirect('/');
+}
 
 public function agreeToNextmile($bidId)
 {

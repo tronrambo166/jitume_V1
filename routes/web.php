@@ -226,6 +226,7 @@ Route::post('bidCommits', 'checkoutController@bidCommits')->name('bidCommits');
 Route::get('agreeToBid/{bidId}', 'bidsEmailController@agreeToBid')->name('agreeToBid');
 Route::get('agreeToNextmile/{bidId}', 'bidsEmailController@agreeToNextmile')->name('agreeToNextmile');
 Route::post('bookingAccepted', 'bidsEmailController@bookingAccepted')->name('bookingAccepted');
+Route::get('agreeToMileS/{s_id}', 'bidsEmailController@agreeToMileS')->name('agreeToMileS');
 
 //<!-- BIDS -->
 

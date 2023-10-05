@@ -74657,7 +74657,7 @@ var staticRenderFns = [
           "a",
           {
             staticClass:
-              "text-center border border-dark p-0 btn btn-light btn-block",
+              "placeH_inactive pb-2 text-center border border-dark p-0 btn btn-light btn-block",
             attrs: { disabled: "" },
           },
           [_vm._v("PAY")]
@@ -74675,7 +74675,7 @@ var staticRenderFns = [
           "span",
           {
             staticClass:
-              "status text-center border border-dark p-0 btn btn-light btn-block",
+              "placeH_inactive pb-2 status text-center border border-dark p-0 btn btn-light btn-block",
           },
           [_vm._v("On\n                                    Hold")]
         ),

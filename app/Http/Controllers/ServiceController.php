@@ -515,7 +515,7 @@ public function getMilestones($id){
 try{
   foreach($milestones as $mile){
   if($mile->status == 'In Progress') $c++;
-  if($mile->status != 'Done') $d++; 
+  if($mile->status == 'Done') $d++; 
 
   //SETTING Time Diffrence
 $time_due_date = date( "Y-m-d H:i:s", strtotime($mile->created_at.' +'.$mile->n_o_days.' days 0 hours 0 minutes'));
@@ -531,7 +531,7 @@ if($time_now > $time_due_date)
 
 } 
 
- if($c==0 && $d!=0){
+ if($c==0 && $d==0){
   
   $milestones[0]->status = 'In Progress';
 }

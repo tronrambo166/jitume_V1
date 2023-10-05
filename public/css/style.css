@@ -542,15 +542,11 @@
     }
 
     .placeH_inactive {
-        min-width: 60px;
-        background: #f3f3f3;
-        color: #585857;
+        text-wrap: nowrap;
         font-weight: 500;
         padding-left: 6px;
         font-size: 13px;
         border-radius: 2px;
-        /* height: 27px; */
-        text-wrap: nowrap;
     }
 
     .placeH_active {

@@ -199,13 +199,13 @@
 
                             <div class="col px-1 my-2 my-sm-0">
                                 <div class="form-group">
-                                    <a disabled class="text-center border border-dark p-0 btn btn-light btn-block">PAY</a>
+                                    <a disabled class="placeH_inactive pb-2 text-center border border-dark p-0 btn btn-light btn-block">PAY</a>
                                 </div>
                             </div>
 
                             <div class="col px-0 my-2 my-sm-0">
                                 <div class="form-group">
-                                    <span class="status text-center border border-dark p-0 btn btn-light btn-block">On
+                                    <span class="placeH_inactive pb-2 status text-center border border-dark p-0 btn btn-light btn-block">On
                                         Hold</span>
                                 </div>
                             </div>
