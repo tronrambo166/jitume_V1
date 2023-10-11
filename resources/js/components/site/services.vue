@@ -27,9 +27,12 @@
                     </div>
 
                     <div style="" class="px-2 py-2 bg-white col-12 col-sm-4">
-                        <input id="searchbox" onkeyup="suggest(this.value);" style="border: none;height: 42px;"
+                        <input id="pac-input" style="border: none;height: 42px;"
                             class="border-none bar bg-white form-control d-inline" type="text" name="search" value=""
                             placeholder="Location">
+
+                        <input type="text" name="lat" id="lat" hidden value="">
+                        <input type="text" name="lng" id="lng" hidden value="">
 
                     </div>
 
@@ -89,11 +92,11 @@
                         <div class="mx-auto mt-5">
                             <router-link :to="`/serviceDetails/${result.id}`" class="shadow card border px-2">
 
-                                <video v-if="result.file" controls style="width:100%; height:104px;" alt="">
+                                <video v-if="result.file" controls style="width:92%; height:114px;" alt="">
                                     <source :src="result.file" type="video/mp4">
                                 </video>
 
-                                <img v-else :src="result.image" style="width:100%; height:104px" class="card-img-top"
+                                <img v-else :src="result.image" style="width:92%; height:114px;" class="card-img-top"
                                     alt="" />
 
                                 <div class="p-1 pb-2">
@@ -181,6 +184,8 @@ export default {
             const form = $('#form');
             var thiss = this;
             var ids = '';
+            var lat = $('#lat').val();
+            var lng = $('#lng').val();
 
             $.ajax({
                 url: 'searchService',
@@ -189,7 +194,7 @@ export default {
                 dataType: 'json',
                 data: form.serialize(),
                 success: function (response) {
-                    //console.log(response);
+                    console.log(response);
 
                     Object.entries(response.results).forEach(entry => {
                         const [index, row] = entry;
@@ -199,7 +204,10 @@ export default {
                     if (ids == '')
                         ids = 'no-results'
                     //thiss.$router.push({ path: '/listingResults', query: { result: response } })
-                    thiss.$router.push({ name: 'serviceResults', params: { results: btoa(ids) } })
+
+                    sessionStorage.setItem('SqueryLat',lat);
+                    sessionStorage.setItem('SqueryLng',lng);
+                    thiss.$router.push({ name: 'serviceResults', params: { results: btoa(ids), loc:response.loc } })
                 },
                 error: function (response) {
                     console.log(response);
@@ -215,6 +223,26 @@ export default {
             }
         },
 
+        initAutocomplete: function(){
+          const input = document.getElementById("pac-input");
+          const searchBox = new google.maps.places.SearchBox(input);
+          searchBox.addListener("places_changed", () => {
+          const places = searchBox.getPlaces();
+          if (places.length == 0) { return; }
+          const bounds = new google.maps.LatLngBounds();
+
+          places.forEach((place) => {
+            if (!place.geometry || !place.geometry.location) {
+            console.log("Returned place contains no geometry");return; }
+             //console.log(place); 
+          const lat = document.getElementById('lat');
+          const lng = document.getElementById('lng');
+          lat.value = place.geometry.location.lat();
+          lng.value = place.geometry.location.lng();
+
+           }); });
+        },
+
         latBusiness: function () {
             let t = this;
             axios.get('latServices').then((data) => {
@@ -226,6 +254,17 @@ export default {
     },
 
     mounted() {
+        //GOOGLE VAR
+        let initializeWhenGoogleIsAvailable = () => {
+        if (google) { // test if google is available
+          this.initAutocomplete(); // if it is, then initalize
+        } else {
+          setTimeout(initializeWhenGoogleIsAvailable, 1000) // if it isn't, wait a bit
+         }
+       };
+      initializeWhenGoogleIsAvailable();
+       //GOOGLE VAR
+
         //return this.$store.dispatch("fetchpro")
         this.replaceText();
         this.latBusiness();

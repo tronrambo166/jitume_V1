@@ -15,9 +15,13 @@
                 <!--  <marquee>Invest in Agriculture | Sports/Gaming | Real State | Entertainment | Auto | Finance/Accounting Security | Pets | Domestic Help | Other</marquee> -->
               </h4>
               <h4 class="h4 text-center text_color_1 py-3 main_heading">Your platform to invest in local businesses</h4>
-
-
             </div>
+
+        <!-- Search Test -->
+        <!-- <div class="" style="min-height:500px;">
+          <input id="pac-input"class="controls"type="text"placeholder="Search Box"/>
+        </div>    -->
+        <!-- Search Test -->
 
             <form id="form" @submit.prevent="search();" class="d-flex justify-content-center w-100" method="post">
 
@@ -27,10 +31,13 @@
                               <input  required=""  style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div> -->
 
                 <div class="col-12 col-sm-5 my-1 py-1 bg-white rounded">
-                  <input id="searchbox" onkeyup="suggest(this.value);" style="border: none;height: 42px;"
-                    class="bar bg-white form-control d-inline ml-1" type="text" name="search" value=""
-                    placeholder="Location">
+                  <input id="pac-input" style="border: none;height: 42px;"
+                    class="bar bg-white form-control d-inline ml-1 controls" type="text" name="search" value=""
+                    placeholder="Location"> <!-- onkeyup="suggest(this.value);" -->
                 </div>
+
+                <input type="text" name="lat" id="lat" hidden value="">
+                <input type="text" name="lng" id="lng" hidden value="">
 
                 <div class="col-12 col-sm-5 my-1 pt-1  bg-white">
                   <div class="dropdown pt-1">
@@ -286,11 +293,11 @@
             <div class="mx-auto mt-4">
               <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
 
-                <video v-if="result.file" controls style="width:100%; height:104px;" alt="">
+                <video v-if="result.file" controls style="width:95%; height:114px;" alt="">
                   <source :src="result.file" type="video/mp4">
                 </video>
 
-                <img v-else :src="result.image" style="width:100%; height:104px" class="card-img-top" alt="" />
+                <img v-else :src="result.image" style="width:92%; height:114px;" class="card-img-top" alt="" />
 
                 <div class="p-1 pb-2">
 
@@ -457,6 +464,7 @@ export default {
     checkListing: '',
     serviceDetails: '',
     milestone: '',
+    service_milestone:'',
     commit: ''
 
   }),
@@ -486,6 +494,7 @@ export default {
     $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> ');
   },
 
+
   methods: {
 
     async search() {
@@ -501,6 +510,8 @@ export default {
       const form = $('#form');
       var thiss = this;
       var ids = '';
+      var lat = $('#lat').val();
+      var lng = $('#lng').val();
 
       $.ajax({
         url: 'search',
@@ -514,12 +525,15 @@ export default {
           Object.entries(response.results).forEach(entry => {
             const [index, row] = entry;
             ids = ids + row.id + ',';
-          }); console.log(ids);
+          }); //console.log(ids);
 
           if (!ids) ids = 0;
 
           //thiss.$router.push({ path: '/listingResults', query: { result: response } })
-          thiss.$router.push({ name: 'listingResults', params: { results: btoa(ids) } })
+
+          sessionStorage.setItem('queryLat',lat);
+          sessionStorage.setItem('queryLng',lng);
+          thiss.$router.push({ name: 'listingResults', params: { results: btoa(ids),loc:response.loc } })
         },
         error: function (response) {
           console.log(response);
@@ -541,13 +555,47 @@ export default {
         this.$router.push(`business-milestone/${this.commit}`);
     },
 
+    initAutocomplete: function(){
+      const input = document.getElementById("pac-input");
+      const searchBox = new google.maps.places.SearchBox(input);
+      searchBox.addListener("places_changed", () => {
+      const places = searchBox.getPlaces();
+      if (places.length == 0) { return; }
+      const bounds = new google.maps.LatLngBounds();
+
+      places.forEach((place) => {
+        if (!place.geometry || !place.geometry.location) {
+        console.log("Returned place contains no geometry");return; }
+         console.log(place); 
+      const lat = document.getElementById('lat');
+      const lng = document.getElementById('lng');
+      //lat.value = place.geometry.viewport.mb.hi;
+      //lng.value = place.geometry.viewport.Oa.hi;
+
+      lat.value = place.geometry.location.lat();
+      lng.value = place.geometry.location.lng();
+
+       }); });
+    }
+
   },
 
   mounted() {
+    //GOOGLE VAR
+    let initializeWhenGoogleIsAvailable = () => {
+      if (google) { // test if google is available
+        this.initAutocomplete(); // if it is, then initalize
+      } else {
+        setTimeout(initializeWhenGoogleIsAvailable, 1000) // if it isn't, wait a bit
+       }
+     };
+  initializeWhenGoogleIsAvailable();
+   //GOOGLE VAR
+
+    //this.initAutocomplete();
     this.latBusiness();
     this.routerPush();
 
-    //$('#create_investor').html('<a onclick="" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Create Investor Account</span></a> ');
 
   }
 

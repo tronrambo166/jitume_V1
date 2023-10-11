@@ -8186,6 +8186,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -8222,6 +8229,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       checkListing: '',
       serviceDetails: '',
       milestone: '',
+      service_milestone: '',
       commit: ''
     };
   },
@@ -8271,6 +8279,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var form = $('#form');
     var thiss = this;
     var ids = '';
+    var lat = $('#lat').val();
+    var lng = $('#lng').val();
     $.ajax({
       url: 'search',
       method: 'POST',
@@ -8287,14 +8297,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               row = _entry[1];
 
           ids = ids + row.id + ',';
-        });
-        console.log(ids);
+        }); //console.log(ids);
+
         if (!ids) ids = 0; //thiss.$router.push({ path: '/listingResults', query: { result: response } })
 
+        sessionStorage.setItem('queryLat', lat);
+        sessionStorage.setItem('queryLng', lng);
         thiss.$router.push({
           name: 'listingResults',
           params: {
-            results: btoa(ids)
+            results: btoa(ids),
+            loc: response.loc
           }
         });
       },
@@ -8310,10 +8323,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   }), _defineProperty(_methods, "routerPush", function routerPush() {
     this.commit = sessionStorage.getItem('commit');
     if (this.commit != null) this.$router.push("business-milestone/".concat(this.commit));
+  }), _defineProperty(_methods, "initAutocomplete", function initAutocomplete() {
+    var input = document.getElementById("pac-input");
+    var searchBox = new google.maps.places.SearchBox(input);
+    searchBox.addListener("places_changed", function () {
+      var places = searchBox.getPlaces();
+
+      if (places.length == 0) {
+        return;
+      }
+
+      var bounds = new google.maps.LatLngBounds();
+      places.forEach(function (place) {
+        if (!place.geometry || !place.geometry.location) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+
+        console.log(place);
+        var lat = document.getElementById('lat');
+        var lng = document.getElementById('lng'); //lat.value = place.geometry.viewport.mb.hi;
+        //lng.value = place.geometry.viewport.Oa.hi;
+
+        lat.value = place.geometry.location.lat();
+        lng.value = place.geometry.location.lng();
+      });
+    });
   }), _methods),
   mounted: function mounted() {
+    var _this2 = this;
+
+    //GOOGLE VAR
+    var initializeWhenGoogleIsAvailable = function initializeWhenGoogleIsAvailable() {
+      if (google) {
+        // test if google is available
+        _this2.initAutocomplete(); // if it is, then initalize
+
+      } else {
+        setTimeout(initializeWhenGoogleIsAvailable, 1000); // if it isn't, wait a bit
+      }
+    };
+
+    initializeWhenGoogleIsAvailable(); //GOOGLE VAR
+    //this.initAutocomplete();
+
     this.latBusiness();
-    this.routerPush(); //$('#create_investor').html('<a onclick="" data-target="#loginModal" data-toggle="modal" style="background: #72c537; border-radius: 15px;cursor: pointer;font-size: 11px; " class="text-light px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Create Investor Account</span></a> ');
+    this.routerPush();
   }
 });
 
@@ -9702,7 +9757,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       results2: [],
       ids: '',
       empty: false,
-      count: 0
+      count: 0,
+      loc: '',
+      queryLat: '',
+      queryLng: ''
     };
   },
   methods: {
@@ -9714,7 +9772,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         axios.get('searchResults/' + t.ids).then(function (data) {
           //t.results2 = data.data.data;
           t.results = data.data.data;
-          t.count = data.data.count; //console.log(t.results);
+          t.count = data.data.count; //Setting Curr LatLng
+
+          t.queryLat = data.data.data[0].lat;
+          t.queryLng = data.data.data[0].lng;
+          console.log(data);
         })["catch"](function (error) {});
       }
     },
@@ -9751,7 +9813,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             //else{ 
             t.count = data.data.data.length;
             t.results = '';
-            t.results = data.data.data; //}
+            t.results = data.data.data;
+            t.queryLat = data.data.data[0].lat;
+            t.queryLng = data.data.data[0].lng; //}
             //console.log(t.results);
           })["catch"](function (error) {});
         });
@@ -9759,37 +9823,52 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     },
     //MAP -- MAP
     success: function success(position) {
-      var myLat = position.coords.latitude;
-      var myLong = position.coords.longitude;
+      var loc = this.loc;
+
+      if ((loc == true || loc == "true") && this.count != 0) {
+        var myLat = sessionStorage.getItem('queryLat'); // this.queryLat;
+
+        var myLong = sessionStorage.getItem('queryLng'); // this.queryLng;
+      } else {
+        var myLat = position.coords.latitude;
+        var myLong = position.coords.longitude;
+      }
+
       var coords = new google.maps.LatLng(myLat, myLong);
       var mapOptions = {
-        zoom: 5,
+        zoom: 8,
         center: coords,
         //center:new google.maps.LatLng(51.508742,-0.120850),
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       var div = $("#googleMap").length;
-      if (div) var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
-      console.log(this.results);
+      if (div) var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions); //console.log(this.results);
 
       for (var _i = 0, _Object$entries = Object.entries(this.results); _i < _Object$entries.length; _i++) {
         var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
             key = _Object$entries$_i[0],
             value = _Object$entries$_i[1];
 
+        //INFO
+        var contentString = '<div id="content">' + '<div id="siteNotice">' + "</div>" + '<h1 id="firstHeading" class="firstHeading">' + value.name + '</h1>' + '<div id="bodyContent">' + '<p><b>Location: </b>' + value.location + ', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/#/listingDetails/' + value.id + '">' + "View Business</a> " + "</div>" + "</div>";
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString,
+          ariaLabel: value.name
+        }); //INFO
+
         this.addMarker({
           lat: value.lat,
           lng: value.lng
-        }, map, value.name, value.investors_fee); //"lat": 48.353783,"lng": 11.79
+        }, map, value.name, value.investors_fee, infowindow);
       }
 
       this.addMarkerHome(coords, map);
     },
-    addMarker: function addMarker(coords, map, title, fee) {
+    addMarker: function addMarker(coords, map, title, fee, infowindow) {
       var icon = {
         url: "images/map/other_business.png",
         // url
-        scaledSize: new google.maps.Size(55, 27) // scaled size
+        scaledSize: new google.maps.Size(45, 25) // scaled size
 
       };
       var marker = new google.maps.Marker({
@@ -9798,6 +9877,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         title: title,
         label: '$' + fee,
         icon: icon
+      });
+      marker.addListener("click", function () {
+        infowindow.open({
+          anchor: marker,
+          map: map
+        });
       });
     },
     addMarkerHome: function addMarkerHome(coords, map) {
@@ -9819,6 +9904,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   mounted: function mounted() {
     var _this = this;
 
+    this.loc = this.$route.params.loc;
     this.setRes();
     this.range(); //MAP -- MAP
 
@@ -10513,6 +10599,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -10547,6 +10643,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     make_session: function make_session(id) {
       sessionStorage.setItem('milestoneS', id);
+    },
+    make_session2: function make_session2() {
+      var id = this.$route.params.id;
+      sessionStorage.setItem('milestoneS', id);
+      document.getElementById('c_to_action').value = 'loginFromService';
+      document.getElementById('c_to_action_login').value = 'loginFromService';
     },
     download_milestone_doc: function download_milestone_doc(mile_id) {
       var id = this.$route.params.id;
@@ -11203,7 +11305,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       results: [],
       ids: '',
       empty: false,
-      count: 0
+      count: 0,
+      loc: '',
+      queryLat: '',
+      queryLng: ''
     };
   },
   methods: {
@@ -11215,6 +11320,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         if (data.data.count != 0) {
           t.count = data.data.count;
           t.results = data.data.data; //console.log(data);
+          //Setting Curr LatLng
+
+          t.queryLat = data.data.data[0].lat;
+          t.queryLng = data.data.data[0].lng;
         }
       })["catch"](function (error) {
         console.log(error);
@@ -11246,11 +11355,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           skipValues[handle].innerHTML = '$' + values[handle]; //console.log(values[1] - values[0]);
 
           axios.get('priceFilterS/' + values[0] + '/' + values[1] + '/' + t.ids).then(function (data) {
-            // if(values[0]==0.00 && values[1]==500000.00){}
-            //else{ 
             t.results = '';
-            t.results = data.data.data; //}
-            //console.log(data);
+            t.results = data.data.data; //Setting Curr LatLng
+
+            t.queryLat = data.data.data[0].lat;
+            t.queryLng = data.data.data[0].lng; //console.log(data);
           })["catch"](function (error) {});
         });
       }
@@ -11267,33 +11376,48 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     },
     //MAP -- MAP
     success: function success(position) {
-      var myLat = position.coords.latitude;
-      var myLong = position.coords.longitude;
+      var loc = this.loc;
+
+      if ((loc == true || loc == "true") && this.count != 0) {
+        var myLat = sessionStorage.getItem('SqueryLat'); // this.queryLat;
+
+        var myLong = sessionStorage.getItem('SqueryLng'); // this.queryLng;
+      } else {
+        var myLat = position.coords.latitude;
+        var myLong = position.coords.longitude;
+      }
+
       var coords = new google.maps.LatLng(myLat, myLong);
       var mapOptions = {
-        zoom: 5,
+        zoom: 8,
         center: coords,
         //center:new google.maps.LatLng(51.508742,-0.120850),
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       var div = $("#googleMap").length;
-      if (div) var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
-      console.log(this.results);
+      if (div) var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions); //console.log(this.results);
 
       for (var _i = 0, _Object$entries = Object.entries(this.results); _i < _Object$entries.length; _i++) {
         var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
             key = _Object$entries$_i[0],
             value = _Object$entries$_i[1];
 
+        //INFO
+        var contentString = '<div id="content">' + '<div id="siteNotice">' + "</div>" + '<h1 id="firstHeading" class="firstHeading">' + value.name + '</h1>' + '<div id="bodyContent">' + '<p><b>Location: </b>' + value.location + ', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/#/serviceDetails/' + value.id + '">' + "View Business</a> " + "</div>" + "</div>";
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString,
+          ariaLabel: value.name
+        }); //INFO
+
         this.addMarker({
           lat: value.lat,
           lng: value.lng
-        }, map, value.name, value.price); //"lat": 48.353783,"lng": 11.79
+        }, map, value.name, value.price, infowindow); //"lat": 48.353783,"lng": 11.79
       }
 
       this.addMarkerHome(coords, map);
     },
-    addMarker: function addMarker(coords, map, title, fee) {
+    addMarker: function addMarker(coords, map, title, fee, infowindow) {
       var icon = {
         url: "images/map/other_business.png",
         // url
@@ -11306,6 +11430,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         title: title,
         label: '$' + fee,
         icon: icon
+      });
+      marker.addListener("click", function () {
+        infowindow.open({
+          anchor: marker,
+          map: map
+        });
       });
     },
     addMarkerHome: function addMarkerHome(coords, map) {
@@ -11327,6 +11457,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   mounted: function mounted() {
     var _this = this;
 
+    this.loc = this.$route.params.loc;
     this.replaceText();
     this.setRes();
     this.range(); //this.cart()
@@ -11367,6 +11498,9 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+//
+//
+//
 //
 //
 //
@@ -11542,6 +11676,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var form = $('#form');
       var thiss = this;
       var ids = '';
+      var lat = $('#lat').val();
+      var lng = $('#lng').val();
       $.ajax({
         url: 'searchService',
         method: 'POST',
@@ -11551,7 +11687,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         dataType: 'json',
         data: form.serialize(),
         success: function success(response) {
-          //console.log(response);
+          console.log(response);
           Object.entries(response.results).forEach(function (entry) {
             var _entry = _slicedToArray(entry, 2),
                 index = _entry[0],
@@ -11562,10 +11698,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
           if (ids == '') ids = 'no-results'; //thiss.$router.push({ path: '/listingResults', query: { result: response } })
 
+          sessionStorage.setItem('SqueryLat', lat);
+          sessionStorage.setItem('SqueryLng', lng);
           thiss.$router.push({
             name: 'serviceResults',
             params: {
-              results: btoa(ids)
+              results: btoa(ids),
+              loc: response.loc
             }
           });
         },
@@ -11580,6 +11719,31 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Service</span></a> ');
       }
     },
+    initAutocomplete: function initAutocomplete() {
+      var input = document.getElementById("pac-input");
+      var searchBox = new google.maps.places.SearchBox(input);
+      searchBox.addListener("places_changed", function () {
+        var places = searchBox.getPlaces();
+
+        if (places.length == 0) {
+          return;
+        }
+
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function (place) {
+          if (!place.geometry || !place.geometry.location) {
+            console.log("Returned place contains no geometry");
+            return;
+          } //console.log(place); 
+
+
+          var lat = document.getElementById('lat');
+          var lng = document.getElementById('lng');
+          lat.value = place.geometry.location.lat();
+          lng.value = place.geometry.location.lng();
+        });
+      });
+    },
     latBusiness: function latBusiness() {
       var t = this;
       axios.get('latServices').then(function (data) {
@@ -11588,7 +11752,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     }
   },
   mounted: function mounted() {
+    var _this = this;
+
+    //GOOGLE VAR
+    var initializeWhenGoogleIsAvailable = function initializeWhenGoogleIsAvailable() {
+      if (google) {
+        // test if google is available
+        _this.initAutocomplete(); // if it is, then initalize
+
+      } else {
+        setTimeout(initializeWhenGoogleIsAvailable, 1000); // if it isn't, wait a bit
+      }
+    };
+
+    initializeWhenGoogleIsAvailable(); //GOOGLE VAR
     //return this.$store.dispatch("fetchpro")
+
     this.replaceText();
     this.latBusiness();
   }
@@ -12070,7 +12249,7 @@ var routes = [{
   path: '/become_provider',
   component: _components_site_become_provider_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
-  path: '/listingResults/:results',
+  path: '/listingResults/:results/:loc',
   name: 'listingResults',
   component: _components_site_listingResults_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
@@ -12092,7 +12271,7 @@ var routes = [{
   path: '/cart',
   component: _components_site_cart_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
 }, {
-  path: '/serviceResults/:results',
+  path: '/serviceResults/:results/:loc',
   name: 'serviceResults',
   component: _components_site_serviceResults_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
 }, {
@@ -70877,8 +71056,8 @@ var render = function () {
                                       "video",
                                       {
                                         staticStyle: {
-                                          width: "100%",
-                                          height: "104px",
+                                          width: "95%",
+                                          height: "114px",
                                         },
                                         attrs: { controls: "", alt: "" },
                                       },
@@ -70894,8 +71073,8 @@ var render = function () {
                                   : _c("img", {
                                       staticClass: "card-img-top",
                                       staticStyle: {
-                                        width: "100%",
-                                        height: "104px",
+                                        width: "92%",
+                                        height: "114px",
                                       },
                                       attrs: { src: result.image, alt: "" },
                                     }),
@@ -71011,11 +71190,10 @@ var staticRenderFns = [
           { staticClass: "col-12 col-sm-5 my-1 py-1 bg-white rounded" },
           [
             _c("input", {
-              staticClass: "bar bg-white form-control d-inline ml-1",
+              staticClass: "bar bg-white form-control d-inline ml-1 controls",
               staticStyle: { border: "none", height: "42px" },
               attrs: {
-                id: "searchbox",
-                onkeyup: "suggest(this.value);",
+                id: "pac-input",
                 type: "text",
                 name: "search",
                 value: "",
@@ -71024,6 +71202,26 @@ var staticRenderFns = [
             }),
           ]
         ),
+        _vm._v(" "),
+        _c("input", {
+          attrs: {
+            type: "text",
+            name: "lat",
+            id: "lat",
+            hidden: "",
+            value: "",
+          },
+        }),
+        _vm._v(" "),
+        _c("input", {
+          attrs: {
+            type: "text",
+            name: "lng",
+            id: "lng",
+            hidden: "",
+            value: "",
+          },
+        }),
         _vm._v(" "),
         _c("div", { staticClass: "col-12 col-sm-5 my-1 pt-1 bg-white" }, [
           _c("div", { staticClass: "dropdown pt-1" }, [
@@ -73138,39 +73336,7 @@ var staticRenderFns = [
         ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c(
-          "a",
-          {
-            staticClass: "py-0 float-right border border-dark rounded pointer",
-            staticStyle: { width: "70px", height: "40px" },
-          },
-          [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-6 pr-0" }, [
-                _c(
-                  "p",
-                  {
-                    staticClass: "text-dark",
-                    staticStyle: { "font-size": "12px" },
-                  },
-                  [_vm._v("More Filters")]
-                ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-6 px-1" }, [
-                _c("img", {
-                  staticStyle: { "margin-left": "5px" },
-                  attrs: {
-                    src: "images/randomIcons/filter.jpg",
-                    width: "20px;",
-                  },
-                }),
-              ]),
-            ]),
-          ]
-        ),
-      ]),
+      _c("div", { staticClass: "col-sm-4" }),
     ])
   },
   function () {
@@ -74047,6 +74213,36 @@ var render = function () {
       "div",
       { staticClass: "container" },
       [
+        !_vm.auth_user
+          ? _c(
+              "div",
+              {
+                staticClass:
+                  "w-75 h-100 py-5 my-5 my-auto justify-content-center my-2 text-center mx-auto",
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "searchListing mx-auto text-center py-1 text-light font-weight-bold",
+                    staticStyle: { cursor: "pointer", width: "40%" },
+                    attrs: {
+                      "data-target": "#loginModal",
+                      "data-toggle": "modal",
+                    },
+                    on: {
+                      click: function ($event) {
+                        return _vm.make_session2()
+                      },
+                    },
+                  },
+                  [_vm._v("Login to pay")]
+                ),
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
         _vm.no_mile
           ? _c(
               "div",
@@ -74363,7 +74559,7 @@ var render = function () {
                       ]
                     ),
                   ])
-                : result.status == "Done"
+                : result.status == "Done" || result.status == "Being Completed"
                 ? _c("div", { staticClass: "modal-body" }, [
                     _c(
                       "form",
@@ -74456,9 +74652,68 @@ var render = function () {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(1, true),
+                            _c("div", { staticClass: "col my-2 my-sm-0" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "upload-btn-wrapper d-flex justify-content-start",
+                                },
+                                [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "text-white disabled placeH_done btnUp_done w-100 d-flex align-items-center",
+                                      on: {
+                                        click: function ($event) {
+                                          return _vm.download_milestone_doc(
+                                            result.id
+                                          )
+                                        },
+                                      },
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Download\n                                    Milestone\n                                    Documentaion "
+                                      ),
+                                      _c("i", {
+                                        staticClass:
+                                          "ml-2 fa fa-arrow-down pb-2",
+                                      }),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                            ]),
                             _vm._v(" "),
-                            _vm._m(2, true),
+                            _c(
+                              "div",
+                              { staticClass: "col my-2 my-sm-0 d-flex" },
+                              [
+                                _c("div", { staticClass: "form-group ml-1" }, [
+                                  result.status == "Done"
+                                    ? _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "placeH_active status text-center border text-light border-dark px-2 py-1 btn-block",
+                                          staticStyle: { background: "black" },
+                                        },
+                                        [_vm._v("Done!")]
+                                      )
+                                    : _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "placeH_active status text-center border text-success border-dark px-2 py-1 btn-block",
+                                          staticStyle: { background: "black" },
+                                        },
+                                        [_vm._v("Being Completed")]
+                                      ),
+                                ]),
+                              ]
+                            ),
                           ]
                         ),
                       ]
@@ -74549,11 +74804,11 @@ var render = function () {
                             ]),
                           ]),
                           _vm._v(" "),
+                          _vm._m(1, true),
+                          _vm._v(" "),
+                          _vm._m(2, true),
+                          _vm._v(" "),
                           _vm._m(3, true),
-                          _vm._v(" "),
-                          _vm._m(4, true),
-                          _vm._v(" "),
-                          _vm._m(5, true),
                         ]),
                       ]
                     ),
@@ -74580,50 +74835,6 @@ var staticRenderFns = [
               "placeH_active status text-center border border-dark btn btn-success btn-block",
           },
           [_vm._v("In\n                                    Progress")]
-        ),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col my-2 my-sm-0" }, [
-      _c(
-        "div",
-        { staticClass: "upload-btn-wrapper d-flex justify-content-start" },
-        [
-          _c(
-            "a",
-            {
-              staticClass:
-                "text-white disabled placeH_done btnUp_done w-100 d-flex align-items-center",
-            },
-            [
-              _vm._v(
-                "Download\n                                    Milestone\n                                    Documentaion "
-              ),
-              _c("i", { staticClass: "ml-2 fa fa-arrow-down pb-2" }),
-            ]
-          ),
-        ]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col my-2 my-sm-0 d-flex" }, [
-      _c("div", { staticClass: "form-group ml-1" }, [
-        _c(
-          "span",
-          {
-            staticClass:
-              "placeH_active status text-center border text-light border-dark px-2 py-1 btn-block",
-            staticStyle: { background: "black" },
-          },
-          [_vm._v("Done!")]
         ),
       ]),
     ])
@@ -75377,39 +75588,7 @@ var staticRenderFns = [
         ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c(
-          "a",
-          {
-            staticClass: "py-0 float-right border border-dark rounded",
-            staticStyle: { width: "70px", height: "40px" },
-          },
-          [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-6 pr-0" }, [
-                _c(
-                  "p",
-                  {
-                    staticClass: "text-dark",
-                    staticStyle: { "font-size": "12px" },
-                  },
-                  [_vm._v("More Filters")]
-                ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-6 px-1" }, [
-                _c("img", {
-                  staticStyle: { "margin-left": "5px" },
-                  attrs: {
-                    src: "images/randomIcons/filter.jpg",
-                    width: "20px;",
-                  },
-                }),
-              ]),
-            ]),
-          ]
-        ),
-      ]),
+      _c("div", { staticClass: "col-sm-4" }),
     ])
   },
   function () {
@@ -75534,8 +75713,8 @@ var render = function () {
                                     "video",
                                     {
                                       staticStyle: {
-                                        width: "100%",
-                                        height: "104px",
+                                        width: "92%",
+                                        height: "114px",
                                       },
                                       attrs: { controls: "", alt: "" },
                                     },
@@ -75551,8 +75730,8 @@ var render = function () {
                                 : _c("img", {
                                     staticClass: "card-img-top",
                                     staticStyle: {
-                                      width: "100%",
-                                      height: "104px",
+                                      width: "92%",
+                                      height: "114px",
                                     },
                                     attrs: { src: result.image, alt: "" },
                                   }),
@@ -75657,12 +75836,31 @@ var staticRenderFns = [
             staticClass: "border-none bar bg-white form-control d-inline",
             staticStyle: { border: "none", height: "42px" },
             attrs: {
-              id: "searchbox",
-              onkeyup: "suggest(this.value);",
+              id: "pac-input",
               type: "text",
               name: "search",
               value: "",
               placeholder: "Location",
+            },
+          }),
+          _vm._v(" "),
+          _c("input", {
+            attrs: {
+              type: "text",
+              name: "lat",
+              id: "lat",
+              hidden: "",
+              value: "",
+            },
+          }),
+          _vm._v(" "),
+          _c("input", {
+            attrs: {
+              type: "text",
+              name: "lng",
+              id: "lng",
+              hidden: "",
+              value: "",
             },
           }),
         ]),

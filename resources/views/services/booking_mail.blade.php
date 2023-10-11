@@ -12,7 +12,7 @@
 			
 			<div class="" style="width:100%; margin:auto;">
 			<h4 style="line-height: 28px;font-weight:500; color: #000000a1;font-family: sans-serif;text-align:left;"> Hi,<br> 
-		            Your booking request {{$business_name}} has been accepted. <br> 
+		            Your booking request to <b>{{$business_name}}</b> has been accepted. <br>  
 
 		           
 					
@@ -20,6 +20,12 @@
 			</h4>
 			
 			
+			</div>
+
+			<div style="width:100%;margin: auto; padding-bottom:20px;padding-top:15px;"> 
+		        	<a target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/#/service-milestone/{{$s_id}}"
+				style="width:50%;text-decoration:none;color: aliceblue;background:green;padding:10px 30px;border-radius:5px;margin-left:30px">
+				Pay Here</a>
 			</div>
 		
 		

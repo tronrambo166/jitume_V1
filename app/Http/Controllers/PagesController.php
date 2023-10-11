@@ -294,41 +294,44 @@ return response()->json(['data'=>$results]);
 public function search(Request $request){
 //$listing_name = $request->listing_name;
 $location = $request->search;
+$lat = (float)$request->lat;
+$lng = (float)$request->lng;
+
 $category = $request->category;
 $results = array();
+
 
 if($location =='' && $category == '')
 $check_listing = Listing::where('active',1)->get();
 
 else if($location !='' && $category == '')
-$check_listing = Listing::where('active',1)->where('location',$location)
-->get();
+$check_listing = $this->findNearestListings($lat,$lng,100);
+
 
 else if($location =='' && $category != '')
 $check_listing = Listing::where('active',1)->where('category',$category)
 ->get();
 
 else
-$check_listing = Listing::where('active',1)->where('location',$location)
-->where('category',$category)
-->get();
+$check_listing = $this->findNearestListings($lat,$lng,100);
 
-// foreach($check_listing as $service){ 
-//     if (str_contains(strtolower($service->name), $listing_name)) {
-//         $results[] = $service;
-// } }
+if($location != '') $loc = true; else $loc = false;
+
+//Test
+
+//Test
 
 $listings = $check_listing;
-return response()->json(['results'=>$listings, 'success' => "Success"]);
+return response()->json(['results'=>$listings, 'loc' => $loc, 'success' => "Success"]);
 
 }
 
 public function searchResults($ids){
 
 //TEMP
-$json = file_get_contents("js/airports.json");
-$array = json_decode($json, true);
-$i=0;
+// $json = file_get_contents("js/airports.json");
+// $array = json_decode($json, true);
+// $i=0;
 //TEMP
 
 $results = array();
@@ -345,15 +348,8 @@ foreach($ids as $id){
     $listing->file = $files->file;
     else $listing->file = false;
 
-    //TEMP***
-    foreach ($array as $loc) {
-    $full_loc = $loc['name'].','.$loc['city'].','.$loc['country'];
-    if($full_loc == $listing->location){
-    $listing->lat = $loc['_geoloc']['lat'];
-    $listing->lng = $loc['_geoloc']['lng'];
-    } 
-    }
-    //TEMP***
+    $listing->lat = (float)$listing->lat;
+    $listing->lng = (float)$listing->lng;
 
     $results[] = $listing;
 }
@@ -391,58 +387,49 @@ public function searchService(Request $request){
 $listing_name = $request->listing_name;
 $location = $request->search;
 $category = $request->category;
+$lat = (float)$request->lat;
+$lng = (float)$request->lng;
 $results = array();
-//return response()->json(['success' => $category]);
+$loc = false;
+//return response()->json(['success' => $location]);
 
-if($listing_name =='' && $location == '' && $category == ''){
-  $check_listing = Services::get();
-  return response()->json(['results'=>$check_listing, 'success' => "Success", 'count'=>count($check_listing)]);  
+if($location != ''){
+    $check_listing = $this->findNearestServices($lat,$lng,100);
+    $loc = true; 
 }
 
+else if($listing_name =='' && $location == '' && $category == ''){
+  $check_listing = Services::get();
+  return response()->json(['results'=>$check_listing,'loc'=>$loc, 'success' => "Success", 'count'=>count($check_listing)]);  
+}
 
+else
+$check_listing = Services::where('category',$category)->get();
 
+// foreach($check_listing as $service){ 
+//     if (str_contains(strtolower($service->name), $listing_name)) {
+//         $results[] = $service;
+// } }
 
-$check_listing = Services::where('category',$category)
-//->where('category',$category)
-->get();
+// foreach($check_listing as $service){ 
+//     if (!str_contains(strtolower($service->name), $listing_name)) {
+//         $results[] = $service;
+// } }
 
-foreach($check_listing as $service){ 
-    if (str_contains(strtolower($service->name), $listing_name)) {
-        $results[] = $service;
-} }
-
-foreach($check_listing as $service){ 
-    if (!str_contains(strtolower($service->name), $listing_name)) {
-        $results[] = $service;
-} }
-
-$listings = $results;
-return response()->json(['results'=>$listings, 'success' => "Success"]);
+$listings = $check_listing; //$results;
+return response()->json(['results'=>$listings,'loc'=>$loc, 'success' => "Success"]);
 
 }
 
 public function serviceResults($ids){
-//TEMP
-$json = file_get_contents("js/airports.json");
-$array = json_decode($json, true);
-$i=0;
-//TEMP
-
 $results = array();$count = 0;
 $ids = explode(',',$ids); 
 foreach($ids as $id){ 
-    if($id!=''){ 
+    if($id!='' && $id != 'no-results'){
     $listing = Services::where('id',$id)->first();
 
-    //TEMP***
-    foreach ($array as $loc) {
-    $full_loc = $loc['name'].','.$loc['city'].','.$loc['country'];
-    if($full_loc == $listing->location){
-    $listing->lat = $loc['_geoloc']['lat'];
-    $listing->lng = $loc['_geoloc']['lng'];
-    } 
-    }
-    //TEMP***
+    $listing->lat = (float)$listing->lat;
+    $listing->lng = (float)$listing->lng;
 
 //Booking check
 $booking = serviceBook::where('service_id',$id)
@@ -528,12 +515,6 @@ public function invest($listing_id,$id,$amount,$realAmount,$type){
 
 
 public function priceFilter($min, $max, $ids){
-    //TEMP
-    $json = file_get_contents("js/airports.json");
-    $array = json_decode($json, true);
-    $i=0;
-    //TEMP
-
     $results = array();
     $ids = explode(',',$ids); 
     foreach($ids as $id){ 
@@ -550,15 +531,8 @@ public function priceFilter($min, $max, $ids){
     else $listing->file = false;
 //Video check  
 
-    //TEMP***
-    foreach ($array as $loc) {
-    $full_loc = $loc['name'].','.$loc['city'].','.$loc['country'];
-    if($full_loc == $listing->location){
-    $listing->lat = $loc['_geoloc']['lat'];
-    $listing->lng = $loc['_geoloc']['lng'];
-    } 
-    }
-    //TEMP***
+    $listing->lat = (float)$listing->lat;
+    $listing->lng = (float)$listing->lng;
     
   
     if((int)$min <= $db_min && (int)$max >= $db_max)
@@ -572,11 +546,6 @@ public function priceFilter($min, $max, $ids){
 
 
 public function priceFilterS($min, $max, $ids){
-    //TEMP
-    $json = file_get_contents("js/airports.json");
-    $array = json_decode($json, true);
-    $i=0;
-    //TEMP
 
     $results = array();
     $ids = explode(',',$ids); 
@@ -586,15 +555,8 @@ public function priceFilterS($min, $max, $ids){
     $range = $listing->price;
     $db_price = $range;  
 
-    //TEMP***
-    foreach ($array as $loc) {
-    $full_loc = $loc['name'].','.$loc['city'].','.$loc['country'];
-    if($full_loc == $listing->location){
-    $listing->lat = $loc['_geoloc']['lat'];
-    $listing->lng = $loc['_geoloc']['lng'];
-    } 
-    }
-    //TEMP***
+    $listing->lat = (float)$listing->lat;
+    $listing->lng = (float)$listing->lng;
   
     if((int)$min <= $db_price && (int)$max >= $db_price)
         //return response()->json([ 'data' => (int)$min .'<='. $db_min .'//'.(int)$max .'>='. $db_max]);
@@ -773,6 +735,49 @@ return view('profile',compact('user'));
 
 }
 
+
+//Distance
+public function findNearestListings($latitude, $longitude, $radius = 100)
+    {
+        /*
+         * using eloquent approach, make sure to replace the "Restaurant" with your actual model name
+         * replace 6371000 with 6371 for kilometer and 3956 for miles
+         */
+        $listings = Listing::selectRaw("* ,
+                         ( 3956 * acos( cos( radians(?) ) *
+                           cos( radians( lat ) )
+                           * cos( radians( lng ) - radians(?)
+                           ) + sin( radians(?) ) *
+                           sin( radians( lat ) ) )
+                         ) AS distance", [$latitude, $longitude, $latitude])
+            ->where('active', '=', 1)
+            ->having("distance", "<", $radius)
+            ->orderBy("distance",'asc')
+            ->offset(0)
+            ->limit(20)
+            ->get();
+
+        return $listings;
+    }
+
+    public function findNearestServices($latitude, $longitude, $radius = 100)
+    {
+        $listings = Services::selectRaw("* ,
+                         ( 3956 * acos( cos( radians(?) ) *
+                           cos( radians( lat ) )
+                           * cos( radians( lng ) - radians(?)
+                           ) + sin( radians(?) ) *
+                           sin( radians( lat ) ) )
+                         ) AS distance", [$latitude, $longitude, $latitude])
+            //->where('active', '=', 1)
+            ->having("distance", "<", $radius)
+            ->orderBy("distance",'asc')
+            ->offset(0)
+            ->limit(20)
+            ->get();
+
+        return $listings;
+    } 
 
 
 //Class closes

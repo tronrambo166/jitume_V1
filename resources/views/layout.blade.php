@@ -1,7 +1,10 @@
 <!DOCTYPE HTML>
 
 <head>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnKB7p3g8iG6IGE9nXX4PqlZ6EPHNUo3w&callback=initMap" async ></script>
+    <script type="module" src="places.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnKB7p3g8iG6IGE9nXX4PqlZ6EPHNUo3w&callback=initAutocomplete&libraries=places&v=weekly" async ></script>
+
+    
 
     <title>JITUME</title>
     <link rel="icon" href="images/favicon2.ico" type="image/x-icon" />
@@ -16,7 +19,7 @@
 
     <style type="text/css">
         .btn-success {
-            background: #72c537;
+            background: #266A2E; /*#72c537;*/
             color: white;
         }
     </style>
@@ -46,6 +49,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
 </head>
 
@@ -491,7 +495,7 @@
     <script type="text/javascript">
         function address(place) {
             //var place = $(this).attr('data-id');
-            document.getElementById('searchbox').value = place;
+            document.getElementById('pac-input').value = place;
             //$("#result_list").html('');
             document.getElementById("result_list").style.display = 'none';
 
@@ -1774,6 +1778,11 @@
 <script src="sddjs/map.js"> </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnKB7p3g8iG6IGE9nXX4PqlZ6EPHNUo3w&callback=myMap" async ></script>
  GOOGLE MAP -->
+
+ <!-- <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnKB7p3g8iG6IGE9nXX4PqlZ6EPHNUo3w&callback=initAutocomplete&libraries=places&v=weekly"
+      defer
+    ></script> -->
 
 </body>
 

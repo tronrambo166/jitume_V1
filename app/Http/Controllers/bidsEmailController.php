@@ -166,7 +166,7 @@ public function agreeToMileS($s_id)
     $mileLat = Smilestones::where('listing_id',$s_id)->where('status','On Hold')->first();
     Smilestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
     Session::put('login_success','Thanks for your review, next milestone started!');
-        return redirect('/');
+       return redirect()->to('/#/service-milestone/'.$s_id);
 }
 
 public function agreeToNextmile($bidId)
@@ -383,8 +383,8 @@ public function bookingAccepted(Request $request)
         $investor = User::where('id',$bid->booker_id)->first();
         $investor_mail = $investor->email;
 
-         $list = Services::where('id',$bid->service_id)->first();
-        $info=[ 'business_name'=>$list->name];
+        $list = Services::where('id',$bid->service_id)->first();
+        $info=[ 'business_name'=>$list->name, 's_id'=>$list->id];
         $user['to'] = $investor_mail;
          Mail::send('services.booking_mail', $info, function($msg) use ($user){
              $msg->to($user['to']);

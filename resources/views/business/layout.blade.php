@@ -13,6 +13,9 @@ $booking = serviceBook::where('booker_id',$user_id)->get();
 <head>
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
     <title>JITUME - Business</title>
+    <script type="module" src="../places.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnKB7p3g8iG6IGE9nXX4PqlZ6EPHNUo3w&callback=initAutocomplete&libraries=places&v=weekly" defer ></script>
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -41,6 +44,7 @@ $booking = serviceBook::where('booker_id',$user_id)->get();
 <script src="https://unpkg.com/vue"></script>
 <script src="https://unpkg.com/http-vue-loader"></script>
   {{-- Vue component files --}} -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   
 </head>
 <body>
@@ -346,7 +350,7 @@ $booking = serviceBook::where('booker_id',$user_id)->get();
 <script type="text/javascript">
     function address(place){
         //var place = $(this).attr('data-id');
-        document.getElementById('searchbox').value = place;
+        document.getElementById('pac-input').value = place;
         //$("#result_list").html('');
        document.getElementById("result_list").style.display='none';
 
@@ -741,6 +745,21 @@ $booking = serviceBook::where('booker_id',$user_id)->get();
 function bg_change(id) {
         $('#'+id).addClass('bg-light');
      }
+
+ // function initAutocomplete(){
+ //      const input = document.getElementById("pac-input");
+ //      const searchBox = new google.maps.places.SearchBox(input);
+ //      searchBox.addListener("places_changed", () => {
+ //      const places = searchBox.getPlaces();
+ //      if (places.length == 0) { return; }
+ //      const bounds = new google.maps.LatLngBounds();
+
+ //      places.forEach((place) => {
+ //        if (!place.geometry || !place.geometry.location) {
+ //        console.log("Returned place contains no geometry");return; }
+ //         //console.log(place); 
+ //       }); });
+ //    }
 </script>
 
 

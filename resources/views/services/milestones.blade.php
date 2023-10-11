@@ -93,6 +93,7 @@
 
               @else
                <option disabled selected hidden value="{{$ev->status}}"class="form-control" >{{$ev->status}}</option>
+               <option value="Done" class="form-control" >Done</option>
 
             @endif
 

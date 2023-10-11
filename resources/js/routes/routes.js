@@ -36,7 +36,7 @@ export const routes=[
 { path:'/applyShow', component: applyShow},
 { path:'/looking_investor', component: looking_investor},
 { path:'/become_provider', component: become_provider},
-{ path:'/listingResults/:results',name: 'listingResults', component: listingResults},
+{ path:'/listingResults/:results/:loc',name: 'listingResults', component: listingResults},
 { path:'/listingDetails/:id', component: listingDetails},
 { path:'/invest_eqp/:id', component: invest_eqp},
 { path:'/donate_eqp/:id', component: donate_eqp},
@@ -44,7 +44,7 @@ export const routes=[
 { path:'/invest/:listing_id/:id', component: invest_eqp},
 { path:'/cart', component: cart},
 
-{ path:'/serviceResults/:results',name: 'serviceResults', component: serviceResults},
+{ path:'/serviceResults/:results/:loc',name: 'serviceResults', component: serviceResults},
 { path:'/serviceDetails/:id', component: serviceDetails},
 { path:'/business-milestone/:id', component: project_dash},
 { path:'/service-milestone/:id', component: project_dash_service},

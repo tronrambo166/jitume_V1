@@ -165,7 +165,10 @@
                     </div>
 
                     <div class="col-sm-6"> 
-                    <input id="searchbox" required="" onkeyup="suggest(this.value);" style="height: 32px;" class=" form-control d-inline" type="text" name="location" value="" placeholder="Enter a location...">
+                    <input id="pac-input" required="" style="height: 32px;" class="controls form-control d-inline" type="text" name="location" value="" placeholder="Enter a location...">
+                    <!-- onkeyup="suggest(this.value);" -->
+                    <input type="text" name="lat" id="lat" hidden value="">
+                    <input type="text" name="lng" id="lng" hidden value="">
                     </div>
 
                          <div class="row" style="">

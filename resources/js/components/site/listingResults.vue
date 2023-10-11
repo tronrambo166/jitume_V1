@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="col-sm-4">
-                        <a class="py-0 float-right border border-dark rounded pointer" style="width:70px; height:40px;">
+                        <!-- <a class="py-0 float-right border border-dark rounded pointer" style="width:70px; height:40px;">
                             <div class="row">
                                 <div class="col-6 pr-0">
                                     <p style="font-size:12px;" class="text-dark">More Filters</p>
@@ -62,7 +62,7 @@
                                         style="margin-left:5px;">
                                 </div>
                             </div>
-                        </a>
+                        </a> -->
 
                     </div>
 
@@ -136,7 +136,10 @@ export default {
         results2: [],
         ids: '',
         empty: false,
-        count: 0
+        count: 0,
+        loc:'',
+        queryLat:'',
+        queryLng:''
     }),
 
     
@@ -150,7 +153,11 @@ export default {
                 //t.results2 = data.data.data;
                 t.results = data.data.data;
                 t.count = data.data.count;
-                //console.log(t.results);
+                
+                //Setting Curr LatLng
+                t.queryLat = data.data.data[0].lat;
+                t.queryLng = data.data.data[0].lng;
+                console.log(data);
             }).catch((error) => { })
         }
         },
@@ -199,6 +206,9 @@ export default {
                     t.count = data.data.data.length;
                     t.results = '';
                     t.results = data.data.data;
+
+                    t.queryLat = data.data.data[0].lat;
+                    t.queryLng = data.data.data[0].lng;
                         
 
                     //}
@@ -213,12 +223,20 @@ export default {
         //MAP -- MAP
 
         success(position){
-        var myLat = position.coords.latitude;
-        var myLong = position.coords.longitude;
+        var loc = this.loc;
+        if((loc == true || loc == "true") && this.count !=0){
+            var myLat = sessionStorage.getItem('queryLat');// this.queryLat;
+            var myLong = sessionStorage.getItem('queryLng');// this.queryLng;
+        }
+
+        else{
+             var myLat = position.coords.latitude;
+             var myLong = position.coords.longitude;
+        } 
 
         var coords = new google.maps.LatLng(myLat,myLong);
         var mapOptions = {
-        zoom:5,
+        zoom:8,
         center:coords,
         //center:new google.maps.LatLng(51.508742,-0.120850),
         mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -228,21 +246,37 @@ export default {
         if(div)
         var map = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
  
-
-        console.log(this.results);
+        //console.log(this.results);
         for (const [key, value] of Object.entries(this.results)) {
-              this.addMarker({lat:value.lat, lng:value.lng},map,value.name,value.investors_fee);
-              //"lat": 48.353783,"lng": 11.79
+            //INFO
+            const contentString =
+                '<div id="content">' +
+                '<div id="siteNotice">' +
+                "</div>" +
+                '<h1 id="firstHeading" class="firstHeading">'+value.name+'</h1>' +
+                '<div id="bodyContent">' +
+                '<p><b>Location: </b>'+value.location+', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/#/listingDetails/'+value.id+'">' +
+                "View Business</a> " +
+                "</div>" +
+                "</div>";
+
+            const infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                ariaLabel: value.name,
+              });
+            //INFO
+
+              this.addMarker({lat:value.lat, lng:value.lng},map,value.name,value.investors_fee,infowindow);
             }
         
 
             this.addMarkerHome(coords,map);
         },
 
-        addMarker(coords,map,title,fee){
+        addMarker(coords,map,title,fee,infowindow){
         const icon = {
             url: "images/map/other_business.png", // url
-            scaledSize: new google.maps.Size(55, 27), // scaled size
+            scaledSize: new google.maps.Size(45, 25), // scaled size
         };
 
         var marker = new google.maps.Marker({
@@ -252,6 +286,13 @@ export default {
         label:'$'+fee,
         icon:icon
         });
+
+        marker.addListener("click", () => {
+            infowindow.open({
+              anchor: marker,
+              map,
+            });
+            });
         },
 
          addMarkerHome(coords,map){
@@ -273,6 +314,7 @@ export default {
     },
 
     mounted() {
+        this.loc = this.$route.params.loc;
         this.setRes()
         this.range()
 

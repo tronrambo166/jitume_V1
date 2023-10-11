@@ -74,6 +74,8 @@ $category = $request->category;
 $details = $request->details;
 $price = $request->price;
 $location = $request->location;
+$lat = $request->lat;
+$lng = $request->lng;
 
 $pin = $request->pin;
 $identification = $request->identification;
@@ -87,7 +89,9 @@ $listing = Services::create([
             'price' => $price,
             'category' => $category,
             'details' => $details,
-            'location' => $location
+            'location' => $location,
+            'lat' => $lat,
+            'lng' => $lng
           ]);
             
 
@@ -514,7 +518,7 @@ public function getMilestones($id){
 
 try{
   foreach($milestones as $mile){
-  if($mile->status == 'In Progress') $c++;
+  if($mile->status == 'In Progress' || $mile->status == 'Being Completed') $c++;
   if($mile->status == 'Done') $d++; 
 
   //SETTING Time Diffrence
@@ -531,12 +535,12 @@ if($time_now > $time_due_date)
 
 } 
 
- if($c==0 && $d==0){
+ if($c==0 && $d==0 && count($milestones)!=0){
   
   $milestones[0]->status = 'In Progress';
 }
 
-if($d == 0 && count($milestones)!=0)
+if($d == count($milestones) && count($milestones)!=0)
 {
   $done_msg = 'Milestone completed! Order placed!';
 }
@@ -690,6 +694,32 @@ $milestones = Smilestones::where('id',$request->id)
 ->update([
 'status' => $request->status
 ]);
+
+//MAIL
+    $mile = Smilestones::where('id',$request->id)->first();
+    $notLastMile = Smilestones::where('listing_id',$mile->listing_id)->where('status','On Hold')->first();
+  
+    if($notLastMile)
+      $filename = 'milestoneS.milestone_mail_done';
+    else
+      $filename = 'milestoneS.service_done_mail';
+       
+        $business = Services::where('id',$mile->listing_id)->first();
+        $booking = serviceBook::where('service_owner_id',Auth::id())
+        ->where('status', 'Confirmed')->latest()->first();
+
+        $owner = User::where('id', $booking->service_owner_id)->first();
+        $customer = User::where('id',$booking->booker_id)->first();
+
+        $info=[  'name'=>$mile->title,  'amount'=>$mile->amount, 'business'=>$business->name, 's_id' => $business->id, 'owner' => $owner->fname. ' '.$owner->lname ]; 
+
+        $user['to'] = $customer->email;//'sohaankane@gmail.com';
+
+         Mail::send($filename, $info, function($msg) use ($user){
+             $msg->to($user['to']);
+             $msg->subject('Milestone Done!');
+         });  
+//Mail
 return redirect()->back();
 }
 

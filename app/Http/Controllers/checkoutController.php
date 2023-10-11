@@ -14,6 +14,7 @@ use App\Models\orders;
 use App\Models\Conversation;
 use App\Models\Milestones;
 use App\Models\Smilestones;
+use App\Models\serviceBook;
 use Session; 
 use Hash;
 use Auth;
@@ -518,7 +519,7 @@ catch(\Exception $e){
                 "source_transaction" => $charge->id,
                 'destination' => $owner->connect_id
         ]);
-        Smilestones::where('id',$id)->update([ 'status' => 'Done']);
+        Smilestones::where('id',$id)->update([ 'status' => 'Being Completed']);
         
         }
 
@@ -533,41 +534,42 @@ catch(\Exception $e){
 
    //MAIL
         $business = Services::where('id',$mile->listing_id)->first();
+        $booking = serviceBook::where('booker_id',Auth::id())
+        ->where('service_id',$business->id)
+        ->where('status', 'Confirmed')->latest()->first();
+        $customer = User::where('id',$booking->booker_id)->first();
 
-        $info=[  'name'=>$mile->title,  'amount'=>$mile->amount, 'business'=>$business->name, 's_id' => $business_id ]; 
-        $user['to'] = $request->email;//'sohaankane@gmail.com';
+        $info=[  'name'=>$mile->title,  'amount'=>$mile->amount, 'business'=>$business->name, 's_id' => $business_id, 'customer'=>$customer->fname. ' '.$customer->lname ]; 
+        $user['to'] = $owner->email;//'sohaankane@gmail.com';
 
          Mail::send('milestoneS.milestone_mail', $info, function($msg) use ($user){
              $msg->to($user['to']);
-             $msg->subject('Milestone Status Changed!');
+             $msg->subject('Milestone Paid!');
          });  
 
 
 //DB INSERT
     $mileLat = Smilestones::where('listing_id',$business_id)->where('status','On Hold')->first();
 
-if($mileLat == null) 
-{
-    //Smilestones::where('id',$mileLat->id)->update([ 'status' => 'In Progress']);
-    //Completed, order place
-    try{
-        $total = 0;
-        $all_milestone = Smilestones::where('listing_id',$mile->listing_id)->get();
-        foreach($all_milestone as $all_m){
-            $total = $total+$all_m->amount;
-        }
-        orders::create([
-            'user_id' => $mile->user_id,
-            'service_id' => $mile->listing_id,
-            'price' => $total
-        ]);
-    }
-    catch(\Exception $e){
-    Session::put('Stripe_pay', $e->getMessage());
-    return redirect("/");
-}
-}
-
+// if($mileLat == null) 
+// {
+//     try{
+//         $total = 0;
+//         $all_milestone = Smilestones::where('listing_id',$mile->listing_id)->get();
+//         foreach($all_milestone as $all_m){
+//             $total = $total+$all_m->amount;
+//         }
+//         orders::create([
+//             'user_id' => $mile->user_id,
+//             'service_id' => $mile->listing_id,
+//             'price' => $total
+//         ]);
+//     }
+//     catch(\Exception $e){
+//     Session::put('Stripe_pay', $e->getMessage());
+//     return redirect("/");
+// }
+// }
 
        Session::put('Stripe_pay','Milestone paid successfully!');
        return redirect("/");

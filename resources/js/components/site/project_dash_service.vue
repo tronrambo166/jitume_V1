@@ -2,6 +2,13 @@
     <div class="main">
         <div class="container">
 
+
+            <div v-if="!auth_user" class="w-75 h-100 py-5 my-5 my-auto justify-content-center my-2 text-center mx-auto">
+                <a style="cursor:pointer; width:40%;" @click="make_session2()"
+                    class="searchListing mx-auto text-center py-1 text-light font-weight-bold" data-target="#loginModal"
+                    data-toggle="modal">Login to pay</a>
+            </div>
+
             <div v-if="no_mile" class="w-75 h-100 py-5 my-5 my-auto justify-content-center my-2 text-center mx-auto">
                 <h5 class="w-75 mx-auto bg-light py-3 my-3 text-secondary">No Milestones Yet!</h5>
             </div>
@@ -105,7 +112,7 @@
 
 
                 <!--Done Download form -->
-                <div v-else-if="result.status == 'Done'" class="modal-body">
+                <div v-else-if="result.status == 'Done' || result.status == 'Being Completed' " class="modal-body">
                     <form action="" method="post" enctype="multipart/form-data" class="vueform form-group form">
 
 
@@ -130,7 +137,7 @@
                             <div class="col my-2 my-sm-0">
 
                                 <div class="upload-btn-wrapper d-flex justify-content-start">
-                                    <a class="text-white disabled placeH_done btnUp_done  w-100 d-flex align-items-center ">Download
+                                    <a @click="download_milestone_doc(result.id)" class="text-white disabled placeH_done btnUp_done  w-100 d-flex align-items-center ">Download
                                         Milestone
                                         Documentaion <i class="ml-2 fa fa-arrow-down  pb-2"></i></a>
 
@@ -146,8 +153,11 @@
                                 </div> -->
 
                                 <div class="form-group ml-1">
-                                    <span style="background:black;"
+                                    <span v-if="result.status == 'Done'" style="background:black;"
                                         class="placeH_active status text-center border text-light border-dark px-2 py-1 btn-block">Done!</span>
+
+                                        <span v-else style="background:black;"
+                                        class="placeH_active status text-center border text-success border-dark px-2 py-1 btn-block">Being Completed</span>
                                 </div>
                             </div>
 
@@ -278,6 +288,13 @@ export default {
         make_session(id) {
             sessionStorage.setItem('milestoneS', id);
         },
+
+        make_session2() {
+          var id = this.$route.params.id;
+          sessionStorage.setItem('milestoneS', id);
+          document.getElementById('c_to_action').value = 'loginFromService';
+          document.getElementById('c_to_action_login').value = 'loginFromService';
+          },
 
         download_milestone_doc(mile_id) {
             var id = this.$route.params.id; var t = this;

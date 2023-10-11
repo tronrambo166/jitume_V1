@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="col-sm-4">
-                        <a class="py-0 float-right border border-dark rounded" style="width:70px; height:40px;">
+                        <!-- <a class="py-0 float-right border border-dark rounded" style="width:70px; height:40px;">
                             <div class="row">
                                 <div class="col-6 pr-0">
                                     <p style="font-size:12px;" class="text-dark">More Filters</p>
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                         </a>
-
+ -->
                     </div>
 
                 </div>
@@ -121,7 +121,10 @@ export default {
         results: [],
         ids: '',
         empty: false,
-        count: 0
+        count: 0,
+         loc:'',
+        queryLat:'',
+        queryLng:''
     }),
     methods: {
         setRes: function () {
@@ -133,6 +136,9 @@ export default {
                 t.count = data.data.count;
                 t.results = data.data.data;
                 //console.log(data);
+                //Setting Curr LatLng
+                t.queryLat = data.data.data[0].lat;
+                t.queryLng = data.data.data[0].lng;
             }
             }).catch((error) => { console.log(error); })
         },
@@ -170,12 +176,12 @@ export default {
                 //console.log(values[1] - values[0]);
 
                 axios.get('priceFilterS/' + values[0] + '/' + values[1] + '/' + t.ids).then((data) => {
-
-                    // if(values[0]==0.00 && values[1]==500000.00){}
-                    //else{ 
                     t.results = '';
                     t.results = data.data.data;
-                    //}
+                    //Setting Curr LatLng
+                    t.queryLat = data.data.data[0].lat;
+                    t.queryLng = data.data.data[0].lng;
+
                     //console.log(data);
                 }).catch((error) => { })
 
@@ -202,12 +208,20 @@ export default {
         //MAP -- MAP
 
         success(position){
-        var myLat = position.coords.latitude;
-        var myLong = position.coords.longitude;
+        var loc = this.loc;
+        if((loc == true || loc == "true") && this.count !=0){
+            var myLat = sessionStorage.getItem('SqueryLat');// this.queryLat;
+            var myLong = sessionStorage.getItem('SqueryLng');// this.queryLng;
+        }
+
+        else{
+             var myLat = position.coords.latitude;
+             var myLong = position.coords.longitude;
+        } 
 
         var coords = new google.maps.LatLng(myLat,myLong);
         var mapOptions = {
-        zoom:5,
+        zoom:8,
         center:coords,
         //center:new google.maps.LatLng(51.508742,-0.120850),
         mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -218,9 +232,28 @@ export default {
         var map = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
  
 
-        console.log(this.results);
+        //console.log(this.results);
         for (const [key, value] of Object.entries(this.results)) {
-              this.addMarker({lat:value.lat, lng:value.lng},map,value.name,value.price);
+
+            //INFO
+            const contentString =
+                '<div id="content">' +
+                '<div id="siteNotice">' +
+                "</div>" +
+                '<h1 id="firstHeading" class="firstHeading">'+value.name+'</h1>' +
+                '<div id="bodyContent">' +
+                '<p><b>Location: </b>'+value.location+', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/#/serviceDetails/'+value.id+'">' +
+                "View Business</a> " +
+                "</div>" +
+                "</div>";
+
+            const infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                ariaLabel: value.name,
+              });
+            //INFO
+
+              this.addMarker({lat:value.lat, lng:value.lng},map,value.name,value.price,infowindow);
               //"lat": 48.353783,"lng": 11.79
             }
         
@@ -228,7 +261,7 @@ export default {
             this.addMarkerHome(coords,map);
         },
 
-        addMarker(coords,map,title,fee){
+        addMarker(coords,map,title,fee,infowindow){
         const icon = {
             url: "images/map/other_business.png", // url
             scaledSize: new google.maps.Size(55, 27), // scaled size
@@ -241,6 +274,13 @@ export default {
         label:'$'+fee,
         icon:icon
         });
+
+        marker.addListener("click", () => {
+            infowindow.open({
+              anchor: marker,
+              map,
+            });
+            });
         },
 
          addMarkerHome(coords,map){
@@ -262,6 +302,7 @@ export default {
     },
 
     mounted() {
+        this.loc = this.$route.params.loc;
         this.replaceText();
         this.setRes()
         this.range()

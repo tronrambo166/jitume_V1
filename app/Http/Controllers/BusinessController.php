@@ -173,6 +173,8 @@ $y_turnover = $request->y_turnover;
 $investors_fee = $request->investors_fee;
 $id_no = $request->id_no;
 $tax_pin = $request->tax_pin;
+$lat = $request->lat;
+$lng = $request->lng;
 
 $yeary_fin_statement = $request->yeary_fin_statement;
 $pin = $request->pin;
@@ -323,6 +325,8 @@ Listing::create([
             'category' => $category,
             'details' => $details,
             'location' => $location,
+            'lat' => $lat,
+            'lng' => $lng,
             'investment_needed' => $investment_needed,
             'share' => $share,
             'image' => $final_img,

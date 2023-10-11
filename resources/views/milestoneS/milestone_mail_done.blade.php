@@ -4,11 +4,11 @@
 
 <!--Hidden Cart view--> 
 
-        <div class="row  w-75 m-auto border shadow text-center bg-light" style=" box-shadow: 3px 3px 7px 7px grey; width:70%; background: #fbfbfb;border: 1px solid black;">
-		<div class="container w-75 m-auto" style="box-shadow: 3px 3px 7px 7px grey; background: #fbfbfb;width:80%; margin:auto; text-align:center">
+        <div class="row  w-75 m-auto border shadow text-center bg-light" style=" box-shadow: 3px 3px 7px 7px grey; width:70%; background: ##fbfbfb;border: 1px solid black;">
+		<div class="container w-75 m-auto" style="box-shadow: 3px 3px 7px 7px grey; background: ##fbfbfb;width:80%; margin:auto; text-align:center; border: 1px solid black;">
 		
 		 <h2 style="color: black;font-family: sans-serif;">  
-		 	<br> Milestone {{$name}} is paid! by {{$customer}}, you can begin working on the Milestone! </h2>
+		 	<br> Milestone {{$name}} is done! </h2>
 			
 			<div class="" style="width:50%; margin:auto;">
 			<h4 style="color: #000000a1;font-family:  sans-serif;text-align:left;"> Milestone Name: {{$name}} </h4>
@@ -17,16 +17,16 @@
 			</div>
 
 
-			<!-- Do you want to Continue to the Next Milestone?
-		        <div style="width:100%;margin: auto; padding-bottom:20px;padding-top:15px;"> 
+			&nbsp;&nbsp; Do you want to Continue to the Next Milestone?
+		        <div style="width:100%;margin: auto; padding-bottom:20px;padding-top:15px; text-align:center;"> 
 		        	<a target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/agreeToMileS/{{$s_id}}"
 				style="width:50%;text-decoration:none;color: aliceblue;background:green;padding:10px 30px;border-radius:5px;margin-left:30px">
 				Continue</a>
 
-				<a
+				<!-- <a
 				style="width:50%;text-decoration:none;color: aliceblue;background:red;padding:10px 30px;border-radius:5px;margin-left:30px">
-				Cancel </a>
-			</div> -->
+				Cancel </a> -->
+			</div>
 		
 		
 				
