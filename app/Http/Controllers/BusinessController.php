@@ -183,141 +183,72 @@ $document = $request->document;
 $video = $request->video;
 $user_id = Auth::id();
 
-$listing = Listing::latest()->first();
-$listing = ($listing->id)+1;
-
-try{
-//FILES
- $image=$request->file('image');
- if($image) {
-          $uniqid=hexdec(uniqid());
+//File Type Check!
+$image=$request->file('image');
+if($image) {
           $ext=strtolower($image->getClientOriginalExtension());
           if($ext!='jpg' && $ext!= 'png' && $ext!='jpeg' && $ext!= 'svg'&& $ext!='gif')
           {
             Session::put('error','For Cover, Only images are allowed!');
             return redirect()->back();
-          }
-          $create_name=$uniqid.'.'.$ext;
-          $loc='images/listing/';
-          //Move uploaded file
-          $image->move($loc, $create_name);
-          $final_img=$loc.$create_name;
-             }
-          else $final_img='';
+          } }
 
- $yeary_fin_statement=$request->file('yeary_fin_statement');
- if($yeary_fin_statement) {
-          $uniqid=hexdec(uniqid());
-          $ext=strtolower($yeary_fin_statement->getClientOriginalExtension());
-          if($ext!='pdf' && $ext!= 'docx')
-          {
-            Session::put('error','For Yearly Statement, Only pdf & docx are allowed!');
-            return redirect()->back();
-          }
-
-          $create_name=$uniqid.'.'.$ext;
-          if (!file_exists('files/business/'.$listing)) 
-          mkdir('files/business/'.$listing, 0777, true);
-
-          $loc='files/business/'.$listing.'/';
-          //Move uploaded file
-          $yeary_fin_statement->move($loc, $create_name);
-          $final_statement=$loc.$create_name;
-             }else $final_statement='';
-
-
- $pin=$request->file('pin');
- if($pin) {
-          $uniqid=hexdec(uniqid());
+  $pin=$request->file('pin');
+  if($pin) {
           $ext=strtolower($pin->getClientOriginalExtension());
           if($ext!='pdf' && $ext!= 'docx')
           {
             Session::put('error','For pin, Only pdf & docx are allowed!');
             return redirect()->back();
-          }
-
-          $create_name=$uniqid.'.'.$ext;
-          if (!file_exists('files/business/'.$listing)) 
-          mkdir('files/business/'.$listing, 0777, true);
-
-          $loc='files/business/'.$listing.'/';
-          //Move uploaded file
-          $pin->move($loc, $create_name);
-          $final_pin=$loc.$create_name;
-             }else $final_pin='';
+          } }
 
 
- $identification=$request->file('identification');
- if($identification) {
-          $uniqid=hexdec(uniqid());
+  $identification=$request->file('identification');
+  if($identification) {
           $ext=strtolower($identification->getClientOriginalExtension());
           if($ext!='pdf' && $ext!= 'docx')
           {
-            Session::put('error','For identification, Only pdf & docx are allowed!');
+            Session::put('error','For pin, Only pdf & docx are allowed!');
             return redirect()->back();
-          }
+          } }
 
-          $create_name=$uniqid.'.'.$ext;
-          if (!file_exists('files/business/'.$listing)) 
-          mkdir('files/business/'.$listing, 0777, true);
 
-          $loc='files/business/'.$listing.'/';
-          //Move uploaded file
-          $identification->move($loc, $create_name);
-          $final_identification=$loc.$create_name;
-             }else $final_identification='';
+ $yeary_fin_statement=$request->file('yeary_fin_statement');
+ if($yeary_fin_statement) {        
+          $ext=strtolower($yeary_fin_statement->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('error','For financial statement, Only pdf & docx are allowed!');           
+            return redirect()->back();
+          } }
 
 
  $document=$request->file('document');
- if($document) {
-          $uniqid=hexdec(uniqid());
+ if($document) {        
           $ext=strtolower($document->getClientOriginalExtension());
           if($ext!='pdf' && $ext!= 'docx')
           {
-            Session::put('error','For business document, Only pdf & docx are allowed!');
+            Session::put('error','For supportive document, Only pdf & docx are allowed!');          
             return redirect()->back();
-          }
-
-          $create_name=$uniqid.'.'.$ext;
-          if (!file_exists('files/business/'.$listing)) 
-          mkdir('files/business/'.$listing, 0777, true);
-
-          $loc='files/business/'.$listing.'/';
-          //Move uploaded file
-          $document->move($loc, $create_name);
-          $final_document=$loc.$create_name;
-             }else $final_document='';
-             
+          } }
 
 
- $video=$request->file('video');
- if($video) {
-          $uniqid=hexdec(uniqid());
+$video=$request->file('video');
+ if($video) {     
           $ext=strtolower($video->getClientOriginalExtension());
           if($ext!='mpg' && $ext!= 'mpeg' && $ext!='webm' && $ext!= 'mp4' 
             && $ext!='avi' && $ext!= 'wmv')
           { 
             Session::put('error','For video, Only mpg || mpeg || webm || mp4 
-            avi || wmv are allowed!');
-             
+            avi || wmv are allowed!');          
             return redirect()->back();
-          }
+          } }
 
-          $create_name=$uniqid.'.'.$ext;
-          if (!file_exists('files/business/'.$listing)) 
-          mkdir('files/business/'.$listing, 0777, true);
 
-          $loc='files/business/'.$listing.'/';
-          //Move uploaded file
-          $video->move($loc, $create_name);
-          $final_video=$loc.$create_name;
-             }else $final_video=$request->link;                     
 
-          
+//File Type Check END!
 
-//FILES
-
-Listing::create([
+     $listing = Listing::create([
             'name' => $title,
             'user_id' => $user_id,
             'contact' => $contact,
@@ -329,19 +260,111 @@ Listing::create([
             'lng' => $lng,
             'investment_needed' => $investment_needed,
             'share' => $share,
-            'image' => $final_img,
             'reason' => $reason,
             'y_turnover' => $y_turnover,
-            'pin' => $final_pin,
             'y_turnover' => $y_turnover,
             'id_no' => $id_no,
             'tax_pin' => $tax_pin,
+            'investors_fee' => $investors_fee          
+           ]); 
+           $listing = $listing->id;      
+
+try{
+//FILES
+ if($image) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($image->getClientOriginalExtension());
+          $create_name=$uniqid.'.'.$ext;
+          $loc='images/listing/';
+          //Move uploaded file
+          $image->move($loc, $create_name);
+          $final_img=$loc.$create_name;
+             }
+          else $final_img='';
+
+
+ $loc='files/business/'.$listing.'/';
+
+ if($yeary_fin_statement) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($yeary_fin_statement->getClientOriginalExtension());
+          $create_name=$uniqid.'.'.$ext;
+          if (!file_exists('files/business/'.$listing)) 
+          mkdir('files/business/'.$listing, 0777, true);
+
+          //$loc='files/business/'.$listing.'/';
+          //Move uploaded file
+          $yeary_fin_statement->move($loc, $create_name);
+          $final_statement=$loc.$create_name;
+             }else $final_statement='';
+
+
+ if($pin) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($pin->getClientOriginalExtension());
+          $create_name=$uniqid.'.'.$ext;
+          if (!file_exists('files/business/'.$listing)) 
+          mkdir('files/business/'.$listing, 0777, true);
+
+          //$loc='files/business/'.$listing.'/';
+          //Move uploaded file
+          $pin->move($loc, $create_name);
+          $final_pin=$loc.$create_name;
+             }else $final_pin='';
+
+
+ if($identification) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($identification->getClientOriginalExtension());
+          $create_name=$uniqid.'.'.$ext;
+          if (!file_exists('files/business/'.$listing)) 
+          mkdir('files/business/'.$listing, 0777, true);
+
+          //$loc='files/business/'.$listing.'/';
+          //Move uploaded file
+          $identification->move($loc, $create_name);
+          $final_identification=$loc.$create_name;
+             }else $final_identification='';
+
+
+ if($document) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($document->getClientOriginalExtension());
+          $create_name=$uniqid.'.'.$ext;
+          if (!file_exists('files/business/'.$listing)) 
+          mkdir('files/business/'.$listing, 0777, true);
+
+          //$loc='files/business/'.$listing.'/';
+          //Move uploaded file
+          $document->move($loc, $create_name);
+          $final_document=$loc.$create_name;
+             }else $final_document='';
+             
+
+
+ if($video) {
+          $uniqid=hexdec(uniqid());
+          $ext=strtolower($video->getClientOriginalExtension());
+          $create_name=$uniqid.'.'.$ext;
+          if (!file_exists('files/business/'.$listing)) 
+          mkdir('files/business/'.$listing, 0777, true);
+
+          //$loc='files/business/'.$listing.'/';
+          //Move uploaded file
+          $video->move($loc, $create_name);
+          $final_video=$loc.$create_name;
+             }else $final_video=$request->link;                     
+      
+
+//FILES END
+
+Listing::where('id',$listing)->update([          
+            'image' => $final_img,            
+            'pin' => $final_pin,  
+            'identification' => $final_identification,         
             'document' => $final_document,
             'video' => $final_video,
-            'yeary_fin_statement' => $final_statement,
-            'investors_fee' => $investors_fee
-
-            
+            'yeary_fin_statement' => $final_statement         
            ]);       
 
         Session::put('success','Business added!');

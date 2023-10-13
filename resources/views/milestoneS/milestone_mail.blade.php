@@ -7,8 +7,8 @@
         <div class="row  w-75 m-auto border shadow text-center bg-light" style=" box-shadow: 3px 3px 7px 7px grey; width:70%; background: #fbfbfb;border: 1px solid black;">
 		<div class="container w-75 m-auto" style="box-shadow: 3px 3px 7px 7px grey; background: #fbfbfb;width:80%; margin:auto; text-align:center">
 		
-		 <h2 style="color: black;font-family: sans-serif;">  
-		 	<br> Milestone {{$name}} is paid! by {{$customer}}, you can begin working on the Milestone! </h2>
+		 <h3 style="color: black;font-family: sans-serif;">  
+		 	<br> Milestone {{$name}} is paid! by {{$customer}}, you can begin working on the Milestone! </h3>
 			
 			<div class="" style="width:50%; margin:auto;">
 			<h4 style="color: #000000a1;font-family:  sans-serif;text-align:left;"> Milestone Name: {{$name}} </h4>

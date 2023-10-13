@@ -83,6 +83,61 @@ $document = $request->document;
 $video = $request->video;
 $user_id = Auth::id();
 
+//File Type Check!
+$image=$request->file('image');
+if($image) {
+          $ext=strtolower($image->getClientOriginalExtension());
+          if($ext!='jpg' && $ext!= 'png' && $ext!='jpeg' && $ext!= 'svg'&& $ext!='gif')
+          {
+            Session::put('error','For Cover, Only images are allowed!');
+            return redirect()->back();
+          } }
+
+  $pin=$request->file('pin');
+  if($pin) {
+          $ext=strtolower($pin->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('error','For pin, Only pdf & docx are allowed!');
+            return redirect()->back();
+          } }
+
+ $identification=$request->file('identification');
+ if($identification) {        
+          $ext=strtolower($identification->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('error','For identification, Only pdf & docx are allowed!');           
+            return redirect()->back();
+          } }
+
+
+ $document=$request->file('document');
+ if($document) {        
+          $ext=strtolower($document->getClientOriginalExtension());
+          if($ext!='pdf' && $ext!= 'docx')
+          {
+            Session::put('error','For service document, Only pdf & docx are allowed!');          
+            return redirect()->back();
+          } }
+
+
+$video=$request->file('video');
+ if($video) {     
+          $ext=strtolower($video->getClientOriginalExtension());
+          if($ext!='mpg' && $ext!= 'mpeg' && $ext!='webm' && $ext!= 'mp4' 
+            && $ext!='avi' && $ext!= 'wmv')
+          { 
+            Session::put('error','For video, Only mpg || mpeg || webm || mp4 
+            avi || wmv are allowed!');          
+            return redirect()->back();
+          } }
+
+
+
+//File Type Check END!
+
+try{
 $listing = Services::create([
             'name' => $title,
             'shop_id' => $user_id,
@@ -92,23 +147,13 @@ $listing = Services::create([
             'location' => $location,
             'lat' => $lat,
             'lng' => $lng
-          ]);
-            
-
-  //$listing = Services::latest()->first();
+          ]);         
   $listing = $listing->id;     
 
 //FILES 
- $image=$request->file('image');
  if($image) {
           $uniqid=hexdec(uniqid());
           $ext=strtolower($image->getClientOriginalExtension());
-          if($ext!='jpg' && $ext!= 'png' && $ext!='jpeg' && $ext!= 'svg'&& $ext!='gif')
-          {
-            Session::put('error','For Cover, Only images are allowed!');
-            Services::where('id',$listing)->delete();
-            return redirect()->back();
-          }
           $create_name=$uniqid.'.'.$ext;
           $loc='images/services/';
           //Move uploaded file
@@ -118,22 +163,16 @@ $listing = Services::create([
           else $final_img='';
 
 
-  $pin=$request->file('pin');
+ $loc='files/services/'.$listing.'/';
+
  if($pin) {
           $uniqid=hexdec(uniqid());
           $ext=strtolower($pin->getClientOriginalExtension());
-          if($ext!='pdf' && $ext!= 'docx')
-          {
-            Session::put('error','For pin, Only pdf & docx are allowed!');
-            Services::where('id',$listing)->delete();
-            return redirect()->back();
-          }
-
           $create_name=$uniqid.'.'.$ext;
           if (!file_exists('files/services/'.$listing)) 
           mkdir('files/services/'.$listing, 0777, true);
 
-          $loc='files/services/'.$listing.'/';
+          //$loc='files/services/'.$listing.'/';
           //Move uploaded file
           $pin->move($loc, $create_name);
           $final_pin=$loc.$create_name;
@@ -144,18 +183,11 @@ $listing = Services::create([
  if($identification) {
           $uniqid=hexdec(uniqid());
           $ext=strtolower($identification->getClientOriginalExtension());
-          if($ext!='pdf' && $ext!= 'docx')
-          {
-            Session::put('error','For identification, Only pdf & docx are allowed!');
-            Services::where('id',$listing)->delete();
-            return redirect()->back();
-          }
-
           $create_name=$uniqid.'.'.$ext;
           if (!file_exists('files/services/'.$listing)) 
           mkdir('files/services/'.$listing, 0777, true);
 
-          $loc='files/services/'.$listing.'/';
+          //$loc='files/services/'.$listing.'/';
           //Move uploaded file
           $identification->move($loc, $create_name);
           $final_identification=$loc.$create_name;
@@ -166,18 +198,11 @@ $listing = Services::create([
  if($document) {
           $uniqid=hexdec(uniqid());
           $ext=strtolower($document->getClientOriginalExtension());
-          if($ext!='pdf' && $ext!= 'docx')
-          {
-            Session::put('error','For service document, Only pdf & docx are allowed!');
-            Services::where('id',$listing)->delete();
-            return redirect()->back();
-          }
-
           $create_name=$uniqid.'.'.$ext;
           if (!file_exists('files/services/'.$listing)) 
           mkdir('files/services/'.$listing, 0777, true);
 
-          $loc='files/services/'.$listing.'/';
+          //$loc='files/services/'.$listing.'/';
           //Move uploaded file
           $document->move($loc, $create_name);
           $final_document=$loc.$create_name;
@@ -189,20 +214,11 @@ $listing = Services::create([
  if($video) {
           $uniqid=hexdec(uniqid());
           $ext=strtolower($video->getClientOriginalExtension());
-          if($ext!='mpg' && $ext!= 'mpeg' && $ext!='webm' && $ext!= 'mp4' 
-            && $ext!='avi' && $ext!= 'wmv')
-          { 
-            Session::put('error','For video, Only mpg || mpeg || webm || mp4 
-            avi || wmv are allowed!');
-            Services::where('id',$listing)->delete();
-            return redirect()->back();
-          }
-
           $create_name=$uniqid.'.'.$ext;
           if (!file_exists('files/services/'.$listing)) 
           mkdir('files/services/'.$listing, 0777, true);
 
-          $loc='files/services/'.$listing.'/';
+          //$loc='files/services/'.$listing.'/';
           //Move uploaded file
           $video->move($loc, $create_name);
           $final_video=$loc.$create_name;
@@ -210,7 +226,7 @@ $listing = Services::create([
 
           
 
-//FILES 
+//FILES End
 Services::where('id',$listing)->update([
             'image' => $final_img,
             'pin' => $final_pin,
@@ -218,7 +234,10 @@ Services::where('id',$listing)->update([
             'document' => $final_document,
             'video' => $final_video           
            ]);       
-
+  }
+  catch(\Exception $e){
+  Session::put('failed', $e->getMessage()); ;
+}
         Session::put('success','Service added!');
         return redirect()->back();
 
@@ -700,9 +719,12 @@ $milestones = Smilestones::where('id',$request->id)
     $notLastMile = Smilestones::where('listing_id',$mile->listing_id)->where('status','On Hold')->first();
   
     if($notLastMile)
+
       $filename = 'milestoneS.milestone_mail_done';
     else
       $filename = 'milestoneS.service_done_mail';
+
+    try{
        
         $business = Services::where('id',$mile->listing_id)->first();
         $booking = serviceBook::where('service_owner_id',Auth::id())
@@ -720,6 +742,11 @@ $milestones = Smilestones::where('id',$request->id)
              $msg->subject('Milestone Done!');
          });  
 //Mail
+ }
+      catch(\Exception $e){
+      return redirect()->back()->with('failed', $e->getMessage());
+    }
+
 return redirect()->back();
 }
 

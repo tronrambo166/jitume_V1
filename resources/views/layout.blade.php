@@ -215,7 +215,7 @@
                     <div class="modal-content popup_success">
 
                         <div class="modal-body">
-                            <h2 class="my-4 modal-title text-center w-100" id="exampleModalLabel">Success</h2>
+                            <h2 class="my-4 modal-title text-center w-100" id="exampleModalLabel">Thank You!</h2>
 
                             <p class="text-center">{{Session::get('login_success')}} @php Session::forget('login_success'); @endphp</p>
                         </div>

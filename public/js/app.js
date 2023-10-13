@@ -72324,211 +72324,6 @@ var render = function () {
                         },
                         [_vm._v("Subscribe")]
                       ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "modal d-block",
-                          attrs: {
-                            id: "investModalShow",
-                            tabindex: "-1",
-                            role: "dialog",
-                            "aria-labelledby": "exampleModalLabel",
-                            "aria-hidden": "true",
-                          },
-                        },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "modal-dialog",
-                              attrs: { role: "document" },
-                            },
-                            [
-                              _c("div", { staticClass: "modal-content" }, [
-                                _c("div", { staticClass: "modal-header" }, [
-                                  _c("div", { staticClass: "w-100" }, [
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "m-0 close",
-                                        attrs: {
-                                          type: "button",
-                                          "data-dismiss": "modal",
-                                          "aria-label": "Close",
-                                        },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.modal_hide()
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c(
-                                          "span",
-                                          { attrs: { "aria-hidden": "true" } },
-                                          [_vm._v("×")]
-                                        ),
-                                      ]
-                                    ),
-                                  ]),
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "modal-body" }, [
-                                  _c("div", { staticClass: "row" }, [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "col-sm-12 w-100 mx-auto",
-                                      },
-                                      [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass: "p-3",
-                                            staticStyle: {
-                                              cursor: "pointer",
-                                              background: "white",
-                                            },
-                                          },
-                                          [
-                                            _c(
-                                              "p",
-                                              {
-                                                staticClass: "text-dark smalls",
-                                                staticStyle: {
-                                                  "font-size": "16px",
-                                                },
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "This business requests a small fee of\n                          "
-                                                ),
-                                                _c("b", [
-                                                  _vm._v(
-                                                    "$" +
-                                                      _vm._s(
-                                                        _vm.form.investors_fee
-                                                      ) +
-                                                      " "
-                                                  ),
-                                                ]),
-                                                _vm._v(
-                                                  " to view their full business information. Do you want to pay\n                          now?\n                        "
-                                                ),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                      ]
-                                    ),
-                                  ]),
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "modal-footer" }, [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "card-header w-100 text-center",
-                                    },
-                                    [
-                                      _c(
-                                        "form",
-                                        {
-                                          attrs: {
-                                            action: "stripe",
-                                            method: "get",
-                                          },
-                                        },
-                                        [
-                                          _c("input", {
-                                            attrs: {
-                                              type: "text",
-                                              hidden: "",
-                                              id: "price",
-                                              name: "price",
-                                            },
-                                            domProps: {
-                                              value: _vm.form.investors_fee,
-                                            },
-                                          }),
-                                          _vm._v(" "),
-                                          _c("input", {
-                                            attrs: {
-                                              type: "number",
-                                              hidden: "",
-                                              id: "listing_id",
-                                              name: "listing_id",
-                                            },
-                                            domProps: {
-                                              value: _vm.form.listing_id,
-                                            },
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass:
-                                                "modal_ok_btn btn rounded w-25 d-inline px-3 text-white mr-3",
-                                              attrs: { type: "submit" },
-                                              on: {
-                                                click: function ($event) {
-                                                  _vm.make_session(
-                                                    _vm.form.listing_id
-                                                  )
-                                                  _vm.stripeFee(
-                                                    _vm.form.listing_id,
-                                                    _vm.form.investors_fee
-                                                  )
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                        Ok\n                      "
-                                              ),
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass:
-                                                "modal_cancel_btn w-25 btn rounded d-inline px-3 m-0",
-                                              attrs: {
-                                                type: "button",
-                                                "data-dismiss": "modal",
-                                                "aria-label": "Close",
-                                              },
-                                              on: {
-                                                click: function ($event) {
-                                                  return _vm.modal_hide()
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _c(
-                                                "span",
-                                                {
-                                                  attrs: {
-                                                    "aria-hidden": "true",
-                                                  },
-                                                },
-                                                [_vm._v("Cancel")]
-                                              ),
-                                            ]
-                                          ),
-                                        ]
-                                      ),
-                                    ]
-                                  ),
-                                ]),
-                              ]),
-                            ]
-                          ),
-                        ]
-                      ),
                     ],
                     1
                   )
@@ -74744,7 +74539,7 @@ var render = function () {
                                   },
                                 ],
                                 staticClass:
-                                  "placeH_inactive w-100 py-1 border border-dark",
+                                  "btn-secondary text-dark placeH_inactive w-100 py-1 border border-dark",
                                 attrs: {
                                   readonly: "",
                                   required: "",
@@ -74780,7 +74575,7 @@ var render = function () {
                                   },
                                 ],
                                 staticClass:
-                                  "placeH_inactive w-100 py-1 border border-dark",
+                                  "btn-secondary text-dark placeH_inactive w-100 py-1 border border-dark",
                                 attrs: {
                                   readonly: "",
                                   required: "",
@@ -74847,7 +74642,10 @@ var staticRenderFns = [
       _c("div", { staticClass: "upload-btn-wrapper w-100" }, [
         _c(
           "a",
-          { staticClass: "text-white disabled placeH_inactive btnUp4 w-100" },
+          {
+            staticClass:
+              "btn-secondary text-dark disabled placeH_inactive btnUp4 w-100",
+          },
           [
             _vm._v(
               "Download Milestone\n                                    Documentaion "
@@ -74868,7 +74666,7 @@ var staticRenderFns = [
           "a",
           {
             staticClass:
-              "placeH_inactive pb-2 text-center border border-dark p-0 btn btn-light btn-block",
+              "placeH_inactive pb-2 text-center border border-dark p-0 btn btn-secondary text-dark btn-block",
             attrs: { disabled: "" },
           },
           [_vm._v("PAY")]
@@ -74886,7 +74684,7 @@ var staticRenderFns = [
           "span",
           {
             staticClass:
-              "placeH_inactive pb-2 status text-center border border-dark p-0 btn btn-light btn-block",
+              "placeH_inactive pb-2 status text-center border border-dark p-0 btn btn-secondary text-dark btn-block",
           },
           [_vm._v("On\n                                    Hold")]
         ),

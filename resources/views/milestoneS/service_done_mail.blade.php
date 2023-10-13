@@ -2,16 +2,16 @@
 
         
 
-<!--Hidden Cart view--> 
+<!--Hidden Cart view-->  
 
-        <div class="row  w-75 m-auto border shadow text-center bg-light" style=" box-shadow: 3px 3px 7px 7px grey; width:70%; background: ##fbfbfb;border: 1px solid black;">
-		<div class="container w-75 m-auto" style="box-shadow: 3px 3px 7px 7px grey; background: ##fbfbfb;width:80%; margin:auto; text-align:center; border: 1px solid black;">
+        <div class="row  w-75 m-auto border shadow text-center bg-light" style=" box-shadow: 3px 3px 7px 7px grey; width:70%; background: #fbfbfb;border: 1px solid black;">
+		<div class="container w-75 m-auto" style="box-shadow: 3px 3px 7px 7px grey; background: #fbfbfb;width:80%; margin:auto; text-align:center">
 		
 		 <h2 style="color: black;font-family: sans-serif;">  
-		 	<br> Congratulations! </h2>
+		 	 Congratulations! </h2>
 			
 			<div class="" style="width:50%; margin:auto;">
-			<h6 style="color: #000000a1;font-family:  sans-serif;text-align:left;">  All Milestones are completed and {{$owner}} thanks you for your business! </h6>
+			<h4 style="color: #000000a1;font-family:  sans-serif;text-align:left;">  All Milestones are completed and {{$owner}} thanks you for your business! </h4>
 			
 			</div>
 

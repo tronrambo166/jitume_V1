@@ -4,20 +4,20 @@
 
 <!--Hidden Cart view--> 
 
-        <div class="row  w-75 m-auto border shadow text-center bg-light" style=" box-shadow: 3px 3px 7px 7px grey; width:70%; background: ##fbfbfb;border: 1px solid black;">
-		<div class="container w-75 m-auto" style="box-shadow: 3px 3px 7px 7px grey; background: ##fbfbfb;width:80%; margin:auto; text-align:center; border: 1px solid black;">
+        <div class="row  w-75 m-auto border shadow text-center bg-light" style=" box-shadow: 3px 3px 7px 7px grey; width:70%; background: #fbfbfb;border: 1px solid black;">
+		<div class="container w-75 m-auto" style="box-shadow: 3px 3px 7px 7px grey; background: #fbfbfb;width:80%; margin:auto; text-align:center">
 		
 		 <h2 style="color: black;font-family: sans-serif;">  
-		 	<br> Milestone {{$name}} is done! </h2>
+		  Milestone {{$name}} is done! </h2>
 			
 			<div class="" style="width:50%; margin:auto;">
-			<h4 style="color: #000000a1;font-family:  sans-serif;text-align:left;"> Milestone Name: {{$name}} </h4>
-			<h4 style="color: #000000a1;font-family: sans-serif;text-align:left;"> Amount: {{$amount}} </h4>
-			<h4 style="color: #000000a1;font-family: sans-serif;text-align:left;"> Business Name: {{$business}} </h4>
+			<h4 style="color: #000000a1;font-family:  sans-serif;text-align:center;"> Milestone Name: {{$name}} </h4>
+			<h4 style="color: #000000a1;font-family: sans-serif;text-align:center;"> Amount: {{$amount}} </h4>
+			<h4 style="color: #000000a1;font-family: sans-serif;text-align:center;"> Business Name: {{$business}} </h4>
 			</div>
 
 
-			&nbsp;&nbsp; Do you want to Continue to the Next Milestone?
+			 Do you want to Continue to the Next Milestone?
 		        <div style="width:100%;margin: auto; padding-bottom:20px;padding-top:15px; text-align:center;"> 
 		        	<a target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/agreeToMileS/{{$s_id}}"
 				style="width:50%;text-decoration:none;color: aliceblue;background:green;padding:10px 30px;border-radius:5px;margin-left:30px">
@@ -31,7 +31,7 @@
 		
 				
 				
-				<p style="font-weight: bold; color:black; line-height:22px; font-family:arial; padding-top:20px; padding-bottom:20px; text-align:center;" class="py-3 text-center"> Thanks! <br />   Jitume Admin.</p>
+				<p style="font-weight: bold; color:black; line-height:22px; font-family:arial; padding-top:20px; padding-bottom:20px; text-align:center;" class="py-3 text-center"> Thanks! <br/>   Jitume Admin.</p>
 
 		</div>
 		

@@ -76,7 +76,7 @@
            
 
         <form action="{{route('mile_s_status')}}" method="post" class="form-inline">@csrf
-            <select  name="status" style="width:65%;" class=" d-inline rounded border border-dark p-1 ">
+            <select  name="status" style="width:65%;" class="py-0 d-inline rounded border border-dark p-1 ">
                  
                 
             @if($ev->status == 'Created' || $ev->status == 'In Progress')

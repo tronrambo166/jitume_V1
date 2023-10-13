@@ -185,7 +185,7 @@
                             <div class="col px-1 my-2 my-sm-0">
                                 <div class=" ">
                                     <input readonly required="" name="title" type="text" v-model="result.title"
-                                        class="placeH_inactive w-100 py-1 border border-dark ">
+                                        class="btn-secondary text-dark placeH_inactive w-100 py-1 border border-dark ">
                                 </div>
                             </div>
 
@@ -194,13 +194,13 @@
                                 <div class="">
 
                                     <input readonly required="" type="number" v-model="result.amount" name="amount"
-                                        class="placeH_inactive w-100 py-1 border border-dark ">
+                                        class="btn-secondary text-dark placeH_inactive w-100 py-1 border border-dark ">
                                 </div>
                             </div>
 
                             <div class="col px-0 my-2 my-sm-0">
                                 <div class="upload-btn-wrapper w-100">
-                                    <a class="text-white disabled placeH_inactive btnUp4 w-100">Download Milestone
+                                    <a class="btn-secondary text-dark disabled placeH_inactive btnUp4 w-100">Download Milestone
                                         Documentaion <i class="ml-2 fa fa-arrow-down"></i></a>
 
                                 </div>
@@ -209,13 +209,13 @@
 
                             <div class="col px-1 my-2 my-sm-0">
                                 <div class="form-group">
-                                    <a disabled class="placeH_inactive pb-2 text-center border border-dark p-0 btn btn-light btn-block">PAY</a>
+                                    <a disabled class="placeH_inactive pb-2 text-center border border-dark p-0 btn btn-secondary text-dark btn-block">PAY</a>
                                 </div>
                             </div>
 
                             <div class="col px-0 my-2 my-sm-0">
                                 <div class="form-group">
-                                    <span class="placeH_inactive pb-2 status text-center border border-dark p-0 btn btn-light btn-block">On
+                                    <span class="placeH_inactive pb-2 status text-center border border-dark p-0 btn btn-secondary text-dark btn-block">On
                                         Hold</span>
                                 </div>
                             </div>

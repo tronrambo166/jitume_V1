@@ -203,7 +203,7 @@
            
 
         <form action="{{route('mile_status')}}" method="post" class="form-inline">@csrf
-            <select  name="status" style="width:65%;" class=" d-inline rounded border border-dark p-1 ">
+            <select disabled  name="status" style="width:65%;" class=" d-inline rounded border border-dark p-1 ">
                  
                 
             @if($ev->status == 'Created')
@@ -221,7 +221,7 @@
            </select>
           
 
-           <input type="submit" value="Set" class="ml-2 py-0 mb-1 d-inline btn btn-success w-25">
+           <!-- <input type="submit" value="Set" class="ml-2 py-0 mb-1 d-inline btn btn-success w-25"> -->
 
             <input hidden type="number" name="id" value="{{$ev->id}}">
            </form> 
