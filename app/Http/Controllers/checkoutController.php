@@ -519,7 +519,7 @@ catch(\Exception $e){
                 "source_transaction" => $charge->id,
                 'destination' => $owner->connect_id
         ]);
-        Smilestones::where('id',$id)->update([ 'status' => 'Being Completed']);
+        Smilestones::where('id',$id)->update([ 'status' => 'In Progress']);
         
         }
 

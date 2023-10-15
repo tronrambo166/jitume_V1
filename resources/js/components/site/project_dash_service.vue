@@ -23,7 +23,7 @@
                     <ul class="progressbar">
 
                         <li v-for="( result, index ) in results"
-                            :class="result.status == 'In Progress' || result.status == 'Done' ? 'active' : ''"> Step </li>
+                            :class="result.active || result.status == 'Done' ? 'active' : ''"> Step </li>
 
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
             <div v-for="result in results" class="w-75 m-auto row mt-4 text-center">
 
                 <!--Active Download form -->
-                <div v-if="result.status == 'In Progress'" class="modal-body">
+                <div v-if="result.active" class="modal-body">
                     <form action="milestoneService" method="get" enctype="multipart/form-data"
                         class="vueform form-group form">
 
@@ -70,7 +70,9 @@
                             <div v-if="booked" class="col px-1 mt-2 mt-sm-0">
                                 <div class="form-group">
 
-                                    <a v-if="result.time_left == 'L A T E !'" @click="make_session(form.id);"
+                                    <a v-if ="result.status == 'In Progress'" class="placeH_inactive pb-2 text-center border border-dark p-0 btn btn-secondary text-dark btn-block">PAID</a>
+
+                                    <a v-else-if="result.time_left == 'L A T E !'" @click="make_session(form.id);"
                                         
                                         class="placeH_active status text-center border border-dark btn btn-light btn-block disabled">PAY</a>
 
@@ -84,8 +86,7 @@
 
                             <div class="col px-1 mt-2 mt-sm-0">
                                 <div class="form-group">
-                                    <span class="placeH_active status text-center border border-dark btn btn-success btn-block">In
-                                        Progress</span>
+                                    <span class="placeH_active status text-center border border-dark btn btn-success btn-block">{{result.status}}</span>
                                 </div>
                             </div>
 
@@ -112,7 +113,7 @@
 
 
                 <!--Done Download form -->
-                <div v-else-if="result.status == 'Done' || result.status == 'Being Completed' " class="modal-body">
+                <div v-else-if="result.status == 'Done'" class="modal-body">
                     <form action="" method="post" enctype="multipart/form-data" class="vueform form-group form">
 
 
@@ -215,8 +216,7 @@
 
                             <div class="col px-0 my-2 my-sm-0">
                                 <div class="form-group">
-                                    <span class="placeH_inactive pb-2 status text-center border border-dark p-0 btn btn-secondary text-dark btn-block">On
-                                        Hold</span>
+                                    <span class="placeH_inactive pb-2 status text-center border border-dark p-0 btn btn-secondary text-dark btn-block">To DO</span>
                                 </div>
                             </div>
 

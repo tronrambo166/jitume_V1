@@ -4,6 +4,8 @@
 
 -GIT
 git add . && git commit -m "updated" && git push -u origin master
+sudo chown -R www-data public
+sudo systemctl restart apache2.service
 
 1. Create new repository
 2. from code directory's cmd, git init

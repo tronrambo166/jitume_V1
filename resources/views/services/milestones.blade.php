@@ -81,13 +81,13 @@
                 
             @if($ev->status == 'Created' || $ev->status == 'In Progress')
             <option selected hidden value="In Progress" class="form-control" >In Progress</option> 
-            <option value="On Hold"class="form-control" >On Hold</option>
+            <option value="To Do"class="form-control" >To Do</option>
              <option value="Done" class="form-control" >Done</option>
              <option value="Cancelled" class="form-control" >Cancelled</option>
 
-            @elseif($ev->status == 'On Hold')
+            @elseif($ev->status == 'To Do')
              <option value="In Progress" class="form-control" >In Progress</option>
-             <option selected hidden value="On Hold"class="form-control" >On Hold</option>
+             <option selected hidden value="To Do"class="form-control" >To Do</option>
              <option value="Done" class="form-control" >Done</option>
              <option value="Cancelled" class="form-control" >Cancelled</option>
 

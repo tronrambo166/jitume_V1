@@ -74080,9 +74080,7 @@ var render = function () {
                   "li",
                   {
                     class:
-                      result.status == "In Progress" || result.status == "Done"
-                        ? "active"
-                        : "",
+                      result.active || result.status == "Done" ? "active" : "",
                   },
                   [_vm._v(" Step ")]
                 )
@@ -74097,7 +74095,7 @@ var render = function () {
             "div",
             { staticClass: "w-75 m-auto row mt-4 text-center" },
             [
-              result.status == "In Progress"
+              result.active
                 ? _c("div", { staticClass: "modal-body" }, [
                     _c(
                       "form",
@@ -74218,7 +74216,16 @@ var render = function () {
                                 { staticClass: "col px-1 mt-2 mt-sm-0" },
                                 [
                                   _c("div", { staticClass: "form-group" }, [
-                                    result.time_left == "L A T E !"
+                                    result.status == "In Progress"
+                                      ? _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "placeH_inactive pb-2 text-center border border-dark p-0 btn btn-secondary text-dark btn-block",
+                                          },
+                                          [_vm._v("PAID")]
+                                        )
+                                      : result.time_left == "L A T E !"
                                       ? _c(
                                           "a",
                                           {
@@ -74307,7 +74314,18 @@ var render = function () {
                             },
                           }),
                           _vm._v(" "),
-                          _vm._m(0, true),
+                          _c("div", { staticClass: "col px-1 mt-2 mt-sm-0" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "placeH_active status text-center border border-dark btn btn-success btn-block",
+                                },
+                                [_vm._v(_vm._s(result.status))]
+                              ),
+                            ]),
+                          ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "col px-1 mt-2 mt-sm-0" }, [
                             _c(
@@ -74354,7 +74372,7 @@ var render = function () {
                       ]
                     ),
                   ])
-                : result.status == "Done" || result.status == "Being Completed"
+                : result.status == "Done"
                 ? _c("div", { staticClass: "modal-body" }, [
                     _c(
                       "form",
@@ -74599,11 +74617,11 @@ var render = function () {
                             ]),
                           ]),
                           _vm._v(" "),
+                          _vm._m(0, true),
+                          _vm._v(" "),
                           _vm._m(1, true),
                           _vm._v(" "),
                           _vm._m(2, true),
-                          _vm._v(" "),
-                          _vm._m(3, true),
                         ]),
                       ]
                     ),
@@ -74617,23 +74635,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col px-1 mt-2 mt-sm-0" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "span",
-          {
-            staticClass:
-              "placeH_active status text-center border border-dark btn btn-success btn-block",
-          },
-          [_vm._v("In\n                                    Progress")]
-        ),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -74686,7 +74687,7 @@ var staticRenderFns = [
             staticClass:
               "placeH_inactive pb-2 status text-center border border-dark p-0 btn btn-secondary text-dark btn-block",
           },
-          [_vm._v("On\n                                    Hold")]
+          [_vm._v("To DO")]
         ),
       ]),
     ])

@@ -537,8 +537,9 @@ public function getMilestones($id){
 
 try{
   foreach($milestones as $mile){
-  if($mile->status == 'In Progress' || $mile->status == 'Being Completed') $c++;
+  if($mile->status == 'In Progress' || $mile->status == 'To Do') $c++;
   if($mile->status == 'Done') $d++; 
+
 
   //SETTING Time Diffrence
 $time_due_date = date( "Y-m-d H:i:s", strtotime($mile->created_at.' +'.$mile->n_o_days.' days 0 hours 0 minutes'));
@@ -554,10 +555,10 @@ if($time_now > $time_due_date)
 
 } 
 
- if($c==0 && $d==0 && count($milestones)!=0){
+//  if($c==0 && $d==0 && count($milestones)!=0){
   
-  $milestones[0]->status = 'In Progress';
-}
+//   $milestones[0]->status = 'To Do';
+// }
 
 if($d == count($milestones) && count($milestones)!=0)
 {
@@ -638,7 +639,11 @@ $title = $request->title;
 $business_id = $request->business_id;
 $amount = $request->amount;
 $user_id = Auth::id();
-$status = 'Created';
+$status = 'To Do';
+
+$hasMile = Smilestones::where('listing_id',$business_id)->first();
+if($hasMile)
+  $active = 0; else $active = 1;
 
 $time_type = $request->time_type;
 $n_o_days = $request->n_o_days;
@@ -696,7 +701,8 @@ Smilestones::create([
             'amount' => $amount,
             'document' => $final_file,
             'n_o_days' => $n_o_days,
-            'status' => $status           
+            'status' => $status,
+            'active' => $active        
            ]);       
 }
 catch(\Exception $e){
@@ -711,12 +717,13 @@ catch(\Exception $e){
 public function mile_status(Request $request){
 $milestones = Smilestones::where('id',$request->id)
 ->update([
-'status' => $request->status
+'status' => $request->status,
+'active' => 0
 ]);
 
 //MAIL
     $mile = Smilestones::where('id',$request->id)->first();
-    $notLastMile = Smilestones::where('listing_id',$mile->listing_id)->where('status','On Hold')->first();
+    $notLastMile = Smilestones::where('listing_id',$mile->listing_id)->where('status','To Do')->first();
   
     if($notLastMile)
 
