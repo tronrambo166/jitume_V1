@@ -15,6 +15,7 @@ use App\Models\Conversation;
 use App\Models\Milestones;
 use App\Models\Smilestones;
 use App\Models\serviceBook;
+use App\Models\ServiceMileStatus;
 use Session; 
 use Hash;
 use Auth;
@@ -468,7 +469,10 @@ catch(\Exception $e){
       }
     }
 
-    $id = $request->milestone_id; //explode(',',$request->ids);
+    $rep_id = $request->milestone_id; //For Replica table
+    $mileRep = ServiceMileStatus::where('id',$rep_id)->first();
+
+    $id = $mileRep->mile_id; 
 
     $mile = Smilestones::where('id',$id)->first();    
     $tax = taxes::where('id',1)->first();$tax = $tax->tax+$tax->vat;
@@ -519,7 +523,7 @@ catch(\Exception $e){
                 "source_transaction" => $charge->id,
                 'destination' => $owner->connect_id
         ]);
-        Smilestones::where('id',$id)->update([ 'status' => 'In Progress']);
+        ServiceMileStatus::where('id',$rep_id)->update([ 'status' => 'In Progress']);
         
         }
 

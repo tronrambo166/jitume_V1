@@ -10,6 +10,8 @@ use App\Models\Equipments;
 use App\Models\Smilestones;
 use App\Models\serviceDocs;
 use App\Models\serviceBook;
+use App\Models\ServiceMileStatus;
+use App\Models\ServiceMessages; 
 use App\Models\User;
 use DateTime;
 use Session; 
@@ -532,14 +534,26 @@ return view('services.add_milestones',compact('business','milestones'));
 }
 
 public function getMilestones($id){ 
- $milestones = Smilestones::where('listing_id',$id)->get(); 
+
+  //Booking check
+  $booking = serviceBook::where('service_id',$id)
+  ->where('booker_id', Auth::id())
+  ->where('status', 'Confirmed')->first();
+  if($booking) $booked = 1; else $booked = 0;
+
+  if($booked){
+    $milestones = ServiceMileStatus::where('service_id',$id)
+    ->where('booker_id', Auth::id())->get(); 
+  }
+  else{
+    $milestones = Smilestones::where('listing_id',$id)->get();
+  }
+  
  $c=0;$d=0;$test='';
 
 try{
   foreach($milestones as $mile){
-  if($mile->status == 'In Progress' || $mile->status == 'To Do') $c++;
   if($mile->status == 'Done') $d++; 
-
 
   //SETTING Time Diffrence
 $time_due_date = date( "Y-m-d H:i:s", strtotime($mile->created_at.' +'.$mile->n_o_days.' days 0 hours 0 minutes'));
@@ -555,24 +569,11 @@ if($time_now > $time_due_date)
 
 } 
 
-//  if($c==0 && $d==0 && count($milestones)!=0){
-  
-//   $milestones[0]->status = 'To Do';
-// }
-
 if($d == count($milestones) && count($milestones)!=0)
 {
-  $done_msg = 'Milestone completed! Order placed!';
+  $done_msg = 'Milestone completed! Service Delivered!';
 }
 else $done_msg = null;
-
-//Booking check
-$booking = serviceBook::where('service_id',$id)
-->where('booker_id', Auth::id())
-->where('status', 'Confirmed')->first();
-
-if($booking) $booked = 1;
-else $booked = 0;
 
 }
 catch(\Exception $e){
@@ -605,15 +606,34 @@ if($id == 'all'){
   else $milestones = [];
   $business_name = 'Select Service';//$listing->name;
 }
-else{
-  $milestones = Smilestones::where('listing_id', $id)->get();
-  $listing = Services::where('id', $id)->first();
-  $business_name = $listing->name;
-}
+// else{
+//   $milestones = Smilestones::where('listing_id', $id)->get();
+//   $listing = Services::where('id', $id)->first();
+//   $business_name = $listing->name;
+// }
 
 $business = Services::where('shop_id',Auth::id())->get();
 return view('services.milestones',compact('milestones','business', 'business_name'));
 }
+
+public function findMilestones(Request $request){
+
+  $service_id = $request->service_id;
+  $booker_id = $request->booker_id;
+  //Optional
+  $service = Services::where('id',$service_id)->first();
+  $s_name = $service->name;
+  $booker = User::where('id',$booker_id)->first();
+  $booker_name = $booker->fname.' '.$booker->lname;
+  //Optional
+
+  $milestones = ServiceMileStatus::where('service_id', $service_id)
+  ->where('booker_id', $booker_id)->get();
+ 
+  $business = Services::where('shop_id',Auth::id())->get();
+  return view('services.milestones',compact('milestones','business','s_name', 'booker_name'));
+}
+
 
 
 public function booker_milestones(){
@@ -631,6 +651,19 @@ public function booker_milestones(){
 
 return view('services.booker-milestones',compact('results'));
 }
+
+
+public function getBookers($s_id){
+  $results = [];
+  $book = serviceBook::where('service_id', $s_id)
+  ->where('status', 'Confirmed')->get();
+  foreach($book as $b){
+    $booker = User::where('id',$b->booker_id)->first();
+    $results[] = $booker;
+  }
+return response()->json(['data' => $results]);
+}
+
 
 
 
@@ -715,15 +748,19 @@ catch(\Exception $e){
 
 
 public function mile_status(Request $request){
-$milestones = Smilestones::where('id',$request->id)
+
+if($request->status == '') return redirect('business/s_milestones-all');
+
+$milestones = ServiceMileStatus::where('id',$request->id)
 ->update([
 'status' => $request->status,
 'active' => 0
 ]);
 
 //MAIL
-    $mile = Smilestones::where('id',$request->id)->first();
-    $notLastMile = Smilestones::where('listing_id',$mile->listing_id)->where('status','To Do')->first();
+    $mile = ServiceMileStatus::where('id',$request->id)->first();
+    $notLastMile = ServiceMileStatus::where('service_id',$mile->service_id)
+    ->where('booker_id',$mile->booker_id)->where('status','To Do')->first();
   
     if($notLastMile)
 
@@ -733,14 +770,14 @@ $milestones = Smilestones::where('id',$request->id)
 
     try{
        
-        $business = Services::where('id',$mile->listing_id)->first();
-        $booking = serviceBook::where('service_owner_id',Auth::id())
-        ->where('status', 'Confirmed')->latest()->first();
+        $business = Services::where('id',$mile->service_id)->first();
+        $booking = serviceBook::where('service_id',$mile->service_id)
+        ->where('booker_id',$mile->booker_id)->latest()->first();
 
         $owner = User::where('id', $booking->service_owner_id)->first();
-        $customer = User::where('id',$booking->booker_id)->first();
+        $customer = User::where('id',$mile->booker_id)->first();
 
-        $info=[  'name'=>$mile->title,  'amount'=>$mile->amount, 'business'=>$business->name, 's_id' => $business->id, 'owner' => $owner->fname. ' '.$owner->lname ]; 
+        $info=[  'name'=>$mile->title,  'amount'=>$mile->amount, 'business'=>$business->name, 's_id' => $business->id,'booker_id' => $mile->booker_id, 'owner' => $owner->fname. ' '.$owner->lname ]; 
 
         $user['to'] = $customer->email;//'sohaankane@gmail.com';
 
@@ -751,10 +788,10 @@ $milestones = Smilestones::where('id',$request->id)
 //Mail
  }
       catch(\Exception $e){
-      return redirect()->back()->with('failed', $e->getMessage());
+      return redirect('business/s_milestones-all')->with('failed', $e->getMessage());
     }
-
-return redirect()->back();
+Session::put('success', 'Status Changed!');
+return redirect('business/s_milestones-all'); //->back();
 }
 
 
@@ -812,6 +849,23 @@ foreach($booking as $book)
 return view('services.my_booking',compact('results'));
 }
 
+
+public function service_messages(){ 
+$results = [];
+$messages = ServiceMessages::where('service_owner_id',Auth::id())->get();
+foreach($messages as $book)
+{
+  $service =Services::where('id',$book->service_id)->first();
+  $sender =User::where('id',$book->booker_id)->first();
+  $book->service = $service->name;
+  $book->sender = $sender->fname.' '.$sender->lname;
+  $results[] = $book;
+}
+
+return view('services.messages',compact('results'));
+}
+
+
 public function service_booking(){ 
 $results = [];
 $booking = serviceBook::where('service_owner_id',Auth::id())
@@ -819,9 +873,14 @@ $booking = serviceBook::where('service_owner_id',Auth::id())
 foreach($booking as $book)
 {
   $service =Services::where('id',$book->service_id)->first();
+  $customer =User::where('id',$book->booker_id)->first();
   $book->location = $service->location;
   $book->service = $service->name;
   $book->category = $service->category;
+  //customer
+  $book->customer_name = $customer->fname.' '.$customer->lname;
+  $book->website = $customer->website;
+  $book->email = $customer->email;
   $results[] = $book;
 }
 
@@ -847,6 +906,32 @@ public function serviceBook(Request $request){
     ]); 
     if($booking)
     return response()->json(['success' => 'Booking Success! Go to dashboard to see status']);
+    }
+
+    catch(\Exception $e){
+      return response()->json(['failed' => $e->getMessage()]);
+    }
+}
+
+
+public function serviceMsg(Request $request){ 
+
+  try{
+   if(Auth::check())
+        $booker_id = Auth::id();
+    else {
+        return response()->json(['failed' => 'You must sign in to book!']);
+    }
+    $owner = Services::where('id',$request->service_id)->first();
+
+    $message = ServiceMessages::create([
+      'booker_id' => $booker_id,
+      'service_id' => $request->service_id,
+      'service_owner_id' => $owner->shop_id,
+      'msg' => $request->msg
+    ]); 
+    if($message)
+    return response()->json(['success' => 'Message Sent!']);
     }
 
     catch(\Exception $e){

@@ -9,23 +9,33 @@
 <div class="card-header w-100">
 <h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold">Milestones </h4> 
 
- <div class="mx-5 my-2 mx-auto d-block">
-  <div class="dropdown show d-block ml-auto mt-3 d-block" style="width:15%;">
-                  <a class="mile btn py-1 dropdown-toggle ml-auto" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    @if(isset($business_name)) {{$business_name}} @else Select Business @endif
-                  </a>
-                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li style="list-style-type: none;" class="text-center mt-3 nav-item py-1 px-0 text-secondary">
-                          @foreach($business as $b)
-                <a style="font-size:13px;" class="dropdown-item" href="{{route('s_milestones', $b->id) }}">{{$b->name}}</a>
-                 @endforeach
+ <div class="mx-5 my-4 my-2 ml-auto d-block">
 
-                    </li>
-                    
-                  </div>
-                </div> 
+                <form action="{{route('findMilestones')}}" method="post">@csrf
+                <select name="service_id" required onchange="getBookers(this.value);" class="px-2 py-1 mx-1">
+                    <option hidden value="">Select Service</option>
+                    @foreach($business as $b)
+                    <option class="form-control" value="{{$b->id}}">{{$b->name}}</option>
+                    @endforeach
+                </select>
+
+                <select name="booker_id" id="bookers" required class="px-2 py-1 mx-1">
+                    <option value="">Select Customer</option>
+                </select>
+
+                <button style="font-weight:400;" type="submit" class="searchListing px-4 py-1">Find</button>
+            </form> 
 
 
+</div>
+
+<div class="mx-5 my-4 my-2 ml-auto d-block">
+    @if(isset($booker_name))
+    <div class="row">
+        <div class="col-sm-3"><p class="ml-1 font-weight-bold">Service: {{$s_name}}</p> </div>
+        <div class="col-sm-3"><p class="font-weight-bold">Booker: {{$booker_name}}</p> </div>
+    </div>
+    @endif
 </div>
 
       
@@ -65,7 +75,7 @@
         <tr >
             <td>{{$ev->title }}</td>
                 <td> @foreach($business as $b)
-                     @if($ev->listing_id == $b->id)
+                     @if($ev->service_id == $b->id)
                        {{$b->name}}
                        @endif @endforeach
                </td>
@@ -144,6 +154,29 @@
 
         </div>
 
+<script type="text/javascript">
+    function getBookers(s_id) {
+          $("#bookers").html('');
+          $.ajax({
+                url: 'getBookers/' + s_id,
+                method: 'get',
+                dataType: 'json',
+                success: function(response) {
+                    for (i = 0; i < response.data.length; i++) {
+                            var name = response.data[i].fname+' '+
+                            response.data[i].lname;
+                            var id = response.data[i].id;
+                            $("#bookers").append('<option class="form-control" value="'+id+'">'+name+'</option>');
+                    } 
+
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+
+            });
+        }
+</script>
 
 @endsection
 

@@ -8353,22 +8353,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     var _this2 = this;
 
-    //GOOGLE VAR
+    this.latBusiness();
+    this.routerPush(); //GOOGLE VAR
+
     var initializeWhenGoogleIsAvailable = function initializeWhenGoogleIsAvailable() {
       if (google) {
         // test if google is available
         _this2.initAutocomplete(); // if it is, then initalize
 
       } else {
-        setTimeout(initializeWhenGoogleIsAvailable, 1000); // if it isn't, wait a bit
+        setTimeout(initializeWhenGoogleIsAvailable, 2000); // if it isn't, wait a bit
       }
     };
 
     initializeWhenGoogleIsAvailable(); //GOOGLE VAR
     //this.initAutocomplete();
-
-    this.latBusiness();
-    this.routerPush();
   }
 });
 
@@ -10915,6 +10914,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -10934,6 +10964,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         service_id: '',
         note: ''
       }),
+      formMsg: new Form({
+        msg: '',
+        service_id: ''
+      }),
       details: [],
       service_id: '',
       booked: false
@@ -10946,6 +10980,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     getDetails: function getDetails() {
       var id = this.$route.params.id;
       this.formBook.service_id = this.$route.params.id;
+      this.formMsg.service_id = this.$route.params.id;
       var t = this;
       axios.get('ServiceResults/' + id).then(function (data) {
         console.log(data); //t.details = data.data.data;
@@ -10968,7 +11003,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           console.log(parseInt(t.form.rating));
           if (i <= parseInt(t.form.rating)) $('#staticRating').append('<img src="rating/images/g-star.svg" style="height: 15px;color:green" class="">');else $('#staticRating').append('<img src="rating/images/white.png" style="height: 15px;" class="">');
         }
-      });
+      }); //Calendar Min Date
+
+      var date = new Date();
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+      var currentDate = "".concat(year, "-").concat(month, "-").concat(day);
+      document.getElementById('date').setAttribute("min", currentDate);
     },
     addToCart: function addToCart(id) {
       var _this = this;
@@ -11060,6 +11102,50 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee);
+      }))();
+    },
+    sendMessage: function sendMessage() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var response;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this3.formMsg.post('serviceMsg');
+
+              case 2:
+                response = _context2.sent;
+
+                //console.log(response.data);
+                if (response.data.success) {
+                  $.alert({
+                    title: 'Alert!',
+                    content: response.data.success
+                  });
+                  $('#collapseExample').removeClass('show');
+                } else $.alert({
+                  title: 'Alert!',
+                  content: response.data.failed,
+                  type: 'red',
+                  buttons: {
+                    tryAgain: {
+                      text: 'Close',
+                      btnClass: 'btn-red',
+                      action: function action() {}
+                    }
+                  }
+                }); // this.$router.push('/manage-category');
+
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     }
   },
@@ -74194,7 +74280,7 @@ var render = function () {
                                     on: {
                                       click: function ($event) {
                                         return _vm.download_milestone_doc(
-                                          result.id
+                                          result.mile_id
                                         )
                                       },
                                     },
@@ -74481,7 +74567,7 @@ var render = function () {
                                       on: {
                                         click: function ($event) {
                                           return _vm.download_milestone_doc(
-                                            result.id
+                                            result.mile_id
                                           )
                                         },
                                       },
@@ -74557,7 +74643,7 @@ var render = function () {
                                   },
                                 ],
                                 staticClass:
-                                  "btn-secondary text-dark placeH_inactive w-100 py-1 border border-dark",
+                                  "btn-secondary placeH_inactive w-100 py-1 border border-dark",
                                 attrs: {
                                   readonly: "",
                                   required: "",
@@ -74593,7 +74679,7 @@ var render = function () {
                                   },
                                 ],
                                 staticClass:
-                                  "btn-secondary text-dark placeH_inactive w-100 py-1 border border-dark",
+                                  "btn-secondary placeH_inactive w-100 py-1 border border-dark",
                                 attrs: {
                                   readonly: "",
                                   required: "",
@@ -74644,8 +74730,7 @@ var staticRenderFns = [
         _c(
           "a",
           {
-            staticClass:
-              "btn-secondary text-dark disabled placeH_inactive btnUp4 w-100",
+            staticClass: "btn-secondary disabled placeH_inactive btnUp4 w-100",
           },
           [
             _vm._v(
@@ -74667,7 +74752,8 @@ var staticRenderFns = [
           "a",
           {
             staticClass:
-              "placeH_inactive pb-2 text-center border border-dark p-0 btn btn-secondary text-dark btn-block",
+              "placeH_inactive pb-2 text-center border border-dark p-0 btn btn-secondary btn-block",
+            staticStyle: { color: "lightgray" },
             attrs: { disabled: "" },
           },
           [_vm._v("PAY")]
@@ -74685,9 +74771,9 @@ var staticRenderFns = [
           "span",
           {
             staticClass:
-              "placeH_inactive pb-2 status text-center border border-dark p-0 btn btn-secondary text-dark btn-block",
+              "placeH_inactive pb-2 status text-center border border-dark p-0 btn btn-secondary btn-block",
           },
-          [_vm._v("To DO")]
+          [_vm._v("To Do")]
         ),
       ]),
     ])
@@ -74865,6 +74951,172 @@ var render = function () {
                         },
                         [_vm._v("Service Milestone Breakdown")]
                       ),
+                  _vm._v(" "),
+                  _vm.auth_user
+                    ? _c(
+                        "a",
+                        {
+                          staticClass:
+                            "my-4 border border-dark w-50 text-center convBtn rounded",
+                          staticStyle: { cursor: "pointer", color: "#015601" },
+                          attrs: {
+                            "data-toggle": "collapse",
+                            href: "#collapseExample",
+                          },
+                        },
+                        [_vm._v("Contact Me")]
+                      )
+                    : _c(
+                        "a",
+                        {
+                          staticClass:
+                            "my-4 border border-dark w-50 mx-auto text-center convBtn",
+                          staticStyle: { cursor: "pointer", color: "#015601" },
+                          attrs: {
+                            "data-target": "#loginModal",
+                            "data-toggle": "modal",
+                          },
+                          on: {
+                            click: function ($event) {
+                              return _vm.make_session()
+                            },
+                          },
+                        },
+                        [_vm._v("Contact Me")]
+                      ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "collapse",
+                      attrs: { id: "collapseExample" },
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card card-body py-2",
+                          staticStyle: { width: "90%" },
+                        },
+                        [
+                          _c("div", { staticClass: "p-0" }, [
+                            _c(
+                              "form",
+                              {
+                                staticClass: "p-3",
+                                on: {
+                                  submit: function ($event) {
+                                    $event.preventDefault()
+                                    return _vm.sendMessage.apply(
+                                      null,
+                                      arguments
+                                    )
+                                  },
+                                },
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "d-flex p-2 justify-content-center",
+                                  },
+                                  [
+                                    _c("div", {}, [
+                                      _c("textarea", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.formMsg.msg,
+                                            expression: "formMsg.msg",
+                                          },
+                                        ],
+                                        staticClass: "rounded",
+                                        attrs: {
+                                          placeholder: "Enter message...",
+                                          rows: "2",
+                                          cols: "36",
+                                          required: "",
+                                          name: "msg",
+                                        },
+                                        domProps: { value: _vm.formMsg.msg },
+                                        on: {
+                                          input: function ($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.formMsg,
+                                              "msg",
+                                              $event.target.value
+                                            )
+                                          },
+                                        },
+                                      }),
+                                    ]),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.formMsg.service_id,
+                                      expression: "formMsg.service_id",
+                                    },
+                                  ],
+                                  attrs: {
+                                    hidden: "",
+                                    type: "number",
+                                    name: "service_id",
+                                  },
+                                  domProps: { value: _vm.formMsg.service_id },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.formMsg,
+                                        "service_id",
+                                        $event.target.value
+                                      )
+                                    },
+                                  },
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "p-0 d-flex justify-content-center",
+                                  },
+                                  [
+                                    _vm.auth_user
+                                      ? _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "my-3 py-1 btn-success w-50 btn header_buttons text-light float-right",
+                                          },
+                                          [
+                                            _vm._v(
+                                              "Send\n                          "
+                                            ),
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                  ]
+                                ),
+                              ]
+                            ),
+                          ]),
+                        ]
+                      ),
+                    ]
+                  ),
                 ]),
               ]),
             ]),
@@ -74889,8 +75141,6 @@ var render = function () {
                         },
                       },
                       [
-                        _vm._m(0),
-                        _vm._v(" "),
                         _c(
                           "div",
                           {
@@ -74919,6 +75169,7 @@ var render = function () {
                                 ],
                                 attrs: {
                                   required: "",
+                                  id: "date",
                                   type: "date",
                                   name: "date",
                                 },
@@ -75091,11 +75342,11 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("form", [
-                  _vm._m(2),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c("h5", { staticClass: "font-weight-bold" }, [
                     _vm._v("Leave a review"),
@@ -75128,26 +75379,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "d-flex p-2 justify-content-center justify-content-md-end",
-      },
-      [
-        _c(
-          "a",
-          {
-            staticClass: "w-50 my-3 btn header_buttons text-light float-right",
-          },
-          [_vm._v("Message")]
-        ),
-      ]
-    )
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

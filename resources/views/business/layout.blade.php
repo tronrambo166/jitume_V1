@@ -89,7 +89,7 @@ $booking = serviceBook::where('booker_id',$user_id)->get();
                             </div>
                             <div class="nav-item ">
 
-                                <a href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-envelope"></i></a>
+                                <a href="{{route('service-messages')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-envelope"></i></a>
                             </div>
 
                             <div class="nav-item mr-4">

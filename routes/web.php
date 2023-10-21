@@ -68,6 +68,8 @@ Route::get('priceFilterS/{min}/{max}/{ids}', 'PagesController@priceFilterS')->na
 
 Route::post('searchService', 'PagesController@searchService')->name('searchService');
 Route::post('serviceBook', 'ServiceController@serviceBook')->name('serviceBook');
+Route::post('serviceMsg', 'ServiceController@serviceMsg')->name('serviceMsg');
+
 Route::get('ServiceResults/{ids}', 'PagesController@ServiceResults')->name('ServiceResults'); 
 Route::get('categoryResults/{catName}', 'PagesController@categoryResults')->name('categoryResults');
 
@@ -144,13 +146,15 @@ Route::post('add_video', 'BusinessController@add_video')->name('add_video');
 Route::post('embed_business_video', 'BusinessController@embed_business_video')->name('embed_business_video');
 
 
-//Dashboard -- Service
+//Dashboard -- Service ROUTES
 Route::get('services', 'ServiceController@services')->name('services');
 Route::get('add-services', 'ServiceController@add_listing')->name('add-services');
 Route::post('create-service', 'ServiceController@save_listing')->name('create-service');
 // --- MILESTONE
 Route::get('add_s_milestones', 'ServiceController@add_milestones')->name('add_s_milestones');
 Route::get('s_milestones-{id}', 'ServiceController@milestones')->name('s_milestones');
+Route::post('findMilestones', 'ServiceController@findMilestones')->name('findMilestones');
+
 Route::post('save_s_milestone', 'ServiceController@save_milestone')->name('save_s_milestone');
 Route::post('up_milestones', 'ServiceController@up_milestone')->name('up_s_milestones');
 Route::get('delete_s_milestone/{id}', 'ServiceController@delete_milestone')->name('delete_s_milestone');
@@ -159,6 +163,9 @@ Route::post('mile_s_status', 'ServiceController@mile_status')->name('mile_s_stat
 Route::get('service_booking', 'ServiceController@service_booking')->name('service_booking');
 Route::get('my_booking', 'ServiceController@my_booking')->name('my_booking');
 Route::get('booker-milestones', 'ServiceController@booker_milestones')->name('booker-milestones');
+Route::get('getBookers/{s_id}', 'ServiceController@getBookers')->name('getBookers');
+Route::get('service-messages', 'ServiceController@service_messages')->name('service-messages');
+
 
 Route::get('/', 'BusinessController@home')->name('services/index');
 Route::get('services', 'ServiceController@listings')->name('services');
@@ -226,7 +233,7 @@ Route::post('bidCommits', 'checkoutController@bidCommits')->name('bidCommits');
 Route::get('agreeToBid/{bidId}', 'bidsEmailController@agreeToBid')->name('agreeToBid');
 Route::get('agreeToNextmile/{bidId}', 'bidsEmailController@agreeToNextmile')->name('agreeToNextmile');
 Route::post('bookingAccepted', 'bidsEmailController@bookingAccepted')->name('bookingAccepted');
-Route::get('agreeToMileS/{s_id}', 'bidsEmailController@agreeToMileS')->name('agreeToMileS');
+Route::get('agreeToMileS/{s_id}/{booker_id}', 'bidsEmailController@agreeToMileS')->name('agreeToMileS');
 
 //<!-- BIDS -->
 

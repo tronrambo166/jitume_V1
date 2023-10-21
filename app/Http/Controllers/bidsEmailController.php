@@ -23,6 +23,7 @@ use Mail;
 use Stripe\StripeClient;
 use App\Models\taxes;
 use App\Models\BusinessBids;
+use App\Models\ServiceMileStatus;
 
 class bidsEmailController extends Controller
 {
@@ -161,10 +162,12 @@ public function agreeToBid($bidId)
        }  
 }
 
-public function agreeToMileS($s_id)
+public function agreeToMileS($s_id,$booker_id)
 {
-    $mileLat = Smilestones::where('listing_id',$s_id)->where('status','To Do')->first();
-    Smilestones::where('id',$mileLat->id)->update([ 'active' => 1]);
+    $mileLat = ServiceMileStatus::where('service_id',$s_id)->where('booker_id',$booker_id)->where('status','To Do')->first();
+
+    if($mileLat)
+    ServiceMileStatus::where('id',$mileLat->id)->update([ 'active' => 1]);
     Session::put('login_success','Thanks for your review, next milestone can be paid for to begin!!');
        return redirect()->to('/#/service-milestone/'.$s_id);
 }
@@ -391,7 +394,31 @@ public function bookingAccepted(Request $request)
              $msg->subject('Booking accepted!');
          });
 
-           $confirm = serviceBook::where('id',$id)->update(['status' => 'Confirmed']);
+        $confirm = serviceBook::where('id',$id)->update(['status' => 'Confirmed']);
+
+        //Replicate Miles
+        $booker_id = $bid->booker_id;
+        $service_id = $bid->service_id;
+        $this_miles = Smilestones::where('listing_id',$service_id)->get();
+        $i = 1;
+        foreach($this_miles as $mile){
+        if($i == 1) $active = 1; else $active = 0;
+            ServiceMileStatus::create([
+                'mile_id' => $mile->id,
+                'service_id' => $service_id,
+                'booker_id' => $booker_id,
+                'title' => $mile->title,
+                'amount' => $mile->amount,
+                'document' => $mile->document,
+                'active' => $active,
+                'status' => 'To Do',
+                'created_at' => $mile->created_at,
+                'n_o_days' => $mile->n_o_days
+                
+            ]); $i++;
+        }
+        //Replicate Miles
+
          }
        }
         Session::put('success','Confirmed!');

@@ -71,13 +71,44 @@
                     class="border border-dark w-50 text-center convBtn rounded">Service Milestone
                     Breakdown</a>
 
-                  <!--
-                            <a  v-if="auth_user" @click="addToCart(form.id)" class="text-light font-weight-bold btn buttonEq2">Add to cart</a>
-                            <a v-else @click="make_session()" class="text-light font-weight-bold btn buttonEq2" data-target="#loginModal" data-toggle="modal">Add to cart</a> -->
-
                   <a style="cursor:pointer;" v-else @click="make_session()"
                     class="border border-dark w-50 mx-auto text-center convBtn" data-target="#loginModal"
                     data-toggle="modal">Service Milestone Breakdown</a>
+
+                    <!-- Message -->
+                    <a style="cursor:pointer;color:#015601;" v-if="auth_user"
+                    class="my-4 border border-dark w-50 text-center convBtn rounded" data-toggle="collapse" href="#collapseExample">Contact Me</a>
+
+                  <a style="cursor:pointer;color:#015601;" v-else @click="make_session()"
+                    class="my-4 border border-dark w-50 mx-auto text-center convBtn" data-target="#loginModal"
+                    data-toggle="modal">Contact Me</a>
+
+                  <div class="collapse" id="collapseExample">
+                    <div class="card card-body py-2" style="width: 90%;">
+                      <div  class="p-0">
+                        <form @submit.prevent="sendMessage" class="p-3">
+                          <div class="d-flex p-2 justify-content-center">
+                            <div class="">
+                              <textarea placeholder="Enter message..." rows="2" cols="36" required v-model="formMsg.msg" name="msg" class="rounded"></textarea>
+                            </div>
+
+                          </div>
+
+                          <input hidden type="number" name="service_id" v-model="formMsg.service_id">
+
+                          <div class="p-0 d-flex justify-content-center">
+                            <button v-if="auth_user"
+                              class="my-3 py-1 btn-success w-50 btn header_buttons text-light float-right">Send
+                            </button>
+                          </div>
+
+
+                        </form>
+
+            </div>
+                    </div>
+                  </div>
+                    <!-- Message -->
 
                 </form>
               </div>
@@ -92,13 +123,13 @@
             <div id="booked" v-if="!booked" class="p-2">
               <form @submit.prevent="serviceBook">
 
-                <div class="d-flex p-2 justify-content-center justify-content-md-end">
+                <!-- <div class="d-flex p-2 justify-content-center justify-content-md-end">
                   <a class="w-50 my-3 btn header_buttons text-light float-right">Message</a>
-                </div>
+                </div> -->
 
                 <div class="d-flex p-2 justify-content-center justify-content-md-end">
                   <p class="d-inline  text-left text-light mr-2">Desired start date: </p>
-                  <span class="pl-0 d-inline "><input required v-model="formBook.date" type="date" name="date"></span>
+                  <span class="pl-0 d-inline "><input required v-model="formBook.date" id="date" type="date" name="date"></span>
                 </div>
 
                 <div class="d-flex p-2 justify-content-center justify-content-md-end">
@@ -233,6 +264,10 @@ export default {
       service_id: '',
       note: ''
     }),
+    formMsg: new Form({
+    msg: '',
+    service_id: ''
+    }),
     details: [],
     service_id: '',
     booked:false
@@ -247,6 +282,8 @@ export default {
     getDetails: function () {
       var id = this.$route.params.id;
       this.formBook.service_id = this.$route.params.id;
+      this.formMsg.service_id = this.$route.params.id;
+
       var t = this;
       axios.get('ServiceResults/' + id).then((data) => {
         console.log(data);
@@ -276,6 +313,14 @@ export default {
         }
 
       });
+
+      //Calendar Min Date
+      const date = new Date();
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear(); 
+      let currentDate = `${year}-${month}-${day}`;
+      document.getElementById('date').setAttribute("min", currentDate);
 
     },
 
@@ -341,6 +386,35 @@ export default {
           content: response.data.success,
         });
         this.booked = 1;
+      }
+      else
+        $.alert({
+          title: 'Alert!',
+          content: response.data.failed,
+           type: 'red',
+            buttons: {
+            tryAgain: {
+            text: 'Close',
+            btnClass: 'btn-red',
+            action: function(){
+            }
+        }}  
+        });
+
+
+      // this.$router.push('/manage-category');
+
+    },
+
+     async sendMessage() {
+      const response = await this.formMsg.post('serviceMsg');
+      //console.log(response.data);
+      if (response.data.success) {
+        $.alert({
+          title: 'Alert!',
+          content: response.data.success,
+        });
+        $('#collapseExample').removeClass('show');
       }
       else
         $.alert({

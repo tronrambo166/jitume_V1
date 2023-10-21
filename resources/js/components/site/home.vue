@@ -581,20 +581,22 @@ export default {
   },
 
   mounted() {
+    this.latBusiness();
+    this.routerPush();
+    
     //GOOGLE VAR
     let initializeWhenGoogleIsAvailable = () => {
       if (google) { // test if google is available
         this.initAutocomplete(); // if it is, then initalize
       } else {
-        setTimeout(initializeWhenGoogleIsAvailable, 1000) // if it isn't, wait a bit
+        setTimeout(initializeWhenGoogleIsAvailable, 2000) // if it isn't, wait a bit
        }
      };
   initializeWhenGoogleIsAvailable();
    //GOOGLE VAR
 
     //this.initAutocomplete();
-    this.latBusiness();
-    this.routerPush();
+    
 
 
   }

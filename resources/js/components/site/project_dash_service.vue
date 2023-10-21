@@ -59,7 +59,7 @@
 
                             <div class="col px-1 mt-2 mt-sm-0">
                                 <div class="upload-btn-wrapper w-100">
-                                    <a @click="download_milestone_doc(result.id)"
+                                    <a @click="download_milestone_doc(result.mile_id)"
                                         class="text-white  placeH btnUp3 w-100">Download Milestone Documentaion <i
                                             class="ml-2 fa fa-arrow-down pb-2"></i></a>
 
@@ -138,7 +138,7 @@
                             <div class="col my-2 my-sm-0">
 
                                 <div class="upload-btn-wrapper d-flex justify-content-start">
-                                    <a @click="download_milestone_doc(result.id)" class="text-white disabled placeH_done btnUp_done  w-100 d-flex align-items-center ">Download
+                                    <a @click="download_milestone_doc(result.mile_id)" class="text-white disabled placeH_done btnUp_done  w-100 d-flex align-items-center ">Download
                                         Milestone
                                         Documentaion <i class="ml-2 fa fa-arrow-down  pb-2"></i></a>
 
@@ -186,7 +186,7 @@
                             <div class="col px-1 my-2 my-sm-0">
                                 <div class=" ">
                                     <input readonly required="" name="title" type="text" v-model="result.title"
-                                        class="btn-secondary text-dark placeH_inactive w-100 py-1 border border-dark ">
+                                        class="btn-secondary placeH_inactive w-100 py-1 border border-dark ">
                                 </div>
                             </div>
 
@@ -195,13 +195,13 @@
                                 <div class="">
 
                                     <input readonly required="" type="number" v-model="result.amount" name="amount"
-                                        class="btn-secondary text-dark placeH_inactive w-100 py-1 border border-dark ">
+                                        class="btn-secondary placeH_inactive w-100 py-1 border border-dark ">
                                 </div>
                             </div>
 
                             <div class="col px-0 my-2 my-sm-0">
                                 <div class="upload-btn-wrapper w-100">
-                                    <a class="btn-secondary text-dark disabled placeH_inactive btnUp4 w-100">Download Milestone
+                                    <a class="btn-secondary disabled placeH_inactive btnUp4 w-100">Download Milestone
                                         Documentaion <i class="ml-2 fa fa-arrow-down"></i></a>
 
                                 </div>
@@ -210,13 +210,13 @@
 
                             <div class="col px-1 my-2 my-sm-0">
                                 <div class="form-group">
-                                    <a disabled class="placeH_inactive pb-2 text-center border border-dark p-0 btn btn-secondary text-dark btn-block">PAY</a>
+                                    <a style="color:lightgray;" disabled class="placeH_inactive pb-2 text-center border border-dark p-0 btn btn-secondary btn-block">PAY</a>
                                 </div>
                             </div>
 
                             <div class="col px-0 my-2 my-sm-0">
                                 <div class="form-group">
-                                    <span class="placeH_inactive pb-2 status text-center border border-dark p-0 btn btn-secondary text-dark btn-block">To DO</span>
+                                    <span class="placeH_inactive pb-2 status text-center border border-dark p-0 btn btn-secondary btn-block">To Do</span>
                                 </div>
                             </div>
 
