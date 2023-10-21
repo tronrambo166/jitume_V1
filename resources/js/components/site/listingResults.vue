@@ -255,7 +255,7 @@ export default {
                 "</div>" +
                 '<h1 id="firstHeading" class="firstHeading">'+value.name+'</h1>' +
                 '<div id="bodyContent">' +
-                '<p><b>Location: </b>'+value.location+', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/#/listingDetails/'+value.id+'">' +
+                '<p><b>Location: </b>'+value.location+', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="https://test.jitume.com/#/listingDetails/'+value.id+'">' +
                 "View Business</a> " +
                 "</div>" +
                 "</div>";

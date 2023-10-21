@@ -9849,7 +9849,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             value = _Object$entries$_i[1];
 
         //INFO
-        var contentString = '<div id="content">' + '<div id="siteNotice">' + "</div>" + '<h1 id="firstHeading" class="firstHeading">' + value.name + '</h1>' + '<div id="bodyContent">' + '<p><b>Location: </b>' + value.location + ', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/#/listingDetails/' + value.id + '">' + "View Business</a> " + "</div>" + "</div>";
+        var contentString = '<div id="content">' + '<div id="siteNotice">' + "</div>" + '<h1 id="firstHeading" class="firstHeading">' + value.name + '</h1>' + '<div id="bodyContent">' + '<p><b>Location: </b>' + value.location + ', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="https://test.jitume.com/#/listingDetails/' + value.id + '">' + "View Business</a> " + "</div>" + "</div>";
         var infowindow = new google.maps.InfoWindow({
           content: contentString,
           ariaLabel: value.name
@@ -11489,7 +11489,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             value = _Object$entries$_i[1];
 
         //INFO
-        var contentString = '<div id="content">' + '<div id="siteNotice">' + "</div>" + '<h1 id="firstHeading" class="firstHeading">' + value.name + '</h1>' + '<div id="bodyContent">' + '<p><b>Location: </b>' + value.location + ', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/#/serviceDetails/' + value.id + '">' + "View Business</a> " + "</div>" + "</div>";
+        var contentString = '<div id="content">' + '<div id="siteNotice">' + "</div>" + '<h1 id="firstHeading" class="firstHeading">' + value.name + '</h1>' + '<div id="bodyContent">' + '<p><b>Location: </b>' + value.location + ', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="https://test.jitume.com/#/serviceDetails/' + value.id + '">' + "View Business</a> " + "</div>" + "</div>";
         var infowindow = new google.maps.InfoWindow({
           content: contentString,
           ariaLabel: value.name
