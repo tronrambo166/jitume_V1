@@ -42,7 +42,8 @@
                         <p class="text-center font-weight-bold h5 pt-2">$9.99</p>
                     <p class="text-center">10 free "Start conversations" per month from any range.</p>
 
-                    <a @mouseleave="leave()" @mouseover="hover()" style="border: 1px solid black;" id="convBtn1"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
+                    <a @mouseleave="leave()" @mouseover="hover()"
+                    @click="make_session(form.id);stripeFee(form.id, 0.00,'silver-trial',30);" style="border: 1px solid black;" id="convBtn1"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
                 </div>
                  </div>
 
@@ -50,14 +51,16 @@
                     <div class=" card" @click="select(29.99)" id="two">
                         <p class="text-center font-weight-bold h5 pt-2">$29.99</p>
                     <p class="text-center">Silver + access to all data from one chosen range.</p>
-                    <a @mouseleave="leave()" @mouseover="hover2()" style="border: 1px solid black;" id="convBtn2"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
+                    <a @mouseleave="leave()" @mouseover="hover2()"
+                    @click="make_session(form.id);stripeFee(form.id, 0.00,'gold-trial',30);" style="border: 1px solid black;" id="convBtn2"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
                 </div> </div>
 
                 <div class="col-sm-4 "  >
                     <div class=" card"  @click="select(69.99)" id="three">
                         <p class="text-center font-weight-bold h5 pt-2">$69.99</p>
-                    <p class="text-center">Sivler access + Gold access to all data.</p>
-                    <a @mouseleave="leave()" @mouseover="hover3()" style="border: 1px solid black;" id="convBtn3"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
+                    <p class="text-center">Sivler access + Gold access to all data.</p> <br>
+                    <a @mouseleave="leave()" @mouseover="hover3()"
+                    @click="make_session(form.id);stripeFee(form.id, 0.00,'platinum-trial',30);" style="border: 1px solid black;" id="convBtn3"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
                 </div> </div>
 
             </div>
@@ -82,37 +85,48 @@
                 <div class="col-sm-4 ">
                     <div class=" card" @click="select(671.99)" id="six" >
                         <p class="text-center font-weight-bold h5 pt-2">$671.99</p>
-                    <p class="text-center">Sivler access + Gold access to all data.</p>
-                    <a @mouseleave="leave()" @mouseover="hover6()" style="border: 1px solid black;" id="convBtn6"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
+                    <p class="text-center">Sivler access + Gold access to all data.</p> <br>
+                    <a @mouseleave="leave()" @mouseover="hover6()" style="border: 1px solid black;" id="convBtn6"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a> 
                 </div> </div>
 
             </div>
 
 
-            <div class="row w-50 mx-auto  my-4">
+            <div class="row w-75 mx-auto  my-4">
                 
-                <div class="w-50">
-                     <h4>Turnover ranges:</h4>
-                        <p class="font-weight-bold my-1"> <span class="font-weight-bold">-</span> $0-$10000</p>
-                        <p class="font-weight-bold my-1"> <span class="font-weight-bold">-</span> $10000-$100000</p>                    
-                        <p class="font-weight-bold my-1"> <span class="font-weight-bold">-</span> $100000-$25000</p>
-                        <p class="font-weight-bold my-1"> <span class="font-weight-bold">-</span> $250000-$50000</p>
-                        <p class="font-weight-bold my-1"> <span class="font-weight-bold">-</span> $500000+</p>   
+                <div class="w-25">
+                     <h6>Turnover ranges:</h6>
+                        <p class="small my-1"> <span class="font-weight-bold">-</span> $0-$10000</p>
+                        <p class="small my-1"> <span class="small">-</span> $10000-$100000</p>                    
+                        <p class="smallsmall my-1"> <span class="smallsmall">-</span> $100000-$25000</p>
+                        <p class="smallsmall my-1"> <span class="smallsmall">-</span> $250000-$50000</p>
+                        <p class="smallsmall my-1"> <span class="smallsmall">-</span> $500000+</p>   
                 </div>
+
+                <div class="w-25 collapse" id="ranges">
+                     <select id="" name="chosen_range" class="p-2" @change="select_range($event)">
+                         <option value="$0-$10000">Select Range</option>
+                         <option value="$0-$10000">$0-$10000</option>
+                         <option value="$10000-$100000">$10000-$100000</option>
+                         <option value="$100000-$25000">$100000-$25000</option>
+                         <option value="$250000-$50000">$250000-$50000</option>
+                         <option value="$500000+">$500000+</option>
+                     </select>
+                </div>
+
 
                 <div class="w-50">
                 <form action="stripe" method="get" class="float-right mt-5">
                     <input type="text" hidden id="package" name="package" value="">
                  <input type="text" hidden id="price" name="price" value="">
                   <input type="number" hidden id="listing_id" name="listing_id" value="">
-         
-         <a v-if="form.select" @click="make_session(form.id);stripeFee(form.id, form.price);" type="submit" class="btn btn-primary px-3 font-weight-bold" >
-          Checkout
-        </a>
+                 <a v-if="form.select" @click="make_session(form.id);stripeFee(form.id, form.price,form.pacage,form.days);" type="submit" class=" text-light py-2 px-5 small buttonListing mr-2 " >
+                  Checkout
+                </a>
 
-        <a v-else onclick="alert('Please select a package!');" type="button" class="btn btn-primary px-3 font-weight-bold" >
-          Checkout
-        </a>
+                <a v-else onclick="alert('Please select a package!');" type="button" class=" buttonListing mr-2 text-light py-2 px-5 small " >
+                  Checkout
+                </a>
 
             </form>
                 </div>
@@ -137,7 +151,9 @@
     form: new Form({
         id:'',
         pacage:'',
+        days:'',
         price:'',
+        range:'all',
         select:false
     }),
     empty:false
@@ -162,52 +178,75 @@
     }
 
     },
+
+    select_range(event){
+    this.form.range = event.target.value;
+    },
+
     select(event){ 
     this.form.select = true;
 
     if(event == '9.99'){
-        this.form.price = 9.99
-    var pacage = 'silver-month';
+        this.form.price = 9.99;
+        this.form.days = 30;
+    var pacage = 'silver';
+    this.form.pacage = pacage;
+    $('#ranges').hide();
     $('#one').css('background','#e0edd8');
     $('#two').css('background','');
     $('#three').css('background','');
   }
 
    if(event == '29.99'){
-    this.form.price = 29.99
-    var pacage = 'gold-month';
+    this.form.price = 29.99;
+    this.form.days = 30;
+    var pacage = 'gold';
+    this.form.pacage = pacage;
+    $('#ranges').show();
     $('#two').css('background','#e0edd8');
     $('#one').css('background','');
     $('#three').css('background','');
   }
 
    if(event == '69.99'){
-    this.form.price = 69.99
-    var pacage = 'platinum-month';
+    this.form.price = 69.99;
+    this.form.days = 30;
+    var pacage = 'platinum';
+    this.form.pacage = pacage;
+    $('#ranges').hide();
     $('#three').css('background','#e0edd8');
     $('#two').css('background','');
     $('#one').css('background','');
   }
 
    if(event == '95.99'){
-    this.form.price = 95.99
-    var pacage = 'silver-year';
+    this.form.price = 95.99;
+    this.form.days = 365;
+    var pacage = 'silver';
+    this.form.pacage = pacage;
+    $('#ranges').hide();
     $('#four').css('background','#e0edd8');
     $('#five').css('background','');
     $('#six').css('background','');
   }
 
   if(event == '287.99'){
-    this.form.price = 287.99
-    var pacage = 'gold-year';
+    this.form.price = 287.99;
+    this.form.days = 365;
+    var pacage = 'gold';
+    this.form.pacage = pacage;
+    $('#ranges').show();
     $('#five').css('background','#e0edd8');
     $('#four').css('background','');
     $('#six').css('background','');
   }
 
   if(event == '671.99'){
-    this.form.price = 671.99
-    var pacage = 'platinum-year';
+    this.form.price = 671.99;
+    this.form.days = 365;
+    var pacage = 'platinum';
+    this.form.pacage = pacage;
+    $('#ranges').hide();
     $('#six').css('background','#e0edd8');
     $('#five').css('background','');
     $('#four').css('background','');
@@ -217,21 +256,29 @@
     document.getElementById('package').value = pacage;
 },
 
-stripeFee: function (business_id,amount) {
+stripeFee: function (business_id,amount,plan,days) {
+    if(plan == 'gold' && this.form.range == 'all')
+        alert('Please select a range!');
+
+    else {
+        var range = btoa(this.form.range);
         var amount = btoa(amount);
-        var business_id = btoa(business_id)
+        var business_id = btoa(business_id);
+        var plan = btoa(plan);
+        var days = btoa(days);
         $.confirm({
           title: 'Are you sure?',
-          content: 'Are you sure to bid?',
+          content: 'Are you sure to pay?',
           buttons: {
             confirm: function () {
-              window.location.href = './stripe/' + amount + '/' + business_id;
+              window.location.href = './stripeSubscribe/' + amount+'/'+plan+'/'+days+'/'+range;
             },
             cancel: function () {
               $.alert('Canceled!');
             },
           }
         });
+    }
 
     },
 

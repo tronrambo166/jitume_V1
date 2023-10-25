@@ -13,6 +13,7 @@ use App\Models\Milestones;
 use App\Models\Conversation;
 use App\Models\BusinessBids;
 use App\Models\AcceptedBids;
+use App\Models\BusinessSubscriptions;
 
 use Stripe\StripeClient;
 use Response;
@@ -1017,6 +1018,25 @@ public function assetEquip_download($id, $type){
 
 
     }
+
+
+//SUBSCRIBE//
+    public function isSubscribed(){
+    $results = array();
+    $investor_id = Auth::id();
+    $count = 0;
+    $subs = BusinessSubscriptions::where('investor_id',$investor_id)
+    ->where('active',1)->first();
+    if($subs){ $count = 1;
+      $results['subscribed'] = 1;
+      $results['trial'] = $subs->trial;
+      $results['token_left'] = $subs->token_remaining;
+      $results['range'] = $subs->range;
+      $results['plan'] = $subs->plan;
+
+    }
+    return response()->json([ 'data' => $results, 'count' => $count] );
+}
 
 
 public function add_docs(Request $request){

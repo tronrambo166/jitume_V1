@@ -859,7 +859,10 @@ foreach($messages as $book)
   $sender =User::where('id',$book->booker_id)->first();
   $book->service = $service->name;
   $book->sender = $sender->fname.' '.$sender->lname;
+  $book->website = $sender->website;
+  $book->email = $sender->email;
   $results[] = $book;
+
 }
 
 return view('services.messages',compact('results'));

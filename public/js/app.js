@@ -9248,13 +9248,32 @@ __webpack_require__.r(__webpack_exports__);
       progress: '',
       share: '',
       amount_required: '',
-      running: 0
+      running: 0,
+      subscribed: '',
+      trial: '',
+      token_left: '',
+      range: '',
+      plan: ''
     };
   },
   created: function created() {
     if (sessionStorage.getItem('invest') != null) sessionStorage.clear();
   },
   methods: {
+    isSubscribed: function isSubscribed() {
+      var id = this.$route.params.id;
+      var t = this;
+      axios.get('isSubscribed').then(function (data) {
+        //console.log(data.data.count);
+        if (data.data.count > 0) {
+          t.subscribed = data.data.data.subscribed;
+          t.trial = data.data.data.trial;
+          t.token_left = data.data.data.token_left;
+          t.range = data.data.data.range;
+          t.plan = data.data.data.plan;
+        }
+      });
+    },
     getDetails: function getDetails() {
       var id = this.$route.params.id;
       var t = this;
@@ -9503,6 +9522,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.getDetails();
     this.getMilestones();
+    this.isSubscribed();
 
     if (sessionStorage.getItem('alert') != null) {
       alert('Review successfully taken!');
@@ -12003,6 +12023,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -12010,7 +12044,9 @@ __webpack_require__.r(__webpack_exports__);
       form: new Form({
         id: '',
         pacage: '',
+        days: '',
         price: '',
+        range: 'all',
         select: false
       }),
       empty: false
@@ -12032,12 +12068,18 @@ __webpack_require__.r(__webpack_exports__);
         $('#yearly').show();
       }
     },
+    select_range: function select_range(event) {
+      this.form.range = event.target.value;
+    },
     select: function select(event) {
       this.form.select = true;
 
       if (event == '9.99') {
         this.form.price = 9.99;
-        var pacage = 'silver-month';
+        this.form.days = 30;
+        var pacage = 'silver';
+        this.form.pacage = pacage;
+        $('#ranges').hide();
         $('#one').css('background', '#e0edd8');
         $('#two').css('background', '');
         $('#three').css('background', '');
@@ -12045,7 +12087,10 @@ __webpack_require__.r(__webpack_exports__);
 
       if (event == '29.99') {
         this.form.price = 29.99;
-        var pacage = 'gold-month';
+        this.form.days = 30;
+        var pacage = 'gold';
+        this.form.pacage = pacage;
+        $('#ranges').show();
         $('#two').css('background', '#e0edd8');
         $('#one').css('background', '');
         $('#three').css('background', '');
@@ -12053,7 +12098,10 @@ __webpack_require__.r(__webpack_exports__);
 
       if (event == '69.99') {
         this.form.price = 69.99;
-        var pacage = 'platinum-month';
+        this.form.days = 30;
+        var pacage = 'platinum';
+        this.form.pacage = pacage;
+        $('#ranges').hide();
         $('#three').css('background', '#e0edd8');
         $('#two').css('background', '');
         $('#one').css('background', '');
@@ -12061,7 +12109,10 @@ __webpack_require__.r(__webpack_exports__);
 
       if (event == '95.99') {
         this.form.price = 95.99;
-        var pacage = 'silver-year';
+        this.form.days = 365;
+        var pacage = 'silver';
+        this.form.pacage = pacage;
+        $('#ranges').hide();
         $('#four').css('background', '#e0edd8');
         $('#five').css('background', '');
         $('#six').css('background', '');
@@ -12069,7 +12120,10 @@ __webpack_require__.r(__webpack_exports__);
 
       if (event == '287.99') {
         this.form.price = 287.99;
-        var pacage = 'gold-year';
+        this.form.days = 365;
+        var pacage = 'gold';
+        this.form.pacage = pacage;
+        $('#ranges').show();
         $('#five').css('background', '#e0edd8');
         $('#four').css('background', '');
         $('#six').css('background', '');
@@ -12077,7 +12131,10 @@ __webpack_require__.r(__webpack_exports__);
 
       if (event == '671.99') {
         this.form.price = 671.99;
-        var pacage = 'platinum-year';
+        this.form.days = 365;
+        var pacage = 'platinum';
+        this.form.pacage = pacage;
+        $('#ranges').hide();
         $('#six').css('background', '#e0edd8');
         $('#five').css('background', '');
         $('#four').css('background', '');
@@ -12087,21 +12144,26 @@ __webpack_require__.r(__webpack_exports__);
       document.getElementById('listing_id').value = this.form.id;
       document.getElementById('package').value = pacage;
     },
-    stripeFee: function stripeFee(business_id, amount) {
-      var amount = btoa(amount);
-      var business_id = btoa(business_id);
-      $.confirm({
-        title: 'Are you sure?',
-        content: 'Are you sure to bid?',
-        buttons: {
-          confirm: function confirm() {
-            window.location.href = './stripe/' + amount + '/' + business_id;
-          },
-          cancel: function cancel() {
-            $.alert('Canceled!');
+    stripeFee: function stripeFee(business_id, amount, plan, days) {
+      if (plan == 'gold' && this.form.range == 'all') alert('Please select a range!');else {
+        var range = btoa(this.form.range);
+        var amount = btoa(amount);
+        var business_id = btoa(business_id);
+        var plan = btoa(plan);
+        var days = btoa(days);
+        $.confirm({
+          title: 'Are you sure?',
+          content: 'Are you sure to pay?',
+          buttons: {
+            confirm: function confirm() {
+              window.location.href = './stripeSubscribe/' + amount + '/' + plan + '/' + days + '/' + range;
+            },
+            cancel: function cancel() {
+              $.alert('Canceled!');
+            }
           }
-        }
-      });
+        });
+      }
     },
     make_session: function make_session(id) {
       sessionStorage.setItem('invest', id);
@@ -76099,6 +76161,10 @@ var render = function () {
                     mouseover: function ($event) {
                       return _vm.hover()
                     },
+                    click: function ($event) {
+                      _vm.make_session(_vm.form.id)
+                      _vm.stripeFee(_vm.form.id, 0.0, "silver-trial", 30)
+                    },
                   },
                 },
                 [_vm._v("Try free for 7 days")]
@@ -76142,6 +76208,10 @@ var render = function () {
                     mouseover: function ($event) {
                       return _vm.hover2()
                     },
+                    click: function ($event) {
+                      _vm.make_session(_vm.form.id)
+                      _vm.stripeFee(_vm.form.id, 0.0, "gold-trial", 30)
+                    },
                   },
                 },
                 [_vm._v("Try free for 7 days")]
@@ -76171,6 +76241,8 @@ var render = function () {
                 _vm._v("Sivler access + Gold access to all data."),
               ]),
               _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
               _c(
                 "a",
                 {
@@ -76184,6 +76256,10 @@ var render = function () {
                     },
                     mouseover: function ($event) {
                       return _vm.hover3()
+                    },
+                    click: function ($event) {
+                      _vm.make_session(_vm.form.id)
+                      _vm.stripeFee(_vm.form.id, 0.0, "platinum-trial", 30)
                     },
                   },
                 },
@@ -76317,6 +76393,8 @@ var render = function () {
                   _vm._v("Sivler access + Gold access to all data."),
                 ]),
                 _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
                 _c(
                   "a",
                   {
@@ -76341,8 +76419,48 @@ var render = function () {
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "row w-50 mx-auto my-4" }, [
+      _c("div", { staticClass: "row w-75 mx-auto my-4" }, [
         _vm._m(2),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-25 collapse", attrs: { id: "ranges" } }, [
+          _c(
+            "select",
+            {
+              staticClass: "p-2",
+              attrs: { id: "", name: "chosen_range" },
+              on: {
+                change: function ($event) {
+                  return _vm.select_range($event)
+                },
+              },
+            },
+            [
+              _c("option", { attrs: { value: "$0-$10000" } }, [
+                _vm._v("Select Range"),
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "$0-$10000" } }, [
+                _vm._v("$0-$10000"),
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "$10000-$100000" } }, [
+                _vm._v("$10000-$100000"),
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "$100000-$25000" } }, [
+                _vm._v("$100000-$25000"),
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "$250000-$50000" } }, [
+                _vm._v("$250000-$50000"),
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "$500000+" } }, [
+                _vm._v("$500000+"),
+              ]),
+            ]
+          ),
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "w-50" }, [
           _c(
@@ -76386,27 +76504,34 @@ var render = function () {
                 ? _c(
                     "a",
                     {
-                      staticClass: "btn btn-primary px-3 font-weight-bold",
+                      staticClass:
+                        "text-light py-2 px-5 small buttonListing mr-2",
                       attrs: { type: "submit" },
                       on: {
                         click: function ($event) {
                           _vm.make_session(_vm.form.id)
-                          _vm.stripeFee(_vm.form.id, _vm.form.price)
+                          _vm.stripeFee(
+                            _vm.form.id,
+                            _vm.form.price,
+                            _vm.form.pacage,
+                            _vm.form.days
+                          )
                         },
                       },
                     },
-                    [_vm._v("\n      Checkout\n    ")]
+                    [_vm._v("\n              Checkout\n            ")]
                   )
                 : _c(
                     "a",
                     {
-                      staticClass: "btn btn-primary px-3 font-weight-bold",
+                      staticClass:
+                        "buttonListing mr-2 text-light py-2 px-5 small",
                       attrs: {
                         onclick: "alert('Please select a package!');",
                         type: "button",
                       },
                     },
-                    [_vm._v("\n      Checkout\n    ")]
+                    [_vm._v("\n              Checkout\n            ")]
                   ),
             ]
           ),
@@ -76454,31 +76579,31 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-50" }, [
-      _c("h4", [_vm._v("Turnover ranges:")]),
+    return _c("div", { staticClass: "w-25" }, [
+      _c("h6", [_vm._v("Turnover ranges:")]),
       _vm._v(" "),
-      _c("p", { staticClass: "font-weight-bold my-1" }, [
+      _c("p", { staticClass: "small my-1" }, [
         _c("span", { staticClass: "font-weight-bold" }, [_vm._v("-")]),
         _vm._v(" $0-$10000"),
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "font-weight-bold my-1" }, [
-        _c("span", { staticClass: "font-weight-bold" }, [_vm._v("-")]),
+      _c("p", { staticClass: "small my-1" }, [
+        _c("span", { staticClass: "small" }, [_vm._v("-")]),
         _vm._v(" $10000-$100000"),
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "font-weight-bold my-1" }, [
-        _c("span", { staticClass: "font-weight-bold" }, [_vm._v("-")]),
+      _c("p", { staticClass: "smallsmall my-1" }, [
+        _c("span", { staticClass: "smallsmall" }, [_vm._v("-")]),
         _vm._v(" $100000-$25000"),
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "font-weight-bold my-1" }, [
-        _c("span", { staticClass: "font-weight-bold" }, [_vm._v("-")]),
+      _c("p", { staticClass: "smallsmall my-1" }, [
+        _c("span", { staticClass: "smallsmall" }, [_vm._v("-")]),
         _vm._v(" $250000-$50000"),
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "font-weight-bold my-1" }, [
-        _c("span", { staticClass: "font-weight-bold" }, [_vm._v("-")]),
+      _c("p", { staticClass: "smallsmall my-1" }, [
+        _c("span", { staticClass: "smallsmall" }, [_vm._v("-")]),
         _vm._v(" $500000+"),
       ]),
     ])

@@ -441,7 +441,13 @@ export default {
     progress: '',
     share: '',
     amount_required: '',
-    running: 0
+    running: 0,
+
+    subscribed:'',
+    trial:'',
+    token_left:'',
+    range:'',
+    plan:''
   }),
 
   created() {
@@ -452,6 +458,20 @@ export default {
 
   },
   methods: {
+
+    isSubscribed: function () {
+      var id = this.$route.params.id; var t = this;
+      axios.get('isSubscribed').then((data) => {
+        //console.log(data.data.count);
+        if(data.data.count > 0){
+        t.subscribed = data.data.data.subscribed;
+        t.trial = data.data.data.trial;
+        t.token_left = data.data.data.token_left;
+        t.range = data.data.data.range;
+        t.plan = data.data.data.plan;
+      }
+        });
+      },
 
     getDetails: function () {
       var id = this.$route.params.id; var t = this;
@@ -742,6 +762,7 @@ export default {
   mounted() {
     this.getDetails();
     this.getMilestones();
+    this.isSubscribed();
 
     if (sessionStorage.getItem('alert') != null) {
       alert('Review successfully taken!');

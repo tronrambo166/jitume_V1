@@ -23,6 +23,7 @@ use Mail;
 use Stripe\StripeClient;
 use App\Models\taxes;
 use App\Models\BusinessBids;
+use App\Models\BusinessSubscriptions;
 
 
 class checkoutController extends Controller
@@ -32,7 +33,7 @@ class checkoutController extends Controller
         $this->Client = $client;
     }
 
-    // PAYMENT
+    //UNLOCK PAYMENT
      public function goCheckout($amount, $listing_id)
     {
       // $id=$request->id;
@@ -56,7 +57,6 @@ class checkoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
 
      public function stripeConversation(Request $request)
     {
@@ -133,6 +133,111 @@ catch(\Exception $e){
        return redirect("/");
 
     }
+
+    //UNLOCK PAYMENT
+
+
+
+     //__________________________SUBSCRIBE________________________
+     public function stripeSubscribeGet($amount,$plan,$days,$range)
+    {
+      //$listing=base64_decode($listing_id);
+      $range=base64_decode($range);
+      $plan=base64_decode($plan);
+      $days=base64_decode($days);
+      $base_price=base64_decode($amount);
+      $price = round( $base_price+($base_price*0.05),2 );
+      Session::put('subscribe_price', $price);   
+      return view('checkoutSubscribe.stripe',compact('price','plan','days','range'));
+    }
+
+
+     public function stripeSubscribePost(Request $request)
+    {
+        //$listing_id=$request->listing;
+        $plan=$request->plan;
+        $days=$request->days;
+        $start_date = date('Y-m-d');
+        $expire_date = date('Y-m-d', strtotime($start_date. '+30 days'));
+
+        $token_remaining = null;
+        if($plan == 'silver' || $plan == 'gold'){
+            $token_remaining = 10;
+        }
+        $range=$request->range;
+        $trial = 0;
+        if($plan=='silver-trial' || $plan=='gold-trial' || $plan =='platinum-trial'){
+            $trial = 1;
+            $expire_date = date('Y-m-d', strtotime($start_date. '+7 days'));
+        }
+
+    //Stripe
+    try{
+
+        $curr='USD'; //$request->currency; 
+        $amount= Session::get('subscribe_price'); //$request->price;
+        $transferAmount= round($amount-($amount*.05),2);
+
+        if($trial == 0){
+        $this->validate($request, [
+            'stripeToken' => ['required', 'string']
+        ]);
+        $charge = $this->Client->charges->create ([ 
+                //"billing_address_collection": null,
+                "amount" => $amount*100, //100 * 100,
+                "currency" => $curr,
+                "source" => $request->stripeToken,
+                "description" => "This payment is test purpose only!"
+        ]);
+        }
+
+         //DB INSERT
+         BusinessSubscriptions::create([
+        'plan' => $plan,
+        'investor_id' => Auth::id(),
+        'amount' => $transferAmount,
+        'start_date' => $start_date,
+        'expire_date' => $expire_date,
+        'token_remaining' => $token_remaining,
+        'chosen_range' => $range,
+        'trial' => $trial
+        ]); 
+
+       Session::put('Stripe_pay','Subscription Success!');
+       return redirect("/");
+
+        }
+      catch(\Exception $e){
+      Session::put('Stripe_failed',$e->getMessage());
+      return redirect()->back();
+    }
+
+//     $business_id = $request->listing;
+//     $Business = listing::where('id',$business_id)->first();
+//     $owner = User::where('id', $Business->user_id)->first();
+// //Split
+//  try{
+
+//         $curr='USD'; //$request->currency; 
+//         $tranfer = $this->Client->transfers->create ([ 
+//                 //"billing_address_collection": null,
+//                 "amount" => $transferAmount*100, //100 * 100,
+//                 "currency" => $curr,
+//                 "source_transaction" => $charge->id,
+//                 'destination' => $owner->connect_id
+//         ]);
+//         }
+
+// catch(\Exception $e){
+//   Session::put('Stripe_failed',$e->getMessage());
+//     return redirect()->back();
+// }
+
+    //Stripe
+
+
+    }
+//SUBSCRIBE________________________
 
 
 
@@ -231,83 +336,6 @@ catch(\Exception $e){
     }
 
 
-    //CART
-
-     public function cartCheckout(Request $request)
-    {
-
-    $total =0;$cart = Cart::where('user_id',Auth::id())->get();$id='';
-    foreach($cart as $c) {
-        $total = $total + ($c->price*$c->qty);
-        $ids = $id.$c->id.',';
-
-    }
-    $total = $total+($total*0.07);
-    $total = round(($total/136),2);
- 
-        return view('cart.stripe',compact('total','ids'));
-    }
-
-   
-    public function cartStripePost(Request $request)
-    {
-        $ids = $request->ids; //explode(',',$request->ids);
-
-
-        //STRIPE
-         $curr='USD'; //$request->currency; 
-         $amount=round($request->amount);
-
-        Stripe\Stripe::setApiKey('sk_test_51JFWrpJkjwNxIm6zcIxSq9meJlasHB3MpxJYepYx1RuQnVYpk0zmoXSXz22qS62PK5pryX4ptYGCHaudKePMfGyH00sO7Jwion');
-
-        Stripe\Charge::create ([ 
-
-                //"billing_address_collection": null,
-                "amount" => $amount*100, //100 * 100,
-                "currency" => $curr,
-                "source" => $request->stripeToken,
-                "description" => "This payment is tested purpose only!"
-        ]);
-   
-
-//DB INSERT
-  
-       
-    orders::create([
-            'user_id' => Auth::id(),
-            'service_id' => str_replace(',','_',$ids),    
-            'price' => $amount
-           ]);
-
-      $ids = explode(',',$ids);
-      foreach ($ids as $id) {
-      if($id!=''){
-     $cart = Cart::where('id',$id)->delete();
-
-     } }
-
-        $order = orders::latest()->first();
-        $info=[ 
-            'order_id'=>$order->id
-           ]; 
-
-        $user['to'] = 'sohaankane@gmail.com';//$request->email;
-
-        // Mail::send('cart.cart_mail', $info, function($msg) use ($user){
-        //     $msg->to($user['to']);
-        //     $msg->subject('Test Checkout Alert!');
-        // });  
-
-
-       Session::put('Stripe_pay','Order created successfully!');
-       return redirect("/");
-
-    }
-
-
-    //  MILESTONES
-
-    //CART
 
      public function milestoneCheckout(Request $request)
     {
@@ -437,9 +465,7 @@ catch(\Exception $e){
     }
 
 
-    //  MILESTONES Services
-
-    //CART
+    //__________ MILESTONES Services _________________________________________
 
      public function milestoneCheckoutS($milestone_id, $amount)
     {

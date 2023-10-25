@@ -47,7 +47,7 @@
            <!--  <td><input onchange="check();" type="checkbox" name="bid_ids[]" value="{{$ev->id}}"></td> -->
 
                 <td>
-                {{$ev->sender }}
+                <a data-target="#detailsModal{{$ev->id}}" data-toggle="modal" class="py-1 bid_btns bg-light rounded ">{{$ev->sender }}</a>
                 </td>
 
                     <td>{{$ev->service }}</td>
@@ -59,6 +59,103 @@
 
 
 <!-- Table temp end -->
+
+<!-- Details MODAL -->
+  <div  class="detailsModal modal fade" id="detailsModal{{$ev->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content detailModal">
+      <div class="modal-header">
+
+         <div class="card-header w-100">
+           
+        </div>
+
+        </div>
+    
+    
+      <div class="modal-body">
+                <div class="px-3 card-header w-100">             
+            <!-- <input hidden type="number" class="form-control"  name="amount" value=""> -->                     
+
+                <div class="row my-1 row form-group">
+                    <div class="col-sm-12 my-1"> 
+                    <div class="row">
+                           <div class="col-sm-10"><label class="h4" for="name">
+                                <h5 class=""> <b> Full Name: </b> </h5></label>
+                               </div>
+                    
+                    <div class="col-sm-12"> 
+                        <div class="upload-btn-wrapper">
+                        <p>{{$ev->sender}}</p>
+                        </div>
+                    </div>
+
+                    </div>
+                    </div> 
+                </div>
+
+
+
+                <div class="row my-1 row form-group">
+                    <div class="col-sm-12 my-1"> 
+                    <div class="row">
+                           <div class="col-sm-10"><label class="h4" for="name">
+                                <h5 class=""> <b> Current Website or Web Presence: </b> </h5></label>
+                               </div>
+                    
+                    <div class="col-sm-12"> 
+                        <div class="upload-btn-wrapper">
+                        <p>{{$ev->website}}</p>
+                        </div>
+                    </div>
+
+                    </div>
+                    </div> 
+                </div>
+
+
+                <div class="row my-1 row form-group">
+                    <div class="col-sm-12 my-1"> 
+                    <div class="row">
+                           <div class="col-sm-10"><label class="h4" for="name">
+                                <h5 class=""> <b> Email: </b> </h5></label>
+                               </div>
+                    
+                    <div class="col-sm-12"> 
+                        <div class="upload-btn-wrapper">
+                        <p>{{$ev->email}}</p>
+                        </div>
+                    </div>
+
+                    </div>
+                    </div> 
+                </div>
+
+
+         </div>
+
+        </div>
+
+        <div class="modal-footer">
+
+        <div class="card-header w-100 text-center">
+
+
+        <button type="button" class=" btn border border-dark w-25 d-inline px-3 font-weight-bold m-0 " data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">Ok</span>
+        </button>
+
+        
+         </div>
+
+      </div>
+
+        </div>
+        </div>
+        </div>
+
+
+<!-- Details MODAL -->
 
          @endforeach
          @if(count($results)==0)

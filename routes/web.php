@@ -210,9 +210,13 @@ Auth::routes();
 //Unlock small fee
 Route::get('/stripe/{amount}/{business_id}', 'checkoutController@goCheckout')->name('stripe');
 Route::post('/stripe', 'checkoutController@stripePost')->name('stripe.post');
-
-//Subscribe
 Route::post('/stripe', 'checkoutController@stripeConversation')->name('stripe.post.coversation');
+
+//Subscribe***
+Route::get('isSubscribed', 'BusinessController@isSubscribed')->name('isSubscribed');
+
+Route::get('/stripeSubscribe/{amount}/{plan}/{days}/{range}', 'checkoutController@stripeSubscribeGet')->name('stripeSubscribe');
+Route::post('/stripeSubscribe', 'checkoutController@stripeSubscribePost')->name('stripeSubscribe.post');
 
 //CART
 Route::get('cartStripe', 'checkoutController@cartCheckout')->name('cartStripe');
