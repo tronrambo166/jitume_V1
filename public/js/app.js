@@ -9225,6 +9225,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -9249,11 +9295,13 @@ __webpack_require__.r(__webpack_exports__);
       share: '',
       amount_required: '',
       running: 0,
+      subscrib_id: '',
       subscribed: '',
       trial: '',
       token_left: '',
       range: '',
-      plan: ''
+      plan: '',
+      expire: ''
     };
   },
   created: function created() {
@@ -9263,14 +9311,17 @@ __webpack_require__.r(__webpack_exports__);
     isSubscribed: function isSubscribed() {
       var id = this.$route.params.id;
       var t = this;
-      axios.get('isSubscribed').then(function (data) {
-        //console.log(data.data.count);
+      axios.get('isSubscribed/' + id).then(function (data) {
+        console.log(data.data.data);
+
         if (data.data.count > 0) {
           t.subscribed = data.data.data.subscribed;
           t.trial = data.data.data.trial;
           t.token_left = data.data.data.token_left;
           t.range = data.data.data.range;
           t.plan = data.data.data.plan;
+          t.expire = data.data.data.expire;
+          t.subscrib_id = data.data.data.sub_id;
         }
       });
     },
@@ -9517,6 +9568,41 @@ __webpack_require__.r(__webpack_exports__);
       } else document.getElementById('bid_percent_eqp').innerHTML = percent + '%';
 
       document.getElementById('bid_percent2_eqp').value = percent;
+    },
+    unlock_choose_button: function unlock_choose_button(button) {
+      if (button == 'a') {
+        $('#small_fee').addClass('modal_ok_btn');
+        $('#subs').removeClass('modal_ok_btn');
+        $('#small_fee_div').show();
+        $('#subs_div').hide();
+      } else {
+        $('#subs').addClass('modal_ok_btn');
+        $('#small_fee').removeClass('modal_ok_btn');
+        $('#subs_div').show();
+        $('#small_fee_div').hide();
+      }
+    },
+    unlockBySubs: function unlockBySubs(listing_id, sub_id, plan) {
+      //alert(sub_id);
+      $.confirm({
+        title: 'Are you sure?',
+        content: '',
+        buttons: {
+          confirm: function confirm() {
+            axios.get('unlockBySubs/' + listing_id + '/' + sub_id + '/' + plan).then(function (data) {
+              if (data.data.success) location.reload();
+
+              if (data.data.error) {
+                $('#range_error').show();
+                $('#range_error').html(data.data.error);
+              }
+            });
+          },
+          cancel: function cancel() {
+            $.alert('Canceled!');
+          }
+        }
+      });
     }
   },
   mounted: function mounted() {
@@ -72736,92 +72822,374 @@ var render = function () {
           "div",
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(8),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-sm-12 w-100 mx-auto" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "p-3",
-                        staticStyle: { cursor: "pointer", background: "white" },
-                      },
-                      [
-                        _c(
-                          "p",
-                          {
-                            staticClass: "text-dark smalls",
-                            staticStyle: { "font-size": "16px" },
-                          },
-                          [
-                            _vm._v(
-                              "This business requests a small fee of\n                  "
-                            ),
-                            _c("b", [
-                              _vm._v(
-                                "$" + _vm._s(_vm.form.investors_fee) + " "
-                              ),
-                            ]),
-                            _vm._v(
-                              " to view their full business information. Do you want to pay now?\n                "
-                            ),
-                          ]
-                        ),
-                      ]
-                    ),
-                  ]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c("div", { staticClass: "card-header w-100 text-center" }, [
-                  _c("form", { attrs: { action: "stripe", method: "get" } }, [
-                    _c("input", {
-                      attrs: {
-                        type: "text",
-                        hidden: "",
-                        id: "price",
-                        name: "price",
-                      },
-                      domProps: { value: _vm.form.investors_fee },
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: {
-                        type: "number",
-                        hidden: "",
-                        id: "listing_id",
-                        name: "listing_id",
-                      },
-                      domProps: { value: _vm.form.listing_id },
-                    }),
-                    _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "modal-content",
+                staticStyle: { "border-radius": "3px" },
+              },
+              [
+                _c("div", { staticClass: "modal-header" }, [
+                  _c("div", { staticClass: "card-header w-100" }, [
                     _c(
                       "a",
                       {
                         staticClass:
-                          "modal_ok_btn w-25 d-inline btn rounded mr-3 px-3 font-weight-bold",
-                        attrs: { type: "submit" },
+                          "border modal_ok_btn w-25 d-inline btn rounded mr-3 px-3 font-weight-bold",
+                        attrs: { id: "small_fee" },
                         on: {
                           click: function ($event) {
-                            _vm.make_session(_vm.form.listing_id)
-                            _vm.stripeFee(
-                              _vm.form.listing_id,
-                              _vm.form.investors_fee
-                            )
+                            return _vm.unlock_choose_button("a")
                           },
                         },
                       },
-                      [_vm._v("\n                Ok\n              ")]
+                      [_vm._v("\n                Small fee\n              ")]
                     ),
                     _vm._v(" "),
-                    _vm._m(9),
+                    _vm.subscribed
+                      ? _c(
+                          "a",
+                          {
+                            staticClass:
+                              "border w-25 d-inline btn rounded mr-3 px-3 font-weight-bold",
+                            attrs: { id: "subs" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.unlock_choose_button("b")
+                              },
+                            },
+                          },
+                          [
+                            _vm._v(
+                              "\n                Subscription\n              "
+                            ),
+                          ]
+                        )
+                      : _vm._e(),
                   ]),
                 ]),
-              ]),
-            ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c(
+                    "div",
+                    { staticClass: "row", attrs: { id: "small_fee_div" } },
+                    [
+                      _c("div", { staticClass: "col-sm-12 w-100 mx-auto" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "p-3",
+                            staticStyle: {
+                              cursor: "pointer",
+                              background: "white",
+                            },
+                          },
+                          [
+                            _c(
+                              "p",
+                              {
+                                staticClass: "text-dark smalls",
+                                staticStyle: { "font-size": "16px" },
+                              },
+                              [
+                                _vm._v(
+                                  "This business requests a small fee of\n                  "
+                                ),
+                                _c("b", [
+                                  _vm._v(
+                                    "$" + _vm._s(_vm.form.investors_fee) + " "
+                                  ),
+                                ]),
+                                _vm._v(
+                                  " to view their full business information. Do you want to pay now?\n                "
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "card-header w-100 text-center" },
+                        [
+                          _c(
+                            "form",
+                            { attrs: { action: "stripe", method: "get" } },
+                            [
+                              _c("input", {
+                                attrs: {
+                                  type: "text",
+                                  hidden: "",
+                                  id: "price",
+                                  name: "price",
+                                },
+                                domProps: { value: _vm.form.investors_fee },
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: {
+                                  type: "number",
+                                  hidden: "",
+                                  id: "listing_id",
+                                  name: "listing_id",
+                                },
+                                domProps: { value: _vm.form.listing_id },
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass:
+                                    "modal_ok_btn w-25 d-inline btn rounded mr-3 px-3 font-weight-bold",
+                                  attrs: { type: "submit" },
+                                  on: {
+                                    click: function ($event) {
+                                      _vm.make_session(_vm.form.listing_id)
+                                      _vm.stripeFee(
+                                        _vm.form.listing_id,
+                                        _vm.form.investors_fee
+                                      )
+                                    },
+                                  },
+                                },
+                                [_vm._v("\n                Ok\n              ")]
+                              ),
+                              _vm._v(" "),
+                              _vm._m(8),
+                            ]
+                          ),
+                        ]
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm.subscribed
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "row collapse",
+                          attrs: { id: "subs_div" },
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "col-sm-12 w-100 mx-auto" },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "px-3 py-2",
+                                  staticStyle: {
+                                    cursor: "pointer",
+                                    background: "white",
+                                  },
+                                },
+                                [
+                                  _c("p", {
+                                    staticClass:
+                                      "system_ui collapse mb-3 py-1 text-danger smalls bg-light text-center",
+                                    staticStyle: { "font-size": "14px" },
+                                    attrs: { id: "range_error" },
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    {
+                                      staticClass:
+                                        "mb-3 py-2 text-warning smalls bg-light text-center",
+                                      staticStyle: { "font-size": "16px" },
+                                    },
+                                    [
+                                      _vm._v("Your \n                  "),
+                                      _vm.trial
+                                        ? _c("span", [_vm._v("trial")])
+                                        : _c("span", [_vm._v("plan")]),
+                                      _vm._v("\n                  expires in "),
+                                      _c("b", [
+                                        _vm._v(_vm._s(_vm.expire) + " "),
+                                      ]),
+                                      _vm._v(" days\n                "),
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _vm.plan == "silver"
+                                    ? _c("div", { staticClass: "row" }, [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "modal_ok_btn w-75 m-auto d-inline btn rounded mr-3 px-3",
+                                            attrs: { type: "submit" },
+                                            on: {
+                                              click: function ($event) {
+                                                _vm.make_session(
+                                                  _vm.form.listing_id
+                                                )
+                                                _vm.unlockBySubs(
+                                                  _vm.form.listing_id,
+                                                  _vm.subscrib_id,
+                                                  "token"
+                                                )
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                Use token "
+                                            ),
+                                            _c("small", [
+                                              _vm._v(
+                                                "(" +
+                                                  _vm._s(_vm.token_left) +
+                                                  " left)"
+                                              ),
+                                            ]),
+                                          ]
+                                        ),
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.plan == "gold"
+                                    ? _c("div", { staticClass: "row" }, [
+                                        _c("div", { staticClass: "col-md-6" }, [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "modal_ok_btn w-100 btn rounded mr-3 px-3",
+                                              attrs: { type: "submit" },
+                                              on: {
+                                                click: function ($event) {
+                                                  _vm.make_session(
+                                                    _vm.form.listing_id
+                                                  )
+                                                  _vm.unlockBySubs(
+                                                    _vm.form.listing_id,
+                                                    _vm.subscrib_id,
+                                                    "token"
+                                                  )
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                Use token "
+                                              ),
+                                              _c("small", [
+                                                _vm._v(
+                                                  "(" +
+                                                    _vm._s(_vm.token_left) +
+                                                    " left)"
+                                                ),
+                                              ]),
+                                            ]
+                                          ),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "col-md-6" }, [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "modal_ok_btn w-100 d-inline btn rounded mr-3 px-3",
+                                              attrs: { type: "submit" },
+                                              on: {
+                                                click: function ($event) {
+                                                  _vm.make_session(
+                                                    _vm.form.listing_id
+                                                  )
+                                                  _vm.unlockBySubs(
+                                                    _vm.form.listing_id,
+                                                    _vm.subscrib_id,
+                                                    "gold"
+                                                  )
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                Use gold package\n              "
+                                              ),
+                                            ]
+                                          ),
+                                        ]),
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.plan == "platinum"
+                                    ? _c("div", { staticClass: "row" }, [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "modal_ok_btn w-75 m-auto btn rounded mr-3 px-3",
+                                            attrs: { type: "submit" },
+                                            on: {
+                                              click: function ($event) {
+                                                _vm.make_session(
+                                                  _vm.form.listing_id
+                                                )
+                                                _vm.unlockBySubs(
+                                                  _vm.form.listing_id,
+                                                  _vm.subscrib_id,
+                                                  "platinum"
+                                                )
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                Use platinum package\n              "
+                                            ),
+                                          ]
+                                        ),
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.plan == "silver-trial" ||
+                                  _vm.plan == "gold-trial" ||
+                                  _vm.plan == "platinum-trial"
+                                    ? _c("div", { staticClass: "row" }, [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "modal_ok_btn w-75 m-auto btn rounded mr-3 px-3",
+                                            attrs: { type: "submit" },
+                                            on: {
+                                              click: function ($event) {
+                                                _vm.make_session(
+                                                  _vm.form.listing_id
+                                                )
+                                                _vm.unlockBySubs(
+                                                  _vm.form.listing_id,
+                                                  _vm.subscrib_id,
+                                                  _vm.plan
+                                                )
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                Use trial package\n              "
+                                            ),
+                                          ]
+                                        ),
+                                      ])
+                                    : _vm._e(),
+                                ]
+                              ),
+                            ]
+                          ),
+                        ]
+                      )
+                    : _vm._e(),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }),
+              ]
+            ),
           ]
         ),
       ]
@@ -72845,11 +73213,11 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(10),
+              _vm._m(9),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("form", [
-                  _vm._m(11),
+                  _vm._m(10),
                   _vm._v(" "),
                   _c("h5", { staticClass: "font-weight-bold" }, [
                     _vm._v("Leave a review"),
@@ -73002,14 +73370,6 @@ var staticRenderFns = [
           },
         }),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("div", { staticClass: "card-header w-100" }),
     ])
   },
   function () {
@@ -76435,27 +76795,25 @@ var render = function () {
               },
             },
             [
-              _c("option", { attrs: { value: "$0-$10000" } }, [
-                _vm._v("Select Range"),
-              ]),
+              _c("option", { attrs: { value: "" } }, [_vm._v("Select Range")]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "$0-$10000" } }, [
+              _c("option", { attrs: { value: "0-10000" } }, [
                 _vm._v("$0-$10000"),
               ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "$10000-$100000" } }, [
+              _c("option", { attrs: { value: "10000-100000" } }, [
                 _vm._v("$10000-$100000"),
               ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "$100000-$25000" } }, [
-                _vm._v("$100000-$25000"),
+              _c("option", { attrs: { value: "100000-250000" } }, [
+                _vm._v("$100000-$250000"),
               ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "$250000-$50000" } }, [
-                _vm._v("$250000-$50000"),
+              _c("option", { attrs: { value: "250000-500000" } }, [
+                _vm._v("$250000-$500000"),
               ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "$500000+" } }, [
+              _c("option", { attrs: { value: "500000+" } }, [
                 _vm._v("$500000+"),
               ]),
             ]

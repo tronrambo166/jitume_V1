@@ -105,12 +105,12 @@
 
                 <div class="w-25 collapse" id="ranges">
                      <select id="" name="chosen_range" class="p-2" @change="select_range($event)">
-                         <option value="$0-$10000">Select Range</option>
-                         <option value="$0-$10000">$0-$10000</option>
-                         <option value="$10000-$100000">$10000-$100000</option>
-                         <option value="$100000-$25000">$100000-$25000</option>
-                         <option value="$250000-$50000">$250000-$50000</option>
-                         <option value="$500000+">$500000+</option>
+                         <option value="">Select Range</option>
+                         <option value="0-10000">$0-$10000</option>
+                         <option value="10000-100000">$10000-$100000</option>
+                         <option value="100000-250000">$100000-$250000</option>
+                         <option value="250000-500000">$250000-$500000</option>
+                         <option value="500000+">$500000+</option>
                      </select>
                 </div>
 

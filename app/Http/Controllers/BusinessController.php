@@ -1021,17 +1021,29 @@ public function assetEquip_download($id, $type){
 
 
 //SUBSCRIBE//
-    public function isSubscribed(){
+    public function isSubscribed($listing_id){
     $results = array();
     $investor_id = Auth::id();
     $count = 0;
     $subs = BusinessSubscriptions::where('investor_id',$investor_id)
-    ->where('active',1)->first();
+    ->where('active',1)->orderBy('id','DESC')->first();
     if($subs){ $count = 1;
       $results['subscribed'] = 1;
+
+      $results['sub_id'] = $subs->id;
       $results['trial'] = $subs->trial;
+      //expire
+        $start_date = new DateTime($subs->start_date);
+        $days_left = $start_date->diff(new DateTime($subs->expire_date));
+        $days_left = $days_left->d;
+        $results['expire'] = $days_left;
+      //expire
+         if($days_left <= 0){
+           Conversation::where('listing_id',$listing_id)->where('investor_id',$investor_id)->delete();
+         }
+
       $results['token_left'] = $subs->token_remaining;
-      $results['range'] = $subs->range;
+      $results['range'] = $subs->chosen_range;
       $results['plan'] = $subs->plan;
 
     }
@@ -1154,6 +1166,48 @@ $rating_count = 1 + $listing->rating_count;
         return response()->json(['success' => 'Success!']);
 
 }
+
+
+public function unlockBySubs($listing_id,$sub_id,$plan){
+$subscription = BusinessSubscriptions::where('id',$sub_id)->first();
+if($plan == 'gold'){
+  $listing = Listing::where('id',$listing_id)->first();
+  if($subscription->chosen_range == $listing->y_turnover){
+    Conversation::create([
+        'investor_id' => Auth::id(),
+        'listing_id' => $listing_id,
+        'price' => 'Subscription'
+    ]);
+  }
+  else {
+    return response()
+    ->json(['error' => 'The business is not in your range!']);
+  }
+}
+
+else if($plan == 'token'){
+  BusinessSubscriptions::where('id',$sub_id)->
+  update(['token_remaining' => $subscription->token_remaining-1 ]);
+  Conversation::create([
+        'investor_id' => Auth::id(),
+        'listing_id' => $listing_id,
+        'price' => 'Subscription'
+    ]);
+  
+}
+
+else{
+  Conversation::create([
+        'investor_id' => Auth::id(),
+        'listing_id' => $listing_id,
+        'price' => 'Subscription'
+    ]);
+}
+
+        return response()->json(['success' => 'Success']);
+
+}
+
 
 //Class Bracket
 }

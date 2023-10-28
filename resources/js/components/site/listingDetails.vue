@@ -303,11 +303,20 @@
     <div class="modal fade" id="investModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style="border-radius:3px;">
           <div class="modal-header">
 
             <div class="card-header w-100">
+              <a id="small_fee" @click="unlock_choose_button('a');"
+                  class="border modal_ok_btn w-25 d-inline  btn rounded mr-3 px-3 font-weight-bold">
+                  Small fee
+                </a>
 
+                <a v-if="subscribed" id="subs" @click="unlock_choose_button('b');"
+                  class="border  w-25 d-inline  btn rounded mr-3 px-3 font-weight-bold">
+                  Subscription
+                </a>
+          
             </div>
 
           </div>
@@ -315,44 +324,19 @@
 
           <div class="modal-body">
 
-            <div class="row">
+            <div class="row" id="small_fee_div">
               <div class="col-sm-12 w-100 mx-auto">
                 <div style="cursor:pointer;background:white;" class="p-3">
 
                   <p style="font-size:16px;" class="text-dark smalls">This business requests a small fee of
                     <b>${{ form.investors_fee }} </b> to view their full business information. Do you want to pay now?
                   </p>
-
-
                 </div>
               </div>
 
-              <!--  <div class="col-sm-6">
-                 <div @click="select2()" style="cursor:pointer;" class="multiple card shadow p-3">
-                    <h5>Tiered Subscription</h5>
-                    <p style="min-height: 50px;" class="text-secondary small">Access multiple businesses records</p> <hr>
-                    <select @change="price($event)" class="form-control" style="    font-family: system-ui;">
-                        <option hidden>Select</option>
-                        <option value="1 Month">1 Month, $30/month</option>
-                        <option value="1 Year">1 Year, $20/month</option>
-                        <option value="2 Years">2 Years, $15/month</option>
-                        <option value="3 Years">3 Years, $12month</option>
-                    </select>
 
-
-
-                </div>
-            </div> -->
-
-            </div>
-
-          </div>
-
-          <div class="modal-footer">
-
-            <div class="card-header w-100 text-center">
+              <div class="card-header w-100 text-center">
               <form action="stripe" method="get">
-
                 <input type="text" hidden id="price" name="price" :value="form.investors_fee">
                 <input type="number" hidden id="listing_id" name="listing_id" :value="form.listing_id">
 
@@ -365,10 +349,72 @@
                   data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">Cancel</span>
                 </a>
-
               </form>
+            </div>
 
             </div>
+
+
+            <!-- SUBSCRIBE DIV -->
+              <div v-if="subscribed" class="row collapse" id="subs_div">
+              <div class="col-sm-12 w-100 mx-auto">
+              <div style="cursor:pointer;background:white;" class="px-3 py-2">
+                  
+                <p id="range_error" style="font-size:14px;" class="system_ui collapse mb-3 py-1 text-danger smalls bg-light text-center"></p>
+
+                  <p style="font-size:16px;" class="mb-3 py-2 text-warning smalls bg-light text-center">Your 
+                    <span v-if="trial">trial</span><span v-else>plan</span>
+                    expires in <b>{{expire}} </b> days
+                  </p>
+
+                  <div class="row" v-if="plan == 'silver'">
+                  <a  @click="make_session(form.listing_id);unlockBySubs(form.listing_id,subscrib_id,'token');" type="submit"
+                  class="modal_ok_btn w-75 m-auto d-inline  btn rounded mr-3 px-3">
+                  Use token <small>({{token_left}} left)</small>
+                </a>
+                </div>
+
+                <div class="row" v-if="plan == 'gold'">
+                <div class="col-md-6">
+                <a  @click="make_session(form.listing_id);unlockBySubs(form.listing_id,subscrib_id,'token');" type="submit"
+                  class="modal_ok_btn w-100 btn rounded mr-3 px-3">
+                  Use token <small>({{token_left}} left)</small>
+                </a>
+                </div>
+
+                <div class="col-md-6">
+                <a @click="make_session(form.listing_id);unlockBySubs(form.listing_id,subscrib_id,'gold');" type="submit"
+                  class="modal_ok_btn w-100 d-inline  btn rounded mr-3 px-3">
+                  Use gold package
+                </a>
+                </div>
+                </div>
+
+                <div class="row" v-if="plan == 'platinum'">
+                <a @click="make_session(form.listing_id);unlockBySubs(form.listing_id,subscrib_id,'platinum');" type="submit"
+                  class="modal_ok_btn w-75 m-auto btn rounded mr-3 px-3">
+                  Use platinum package
+                </a>
+                </div>
+
+                <div class="row" v-if="plan == 'silver-trial' || plan == 'gold-trial' || plan == 'platinum-trial'">
+                <a @click="make_session(form.listing_id);unlockBySubs(form.listing_id,subscrib_id,plan);" type="submit"
+                  class="modal_ok_btn w-75 m-auto btn rounded mr-3 px-3">
+                  Use trial package
+                </a>
+                </div>
+
+
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+
+
 
           </div>
 
@@ -443,11 +489,13 @@ export default {
     amount_required: '',
     running: 0,
 
+    subscrib_id:'',
     subscribed:'',
     trial:'',
     token_left:'',
     range:'',
-    plan:''
+    plan:'',
+    expire:''
   }),
 
   created() {
@@ -461,14 +509,16 @@ export default {
 
     isSubscribed: function () {
       var id = this.$route.params.id; var t = this;
-      axios.get('isSubscribed').then((data) => {
-        //console.log(data.data.count);
+      axios.get('isSubscribed/'+id).then((data) => {
+        console.log(data.data.data);
         if(data.data.count > 0){
         t.subscribed = data.data.data.subscribed;
         t.trial = data.data.data.trial;
         t.token_left = data.data.data.token_left;
         t.range = data.data.data.range;
         t.plan = data.data.data.plan;
+        t.expire = data.data.data.expire;
+        t.subscrib_id = data.data.data.sub_id;
       }
         });
       },
@@ -754,6 +804,49 @@ export default {
       else
         document.getElementById('bid_percent_eqp').innerHTML = percent + '%';
       document.getElementById('bid_percent2_eqp').value = percent;
+    },
+
+    unlock_choose_button: function (button) {
+      if(button == 'a'){
+        $('#small_fee').addClass('modal_ok_btn');
+        $('#subs').removeClass('modal_ok_btn');
+        $('#small_fee_div').show();
+        $('#subs_div').hide();
+      }
+      else{
+        $('#subs').addClass('modal_ok_btn');
+        $('#small_fee').removeClass('modal_ok_btn');
+        $('#subs_div').show();
+        $('#small_fee_div').hide();
+      }
+
+    },
+
+    unlockBySubs: function (listing_id,sub_id,plan) {
+      //alert(sub_id);
+      $.confirm({
+          title: 'Are you sure?',
+          content: '',
+          buttons: {
+            confirm: function () {
+              axios.get('unlockBySubs/' + listing_id+'/'+sub_id+'/'+plan).then((data) => {
+
+                  if(data.data.success)
+                    location.reload();
+
+                  if(data.data.error){
+                  $('#range_error').show();
+                  $('#range_error').html(data.data.error);
+                  }
+               });
+            },
+            cancel: function () {
+              $.alert('Canceled!');
+            },
+          }
+        });
+
+      
     }
 
   },

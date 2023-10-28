@@ -23,8 +23,7 @@
 }
 
 </style>
-    
- <form action="" method="post">  @csrf  
+      
     <div class="row m-auto">   
     <h4 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold">Messages</h4>     
      <table class="eq table table-bordered " id="">
@@ -33,8 +32,9 @@
 
             <th class="ml-1">From </th>
             <th class="ml-1">Related Service </th>
-            <th class="ml-1">Message</th> 
-            <th class="ml-1">Time</th>        
+            <th class="w-25 ml-1">Message</th> 
+            <th class="ml-1">Time</th>  
+            <th class="w-25 ml-1">Reply</th>       
         </tr>
 
     </thead>
@@ -51,8 +51,25 @@
                 </td>
 
                     <td>{{$ev->service }}</td>
-                    <td>{{$ev->msg }}</td>
+                    <td>{{$ev->msg }}</td> 
                     <td>{{date('d M, h:ia',strtotime($ev->created_at)) }}</td>
+                    
+                <td>
+                        <form action="{{route('serviceReply')}}" method="post" class=""> @csrf
+                          <div class=" py-2 ">
+
+                              <textarea placeholder="Enter message..." rows="1" cols="26" required name="msg" class="w-75 mt-1"></textarea>
+
+                              <button type="submit" 
+                              class=" py-1 btn-success w-25 small btn header_buttons text-light float-right">Send
+                            </button>  
+                            </div>
+                            <input hidden type="number" name="service_id" value="{{$ev->service_id}}">
+                            <input hidden type="number" name="msg_id" value="{{$ev->id}}">                         
+                                                    
+
+                        </form>
+                    </td>
    
         </tr>
 
@@ -177,7 +194,7 @@
 </div> -->
 
 </div>
-</form>
+
 
 
 </div>

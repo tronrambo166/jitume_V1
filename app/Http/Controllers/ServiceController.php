@@ -852,11 +852,11 @@ return view('services.my_booking',compact('results'));
 
 public function service_messages(){ 
 $results = [];
-$messages = ServiceMessages::where('service_owner_id',Auth::id())->get();
+$messages = ServiceMessages::where('to_id',Auth::id())->latest()->get();
 foreach($messages as $book)
 {
   $service =Services::where('id',$book->service_id)->first();
-  $sender =User::where('id',$book->booker_id)->first();
+  $sender =User::where('id',$book->from_id)->first();
   $book->service = $service->name;
   $book->sender = $sender->fname.' '.$sender->lname;
   $book->website = $sender->website;
@@ -931,7 +931,9 @@ public function serviceMsg(Request $request){
       'booker_id' => $booker_id,
       'service_id' => $request->service_id,
       'service_owner_id' => $owner->shop_id,
-      'msg' => $request->msg
+      'msg' => $request->msg,
+      'to_id' => $owner->shop_id,
+      'from_id' => $booker_id
     ]); 
     if($message)
     return response()->json(['success' => 'Message Sent!']);
@@ -939,6 +941,38 @@ public function serviceMsg(Request $request){
 
     catch(\Exception $e){
       return response()->json(['failed' => $e->getMessage()]);
+    }
+}
+
+public function serviceReply(Request $request){ 
+
+  try{
+    //$owner = Services::where('id',$request->service_id)->first();
+    $msg = ServiceMessages::where('id',$request->msg_id)->first();
+
+    if($msg->booker_id == Auth::id()){
+      $to_id = $msg->service_owner_id;
+      $from_id = $msg->booker_id;
+    }
+    else{
+      $to_id = $msg->booker_id;
+      $from_id = $msg->service_owner_id;
+    }
+
+    $message = ServiceMessages::create([
+      'booker_id' => $msg->booker_id,
+      'service_id' => $request->service_id,
+      'service_owner_id' => $msg->service_owner_id,
+      'msg' => $request->msg,
+      'to_id' => $to_id,
+      'from_id' => $from_id
+    ]); 
+    if($message)
+    return redirect()->back()->with('success', 'Message Sent!');
+    }
+
+    catch(\Exception $e){
+      return redirect()->back()->with('failed', $e->getMessage());
     }
 }
 

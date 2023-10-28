@@ -1460,3 +1460,7 @@ display: block;
     background: #fffffff0;
     border-radius: 2px;
 }
+
+.system_ui{
+    font-family: system-ui;
+}

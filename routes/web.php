@@ -69,6 +69,7 @@ Route::get('priceFilterS/{min}/{max}/{ids}', 'PagesController@priceFilterS')->na
 Route::post('searchService', 'PagesController@searchService')->name('searchService');
 Route::post('serviceBook', 'ServiceController@serviceBook')->name('serviceBook');
 Route::post('serviceMsg', 'ServiceController@serviceMsg')->name('serviceMsg');
+Route::post('serviceReply', 'ServiceController@serviceReply')->name('serviceReply');
 
 Route::get('ServiceResults/{ids}', 'PagesController@ServiceResults')->name('ServiceResults'); 
 Route::get('categoryResults/{catName}', 'PagesController@categoryResults')->name('categoryResults');
@@ -95,6 +96,7 @@ Route::get('latBusiness', 'PagesController@latBusiness')->name('latBusiness');
 Route::get('latServices', 'PagesController@latServices')->name('latServices');
 Route::get('ratingListing/{id}/{rating}', 'BusinessController@ratingListing')->name('ratingListing');
 Route::get('ratingService/{id}/{rating}', 'ServiceController@ratingService')->name('ratingService');
+Route::get('unlockBySubs/{id}/{sub_id}/{plan}', 'BusinessController@unlockBySubs')->name('unlockBySubs');
 
 //MAIN/BACKEND/VUE
 
@@ -213,7 +215,7 @@ Route::post('/stripe', 'checkoutController@stripePost')->name('stripe.post');
 Route::post('/stripe', 'checkoutController@stripeConversation')->name('stripe.post.coversation');
 
 //Subscribe***
-Route::get('isSubscribed', 'BusinessController@isSubscribed')->name('isSubscribed');
+Route::get('isSubscribed/{id}', 'BusinessController@isSubscribed')->name('isSubscribed');
 
 Route::get('/stripeSubscribe/{amount}/{plan}/{days}/{range}', 'checkoutController@stripeSubscribeGet')->name('stripeSubscribe');
 Route::post('/stripeSubscribe', 'checkoutController@stripeSubscribePost')->name('stripeSubscribe.post');
