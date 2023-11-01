@@ -108,7 +108,12 @@
               Information To
               Invest</a>
 
-            <router-link :to="`/subscribe/${form.listing_id}`"
+            <a style="background:grey;" 
+             v-if="subscribed"
+              class=" business_btns btn-secondary py-2 text-center text-light buttonListing my-2">Subscribe</a>
+
+              <router-link :to="`/subscribe/${form.listing_id}`"
+              v-else
               class=" business_btns py-2 text-center text-light buttonListing my-2">Subscribe</router-link>
 
             <!-- <router-link :to="`/donate_eqp/${form.listing_id}`" class="text-light text-center buttonListing my-3 py-2">Donate</router-link>

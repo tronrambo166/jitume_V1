@@ -144,19 +144,72 @@ catch(\Exception $e){
       //$listing=base64_decode($listing_id);
       $range=base64_decode($range);
       $plan=base64_decode($plan);
-      $days=base64_decode($days);
       $base_price=base64_decode($amount);
       $price = round( $base_price+($base_price*0.05),2 );
-      Session::put('subscribe_price', $price);   
-      return view('checkoutSubscribe.stripe',compact('price','plan','days','range'));
+      Session::put('subscribe_price', $price); 
+
+    //If trial
+      $trial_price = 0;
+      if($plan == 'silver-trial'){ $trial_price = 9.99;  $payLink = 'https://buy.stripe.com/test_aEU4jm4kNg0PgF2000'; }
+
+      else if($plan == 'gold-trial'){ $trial_price = 29.99; $payLink = 'https://buy.stripe.com/test_4gw3fi18B6qffAY3cd'; }
+
+      else if($plan == 'platinum-trial'){ $trial_price = 69.99; $payLink = 'https://buy.stripe.com/test_00g9DGeZr15V88w5km'; }
+
+      else $trial_price = $price;
+      if($price == 0)
+        return view('checkoutSubscribe.stripe',compact('price','plan','payLink','trial_price','base_price'));
+    //If trial
+
+      if($plan == 'silver') $price_id = 'price_1O6uaiJkjwNxIm6zzQ5b2t46';
+      if($plan == 'gold') $price_id = 'price_1M7aX9JkjwNxIm6z5ut8ixWC';
+      if($plan == 'platinum') $price_id = 'price_1O7bheJkjwNxIm6zutl9T3HR';
+      $session = $this->Client->checkout->sessions->create([
+              'success_url' => 'http://localhost/laravel_projects/jitumeLive/public/stripeSubscribeSuccess?session_id={CHECKOUT_SESSION_ID}',
+              'cancel_url' => 'https://example.com/canceled.html',
+              'mode' => 'subscription',
+              'line_items' => [[
+                'price' => $price_id,
+                // For metered billing, do not pass quantity
+                'quantity' => 1,
+              ]],
+              'client_reference_id' =>$plan.'_'.$range
+            ]);
+            echo "<script>location.href='$session->url'</script>";
+            //header("Location: " . $session->url);
+
+      //return view('checkoutSubscribe.stripe',compact('price','plan','days','range','trial_price','base_price'));
     }
 
 
-     public function stripeSubscribePost(Request $request)
+     public function stripeSubscribeSuccess()
     {
-        //$listing_id=$request->listing;
-        $plan=$request->plan;
-        $days=$request->days;
+        $session_id = $_GET['session_id'];
+        $checkout = $this->Client->checkout->sessions->retrieve(
+          $session_id,
+          []
+        );
+        //echo '<pre>'; print_r($checkout);  echo '<pre>'; exit;
+        if($checkout->amount_total == 0){
+            $sub = $this->Client->subscriptions->retrieve(
+              'sub_1O7iUYJkjwNxIm6zkRWo02oW', []
+        );
+        $transferAmount=0;
+        $original_amount = ($sub->items->data[0]->plan->amount)/100;
+        if($original_amount == 69.99) $plan = 'platinum-trial';
+        if($original_amount == 29.99) $plan = 'gold-trial';
+        if($original_amount == 9.99) $plan = 'silver-trial';
+        $range = null;
+       }
+
+       else{
+        $transferAmount=($checkout->amount_total)/100;
+        $plan_range=explode('_',$checkout->client_reference_id);
+        $plan = $plan_range[0];
+        $range = $plan_range[1];
+       }
+
+       
         $start_date = date('Y-m-d');
         $expire_date = date('Y-m-d', strtotime($start_date. '+30 days'));
 
@@ -164,7 +217,7 @@ catch(\Exception $e){
         if($plan == 'silver' || $plan == 'gold'){
             $token_remaining = 10;
         }
-        $range=$request->range;
+
         $trial = 0;
         if($plan=='silver-trial' || $plan=='gold-trial' || $plan =='platinum-trial'){
             $trial = 1;
@@ -173,23 +226,6 @@ catch(\Exception $e){
 
     //Stripe
     try{
-
-        $curr='USD'; //$request->currency; 
-        $amount= Session::get('subscribe_price'); //$request->price;
-        $transferAmount= round($amount-($amount*.05),2);
-
-        if($trial == 0){
-        $this->validate($request, [
-            'stripeToken' => ['required', 'string']
-        ]);
-        $charge = $this->Client->charges->create ([ 
-                //"billing_address_collection": null,
-                "amount" => $amount*100, //100 * 100,
-                "currency" => $curr,
-                "source" => $request->stripeToken,
-                "description" => "This payment is test purpose only!"
-        ]);
-        }
 
          //DB INSERT
          BusinessSubscriptions::create([
@@ -209,29 +245,8 @@ catch(\Exception $e){
         }
       catch(\Exception $e){
       Session::put('Stripe_failed',$e->getMessage());
-      return redirect()->back();
+      return redirect("/");
     }
-
-//     $business_id = $request->listing;
-//     $Business = listing::where('id',$business_id)->first();
-//     $owner = User::where('id', $Business->user_id)->first();
-// //Split
-//  try{
-
-//         $curr='USD'; //$request->currency; 
-//         $tranfer = $this->Client->transfers->create ([ 
-//                 //"billing_address_collection": null,
-//                 "amount" => $transferAmount*100, //100 * 100,
-//                 "currency" => $curr,
-//                 "source_transaction" => $charge->id,
-//                 'destination' => $owner->connect_id
-//         ]);
-//         }
-
-// catch(\Exception $e){
-//   Session::put('Stripe_failed',$e->getMessage());
-//     return redirect()->back();
-// }
 
     //Stripe
 

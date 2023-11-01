@@ -58,7 +58,7 @@
                 <div class="col-sm-4 "  >
                     <div class=" card"  @click="select(69.99)" id="three">
                         <p class="text-center font-weight-bold h5 pt-2">$69.99</p>
-                    <p class="text-center">Sivler access + Gold access to all data.</p> <br>
+                    <p class="text-center">Silver access + Gold access to all data.</p> <br>
                     <a @mouseleave="leave()" @mouseover="hover3()"
                     @click="make_session(form.id);stripeFee(form.id, 0.00,'platinum-trial',30);" style="border: 1px solid black;" id="convBtn3"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
                 </div> </div>
@@ -85,7 +85,7 @@
                 <div class="col-sm-4 ">
                     <div class=" card" @click="select(671.99)" id="six" >
                         <p class="text-center font-weight-bold h5 pt-2">$671.99</p>
-                    <p class="text-center">Sivler access + Gold access to all data.</p> <br>
+                    <p class="text-center">Silver access + Gold access to all data.</p> <br>
                     <a @mouseleave="leave()" @mouseover="hover6()" style="border: 1px solid black;" id="convBtn6"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a> 
                 </div> </div>
 

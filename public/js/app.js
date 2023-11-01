@@ -9271,6 +9271,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -72549,15 +72554,27 @@ var render = function () {
                         ]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "router-link",
-                        {
-                          staticClass:
-                            "business_btns py-2 text-center text-light buttonListing my-2",
-                          attrs: { to: "/subscribe/" + _vm.form.listing_id },
-                        },
-                        [_vm._v("Subscribe")]
-                      ),
+                      _vm.subscribed
+                        ? _c(
+                            "a",
+                            {
+                              staticClass:
+                                "business_btns btn-secondary py-2 text-center text-light buttonListing my-2",
+                              staticStyle: { background: "grey" },
+                            },
+                            [_vm._v("Subscribe")]
+                          )
+                        : _c(
+                            "router-link",
+                            {
+                              staticClass:
+                                "business_btns py-2 text-center text-light buttonListing my-2",
+                              attrs: {
+                                to: "/subscribe/" + _vm.form.listing_id,
+                              },
+                            },
+                            [_vm._v("Subscribe")]
+                          ),
                     ],
                     1
                   )
@@ -76598,7 +76615,7 @@ var render = function () {
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "text-center" }, [
-                _vm._v("Sivler access + Gold access to all data."),
+                _vm._v("Silver access + Gold access to all data."),
               ]),
               _vm._v(" "),
               _c("br"),
@@ -76750,7 +76767,7 @@ var render = function () {
                 ),
                 _vm._v(" "),
                 _c("p", { staticClass: "text-center" }, [
-                  _vm._v("Sivler access + Gold access to all data."),
+                  _vm._v("Silver access + Gold access to all data."),
                 ]),
                 _vm._v(" "),
                 _c("br"),

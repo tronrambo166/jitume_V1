@@ -218,7 +218,7 @@ Route::post('/stripe', 'checkoutController@stripeConversation')->name('stripe.po
 Route::get('isSubscribed/{id}', 'BusinessController@isSubscribed')->name('isSubscribed');
 
 Route::get('/stripeSubscribe/{amount}/{plan}/{days}/{range}', 'checkoutController@stripeSubscribeGet')->name('stripeSubscribe');
-Route::post('/stripeSubscribe', 'checkoutController@stripeSubscribePost')->name('stripeSubscribe.post');
+Route::get('/stripeSubscribeSuccess', 'checkoutController@stripeSubscribeSuccess')->name('stripeSubscribeSuccess');
 
 //CART
 Route::get('cartStripe', 'checkoutController@cartCheckout')->name('cartStripe');

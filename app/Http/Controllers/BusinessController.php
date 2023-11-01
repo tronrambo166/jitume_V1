@@ -1034,11 +1034,15 @@ public function assetEquip_download($id, $type){
       $results['trial'] = $subs->trial;
       //expire
         $start_date = new DateTime($subs->start_date);
-        $days_left = $start_date->diff(new DateTime($subs->expire_date));
-        $days_left = $days_left->d;
+        $days = $start_date->diff(new DateTime($subs->expire_date));
+        $days_left = $days->d;
+        $mon_left = $days->m;
         $results['expire'] = $days_left;
+        if($days_left == 0 && $mon_left == 1)
+          $results['expire'] = 30;
       //expire
-         if($days_left <= 0){
+
+         if($days_left <= 0 && $mon_left == 0){
            Conversation::where('listing_id',$listing_id)->where('investor_id',$investor_id)->delete();
          }
 
