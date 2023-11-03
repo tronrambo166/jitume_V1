@@ -219,6 +219,7 @@ Route::get('isSubscribed/{id}', 'BusinessController@isSubscribed')->name('isSubs
 
 Route::get('/stripeSubscribe/{amount}/{plan}/{days}/{range}', 'checkoutController@stripeSubscribeGet')->name('stripeSubscribe');
 Route::get('/stripeSubscribeSuccess', 'checkoutController@stripeSubscribeSuccess')->name('stripeSubscribeSuccess');
+Route::get('/cancelSubscription', 'checkoutController@cancelSubscription')->name('cancelSubscription');
 
 //CART
 Route::get('cartStripe', 'checkoutController@cartCheckout')->name('cartStripe');

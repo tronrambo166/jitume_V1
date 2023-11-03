@@ -228,6 +228,10 @@ $booking = serviceBook::where('booker_id',$user_id)->get();
                             
                         </ul>
                     </div>
+
+                    <div class=" mx-auto mt-5" style="width:95%;">
+                        <a class="header_buttons seacrhListing sign_in_btn text-center" href="{{route('cancelSubscription')}}"><i class=" fe fe-layout"></i> <span>Cancel Subscription</span></a>
+                    </div>
                 </div>
 
        

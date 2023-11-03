@@ -1033,7 +1033,7 @@ public function assetEquip_download($id, $type){
       $results['sub_id'] = $subs->id;
       $results['trial'] = $subs->trial;
       //expire
-        $start_date = new DateTime($subs->start_date);
+        $start_date = new DateTime(date('Y-m-d'));
         $days = $start_date->diff(new DateTime($subs->expire_date));
         $days_left = $days->d;
         $mon_left = $days->m;

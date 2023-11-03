@@ -103,7 +103,12 @@
           </h4>
 
           <div v-if="auth_user" class="eqp-invest">
-            <a data-target="#investModal" data-toggle="modal"
+            <a v-if="plan == 'platinum' || (plan == 'gold' && range == form.range)" @click="unlockBySubs(form.listing_id,subscrib_id,'platinum');"
+              class=" business_btns py-2 text-center text-light buttonListing my-2">Unlock More Business
+              Information To
+              Invest</a>
+
+              <a v-else data-target="#investModal" data-toggle="modal"
               class=" business_btns py-2 text-center text-light buttonListing my-2">Unlock More Business
               Information To
               Invest</a>
@@ -313,12 +318,12 @@
 
             <div class="card-header w-100">
               <a id="small_fee" @click="unlock_choose_button('a');"
-                  class="border modal_ok_btn w-25 d-inline  btn rounded mr-3 px-3 font-weight-bold">
+                  class="border w-25 d-inline  btn rounded mr-3 px-3 font-weight-bold">
                   Small fee
                 </a>
 
                 <a v-if="subscribed" id="subs" @click="unlock_choose_button('b');"
-                  class="border  w-25 d-inline  btn rounded mr-3 px-3 font-weight-bold">
+                  class="border modal_ok_btn w-25 d-inline  btn rounded mr-3 px-3 font-weight-bold">
                   Subscription
                 </a>
           
@@ -329,7 +334,7 @@
 
           <div class="modal-body">
 
-            <div class="row" id="small_fee_div">
+            <div class="row collapse" id="small_fee_div">
               <div class="col-sm-12 w-100 mx-auto">
                 <div style="cursor:pointer;background:white;" class="p-3">
 
@@ -361,38 +366,71 @@
 
 
             <!-- SUBSCRIBE DIV -->
-              <div v-if="subscribed" class="row collapse" id="subs_div">
+              <div v-if="subscribed" class="row" id="subs_div">
               <div class="col-sm-12 w-100 mx-auto">
               <div style="cursor:pointer;background:white;" class="px-3 py-2">
                   
                 <p id="range_error" style="font-size:14px;" class="system_ui collapse mb-3 py-1 text-danger smalls bg-light text-center"></p>
 
-                  <p style="font-size:16px;" class="mb-3 py-2 text-warning smalls bg-light text-center">Your 
+                  <p v-if="token_left != 0" style="font-size:16px;" class="mb-3 py-2 text-warning smalls bg-light text-center">Your 
                     <span v-if="trial">trial</span><span v-else>plan</span>
-                    expires in <b>{{expire}} </b> days
+                    expires in <b>{{expire}} </b> days.
+                    <span class="text-dark small d-block">Are you sure you want to use one of your {{token_left}} business information tokens?</span>
                   </p>
 
+                  <p v-else style="font-size:16px;" class="mb-3 py-2 text-dark smalls bg-light text-center">Please use <b>'Small fee'</b> option to unlock</p>
+
                   <div class="row" v-if="plan == 'silver'">
-                  <a  @click="make_session(form.listing_id);unlockBySubs(form.listing_id,subscrib_id,'token');" type="submit"
+
+                  <div v-if="token_left != 0" class="col-md-6">
+                  <a   @click="make_session(form.listing_id);unlockBySubs(form.listing_id,subscrib_id,'token');" type="submit"
                   class="modal_ok_btn w-75 m-auto d-inline  btn rounded mr-3 px-3">
                   Use token <small>({{token_left}} left)</small>
                 </a>
                 </div>
 
+                <div v-else class="col-md-6">
+                <a class="modal_ok_btn w-75 m-auto d-inline  btn rounded mr-3 px-3">
+                   <small><b>({{token_left}} token left)</b></small>
+                </a>
+                </div>
+
+                
+
+                <div class="col-md-6"> 
+                <a type="submit" class="close border border-dark w-100 d-inline  btn rounded mr-3 px-3" data-dismiss="modal" aria-label="Close">
+                <span class="text-dark" aria-hidden="true">No</span>
+                </a>
+
+                </div>
+                </div>
+
                 <div class="row" v-if="plan == 'gold'">
-                <div class="col-md-6">
-                <a  @click="make_session(form.listing_id);unlockBySubs(form.listing_id,subscrib_id,'token');" type="submit"
-                  class="modal_ok_btn w-100 btn rounded mr-3 px-3">
+                <div v-if="token_left != 0" class="col-md-6">
+                  <a   @click="make_session(form.listing_id);unlockBySubs(form.listing_id,subscrib_id,'token');" type="submit"
+                  class="modal_ok_btn w-75 m-auto d-inline  btn rounded mr-3 px-3">
                   Use token <small>({{token_left}} left)</small>
                 </a>
                 </div>
 
-                <div class="col-md-6">
-                <a @click="make_session(form.listing_id);unlockBySubs(form.listing_id,subscrib_id,'gold');" type="submit"
-                  class="modal_ok_btn w-100 d-inline  btn rounded mr-3 px-3">
-                  Use gold package
+                <div v-else class="col-md-6">
+                <a class="modal_ok_btn w-75 m-auto d-inline  btn rounded mr-3 px-3">
+                   <small><b>({{token_left}} token left)</b></small>
                 </a>
                 </div>
+
+                <div class="col-md-6"> 
+                <!-- <a type="submit" 
+                  class=" modal_ok_btn w-100 d-inline  btn rounded mr-3 px-3">
+                  No
+                </a> -->
+                <a type="submit" class="close border border-dark w-100 d-inline  btn rounded mr-3 px-3" data-dismiss="modal" aria-label="Close">
+                <span class="text-dark" aria-hidden="true">No</span>
+                </a>
+
+                </div>
+
+                <div class="w-75 mx-auto my-1"><p id="range_error" style="font-size:14px;" class="system_ui  py-1 text-danger smalls bg-light text-center"></p>The business is not in your range!</div>
                 </div>
 
                 <div class="row" v-if="plan == 'platinum'">
@@ -474,6 +512,7 @@ export default {
   data: () => ({
     form: new Form({
       name: '',
+      range:'',
       listing_id: '',
       details: '',
       location: '',
@@ -535,6 +574,7 @@ export default {
       axios.get('searchResults/' + id).then((data) => {
         //console.log(data);
         t.form.conv = data.data.conv;
+        t.form.range = data.data.data[0].y_turnover;
         t.form.name = data.data.data[0].name;
         t.form.details = data.data.data[0].details;
         t.form.location = data.data.data[0].location;
@@ -682,8 +722,8 @@ export default {
         t.results = data.data.data;
         t.progress = data.data.progress;
         $('#progress').css('width', t.progress + '%');
-        //t.progress = (data.data.share) * t.progress;
-        if(progress != 0)
+
+        if(t.progress != 0)
         t.progress = t.progress.toFixed(2);
         t.share = data.data.share;
         t.amount_required = data.data.amount_required;
@@ -829,29 +869,26 @@ export default {
 
     unlockBySubs: function (listing_id,sub_id,plan) {
       //alert(sub_id);
-      $.confirm({
-          title: 'Are you sure?',
-          content: '',
-          buttons: {
-            confirm: function () {
+      let t = this;
               axios.get('unlockBySubs/' + listing_id+'/'+sub_id+'/'+plan).then((data) => {
 
-                  if(data.data.success)
-                    location.reload();
+                  if(data.data.success){
+                    if(plan == 'token'){
+                    $.alert({
+                      title: 'Alert!',
+                      content: 'Thanks, '+(t.token_left-1)+' more tokens to go!',
+                    });
+                    setTimeout(() => location.reload(), 3000);
+                  }
+
+                    else location.reload();
+                  }
 
                   if(data.data.error){
                   $('#range_error').show();
                   $('#range_error').html(data.data.error);
                   }
-               });
-            },
-            cancel: function () {
-              $.alert('Canceled!');
-            },
-          }
-        });
-
-      
+               });  
     }
 
   },

@@ -190,9 +190,11 @@ catch(\Exception $e){
           []
         );
         //echo '<pre>'; print_r($checkout);  echo '<pre>'; exit;
+        $stripe_sub_id = $checkout->subscription;
+
         if($checkout->amount_total == 0){
             $sub = $this->Client->subscriptions->retrieve(
-              'sub_1O7iUYJkjwNxIm6zkRWo02oW', []
+              $stripe_sub_id, []
         );
         $transferAmount=0;
         $original_amount = ($sub->items->data[0]->plan->amount)/100;
@@ -236,10 +238,15 @@ catch(\Exception $e){
         'expire_date' => $expire_date,
         'token_remaining' => $token_remaining,
         'chosen_range' => $range,
-        'trial' => $trial
+        'trial' => $trial,
+        'stripe_sub_id' => $stripe_sub_id
         ]); 
 
-       Session::put('Stripe_pay','Subscription Success!');
+        if($trial == 1)
+        $message = 'Your trial expires in 7 days';
+        else
+        $message = 'Your '.ucwords($plan).' plan expires in 30 days';
+       Session::put('Stripe_pay','Success! '.$message);
        return redirect("/");
 
         }
@@ -251,6 +258,20 @@ catch(\Exception $e){
     //Stripe
 
 
+    }
+
+
+     public function cancelSubscription()
+    {
+        $investor_id = Auth::id();
+        $subs = BusinessSubscriptions::where('investor_id',$investor_id)
+        ->where('active',1)->orderBy('id','DESC')->first();
+
+        $cancel = $this->Client->subscriptions->cancel(
+        $subs->stripe_sub_id,[]
+);
+        Session::put('Stripe_pay','Subscription Canceled!');
+        return redirect("/");
     }
 //SUBSCRIBE________________________
 
