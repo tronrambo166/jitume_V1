@@ -113,16 +113,14 @@
               Information To
               Invest</a>
 
-            <a style="background:grey;" 
+            <!-- <a style="background:grey;" 
              v-if="subscribed"
               class=" business_btns btn-secondary py-2 text-center text-light buttonListing my-2">Subscribe</a>
 
               <router-link :to="`/subscribe/${form.listing_id}`"
               v-else
-              class=" business_btns py-2 text-center text-light buttonListing my-2">Subscribe</router-link>
+              class=" business_btns py-2 text-center text-light buttonListing my-2">Subscribe</router-link> -->
 
-            <!-- <router-link :to="`/donate_eqp/${form.listing_id}`" class="text-light text-center buttonListing my-3 py-2">Donate</router-link>
-                 -->
 
             <!-- INVEST MODAL -->
          <!--    <div class="modal d-block" id="investModalShow" tabindex="-1" role="dialog"
@@ -326,6 +324,10 @@
                   class="border modal_ok_btn w-25 d-inline  btn rounded mr-3 px-3 font-weight-bold">
                   Subscription
                 </a>
+
+              <router-link :to="`/subscribe/${form.listing_id}`"
+              v-else data-dismiss="modal" aria-label="Close"
+              class="border w-25 d-inline  btn rounded mr-3 px-3 font-weight-bold">Subscribe</router-link>
           
             </div>
 
@@ -563,7 +565,15 @@ export default {
         t.plan = data.data.data.plan;
         t.expire = data.data.data.expire;
         t.subscrib_id = data.data.data.sub_id;
+
+        if(t.subscribed == 0)
+          $('#small_fee_div').removeClass('collapse');
       }
+      else {
+        $('#small_fee_div').removeClass('collapse');
+        $('#small_fee').addClass('modal_ok_btn');
+      } 
+
         });
       },
 

@@ -1027,14 +1027,26 @@ public function assetEquip_download($id, $type){
     $count = 0;
     $subs = BusinessSubscriptions::where('investor_id',$investor_id)
     ->where('active',1)->orderBy('id','DESC')->first();
-    if($subs){ $count = 1;
+
+    if($subs){
+
+    //Get Stripe Subscription
+    $stripe = new \Stripe\StripeClient('sk_test_51JFWrpJkjwNxIm6zcIxSq9meJlasHB3MpxJYepYx1RuQnVYpk0zmoXSXz22qS62PK5pryX4ptYGCHaudKePMfGyH00sO7Jwion');
+
+    $stripe_sub = $stripe->subscriptions->retrieve(
+              $subs->stripe_sub_id, []
+        );
+    $expire_date = date('Y-m-d',$stripe_sub->current_period_end);
+    //Get Stripe Subscription
+
+      $count = 1;
       $results['subscribed'] = 1;
 
       $results['sub_id'] = $subs->id;
       $results['trial'] = $subs->trial;
       //expire
         $start_date = new DateTime(date('Y-m-d'));
-        $days = $start_date->diff(new DateTime($subs->expire_date));
+        $days = $start_date->diff(new DateTime($expire_date));
         $days_left = $days->d;
         $mon_left = $days->m;
         $results['expire'] = $days_left;
@@ -1043,7 +1055,8 @@ public function assetEquip_download($id, $type){
       //expire
 
          if($days_left <= 0 && $mon_left == 0){
-           Conversation::where('listing_id',$listing_id)->where('investor_id',$investor_id)->delete();
+           Conversation::where('listing_id',$listing_id)->where('investor_id',$investor_id)->update(['active' => 0]);
+           $results['subscribed'] = 0;
          }
 
       $results['token_left'] = $subs->token_remaining;

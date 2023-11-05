@@ -9314,6 +9314,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -9366,6 +9368,10 @@ __webpack_require__.r(__webpack_exports__);
           t.plan = data.data.data.plan;
           t.expire = data.data.data.expire;
           t.subscrib_id = data.data.data.sub_id;
+          if (t.subscribed == 0) $('#small_fee_div').removeClass('collapse');
+        } else {
+          $('#small_fee_div').removeClass('collapse');
+          $('#small_fee').addClass('modal_ok_btn');
         }
       });
     },
@@ -72572,74 +72578,47 @@ var render = function () {
               _vm._m(3),
               _vm._v(" "),
               _vm.auth_user
-                ? _c(
-                    "div",
-                    { staticClass: "eqp-invest" },
-                    [
-                      _vm.plan == "platinum" ||
-                      (_vm.plan == "gold" && _vm.range == _vm.form.range)
-                        ? _c(
-                            "a",
-                            {
-                              staticClass:
-                                "business_btns py-2 text-center text-light buttonListing my-2",
-                              on: {
-                                click: function ($event) {
-                                  return _vm.unlockBySubs(
-                                    _vm.form.listing_id,
-                                    _vm.subscrib_id,
-                                    "platinum"
-                                  )
-                                },
+                ? _c("div", { staticClass: "eqp-invest" }, [
+                    _vm.plan == "platinum" ||
+                    (_vm.plan == "gold" && _vm.range == _vm.form.range)
+                      ? _c(
+                          "a",
+                          {
+                            staticClass:
+                              "business_btns py-2 text-center text-light buttonListing my-2",
+                            on: {
+                              click: function ($event) {
+                                return _vm.unlockBySubs(
+                                  _vm.form.listing_id,
+                                  _vm.subscrib_id,
+                                  "platinum"
+                                )
                               },
                             },
-                            [
-                              _vm._v(
-                                "Unlock More Business\n            Information To\n            Invest"
-                              ),
-                            ]
-                          )
-                        : _c(
-                            "a",
-                            {
-                              staticClass:
-                                "business_btns py-2 text-center text-light buttonListing my-2",
-                              attrs: {
-                                "data-target": "#investModal",
-                                "data-toggle": "modal",
-                              },
+                          },
+                          [
+                            _vm._v(
+                              "Unlock More Business\n            Information To\n            Invest"
+                            ),
+                          ]
+                        )
+                      : _c(
+                          "a",
+                          {
+                            staticClass:
+                              "business_btns py-2 text-center text-light buttonListing my-2",
+                            attrs: {
+                              "data-target": "#investModal",
+                              "data-toggle": "modal",
                             },
-                            [
-                              _vm._v(
-                                "Unlock More Business\n            Information To\n            Invest"
-                              ),
-                            ]
-                          ),
-                      _vm._v(" "),
-                      _vm.subscribed
-                        ? _c(
-                            "a",
-                            {
-                              staticClass:
-                                "business_btns btn-secondary py-2 text-center text-light buttonListing my-2",
-                              staticStyle: { background: "grey" },
-                            },
-                            [_vm._v("Subscribe")]
-                          )
-                        : _c(
-                            "router-link",
-                            {
-                              staticClass:
-                                "business_btns py-2 text-center text-light buttonListing my-2",
-                              attrs: {
-                                to: "/subscribe/" + _vm.form.listing_id,
-                              },
-                            },
-                            [_vm._v("Subscribe")]
-                          ),
-                    ],
-                    1
-                  )
+                          },
+                          [
+                            _vm._v(
+                              "Unlock More Business\n            Information To\n            Invest"
+                            ),
+                          ]
+                        ),
+                  ])
                 : _c("div", { staticClass: "eqp-invest" }, [
                     _c(
                       "a",
@@ -72909,43 +72888,60 @@ var render = function () {
               },
               [
                 _c("div", { staticClass: "modal-header" }, [
-                  _c("div", { staticClass: "card-header w-100" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "border w-25 d-inline btn rounded mr-3 px-3 font-weight-bold",
-                        attrs: { id: "small_fee" },
-                        on: {
-                          click: function ($event) {
-                            return _vm.unlock_choose_button("a")
-                          },
-                        },
-                      },
-                      [_vm._v("\n                Small fee\n              ")]
-                    ),
-                    _vm._v(" "),
-                    _vm.subscribed
-                      ? _c(
-                          "a",
-                          {
-                            staticClass:
-                              "border modal_ok_btn w-25 d-inline btn rounded mr-3 px-3 font-weight-bold",
-                            attrs: { id: "subs" },
-                            on: {
-                              click: function ($event) {
-                                return _vm.unlock_choose_button("b")
-                              },
+                  _c(
+                    "div",
+                    { staticClass: "card-header w-100" },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "border w-25 d-inline btn rounded mr-3 px-3 font-weight-bold",
+                          attrs: { id: "small_fee" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.unlock_choose_button("a")
                             },
                           },
-                          [
-                            _vm._v(
-                              "\n                Subscription\n              "
-                            ),
-                          ]
-                        )
-                      : _vm._e(),
-                  ]),
+                        },
+                        [_vm._v("\n                Small fee\n              ")]
+                      ),
+                      _vm._v(" "),
+                      _vm.subscribed
+                        ? _c(
+                            "a",
+                            {
+                              staticClass:
+                                "border modal_ok_btn w-25 d-inline btn rounded mr-3 px-3 font-weight-bold",
+                              attrs: { id: "subs" },
+                              on: {
+                                click: function ($event) {
+                                  return _vm.unlock_choose_button("b")
+                                },
+                              },
+                            },
+                            [
+                              _vm._v(
+                                "\n                Subscription\n              "
+                              ),
+                            ]
+                          )
+                        : _c(
+                            "router-link",
+                            {
+                              staticClass:
+                                "border w-25 d-inline btn rounded mr-3 px-3 font-weight-bold",
+                              attrs: {
+                                to: "/subscribe/" + _vm.form.listing_id,
+                                "data-dismiss": "modal",
+                                "aria-label": "Close",
+                              },
+                            },
+                            [_vm._v("Subscribe")]
+                          ),
+                    ],
+                    1
+                  ),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [

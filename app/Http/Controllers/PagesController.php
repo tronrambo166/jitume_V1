@@ -339,7 +339,7 @@ $ids = explode(',',$ids);
 foreach($ids as $id){ 
     if($id!=''){ 
     $conv = Conversation::where('investor_id',Auth::id())->
-    where('listing_id',$id)->first();
+    where('listing_id',$id)->where('active',1)->first();
 
     $listing = Listing::where('id',$id)->first();
     $files = businessDocs::where('business_id',$id)
