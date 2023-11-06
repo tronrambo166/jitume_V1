@@ -12173,6 +12173,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -76665,7 +76669,24 @@ var render = function () {
       _c("div", { staticClass: "w-75 m-auto row my-4 text-center" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("div", { staticClass: "col-sm-12 my-3" }, [
+        _c("div", { staticClass: "col-sm-1 px-0" }, [
+          _c(
+            "a",
+            {
+              staticClass:
+                "m-auto border border-dark btn px-1 py-1 font-weight-bold",
+              staticStyle: { width: "100%" },
+              on: {
+                click: function ($event) {
+                  return _vm.$router.go(-1)
+                },
+              },
+            },
+            [_vm._v("Back")]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-11 my-3" }, [
           _c("input", {
             staticStyle: { "font-size": "20px" },
             attrs: {
@@ -77119,7 +77140,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-12" }, [
+    return _c("div", { staticClass: "col-sm-11" }, [
       _c("h4", { staticClass: "font-weight-bold text-center pt-2" }, [
         _vm._v("Let's get you started!"),
       ]),

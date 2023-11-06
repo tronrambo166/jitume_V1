@@ -142,6 +142,7 @@ catch(\Exception $e){
      public function stripeSubscribeGet($amount,$plan,$days,$range)
     {
       //$listing=base64_decode($listing_id);
+      $days=base64_decode($days);
       $range=base64_decode($range);
       $plan=base64_decode($plan);
       $base_price=base64_decode($amount);
@@ -161,11 +162,16 @@ catch(\Exception $e){
         return view('checkoutSubscribe.stripe',compact('price','plan','payLink','trial_price','base_price'));
     //If trial
 
-      if($plan == 'silver') $price_id = 'price_1O6uaiJkjwNxIm6zzQ5b2t46';
-      if($plan == 'gold') $price_id = 'price_1M7aX9JkjwNxIm6z5ut8ixWC';
-      if($plan == 'platinum') $price_id = 'price_1O7bheJkjwNxIm6zutl9T3HR';
+      if($plan == 'silver' && $days == 30) $price_id = 'price_1O6uaiJkjwNxIm6zzQ5b2t46';
+      if($plan == 'gold' && $days == 30) $price_id = 'price_1M7aX9JkjwNxIm6z5ut8ixWC';
+      if($plan == 'platinum' && $days == 30) $price_id = 'price_1O7bheJkjwNxIm6zutl9T3HR';
+
+      if($plan == 'silver' && $days == 365) $price_id = 'price_1O7bXyJkjwNxIm6zpTcQdjYg';
+      if($plan == 'gold' && $days == 365) $price_id = 'price_1O7bdzJkjwNxIm6zwGCyyLpg';
+      if($plan == 'platinum' && $days == 365) $price_id = 'price_1O7bhfJkjwNxIm6zMLsZZTGP';
+
       $session = $this->Client->checkout->sessions->create([
-              'success_url' => 'http://localhost/laravel_projects/jitumeLive/public/stripeSubscribeSuccess?session_id={CHECKOUT_SESSION_ID}',
+              'success_url' => 'https://test.jitume.com/stripeSubscribeSuccess?session_id={CHECKOUT_SESSION_ID}',
               'cancel_url' => 'https://example.com/canceled.html',
               'mode' => 'subscription',
               'line_items' => [[

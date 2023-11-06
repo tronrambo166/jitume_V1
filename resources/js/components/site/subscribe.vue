@@ -5,12 +5,16 @@
 
 
              <div class="w-75 m-auto row my-4 text-center">
-                <div class="col-sm-12">
+                <div class="col-sm-11">
                     <h4 class="font-weight-bold text-center pt-2">Let's get you started!</h4>
                     <h6>All plans start with a 7 days free trial.</h6>
                 </div>
 
-                 <div class="col-sm-12 my-3">
+                <div class="col-sm-1 px-0">
+                    <a @click="$router.go(-1)" style="width: 100%;" class="m-auto border border-dark btn px-1 py-1 font-weight-bold">Back</a>
+                </div>
+
+                 <div class="col-sm-11 my-3">
                     <input checked @change="type($event);" style="font-size:20px;" name="type" type="radio"  value="M" id="month"> <span class="mr-3">Monthly</span>
                      <input @change="type($event);" name="type" type="radio" value="Y" id="year">
                      <span class="">Annualy (Save 20%)</span> 
