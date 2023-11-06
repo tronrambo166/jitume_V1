@@ -2,11 +2,14 @@
 use App\Models\Listing;
 use App\Models\Services;
 use App\Models\serviceBook;
+use App\Models\BusinessSubscriptions;
 use App\Models\User;
 
 $business = Listing::where('user_id',$user_id)->get();
 $service = Services::where('shop_id',$user_id)->get();
 $booking = serviceBook::where('booker_id',$user_id)->get();
+$subscribed = BusinessSubscriptions::where('investor_id',$user_id)
+    ->where('active',1)->orderBy('id','DESC')->first();
 @endphp
 
 <!DOCTYPE HTML>
@@ -229,9 +232,11 @@ $booking = serviceBook::where('booker_id',$user_id)->get();
                         </ul>
                     </div>
 
+                    @if($subscribed)
                     <div class=" mx-auto mt-5" style="width:95%;">
                         <a class="header_buttons seacrhListing sign_in_btn text-center" href="{{route('cancelSubscription')}}"><i class=" fe fe-layout"></i> <span>Cancel Subscription</span></a>
                     </div>
+                    @endif
                 </div>
 
        
