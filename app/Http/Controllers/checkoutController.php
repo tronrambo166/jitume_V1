@@ -267,15 +267,16 @@ catch(\Exception $e){
     }
 
 
-     public function cancelSubscription()
+     public function cancelSubscription($id)
     {
         $investor_id = Auth::id();
-        $subs = BusinessSubscriptions::where('investor_id',$investor_id)
-        ->where('active',1)->orderBy('id','DESC')->first();
+        $subs = BusinessSubscriptions::where('id',$id)->first();
 
         $cancel = $this->Client->subscriptions->cancel(
         $subs->stripe_sub_id,[]
 );
+        BusinessSubscriptions::where('id',$id)->update(['active' => 0]);
+
         Session::put('Stripe_pay','Subscription Canceled!');
         return redirect("/");
     }

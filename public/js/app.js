@@ -73072,7 +73072,7 @@ var render = function () {
                                     attrs: { id: "range_error" },
                                   }),
                                   _vm._v(" "),
-                                  _vm.token_left != 0
+                                  _vm.token_left != 0 && _vm.trial
                                     ? _c(
                                         "p",
                                         {

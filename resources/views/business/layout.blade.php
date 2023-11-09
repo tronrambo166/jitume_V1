@@ -234,7 +234,7 @@ $subscribed = BusinessSubscriptions::where('investor_id',$user_id)
 
                     @if($subscribed)
                     <div class=" mx-auto mt-5" style="width:95%;">
-                        <a class="header_buttons seacrhListing sign_in_btn text-center" href="{{route('cancelSubscription')}}"><i class=" fe fe-layout"></i> <span>Cancel Subscription</span></a>
+                        <a class="header_buttons seacrhListing sign_in_btn text-center" href="{{route('cancelSubscription', $subscribed->id)}}"><i class=" fe fe-layout"></i> <span>Cancel Subscription</span></a>
                     </div>
                     @endif
                 </div>

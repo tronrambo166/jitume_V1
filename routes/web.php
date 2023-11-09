@@ -219,7 +219,7 @@ Route::get('isSubscribed/{id}', 'BusinessController@isSubscribed')->name('isSubs
 
 Route::get('/stripeSubscribe/{amount}/{plan}/{days}/{range}', 'checkoutController@stripeSubscribeGet')->name('stripeSubscribe');
 Route::get('/stripeSubscribeSuccess', 'checkoutController@stripeSubscribeSuccess')->name('stripeSubscribeSuccess');
-Route::get('/cancelSubscription', 'checkoutController@cancelSubscription')->name('cancelSubscription');
+Route::get('/cancelSubscription/{id}', 'checkoutController@cancelSubscription')->name('cancelSubscription');
 
 //CART
 Route::get('cartStripe', 'checkoutController@cartCheckout')->name('cartStripe');
@@ -233,6 +233,8 @@ Route::post('milestoneService', 'checkoutController@milestoneStripePostS')->name
 Route::get('milestoneInvestEQP/{listing_id}/{mile_id}/{investor_id}/{owner_id}', 'checkoutController@milestoneInvestEQP')->name('milestoneInvestEQP');
 
 //<!-- BIDS -->
+Route::get('CancelAssetBid/{id}', 'bidsEmailController@CancelAssetBid')->name('CancelAssetBid');
+
 Route::post('bidsAccepted', 'bidsEmailController@bidsAccepted')->name('bidsAccepted');
 Route::post('bidCommitsEQP', 'bidsEmailController@bidCommitsEQP')->name('bidCommitsEQP');
 Route::get('bidCommits/{amount}/{business_id}/{percent}', 'checkoutController@bidCommitsForm')->name('bidCommits');

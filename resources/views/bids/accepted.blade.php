@@ -1,5 +1,7 @@
 
-
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
         
 
 <!--Hidden Cart view-->
@@ -12,8 +14,9 @@
 			
 			<div class="" style="width:100%; margin:auto;">
 			<h4 style="line-height: 28px;font-weight:500; color: #000000a1;font-family: sans-serif;text-align:left;"> Hi,<br> 
-		            Your bid to invest in the {{$business_name}} has been accepted. <br> 
+		            Your bid to invest in the {{$business_name}} has been accepted. </h4> <br> 
 
+		            @if($type == 'Monetery')
 		           Proceed to progress with the milestones work?
 		        <div style="width:100%;margin: auto; padding-bottom:20px;padding-top:15px;"> 
 		        	<a target="_blank" href="https://test.jitume.com/agreeToBid/{{$bid_id}}"
@@ -24,14 +27,26 @@
 				style="width:50%;text-decoration:none;color: aliceblue;background:red;padding:10px 30px;border-radius:5px;margin-left:30px">
 				Cancel </a>
 			</div>
-					<p>Please be on alert of completion milestone emails as progress of your investment depends on your review. </p>
+					<!-- <p>Please be on alert of completion milestone emails as progress of your investment depends on your review. </p> -->
 		            If you require a project manager, please click here (Please not that investor with assets must have a project manager) <a target="_blank" href="https://test.jitume.com/#/services"
 				style="text-decoration:none;color: aliceblue;background:navy;padding:8px;border-radius:5px;">
 				Request a Project Manager </a>
 
-			</h4>
-			
-			
+				@else
+				Please Request a Project Manager to Proceed with this Investment (Please note that investor with assets must have a project manager)
+				
+				<div style="width:100%;margin: auto; padding-bottom:20px;padding-top:15px;"> 
+				 <a target="_blank" href="https://test.jitume.com/#/services"
+				style="text-decoration:none;color: aliceblue;background:navy;padding:8px;border-radius:5px;">
+				Request</a>
+
+				<a onclick="openModal('ok');"
+				style="text-decoration:none;color:white;background:red;padding:8px;border-radius:5px;">
+				Cancel</a>
+			        </div>
+
+				@endif
+
 			</div>
 		
 		
@@ -45,6 +60,34 @@
 		</div>
   
         
+
+    <!-- Cancel -->
+    <div class="card" id="ConfirmModal" style="display:none; width:50%; margin:auto; padding-bottom:30px;"  >
+          <div class="">
+            <h5 class="" style="margin-left:30px;" id="">Submit a review</h5>
+
+          </div>
+          <div class="card-body">
+          	<div class="row" >
+
+                <div class="col-md-6">
+                <a style="text-decoration:none;color: aliceblue;background:navy;padding:8px;border-radius:5px; width:75%; margin:auto;" target="_blank" href="https://test.jitume.com/CancelAssetBid/{{$bid_id}}" class="close ">
+                   <small><b>OK</b></small>
+                </a>
+                </div>
+
+                
+
+                <div class="col-md-6"> 
+                <a onclick="openModal('hide');" style="text-decoration:none;color:white;background:red;padding:8px;border-radius:5px; width:75%; margin:auto;" class="close " data-dismiss="modal" aria-label="Close">
+                <span class="text-dark" aria-hidden="true"><small>Cancel</small></span>
+                </a>
+
+                </div>
+        </div>
+      </div>
+    </div>
+    <!-- Cancel -->
 		
        
       
@@ -55,6 +98,14 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     
+    <script type="text/javascript">
+    	function openModal(val) {
+		if(val == 'hide')
+		$('#ConfirmModal').css('display','none');
+		else
+    	$('#ConfirmModal').css('display','block');
+    	}
+    </script>
 
 
 <!--Hidden Cart view-->

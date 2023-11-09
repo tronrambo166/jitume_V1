@@ -59,7 +59,7 @@ public function bidsAccepted(Request $request)
          $this->Client->refunds->create(['charge' => $bid->stripe_charge_id ]);
          //Refund
          
-         $bid_remove = BusinessBids::where('id',$id)->delete();
+         //$bid_remove = BusinessBids::where('id',$id)->delete();
          //remove
            }
           }
@@ -104,7 +104,7 @@ public function bidsAccepted(Request $request)
         }
 
         //Mail
-        $info=[ 'business_name'=>$list->name, 'bid_id'=>$id ];
+        $info=[ 'business_name'=>$list->name, 'bid_id'=>$id, 'type' => $bid->type ];
         $user['to'] = $investor_mail; //'tottenham266@gmail.com'; //
          Mail::send('bids.accepted', $info, function($msg) use ($user){
              $msg->to($user['to']);
@@ -161,6 +161,23 @@ public function agreeToBid($bidId)
             return redirect()->back();
        }  
 }
+
+
+public function CancelAssetBid($bidId)
+{
+    try { 
+        AcceptedBids::where('bid_id',$bidId)->delete();
+        Session::put('login_success','Thanks for your feedback!');
+        return redirect('/');
+     
+       }
+        catch(\Exception $e){
+            Session::put('failed',$e->getMessage());
+            return redirect()->back();
+       }  
+}
+
+
 
 public function agreeToMileS($s_id,$booker_id)
 {
