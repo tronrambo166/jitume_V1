@@ -1226,5 +1226,50 @@ else{
 }
 
 
+
+public function FindProjectManagers($bid_id){
+  //return response()->json(['data' => 'hi']);
+$results = array();
+$this_bid = AcceptedBids::where('bid_id',$bid_id)->first();
+$this_business = Listing::where('id',$this_bid->business_id)->first();
+$business_loc = $this_business->location;
+
+$lat = (float)$this_business->lat;
+$lng = (float)$this_business->lng;
+$services = $this->findNearestServices($lat,$lng,100);
+
+return response()->json(['services' => $services]);
+}
+
+
+
+public function findNearestServices($latitude, $longitude, $radius = 100)
+    {
+        $listings = Services::selectRaw("* ,
+                         ( 3956 * acos( cos( radians(?) ) *
+                           cos( radians( lat ) )
+                           * cos( radians( lng ) - radians(?)
+                           ) + sin( radians(?) ) *
+                           sin( radians( lat ) ) )
+                         ) AS distance", [$latitude, $longitude, $latitude])
+            //->where('active', '=', 1)
+            ->having("distance", "<", $radius)
+            ->orderBy("distance",'asc')
+            ->offset(0)
+            ->limit(20)
+            ->get();
+
+        foreach($listings as $list){
+        if(strlen($list->location) > 30)
+        $list->location = substr($list->location,0,30).'...';
+
+        $user = User::where('id', $list->shop_id)->first();
+        $list->manager = $user->fname.' '.$user->lname;
+        $list->contact = $user->email;
+        }
+
+        return $listings;
+    } 
+
 //Class Bracket
 }

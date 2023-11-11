@@ -15,6 +15,8 @@ import project_dash from '../components/site/project_dash.vue'
 import project_dash_service from '../components/site/project_dash_service.vue'
 import category from '../components/site/category.vue'
 import investEQUIP from '../components/site/investEQUIP.vue'
+import projectManagers from '../components/site/projectManagers.vue'
+import projectManagerCancel from '../components/site/projectManagerCancel.vue'
 
 
 
@@ -50,6 +52,8 @@ export const routes=[
 { path:'/service-milestone/:id', component: project_dash_service},
 { path:'/category/:name', component: category},
 { path:'/investEQUIP/:amount/:id/:percent', component: investEQUIP},
+{ path:'/projectManagers/:bid_id', component: projectManagers},
+{ path:'/projectManagerCancel/:bid_id', component: projectManagerCancel},
 
 
 //ADMIN ROUTES

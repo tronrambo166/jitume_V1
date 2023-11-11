@@ -363,6 +363,8 @@ public function latBusiness(){
 $results = array();
     $listings = Listing::where('active',1)->latest()->get();$i=1;
     foreach($listings as $listing){
+        if(strlen($listing->location) > 30)
+        $listing->location = substr($listing->location,0,30).'...';
         $listing->file=null;
         if($i<11)
          $results[] = $listing;$i++;

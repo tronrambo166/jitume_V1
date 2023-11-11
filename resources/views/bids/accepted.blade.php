@@ -19,7 +19,7 @@
 		            @if($type == 'Monetery')
 		           Proceed to progress with the milestones work?
 		        <div style="width:100%;margin: auto; padding-bottom:20px;padding-top:15px;"> 
-		        	<a target="_blank" href="https://test.jitume.com/agreeToBid/{{$bid_id}}"
+		        	<a target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/{{$bid_id}}"
 				style="width:50%;text-decoration:none;color: aliceblue;background:green;padding:10px 30px;border-radius:5px;margin-left:30px">
 				Ok </a>
 
@@ -28,20 +28,20 @@
 				Cancel </a>
 			</div>
 					<!-- <p>Please be on alert of completion milestone emails as progress of your investment depends on your review. </p> -->
-		            If you require a project manager, please click here (Please not that investor with assets must have a project manager) <a target="_blank" href="https://test.jitume.com/#/services"
+		            If you require a project manager, please click here (Please not that investor with assets must have a project manager) <a target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/#/projectManagers/{{$bid_id}}"
 				style="text-decoration:none;color: aliceblue;background:navy;padding:8px;border-radius:5px;">
 				Request a Project Manager </a>
 
 				@else
-				Please Request a Project Manager to Proceed with this Investment (Please note that investor with assets must have a project manager)
+				Please Request a Project Manager to Proceed with this Investment (Please note that investor with assets must have a project manager) <br>
 				
 				<div style="width:100%;margin: auto; padding-bottom:20px;padding-top:15px;"> 
-				 <a target="_blank" href="https://test.jitume.com/#/services"
-				style="text-decoration:none;color: aliceblue;background:navy;padding:8px;border-radius:5px;">
+				 <a target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/#/projectManagers/{{$bid_id}}"
+				style="text-decoration:none;color: aliceblue;background:navy;padding:8px;border-radius:5px;display: block;width: 50%;margin: auto;margin-top: 20px;">
 				Request</a>
 
-				<a onclick="openModal('ok');"
-				style="text-decoration:none;color:white;background:red;padding:8px;border-radius:5px;">
+				<a href="http://localhost/laravel_projects/jitumeLive/public/#/projectManagerCancel/{{$bid_id}}"
+				style="text-decoration:none;color:white;background:red;padding:8px;border-radius:5px;display: block;width: 50%;margin: auto;margin-top: 20px;">
 				Cancel</a>
 			        </div>
 
@@ -59,37 +59,7 @@
 		
 		</div>
   
-        
-
-    <!-- Cancel -->
-    <div class="card" id="ConfirmModal" style="display:none; width:50%; margin:auto; padding-bottom:30px;"  >
-          <div class="">
-            <h5 class="" style="margin-left:30px;" id="">Submit a review</h5>
-
-          </div>
-          <div class="card-body">
-          	<div class="row" >
-
-                <div class="col-md-6">
-                <a style="text-decoration:none;color: aliceblue;background:navy;padding:8px;border-radius:5px; width:75%; margin:auto;" target="_blank" href="https://test.jitume.com/CancelAssetBid/{{$bid_id}}" class="close ">
-                   <small><b>OK</b></small>
-                </a>
-                </div>
-
-                
-
-                <div class="col-md-6"> 
-                <a onclick="openModal('hide');" style="text-decoration:none;color:white;background:red;padding:8px;border-radius:5px; width:75%; margin:auto;" class="close " data-dismiss="modal" aria-label="Close">
-                <span class="text-dark" aria-hidden="true"><small>Cancel</small></span>
-                </a>
-
-                </div>
-        </div>
-      </div>
-    </div>
-    <!-- Cancel -->
-		
-       
+             
       
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

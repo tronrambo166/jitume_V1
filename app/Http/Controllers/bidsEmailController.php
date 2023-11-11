@@ -59,7 +59,7 @@ public function bidsAccepted(Request $request)
          $this->Client->refunds->create(['charge' => $bid->stripe_charge_id ]);
          //Refund
          
-         //$bid_remove = BusinessBids::where('id',$id)->delete();
+         $bid_remove = BusinessBids::where('id',$id)->delete();
          //remove
            }
           }
@@ -130,7 +130,7 @@ public function bidsAccepted(Request $request)
                 
 
 
-         $bid_remove = BusinessBids::where('id',$id)->delete();
+         //$bid_remove = BusinessBids::where('id',$id)->delete();
          //remove
          }
        }
@@ -167,13 +167,12 @@ public function CancelAssetBid($bidId)
 {
     try { 
         AcceptedBids::where('bid_id',$bidId)->delete();
-        Session::put('login_success','Thanks for your feedback!');
-        return redirect('/');
+        //Session::put('login_success','Thanks for your feedback!');
+        return response()->json(['success' => 'Thanks for your feedback!']);
      
        }
         catch(\Exception $e){
-            Session::put('failed',$e->getMessage());
-            return redirect()->back();
+            return response()->json(['failed' => 'Something went wrong!']);
        }  
 }
 

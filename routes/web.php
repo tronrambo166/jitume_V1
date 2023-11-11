@@ -243,6 +243,7 @@ Route::get('agreeToBid/{bidId}', 'bidsEmailController@agreeToBid')->name('agreeT
 Route::get('agreeToNextmile/{bidId}', 'bidsEmailController@agreeToNextmile')->name('agreeToNextmile');
 Route::post('bookingAccepted', 'bidsEmailController@bookingAccepted')->name('bookingAccepted');
 Route::get('agreeToMileS/{s_id}/{booker_id}', 'bidsEmailController@agreeToMileS')->name('agreeToMileS');
+Route::get('FindProjectManagers/{bid_id}', 'BusinessController@FindProjectManagers')->name('FindProjectManagers');
 
 //<!-- BIDS -->
 
