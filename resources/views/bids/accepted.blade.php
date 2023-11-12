@@ -19,7 +19,7 @@
 		            @if($type == 'Monetery')
 		           Proceed to progress with the milestones work?
 		        <div style="width:100%;margin: auto; padding-bottom:20px;padding-top:15px;"> 
-		        	<a target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/{{$bid_id}}"
+		        	<a target="_blank" href="https://test.jitume.com/agreeToBid/{{$bid_id}}"
 				style="width:50%;text-decoration:none;color: aliceblue;background:green;padding:10px 30px;border-radius:5px;margin-left:30px">
 				Ok </a>
 
@@ -28,7 +28,7 @@
 				Cancel </a>
 			</div>
 					<!-- <p>Please be on alert of completion milestone emails as progress of your investment depends on your review. </p> -->
-		            If you require a project manager, please click here (Please not that investor with assets must have a project manager) <a target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/#/projectManagers/{{$bid_id}}"
+		            If you require a project manager, please click here (Please not that investor with assets must have a project manager) <a target="_blank" href="https://test.jitume.com/#/projectManagers/{{$bid_id}}"
 				style="text-decoration:none;color: aliceblue;background:navy;padding:8px;border-radius:5px;">
 				Request a Project Manager </a>
 
@@ -36,11 +36,11 @@
 				Please Request a Project Manager to Proceed with this Investment (Please note that investor with assets must have a project manager) <br>
 				
 				<div style="width:100%;margin: auto; padding-bottom:20px;padding-top:15px;"> 
-				 <a target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/#/projectManagers/{{$bid_id}}"
+				 <a target="_blank" href="https://test.jitume.com/#/projectManagers/{{$bid_id}}"
 				style="text-decoration:none;color: aliceblue;background:navy;padding:8px;border-radius:5px;display: block;width: 50%;margin: auto;margin-top: 20px;">
 				Request</a>
 
-				<a href="http://localhost/laravel_projects/jitumeLive/public/#/projectManagerCancel/{{$bid_id}}"
+				<a href="https://test.jitume.com/#/projectManagerCancel/{{$bid_id}}"
 				style="text-decoration:none;color:white;background:red;padding:8px;border-radius:5px;display: block;width: 50%;margin: auto;margin-top: 20px;">
 				Cancel</a>
 			        </div>

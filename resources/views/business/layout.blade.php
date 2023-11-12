@@ -327,7 +327,7 @@ $subscribed = BusinessSubscriptions::where('investor_id',$user_id)
 
 
                         }
-                        else $("#result_list").hide();
+                        else {$("#result_list").hide();$("#result_list2").hide(); }
                     }
 
                     //document.getElementById('result_list').style.overflowY="scroll";   

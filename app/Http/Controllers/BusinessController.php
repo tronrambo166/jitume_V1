@@ -1231,6 +1231,7 @@ public function FindProjectManagers($bid_id){
   //return response()->json(['data' => 'hi']);
 $results = array();
 $this_bid = AcceptedBids::where('bid_id',$bid_id)->first();
+if(!$this_bid) return response()->json(['error:'=>'Bid does not exist!']);
 $this_business = Listing::where('id',$this_bid->business_id)->first();
 $business_loc = $this_business->location;
 

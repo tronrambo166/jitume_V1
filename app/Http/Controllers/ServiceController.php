@@ -85,6 +85,43 @@ $document = $request->document;
 $video = $request->video;
 $user_id = Auth::id();
 
+// <!-- Asset Service -->
+if($identification = 'asset_service')
+{
+$cover = 'images/services/assetDefault.png';
+$listing = Services::create([
+            'name' => $title,
+            'shop_id' => $user_id,
+            'price' => $price,
+            'category' => $category,
+            'details' => $details,
+            'location' => $location,
+            'lat' => $lat,
+            'lng' => $lng,
+            'identification' => $identification,
+            'image' => $cover
+          ]);   
+
+$mile = Smilestones::create([
+            'user_id' => $user_id,
+            'title' => 'Transaction Assessment, Management & Transfer',
+            'listing_id' => $listing->id,
+            'amount' => $price,
+            'n_o_days' => 365,
+            'status' => 'To Do'       
+           ]);   
+
+        
+        if($listing && $mile){
+          Session::put('success','Service added!');
+          return redirect()->back();
+        }
+        
+        else return redirect()->with('failed','Something went wrong!');
+  }      
+// <!-- Asset Service -->
+
+
 //File Type Check!
 $image=$request->file('image');
 if($image) {
