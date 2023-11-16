@@ -40,7 +40,7 @@
 
              
                 <div v-for="( result, index ) in results" class="listing col-sm-4 my-5">
-                    <router-link :to="`/serviceDetails/${result.id}`" class="shadow card border px-3">
+                    <router-link :to="`/AssetServiceDetails/${result.id}/${bid_id}`" class="shadow card border px-3">
 
                      <img :src="result.image" style="max-width:332px; height:150px" alt=""/>
 

@@ -48,6 +48,7 @@ export const routes=[
 
 { path:'/serviceResults/:results/:loc',name: 'serviceResults', component: serviceResults},
 { path:'/serviceDetails/:id', component: serviceDetails},
+{ path:'/AssetServiceDetails/:id/:business_bid_id', component: serviceDetails},
 { path:'/business-milestone/:id', component: project_dash},
 { path:'/service-milestone/:id', component: project_dash_service},
 { path:'/category/:name', component: category},

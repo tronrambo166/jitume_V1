@@ -1253,7 +1253,7 @@ public function findNearestServices($latitude, $longitude, $radius = 100)
                            ) + sin( radians(?) ) *
                            sin( radians( lat ) ) )
                          ) AS distance", [$latitude, $longitude, $latitude])
-            //->where('active', '=', 1)
+            ->where('category', '=', '0')
             ->having("distance", "<", $radius)
             ->orderBy("distance",'asc')
             ->offset(0)

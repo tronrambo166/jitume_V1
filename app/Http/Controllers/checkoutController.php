@@ -594,6 +594,24 @@ catch(\Exception $e){
         ]);
         ServiceMileStatus::where('id',$rep_id)->update([ 'status' => 'In Progress']);
         
+    //Check if Asset-related Milestone
+    $booking = serviceBook::where('service_id',$business_id)
+    ->where('booker_id',$investor_id)->first();
+    $accepted_bids = AcceptedBids::where('bid_id',$booking->business_bid_id)
+    ->first();
+    $realBusiness = listing::where('id',$accepted_bids->business_id)->first();
+
+        if ($Business->category == '0') 
+        {
+         $info=[ 'business_owner'=>$realBusiness->user_id, 'manager'=>$owner->id];
+        $user['to'] = $investor_mail;
+         Mail::send('services.equip_release_request', $info, function($msg) use ($user){
+             $msg->to($user['to']);
+             $msg->subject('Equipment release request!');
+         });
+        }
+
+    //Check if Asset-related Milestone
         }
 
 catch(\Exception $e){

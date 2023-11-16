@@ -12,7 +12,7 @@
 <!-- Cancel -->
     <div class="card py-5" id="cancel" style="width:50%; margin:auto;"  >
           <div class="">
-            <h5 class="" style="margin-left:30px;" id="">Are you sure to cancel?</h5>
+            <h5 class="" style="margin-left:30px;" id="">Are you sure you don’t want to Proceed with this investment?</h5>
 
           </div>
           <div class="card-body py-5 mb-5">

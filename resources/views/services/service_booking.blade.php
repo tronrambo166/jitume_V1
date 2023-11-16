@@ -26,7 +26,7 @@
     
  <form action="{{route('bookingAccepted')}}" method="post">  @csrf  
     <div class="row m-auto">   
-    <h4 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold">Investment Bids</h4>     
+    <h4 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold">Service Bookings</h4>     
      <table class="eq table table-bordered " id="">
     <thead class="table_head">
         <tr>
@@ -62,7 +62,7 @@
    
         </tr>
 
-
+<input hidden type="number" name="isAsset" value="{{$ev->category}}">
 
 <!-- Table temp end -->
 

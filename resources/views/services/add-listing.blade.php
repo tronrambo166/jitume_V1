@@ -19,18 +19,8 @@
           </button>
         </div>  @endif
 
-
-        <div class="bid_header row mx-auto px-3">
-        <div class="col-md-6 py-1">
-        <button id="mainBtn" onclick="change('a');" class="primary_bg border border-dark px-3 w-75 text-center text-light my-0 py-1 font-weight-bold"> Add Service</button> 
-        </div>
-
-        <div class="col-md-6 py-1">
-        <button id="assetBtn" onclick="change('b');" class=" border border-dark bid_header text-light px-3 w-75 text-center my-0 py-1 font-weight-bold"> Asset Management Service</button> 
-        </div>
-
-        </div>
-
+        
+        <h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Add Service</h4> 
 
 
         @if($connected == 0)
@@ -44,7 +34,7 @@
 
         @else 
 
-        <div class="row w-75 mx-auto my-3" id="mainDivId">
+        <div class="row w-75 mx-auto my-3">
            
                 <div class="col-sm-12">
                   
@@ -52,7 +42,7 @@
             <form action="{{route('create-service')}}"  method="post" enctype="multipart/form-data">
             @csrf   
                
-                <div class="row form-group mainDiv assetDiv" >
+                <div class="row form-group">
                     
                     <div class="col-sm-6"> 
                         <div class="row">
@@ -76,16 +66,15 @@
                 </div>
 
 
-            <div class="row form-group mainDiv assetDiv"> 
+            <div class="row form-group"> 
                                         
             <div class="col-sm-6">
-            <select name="category" class="border-none form-control"><option hidden="hidden" class="form-control">Services</option> <option value="Business Planning" class="cat form-control">Business Planning</option> <option value="IT" class="cat">IT</option> <option class="cat" value="Legal Project Management">Legal Project Management</option> <option value="Branding and Design"  class="cat" >Branding and Design </option> <option value="Auto"  class="cat" >Auto</option> <option value="Finance, Accounting &amp; 
-                Tax Marketing"  class="cat" >Finance, Accounting &amp; 
-                Tax Marketing</option> <option value="Tax Marketing"  class="cat" >Tax Marketing</option> <option value="Public Relations"  class="cat" >Public Relations</option> <option value="Other"  class="cat" >Other</option>
-
-            <option value="Project Management – Business-Investor Relations & Asset Management" class="form-control">Project Management – Business-Investor Relations & Asset Management</option> 
-        </select>
-        </div>
+            <select name="category" class="border-none form-control"><option hidden="hidden" class="form-control">Services</option> <option value="Business Planning" class="form-control">Business Planning</option> <option value="IT">IT</option> <option value="Legal Project Management">Legal Project Management</option> <option value="Branding and Design">Branding and Design </option> <option value="Auto">Auto</option> <option value="Finance, Accounting &amp; 
+                Tax Marketing">Finance, Accounting &amp; 
+                Tax Marketing</option> <option value="Tax Marketing">Tax Marketing</option> <option value="Public Relations">Public Relations</option> 
+                <option value="0" class="form-control">Project Management – Business\Investor Relations & Asset Management</option>
+                <option value="Other">Other</option></select>
+  </div>
 
                  <div class="col-sm-6"> 
                     <textarea class="form-control" required="" name="details" rows="1" cols="30" placeholder="Details"></textarea>
@@ -97,11 +86,11 @@
 
                     <div class="col-sm-12"> 
                         <div class="row">
-                           <div class="mainDiv col-sm-2"><label class="h4" for="name">
+                           <div class="col-sm-2"><label class="h4" for="name">
                                 <strong>Cover</strong></label>
                                </div>
                     
-                    <div class="mainDiv col-sm-4"> 
+                    <div class="col-sm-4"> 
                     <div class="upload-btn-wrapper">
                       <label for="file-upload" class="btnUp2 custom-file-upload">
                                 Upload <i class="ml-2 fa fa-arrow-up"></i>
@@ -110,7 +99,7 @@
                     </div>
                     </div>
 
-                    <div class="col-sm-6 mainDiv assetDiv"> 
+                    <div class="col-sm-6"> 
                     <input id="pac-input" required="" style="height: 32px;" class=" form-control d-inline" type="text" name="location" value="" placeholder="Enter a location..."> <!-- onkeyup="suggest(this.value);"  -->
                     <input type="text" name="lat" id="lat" hidden value="">
                     <input type="text" name="lng" id="lng" hidden value="">
@@ -127,7 +116,7 @@
                 </div>
 
                 
-                <div class="row my-5 row form-group mainDiv">
+                <div class="row my-5 row form-group">
 
                     <div class="col-sm-12"> 
                         <div class="row">
@@ -144,7 +133,7 @@
                       <label for="file-upload2" class="btnUp_listing">
                         Upload Company/Individual Pin *
                       <img src="../images/up.svg" width="30px"> </label>
-                      <input style="" id="pin" required="" type="file" name="pin" />
+                      <input style="" id="file-upload2" required="" type="file" name="pin" />
                       <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
                     </div>
 
@@ -156,7 +145,7 @@
                     <div class="upload-btn-wrapper">
                       <label for="file-upload3" class="btnUp_listing"> Upload Directors Identification(Id/Passport)*
                       <img src="../images/up.svg" width="30px"> </label>
-                      <input style="" id="identification" required="" type="file" name="identification" />
+                      <input style="" id="file-upload3" required="" type="file" name="identification" />
                       <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
                     </div>
 
@@ -167,14 +156,14 @@
 
 
 
-        <div class="row my-4 form-group mainDiv">
+        <div class="row my-4 form-group">
 
             <div class="col-sm-12 mx-auto"> 
 
                     <div class="upload-btn-wrapper w-75  d-block">
                       <label for="file-upload4" class="text-center w-100 btnUp_listing">  Upload Supporting Business Documentation*
                       <img src="../images/up.svg" width="30px"> </label>
-                      <input style="" id="document" required="" type="file" name="document" />
+                      <input style="" id="file-upload4" required="" type="file" name="document" />
                       <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
                     </div>
 
@@ -214,13 +203,13 @@
                     
                 </div>
 
-
                 @endif
                 
 
             </div>
 
- <div class="clear"></div>
+
+            <div class="clear"></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -270,45 +259,6 @@
      function free_price() {
       $('#paid_price').hide(); 
     }
-
-    function change(event) {
-    if(event == 'b'){
-      $('.mainDiv').hide();
-      $('.assetDiv').show();
-      $('#mainBtn').removeClass('primary_bg');
-      $('#mainBtn').addClass('bid_header');
-      $('#assetBtn').addClass('primary_bg');
-      $('#assetBtn').removeClass('bid_header');
-
-      $("#pin").removeAttr("required");
-      $("#identification").removeAttr("required");
-      $("#document").removeAttr("required");
-
-      document.getElementById('title').value = 'Business Asset Management Service';
-      $('.cat').hide();
-
-  }
-  else{
-     $('.assetDiv').hide();
-     $('.mainDiv').show();
-     $('#assetBtn').removeClass('primary_bg');
-     $('#assetBtn').addClass('bid_header');
-     $('#mainBtn').addClass('primary_bg');
-     $('#mainBtn').removeClass('bid_header');
-
-      $("#pin").attr("required","");
-      $("#identification").attr("required","");
-      $("#document").attr("required","");
-
-     document.getElementById('title').value = '';
-     $('.cat').show();
-  }
-    }
-
-
-
-
-
   </script>
 
 @endsection

@@ -11388,7 +11388,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       formBook: new Form({
         date: '',
         service_id: '',
-        note: ''
+        note: '',
+        business_bid_id: ''
       }),
       formMsg: new Form({
         msg: '',
@@ -11407,10 +11408,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var id = this.$route.params.id;
       this.formBook.service_id = this.$route.params.id;
       this.formMsg.service_id = this.$route.params.id;
+      if (this.$route.params.business_bid_id) this.formBook.business_bid_id = this.$route.params.business_bid_id;
       var t = this;
       axios.get('ServiceResults/' + id).then(function (data) {
-        console.log(data); //t.details = data.data.data;
-
+        //t.details = data.data.data;
         t.form.price = data.data.data[0].price;
         t.form.name = data.data.data[0].name;
         t.form.details = data.data.data[0].details;
@@ -12838,6 +12839,9 @@ var routes = [{
   component: _components_site_serviceResults_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
 }, {
   path: '/serviceDetails/:id',
+  component: _components_site_serviceDetails_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+}, {
+  path: '/AssetServiceDetails/:id/:business_bid_id',
   component: _components_site_serviceDetails_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
 }, {
   path: '/business-milestone/:id',
@@ -74552,7 +74556,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", {}, [
       _c("h5", { staticStyle: { "margin-left": "30px" }, attrs: { id: "" } }, [
-        _vm._v("Are you sure to cancel?"),
+        _vm._v("Are you sure you don’t want to Proceed with this investment?"),
       ]),
     ])
   },
@@ -74751,7 +74755,13 @@ var render = function () {
                       "router-link",
                       {
                         staticClass: "shadow card border px-3",
-                        attrs: { to: "/serviceDetails/" + result.id },
+                        attrs: {
+                          to:
+                            "/AssetServiceDetails/" +
+                            result.id +
+                            "/" +
+                            _vm.bid_id,
+                        },
                       },
                       [
                         _c("img", {

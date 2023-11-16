@@ -166,8 +166,21 @@ public function agreeToBid($bidId)
 public function CancelAssetBid($bidId)
 {
     try { 
-        AcceptedBids::where('bid_id',$bidId)->delete();
-        //Session::put('login_success','Thanks for your feedback!');
+        $bid = AcceptedBids::where('bid_id',$bidId)->first();
+        $investor = User::where('id',$bid->investor_id)->first();
+        $inv_name = $investor->fname.' '.$investor->lname;
+
+        $business = Listing::where('id',$bid->business_id)->first();
+        $owner = User::where('id',$business->user_id)->first();
+
+        $info=[ 'inv_name'=>$inv_name, 'asset_name'=>$bid->serial ];
+        $user['to'] = $owner->email; //'tottenham266@gmail.com'; //$owner->email;
+
+         Mail::send('bids.bid_cancel', $info, function($msg) use ($user){
+             $msg->to($user['to']);
+             $msg->subject('Milestone Cancel!');
+         });
+         AcceptedBids::where('bid_id',$bidId)->delete();
         return response()->json(['success' => 'Thanks for your feedback!']);
      
        }
@@ -393,7 +406,6 @@ public function bidCommitsEQP(Request $request){
 
 public function bookingAccepted(Request $request)
 {
-
     try { 
         $bid_ids = $request->bid_ids;
         foreach($bid_ids as $id){

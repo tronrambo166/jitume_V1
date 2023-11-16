@@ -262,7 +262,8 @@ export default {
     formBook: new Form({
       date: '',
       service_id: '',
-      note: ''
+      note: '',
+      business_bid_id:''
     }),
     formMsg: new Form({
     msg: '',
@@ -284,9 +285,11 @@ export default {
       this.formBook.service_id = this.$route.params.id;
       this.formMsg.service_id = this.$route.params.id;
 
+      if(this.$route.params.business_bid_id)
+        this.formBook.business_bid_id = this.$route.params.business_bid_id;
+
       var t = this;
       axios.get('ServiceResults/' + id).then((data) => {
-        console.log(data);
         //t.details = data.data.data;
         t.form.price = data.data.data[0].price;
         t.form.name = data.data.data[0].name;
