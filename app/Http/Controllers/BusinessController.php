@@ -1228,7 +1228,6 @@ else{
 
 
 public function FindProjectManagers($bid_id){
-  //return response()->json(['data' => 'hi']);
 $results = array();
 $this_bid = AcceptedBids::where('bid_id',$bid_id)->first();
 if(!$this_bid) return response()->json(['error:'=>'Bid does not exist!']);
@@ -1240,6 +1239,43 @@ $lng = (float)$this_business->lng;
 $services = $this->findNearestServices($lat,$lng,100);
 
 return response()->json(['services' => $services]);
+}
+
+
+public function releaseEquipment($business_id, $manager_id){
+//if(!$this_bid) return response()->json(['error:'=>'Bid does not exist!']);
+$b = Listing::where('id',$business_id)->first();
+$b_name = $b->name;
+$b_owner = User::where('id',$b->user_id)->first();
+$manager = User::where('id',$manager_id)->first();
+$investor = User::where('id',Auth::id())->first();
+
+$b_owner_name = $b_owner->fname.' '.$b_owner->lname;
+$manager_name = $manager->fname.' '.$manager->lname;
+$investor_name = $investor->fname.' '.$investor->lname;
+
+//Mail to B Owner
+$info=['manager_name'=>$manager_name, 'contact'=>$manager->email,
+'b_name' => $b_name, 'investor_name' => $investor_name];
+        $user['to'] = $b_owner->email;
+        $mail1 = Mail::send('bids.owner_manager_alert', $info, function($msg) use ($user){
+             $msg->to($user['to']);
+             $msg->subject('Project Manger Assigned!');
+         });
+
+//Mail to Project Manger
+$info=['investor_name'=>$investor_name, 'contact'=>$investor->email,
+'b_owner_name'=>$b_owner_name,'contact2'=>$b_owner->email,'b_name' => $b_name];
+        $user['to'] = $manager->email;
+      $mail2 =  Mail::send('bids.manager_eqp_alert', $info, function($msg) use ($user){
+             $msg->to($user['to']);
+             $msg->subject('Equipment release!');
+         });
+
+if($mail1 && $mail2)
+return response()->json(['status' => 'success']);
+else
+return response()->json(['status' => 'failed']);
 }
 
 

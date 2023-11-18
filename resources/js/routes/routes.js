@@ -17,7 +17,7 @@ import category from '../components/site/category.vue'
 import investEQUIP from '../components/site/investEQUIP.vue'
 import projectManagers from '../components/site/projectManagers.vue'
 import projectManagerCancel from '../components/site/projectManagerCancel.vue'
-
+import equipmentRelease from '../components/site/equipmentRelease.vue'
 
 
 //ADMIN COMPONENTS
@@ -55,7 +55,7 @@ export const routes=[
 { path:'/investEQUIP/:amount/:id/:percent', component: investEQUIP},
 { path:'/projectManagers/:bid_id', component: projectManagers},
 { path:'/projectManagerCancel/:bid_id', component: projectManagerCancel},
-
+{ path:'/equipmentRelease/:b_owner_id/:manager_id', component: equipmentRelease},
 
 //ADMIN ROUTES
 {path:'/add-category', component: addcat},

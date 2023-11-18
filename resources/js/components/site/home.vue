@@ -465,7 +465,8 @@ export default {
     serviceDetails: '',
     milestone: '',
     service_milestone:'',
-    commit: ''
+    commit: '',
+    projectManagers:''
 
   }),
 
@@ -482,8 +483,12 @@ export default {
 
     this.milestone = sessionStorage.getItem('milestone');
     this.milestoneS = sessionStorage.getItem('milestoneS');
+    this.projectManagers = sessionStorage.getItem('projectManagers');
     if (this.milestone != null)
       this.$router.push(`business-milestone/${this.milestone}`);
+
+     if (this.projectManagers != null)
+      this.$router.push(`projectManagers/${this.projectManagers}`);
 
     else if (this.milestoneS != null)
       this.$router.push(`service-milestone/${this.milestoneS}`);

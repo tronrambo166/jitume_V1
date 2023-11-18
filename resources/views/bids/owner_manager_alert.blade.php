@@ -10,26 +10,14 @@
 		<div class="container w-75 m-auto" style="box-shadow: 3px 3px 7px 7px grey; background: #fbfbfb;width:75%; margin:auto; text-align:center">
 		
 		 <h2 style="text-align: left;color: black;font-family: sans-serif;">  
-		 	<br> Project Manager Assigned!</h2>
+		 	<br> Projet Manger Assigned!</h2>
 			
-			<div class="" style="width:100%; margin:auto;"> 
-	
-				Hi, thank you for assigning a Project Manager to facilitate the Asset Transaction, you can now Proceed to release the equipment. <br> <br>
+			<div class="" style="width:100%; margin:auto;">
+			<h4 style="line-height: 28px;font-weight:500; color: #000000a1;font-family: sans-serif;text-align:left;"> Hi, for asset investment from <b>{{$investor_name}}</b> to your business: <b>{{$b_name}}</b><br>
 
-				Please be on alert of completion milestone emails as progress of their investment depends on your review. <br>
-				
-				<div style="width:100%;margin: auto; padding-bottom:20px;padding-top:15px;"> 
-				 <a target="_blank" href="https://test.jitume.com/#/equipmentRelease/{{$business_owner}}/{{$manager}}"
-				style="text-decoration:none;color: aliceblue;background:navy;padding:8px;border-radius:5px;display: block;width: 50%;margin: auto;margin-top: 20px;">
-				Proceed</a>
-
-			        </div>
-
+		            The Project Manager (Name: <b>{{$manager_name}}</b>, Contact: <b>{{$contact}}</b>) has been assigned to this Process. You can start milestone work.</h4>
 			</div>
-		
-		
-				
-				
+			
 				<p style="font-weight: bold; color:#000000a1; line-height:22px; font-family:arial; padding-top:20px; padding-bottom:20px; text-align:center;" class="py-3 text-center"> Thanks! <br />   Jitume Admin.</p>
 
 		</div>

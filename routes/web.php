@@ -244,7 +244,7 @@ Route::get('agreeToNextmile/{bidId}', 'bidsEmailController@agreeToNextmile')->na
 Route::post('bookingAccepted', 'bidsEmailController@bookingAccepted')->name('bookingAccepted');
 Route::get('agreeToMileS/{s_id}/{booker_id}', 'bidsEmailController@agreeToMileS')->name('agreeToMileS');
 Route::get('FindProjectManagers/{bid_id}', 'BusinessController@FindProjectManagers')->name('FindProjectManagers');
-
+Route::get('releaseEquipment/{b_owner_id}/{manager_id}', 'BusinessController@releaseEquipment')->name('releaseEquipment');
 //<!-- BIDS -->
 
 // Payment Routes

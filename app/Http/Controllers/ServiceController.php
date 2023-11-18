@@ -805,6 +805,10 @@ $milestones = ServiceMileStatus::where('id',$request->id)
              $msg->subject('Milestone Done!');
          });  
 //Mail
+
+    if(!$notLastMile)
+      $booking = serviceBook::where('service_id',$mile->service_id)
+        ->where('booker_id',$mile->booker_id)->orderBy("id", "DESC")->delete();
  }
       catch(\Exception $e){
       return redirect('business/s_milestones-all')->with('failed', $e->getMessage());

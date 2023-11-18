@@ -30,8 +30,8 @@
            
 
         <div v-if="!auth_user" class="w-75 h-100 py-5 my-5 my-auto justify-content-center my-2 text-center mx-auto">
-                <a style="cursor:pointer; width:40%;" @click="make_session2()"
-                    class="searchListing mx-auto text-center py-1 text-light font-weight-bold" data-target="#loginModal"
+                <a style="cursor:pointer; width:40%;"
+                    class="searchListing mx-auto text-center py-1 text-light font-weight-bold" @click="make_session2(bid_id);" data-target="#loginmodal2"
                     data-toggle="modal">Login to see</a>
         </div>
 
@@ -130,6 +130,13 @@ export default {
                     t.empty = true;;
               }).catch( (error) =>{})
         },
+
+    make_session2(id) {
+      sessionStorage.setItem('projectManagers', id);
+      document.getElementById('c_to_action').value = 'loginFromService';
+      document.getElementById('c_to_action_login2').value = 'loginFromService';
+      document.getElementById('c_to_listing_reg').value = 'True';
+    },
 
         getPhoto(){
    
