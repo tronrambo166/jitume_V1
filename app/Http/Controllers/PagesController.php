@@ -292,7 +292,8 @@ return response()->json(['data'=>$results]);
 
 
 public function search(Request $request){
-//$listing_name = $request->listing_name;
+$listing_name = $request->listing_name;
+
 $location = $request->search;
 $lat = (float)$request->lat;
 $lng = (float)$request->lng;
@@ -301,7 +302,11 @@ $category = $request->category;
 $results = array();
 
 
-if($location =='' && $category == '')
+if($listing_name) {
+    $check_listing = Listing::where('name', 'like', '%'.$listing_name.'%')->get();
+}
+
+else if($location =='' && $category == '')
 $check_listing = Listing::where('active',1)->get();
 
 else if($location !='' && $category == '')

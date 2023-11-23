@@ -27,10 +27,10 @@
 
               <div class=" mx-4 text-center row py-0 searchBar text-center">
 
-                <!-- <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3 bg-white">
-                              <input  required=""  style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div> -->
+                 <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3 bg-white">
+                              <input style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div>
 
-                <div class="col-12 col-sm-5 my-1 py-1 bg-white rounded">
+                <div class="col-12 col-sm-4 my-1 py-1 bg-white rounded">
                   <input id="pac-input" style="border: none;height: 42px;"
                     class="bar bg-white form-control d-inline ml-1 controls" type="text" name="search" value=""
                     placeholder="Location"> <!-- onkeyup="suggest(this.value);" -->
@@ -39,7 +39,7 @@
                 <input type="text" name="lat" id="lat" hidden value="">
                 <input type="text" name="lng" id="lng" hidden value="">
 
-                <div class="col-12 col-sm-5 my-1 pt-1  bg-white">
+                <div class="col-12 col-sm-3 my-1 pt-1  bg-white">
                   <div class="dropdown pt-1">
 
                     <select id="category" name="category" class="border-white form-control home_category_listings">
@@ -525,7 +525,7 @@ export default {
         dataType: 'json',
         data: form.serialize(),
         success: function (response) {
-          //console.log(response);
+          console.log(response);
 
           Object.entries(response.results).forEach(entry => {
             const [index, row] = entry;

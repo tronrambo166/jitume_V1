@@ -8411,7 +8411,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       dataType: 'json',
       data: form.serialize(),
       success: function success(response) {
-        //console.log(response);
+        console.log(response);
         Object.entries(response.results).forEach(function (entry) {
           var _entry = _slicedToArray(entry, 2),
               index = _entry[0],
@@ -72333,7 +72333,26 @@ var staticRenderFns = [
       [
         _c(
           "div",
-          { staticClass: "col-12 col-sm-5 my-1 py-1 bg-white rounded" },
+          {
+            staticClass: "py-2 col-sm-3 bg-white",
+            staticStyle: { "border-radius": "35px 0 0 35px" },
+          },
+          [
+            _c("input", {
+              staticClass: "bar bg-white form-control d-inline",
+              staticStyle: { border: "none", height: "42px" },
+              attrs: {
+                type: "text",
+                name: "listing_name",
+                placeholder: "What are you looking for?",
+              },
+            }),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-12 col-sm-4 my-1 py-1 bg-white rounded" },
           [
             _c("input", {
               staticClass: "bar bg-white form-control d-inline ml-1 controls",
@@ -72369,7 +72388,7 @@ var staticRenderFns = [
           },
         }),
         _vm._v(" "),
-        _c("div", { staticClass: "col-12 col-sm-5 my-1 pt-1 bg-white" }, [
+        _c("div", { staticClass: "col-12 col-sm-3 my-1 pt-1 bg-white" }, [
           _c("div", { staticClass: "dropdown pt-1" }, [
             _c(
               "select",
