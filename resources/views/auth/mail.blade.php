@@ -10,7 +10,7 @@
 		 <br />To reset password just follow the link below!</p>
 		
 		
-				<a class="h5 btn btn-danger w-100  " href="http://localhost/laravel_projects/WeEventIt/public/forgot/{{$email}}" 
+				<a class="h5 btn btn-danger w-100  " href="https://test.jitume.com/forgot/{{$email}}" 
 				style="text-decoration:none; border-radius:7px;  font-weight:bold; padding-top:15px; padding-bottom:15px; text-align:center; width:100%; background-color:red;"  >
 				<h3 style=" font-family:arial; border-radius:7px;  font-weight:bold; padding-top:15px; padding-bottom:15px; text-align:center; width:100%; background-color:green;
 				 color:white; text-decoration:none; "  >RESET</h3></a>

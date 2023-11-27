@@ -67,7 +67,8 @@ public function reset(Request $request, $remail)
      $update= DB::table('users')->where('email', $email)
      -> limit(1)->update(['password'=> $password_1]);
 
-     if($update) {Session::put('success', 'password reset success!');return redirect('/login'); }
+     if($update) {Session::put('success', 'password reset success!');
+     return redirect('/'); }
        }    
           else {
             Session::put('wrong_pwd', 'password do not match! try again');
