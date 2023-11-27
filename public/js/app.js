@@ -10024,6 +10024,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
+//
+//
 //import {myMap,success,failure,addMarker,addMarkerHome} from '../../../../public/js/map'
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'app_url'],
@@ -74610,6 +74613,11 @@ var render = function () {
                       _c("div", { staticClass: "p-1 pb-2" }, [
                         _c("h5", { staticClass: "card_heading mb-0 py-2" }, [
                           _vm._v(_vm._s(result.name) + " "),
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "card_text pt-0 text-left" }, [
+                          _c("b", [_vm._v("Category:")]),
+                          _vm._v(" " + _vm._s(result.category)),
                         ]),
                         _vm._v(" "),
                         _c("p", { staticClass: "card_text pt-1 text-left" }, [

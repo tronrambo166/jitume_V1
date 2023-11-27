@@ -953,10 +953,10 @@
 
                                             <input type="text" hidden name="c_to_action_login" id="c_to_action_login" value="">
 
-                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" value="" />
+                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" value="" required />
 
 
-                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="Enter password" value="" />
+                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="Enter password" value="" required />
 
 
 
@@ -1050,10 +1050,10 @@
                                         <form action="{{route('loginB')}}" method="POST" class="d-inline form-inline">
                                             @csrf
 
-                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" value="" />
+                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" value="" required />
 
 
-                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="Enter password" value="" />
+                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="Enter password" value="" required />
 
 
 
@@ -1450,10 +1450,10 @@
 
                                             <input type="text" hidden name="c_to_action_login2" id="c_to_action_login2" value="">
 
-                                            <div class="row"> <span style="padding-left: 30px;" class="font-weight-bold w-25 mt-3 text-left">Email</span> <input style="border: 1px solid;" class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="" id="inputEmailAddress" value="" /> </div>
+                                            <div class="row"> <span style="padding-left: 30px;" class="font-weight-bold w-25 mt-3 text-left">Email</span> <input style="border: 1px solid;" class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="" id="inputEmailAddress" value="" required /> </div>
 
 
-                                            <div class="row"> <span class=" w-25 mt-3 font-weight-bold">Password</span> <input style="border: 1px solid;" class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="" value="" /> </div>
+                                            <div class="row"> <span class=" w-25 mt-3 font-weight-bold">Password</span> <input style="border: 1px solid;" class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="" value="" required /> </div>
 
 
 
@@ -1783,6 +1783,25 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnKB7p3g8iG6IGE9nXX4PqlZ6EPHNUo3w&callback=initAutocomplete&libraries=places&v=weekly"
       defer
     ></script> -->
+
+
+<script type="text/javascript">
+    if (window.location.hash && window.location.hash == '#_=_') {
+        if (window.history && history.pushState) {
+            window.history.pushState("", document.title, window.location.pathname);
+        } else {
+            // Prevent scrolling by storing the page's current scroll offset
+            var scroll = {
+                top: document.body.scrollTop,
+                left: document.body.scrollLeft
+            };
+            window.location.hash = '';
+            // Restore the scroll offset, should be flicker free
+            document.body.scrollTop = scroll.top;
+            document.body.scrollLeft = scroll.left;
+        }
+    }
+</script>
 
 </body>
 

@@ -85,6 +85,9 @@
                             <div class="p-1 pb-2">
                                 <h5 class="card_heading mb-0 py-2">{{ result.name }} </h5>
 
+                                <p class="card_text pt-0 text-left"><b>Category:</b> {{ result.category
+                                }}</p>
+
                                 <p class="card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ result.location
                                 }}</p>
 
