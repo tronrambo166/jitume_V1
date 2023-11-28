@@ -6,17 +6,17 @@
 
         <div class="row  w-75 m-auto border shadow text-center bg-light" style=" box-shadow: 3px 3px 7px 7px grey; width:70%; margin:auto; broder:2px solid black; text-align:center">
 		<div class="container w-75 m-auto" style="width:80%; margin:auto; text-align:center">
-		<h1 class="font-weight-bold py-3" style=" padding-top:30px; padding-bottom:30px; font-weight:bold; text-align:center;" > Rewind Admin</h1>
+		<h1 class="font-weight-bold py-3" style=" padding-top:30px; padding-bottom:30px; font-weight:bold; text-align:center;" > Jitume Admin</h1>
 		 <br />To reset password just follow the link below!</p>
 		
 		
 				<a class="h5 btn btn-danger w-100  " href="https://test.jitume.com/forgot/{{$email}}" 
-				style="text-decoration:none; border-radius:7px;  font-weight:bold; padding-top:15px; padding-bottom:15px; text-align:center; width:100%; background-color:red;"  >
-				<h3 style=" font-family:arial; border-radius:7px;  font-weight:bold; padding-top:15px; padding-bottom:15px; text-align:center; width:100%; background-color:green;
+				style="text-decoration:none; border-radius:7px;  font-weight:bold; padding-top:10px; padding-bottom:10px; text-align:center; width:100%; background-color:red;"  >
+				<h3 style=" font-family:arial; border-radius:7px;  font-weight:bold; padding-top:10px; padding-bottom:150x; text-align:center; width:100%; background-color:green;
 				 color:white; text-decoration:none; "  >RESET</h3></a>
 				
 				
-				<p style=" color:black; line-height:22px; font-family:arial; padding-top:20px; padding-bottom:20px; text-align:center;" class="py-3 text-center"> All the best! <br />   Rewind Admin.</p>
+				<p style=" color:black; line-height:22px; font-family:arial; padding-top:20px; padding-bottom:20px; text-align:center;" class="py-3 text-center"> All the best! <br />   Jitume Admin.</p>
 
 		</div>
 		
