@@ -221,7 +221,7 @@
               @mouseover.native="hover4" style="border: 1px solid black;" id="convBtn4"
               class="py-1 convBtn my-3 text-center mx-auto w-75 btn  px-2">View Business Milestones</router-link>
 
-            <div v-if="running && progress < 100" class="Invest-Payout">
+            <div v-if="running && amount_required > 0" class="Invest-Payout">
               <div class="w-75 mx-auto row">
                 <!-- <div class="col-sm-8 px-0"><p class="commitP text-left">Commit to invest in milestones:</p></div>
                     <div class="col-sm-4 px-1">

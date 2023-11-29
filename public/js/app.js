@@ -73632,7 +73632,7 @@ var render = function () {
                       [_vm._v("View Business Milestones")]
                     ),
                     _vm._v(" "),
-                    _vm.running && _vm.progress < 100
+                    _vm.running && _vm.amount_required > 0
                       ? _c("div", { staticClass: "Invest-Payout" }, [
                           _c("div", { staticClass: "w-75 mx-auto row" }, [
                             _vm._m(3),
