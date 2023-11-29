@@ -73454,12 +73454,24 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _vm._m(2),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "eqp-invest my-4 text-left" }, [
+          _c("h3", { staticClass: "secondary_heading my-3" }, [
+            _vm._v("About " + _vm._s(_vm.form.name)),
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-justify-center" }, [
+            _vm._v(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\n          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco\n          laboris nisi ut aliquip"
+            ),
+          ]),
+        ]),
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-3" }, [
         !_vm.form.conv || !_vm.auth_user
           ? _c("div", { staticClass: "card bg-light w-100 mx-auto py-3" }, [
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _vm.auth_user
                 ? _c("div", { staticClass: "eqp-invest" }, [
@@ -73620,10 +73632,10 @@ var render = function () {
                       [_vm._v("View Business Milestones")]
                     ),
                     _vm._v(" "),
-                    _vm.running
+                    _vm.running && _vm.progress < 100
                       ? _c("div", { staticClass: "Invest-Payout" }, [
                           _c("div", { staticClass: "w-75 mx-auto row" }, [
-                            _vm._m(4),
+                            _vm._m(3),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-sm-12 px-1" }, [
                               _c("div", { staticClass: "row" }, [
@@ -73651,7 +73663,7 @@ var render = function () {
                                 ]),
                               ]),
                               _vm._v(" "),
-                              _vm._m(5),
+                              _vm._m(4),
                             ]),
                           ]),
                           _vm._v(" "),
@@ -73678,7 +73690,7 @@ var render = function () {
                           ),
                           _vm._v(" "),
                           _c("div", { staticClass: "w-75 mx-auto row" }, [
-                            _vm._m(6),
+                            _vm._m(5),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-sm-12 px-1" }, [
                               _c("div", { staticClass: "row" }, [
@@ -73706,7 +73718,7 @@ var render = function () {
                                 ]),
                               ]),
                               _vm._v(" "),
-                              _vm._m(7),
+                              _vm._m(6),
                             ]),
                           ]),
                           _vm._v(" "),
@@ -73918,7 +73930,7 @@ var render = function () {
                                 [_vm._v("\n                Ok\n              ")]
                               ),
                               _vm._v(" "),
-                              _vm._m(8),
+                              _vm._m(7),
                             ]
                           ),
                         ]
@@ -74072,7 +74084,7 @@ var render = function () {
                                               ]
                                             ),
                                         _vm._v(" "),
-                                        _vm._m(9),
+                                        _vm._m(8),
                                       ])
                                     : _vm._e(),
                                   _vm._v(" "),
@@ -74146,9 +74158,9 @@ var render = function () {
                                               ]
                                             ),
                                         _vm._v(" "),
-                                        _vm._m(10),
+                                        _vm._m(9),
                                         _vm._v(" "),
-                                        _vm._m(11),
+                                        _vm._m(10),
                                       ])
                                     : _vm._e(),
                                   _vm._v(" "),
@@ -74248,11 +74260,11 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(12),
+              _vm._m(11),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("form", [
-                  _vm._m(13),
+                  _vm._m(12),
                   _vm._v(" "),
                   _c("h5", { staticClass: "font-weight-bold" }, [
                     _vm._v("Leave a review"),
@@ -74302,24 +74314,6 @@ var staticRenderFns = [
       { staticStyle: { background: "#e5e5e9", height: "19px" } },
       [_c("span", { staticClass: "d-block", attrs: { id: "progress" } })]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3" }, [
-      _c("div", { staticClass: "eqp-invest my-4 text-left" }, [
-        _c("h3", { staticClass: "secondary_heading my-3" }, [
-          _vm._v("About Sodaa"),
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-justify-center" }, [
-          _vm._v(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\n          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco\n          laboris nisi ut aliquip"
-          ),
-        ]),
-      ]),
-    ])
   },
   function () {
     var _vm = this

@@ -23,7 +23,7 @@
 			</div>
 
 			<div style="width:100%;margin: auto; padding-bottom:20px;padding-top:15px;"> 
-		        	<a target="_blank" href="http://localhost/laravel_projects/jitumeLive/public/#/service-milestone/{{$s_id}}"
+		        	<a target="_blank" href="https://test.jitume.com/#/service-milestone/{{$s_id}}"
 				style="width:50%;text-decoration:none;color: aliceblue;background:green;padding:10px 30px;border-radius:5px;margin-left:30px">
 				Pay Here</a>
 			</div>

@@ -130,7 +130,7 @@ public function bidsAccepted(Request $request)
                 
 
 
-         //$bid_remove = BusinessBids::where('id',$id)->delete();
+         $bid_remove = BusinessBids::where('id',$id)->delete();
          //remove
          }
        }
