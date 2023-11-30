@@ -53,7 +53,7 @@
             </div>
 
 
-<!--  <div class="row px-5 m-auto">
+ <div class="row px-5 m-auto">
 
             
     <table class="eq table" id="">
@@ -140,7 +140,7 @@
 </table>
                
 
-                </div> -->
+                </div>
 
                 </div>
 
