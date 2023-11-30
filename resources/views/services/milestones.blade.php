@@ -71,6 +71,7 @@
 
     
     <tbody> @php $c=1; @endphp
+        @if($milestones)
         @foreach($milestones as $ev)
         <tr >
             <td>{{$ev->title }}</td>
@@ -134,6 +135,7 @@
         </tr>
 
     @endforeach
+    @endif
     </tbody> 
     
     

@@ -620,7 +620,7 @@ public function milestones($id){
 if($id == 'all'){
   $listing = Services::where('shop_id', Auth::id())->latest()->first();
   if($listing != null){
-  $milestones = Smilestones::where('user_id', Auth::id())->get();
+  $milestones = null; //Smilestones::where('user_id', Auth::id())->get();
  }
   else $milestones = [];
   $business_name = 'Select Service';//$listing->name;
