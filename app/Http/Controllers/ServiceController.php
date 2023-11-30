@@ -753,8 +753,7 @@ Smilestones::create([
             'amount' => $amount,
             'document' => $final_file,
             'n_o_days' => $n_o_days,
-            'status' => $status,
-            'active' => $active        
+            'status' => $status       
            ]);       
 }
 catch(\Exception $e){
