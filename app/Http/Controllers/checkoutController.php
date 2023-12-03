@@ -251,7 +251,7 @@ catch(\Exception $e){
 
         if($trial == 1)
         $message = 'Your trial expires in 7 days';
-        else if($original_amount == 95.99 || $original_amount == 287.99 || $original_amount == 671.99 || )
+        else if( $original_amount == 95.99 || $original_amount == 287.99 || $original_amount == 671.99 )
             $message = 'Your '.ucwords($plan).' plan expires in 365 days';
         else
         $message = 'Your '.ucwords($plan).' plan expires in 30 days';
