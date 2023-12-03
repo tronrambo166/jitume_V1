@@ -1469,7 +1469,7 @@
                                             @if (Route::has('forgetPass'))
                                             <a href="{{ route('password.request') }}" class="small text">Forgot password ?</a> @endif
 
-                                            <input type="submit" class=" d-block w-25 mx-auto my-2 btn loginBtn  font-weight-bold " href="" name="Log In" value="Sign In" />
+                                            <input type="submit" class=" d-block w-25 mx-auto my-2 btn primary_bg text-white font-weight-bold " href="" name="Log In" value="Sign In" />
                                         </form>
 
 
@@ -1509,13 +1509,13 @@
 
 
     <script type="text/javascript">
-        $('#login').css('background', '#72c537');
+        $('#login').css({background:'#083608', color:'white'});
+        $('#logins').css({background:'#083608', color:'white'});
         $('#business_reg').hide();
 
         function login() {
-            $('#registers').css('background', 'none');
-            $('#logins').css('background', '#72c537');
-
+            $('#registers').css({background:'none', color:'black'});
+            $('#logins').css({background:'#083608', color:'white'});
             $('#user_logs').show();
             $('#all_logins').show();
             $('#user_regs').hide();
@@ -1523,9 +1523,9 @@
         }
 
         function register() {
-            $('#logins').css('background', 'none');
+            $('#logins').css({background:'none', color:'black'});
             $('#login').css('border', 'none');
-            $('#registers').css('background', '#72c537');
+            $('#registers').css({background:'#083608', color:'white'});
 
             $('#user_logs').hide();
             $('#all_register').show();
@@ -1535,12 +1535,12 @@
 
 
         function logins() {
-            $('#register').css('background', 'none');
-            $('#login').css('background', '#72c537');
+            $('#register').css({background:'none', color:'black'});
+            $('#login').css({background:'#083608', color:'white'});
 
             $('#art_log').css('border-bottom', 'none');
             $('#service_log').css('border-bottom', 'none');
-            $('#usr_log').css('border-bottom', '2px solid #72c537');
+            $('#usr_log').css('border-bottom', '2px solid #083608');
 
             $('#user_log').show();
             $('#artist_log').hide();
@@ -1551,8 +1551,8 @@
         }
 
         function registers() {
-            $('#login').css('background', 'none');
-            $('#register').css('background', '#72c537');
+            $('#login').css({background:'none', color:'black'});
+            $('#register').css({background:'#083608', color:'white'});
 
             //$('#user_log').hide();
             $('#all_logins').hide();
@@ -1571,12 +1571,12 @@
 
 
     <script type="text/javascript">
-        $('#usr_log').css('border-bottom', '2px solid #72c537');
+        $('#usr_log').css('border-bottom', '2px solid #083608');
 
         function user_log() {
             $('#art_log').css('border-bottom', 'none');
             $('#service_log').css('border-bottom', 'none');
-            $('#usr_log').css('border-bottom', '2px solid #72c537');
+            $('#usr_log').css('border-bottom', '2px solid #083608');
             $('#user_log').show();
             $('#artist_log').hide();
             $('#serv_log').hide();
@@ -1585,7 +1585,7 @@
         function business_log() {
             $('#usr_log').css('border-bottom', 'none');
             $('#service_log').css('border-bottom', 'none');
-            $('#art_log').css('border-bottom', '2px solid #72c537');
+            $('#art_log').css('border-bottom', '2px solid #083608');
 
             $('#artist_log').show();
             $('#user_log').hide();
@@ -1596,7 +1596,7 @@
         function service_log() {
             $('#usr_log').css('border-bottom', 'none');
             $('#art_log').css('border-bottom', 'none');
-            $('#service_log').css('border-bottom', '2px solid #72c537');
+            $('#service_log').css('border-bottom', '2px solid #083608');
 
             $('#artist_log').hide();
             $('#user_log').hide();
@@ -1609,9 +1609,7 @@
     <script type="text/javascript">
         function user() {
 
-            $('#user').css({
-                'background-color': '#72c537'
-            });
+            $('#user').css({background:'#083608', color:'white'});
             $('#business').css({
                 'background-color': ''
             });
@@ -1619,7 +1617,7 @@
                 'background-color': ''
             });
 
-            investor_reg
+            //investor_reg
             $('#investor_reg').show();
             $('#user_reg').hide();
             $('#business_reg').hide();
@@ -1632,7 +1630,8 @@
 
         function business() {
             $('#business').css({
-                'background-color': '#72c537'
+                background-color: '#083608',
+                color: 'white'
             });
             $('#user').css({
                 'background-color': ''
@@ -1651,9 +1650,7 @@
         }
 
         function service() {
-            $('#service').css({
-                'background-color': '#72c537'
-            });
+            $('#service').css({background:'#083608', color:'white'});
             $('#business').css({
                 'background-color': ''
             });

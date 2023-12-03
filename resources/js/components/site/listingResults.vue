@@ -36,8 +36,8 @@
                 <!-- Price Filter -->
                 <div class="row">
 
-                    <div class="col-sm-3"><span style="background:black;" class="btn text-light px-2 py-1 rounded">Filter by
-                            Price:</span>
+                    <div class="col-sm-3"><span style="background:black;" class="btn text-light px-2 py-1 small rounded">Filter by
+                            Turnover Range:</span>
                     </div>
 
                     <div id="" class="col-sm-5  mt-1">
@@ -268,8 +268,8 @@ export default {
                 ariaLabel: value.name,
               });
             //INFO
-
-              this.addMarker({lat:value.lat, lng:value.lng},map,value.name,value.investors_fee,infowindow);
+            const investment_needed = (value.investment_needed/1000)+"K";
+              this.addMarker({lat:value.lat, lng:value.lng},map,value.name,investment_needed,infowindow);
             }
         
 
@@ -279,7 +279,7 @@ export default {
         addMarker(coords,map,title,fee,infowindow){
         const icon = {
             url: "images/map/other_business.png", // url
-            scaledSize: new google.maps.Size(45, 25), // scaled size
+            scaledSize: new google.maps.Size(60, 40), // scaled size
         };
 
         var marker = new google.maps.Marker({
@@ -301,7 +301,7 @@ export default {
          addMarkerHome(coords,map){
         const icon = {
             url: "images/map/myloc.png", // url
-            scaledSize: new google.maps.Size(40, 40), // scaled size
+            scaledSize: new google.maps.Size(30, 30), // scaled size
         };
 
         var marker = new google.maps.Marker({

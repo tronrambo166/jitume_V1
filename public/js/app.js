@@ -10135,10 +10135,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           ariaLabel: value.name
         }); //INFO
 
+        var investment_needed = value.investment_needed / 1000 + "K";
         this.addMarker({
           lat: value.lat,
           lng: value.lng
-        }, map, value.name, value.investors_fee, infowindow);
+        }, map, value.name, investment_needed, infowindow);
       }
 
       this.addMarkerHome(coords, map);
@@ -10147,7 +10148,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var icon = {
         url: "images/map/other_business.png",
         // url
-        scaledSize: new google.maps.Size(45, 25) // scaled size
+        scaledSize: new google.maps.Size(60, 40) // scaled size
 
       };
       var marker = new google.maps.Marker({
@@ -10168,7 +10169,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var icon = {
         url: "images/map/myloc.png",
         // url
-        scaledSize: new google.maps.Size(40, 40) // scaled size
+        scaledSize: new google.maps.Size(30, 30) // scaled size
 
       };
       var marker = new google.maps.Marker({
@@ -73548,25 +73549,6 @@ var render = function () {
                     "a",
                     {
                       staticClass:
-                        "py-1 convBtn text-center mx-auto w-75 btn px-2",
-                      staticStyle: { border: "1px solid black" },
-                      attrs: { id: "convBtn1" },
-                      on: {
-                        mouseleave: function ($event) {
-                          return _vm.leave()
-                        },
-                        mouseover: function ($event) {
-                          return _vm.hover()
-                        },
-                      },
-                    },
-                    [_vm._v("Message Business Owner")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass:
                         "py-1 convBtn my-3 text-center mx-auto w-75 btn px-2",
                       staticStyle: { border: "1px solid black" },
                       attrs: { id: "convBtn2" },
@@ -74711,10 +74693,10 @@ var staticRenderFns = [
         _c(
           "span",
           {
-            staticClass: "btn text-light px-2 py-1 rounded",
+            staticClass: "btn text-light px-2 py-1 small rounded",
             staticStyle: { background: "black" },
           },
-          [_vm._v("Filter by\n                            Price:")]
+          [_vm._v("Filter by\n                            Turnover Range:")]
         ),
       ]),
       _vm._v(" "),
@@ -78028,7 +78010,7 @@ var render = function () {
             },
           }),
           _vm._v(" "),
-          _c("span", {}, [_vm._v("Annualy (Save 20%)")]),
+          _c("span", {}, [_vm._v("Annually (Save 20%)")]),
         ]),
       ]),
       _vm._v(" "),

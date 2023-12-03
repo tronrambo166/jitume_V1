@@ -202,8 +202,8 @@
 
 
 
-            <a @mouseleave="leave()" @mouseover="hover()" style="border: 1px solid black;" id="convBtn1"
-              class="py-1 convBtn text-center mx-auto w-75 btn  px-2">Message Business Owner</a>
+            <!-- <a @mouseleave="leave()" @mouseover="hover()" style="border: 1px solid black;" id="convBtn1"
+              class="py-1 convBtn text-center mx-auto w-75 btn  px-2">Message Business Owner</a> -->
 
             <a @click="download_statement()" @mouseleave="leave()" @mouseover="hover2"
               style="border: 1px solid black;" id="convBtn2"

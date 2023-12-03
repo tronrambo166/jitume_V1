@@ -30,7 +30,6 @@
      <table class="eq table" id="">
     <thead class="table_head">
         <tr>
-            <th> </th>
             <th>Date </th>
             <th>Investor </th>
             <th>Business</th>
