@@ -71940,19 +71940,6 @@ var render = function () {
                   [
                     _c(
                       "router-link",
-                      { attrs: { to: "category/Agriculture" } },
-                      [_vm._v("Agriculture ")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
                       { attrs: { to: "category/Arts-Culture" } },
                       [_vm._v("Arts/Culture ")]
                     ),
@@ -72127,32 +72114,59 @@ var render = function () {
                 ),
               ]
             ),
-            _vm._v(" "),
-            _c("br"),
           ]),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "categories cats my-0 py-0" }, [
-          _c("ul", { staticClass: "text-center py-0 mr-5" }, [
-            _c(
-              "li",
-              {
-                staticClass: "nav-item py-0",
-                staticStyle: { "list-style-type": "none" },
-              },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "py-0 my-0 d-inline h6 renewable_text",
-                    attrs: { to: "category/Renewable-Energy" },
+        _c("div", { staticClass: "my-1 py-0" }, [
+          _c(
+            "ul",
+            { staticClass: "text-center py-0 justify-content-center d-flex" },
+            [
+              _c(
+                "li",
+                {
+                  staticClass: "nav-item primary_bg mr-4",
+                  staticStyle: {
+                    "list-style-type": "none",
+                    "border-radius": "3px",
                   },
-                  [_vm._v("Renewable Energy ")]
-                ),
-              ],
-              1
-            ),
-          ]),
+                },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "renewable_text py-1 px-5",
+                      attrs: { to: "category/Agriculture" },
+                    },
+                    [_vm._v("Agriculture ")]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "primary_bg nav-item py-0",
+                  staticStyle: {
+                    "list-style-type": "none",
+                    "border-radius": "3px",
+                  },
+                },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "renewable_text py-1 px-3",
+                      attrs: { to: "category/Renewable-Energy" },
+                    },
+                    [_vm._v("Renewable Energy ")]
+                  ),
+                ],
+                1
+              ),
+            ]
+          ),
         ]),
       ]),
       _vm._v(" "),
@@ -72476,7 +72490,7 @@ var staticRenderFns = [
           "div",
           {
             staticClass:
-              "col-12 col-sm-2 my-1 bg-white py-1 d-flex justify-content-center align-items-center rounded",
+              "col-12 col-sm-2 my-1 py-1 d-flex justify-content-center align-items-center rounded",
           },
           [
             _c(

@@ -322,14 +322,34 @@
 
     <footer id="footer" class="secondary_bg pt-3 text-light ">
 
-        <div class="container-xl row mx-auto my-3 d-flex align-items-center">
-            <div class="col-12 col-sm-6 d-flex justify-content-start">
+        <div class="container-xl row mx-auto my-0 d-flex align-items-center">
+           
+            <div class="col-12 col-sm-5 d-flex justify-content-start">
                 <div class="">
-                    <img style="max-width: 438px;" class="w-100" src="images/logo_footer.png" />
+                   <!--  <img style="max-width: 438px;" class="w-100" src="images/logo_footer.png" /> -->
+
+                   <ul class="foot_menu_ui px-5">
+                       <li>
+                        <a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class=" " ><span id="c_to_ac">Sign Up as A Project Manager</a>
+                       </li>
+
+                       <li>
+                        <a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class=" " ><span id="c_to_ac">Add a Business Service</a>
+                       </li>
+
+                       <li><a class="foot_menu" href="">How It Works</a></li>
+
+                       <li><a class="foot_menu" href="">FAQs</a></li>
+
+                       <li><a class="foot_menu" href="">Contact Us</a></li>
+
+                       <li><a class="foot_menu" href="">Help</a></li>
+
+                   </ul>
                 </div>
             </div>
 
-            <div class="col-12 col-sm-1 d-flex justify-content-center">
+            <div class="col-12 col-sm-4 d-flex justify-content-center">
                 <ul class="text-light">
                     <li style="list-style-type:none;">
                         @if(Session::has('business_auth') && Session::get('business_auth') == true)
@@ -356,52 +376,52 @@
                 </ul>
             </div>
 
-            <div class="col-12 col-sm-5 pt-2 d-flex justify-content-center">
+            <div class="col-12 col-sm-3 pt-2 text-right">
 
-                <div class="d-flex flex-wrap">
-                    <a href="twitter.com" target="_black"><i style="width: 35px;" class="fa fa-twitter fa-2x bg-light p-1 rounded"></i></a>
+                    <div class="d-flex flex-wrap">
+                    <a class="ml-auto" href="twitter.com" target="_black"><i style="width: 35px;" class="fa fa-twitter fa-1x bg-light text-center p-1 rounded"></i></a>
 
-                    <a href="twitter.com" target="_black"><i style="width: 35px;" class="fa fa-instagram fa-2x bg-light text-secondary p-1 rounded"></i></a>
+                    <a href="twitter.com" target="_black"><i style="width: 35px;" class="fa fa-instagram fa-1x text-center bg-light text-secondary p-1 rounded"></i></a>
 
                     <a href="twitter.com" target="_black">
-                        <i style="width: 35px;" class="fa fa-youtube fa-2x bg-light text-danger p-1 rounded"></i>
+                        <i style="width: 35px;" class="fa fa-youtube fa-1x bg-light text-center text-danger p-1 rounded"></i>
                     </a>
 
                     <a href="twitter.com" target="_black">
-                        <i style="width: 35px;" class="fa fa-facebook fa-2x bg-light text-info p-1 rounded"></i>
+                        <i style="width: 35px;" class="fa fa-facebook fa-1x bg-light text-center text-info p-1 rounded"></i>
                     </a>
 
-                </div>
-
-                <!-- <ul class="text-light float-left p-0">
-                    <li style="list-style-type:none;" class="my-2">
-                        <a class="d-inline" href="twitter.com" target="_black"><i class="mr-1 fa fa-twitter fa-2x bg-light p-1 rounded"></i></a>
-                        <a class="d-inline" href="twitter.com" target="_black"><i class="mt-1 fa fa-instagram fa-2x bg-light text-secondary p-1 rounded"></i></a>
-                    </li>
-
-                    <li style="list-style-type:none;">
-                        <a class="d-inline" href="twitter.com" target="_black">
-                            <i class="mt-1 fa fa-youtube fa-2x bg-light text-danger p-1 rounded"></i>
-                        </a>
-
-                        <a class="d-inline" href="twitter.com" target="_black">
-                            <i class="ml-0 ml-md-1 mt-1 px-2 fa fa-facebook fa-2x bg-light text-info p-1 rounded"></i>
-                        </a>
-                    </li>
-
-
-                </ul> -->
-                <ul class="text-light px-2">
-
+                    <!-- <ul class="text-light px-2">
                     <h3 class="h3">Contact Us</h3>
-
                     <li style="list-style-type:none;">
                         <a class="footer_txt px-0 text-light d-inline small" href="mailto:info@thedtagency.com"> E-Mail: info@thedtagency.com</a>
-
                     </li>
+                </ul>  -->
+
+                </div> 
 
 
-                </ul>
+                <!-- <div class="">
+                    <img style="max-width: 438px;" class="w-100" src="images/logo_footer.png" /> 
+
+                   <ul class="foot_menu_ui px-5">
+                       <li><a href="twitter.com" target="_black"><i style="width: 35px;" class="fa fa-twitter fa-2x bg-info p-1 rounded"></i></a></li>
+
+                       <li><a href="twitter.com" target="_black"><i style="width: 35px;" class="fa fa-instagram fa-2x bg-light text-secondary p-1 rounded"></i></a> </li>
+
+                       <li><a href="twitter.com" target="_black">
+                        <i style="width: 35px;" class="fa fa-youtube fa-2x bg-light text-danger p-1 rounded"></i>
+                       </a></li>
+
+                       <li><a href="twitter.com" target="_black">
+                        <i style="width: 35px;" class="fa fa-facebook fa-2x bg-light text-info p-1 rounded"></i>
+                       </a></li>
+
+                   </ul>
+                </div> -->
+
+                
+          
             </div>
 
         </div>
@@ -1611,10 +1631,10 @@
 
             $('#user').css({background:'#083608', color:'white'});
             $('#business').css({
-                'background-color': ''
+                'backgroundColor': ''
             });
             $('#service').css({
-                'background-color': ''
+                'backgroundColor': ''
             });
 
             //investor_reg
@@ -1630,14 +1650,14 @@
 
         function business() {
             $('#business').css({
-                background-color: '#083608',
+                backgroundColor: '#083608',
                 color: 'white'
             });
             $('#user').css({
-                'background-color': ''
+                backgroundColor: ''
             });
             $('#service').css({
-                'background-color': ''
+                backgroundColor: ''
             });
 
             $('#investor_reg').hide();
@@ -1652,10 +1672,10 @@
         function service() {
             $('#service').css({background:'#083608', color:'white'});
             $('#business').css({
-                'background-color': ''
+                'backgroundColor': ''
             });
             $('#user').css({
-                'background-color': ''
+                'backgroundColor': ''
             });
 
             $('#investor_reg').hide();

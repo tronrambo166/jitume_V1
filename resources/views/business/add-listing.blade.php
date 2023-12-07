@@ -292,9 +292,9 @@
             <div class="col-sm-12 mx-auto mt-3"> 
 
                     <div class="upload-btn-wrapper w-75  d-block">
-                      <label for="file-upload4" class="text-center w-100 btnUp_listing">  Upload Supporting Business Documentation*
+                      <label for="file-upload1" class="text-center w-100 btnUp_listing">  Upload Supporting Business Documentation*
                       <img src="../images/up.svg" width="30px"> </label>
-                      <input style="" id="file-upload4" required="" type="file" name="document" />
+                      <input style="" id="file-upload1" required="" type="file" name="document" />
                       <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
                     </div>
 
@@ -335,7 +335,10 @@
 
 
                  <div class="row my-5 w-75"> 
-                    <button style="width:40%;background:green;border-radius: 30px;" class=" m-auto btn text-white font-weight-bold">SAVE</button></div>
+                    <a onclick="msg();" id="save" style="width:40%;background:green;border-radius: 30px;" class=" m-auto btn text-white font-weight-bold">SAVE</a>
+
+                 <button id="save1" style="width:40%;background:green;border-radius: 30px;" class=" m-auto btn text-white font-weight-bold collapse">SAVE</button>
+                 </div>
 
 
             </form>
@@ -356,9 +359,31 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
         <script type="text/javascript">
+            function msg() {
+                alert('Please select a cover image!');
+            }
+            
+
+
            $('#file-upload').change(function() {
               var i = $(this).prev('label').clone();
               var file = $('#file-upload')[0].files[0].name;
+              $(this).prev('label').text(file);
+
+              if(file != null){
+                $('#save1').show();
+                $('#save').hide();
+            }
+            else{
+                 $('#save').show();
+                 $('#save1').hide();
+            }
+            
+            });
+
+           $('#file-upload1').change(function() {
+              var i = $(this).prev('label').clone();
+              var file = $('#file-upload1')[0].files[0].name;
               $(this).prev('label').text(file);
             });
 

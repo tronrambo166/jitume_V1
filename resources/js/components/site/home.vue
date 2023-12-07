@@ -69,7 +69,7 @@
                   </div>
                 </div>
 
-                <div class="col-12 col-sm-2 my-1 bg-white py-1 d-flex justify-content-center align-items-center rounded">
+                <div class="col-12 col-sm-2 my-1 py-1 d-flex justify-content-center align-items-center rounded">
                   <button class="w-100 searchListing px-sm-3 px-2" type="submit">Search</button>
                 </div>
 
@@ -96,7 +96,6 @@
 
           <ul class="hlist d-flex justify-content-center mx-4 mx-lg-4 py-0 my-0">
 
-            <li class="nav-item"> <router-link to="category/Agriculture">Agriculture </router-link></li>
             <li class="nav-item"> <router-link to="category/Arts-Culture">Arts/Culture </router-link></li>
             <li class="nav-item"> <router-link to="category/Auto">Auto </router-link></li>
             <li class="nav-item"> <router-link to="category/Domestic_Home">Domestic (HomeHelp etc) </router-link></li>
@@ -123,17 +122,18 @@
             <li class="nav-item"><router-link to="category/Other">Other </router-link></li>
 
           </ul>
-          <br>
 
 
         </div>
 
       </div>
 
-      <div class="categories cats my-0 py-0">
-        <ul class="text-center py-0 mr-5">
-          <li style="list-style-type:none;" class="nav-item py-0 "> <router-link to="category/Renewable-Energy"
-              class="py-0 my-0 d-inline h6 renewable_text" style="">Renewable Energy </router-link>
+      <div class="my-1 py-0">
+        <ul class="text-center py-0 justify-content-center d-flex">
+          <li style="list-style-type:none;border-radius:3px;" class="nav-item primary_bg mr-4 "> <router-link class="renewable_text py-1 px-5" to="category/Agriculture">Agriculture </router-link></li>
+
+          <li style="list-style-type:none;border-radius:3px;" class="primary_bg nav-item py-0  "> <router-link to="category/Renewable-Energy"
+              class="renewable_text py-1 px-3" style="">Renewable Energy </router-link>
           </li>
         </ul>
       </div>
