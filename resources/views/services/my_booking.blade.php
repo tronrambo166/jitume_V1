@@ -26,12 +26,12 @@
     
   
     <div class="row m-auto">   
-    <h4 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold">Investment Bids</h4>     
+    <h4 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold">My Booking</h4>     
      <table class="eq table table-bordered " id="">
     <thead class="table_head">
         <tr>
             <th>Date </th>
-            <th>Expert Name </th>
+            <th>Service Name </th>
             <th>Category</th>
             <th>Notes </th>  
             <th>Start Date  </th> 

@@ -378,6 +378,9 @@
 
             <div class="col-12 col-sm-3 pt-2 text-right">
 
+                    <div class="py-5"></div>
+                    <div class="py-4"></div>
+
                     <div class="d-flex flex-wrap">
                     <a class="ml-auto" href="twitter.com" target="_black"><i style="width: 35px;" class="fa fa-twitter fa-1x bg-light text-center p-1 rounded"></i></a>
 
@@ -973,7 +976,7 @@
 
                                             <input type="text" hidden name="c_to_action_login" id="c_to_action_login" value="">
 
-                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" value="" required />
+                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" value="{{ old('email') }}" required />
 
 
                                             <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="Enter password" value="" required />

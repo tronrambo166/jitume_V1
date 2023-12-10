@@ -922,6 +922,7 @@ foreach($res as $r){
   $r->investment_needed = $business->investment_needed;
   //Business details
   //$r->photos = explode(',',$r->photos);
+  if($business)
   $bids[] = $r;
 } 
 return view('business.investor_bids',compact('bids'));

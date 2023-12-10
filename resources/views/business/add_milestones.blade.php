@@ -62,7 +62,7 @@
                                 <div class="row border border-dark pt-2" width="85%">
                                     <div class="col-sm-2 px-1">
                                         <div class=" ">
-                                            <input required="" name="title" type="text" placeholder="Milestone Name"  class="w-100 rounded border border-dark ">
+                                            <input maxlength="255" required="" name="title" type="text" placeholder="Milestone Name(255 max)"  class="w-100 rounded border border-dark ">
                                         </div>
                                     </div>
 

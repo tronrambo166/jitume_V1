@@ -387,7 +387,7 @@ $results = array();
          $results[] = $listing;$i++;
      }
 
-return response()->json([ 'data' => $results] );
+return response()->json([ 'data' => $results ]);
 }
 
 public function searchService(Request $request){

@@ -863,10 +863,12 @@ $results = [];
 foreach($booking as $book)
 {
   $service =Services::where('id',$book->service_id)->first();
+  if($service){
   $book->location = $service->location;
   $book->service = $service->name;
   $book->category = $service->category;
   $results[] = $book;
+}
 }
 return view('services.my_booking',compact('results'));
 }

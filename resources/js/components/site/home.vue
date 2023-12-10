@@ -550,7 +550,7 @@ export default {
       let t = this;
       axios.get('latBusiness').then((data) => {
         t.results = data.data.data;
-        //console.log(data);
+        console.log(data);
       }).catch((error) => { })
     },
 
