@@ -138,8 +138,10 @@ foreach($convs as $conv){
     $t_share = $t_share+$share->representation;
 
   $my_listing =listing::where('id',$conv->listing_id)->first();
+  if($my_listing){
   $my_listing->myShare = $t_share;
   $results[] = $my_listing;
+}
 //echo '<pre>'; print_r($results); echo '<pre>';exit;
 }
 }
