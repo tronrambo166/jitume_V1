@@ -405,6 +405,11 @@ if($location != ''){
     $loc = true; 
 }
 
+else if($listing_name !='' ){
+  $check_listing = Services::where('name', 'like', '%'.$listing_name.'%')->get();
+  return response()->json(['results'=>$check_listing,'loc'=>$loc, 'success' => "Success", 'count'=>count($check_listing)]);  
+}
+
 else if($listing_name =='' && $location == '' && $category == ''){
   $check_listing = Services::get();
   return response()->json(['results'=>$check_listing,'loc'=>$loc, 'success' => "Success", 'count'=>count($check_listing)]);  
