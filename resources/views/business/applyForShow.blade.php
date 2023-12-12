@@ -682,7 +682,9 @@
 <div class="row my-2">
      <div class="col-sm-6">
        <div><label class="formLabel">Business Phone <span style="color:red;">*</span></label>
-       <input type="tel" id="B_phone" required name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+       <input class="d-inline" type="tel" id="B_phone" required name="phone" placeholder="ex: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+
+       <p class="d-inline text-warning small">*Please follow the format</p>
       </div>
      </div>
    </div>
@@ -690,7 +692,9 @@
    <div class="row my-3">
      <div class="col-sm-6">
        <div><label class="formLabel">Personal Cell Phone <span style="color:red;">*</span></label>
-       <input type="tel" id="B_phone" required name="p_phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+       <input class="d-inline" type="tel" id="B_phone" required name="p_phone" placeholder="ex: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+
+       <p class="d-inline text-warning small">*Please follow the format</p>
       </div>
      </div>
    </div>
@@ -698,7 +702,9 @@
    <div class="row my-3">
      <div class="col-sm-6">
        <div><label class="formLabel">Alternate Phone</label>
-       <input type="tel" id="B_phone"  name="a_phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+       <input class="d-inline" type="tel" id="B_phone"  name="a_phone" placeholder="ex: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+
+       <p class="d-inline text-warning small">Please follow the format</p>
       </div>
      </div>
    </div>
@@ -753,7 +759,9 @@
    <div class="row my-2">
      <div class="col-sm-6">
        <div><label class="formLabel"> Phone <span style="color:red;"></span></label>
-       <input type="tel" id="e_phone"  name="e_phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+       <input class="d-inline" type="tel" id="e_phone"  name="e_phone" placeholder="ex: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+
+       <p class="d-inline text-warning small">Please follow the format</p>
       </div>
      </div>
    </div>
