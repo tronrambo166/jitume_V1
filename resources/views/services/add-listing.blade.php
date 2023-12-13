@@ -95,7 +95,7 @@
                       <label for="file-upload" class="btnUp2 custom-file-upload">
                                 Upload <i class="ml-2 fa fa-arrow-up"></i>
                               </label>
-                              <input id="file-upload" name='image' type="file" style="display:none;">
+                              <input required id="file-upload" name='image' type="file" style="display:none;">
                     </div>
                     </div>
 

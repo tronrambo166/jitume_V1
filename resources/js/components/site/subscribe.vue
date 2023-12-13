@@ -291,25 +291,25 @@ stripeFee: function (business_id,amount,plan,days) {
         },
 
         hover(){
-            $('#convBtn1').css('background','#72c537');
+            $('#convBtn1').css({background:'#083608', color:'white'});
         },
         hover2(){
-            $('#convBtn2').css('background','#72c537');
+            $('#convBtn2').css({background:'#083608', color:'white'});
         },
         hover3(){
-            $('#convBtn3').css('background','#72c537');
+            $('#convBtn3').css({background:'#083608', color:'white'});
         },
         hover4(){
-            $('#convBtn4').css('background','#72c537');
+            $('#convBtn4').css({background:'#083608', color:'white'});
         },
         hover5(){
-            $('#convBtn5').css('background','#72c537');
+            $('#convBtn5').css({background:'#083608', color:'white'});
         },
         hover6(){
-            $('#convBtn6').css('background','#72c537');
+            $('#convBtn6').css({background:'#083608', color:'white'});
         },
         leave(){
-            $('.convBtn').css('background','');
+            $('.convBtn').css({background:'', color:'black'});
         },
 
 

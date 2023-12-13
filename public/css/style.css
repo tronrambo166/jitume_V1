@@ -342,7 +342,7 @@
 
     .navy ul li a:hover {
         color: white;
-        background: #72c537;
+        background: #083608;
         border-radius: 35px;
         padding-left: 20px;
         padding-right: 20px;
@@ -673,7 +673,7 @@
     }
 
     #convBtn2:hover {
-        background-color: green;
+        background-color: #083608;
     }
 
 

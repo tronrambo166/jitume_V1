@@ -914,6 +914,8 @@ foreach($res as $r){
   $inv = User::where('id',$r->investor_id)->first();
   $r->investor = $inv->fname.' '.$inv->lname;
   $business = listing::where('id',$r->business_id)->first();
+
+  if($business){
   $r->business = $business->name;
 
   //Business details
@@ -924,8 +926,9 @@ foreach($res as $r){
   $r->investment_needed = $business->investment_needed;
   //Business details
   //$r->photos = explode(',',$r->photos);
-  if($business)
+  
   $bids[] = $r;
+  }
 } 
 return view('business.investor_bids',compact('bids'));
 }
