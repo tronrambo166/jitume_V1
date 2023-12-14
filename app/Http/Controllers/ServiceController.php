@@ -664,8 +664,11 @@ public function booker_milestones(){
  
  foreach($milestones as $miles){
   $listing = Services::where('id', $miles->listing_id)->first();
+
+  if($listing){
   $miles->service = $listing->name;
   $results[] = $miles;
+  }
 }
 
 return view('services.booker-milestones',compact('results'));
@@ -881,11 +884,14 @@ foreach($messages as $book)
 {
   $service =Services::where('id',$book->service_id)->first();
   $sender =User::where('id',$book->from_id)->first();
+
+  if($service && $sender){
   $book->service = $service->name;
   $book->sender = $sender->fname.' '.$sender->lname;
   $book->website = $sender->website;
   $book->email = $sender->email;
   $results[] = $book;
+  }
 
 }
 
@@ -901,6 +907,8 @@ foreach($booking as $book)
 {
   $service =Services::where('id',$book->service_id)->first();
   $customer =User::where('id',$book->booker_id)->first();
+
+  if($service && $customer){
   $book->location = $service->location;
   $book->service = $service->name;
   $book->category = $service->category;
@@ -909,6 +917,7 @@ foreach($booking as $book)
   $book->website = $customer->website;
   $book->email = $customer->email;
   $results[] = $book;
+  }
 }
 
 return view('services.service_booking',compact('results'));

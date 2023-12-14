@@ -557,8 +557,7 @@ Equipments::create([
 
 //MILESTONES
 public function activate_milestone($id){
-  $thisMile = Milestones::where('listing_id',$id)
-  ->where('status','To Do')->first();
+  $thisMile = Milestones::where('listing_id',$id)->first();
 
   if(!$thisMile){
     Session::put('failed','A business must have at least 1 milestone to be activated!');
@@ -955,6 +954,8 @@ foreach($res as $r){
   $inv = User::where('id',$r->investor_id)->first();
   $r->investor = $inv->fname.' '.$inv->lname;
   $business = listing::where('id',$r->business_id)->first();
+
+  if($business){
   $r->business = $business->name;
 
   //Investor details
@@ -967,6 +968,7 @@ foreach($res as $r){
   //Investor details
   $r->photos = explode(',',$r->photos);
   $bids[] = $r;
+  }
 } 
 return view('business.bids',compact('bids'));
 }
