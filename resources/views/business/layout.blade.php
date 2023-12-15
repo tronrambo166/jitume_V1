@@ -1,11 +1,20 @@
-@php $user_id = Auth::id();
+@php
+use App\Models\User;
+
+if(Auth::check()) $user_id = Auth::id();
+else {
+        $e_mail = Session::get('investor_email');
+        $u = User::where('email', $e_mail)->first();
+        $user_id = $u->id;
+     }
+
 use App\Models\Listing;
 use App\Models\Services;
 use App\Models\serviceBook;
 use App\Models\ServiceMessages;
 use App\Models\BusinessBids;
 use App\Models\BusinessSubscriptions;
-use App\Models\User;
+
 
 $business = Listing::where('user_id',$user_id)->get();
 $service = Services::where('shop_id',$user_id)->get();

@@ -23,6 +23,8 @@ class socialController extends Controller
        $user = Socialite::driver('google')->user(); 
         try { 
         $register = $this->patient_reg($user);
+
+        Session::put('investor_auth',true);
         Session::put('social_reg',true);
        // if($register == 'services' || $register == 'business' || $register == '/')
         return redirect('business/index');
@@ -38,6 +40,7 @@ class socialController extends Controller
         try { 
         
         $register = $this->patient_reg($user);
+        Session::put('investor_auth',true);
         Session::put('social_reg',true);
 
         //if($register == 'services' || $register == 'business' || $register == '/')
@@ -102,6 +105,9 @@ class socialController extends Controller
           'lname' =>  $lname,
           'email' =>  $email
           ]);
+
+          Session::put('investor_email', $email);    
+          Session::put('investor_auth',true);
       }
       catch (Exception $e) {
             return $e->message();
