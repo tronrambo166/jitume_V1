@@ -202,6 +202,7 @@ Route::get('/clear', function() {
     \Artisan::call('route:clear');
     \Artisan::call('cache:clear');
     dd("Cache is cleared");
+
 });
 
 Auth::routes();
