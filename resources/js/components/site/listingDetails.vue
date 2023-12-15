@@ -375,7 +375,8 @@
                 <p id="range_error" style="font-size:14px;" class="system_ui collapse mb-3 py-1 text-danger smalls bg-light text-center"></p>
 
                   <p v-if="token_left != 0 && trial" style="font-size:16px;" class="mb-3 py-2 text-warning smalls bg-light text-center">Your 
-                    <span v-if="trial">trial</span><span v-else>plan</span>
+                     <!-- v-if="trial">trial</span><span v-else> -->
+                      <span>plan</span>
                     expires in <b>{{expire}} </b> days.
                     <span class="text-dark small d-block">Are you sure you want to use one of your {{token_left}} business information tokens?</span>
                   </p>

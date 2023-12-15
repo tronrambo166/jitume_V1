@@ -275,9 +275,18 @@ catch(\Exception $e){
         $investor_id = Auth::id();
         $subs = BusinessSubscriptions::where('id',$id)->first();
 
+    try{
         $cancel = $this->Client->subscriptions->cancel(
         $subs->stripe_sub_id,[]
-);
+        );
+    }
+    catch(\Exception $e){
+        Session::put('failed','Subscription does not exist!');
+        BusinessSubscriptions::where('id',$id)->delete();
+        return redirect()->back();
+    }
+
+
         BusinessSubscriptions::where('id',$id)->update(['active' => 0]);
 
         Session::put('Stripe_pay','Subscription Canceled!');

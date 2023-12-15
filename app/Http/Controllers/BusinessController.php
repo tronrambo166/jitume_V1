@@ -911,10 +911,10 @@ $bids = array();
 try{
 foreach($res as $r){
   $inv = User::where('id',$r->investor_id)->first();
-  $r->investor = $inv->fname.' '.$inv->lname;
   $business = listing::where('id',$r->business_id)->first();
 
-  if($business){
+  if($business && $inv){
+  $r->investor = $inv->fname.' '.$inv->lname;
   $r->business = $business->name;
 
   //Business details
@@ -952,10 +952,10 @@ $bids = array();
 try{
 foreach($res as $r){
   $inv = User::where('id',$r->investor_id)->first();
-  $r->investor = $inv->fname.' '.$inv->lname;
   $business = listing::where('id',$r->business_id)->first();
 
-  if($business){
+  if($business && $inv){
+  $r->investor = $inv->fname.' '.$inv->lname;
   $r->business = $business->name;
 
   //Investor details
@@ -1048,7 +1048,7 @@ public function assetEquip_download($id, $type){
     try{
     $stripe_sub = $stripe->subscriptions->retrieve(
               $subs->stripe_sub_id, []
-        );
+        ); //return $stripe_sub;
     }
     catch(\Exception $e){
       $count = 0;
@@ -1324,8 +1324,10 @@ public function findNearestServices($latitude, $longitude, $radius = 100)
         $list->location = substr($list->location,0,30).'...';
 
         $user = User::where('id', $list->shop_id)->first();
+        if($user){
         $list->manager = $user->fname.' '.$user->lname;
         $list->contact = $user->email;
+      }
         }
 
         return $listings;

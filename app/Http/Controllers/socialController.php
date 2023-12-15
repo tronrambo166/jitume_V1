@@ -24,10 +24,8 @@ class socialController extends Controller
         try { 
         $register = $this->patient_reg($user);
         Session::put('social_reg',true);
-        if($register == 'services' || $register == 'business' || $register == '/')
-        return redirect($register);
-
-        return redirect('social_login'); 
+       // if($register == 'services' || $register == 'business' || $register == '/')
+        return redirect('business/index');
         }
          catch (Exception $e) {
             return $e->message();
@@ -42,10 +40,9 @@ class socialController extends Controller
         $register = $this->patient_reg($user);
         Session::put('social_reg',true);
 
-        if($register == 'services' || $register == 'business' || $register == '/')
-        return redirect($register);
+        //if($register == 'services' || $register == 'business' || $register == '/')
+        return redirect('business/index');
 
-        return redirect('social_login'); 
         }
          catch (Exception $e) {
             return $e->message();

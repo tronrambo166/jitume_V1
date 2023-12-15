@@ -641,9 +641,14 @@ public function findMilestones(Request $request){
   $booker_id = $request->booker_id;
   //Optional
   $service = Services::where('id',$service_id)->first();
+  if($service)
   $s_name = $service->name;
+  else $s_name = '';
+
   $booker = User::where('id',$booker_id)->first();
+  if($booker)
   $booker_name = $booker->fname.' '.$booker->lname;
+  else $booker_name = '';
   //Optional
 
   $milestones = ServiceMileStatus::where('service_id', $service_id)
