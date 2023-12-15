@@ -92,6 +92,9 @@ class socialController extends Controller
       } else {
         Session::put('investor_email', $email);    
         Session::put('investor_auth',true);
+
+        $user1 = User::where('email','=',$email)->first();
+        Auth::login($user);
         return '/';
 
       }
@@ -108,6 +111,9 @@ class socialController extends Controller
 
           Session::put('investor_email', $email);    
           Session::put('investor_auth',true);
+
+          $user1 = User::where('email',$email)->first();
+          Auth::login($user1);
       }
       catch (Exception $e) {
             return $e->message();
