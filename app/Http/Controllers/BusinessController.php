@@ -52,11 +52,6 @@ public function logoutB(){
 
 
 public function account(){
-
-  if(Auth::check())
-    echo 'yes';
-  else echo 'no'; exit;
-  
 $user = User::where('id',Auth::id())->first();
 if($user->connect_id)
 $connected = 1;
