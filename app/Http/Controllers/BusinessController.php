@@ -947,7 +947,7 @@ public function business_bids(){
     }
   }
 
-$res = BusinessBids::where('owner_id', Auth::id())->get();
+$res = BusinessBids::where('owner_id', Auth::id())->latest()->get();
 $bids = array();
 try{
 foreach($res as $r){
@@ -970,6 +970,10 @@ foreach($res as $r){
   $bids[] = $r;
   }
 } 
+
+$remove_new = BusinessBids::where('owner_id', Auth::id())
+->update(['new'=>0]);
+
 return view('business.bids',compact('bids'));
 }
  catch(\Exception $e){
@@ -1041,12 +1045,19 @@ public function assetEquip_download($id, $type){
     //Get Stripe Subscription
     $stripe = new \Stripe\StripeClient('sk_test_51JFWrpJkjwNxIm6zcIxSq9meJlasHB3MpxJYepYx1RuQnVYpk0zmoXSXz22qS62PK5pryX4ptYGCHaudKePMfGyH00sO7Jwion');
 
+    try{
     $stripe_sub = $stripe->subscriptions->retrieve(
               $subs->stripe_sub_id, []
         );
-    $expire_date = date('Y-m-d',$stripe_sub->current_period_end);
-    //Get Stripe Subscription
+    }
+    catch(\Exception $e){
+      $count = 0;
+      $results['subscribed'] = 0;
+      return response()->json([ 'data' => $results, 'count' => $count] );
+    }
 
+      $expire_date = date('Y-m-d',$stripe_sub->current_period_end);
+      //Get Stripe Subscription
       $count = 1;
       $results['subscribed'] = 1;
 
@@ -1238,15 +1249,19 @@ else{
 public function FindProjectManagers($bid_id){
 $results = array();
 $this_bid = AcceptedBids::where('bid_id',$bid_id)->first();
-if(!$this_bid) return response()->json(['error:'=>'Bid does not exist!']);
+if(!$this_bid) return response()->json(['data'=>false, 'error:'=>'Bid does not exist!']);
 $this_business = Listing::where('id',$this_bid->business_id)->first();
+
+if($this_business){
 $business_loc = $this_business->location;
 
 $lat = (float)$this_business->lat;
 $lng = (float)$this_business->lng;
 $services = $this->findNearestServices($lat,$lng,100);
-
 return response()->json(['services' => $services]);
+}
+else return response()->json(['data'=>false, 'error:'=>'Business does not exist!']);
+
 }
 
 

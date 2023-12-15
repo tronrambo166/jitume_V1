@@ -2,6 +2,8 @@
 use App\Models\Listing;
 use App\Models\Services;
 use App\Models\serviceBook;
+use App\Models\ServiceMessages;
+use App\Models\BusinessBids;
 use App\Models\BusinessSubscriptions;
 use App\Models\User;
 
@@ -10,6 +12,15 @@ $service = Services::where('shop_id',$user_id)->get();
 $booking = serviceBook::where('booker_id',$user_id)->get();
 $subscribed = BusinessSubscriptions::where('investor_id',$user_id)
     ->where('active',1)->orderBy('id','DESC')->first();
+
+$messages = ServiceMessages::where('to_id', $user_id)
+->where('new',1)->latest()->get();
+
+$new_bids = BusinessBids::where('owner_id', $user_id)
+->where('new',1)->latest()->get();
+
+$new_books = serviceBook::where('service_owner_id', $user_id)
+->where('new',1)->latest()->get();
 @endphp
 
 <!DOCTYPE HTML>
@@ -90,9 +101,13 @@ $subscribed = BusinessSubscriptions::where('investor_id',$user_id)
                             <div class="nav-item ">
                                 <a href="{{route('account')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-dollar-sign"></i></a>
                             </div>
-                            <div class="nav-item ">
+                            <div class="nav-item bg">
 
-                                <a href="{{route('service-messages')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-envelope"></i></a>
+                                <a href="{{route('service-messages')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-envelope"></i>
+                                    @if(count($messages) != 0)
+                                    <span class="new_msg font-weight-bold px-1">{{count($messages)}}</span>
+                                    @endif
+                                </a>
                             </div>
 
                             <div class="nav-item mr-4">
@@ -180,7 +195,11 @@ $subscribed = BusinessSubscriptions::where('investor_id',$user_id)
                             </li>
 
                             <li  class="{{ Request::is('business/business_bids') ? 'active' : '' }}"> 
-                                <a class="navLink" href="{{route('business_bids')}}"><i class=" fe fe-layout"></i> <span>Business Bids</span></a>
+                                <a class="navLink" href="{{route('business_bids')}}"><i class=" fe fe-layout"></i> <span>Business Bids</span>
+                                    @if(count($new_bids) != 0)
+                                    <span class="new_msg2 small font-weight-bold px-1">New {{count($new_bids)}}</span>
+                                    @endif
+                            </a>
                             </li>
 
                         @endif  
@@ -210,7 +229,12 @@ $subscribed = BusinessSubscriptions::where('investor_id',$user_id)
                             </li>
 
                              <li  class="{{ Request::is('business/service_booking') ? 'active' : '' }}"> 
-                                <a class="navLink" href="{{route('service_booking')}}"><i class=" fe fe-layout"></i> <span>Service Booking</span></a>
+                                <a class="navLink" href="{{route('service_booking')}}"><i class=" fe fe-layout"></i> <span>Service Booking</span>
+
+                                @if(count($new_books) != 0)
+                                    <span class="new_msg2 small font-weight-bold px-1">New {{count($new_books)}}</span>
+                                    @endif
+                                </a>
                             </li>
 
                             @endif
@@ -234,7 +258,7 @@ $subscribed = BusinessSubscriptions::where('investor_id',$user_id)
 
                     @if($subscribed)
                     <div class=" mx-auto mt-5" style="width:95%;">
-                        <a class="header_buttons seacrhListing sign_in_btn text-center" href="{{route('cancelSubscription', $subscribed->id)}}"><i class=" fe fe-layout"></i> <span>Cancel Subscription</span></a>
+                        <a onclick="return confirm('Are you sure?');" class="header_buttons seacrhListing sign_in_btn text-center" href="{{route('cancelSubscription', $subscribed->id)}}"><i class=" fe fe-layout"></i> <span>Cancel Subscription</span></a>
                     </div>
                     @endif
                 </div>

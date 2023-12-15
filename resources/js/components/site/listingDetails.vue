@@ -556,7 +556,7 @@ export default {
     isSubscribed: function () {
       var id = this.$route.params.id; var t = this;
       axios.get('isSubscribed/'+id).then((data) => {
-        console.log(data.data.data);
+        //console.log(data.data.data);
         if(data.data.count > 0){
         t.subscribed = data.data.data.subscribed;
         t.trial = data.data.data.trial;

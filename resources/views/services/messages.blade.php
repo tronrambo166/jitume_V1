@@ -225,6 +225,11 @@
         $('#realBtnR').hide();
         }
     }
+
+
+    // window.onload = function() {
+    // alert('ok')
+    // };
 </script>
                 
 

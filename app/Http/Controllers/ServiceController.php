@@ -895,6 +895,8 @@ foreach($messages as $book)
 
 }
 
+$remove_new = ServiceMessages::where('to_id',Auth::id())->update(['new'=>0]);
+
 return view('services.messages',compact('results'));
 }
 
@@ -902,7 +904,7 @@ return view('services.messages',compact('results'));
 public function service_booking(){ 
 $results = [];
 $booking = serviceBook::where('service_owner_id',Auth::id())
-->where('status', 'Pending')->get();
+->where('status', 'Pending')->latest()->get();
 foreach($booking as $book)
 {
   $service =Services::where('id',$book->service_id)->first();
@@ -919,6 +921,9 @@ foreach($booking as $book)
   $results[] = $book;
   }
 }
+
+$remove_new = serviceBook::where('service_owner_id',Auth::id())
+->update(['new'=>0]);
 
 return view('services.service_booking',compact('results'));
 }

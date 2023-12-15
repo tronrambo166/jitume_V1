@@ -1485,3 +1485,16 @@ display: block;
     color: ghostwhite;
     cursor: pointer;
 }
+
+.new_msg{
+    background: #b6c5b9;
+    color: red;
+    position: absolute;
+    top: 14px;
+}
+
+.new_msg2{
+    background: #000000;
+    color: red;
+    z-index: 1000;
+}

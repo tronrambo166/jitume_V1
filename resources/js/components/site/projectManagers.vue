@@ -63,7 +63,7 @@
               </div>
 
               <div v-if = "empty" class="col-sm-12 mx-auto">
-                <h4 class="bg-light py-4 text-center my-5">No Listing Available Under This Category!</h4>
+                <h4 class="bg-light py-4 text-center my-5">No Project Manger found!!</h4>
              </div>
                 </div>
 
@@ -120,13 +120,14 @@ export default {
 
     methods:{
     setRes:function () {
+            sessionStorage.removeItem('projectManagers');
             let t = this;
             t.bid_id = this.$route.params.bid_id;
              //this.results = this.ids.split(",");
             axios.get('FindProjectManagers/'+t.bid_id).then( (data) =>{
-                //console.log(data);
+                //console.log(data.data);
                 t.results = data.data.services;
-                if(data.data.data.length == 0)
+                if(data.data.data.length == 0 || data.data.data == false)
                     t.empty = true;;
               }).catch( (error) =>{})
         },

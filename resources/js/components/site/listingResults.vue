@@ -160,7 +160,7 @@ export default {
                 //Setting Curr LatLng
                 t.queryLat = data.data.data[0].lat;
                 t.queryLng = data.data.data[0].lng;
-                console.log(data);
+                //console.log(data);
             }).catch((error) => { })
         }
         },

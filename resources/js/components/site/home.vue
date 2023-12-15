@@ -487,7 +487,7 @@ export default {
     if (this.milestone != null)
       this.$router.push(`business-milestone/${this.milestone}`);
 
-     if (this.projectManagers != null)
+     if (this.projectManagers != null || this.projectManagers)
       this.$router.push(`projectManagers/${this.projectManagers}`);
 
     else if (this.milestoneS != null)
@@ -550,7 +550,7 @@ export default {
       let t = this;
       axios.get('latBusiness').then((data) => {
         t.results = data.data.data;
-        console.log(data);
+        //console.log(data);
       }).catch((error) => { })
     },
 

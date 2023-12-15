@@ -8362,7 +8362,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.milestoneS = sessionStorage.getItem('milestoneS');
     this.projectManagers = sessionStorage.getItem('projectManagers');
     if (this.milestone != null) this.$router.push("business-milestone/".concat(this.milestone));
-    if (this.projectManagers != null) this.$router.push("projectManagers/".concat(this.projectManagers));else if (this.milestoneS != null) this.$router.push("service-milestone/".concat(this.milestoneS)); //CALL ACTION
+    if (this.projectManagers != null || this.projectManagers) this.$router.push("projectManagers/".concat(this.projectManagers));else if (this.milestoneS != null) this.$router.push("service-milestone/".concat(this.milestoneS)); //CALL ACTION
 
     $('#call_to').html('');
     $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> ');
@@ -8439,8 +8439,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   }), _defineProperty(_methods, "latBusiness", function latBusiness() {
     var t = this;
     axios.get('latBusiness').then(function (data) {
-      t.results = data.data.data;
-      console.log(data);
+      t.results = data.data.data; //console.log(data);
     })["catch"](function (error) {});
   }), _defineProperty(_methods, "routerPush", function routerPush() {
     this.commit = sessionStorage.getItem('commit');
@@ -9480,8 +9479,7 @@ __webpack_require__.r(__webpack_exports__);
       var id = this.$route.params.id;
       var t = this;
       axios.get('isSubscribed/' + id).then(function (data) {
-        console.log(data.data.data);
-
+        //console.log(data.data.data);
         if (data.data.count > 0) {
           t.subscribed = data.data.data.subscribed;
           t.trial = data.data.data.trial;
@@ -10055,8 +10053,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           t.count = data.data.count; //Setting Curr LatLng
 
           t.queryLat = data.data.data[0].lat;
-          t.queryLng = data.data.data[0].lng;
-          console.log(data);
+          t.queryLng = data.data.data[0].lng; //console.log(data);
         })["catch"](function (error) {});
       }
     },
@@ -10577,13 +10574,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     setRes: function setRes() {
+      sessionStorage.removeItem('projectManagers');
       var t = this;
       t.bid_id = this.$route.params.bid_id; //this.results = this.ids.split(",");
 
       axios.get('FindProjectManagers/' + t.bid_id).then(function (data) {
-        //console.log(data);
+        //console.log(data.data);
         t.results = data.data.services;
-        if (data.data.data.length == 0) t.empty = true;
+        if (data.data.data.length == 0 || data.data.data == false) t.empty = true;
         ;
       })["catch"](function (error) {});
     },
@@ -75310,7 +75308,7 @@ var render = function () {
                     _c(
                       "h4",
                       { staticClass: "bg-light py-4 text-center my-5" },
-                      [_vm._v("No Listing Available Under This Category!")]
+                      [_vm._v("No Project Manger found!!")]
                     ),
                   ])
                 : _vm._e(),
