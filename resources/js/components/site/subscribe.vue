@@ -55,16 +55,22 @@
                     <div class=" card" @click="select(29.99)" id="two">
                         <p class="text-center font-weight-bold h5 pt-2">$29.99</p>
                     <p class="text-center">Silver + access to all data from one chosen range.</p>
-                    <a @mouseleave="leave()" @mouseover="hover2()"
+
+                    <a v-if="form.range != 'all'" @mouseleave="leave()" @mouseover="hover2()"
                     @click="make_session(form.id);stripeFee(form.id, 0.00,'gold-trial',30);" style="border: 1px solid black;" id="convBtn2"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
+
+                    <a v-else onclick="alert('Please select a package!');" @mouseover="hover7()" style="border: 1px solid black;" id="convBtn7"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
+
                 </div> </div>
 
                 <div class="col-sm-4 "  >
                     <div class=" card"  @click="select(69.99)" id="three">
                         <p class="text-center font-weight-bold h5 pt-2">$69.99</p>
                     <p class="text-center">Silver access + Gold access to all data.</p> <br>
+
                     <a @mouseleave="leave()" @mouseover="hover3()"
                     @click="make_session(form.id);stripeFee(form.id, 0.00,'platinum-trial',30);" style="border: 1px solid black;" id="convBtn3"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
+
                 </div> </div>
 
             </div>
@@ -76,21 +82,21 @@
                     <div class=" card"  @click="select(95.99)" id="four" >
                         <p class="text-center font-weight-bold h5 pt-2">$95.99</p>
                     <p class="text-center">10 free "Start conversations" per month from any range.</p>
-                    <a @mouseleave="leave()" @mouseover="hover4()" style="border: 1px solid black;" id="convBtn4"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
+                    <a @mouseleave="leave()" @mouseover="hover4()" style="border: 1px solid black;" id="convBtn4"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2 disabled">Try free for 7 days</a>
                 </div> </div>
 
                 <div class="col-sm-4 ">
                     <div class=" card" @click="select(287.99)" id="five" >
                         <p class="text-center font-weight-bold h5 pt-2">$287.99</p>
                     <p class="text-center">Silver + access to all data from one chosen range.</p>
-                    <a @mouseleave="leave()" @mouseover="hover5()" style="border: 1px solid black;" id="convBtn5"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
+                    <a @mouseleave="leave()" @mouseover="hover5()" style="border: 1px solid black;" id="convBtn5"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2 disabled">Try free for 7 days</a>
                 </div> </div>
 
                 <div class="col-sm-4 ">
                     <div class=" card" @click="select(671.99)" id="six" >
                         <p class="text-center font-weight-bold h5 pt-2">$671.99</p>
                     <p class="text-center">Silver access + Gold access to all data.</p> <br>
-                    <a @mouseleave="leave()" @mouseover="hover6()" style="border: 1px solid black;" id="convBtn6"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a> 
+                    <a @mouseleave="leave()" @mouseover="hover6()" style="border: 1px solid black;" id="convBtn6"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2 disabled">Try free for 7 days</a> 
                 </div> </div>
 
             </div>
@@ -307,6 +313,9 @@ stripeFee: function (business_id,amount,plan,days) {
         },
         hover6(){
             $('#convBtn6').css({background:'#083608', color:'white'});
+        },
+        hover7(){
+            $('#convBtn7').css({background:'#083608', color:'white'});
         },
         leave(){
             $('.convBtn').css({background:'', color:'black'});

@@ -223,7 +223,7 @@ catch(\Exception $e){
         $expire_date = date('Y-m-d', strtotime($start_date. '+30 days'));
 
         $token_remaining = null;
-        if($plan == 'silver' || $plan == 'gold'){
+        if($plan == 'silver' || $plan == 'gold' || $plan=='silver-trial' || $plan=='gold-trial'){
             $token_remaining = 10;
         }
 

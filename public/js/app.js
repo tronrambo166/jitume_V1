@@ -9437,6 +9437,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -12578,6 +12579,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user'],
   data: function data() {
@@ -12741,6 +12748,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     hover6: function hover6() {
       $('#convBtn6').css({
+        background: '#083608',
+        color: 'white'
+      });
+    },
+    hover7: function hover7() {
+      $('#convBtn7').css({
         background: '#083608',
         color: 'white'
       });
@@ -74030,7 +74043,8 @@ var render = function () {
                                         ]
                                       ),
                                   _vm._v(" "),
-                                  _vm.plan == "silver"
+                                  _vm.plan == "silver" ||
+                                  _vm.plan == "silver-trial"
                                     ? _c("div", { staticClass: "row" }, [
                                         _vm.token_left != 0
                                           ? _c(
@@ -74104,7 +74118,7 @@ var render = function () {
                                       ])
                                     : _vm._e(),
                                   _vm._v(" "),
-                                  _vm.plan == "gold"
+                                  _vm.plan == "gold" || _vm.plan == "gold-trial"
                                     ? _c("div", { staticClass: "row" }, [
                                         _vm.token_left != 0
                                           ? _c(
@@ -74210,8 +74224,6 @@ var render = function () {
                                       ])
                                     : _vm._e(),
                                   _vm._v(" "),
-                                  _vm.plan == "silver-trial" ||
-                                  _vm.plan == "gold-trial" ||
                                   _vm.plan == "platinum-trial"
                                     ? _c("div", { staticClass: "row" }, [
                                         _c(
@@ -78121,28 +78133,47 @@ var render = function () {
                 _vm._v("Silver + access to all data from one chosen range."),
               ]),
               _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass:
-                    "d-block py-1 convBtn text-center mx-auto w-75 btn px-2 my-2",
-                  staticStyle: { border: "1px solid black" },
-                  attrs: { id: "convBtn2" },
-                  on: {
-                    mouseleave: function ($event) {
-                      return _vm.leave()
+              _vm.form.range != "all"
+                ? _c(
+                    "a",
+                    {
+                      staticClass:
+                        "d-block py-1 convBtn text-center mx-auto w-75 btn px-2 my-2",
+                      staticStyle: { border: "1px solid black" },
+                      attrs: { id: "convBtn2" },
+                      on: {
+                        mouseleave: function ($event) {
+                          return _vm.leave()
+                        },
+                        mouseover: function ($event) {
+                          return _vm.hover2()
+                        },
+                        click: function ($event) {
+                          _vm.make_session(_vm.form.id)
+                          _vm.stripeFee(_vm.form.id, 0.0, "gold-trial", 30)
+                        },
+                      },
                     },
-                    mouseover: function ($event) {
-                      return _vm.hover2()
+                    [_vm._v("Try free for 7 days")]
+                  )
+                : _c(
+                    "a",
+                    {
+                      staticClass:
+                        "d-block py-1 convBtn text-center mx-auto w-75 btn px-2 my-2",
+                      staticStyle: { border: "1px solid black" },
+                      attrs: {
+                        onclick: "alert('Please select a package!');",
+                        id: "convBtn7",
+                      },
+                      on: {
+                        mouseover: function ($event) {
+                          return _vm.hover7()
+                        },
+                      },
                     },
-                    click: function ($event) {
-                      _vm.make_session(_vm.form.id)
-                      _vm.stripeFee(_vm.form.id, 0.0, "gold-trial", 30)
-                    },
-                  },
-                },
-                [_vm._v("Try free for 7 days")]
-              ),
+                    [_vm._v("Try free for 7 days")]
+                  ),
             ]
           ),
         ]),
@@ -78234,7 +78265,7 @@ var render = function () {
                   "a",
                   {
                     staticClass:
-                      "d-block py-1 convBtn text-center mx-auto w-75 btn px-2 my-2",
+                      "d-block py-1 convBtn text-center mx-auto w-75 btn px-2 my-2 disabled",
                     staticStyle: { border: "1px solid black" },
                     attrs: { id: "convBtn4" },
                     on: {
@@ -78279,7 +78310,7 @@ var render = function () {
                   "a",
                   {
                     staticClass:
-                      "d-block py-1 convBtn text-center mx-auto w-75 btn px-2 my-2",
+                      "d-block py-1 convBtn text-center mx-auto w-75 btn px-2 my-2 disabled",
                     staticStyle: { border: "1px solid black" },
                     attrs: { id: "convBtn5" },
                     on: {
@@ -78326,7 +78357,7 @@ var render = function () {
                   "a",
                   {
                     staticClass:
-                      "d-block py-1 convBtn text-center mx-auto w-75 btn px-2 my-2",
+                      "d-block py-1 convBtn text-center mx-auto w-75 btn px-2 my-2 disabled",
                     staticStyle: { border: "1px solid black" },
                     attrs: { id: "convBtn6" },
                     on: {

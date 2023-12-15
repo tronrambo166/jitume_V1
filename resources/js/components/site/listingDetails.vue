@@ -382,7 +382,7 @@
 
                   <p v-else style="font-size:16px;" class="mb-3 py-2 text-dark smalls bg-light text-center">Please use <b>'Small fee'</b> option to unlock</p>
 
-                  <div class="row" v-if="plan == 'silver'">
+                  <div class="row" v-if="plan == 'silver' || plan == 'silver-trial'">
 
                   <div v-if="token_left != 0" class="col-md-6">
                   <a   @click="make_session(form.listing_id);unlockBySubs(form.listing_id,subscrib_id,'token');" type="submit"
@@ -407,7 +407,8 @@
                 </div>
                 </div>
 
-                <div class="row" v-if="plan == 'gold'">
+                
+                <div class="row" v-if="plan == 'gold' || plan == 'gold-trial'">
                 <div v-if="token_left != 0" class="col-md-6">
                   <a   @click="make_session(form.listing_id);unlockBySubs(form.listing_id,subscrib_id,'token');" type="submit"
                   class="modal_ok_btn w-75 m-auto d-inline  btn rounded mr-3 px-3">
@@ -442,7 +443,7 @@
                 </a>
                 </div>
 
-                <div class="row" v-if="plan == 'silver-trial' || plan == 'gold-trial' || plan == 'platinum-trial'">
+                <div class="row" v-if="plan == 'platinum-trial'">
                 <a @click="make_session(form.listing_id);unlockBySubs(form.listing_id,subscrib_id,plan);" type="submit"
                   class="modal_ok_btn w-75 m-auto btn rounded mr-3 px-3">
                   Use trial package
