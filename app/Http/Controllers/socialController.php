@@ -67,7 +67,7 @@ class socialController extends Controller
 
     if($email == null) {
         $email='test@gmail.com';
-        Session::put('email_err','You must have an email associated with the facebook id!'); //return redirect('home');
+        Session::put('email_err','You must have an email associated with the facebook id!'); return redirect('home');
     }
 
      $user= User::where('email', $email)->get(); 
@@ -94,8 +94,8 @@ class socialController extends Controller
         Session::put('investor_auth',true);
 
         $user1 = User::where('email',$email)->first();
-        Auth::login($user);
-        return '/';
+        Auth::login($user1);
+
 
       }
 
