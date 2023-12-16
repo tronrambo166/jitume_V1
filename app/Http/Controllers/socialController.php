@@ -93,7 +93,7 @@ class socialController extends Controller
         Session::put('investor_email', $email);    
         Session::put('investor_auth',true);
 
-        $user1 = User::where('email','=',$email)->first();
+        $user1 = User::where('email',$email)->first();
         Auth::login($user);
         return '/';
 
