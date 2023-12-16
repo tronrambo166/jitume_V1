@@ -81,7 +81,7 @@ return view('business.index',compact('business','services'));
 
 public function add_listing(){
 $user = User::where('id',Auth::id())->first();
-if($user->connect_id)
+if($user->completed_onboarding)
 $connected = 1;
 else $connected = 0;
 
