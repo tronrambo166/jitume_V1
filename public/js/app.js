@@ -9438,6 +9438,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['auth_user', 'business'],
   data: function data() {
@@ -72158,7 +72159,7 @@ var render = function () {
               _c(
                 "li",
                 {
-                  staticClass: "nav-item primary_bg mr-4",
+                  staticClass: "nav-item mr-4",
                   staticStyle: {
                     "list-style-type": "none",
                     "border-radius": "3px",
@@ -72168,7 +72169,7 @@ var render = function () {
                   _c(
                     "router-link",
                     {
-                      staticClass: "renewable_text py-1 px-5",
+                      staticClass: "searchListing py-1 px-5",
                       attrs: { to: "category/Agriculture" },
                     },
                     [_vm._v("Agriculture ")]
@@ -72180,7 +72181,7 @@ var render = function () {
               _c(
                 "li",
                 {
-                  staticClass: "primary_bg nav-item py-0",
+                  staticClass: "nav-item py-0",
                   staticStyle: {
                     "list-style-type": "none",
                     "border-radius": "3px",
@@ -72190,7 +72191,7 @@ var render = function () {
                   _c(
                     "router-link",
                     {
-                      staticClass: "renewable_text py-1 px-3",
+                      staticClass: "searchListing py-1 px-3",
                       attrs: { to: "category/Renewable-Energy" },
                     },
                     [_vm._v("Renewable Energy ")]
@@ -74002,10 +74003,9 @@ var render = function () {
                                           staticStyle: { "font-size": "16px" },
                                         },
                                         [
-                                          _vm._v("Your \n                  "),
-                                          _vm.trial
-                                            ? _c("span", [_vm._v("trial")])
-                                            : _c("span", [_vm._v("plan")]),
+                                          _vm._v("Your \n                   "),
+                                          _vm._v(" "),
+                                          _c("span", [_vm._v("plan")]),
                                           _vm._v(
                                             "\n                  expires in "
                                           ),

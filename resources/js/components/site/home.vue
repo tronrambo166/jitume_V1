@@ -130,10 +130,10 @@
 
       <div class="my-1 py-0">
         <ul class="text-center py-0 justify-content-center d-flex">
-          <li style="list-style-type:none;border-radius:3px;" class="nav-item primary_bg mr-4 "> <router-link class="renewable_text py-1 px-5" to="category/Agriculture">Agriculture </router-link></li>
+          <li style="list-style-type:none;border-radius:3px;" class="nav-item  mr-4 "> <router-link class=" searchListing  py-1 px-5" to="category/Agriculture">Agriculture </router-link></li>
 
-          <li style="list-style-type:none;border-radius:3px;" class="primary_bg nav-item py-0  "> <router-link to="category/Renewable-Energy"
-              class="renewable_text py-1 px-3" style="">Renewable Energy </router-link>
+          <li style="list-style-type:none;border-radius:3px;" class=" nav-item py-0  "> <router-link to="category/Renewable-Energy"
+              class=" searchListing  py-1 px-3" style="">Renewable Energy </router-link>
           </li>
         </ul>
       </div>
