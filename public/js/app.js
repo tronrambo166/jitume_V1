@@ -8439,7 +8439,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   }), _defineProperty(_methods, "latBusiness", function latBusiness() {
     var t = this;
     axios.get('latBusiness').then(function (data) {
-      t.results = data.data.data; //console.log(data);
+      t.results = data.data.data;
+      console.log(data);
     })["catch"](function (error) {});
   }), _defineProperty(_methods, "routerPush", function routerPush() {
     this.commit = sessionStorage.getItem('commit');

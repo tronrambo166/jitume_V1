@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\File;
 class ServiceController extends Controller
 {
 
- public function __construct()
+public function __construct()
     {
         $this->middleware('business');
     }
