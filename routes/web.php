@@ -274,3 +274,7 @@ Route::get('terms', function (){return view('terms');} )->name('terms');
 Route::get('privacy-policy', function (){return view('privacy-policy');} )->name('privacy-policy');
 Route::post('ApplyForShow', 'socialController@ApplyForShow')->name('ApplyForShow');
 
+
+// Terms & Privacy
+ Route::get('terms', function(){ return view('policy.terms'); })->name('terms');
+ Route::get('policy', function(){ return view('policy.privacy_policy'); })->name('policy');

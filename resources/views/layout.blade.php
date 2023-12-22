@@ -379,7 +379,18 @@
             <div class="col-12 col-sm-3 pt-2 text-right">
 
                     <div class="py-5"></div>
-                    <div class="py-4"></div>
+                    <div class="py-0">
+                        <ul class="foot_menu_ui">
+                        <li>
+                              <a href="./policy" target="_blank" class="text-light font-weight-bold d-block">Privacy Policy</a>
+                              </li>
+                              
+                              <li>
+                              
+                                <a href="./terms" target="_blank" class="text-light font-weight-bold">Terms and Conditions</a>
+                              </li> 
+                              </ul>
+                    </div>
 
                     <div class="d-flex flex-wrap">
                     <a class="ml-auto" href="twitter.com" target="_black"><i style="width: 35px;" class="fa fa-twitter fa-1x bg-light text-center p-1 rounded"></i></a>
