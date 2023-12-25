@@ -383,13 +383,13 @@
 <div class="col-sm-6">
     <a id="fakeBtn" onclick="accept();" type="submit" class="bid-accept text-center float-right border border-dark font-weight-bold btn text-mute py-1 w-100 mx-auto">Accept Bids</a>
 
-    <button style="background:green;" id="realBtn" type="submit" class="bid-accept collapse float-right font-weight-bold btn text-light w-100 mx-auto">Accept Bids</button>
+    <button style="background:green;" onclick="return confirm('Are you sure?');" id="realBtn" type="submit" class="bid-accept collapse float-right font-weight-bold btn text-light w-100 mx-auto">Accept Bids</button>
 </div>
 
 <div class="col-sm-6">
     <a id="fakeBtnR" onclick="accept();" type="submit" class="bid-accept text-center float-right border border-dark font-weight-bold btn text-mute py-1 w-100 mx-auto">Reject Bids</a>
 
-    <button style="background:red;" name="reject" value="1" onclick="return confirm('Are you sure?');" id="realBtnR" type="submit" class="bid-accept collapse float-right font-weight-bold btn text-light w-100 mx-auto">Reject Bids</button>
+    <button style="background:red;" onclick="return confirm('Are you sure?');" name="reject" value="1" onclick="return confirm('Are you sure?');" id="realBtnR" type="submit" class="bid-accept collapse float-right font-weight-bold btn text-light w-100 mx-auto">Reject Bids</button>
 </div>
 </div>
 @endif

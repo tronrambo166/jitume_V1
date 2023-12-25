@@ -295,7 +295,8 @@
     }
 
     .searchListing:hover {
-        background-color: #083608;
+        background-color: #266A2E;
+        color:white;
     }
 
     .searchBar {
@@ -1497,4 +1498,9 @@ display: block;
     background: #000000;
     color: red;
     z-index: 1000;
+}
+
+
+.view_m:hover{
+    color:white;
 }

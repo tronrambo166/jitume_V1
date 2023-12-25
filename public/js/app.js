@@ -10096,7 +10096,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             t.results = data.data.data;
             t.queryLat = data.data.data[0].lat;
             t.queryLng = data.data.data[0].lng; //}
-            //console.log(t.results);
+
+            console.log(t.results);
           })["catch"](function (error) {});
         });
       }
@@ -72235,7 +72236,7 @@ var render = function () {
                       "slide",
                       {
                         key: index,
-                        staticClass: "listing text-center col-md-4 px-3",
+                        staticClass: "listing text-center col-md-4 px-4",
                         attrs: { index: index },
                       },
                       [
@@ -72270,15 +72271,15 @@ var render = function () {
                                       ]
                                     )
                                   : _c("img", {
-                                      staticClass: "card-img-top",
+                                      staticClass: "card-img-top mx-auto",
                                       staticStyle: {
-                                        width: "92%",
-                                        height: "114px",
+                                        width: "90%",
+                                        height: "118px",
                                       },
                                       attrs: { src: result.image, alt: "" },
                                     }),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "p-1 pb-2" }, [
+                                _c("div", { staticClass: "px-3 pb-2" }, [
                                   _c(
                                     "h5",
                                     {
@@ -72309,7 +72310,7 @@ var render = function () {
                                   ]),
                                 ]),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "amount p-1 pb-0" }, [
+                                _c("div", { staticClass: "amount px-3 pb-0" }, [
                                   _c("p", { staticClass: "font-weight-bold" }, [
                                     _vm._v("Amount: "),
                                     _c(
@@ -72371,7 +72372,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "h4",
-        { staticClass: "h4 text-center text_color_1 py-3 main_heading" },
+        { staticClass: "h3 text-center text_color_1 py-3 main_heading" },
         [_vm._v("Your platform to invest in local businesses")]
       ),
     ])

@@ -215,7 +215,7 @@ export default {
                         
 
                     //}
-                    //console.log(t.results);
+                    console.log(t.results);
                 }).catch((error) => { })
 
             });

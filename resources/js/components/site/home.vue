@@ -14,7 +14,7 @@
               <h4 style="font-size:27px; font-weight: 500px;" class="text-dark ">
                 <!--  <marquee>Invest in Agriculture | Sports/Gaming | Real State | Entertainment | Auto | Finance/Accounting Security | Pets | Domestic Help | Other</marquee> -->
               </h4>
-              <h4 class="h4 text-center text_color_1 py-3 main_heading">Your platform to invest in local businesses</h4>
+              <h4 class="h3 text-center text_color_1 py-3 main_heading">Your platform to invest in local businesses</h4>
             </div>
 
         <!-- Search Test -->
@@ -287,7 +287,7 @@
       <!-- SLider test -->
       <div style="overflow:hidden;" class="row card-group px-3 w-75 mx-auto d-md-flex justify-content-center">
         <hooper :settings="hooperSettings" :itemsToShow="4" :centerMode="true" pagination="no">
-          <slide class="listing text-center col-md-4 px-3" v-for="( result, index ) in results" :key="index"
+          <slide class="listing text-center col-md-4 px-4" v-for="( result, index ) in results" :key="index"
             :index="index">
             <!-- Loop -->
             <div class="mx-auto mt-4">
@@ -297,9 +297,9 @@
                   <source :src="result.file" type="video/mp4">
                 </video>
 
-                <img v-else :src="result.image" style="width:92%; height:114px;" class="card-img-top" alt="" />
+                <img v-else :src="result.image" style="width:90%; height:118px;" class="card-img-top mx-auto" alt="" />
 
-                <div class="p-1 pb-2">
+                <div class="px-3 pb-2">
 
                   <h5 class="card_heading text-left mb-0 py-2">{{ result.name }} </h5>
 
@@ -310,7 +310,7 @@
 
                 </div>
 
-                <div class="amount p-1 pb-0">
+                <div class="amount px-3 pb-0">
                   <p class="font-weight-bold">Amount: <span class="font-weight-light"><b>${{ result.investment_needed
                   }}</b></span></p>
                 </div>

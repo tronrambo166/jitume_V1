@@ -119,28 +119,29 @@ Route::post('registerB', 'PagesController@registerB')->name('registerB');
 Route::get('business', 'BusinessController@business')->name('business');
 
 Route::prefix('/business')->group(function(){
-Route::get('add-listing', 'BusinessController@add_listing')->name('add-listing');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf2E_', 'BusinessController@add_listing')->name('add-listing');
 Route::post('create-listing', 'BusinessController@save_listing')->name('create-listing');
-Route::get('index', 'BusinessController@home')->name('business');
-Route::get('listings', 'BusinessController@listings')->name('listings');
+Route::get('/bBQhdsfE_WWe4Q-_f7ieh7Hdhf1E_', 'BusinessController@home')->name('business');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf3E_', 'BusinessController@listings')->name('listings');
 Route::post('add_eqp', 'BusinessController@add_eqp')->name('add_eqp');
 Route::post('up_listing', 'BusinessController@up_listing')->name('up_listing');
 Route::get('delete_listing/{id}', 'BusinessController@delete_listing')->name('delete_listing');
-Route::get('business_bids', 'BusinessController@business_bids')->name('business_bids');
-Route::get('my_bids', 'BusinessController@my_bids')->name('my_bids');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf4E_', 'BusinessController@business_bids')->name('business_bids');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf5E_', 'BusinessController@my_bids')->name('my_bids');
 Route::get('remove_bids/{id}', 'BusinessController@remove_bids')->name('remove_bids');
+
 Route::get('assetEquip/download/{id}/{type}', 'BusinessController@assetEquip_download')->name('assetEquip/download');
-Route::get('account', 'BusinessController@account')->name('account');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf9F_', 'BusinessController@account')->name('account');
 
 // --- MILESTONE
-Route::get('add_milestones', 'BusinessController@add_milestones')->name('add_milestones');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf6E_', 'BusinessController@add_milestones')->name('add_milestones');
 
 Route::get('activate_milestone/{id}', 'BusinessController@activate_milestone')->name('activate_milestone');
-Route::get('milestones-{id}', 'BusinessController@milestones')->name('milestones');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf7E_-{id}', 'BusinessController@milestones')->name('milestones');
 Route::post('save_milestone', 'BusinessController@save_milestone')->name('save_milestone');
 Route::post('up_milestones', 'BusinessController@up_milestone')->name('up_milestones');
 Route::get('delete_milestone/{id}', 'BusinessController@delete_milestone')->name('delete_milestone');
-Route::get('applyForShow', 'BusinessController@applyForShow')->name('applyForShow');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf_E_', 'BusinessController@applyForShow')->name('applyForShow');
 Route::post('mile_status', 'BusinessController@mile_status')->name('mile_status');
 // --- MILESTONE
 Route::post('add_doc', 'BusinessController@add_docs')->name('add_doc');
@@ -149,12 +150,12 @@ Route::post('embed_business_video', 'BusinessController@embed_business_video')->
 
 
 //Dashboard -- Service ROUTES
-Route::get('services', 'ServiceController@services')->name('services');
-Route::get('add-services', 'ServiceController@add_listing')->name('add-services');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf8F_', 'ServiceController@services')->name('services');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf2F_', 'ServiceController@add_listing')->name('add-services');
 Route::post('create-service', 'ServiceController@save_listing')->name('create-service');
 // --- MILESTONE
-Route::get('add_s_milestones', 'ServiceController@add_milestones')->name('add_s_milestones');
-Route::get('s_milestones-{id}', 'ServiceController@milestones')->name('s_milestones');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf3F_', 'ServiceController@add_milestones')->name('add_s_milestones');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf4F_-{id}', 'ServiceController@milestones')->name('s_milestones');
 Route::post('findMilestones', 'ServiceController@findMilestones')->name('findMilestones');
 
 Route::post('save_s_milestone', 'ServiceController@save_milestone')->name('save_s_milestone');
@@ -162,15 +163,15 @@ Route::post('up_milestones', 'ServiceController@up_milestone')->name('up_s_miles
 Route::get('delete_s_milestone/{id}', 'ServiceController@delete_milestone')->name('delete_s_milestone');
 Route::post('mile_s_status', 'ServiceController@mile_status')->name('mile_s_status');
 // --- MILESTONE
-Route::get('service_booking', 'ServiceController@service_booking')->name('service_booking');
-Route::get('my_booking', 'ServiceController@my_booking')->name('my_booking');
-Route::get('booker-milestones', 'ServiceController@booker_milestones')->name('booker-milestones');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf5F_', 'ServiceController@service_booking')->name('service_booking');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf6F_', 'ServiceController@my_booking')->name('my_booking');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf6F__', 'ServiceController@booker_milestones')->name('booker-milestones');
 Route::get('getBookers/{s_id}', 'ServiceController@getBookers')->name('getBookers');
-Route::get('service-messages', 'ServiceController@service_messages')->name('service-messages');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf7F_', 'ServiceController@service_messages')->name('service-messages');
 
 
 Route::get('/', 'BusinessController@home')->name('services/index');
-Route::get('services', 'ServiceController@listings')->name('services');
+Route::get('bBQhdsfE_WWe4Q-_f7ieh7Hdhf8F_', 'ServiceController@listings')->name('services');
 //Route::post('add_eqp', 'ServiceController@add_eqp')->name('add_eqp');
 Route::post('up_service', 'ServiceController@up_listing')->name('up_service');
 Route::get('delete_service/{id}', 'ServiceController@delete_service')->name('delete_service');

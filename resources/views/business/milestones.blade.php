@@ -78,13 +78,13 @@
         <form action="{{route('mile_status')}}" method="post" class="form-inline">@csrf
 
             @if($ev->status == 'In Progress')
-            <select  name="status" style="width:52%;" class=" d-inline rounded border border-dark px-1 ">  
+            <select  name="status" style="width:50%;" class=" d-inline rounded border border-dark px-1 ">  
             <option hidden value="In Progress" class="form-control" >In Progress</option>    
             <option value="To Do" class="form-control" >To Do</option>
             <option value="Done" class="form-control" >Done</option>                
            </select>
            @elseif($ev->status == 'To Do')
-            <select  name="status" style="width:52%;" class=" d-inline rounded border border-dark px-1 ">     
+            <select  name="status" style="width:50%;" class=" d-inline rounded border border-dark px-1 ">     
             <option selected hidden value="To Do" class="form-control" >To Do</option> 
              <option value="In Progress" class="form-control" >In Progress</option>
             <option value="Done" class="form-control" >Done</option>                
@@ -109,7 +109,7 @@
                   </a>
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-            <a href="{{route('delete_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light border border-dark my-1">Delete</a>
+            <a onclick="return confirm('Are you sure?');" href="{{route('delete_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light border border-dark my-1">Delete</a>
             </div>  
             
 

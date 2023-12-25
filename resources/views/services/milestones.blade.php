@@ -127,7 +127,7 @@
                   </a>
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-            <a href="{{route('delete_s_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light border border-dark my-1">Delete</a>
+            <a onclick="return confirm('Are you sure?');" href="{{route('delete_s_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light border border-dark my-1">Delete</a>
             </div>  
             
 

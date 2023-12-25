@@ -120,7 +120,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                             </div>
 
                             <div class="nav-item mr-4">
-                                <a href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1 "><b>Dashboard</b></a>
+                                <a href="{{route('business', ['url'=>'url'])}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1 "><b>Dashboard</b></a>
                             </div>
 
                             <div class="nav-item">
@@ -172,38 +172,38 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                         <ul class="sidebar text-light px-2" style="color:white;">
                            
 
-                            <li class="{{ Request::is('business/index') || Request::is('business/')? 'active' : '' }}"> 
+                            <li class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf1E_') || Request::is('business/')? 'active' : '' }}"> 
                                 
                                 <a class="navLink" href="{{route('business')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a> 
                             </li>
 
                         @if(!$business->count() && !$service->count())
-                        <li  class="{{ Request::is('business/my_bids') ? 'active' : '' }}"> 
+                        <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf5E_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('my_bids')}}"><i class="fe fe-layout"></i> <span>My Bids</span></a>
                             </li>
                         @endif
 
                         @if($business->count())
-                            <li  class="{{ Request::is('business/add-listing') ? 'active' : '' }}"> 
+                            <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf2E_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('add-listing')}}"><i class=" fe fe-layout"></i> <span>Add Business</span></a>
                             </li>
 
-                             <li  class="{{ Request::is('business/listings') ? 'active' : '' }}"> 
+                             <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf3E_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('listings')}}"><i class=" fe fe-layout"></i> <span>My Businesses</span></a>           
 
                             </li>
 
 
-                            <li  class="{{ Request::is('business/add_milestones') ? 'active' : '' }}"> 
+                            <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf6E_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('add_milestones')}}"><i class=" fe fe-layout"></i> <span>Add Business Milestone</span></a>
        
                             </li>
 
-                            <li  class="{{ Request::is('business/milestones-*') ? 'active' : '' }}"> 
+                            <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf7E_-*') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('milestones','all')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
                             </li>
 
-                            <li  class="{{ Request::is('business/business_bids') ? 'active' : '' }}"> 
+                            <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf4E_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('business_bids')}}"><i class=" fe fe-layout"></i> <span>Business Bids</span>
                                     @if(count($new_bids) != 0)
                                     <span class="new_msg2 small font-weight-bold px-1">New {{count($new_bids)}}</span>
@@ -218,26 +218,26 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                         @if($service->count())
                          <hr class=""> 
 
-                            <li  class="{{ Request::is('business/add-services') ? 'active' : '' }}"> 
+                            <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf2F_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('add-services')}}"><i class=" fe fe-layout"></i> <span>Add Service</span></a>
                             </li>
 
 
-                             <li  class="{{ Request::is('business/services') ? 'active' : '' }}"> 
+                             <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf8F_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('services')}}"><i class=" fe fe-layout"></i> <span>My Services</span></a>
                             </li>
 
 
 
-                            <li  class="{{ Request::is('business/add_s_milestones') ? 'active' : '' }}"> 
+                            <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf3F_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('add_s_milestones')}}"><i class=" fe fe-layout"></i> <span>Add Service Milestone</span></a>
                             </li>
 
-                               <li  class="{{ Request::is('business/s_milestones-*') ? 'active' : '' }}"> 
+                               <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf4F_-*') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('s_milestones','all')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
                             </li>
 
-                             <li  class="{{ Request::is('business/service_booking') ? 'active' : '' }}"> 
+                             <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf5F_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('service_booking')}}"><i class=" fe fe-layout"></i> <span>Service Booking</span>
 
                                 @if(count($new_books) != 0)
@@ -249,16 +249,16 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                             @endif
 
                             @if($booking->count())
-                            <li  class="{{ Request::is('business/my_booking') ? 'active' : '' }}"> 
+                            <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf6F_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('my_booking')}}"><i class=" fe fe-layout"></i> <span>My Booking</span></a>
                             </li>
 
-                            <li  class="{{ Request::is('business/booker-milestones') ? 'active' : '' }}"> 
+                            <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf6F__') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('booker-milestones')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
                             </li>
                             @endif
 
-                            <li  class="{{ Request::is('business/applyForShow') ? 'active' : '' }}"> 
+                            <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf_E_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('applyForShow')}}"><i class=" fe fe-layout"></i> <span>Apply For Show</span></a>
                             </li>
                             

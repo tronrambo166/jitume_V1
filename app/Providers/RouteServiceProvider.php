@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/business/index';
+    public const HOME = '/business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf1E_';
 
     /**
      * The controller namespace for the application.

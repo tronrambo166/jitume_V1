@@ -36,7 +36,8 @@ class BusinessController extends Controller
    public function __construct(StripeClient $client)
     {   
         $this->Client = $client;
-        $this->middleware('business');   
+        $this->middleware('business');
+  
     }
 
 public function auth_id(){
