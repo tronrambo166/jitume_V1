@@ -343,7 +343,7 @@ $results = array();
 $ids = explode(',',$ids); 
 foreach($ids as $id){ 
 
-     if(strlen($id) > 3) $id = dechex($id); return $id;
+     //if(strlen($id) > 3) $id = dechex($id); return $id;
 
     if($id!=''){
     $conv = Conversation::where('investor_id',Auth::id())->
@@ -359,7 +359,7 @@ foreach($ids as $id){
     $listing->lat = (float)$listing->lat;
     $listing->lng = (float)$listing->lng;
 
-    $listing->id = hexdec($listing->id);
+    $listing->id = $listing->id;
     $results[] = $listing;
 }
 }
@@ -549,7 +549,6 @@ public function priceFilter($min, $max, $ids){
 
     $listing->lat = (float)$listing->lat;
     $listing->lng = (float)$listing->lng;
-    $listing->id = hexdec($listing->id);
     
   
     if((int)$min <= $db_min && (int)$max >= $db_max)

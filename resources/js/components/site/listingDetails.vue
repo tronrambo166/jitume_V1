@@ -557,6 +557,8 @@ export default {
 
     isSubscribed: function () {
       var id = this.$route.params.id; var t = this;
+      id = atob(id); id = atob(id);
+
       axios.get('isSubscribed/'+id).then((data) => {
         //console.log(data.data.data);
         if(data.data.count > 0){
@@ -581,6 +583,8 @@ export default {
 
     getDetails: function () {
       var id = this.$route.params.id; var t = this;
+      id = atob(id); id = atob(id); 
+
       document.getElementById('listing_id').value = id;
 
       axios.get('searchResults/' + id).then((data) => {
@@ -638,6 +642,8 @@ export default {
 
     rating() {
       var id = this.$route.params.id;
+      id = atob(id); id = atob(id);
+
       var rating = $('#demoRating').val();
       if(rating == 0){
         $.alert({
@@ -684,6 +690,8 @@ export default {
 
     download_business() {
       var id = this.$route.params.id; var t = this;
+      id = atob(id); id = atob(id);
+
       axios.get('download_business/' + id).then((data) => {
         //console.log(data);
         if(data.data.status == 404){
@@ -706,6 +714,8 @@ export default {
 
     download_statement() {
       var id = this.$route.params.id; var t = this;
+      id = atob(id); id = atob(id);
+
       axios.get('download_statement/' + id).then((data) => {
         if(data.data.status == 404){
           $.alert({
@@ -728,6 +738,7 @@ export default {
     
     getMilestones: function () {
       var id = this.$route.params.id; var t = this;
+      id = atob(id); id = atob(id);
 
       axios.get('getMilestones/' + id).then((data) => {
         //console.log(data);
@@ -755,6 +766,8 @@ export default {
       var amount = $('#bid_amount').val();
       var percent = $('#bid_percent2').val();
       var business_id = this.$route.params.id;
+      business_id = atob(business_id); business_id = atob(business_id);
+
       if (amount == '' || amount == 0)
         $.alert({
           title: 'Alert!',
@@ -787,6 +800,8 @@ export default {
       var amount = $('#bid_amount_eqp').val();
       var percent = $('#bid_percent2_eqp').val();
       var business_id = this.$route.params.id;
+      business_id = atob(business_id); business_id = atob(business_id);
+
       if (amount == '' || amount == 0)
         $.alert({
           title: 'Alert!',

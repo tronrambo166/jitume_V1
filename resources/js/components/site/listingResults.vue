@@ -155,12 +155,20 @@ export default {
             axios.get('searchResults/' + t.ids).then((data) => {
                 //t.results2 = data.data.data;
                 t.results = data.data.data;
+
+                for (const [key, value] of Object.entries(t.results)) {
+                    
+                    value.id = btoa(value.id);
+                    value.id = btoa(value.id);
+                    console.log(value.id);
+                }
+
                 t.count = data.data.count;
                 
                 //Setting Curr LatLng
                 t.queryLat = data.data.data[0].lat;
                 t.queryLng = data.data.data[0].lng;
-                //console.log(data);
+                console.log(t.results);
             }).catch((error) => { })
         }
         },
@@ -210,12 +218,18 @@ export default {
                     t.results = '';
                     t.results = data.data.data;
 
+                    for (const [key, value] of Object.entries(t.results)) {
+                    
+                    value.id = btoa(value.id);
+                    value.id = btoa(value.id);
+                }
+
                     t.queryLat = data.data.data[0].lat;
                     t.queryLng = data.data.data[0].lng;
                         
 
                     //}
-                    console.log(t.results);
+                    //console.log(t.results);
                 }).catch((error) => { })
 
             });

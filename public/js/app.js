@@ -8440,7 +8440,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var t = this;
     axios.get('latBusiness').then(function (data) {
       t.results = data.data.data;
-      console.log(data);
+
+      for (var _i2 = 0, _Object$entries = Object.entries(t.results); _i2 < _Object$entries.length; _i2++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+
+        value.id = btoa(value.id);
+        value.id = btoa(value.id);
+        console.log(value.id);
+      } //console.log(data);
+
     })["catch"](function (error) {});
   }), _defineProperty(_methods, "routerPush", function routerPush() {
     this.commit = sessionStorage.getItem('commit');
@@ -9481,6 +9491,8 @@ __webpack_require__.r(__webpack_exports__);
     isSubscribed: function isSubscribed() {
       var id = this.$route.params.id;
       var t = this;
+      id = atob(id);
+      id = atob(id);
       axios.get('isSubscribed/' + id).then(function (data) {
         //console.log(data.data.data);
         if (data.data.count > 0) {
@@ -9501,6 +9513,8 @@ __webpack_require__.r(__webpack_exports__);
     getDetails: function getDetails() {
       var id = this.$route.params.id;
       var t = this;
+      id = atob(id);
+      id = atob(id);
       document.getElementById('listing_id').value = id;
       axios.get('searchResults/' + id).then(function (data) {
         //console.log(data);
@@ -9544,6 +9558,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     rating: function rating() {
       var id = this.$route.params.id;
+      id = atob(id);
+      id = atob(id);
       var rating = $('#demoRating').val();
 
       if (rating == 0) {
@@ -9589,6 +9605,8 @@ __webpack_require__.r(__webpack_exports__);
     download_business: function download_business() {
       var id = this.$route.params.id;
       var t = this;
+      id = atob(id);
+      id = atob(id);
       axios.get('download_business/' + id).then(function (data) {
         //console.log(data);
         if (data.data.status == 404) {
@@ -9610,6 +9628,8 @@ __webpack_require__.r(__webpack_exports__);
     download_statement: function download_statement() {
       var id = this.$route.params.id;
       var t = this;
+      id = atob(id);
+      id = atob(id);
       axios.get('download_statement/' + id).then(function (data) {
         if (data.data.status == 404) {
           $.alert({
@@ -9631,6 +9651,8 @@ __webpack_require__.r(__webpack_exports__);
     getMilestones: function getMilestones() {
       var id = this.$route.params.id;
       var t = this;
+      id = atob(id);
+      id = atob(id);
       axios.get('getMilestones/' + id).then(function (data) {
         //console.log(data);
         t.results = data.data.data;
@@ -9650,6 +9672,8 @@ __webpack_require__.r(__webpack_exports__);
       var amount = $('#bid_amount').val();
       var percent = $('#bid_percent2').val();
       var business_id = this.$route.params.id;
+      business_id = atob(business_id);
+      business_id = atob(business_id);
       if (amount == '' || amount == 0) $.alert({
         title: 'Alert!',
         content: 'Please enter a bid to invest!'
@@ -9675,6 +9699,8 @@ __webpack_require__.r(__webpack_exports__);
       var amount = $('#bid_amount_eqp').val();
       var percent = $('#bid_percent2_eqp').val();
       var business_id = this.$route.params.id;
+      business_id = atob(business_id);
+      business_id = atob(business_id);
       if (amount == '' || amount == 0) $.alert({
         title: 'Alert!',
         content: 'Please enter a bid to invest!'
@@ -10053,10 +10079,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         axios.get('searchResults/' + t.ids).then(function (data) {
           //t.results2 = data.data.data;
           t.results = data.data.data;
+
+          for (var _i = 0, _Object$entries = Object.entries(t.results); _i < _Object$entries.length; _i++) {
+            var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+                key = _Object$entries$_i[0],
+                value = _Object$entries$_i[1];
+
+            value.id = btoa(value.id);
+            value.id = btoa(value.id);
+            console.log(value.id);
+          }
+
           t.count = data.data.count; //Setting Curr LatLng
 
           t.queryLat = data.data.data[0].lat;
-          t.queryLng = data.data.data[0].lng; //console.log(data);
+          t.queryLng = data.data.data[0].lng;
+          console.log(t.results);
         })["catch"](function (error) {});
       }
     },
@@ -10094,10 +10132,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             t.count = data.data.data.length;
             t.results = '';
             t.results = data.data.data;
+
+            for (var _i2 = 0, _Object$entries2 = Object.entries(t.results); _i2 < _Object$entries2.length; _i2++) {
+              var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),
+                  key = _Object$entries2$_i[0],
+                  value = _Object$entries2$_i[1];
+
+              value.id = btoa(value.id);
+              value.id = btoa(value.id);
+            }
+
             t.queryLat = data.data.data[0].lat;
             t.queryLng = data.data.data[0].lng; //}
-
-            console.log(t.results);
+            //console.log(t.results);
           })["catch"](function (error) {});
         });
       }
@@ -10125,10 +10172,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var div = $("#googleMap").length;
       if (div) var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions); //console.log(this.results);
 
-      for (var _i = 0, _Object$entries = Object.entries(this.results); _i < _Object$entries.length; _i++) {
-        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-            key = _Object$entries$_i[0],
-            value = _Object$entries$_i[1];
+      for (var _i3 = 0, _Object$entries3 = Object.entries(this.results); _i3 < _Object$entries3.length; _i3++) {
+        var _Object$entries3$_i = _slicedToArray(_Object$entries3[_i3], 2),
+            key = _Object$entries3$_i[0],
+            value = _Object$entries3$_i[1];
 
         //INFO
         var contentString = '<div id="content">' + '<div id="siteNotice">' + "</div>" + '<h1 id="firstHeading" class="firstHeading">' + value.name + '</h1>' + '<div id="bodyContent">' + '<p><b>Location: </b>' + value.location + ', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="https://test.jitume.com/#/listingDetails/' + value.id + '">' + "View Business</a> " + "</div>" + "</div>";
