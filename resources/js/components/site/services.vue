@@ -247,6 +247,13 @@ export default {
             let t = this;
             axios.get('latServices').then((data) => {
                 t.results = data.data.data;
+
+                for (const [key, value] of Object.entries(t.results)) {
+                    
+                    value.id = btoa(value.id);
+                    value.id = btoa(value.id);
+                    console.log(value.id);
+                }
                 //console.log(data);
             }).catch((error) => { })
         },

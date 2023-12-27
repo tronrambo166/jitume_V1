@@ -217,7 +217,7 @@
               Documentation</a>
 
 
-            <router-link :to="`/business-milestone/${form.listing_id}`" @mouseleave.native="leave()"
+            <router-link :to="`/business-milestone/${form.raw_id}`" @mouseleave.native="leave()"
               @mouseover.native="hover4" style="border: 1px solid black;" id="convBtn4"
               class="py-1 convBtn my-3 text-center mx-auto w-75 btn  px-2">View Business Milestones</router-link>
 
@@ -528,6 +528,7 @@ export default {
       rating: '',
       rating_count: '',
       conv: '',
+      raw_id:''
     }),
 
     results: [],
@@ -551,6 +552,8 @@ export default {
 
     if (sessionStorage.getItem('invest') != null)
       sessionStorage.clear();
+
+    this.form.raw_id = this.$route.params.id;
 
   },
   methods: {
@@ -660,6 +663,7 @@ export default {
     },
 
     make_session(id) {
+      id = btoa(id); id = btoa(id);
       sessionStorage.setItem('invest', id);
       document.getElementById('c_to_action').value = 'loginFromService';
       document.getElementById('c_to_action_login2').value = 'loginFromService';

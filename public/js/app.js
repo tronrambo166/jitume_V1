@@ -9467,7 +9467,8 @@ __webpack_require__.r(__webpack_exports__);
         investors_fee: '',
         rating: '',
         rating_count: '',
-        conv: ''
+        conv: '',
+        raw_id: ''
       }),
       results: [],
       details: [],
@@ -9486,6 +9487,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     if (sessionStorage.getItem('invest') != null) sessionStorage.clear();
+    this.form.raw_id = this.$route.params.id;
   },
   methods: {
     isSubscribed: function isSubscribed() {
@@ -9576,6 +9578,8 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     make_session: function make_session(id) {
+      id = btoa(id);
+      id = btoa(id);
       sessionStorage.setItem('invest', id);
       document.getElementById('c_to_action').value = 'loginFromService';
       document.getElementById('c_to_action_login2').value = 'loginFromService';
@@ -10918,12 +10922,16 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     if (sessionStorage.getItem('milestone') != null) sessionStorage.clear();
     var id = this.$route.params.id;
+    id = atob(id);
+    id = atob(id);
     var t = this;
     t.form.id = id;
   },
   methods: {
     getMilestones: function getMilestones() {
       var id = this.$route.params.id;
+      id = atob(id);
+      id = atob(id);
       var t = this;
       axios.get('getMilestones/' + id).then(function (data) {
         //console.log(data);
@@ -10934,6 +10942,8 @@ __webpack_require__.r(__webpack_exports__);
     milestoneInvestEQP: function milestoneInvestEQP(mile_id, investor_id, owner_id) {
       var t = this;
       var listing_id = this.$route.params.id;
+      listing_id = atob(listing_id);
+      listing_id = atob(listing_id);
       axios.get('milestoneInvestEQP/' + listing_id + '/' + mile_id + '/' + investor_id + '/' + owner_id).then(function (data) {
         console.log(data);
         if (data.data.success == 'success') $.alert({
@@ -10943,10 +10953,13 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     make_session: function make_session(id) {
+      id = this.$route.params.id;
       sessionStorage.setItem('milestone', id);
     },
     download_milestone_doc: function download_milestone_doc(mile_id) {
       var id = this.$route.params.id;
+      id = atob(id);
+      id = atob(id);
       var t = this;
       axios.get('download_milestoneDoc/' + id + '/' + mile_id).then(function (data) {
         console.log(data);
@@ -11232,12 +11245,16 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     if (sessionStorage.getItem('milestoneS') != null) sessionStorage.clear();
     var id = this.$route.params.id;
+    id = atob(id);
+    id = atob(id);
     var t = this;
     t.form.id = id;
   },
   methods: {
     getMilestones: function getMilestones() {
       var id = this.$route.params.id;
+      id = atob(id);
+      id = atob(id);
       var t = this;
       axios.get('getMilestonesS/' + id).then(function (data) {
         console.log(data);
@@ -11248,6 +11265,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     make_session: function make_session(id) {
+      var id = this.$route.params.id;
       sessionStorage.setItem('milestoneS', id);
     },
     make_session2: function make_session2() {
@@ -11258,6 +11276,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     download_milestone_doc: function download_milestone_doc(mile_id) {
       var id = this.$route.params.id;
+      id = atob(id);
+      id = atob(id);
       var t = this;
       axios.get('download_milestoneDocS/' + id + '/' + mile_id).then(function (data) {
         console.log(data);
@@ -11587,8 +11607,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     getDetails: function getDetails() {
       var id = this.$route.params.id;
-      this.formBook.service_id = this.$route.params.id;
-      this.formMsg.service_id = this.$route.params.id;
+      id = atob(id);
+      id = atob(id);
+      this.formBook.service_id = id; //this.$route.params.id;
+
+      this.formMsg.service_id = id; //this.$route.params.id;
+
       if (this.$route.params.business_bid_id) this.formBook.business_bid_id = this.$route.params.business_bid_id;
       var t = this;
       axios.get('ServiceResults/' + id).then(function (data) {
@@ -11634,12 +11658,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     service_milestones: function service_milestones(id) {
-      var id = this.$route.params.id;
+      var id = this.$route.params.id; //id = atob(id); id = atob(id);
+
       var t = this;
       this.$router.push('/service-milestone/' + id);
     },
     rating: function rating() {
       var id = this.$route.params.id;
+      id = atob(id);
+      id = atob(id);
       var rating = $('#demoRating').val();
 
       if (rating == 0) {
@@ -11659,7 +11686,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return '../';
     },
     make_session: function make_session() {
-      var id = this.$route.params.id;
+      var id = this.$route.params.id; //id = atob(id); id = atob(id);
+
       sessionStorage.setItem('serviceDetails', id);
       document.getElementById('c_to_action').value = 'loginFromService';
       document.getElementById('c_to_action_login').value = 'loginFromService';
@@ -12013,8 +12041,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       axios.get('ServiceResults/' + t.ids).then(function (data) {
         if (data.data.count != 0) {
           t.count = data.data.count;
-          t.results = data.data.data; //console.log(data);
+          t.results = data.data.data;
+
+          for (var _i = 0, _Object$entries = Object.entries(t.results); _i < _Object$entries.length; _i++) {
+            var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+                key = _Object$entries$_i[0],
+                value = _Object$entries$_i[1];
+
+            value.id = btoa(value.id);
+            value.id = btoa(value.id);
+            console.log(value.id);
+          } //console.log(data);
           //Setting Curr LatLng
+
 
           t.queryLat = data.data.data[0].lat;
           t.queryLng = data.data.data[0].lng;
@@ -12050,7 +12089,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
           axios.get('priceFilterS/' + values[0] + '/' + values[1] + '/' + t.ids).then(function (data) {
             t.results = '';
-            t.results = data.data.data; //Setting Curr LatLng
+            t.results = data.data.data;
+
+            for (var _i2 = 0, _Object$entries2 = Object.entries(t.results); _i2 < _Object$entries2.length; _i2++) {
+              var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),
+                  key = _Object$entries2$_i[0],
+                  value = _Object$entries2$_i[1];
+
+              value.id = btoa(value.id);
+              value.id = btoa(value.id);
+              console.log(value.id);
+            } //Setting Curr LatLng
+
 
             t.queryLat = data.data.data[0].lat;
             t.queryLng = data.data.data[0].lng; //console.log(data);
@@ -12091,10 +12141,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var div = $("#googleMap").length;
       if (div) var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions); //console.log(this.results);
 
-      for (var _i = 0, _Object$entries = Object.entries(this.results); _i < _Object$entries.length; _i++) {
-        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-            key = _Object$entries$_i[0],
-            value = _Object$entries$_i[1];
+      for (var _i3 = 0, _Object$entries3 = Object.entries(this.results); _i3 < _Object$entries3.length; _i3++) {
+        var _Object$entries3$_i = _slicedToArray(_Object$entries3[_i3], 2),
+            key = _Object$entries3$_i[0],
+            value = _Object$entries3$_i[1];
 
         //INFO
         var contentString = '<div id="content">' + '<div id="siteNotice">' + "</div>" + '<h1 id="firstHeading" class="firstHeading">' + value.name + '</h1>' + '<div id="bodyContent">' + '<p><b>Location: </b>' + value.location + ', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="https://test.jitume.com/#/serviceDetails/' + value.id + '">' + "View Business</a> " + "</div>" + "</div>";
@@ -12441,7 +12491,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     latBusiness: function latBusiness() {
       var t = this;
       axios.get('latServices').then(function (data) {
-        t.results = data.data.data; //console.log(data);
+        t.results = data.data.data;
+
+        for (var _i2 = 0, _Object$entries = Object.entries(t.results); _i2 < _Object$entries.length; _i2++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
+              key = _Object$entries$_i[0],
+              value = _Object$entries$_i[1];
+
+          value.id = btoa(value.id);
+          value.id = btoa(value.id);
+          console.log(value.id);
+        } //console.log(data);
+
       })["catch"](function (error) {});
     }
   },
@@ -73696,7 +73757,7 @@ var render = function () {
                           "py-1 convBtn my-3 text-center mx-auto w-75 btn px-2",
                         staticStyle: { border: "1px solid black" },
                         attrs: {
-                          to: "/business-milestone/" + _vm.form.listing_id,
+                          to: "/business-milestone/" + _vm.form.raw_id,
                           id: "convBtn4",
                         },
                         nativeOn: {
@@ -76956,7 +77017,7 @@ var render = function () {
                           staticStyle: { cursor: "pointer" },
                           on: {
                             click: function ($event) {
-                              return _vm.service_milestones(_vm.form.id)
+                              return _vm.service_milestones()
                             },
                           },
                         },

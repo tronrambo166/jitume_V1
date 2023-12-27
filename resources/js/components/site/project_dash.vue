@@ -254,6 +254,7 @@ export default {
             sessionStorage.clear();
 
         var id = this.$route.params.id;
+        id = atob(id); id = atob(id);
         let t = this;
         t.form.id = id;
 
@@ -262,7 +263,9 @@ export default {
     methods: {
 
         getMilestones: function () {
-            var id = this.$route.params.id; var t = this;
+            var id = this.$route.params.id; 
+            id = atob(id); id = atob(id);
+            var t = this;
 
             axios.get('getMilestones/' + id).then((data) => {
                 //console.log(data);
@@ -277,6 +280,7 @@ export default {
         milestoneInvestEQP: function (mile_id, investor_id, owner_id) {
             var t = this;
             var listing_id = this.$route.params.id;
+            listing_id = atob(listing_id); listing_id = atob(listing_id);
 
             axios.get('milestoneInvestEQP/' + listing_id + '/' + mile_id + '/' + investor_id + '/' + owner_id).then((data) => {
                 console.log(data);
@@ -290,11 +294,14 @@ export default {
         },
 
         make_session(id) {
+            id = this.$route.params.id;
             sessionStorage.setItem('milestone', id);
         },
 
         download_milestone_doc(mile_id) {
-            var id = this.$route.params.id; var t = this;
+            var id = this.$route.params.id; 
+            id = atob(id); id = atob(id);
+            var t = this;
             axios.get('download_milestoneDoc/' + id + '/' + mile_id).then((data) => {
                 console.log(data);
 

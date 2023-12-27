@@ -67,7 +67,7 @@
                 <form>
                   <!--  <input id="qty" min="1" class="w-25 form-control d-inline" type="number" name="qty" value="1"> -->
 
-                  <a style="cursor:pointer;" v-if="auth_user" @click="service_milestones(form.id)"
+                  <a style="cursor:pointer;" v-if="auth_user" @click="service_milestones()"
                     class="border border-dark w-50 text-center convBtn rounded">Service Milestone
                     Breakdown</a>
 
@@ -282,8 +282,10 @@ export default {
 
     getDetails: function () {
       var id = this.$route.params.id;
-      this.formBook.service_id = this.$route.params.id;
-      this.formMsg.service_id = this.$route.params.id;
+      id = atob(id); id = atob(id);
+
+      this.formBook.service_id = id; //this.$route.params.id;
+      this.formMsg.service_id = id; //this.$route.params.id;
 
       if(this.$route.params.business_bid_id)
         this.formBook.business_bid_id = this.$route.params.business_bid_id;
@@ -329,7 +331,8 @@ export default {
 
     addToCart(id) {
       var qty = $('#qty').val();
-      var id = this.$route.params.id; var t = this;
+      var id = this.$route.params.id; 
+      var t = this;
       axios.get('addToCart/' + id + '-' + qty).then((data) => {
         console.log(data);
         toastr.success(data.data.response)
@@ -339,12 +342,15 @@ export default {
 
     service_milestones(id) {
       var id = this.$route.params.id;
+      //id = atob(id); id = atob(id);
       var t = this;
       this.$router.push('/service-milestone/' + id);
     },
 
     rating() {
       var id = this.$route.params.id;
+      id = atob(id); id = atob(id);
+
       var rating = $('#demoRating').val();
       if(rating == 0){
         $.alert({
@@ -370,6 +376,8 @@ export default {
 
     make_session() {
       var id = this.$route.params.id;
+      //id = atob(id); id = atob(id);
+
       sessionStorage.setItem('serviceDetails', id);
       document.getElementById('c_to_action').value = 'loginFromService';
       document.getElementById('c_to_action_login').value = 'loginFromService';

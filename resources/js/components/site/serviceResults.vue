@@ -135,6 +135,12 @@ export default {
                 if(data.data.count != 0){
                 t.count = data.data.count;
                 t.results = data.data.data;
+
+                 for (const [key, value] of Object.entries(t.results)) {  
+                    value.id = btoa(value.id);
+                    value.id = btoa(value.id);
+                    console.log(value.id);
+                }
                 //console.log(data);
                 //Setting Curr LatLng
                 t.queryLat = data.data.data[0].lat;
@@ -178,6 +184,13 @@ export default {
                 axios.get('priceFilterS/' + values[0] + '/' + values[1] + '/' + t.ids).then((data) => {
                     t.results = '';
                     t.results = data.data.data;
+
+                    for (const [key, value] of Object.entries(t.results)) {  
+                    value.id = btoa(value.id);
+                    value.id = btoa(value.id);
+                    console.log(value.id);
+                }
+
                     //Setting Curr LatLng
                     t.queryLat = data.data.data[0].lat;
                     t.queryLng = data.data.data[0].lng;
