@@ -31,8 +31,9 @@
                               <input style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div>
 
                 <div class="col-12 col-sm-4 my-1 py-1 bg-white rounded">
-                  <input id="pac-input" style="border: none;height: 42px;"
-                    class="bar bg-white form-control d-inline ml-1 controls" type="text" name="search" value=""
+                  <i style="width: 6%;" class="d-inline fa fa-map-marker"></i>
+                  <input id="pac-input" style="width: 94%;border: none;height: 42px;"
+                    class="px-1 bar bg-white form-control d-inline ml-1 controls" type="text" name="search" value=""
                     placeholder="Location"> <!-- onkeyup="suggest(this.value);" -->
                 </div>
 
@@ -42,7 +43,7 @@
                 <div class="col-12 col-sm-3 my-1 pt-1  bg-white">
                   <div class="dropdown pt-1">
 
-                    <select id="category" name="category" class="border-white form-control home_category_listings">
+                    <select id="category" name="category" class="dropdown-toggle form-select border-white form-control home_category_listings">
                       <option class="form-control small" value="">Category</option>
 
                       <option class="form-control" value="Agriculture">Agriculture</option>

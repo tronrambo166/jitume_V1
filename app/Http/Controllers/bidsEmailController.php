@@ -415,7 +415,7 @@ public function bookingAccepted(Request $request)
         $investor_mail = $investor->email;
 
         $list = Services::where('id',$bid->service_id)->first();
-        $info=[ 'business_name'=>$list->name, 's_id'=>$list->id];
+        $info=['business_name'=>$list->name,'s_id'=>base64_encode(base64_encode($list->id))];
         $user['to'] = $investor_mail;
          Mail::send('services.booking_mail', $info, function($msg) use ($user){
              $msg->to($user['to']);

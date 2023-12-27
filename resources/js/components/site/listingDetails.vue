@@ -256,7 +256,7 @@
 
               </div>
 
-              <a style="border: 1px solid black;" @mouseleave="leave()" @mouseover="hover5()" @click="bidCommits()"
+              <a style="border: 1px solid black;" @mouseleave="leave()" @mouseover="hover5()" @click="make_session(form.listing_id);bidCommits()"
                 id="convBtn5" class="py-1 convBtn text-center mx-auto w-75 btn mt-4 px-2">Invest</a>
 
               <div class="w-75 mx-auto row">
@@ -374,7 +374,7 @@
                   
                 <p id="range_error" style="font-size:14px;" class="system_ui collapse mb-3 py-1 text-danger smalls bg-light text-center"></p>
 
-                  <p v-if="token_left != 0 && trial" style="font-size:16px;" class="mb-3 py-2 text-warning smalls bg-light text-center">Your 
+                  <p v-if="token_left > 0 && trial" style="font-size:16px;" class="mb-3 py-2 text-warning smalls bg-light text-center">Your 
                      <!-- v-if="trial">trial</span><span v-else> -->
                       <span>plan</span>
                     expires in <b>{{expire}} </b> days.
@@ -385,7 +385,7 @@
 
                   <div class="row" v-if="plan == 'silver' || plan == 'silver-trial'">
 
-                  <div v-if="token_left != 0" class="col-md-6">
+                  <div v-if="token_left > 0" class="col-md-6">
                   <a   @click="make_session(form.listing_id);unlockBySubs(form.listing_id,subscrib_id,'token');" type="submit"
                   class="modal_ok_btn w-75 m-auto d-inline  btn rounded mr-3 px-3">
                   Use token <small>({{token_left}} left)</small>
@@ -410,7 +410,7 @@
 
                 
                 <div class="row" v-if="plan == 'gold' || plan == 'gold-trial'">
-                <div v-if="token_left != 0" class="col-md-6">
+                <div v-if="token_left > 0" class="col-md-6">
                   <a   @click="make_session(form.listing_id);unlockBySubs(form.listing_id,subscrib_id,'token');" type="submit"
                   class="modal_ok_btn w-75 m-auto d-inline  btn rounded mr-3 px-3">
                   Use token <small>({{token_left}} left)</small>
@@ -418,7 +418,7 @@
                 </div>
 
                 <div v-else class="col-md-6">
-                <a class="modal_ok_btn w-75 m-auto d-inline  btn rounded mr-3 px-3">
+                <a class="modal_ok_btn w-75 mx-auto d-block  btn rounded mr-3 px-3">
                    <small><b>({{token_left}} token left)</b></small>
                 </a>
                 </div>

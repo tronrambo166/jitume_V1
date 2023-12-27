@@ -8311,6 +8311,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -12242,6 +12243,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+//
 //
 //
 //
@@ -72516,9 +72518,15 @@ var staticRenderFns = [
           "div",
           { staticClass: "col-12 col-sm-4 my-1 py-1 bg-white rounded" },
           [
+            _c("i", {
+              staticClass: "d-inline fa fa-map-marker",
+              staticStyle: { width: "6%" },
+            }),
+            _vm._v(" "),
             _c("input", {
-              staticClass: "bar bg-white form-control d-inline ml-1 controls",
-              staticStyle: { border: "none", height: "42px" },
+              staticClass:
+                "px-1 bar bg-white form-control d-inline ml-1 controls",
+              staticStyle: { width: "94%", border: "none", height: "42px" },
               attrs: {
                 id: "pac-input",
                 type: "text",
@@ -72555,7 +72563,8 @@ var staticRenderFns = [
             _c(
               "select",
               {
-                staticClass: "border-white form-control home_category_listings",
+                staticClass:
+                  "dropdown-toggle form-select border-white form-control home_category_listings",
                 attrs: { id: "category", name: "category" },
               },
               [
@@ -73822,7 +73831,8 @@ var render = function () {
                                   return _vm.hover5()
                                 },
                                 click: function ($event) {
-                                  return _vm.bidCommits()
+                                  _vm.make_session(_vm.form.listing_id)
+                                  _vm.bidCommits()
                                 },
                               },
                             },
@@ -74104,7 +74114,7 @@ var render = function () {
                                     attrs: { id: "range_error" },
                                   }),
                                   _vm._v(" "),
-                                  _vm.token_left != 0 && _vm.trial
+                                  _vm.token_left > 0 && _vm.trial
                                     ? _c(
                                         "p",
                                         {
@@ -74156,7 +74166,7 @@ var render = function () {
                                   _vm.plan == "silver" ||
                                   _vm.plan == "silver-trial"
                                     ? _c("div", { staticClass: "row" }, [
-                                        _vm.token_left != 0
+                                        _vm.token_left > 0
                                           ? _c(
                                               "div",
                                               { staticClass: "col-md-6" },
@@ -74230,7 +74240,7 @@ var render = function () {
                                   _vm._v(" "),
                                   _vm.plan == "gold" || _vm.plan == "gold-trial"
                                     ? _c("div", { staticClass: "row" }, [
-                                        _vm.token_left != 0
+                                        _vm.token_left > 0
                                           ? _c(
                                               "div",
                                               { staticClass: "col-md-6" },
@@ -74279,7 +74289,7 @@ var render = function () {
                                                   "a",
                                                   {
                                                     staticClass:
-                                                      "modal_ok_btn w-75 m-auto d-inline btn rounded mr-3 px-3",
+                                                      "modal_ok_btn w-75 mx-auto d-block btn rounded mr-3 px-3",
                                                   },
                                                   [
                                                     _c("small", [
@@ -77956,9 +77966,14 @@ var staticRenderFns = [
         ),
         _vm._v(" "),
         _c("div", { staticClass: "px-2 py-2 bg-white col-12 col-sm-4" }, [
+          _c("i", {
+            staticClass: "d-inline fa fa-map-marker",
+            staticStyle: { width: "6%" },
+          }),
+          _vm._v(" "),
           _c("input", {
-            staticClass: "border-none bar bg-white form-control d-inline",
-            staticStyle: { border: "none", height: "42px" },
+            staticClass: "border-none bar bg-white form-control d-inline px-1",
+            staticStyle: { width: "94%", border: "none", height: "42px" },
             attrs: {
               id: "pac-input",
               type: "text",
@@ -78001,7 +78016,7 @@ var staticRenderFns = [
                 _c(
                   "select",
                   {
-                    staticClass: "border-none form-control",
+                    staticClass: "border-none form-control form-select",
                     attrs: { name: "category" },
                   },
                   [

@@ -919,6 +919,8 @@ foreach($booking as $book)
   $book->location = $service->location;
   $book->service = $service->name;
   $book->category = $service->category;
+  //$book->s_id = $service->id;
+
   //customer
   $book->customer_name = $customer->fname.' '.$customer->lname;
   $book->website = $customer->website;

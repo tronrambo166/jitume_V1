@@ -27,8 +27,9 @@
                     </div>
 
                     <div style="" class="px-2 py-2 bg-white col-12 col-sm-4">
-                        <input id="pac-input" style="border: none;height: 42px;"
-                            class="border-none bar bg-white form-control d-inline" type="text" name="search" value=""
+                        <i style="width: 6%;" class="d-inline fa fa-map-marker"></i>
+                        <input id="pac-input" style="width: 94%;border: none;height: 42px;"
+                            class="border-none bar bg-white form-control d-inline px-1" type="text" name="search" value=""
                             placeholder="Location">
 
                         <input type="text" name="lat" id="lat" hidden value="">
@@ -41,7 +42,7 @@
                         <div class="w-100 row">
 
                             <div class="dropdown col-8 ">
-                                <select name="category" class="border-none form-control">
+                                <select name="category" class="border-none form-control form-select">
                                     <option hidden value="" class="form-control">Services</option>
                                     <option class="form-control" value="Business Planning">Business Planning</option>
                                     <option value="IT">IT</option>

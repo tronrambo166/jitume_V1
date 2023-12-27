@@ -45,7 +45,7 @@
     
     <tbody>
         @foreach($results as $ev)
-        <tr onclick="bg_change({{$ev->id}});" id="{{$ev->id}}" >
+        <tr onclick="bg_change({{$ev->id}});" id="{{$ev->id}}" > 
             <td><input onchange="check();" type="checkbox" name="bid_ids[]" value="{{$ev->id}}"></td>
             <td>{{$ev->created_at }}</td>
                 <td>

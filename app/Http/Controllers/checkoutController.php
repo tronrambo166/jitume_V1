@@ -818,7 +818,8 @@ catch(\Exception $e){
 
 if($bids){
     Session::put('Stripe_pay','Bid placed! you will get a notification if your bid is accepted!');
-    return redirect("/#/listingDetails/".$business_id);
+    return redirect("/");
+    //return redirect("/#/listingDetails/".$business_id);
          }
 
 
