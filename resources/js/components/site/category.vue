@@ -7,17 +7,9 @@
                 <h3 class="text-center font-weight-bold"><b class="h5 text-success" > </b> </h3>
        
 
-            <div class="clear"></div>
-      
-
-
+         <div class="clear"></div>
        
          <div class="clear"></div>
-    
-
-  
-            
-
 
             <div class="content_bottom">
                 <div class="heading">
@@ -141,6 +133,13 @@ export default {
              //this.results = this.ids.split(",");
             axios.get('categoryResults/'+t.catName).then( (data) =>{
                 t.results = data.data.data;
+
+                for (const [key, value] of Object.entries(t.results)) {                   
+                    value.id = btoa(value.id);
+                    value.id = btoa(value.id);
+                    console.log(value.id);
+                }
+                
                 t.services = data.data.services;
                 if(data.data.data.length == 0)
                     t.empty = true;;

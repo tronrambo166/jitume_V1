@@ -365,28 +365,28 @@
                   <div class="col-sm-1"></div>
 
                   <div class="ibv3-icon col-sm-2 text-center">
-                    <img width="60px" height="75px" src="images/randomIcons/loc.png">
+                    <img width="47px" height="65px" src="images/randomIcons/loc.png">
                     <p class="text-center mt-3 small">Enter Your Location</p>
                   </div>
 
 
                   <div class="ibv3-icon col-sm-2 text-center">
-                    <img width="60px" height="75px" src="images/randomIcons/cat.png">
+                    <img width="47px" height="65px" src="images/randomIcons/cat.png">
                     <p class="text-center mt-3 small">Choose a Category</p>
                   </div>
 
                   <div class="ibv3-icon col-sm-2 text-center">
-                    <img width="60px" height="75px" src="images/randomIcons/results.webp">
+                    <img width="47px" height="65px" src="images/randomIcons/results.webp">
                     <p class="text-center mt-3 small">Get Results in Your Yocation</p>
                   </div>
 
                   <div class="ibv3-icon col-sm-2 text-center">
-                    <img width="60px" height="75px" src="images/randomIcons/choose.png">
+                    <img width="47px" height="65px" src="images/randomIcons/choose.png">
                     <p class="text-center mt-3 small">Choose Your Business</p>
                   </div>
 
                   <div class="ibv3-icon col-sm-2 text-center">
-                    <img width="60px" height="75px" src="images/randomIcons/grow.png">
+                    <img width="47px" height="65px" src="images/randomIcons/grow.png">
                     <p class="text-center mt-3 small">Grow Your Business Together</p>
                   </div>
 
@@ -551,8 +551,7 @@ export default {
       let t = this;
       axios.get('latBusiness').then((data) => {
         t.results = data.data.data;
-        for (const [key, value] of Object.entries(t.results)) {
-                    
+        for (const [key, value] of Object.entries(t.results)) {                   
                     value.id = btoa(value.id);
                     value.id = btoa(value.id);
                     console.log(value.id);

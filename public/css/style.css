@@ -34,21 +34,44 @@
 
     }
 
+   */
+
     @font-face {
+        font-family: 'Outfit-Black';
+        src: url('font/static/Outfit-Black.ttf') format('truetype');
+    }
 
-        font-family: 'OpenSans-ExtraBold';
-        src: url('font/OpenSans-ExtraBold.eot') format('eot'),
+        @font-face {
+        font-family: 'Outfit-Bold';
+        src: url('font/static/Outfit-Bold.ttf') format('truetype');
+    }
 
-            url('font/OpenSans-ExtraBold.svg') format('svg');
+        @font-face {
+        font-family: 'Outfit-ExtraBold';
+        src: url('font/static/Outfit-ExtraBold.ttf') format('truetype');
+    }
 
-    }*/
+        @font-face {
+        font-family: 'Outfit-Regular';
+        src: url('font/static/Outfit-Regular.ttf') format('truetype');
+    }
 
+            @font-face {
+        font-family: 'Outfit-SemiBold';
+        src: url('font/static/Outfit-SemiBold.ttf') format('truetype');
+    }
 
+    @font-face {
+        font-family: 'Outfit-Thin';
+        src: url('font/static/Outfit-Thin.ttf') format('truetype');
+    }
 
     /*Calling Fonts*/
+
+
     .navbar ul li router-link {
         color: #f8f9fa;
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         font-weight: 400;
     }
 
@@ -58,7 +81,7 @@
         border-radius: 35px;
         padding-left: 8px;
         padding-right: 8px;
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         font-weight: 400;
     }
 
@@ -71,7 +94,7 @@
         background: white;
         padding-left: 8px;
         padding-right: 8px;
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         font-weight: 500;
     }
 
@@ -81,7 +104,7 @@
     }
 
     h1 {
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
     }
 
 
@@ -96,7 +119,7 @@
 
     body {
 
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -104,7 +127,8 @@
     }
 
     a {
-        font-family: 'Roboto', sans-serif !important;
+        /*font-family: 'Roboto', sans-serif !important;*/
+        font-family: Outfit-Regular;
     }
 
     .container {
@@ -128,7 +152,7 @@
 
     .navy ul li a {
         text-decoration: none;
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         font-weight: 400;
         color: #f8f9fa;
     }
@@ -269,7 +293,7 @@
 
     .title {
         color: black;
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
     }
 
     hr {
@@ -309,7 +333,7 @@
     .text {
         font-size: 19px;
         font-weight: 100;
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         color: #d9d3d3;
         line-height: 32px;
     }
@@ -319,7 +343,7 @@
     }
 
     .bar {
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
     }
 
     .bar:focus {
@@ -330,7 +354,7 @@
 
     .ibv3-content p,
     .footer_txt {
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         font-size: 16px;
         font-weight: 400;
         /*    color: #777;*/
@@ -353,7 +377,7 @@
     .listing h4,
     .listing p {
         margin-bottom: 0px;
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         color: #727272;
     }
 
@@ -418,12 +442,12 @@
     }
 
     .myaccount li a {
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         font-weight: 400;
     }
 
     .sidebar li a {
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         font-size: 15px;
         font-weight: 400;
     }
@@ -694,7 +718,7 @@
     }
 
     .social_btn {
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         background: #3B5998;
         border-radius: 4px;
         text-align: center;
@@ -703,7 +727,7 @@
     }
 
     .social_btn2 {
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         background: #f1f1f1;
         border-radius: 4px;
         text-align: center;
@@ -726,7 +750,7 @@
     .sidebar li .navLink {
         color: #cdcdcd;
         font-weight: 500;
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         font-size: 14px;
     }
 
@@ -826,7 +850,7 @@
     .header_buttons {
 
         color: white;
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         border: 2px solid white;
         border-radius: 35px;
         cursor: pointer;
@@ -843,7 +867,7 @@
     .sign_in_btn {
         background: white;
         color: #000000;
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         border: 2px solid white;
         border-radius: 35px;
         cursor: pointer;
@@ -861,7 +885,7 @@
 
 
     .navbar ul li .header_buttons {
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         border-radius: 15px;
         cursor: pointer;
         /*    font-size: 11px;*/
@@ -914,7 +938,7 @@
     }
 
     .card_text {
-        font-family: 'Roboto', sans-serif;
+        font-family: Outfit-Regular;
         font-size: 14px;
         color: #585858f0 !important;
     }
