@@ -77,7 +77,7 @@
                     <li class="nav-item py-1 active header_btn_width mr-2">
                         <router-link to="/home" class="py-1  pr-0 pl-1"> 
                             <div class="d-inline rounded-circle px-2 pb-2 pt-1 mr-1" style="background: #6d8b8291;">
-                               <img width="14px" class="" src="images/home-icon.png" />
+                               <img width="14px" class="" src="images/home-Icon.png" />
 
                             </div>
                         </router-link>

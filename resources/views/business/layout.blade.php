@@ -98,7 +98,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                     <li class="nav-item py-1 active ">
                         <a href="{{route('/')}}" class=" py-1"> 
                           <div class="d-inline rounded-circle px-2 pb-2 pt-1 mr-1" style="background: #6d8b8291;">
-                               <img width="14px" class="" src="../images/home-icon.png" />
+                               <img width="14px" class="" src="../images/home-Icon.png" />
 
                             </div>
                         </a>
