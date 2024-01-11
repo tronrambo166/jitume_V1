@@ -43,7 +43,7 @@
    
             <td class="text-center">
                 
-            <a style="border-radius: 4px;" href="./../#/business-milestone/{{$ev->id}}" class="border border-dark small px-3 py-1  my-1 d-inline-block py-0">View Milestone</a >
+            <a style="border-radius: 4px;" href="./../#/business-milestone/{{$ev->id}}" class="btn btn-outline-success border border-dark small px-3 py-1  my-1 d-inline-block py-0">View Milestone</a >
             
 
             </td>

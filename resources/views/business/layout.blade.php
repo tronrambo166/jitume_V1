@@ -84,22 +84,32 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
     <div class="col-sm-3">
         <ul class="navbar-nav ">
         <li class="nav-item  px-3">
-            <a href="{{route('business')}}"><img class="img-fluid pb-2" width="170px" height="45px" src="../images/logo.png" style="margin-left: 15px;"></a>
-        </li> </ul> 
+            <a href="{{route('business')}}"><img class="img-fluid py-2" width="170px" height="45px" src="../images/logo.png" style="margin-left: 17px;"></a>
+        </li> 
+         
+      </ul> 
+
     </div>
 
      <div class="col-sm-9 px-0">
-        <nav class="navbar navbar-expand-lg primary_bg">
+        <nav class="navbar navbar-expand-lg primary_bg pt-4">
             <div class="navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto text-white">
-                    <li class="nav-item py-1 px-3 active ">
-                        <a href="{{route('/')}}" class="header_buttons py-1 px-3"> Home
+                    <li class="nav-item py-1 active ">
+                        <a href="{{route('/')}}" class=" py-1"> 
+                          <div class="d-inline rounded-circle px-2 pb-2 pt-1 mr-1" style="background: #6d8b8291;">
+                               <img width="14px" class="" src="../images/home-icon.png" />
+
+                            </div>
                         </a>
                     </li>
 
-                    <li class="nav-item py-1 px-3 text-light ">
-                        <a href=".././#/services" class=" header_buttons py-1 px-3 ">
-                            Jitume Services
+                    <li class="nav-item py-1 text-light ">
+                        <a href=".././#/services" class="text-light  py-1">
+                            <div class="d-inline rounded-circle pl-2 pr-1 pb-2 pt-1 mr-1" style="background: #6d8b8291;">
+                               <img width="14px" class="" src="../images/service-icon.png" />
+
+                           </div> Services
                         </a>
                     </li>
                 </ul>

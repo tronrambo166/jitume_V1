@@ -65,7 +65,7 @@
 
         <nav class="navbar navbar-expand-lg primary_bg">
 
-            <a href="./"><img class="img-fluid pb-2" width="170px" height="45px" src="images/logo.png" style="margin-left: 45px;"></a>
+            <a href="./"><img class="img-fluid pb-0" width="170px" height="45px" src="images/logo.png" style="margin-left: 45px;"></a>
 
 
             <button class="navbar-toggler bg-white text-white mr-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,14 +74,21 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto text-white">
-                    <li class="nav-item py-1 px-3 active header_btn_width ">
-                        <router-link to="/home" class="header_buttons py-1 px-3"> Home
+                    <li class="nav-item py-1 active header_btn_width mr-2">
+                        <router-link to="/home" class="py-1  pr-0 pl-1"> 
+                            <div class="d-inline rounded-circle px-2 pb-2 pt-1 mr-1" style="background: #6d8b8291;">
+                               <img width="14px" class="" src="images/home-icon.png" />
+
+                            </div>
                         </router-link>
                     </li>
 
-                    <li class="nav-item py-1 px-3 text-light header_btn_width ">
-                        <router-link to="/services" class=" header_buttons py-1 px-3 ">
-                            Jitume Services
+                    <li class="border-none nav-item py-1 text-light header_btn_width ">
+                        <router-link to="/services" class="border-none text-light py-1 px-3 ">
+                           <div class="d-inline rounded-circle px-2 pb-2 pt-1 mr-1" style="background: #6d8b8291;">
+                               <img width="14px" class="" src="images/service-icon.png" />
+
+                           </div>  Services
                         </router-link>
                     </li>
                 </ul>
