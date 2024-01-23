@@ -386,17 +386,17 @@
 
                     <div class="d-flex flex-wrap pb-2 social">
                     <a class="ml-auto" href="twitter.com" target="_black">
-                        <img width="31px" src="images/randomicons/twitter.png" class="rounded p-1"></a>
+                        <img width="31px" src="images/randomIcons/twitter.png" class="rounded p-1"></a>
 
                     <a href="twitter.com" target="_black">
-                        <img width="31px" src="images/randomicons/instagram.png" class="rounded p-1"></a>
+                        <img width="31px" src="images/randomIcons/instagram.png" class="rounded p-1"></a>
 
                     <a href="twitter.com" target="_black">
-                        <img width="31px" src="images/randomicons/facebook.png" class="rounded p-1">
+                        <img width="31px" src="images/randomIcons/facebook.png" class="rounded p-1">
                     </a>
 
                     <a href="twitter.com" target="_black">
-                        <img width="31px" src="images/randomicons/youtube.png" class="rounded p-1">
+                        <img width="31px" src="images/randomIcons/youtube.png" class="rounded p-1">
                     </a>
 
                     <!-- <ul class="text-light px-2">
