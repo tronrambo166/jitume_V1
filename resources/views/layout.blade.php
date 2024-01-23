@@ -138,13 +138,13 @@
                         <div class="ml-3 ml-md-0 d-flex">
 
                             <div class="d-inline-block" id="call_to">
-                                <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="background: ; border-radius: 15px;cursor: pointer; " class=" header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center"><span id="c_to_ac">
+                                <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="color:#dbdbdd;cursor: pointer; " class=" header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center"><span id="c_to_ac">
                                         Add Your Business</span></a>
                             </div>
 
 
                             <div class="d-inline-block" id="create_investor">
-                                <a data-target="#loginmodal2" data-toggle="modal" style="background: ; border-radius: 15px;cursor: pointer; " class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center"><span id="c_to_ac">Create Investor Account</span></a>
+                                <a data-target="#loginmodal2" data-toggle="modal" style="color:#dbdbdd; cursor: pointer; " class="header_buttons  px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center"><span id="c_to_ac">Create Investor Account</span></a>
                             </div>
 
                             <a data-target="#loginModal" data-toggle="modal" class=" sign_in_btn px-sm-3 my-1 mr-2 px-1 py-1 d-inline-block  text-center ml-md-3">Sign In</a>
@@ -331,7 +331,7 @@
 
         <div class="container-xl row mx-auto my-0 d-flex align-items-center">
            
-            <div class="col-12 col-sm-5 d-flex justify-content-start">
+            <div class="col-12 col-sm-4 d-flex justify-content-start">
                 <div class="">
                    <!--  <img style="max-width: 438px;" class="w-100" src="images/logo_footer.png" /> -->
 
@@ -346,6 +346,20 @@
 
                        <li><a class="foot_menu" href="">How It Works</a></li>
 
+                       <!-- <li><a class="foot_menu" href="">FAQs</a></li>
+
+                       <li><a class="foot_menu" href="">Contact Us</a></li>
+
+                       <li><a class="foot_menu" href="">Help</a></li> -->
+
+                   </ul>
+                </div>
+            </div>
+
+                <div class="col-12 col-sm-4 d-flex justify-content-center">
+                <div class="">
+                   <ul class="foot_menu_ui px-5">
+
                        <li><a class="foot_menu" href="">FAQs</a></li>
 
                        <li><a class="foot_menu" href="">Contact Us</a></li>
@@ -353,41 +367,12 @@
                        <li><a class="foot_menu" href="">Help</a></li>
 
                    </ul>
+                   </div>
                 </div>
-            </div>
 
-            <div class="col-12 col-sm-4 d-flex justify-content-center">
-                <ul class="text-light">
-                    <li style="list-style-type:none;">
-                        @if(Session::has('business_auth') && Session::get('business_auth') == true)
-                        <a href="./business/listings" class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>My Listings</a>
-
-                        @elseif(Session::has('service_auth') && Session::get('service_auth') == true)
-
-                        <a href="./services/services" class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>My Services</a>
-                        @endif
-                    </li>
-
-
-
-
-                    <li style="list-style-type:none;">
-                        @if(Session::has('business_auth') && Session::get('business_auth') == true)
-                        <a href="./business/add-listing" class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>Add Listing</a>
-
-                        @elseif(Session::has('service_auth') && Session::get('service_auth') == true)
-
-                        <a href="./services/add-services" class="footer_txt" href="#"><i class="mr-2 fa fa-angle-right"></i>Add Service</a>
-                        @endif
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-12 col-sm-3 pt-2 text-right">
-
-                    <div class="py-5"></div>
+            <div class="col-12 col-sm-4 pt-2 text-right">
                     <div class="py-0">
-                        <ul class="foot_menu_ui">
+                        <ul class="foot_menu_ui mb-1">
                         <li>
                               <a href="./policy" target="_blank" class="text-light font-weight-bold d-block">Privacy Policy</a>
                               </li>
@@ -399,17 +384,19 @@
                               </ul>
                     </div>
 
-                    <div class="d-flex flex-wrap">
-                    <a class="ml-auto" href="twitter.com" target="_black"><i style="width: 35px;" class="fa fa-twitter fa-1x bg-light text-center p-1 rounded"></i></a>
-
-                    <a href="twitter.com" target="_black"><i style="width: 35px;" class="fa fa-instagram fa-1x text-center bg-light text-secondary p-1 rounded"></i></a>
+                    <div class="d-flex flex-wrap pb-2 social">
+                    <a class="ml-auto" href="twitter.com" target="_black">
+                        <img width="31px" src="images/randomicons/twitter.png" class="rounded p-1"></a>
 
                     <a href="twitter.com" target="_black">
-                        <i style="width: 35px;" class="fa fa-youtube fa-1x bg-light text-center text-danger p-1 rounded"></i>
+                        <img width="31px" src="images/randomicons/instagram.png" class="rounded p-1"></a>
+
+                    <a href="twitter.com" target="_black">
+                        <img width="31px" src="images/randomicons/facebook.png" class="rounded p-1">
                     </a>
 
                     <a href="twitter.com" target="_black">
-                        <i style="width: 35px;" class="fa fa-facebook fa-1x bg-light text-center text-info p-1 rounded"></i>
+                        <img width="31px" src="images/randomicons/youtube.png" class="rounded p-1">
                     </a>
 
                     <!-- <ul class="text-light px-2">
@@ -419,29 +406,7 @@
                     </li>
                 </ul>  -->
 
-                </div> 
-
-
-                <!-- <div class="">
-                    <img style="max-width: 438px;" class="w-100" src="images/logo_footer.png" /> 
-
-                   <ul class="foot_menu_ui px-5">
-                       <li><a href="twitter.com" target="_black"><i style="width: 35px;" class="fa fa-twitter fa-2x bg-info p-1 rounded"></i></a></li>
-
-                       <li><a href="twitter.com" target="_black"><i style="width: 35px;" class="fa fa-instagram fa-2x bg-light text-secondary p-1 rounded"></i></a> </li>
-
-                       <li><a href="twitter.com" target="_black">
-                        <i style="width: 35px;" class="fa fa-youtube fa-2x bg-light text-danger p-1 rounded"></i>
-                       </a></li>
-
-                       <li><a href="twitter.com" target="_black">
-                        <i style="width: 35px;" class="fa fa-facebook fa-2x bg-light text-info p-1 rounded"></i>
-                       </a></li>
-
-                   </ul>
-                </div> -->
-
-                
+                </div>   
           
             </div>
 

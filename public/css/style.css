@@ -851,7 +851,7 @@
 
         color: white;
         font-family: Outfit-Regular;
-        border: 1px solid white;
+        background:#13a15ff2;
         border-radius: 35px;
         cursor: pointer;
         font-size: 13px;
@@ -950,7 +950,7 @@
     }
 
     .secondary_bg {
-        background: #266A2E;
+        background: #2a8d5f;
     }
 
     .text_color_1 {
@@ -1528,3 +1528,5 @@ display: block;
 .view_m:hover{
     color:white;
 }
+
+.social a{padding:3px;}
