@@ -220,7 +220,7 @@ export default {
             if (this.$router.currentRoute.path == '/services' ||
                 this.$router.currentRoute.path == '/serviceResults') {
                 $('#call_to').html('');
-                $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="color:#dbdbdd;" class="header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Service</span></a> ');
+                $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="color:#e1e2e3;" class="header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Service</span></a> ');
             }
         },
 

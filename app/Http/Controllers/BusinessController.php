@@ -98,12 +98,12 @@ return view('business.applyForShow');
 public function home(){
 if(Session::has('c_to_action') && Session::get('c_to_action') == true){
   Session::forget('c_to_action');
-  return redirect('business/add-listing');
+  return redirect('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf2E_');
 }
 
 else if(Session::has('c_to_actionS') && Session::get('c_to_actionS') == true){
   Session::forget('c_to_actionS');
-  return redirect('business/add-services');
+  return redirect('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf2F_');
 }
 else if(Session::has('c_to_action_Service') && Session::get('c_to_action_Service') == true){
   Session::forget('c_to_action_Service');

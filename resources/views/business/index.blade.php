@@ -2,7 +2,8 @@
 @php //echo 'Dashboard is under maintanance!'; exit; @endphp
 
 @section('page')
-    <div class="container px-0 h-100">
+ <div class="container px-0 h-100">
+    <div class="bid_header pt-3"></div>
   
   @if(Session::has('file_error'))
   <p class="d-block mx-auto btn btn btn-light text-danger font-weight-bold text-center">
@@ -10,7 +11,7 @@
 
    @if(isset($investor) && $investor == true ) 
    <div class="row m-auto">  
-   <h4 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold"> My Investments</h4>       
+   <h3 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold"> My Investments</h3>       
      <table class="eq table " id="">
     <thead class="table_head">
         <tr>
@@ -58,7 +59,7 @@
  
  @if($services->count())       
 <div class="row m-auto">
-     <h4 class="bid_header text-left my-0 pb-3 py-2 font-weight-bold"> My Services</h4> 
+     <h3 class="bid_header text-left my-0 pb-3 py-2 font-weight-bold"> My Services</h3> 
 
      <table class="eq table" id="">
     <thead  class="table_head">
@@ -82,11 +83,11 @@
                     <td>{{$ev->price }}</td>
                         <td>{{$ev->details }}</td>
                         <td>{{$ev->location }}</td>
-                        <td><img width="100px" height="60px" src="../{{$ev->image}}"></td>
+                        <td><img class="rounded" width="72px" height="40px" src="../{{$ev->image}}"></td>
    
             <td class="text-center">
 
-            <a style="border-radius: 4px;font-size: 12px;font-weight: 600;" href="./../#/service-milestone/{{$ev->id}}" class="btn btn-outline-success border border-dark small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
+            <a style="border-radius: 4px;font-size: 12px;font-weight: 600; background: aliceblue;" href="./../#/service-milestone/{{$ev->id}}" class="btn border text-success small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
             
 
             </td>
@@ -95,12 +96,25 @@
         </tbody>
     </table>
 </div>
+
+@else
+
+    <div class="p-3">
+       <h3 class="text-left my-0 pb-3 py-2 font-weight-bold"> My Services</h3> 
+
+       <div class="w-50 m-auto d-block">
+           <img width="120px" src="../images/randomIcons/no-service.png">
+           <p class="text-left ml-4 font-weight-bold">No services</p>
+       </div>
+    </div>
+
+
 @endif
 
 
 @if($business->count())       
 <div class="row mx-auto">
-     <h4 class="bid_header text-left my-0 pb-3 pt-3 font-weight-bold"> My Businesses</h4> 
+     <h3 class="bid_header text-left my-0 pb-3 pt-3 font-weight-bold"> My Businesses</h3> 
 
      <table class="eq table" id="">
     <thead class="table_head">
@@ -128,10 +142,10 @@
                         <td>{{$ev->details }}</td>
                         <td>{{$ev->contact }}</td>
                         <td>{{$ev->share }}</td>
-                        <td><img width="100px" height="60px" src="../{{$ev->image}}"></td>
+                        <td><img class="rounded" width="72px" height="40px" src="../{{$ev->image}}"></td>
    
             <td class="text-center">
-            <a style="border-radius: 4px;font-size: 12px;font-weight: 600;" href="./../#/business-milestone/{{$ev->id}}" class="btn btn-outline-success border border-dark small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
+            <a style="border-radius: 4px;font-size: 12px;font-weight: 600;background: aliceblue;" href="./../#/business-milestone/{{$ev->id}}" class="text-success btn small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
             
             </td>
         </tr>
@@ -139,16 +153,28 @@
         </tbody>
     </table>
 </div>
+
+@else
+    <div class="p-3">
+       <h3 class="text-left my-0 pb-3 py-2 font-weight-bold"> My Businesses</h3> 
+
+       <div class="w-50 m-auto d-block">
+           <img width="120px" src="../images/randomIcons/no-listing.png">
+           <p class="text-left ml-4 font-weight-bold">No Business</p>
+       </div>
+    </div>
 @endif
 
+
 @if(!$business->count() && !$services->count())
-<div class="h-75 w-75 m-auto d-flex align-items-center justify-content-center">
+<hr>
+<div class="w-75 m-auto d-flex align-items-center justify-content-center">
         <div class="mb-5 pb-3 w-50 text-center mx-auto"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary ">
-                        <a href="{{route('add-listing')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold" href="">Add Business</a>
+                        <a href="{{route('add-listing')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold py-1" href="">Add Business</a>
                     </li> </div>
 
                     <div class="mb-5 pb-3 w-50 text-center mx-auto"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary ">
-                        <a href="{{route('add-services')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold" href="">Add Service</a>
+                        <a href="{{route('add-services')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold py-1" href="">Add Service</a>
                     </li> </div>
                     </div>
 
@@ -372,10 +398,12 @@
 
 <script type="text/javascript">
     function bg_change(id) {
-        $('#'+id).addClass('bg-light');
+        //$('#'+id).addClass('bg_light');
+        $('#'+id).addClass('background','#e5eef5b8');
      }
      function bg_changeB(id) {
-        $('#b'+id).addClass('bg-light');
+        //$('#b'+id).addClass('bg_light');
+        $('#'+id).css('background','#e5eef5b8');
      }
 </script>
 

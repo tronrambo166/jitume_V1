@@ -118,11 +118,11 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                     <div class="py-1 px-md-3">
                         <div class="ml-3 ml-md-0 d-flex">
                             <div class="nav-item ">
-                                <a href="{{route('account')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-dollar-sign"></i></a>
+                                <a style="color:#e1e2e3;" href="{{route('account')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-dollar-sign"></i></a>
                             </div>
                             <div class="nav-item bg">
 
-                                <a href="{{route('service-messages')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-envelope"></i>
+                                <a style="color:#e1e2e3;" href="{{route('service-messages')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-envelope"></i>
                                     @if(count($messages) != 0)
                                     <span class="new_msg font-weight-bold px-1">{{count($messages)}}</span>
                                     @endif
@@ -130,7 +130,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                             </div>
 
                             <div class="nav-item mr-4">
-                                <a href="{{route('business', ['url'=>'url'])}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1 "><b>Dashboard</b></a>
+                                <a style="color:#e1e2e3;" href="{{route('business', ['url'=>'url'])}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1 "><b>Dashboard</b></a>
                             </div>
 
                             <div class="nav-item">
@@ -792,10 +792,13 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
 
 
 
-
+<input type="number" hidden id="temp_id" name="temp_id" value="">
 <script type="text/javascript">
 function bg_change(id) {
-        $('#'+id).addClass('bg-light');
+        var temp_id = $('#'+temp_id).val();
+        document.getElementById('temp_id').value = id;
+        $('#'+id).addClass('bg_light');
+        $('#'+temp_id).removeClass('bg_light');
      }
 
  // function initAutocomplete(){

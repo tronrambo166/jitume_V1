@@ -748,7 +748,7 @@
     }
 
     .sidebar li .navLink {
-        color: #cdcdcd;
+        color: black;
         font-weight: 500;
         font-family: Outfit-Regular;
         font-size: 14px;
@@ -844,7 +844,7 @@
     .eq tr th {
         font-size: 12px;
         padding-x: 0;
-        color: gainsboro;
+        color: #000000b5;
     }
 
     .header_buttons {
@@ -861,7 +861,7 @@
 
 
     .header_buttons:hover {
-        color: #cbd3da !important;
+        color: #e1e2e3 !important;
     }
 
     .sign_in_btn {
@@ -1175,13 +1175,18 @@
     }
 
     .sidebar li {
-        background: #3d423d;
+        background: aliceblue;
         padding-left: 30px;
 
     }
 
     .sidebar .active {
         background: #062406;
+    }
+
+    .sidebar .active a {
+        background: #062406;
+        color:white;
     }
 
     .formLabel {
@@ -1335,13 +1340,15 @@
     }
 
     .bid_header {
-        background: #066a4b;
-        color: ghostwhite;
+        background: white;
+        color: black;
     }
 
     .table_head {
-        background: #9b9999;
+        background: #e5edf542;
     }
+
+    .bg_light{background: #e5eef5b8}
 
     .bid-accept {
         border-radius: 35px;
@@ -1530,3 +1537,7 @@ display: block;
 }
 
 .social a{padding:3px;}
+
+.tr{
+    border-color: white;
+   }

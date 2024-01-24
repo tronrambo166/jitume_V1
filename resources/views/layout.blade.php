@@ -106,11 +106,11 @@
                             </div>
 
                             <div class="nav-item mr-4">
-                                <a href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1 "><b>Dashboard</b></a>
+                                <a style="color:#e1e2e3;" href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1 "><b>Dashboard</b></a>
                             </div>
 
                             <div class="nav-item">
-                            <a v-if="" onclick="event.preventDefault();
+                            <a  v-if="" onclick="event.preventDefault();
                  document.getElementById('logout-form').submit();" class=" sign_in_btn  px-sm-3 header_buttons my-1 mr-2 px-1 py-1 "><b>Sign Out</b></a>
                             </div>
 
@@ -138,13 +138,13 @@
                         <div class="ml-3 ml-md-0 d-flex">
 
                             <div class="d-inline-block" id="call_to">
-                                <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="color:#dbdbdd;cursor: pointer; " class=" header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center"><span id="c_to_ac">
+                                <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="color:#e1e2e3;cursor: pointer; " class=" header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center"><span id="c_to_ac">
                                         Add Your Business</span></a>
                             </div>
 
 
                             <div class="d-inline-block" id="create_investor">
-                                <a data-target="#loginmodal2" data-toggle="modal" style="color:#dbdbdd; cursor: pointer; " class="header_buttons  px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center"><span id="c_to_ac">Create Investor Account</span></a>
+                                <a data-target="#loginmodal2" data-toggle="modal" style="color:#e1e2e3; cursor: pointer; " class="header_buttons  px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center"><span id="c_to_ac">Create Investor Account</span></a>
                             </div>
 
                             <a data-target="#loginModal" data-toggle="modal" class=" sign_in_btn px-sm-3 my-1 mr-2 px-1 py-1 d-inline-block  text-center ml-md-3">Sign In</a>
