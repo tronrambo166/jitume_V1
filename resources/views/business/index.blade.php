@@ -3,7 +3,7 @@
 
 @section('page')
  <div class="container px-0 h-100">
-    <div class="bid_header pt-3"></div>
+    <div class="bid_header"></div>
   
   @if(Session::has('file_error'))
   <p class="d-block mx-auto btn btn btn-light text-danger font-weight-bold text-center">

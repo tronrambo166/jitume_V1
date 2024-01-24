@@ -10,7 +10,7 @@
         <p class="text-success  btn font-weight-bold float-right">{{Session::get('success')}} @php Session::forget('success'); @endphp</p>@endif
 
 <!-- PAGE CONTENT -->
-<h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold">Apply for Show (Jitume)</h4> 
+<h3 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold">Apply for Show (Jitume)</h3> 
 
 <div class="w-75 mx-auto">
 

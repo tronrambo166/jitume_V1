@@ -204,7 +204,7 @@
            
 
         <form action="{{route('mile_status')}}" method="post" class="form-inline">@csrf
-            <select disabled  name="status" style="width:65%;" class=" d-inline rounded border border-dark p-1 ">
+            <select disabled  name="status" style="width:65%;" class=" d-inline rounded p-1 ">
                  
                 
             @if($ev->status == 'Created')
@@ -232,12 +232,12 @@
             <td class="text-center">
             
             <div class="dropdown show d-inline-block">
-                  <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class=" py-0 btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Action 
                   </a>
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-            <a onclick="return confirm('Are you sure?');" href="{{route('delete_s_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light border border-dark my-1">Delete</a>
+            <a onclick="return confirm('Are you sure?');" href="{{route('delete_s_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light my-1 py-0">Delete</a>
             </div>  
             
 

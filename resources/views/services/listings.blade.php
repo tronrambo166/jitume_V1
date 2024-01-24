@@ -32,13 +32,13 @@
                     <td>{{$ev->price }}</td>
                         <td>{{$ev->details }}</td>
                         <td>{{$ev->location }}</td>
-                        <td><img width="100px" height="60px" src="../{{$ev->image}}"></td>
+                        <td><img class="rounded" width="72px" height="40px" src="../{{$ev->image}}"></td>
    
             <td class="text-center">
 
-            <button data-target="#edit{{$ev->id}}" data-toggle="modal" style="cursor:pointer;" id="invest" class="px-2 py-1 border border-dark rounded text-light buttonEq2 my-1">Edit</button>
+            <button data-target="#edit{{$ev->id}}" data-toggle="modal" style="cursor:pointer;" id="invest" class="px-2 py-1 text-dark buttonEq2 my-1 mr-2">Edit</button>
                 
-            <a onclick="return confirm('Are you sure?');" href="{{route('delete_service',$ev->id)}}" class="rounded bg-light text-danger buttonEq2 my-1 d-inline-block px-2 py-1 border border-dark">Delete</a >
+            <a onclick="return confirm('Are you sure?');" href="{{route('delete_service',$ev->id)}}" class="rounded text-danger buttonEq2 my-1 d-inline-block px-2 py-1">Delete</a >
             
 
             </td>

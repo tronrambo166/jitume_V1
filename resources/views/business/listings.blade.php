@@ -24,7 +24,7 @@
 
 </style>
         
-    <h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> My Businesses</h4>  
+    <h3 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> My Businesses</h3>  
     <div class="row mx-auto mb-0">
             
      <table class="eq table" id="">
@@ -53,17 +53,16 @@
                         <td>{{$ev->details }}</td>
                         <td>{{$ev->contact }}</td>
                         <td>{{$ev->share }}</td>
-                        <td><img width="100px" height="60px" src="../{{$ev->image}}"></td>
+                        <td><img class="rounded" width="72px" height="40px" src="../{{$ev->image}}"></td>
    
             <td class="text-center">
-            <!-- <button data-target="#add{{$ev->id}}" data-toggle="modal" style="cursor:pointer;" id="invest" class="rounded text-light buttonEq2 my-1"><i class="fa fa-plus"></i>Resource</button> -->
             @if(!$ev->active)
             <a onclick="return confirm('Are you sure?');" href="{{route('activate_milestone',$ev->id)}}" class="rounded bg-light text-success header_buttons my-1 font-weight-bold border border-dark d-inline-block px-2 py-1 ">Activate</a>
             @endif
 
-            <button data-target="#edit{{$ev->id}}" data-toggle="modal" style="cursor:pointer;" id="invest" class="px-2 py-1 border border-dark rounded text-light buttonEq2 my-1">Edit</button>
+            <button data-target="#edit{{$ev->id}}" data-toggle="modal" style="cursor:pointer;" id="invest" class="px-2 py-1 rounded text-dark buttonEq2 my-1 mr-2">Edit</button>
                 
-            <a onclick="return confirm('Are you sure?');" href="{{route('delete_listing',$ev->id)}}" class="rounded bg-light text-danger buttonEq2 my-1  d-inline-block px-2 py-1 border border-dark">Delete</a>
+            <a onclick="return confirm('Are you sure?');" href="{{route('delete_listing',$ev->id)}}" class="rounded text-danger buttonEq2 my-1  d-inline-block px-2 py-1 ">Delete</a>
             
 
             </td>

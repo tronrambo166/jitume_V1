@@ -26,8 +26,8 @@
     
  <form action="{{route('bidsAccepted')}}" method="post">  @csrf  
     <div class="row m-auto">   
-    <h4 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold">Investment Bids</h4>     
-     <table class="eq table table-bordered " id="">
+    <h3 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold">Investment Bids</h3>     
+     <table class="eq table" id="">
     <thead class="table_head">
         <tr>
             <th> </th>

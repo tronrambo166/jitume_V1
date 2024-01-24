@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <div class="container px-0" id="" >
         
-  <h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Add Business Milestones </h4>         
+  <h3 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Add Business Milestones </h3>         
 <div class="row mx-auto px-5">
 
 <style>
@@ -173,7 +173,7 @@
  <div class="row pt-4  m-auto">
 
             
-    <table class="eq table table-bordered " id="">
+    <table class="eq table" id="">
     <thead>
         <tr>
             <th>Milestone Name </th>
@@ -203,7 +203,7 @@
            
 
         <form action="{{route('mile_status')}}" method="post" class="form-inline">@csrf
-            <select disabled  name="status" style="width:65%;" class=" d-inline rounded border border-dark p-1 ">
+            <select disabled  name="status" style="width:65%;" class=" d-inline rounded p-1 ">
                  
                 
             @if($ev->status == 'Created')
@@ -231,12 +231,12 @@
             <td class="text-center">
             
             <div class="dropdown show d-inline-block">
-                  <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="btn btn-light py-0 dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Action 
                   </a>
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-            <a onclick="return confirm('Are you sure?');" href="{{route('delete_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light border border-dark my-1">Delete</a>
+            <a onclick="return confirm('Are you sure?');" href="{{route('delete_milestone',$ev->id)}}" class="py-0 btn dropdown-item rounded btn-light my-1">Delete</a>
             </div>  
             
 

@@ -7,7 +7,7 @@
         
 
 <div class="card-header w-100">
-<h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold">Milestones </h4> 
+<h3 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold">Milestones </h3> 
 
  <div class="mx-5 my-2 mx-auto d-block">
   <div class="dropdown show d-block ml-auto mt-3 d-block" style="width:15%;">
@@ -52,8 +52,8 @@
             <th>Milestone Name </th>
             <th>Business </th>
             <th>Amount</th>
-            <th>Status</th>
-            <th width="20%" class="text-center">Action</th>        
+            <th width="30%">Status</th>
+            <th  class="text-center">Action</th>        
         </tr>
 
     </thead>
@@ -71,20 +71,17 @@
                </td>
                     <td>{{$ev->amount }}</td>
 
-                     <td>
-
-           
-
+        <td>
         <form action="{{route('mile_status')}}" method="post" class="form-inline">@csrf
 
             @if($ev->status == 'In Progress')
-            <select  name="status" style="width:50%;" class=" d-inline rounded border border-dark px-1 ">  
+            <select  name="status" style="width:50%;" class="border py-1 text-center border-none d-inline rounded px-1 ">  
             <option hidden value="In Progress" class="form-control" >In Progress</option>    
             <option value="To Do" class="form-control" >To Do</option>
             <option value="Done" class="form-control" >Done</option>                
            </select>
            @elseif($ev->status == 'To Do')
-            <select  name="status" style="width:50%;" class=" d-inline rounded border border-dark px-1 ">     
+            <select  name="status" style="width:50%;" class=" d-inline rounded  px-1 ">     
             <option selected hidden value="To Do" class="form-control" >To Do</option> 
              <option value="In Progress" class="form-control" >In Progress</option>
             <option value="Done" class="form-control" >Done</option>                
@@ -94,12 +91,11 @@
            @endif
           
 
-           <input type="submit" value="Set" class="ml-2 mb-0 d-inline btn btn-success w-25 py-0">
+           <input type="submit" value="Set" class="ml-2 mb-0 d-inline buttonEq2 w-25 py-0">
 
             <input hidden type="number" name="id" value="{{$ev->id}}">
            </form> 
-
-                     </td>
+        </td>
 
             <td class="text-center">
             
@@ -109,7 +105,7 @@
                   </a>
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-            <a onclick="return confirm('Are you sure?');" href="{{route('delete_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light border border-dark my-1">Delete</a>
+            <a onclick="return confirm('Are you sure?');" href="{{route('delete_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light py-0 my-1">Delete</a>
             </div>  
             
 

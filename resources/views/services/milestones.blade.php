@@ -62,8 +62,8 @@
             <th>Milestone Name </th>
             <th>Service </th>
             <th>Amount</th>
-            <th>Status</th>
-            <th width="20%" class="text-center">Action</th>        
+            <th width="30%">Status</th>
+            <th class="text-center">Action</th>        
         </tr>
 
     </thead>
@@ -87,12 +87,12 @@
            
 
         <form action="{{route('mile_s_status')}}" method="post" class="form-inline">@csrf
-            <select  name="status" style="width:65%;" class="py-0 d-inline rounded border border-dark p-1 ">
+            <select  name="status" style="width:50%;" class="py-1 border border-none text-center d-inline rounded p-1 ">
                  
                 
             @if($ev->status == 'Created' || $ev->status == 'In Progress')
-            <option selected hidden value="In Progress" class="form-control" >In Progress</option> 
-            <option value="To Do"class="form-control" >To Do</option>
+             <option selected hidden value="In Progress" class="form-control" >In Progress </option> 
+             <option value="To Do"class="form-control" >To Do</option>
              <option value="Done" class="form-control" >Done</option>
              <option value="Cancelled" class="form-control" >Cancelled</option>
 
@@ -112,7 +112,7 @@
            </select>
           
 
-           <input type="submit" value="Set" class="ml-2 py-0 mb-1 d-inline btn btn-success w-25">
+           <input type="submit" value="Set" class="ml-2 py-0 mb-1 d-inline buttonEq2 w-25">
 
             <input hidden type="number" name="id" value="{{$ev->id}}">
            </form> 
@@ -127,7 +127,7 @@
                   </a>
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-            <a onclick="return confirm('Are you sure?');" href="{{route('delete_s_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light border border-dark my-1">Delete</a>
+            <a onclick="return confirm('Are you sure?');" href="{{route('delete_s_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light py-0 my-1">Delete</a>
             </div>  
             
 

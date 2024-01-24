@@ -283,7 +283,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                 </div>
 
        
-   <div class="col-md-9 bg-white px-0">
+   <div class="col-md-9 bg-white px-0 pt-3">
     <!-- Session -->
     @if(Session::has('success'))
         <p class="success_session text-center mb-2 w-100 shadow font-weight-bold float-right">{{Session::get('success')}} @php Session::forget('success'); @endphp </p>@endif
