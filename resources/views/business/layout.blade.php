@@ -59,18 +59,21 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
    <link href="{{ asset('/css/style.css') }}" rel="stylesheet"/>
 
-     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+     <link href="{{ asset('/css/datatables.min.css') }}" rel="stylesheet" />
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
-<!-- {{-- Vue component files --}}
+       <!--  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" /> -->
+
+<!-- {{-- Vue component files --}} -->
 <script src="https://unpkg.com/vue"></script>
 <script src="https://unpkg.com/http-vue-loader"></script>
-  {{-- Vue component files --}} -->
+  {{-- Vue component files --}}
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   
 </head>
-<body>
+
+<body style="overflow-x: hidden;">
 
     @if(Session::has('loginFailed'))
         <p class="text-danger font-weight-bold float-right">{{Session::get('loginFailed')}} @php Session::forget('loginFailed'); @endphp</p>@endif
@@ -220,6 +223,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                                     @endif
                             </a>
                             </li>
+                          </ul>
 
                         @endif  
 
@@ -228,6 +232,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                         @if($service->count())
                          <hr class=""> 
 
+                         <ul class="sidebar text-light px-2" style="color:white;">
                             <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf2F_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('add-services')}}"><i class=" fe fe-layout"></i> <span>Add Service</span></a>
                             </li>
@@ -255,10 +260,12 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                                     @endif
                                 </a>
                             </li>
+                          </ul>
 
                             @endif
 
                             @if($booking->count())
+                            <ul class="sidebar text-light px-2" style="color:white;">
                             <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf6F_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('my_booking')}}"><i class=" fe fe-layout"></i> <span>My Booking</span></a>
                             </li>
@@ -266,8 +273,10 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                             <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf6F__') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('booker-milestones')}}"><i class=" fe fe-layout"></i> <span>Milestones</span></a>
                             </li>
+                            </ul>
                             @endif
 
+                        <ul class="sidebar text-light px-2" style="color:white;">
                             <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf_E_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('applyForShow')}}"><i class=" fe fe-layout"></i> <span>Apply For Show</span></a>
                             </li>
@@ -333,12 +342,6 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
 <!-- <script type="text/javascript" src="../js/app.js"></script> -->
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-       
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
- 
-
  
 <!-- DATEPICKER -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -394,7 +397,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
        
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <!-- <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script> -->
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
  
 
@@ -410,7 +413,8 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
 
 </script>
  
-
+ <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 
 
 
@@ -815,7 +819,31 @@ function bg_change(id) {
  //         //console.log(place); 
  //       }); });
  //    }
+new DataTable('#d_table', {
+    columnDefs: [
+  
+        { orderable: false, targets: '_all' }
+    ],
+    order: [[1, 'asc']],
+    rowReorder: {
+        dataSrc: 1
+    }
+});
+
+new DataTable('#d_table2', {
+    columnDefs: [
+  
+        { orderable: false, targets: '_all' }
+    ],
+    order: [[1, 'asc']],
+    rowReorder: {
+        dataSrc: 1
+    }
+});
+
 </script>
+
+
 
 
 

@@ -12,8 +12,8 @@
    @if(isset($investor) && $investor == true ) 
    <div class="row m-auto">  
    <h3 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold"> My Investments</h3>       
-     <table class="eq table " id="">
-    <thead class="table_head">
+     <table class="eq table" id="">
+    <thead class="table_head border">
         <tr>
             <th>Name </th>
             <th>Category </th>
@@ -61,8 +61,8 @@
 <div class="row m-auto">
      <h3 class="bid_header text-left my-0 pb-3 py-2 font-weight-bold"> My Services</h3> 
 
-     <table class="eq table" id="">
-    <thead  class="table_head">
+    <table class="eq table" id="d_table" style="border-collapse:collapse;">
+    <thead  class="table_head border">
         <tr>
             <th>Name </th>
             <th>Category </th>
@@ -113,11 +113,11 @@
 
 
 @if($business->count())       
-<div class="row mx-auto">
+<div class="row mx-auto pt-3">
      <h3 class="bid_header text-left my-0 pb-3 pt-3 font-weight-bold"> My Businesses</h3> 
 
-     <table class="eq table" id="">
-    <thead class="table_head">
+    <table class="eq table" id="d_table2">
+    <thead class="table_head border">
         <tr>
             <th>Name </th>
             <th>Category </th>
@@ -405,6 +405,10 @@
         //$('#b'+id).addClass('bg_light');
         $('#'+id).css('background','#e5eef5b8');
      }
+
+    window.onload(){
+      $('#d_table').removeClass('dataTable ')
+    }
 </script>
 
 @endsection

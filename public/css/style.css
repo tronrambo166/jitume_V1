@@ -766,13 +766,18 @@
     }
 
     .sidebar li {
-        background: #3d423d;
         padding-left: 30px;
 
     }
 
+     .sidebar {
+       background: aliceblue;
+       border-radius: 8px;
+    }
+
     .sidebar .active {
-        background: darkgreen;
+        background: #062406;;
+        border-radius: 5px;
     }
 
     .formLabel {
@@ -1180,12 +1185,7 @@
 
     }
 
-    .sidebar .active {
-        background: #062406;
-    }
-
     .sidebar .active a {
-        background: #062406;
         color:white;
     }
 
@@ -1541,3 +1541,7 @@ display: block;
 .tr{
     border-color: white;
    }
+
+table.dataTable {
+    border-collapse:collapse;
+}
