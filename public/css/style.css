@@ -201,22 +201,6 @@
 
     .home_category_listings {}
 
-    @media (max-width: 991px) {
-        .header_btn_width {
-            width: 70% !important;
-        }
-
-        .searchBar {
-            margin-left: 0rem !important;
-            margin-right: 1.5rem !important;
-            width: 95% !important;
-        }
-
-        .hlist {
-            margin-left: 0rem !important;
-            margin-right: 1.5rem !important;
-        }
-    }
 
     @media (max-width: 768px) {
 
@@ -1096,6 +1080,50 @@
         }
     }
 
+
+        @media (max-width: 991px) {
+        .header_btn_width {
+            /*width: 70% !important;*/
+        }
+
+        .searchBar {
+            margin-left: 0rem !important;
+            margin-right: 1.5rem !important;
+            width: 95% !important;
+        }
+
+        .hlist {
+            margin-left: 0rem !important;
+            margin-right: 1.5rem !important;
+        }
+
+        .navbar-nav{
+            float: right;
+            display: block;
+            width: 100%;
+            text-align: right;
+        }
+
+        .navbar-nav li{
+            display: inline-block;
+        }
+
+        .right_bar{
+            float: right;
+            margin-right: 3px;
+        }
+
+       #call_to, #create_investor, .sign_in_btn {
+            display: block;
+            text-align: right;
+        }
+
+        #call_to a, #create_investor a, .sign_in_btn{
+        font-size: 11px;
+        }
+    }
+
+
     /* Extra large devices (large desktops, 1200px and up)*/
     @media (min-width: 1200px) {
         .w-xl-100 {
@@ -1403,6 +1431,12 @@
              left: 476px;
              top: 394px;
         }
+
+        #call_to, #create_investor, .sign_in_btn {
+            display: inline-block;
+        }
+
+        .sign_in_btn{ margin-right: 12px; }
 
     }
 

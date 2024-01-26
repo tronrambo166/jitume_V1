@@ -174,8 +174,8 @@
  <div class="row pt-4  m-auto">
 
             
-    <table class="eq table table-bordered " id="">
-    <thead>
+    <table class="eq table" id="">
+    <thead class="border">
         <tr>
             <th>Milestone Name </th>
             <th>Business </th>

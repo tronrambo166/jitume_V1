@@ -155,7 +155,7 @@
 </div>
 
 @else
-    <div class="p-3">
+    <div class="pt-3">
        <h3 class="text-left my-0 pb-3 py-2 font-weight-bold"> My Businesses</h3> 
 
        <div class="w-50 m-auto d-block">
@@ -181,16 +181,18 @@
 
 
 @elseif(!$business->count())
-<div class="h-75 w-75 m-auto d-flex align-items-center justify-content-center">
-        <div class="mb-5 pb-3 w-50 text-center mx-auto"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary ">
+<hr>
+<div class="w-75 m-auto d-flex">
+        <div class="mb-5 pb-3 w-50 text-center"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary text-center">
                         <a href="{{route('add-listing')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold" href="">Add Business</a>
                     </li> </div>
                     </div>
 
 
 @elseif(!$services->count())
-<div class="h-75 w-75 m-auto d-flex align-items-center justify-content-center">
-                    <div class="mb-5 pb-3 w-50 text-center mx-auto"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary ">
+<hr>
+<div class="w-75 m-auto d-flex">
+                    <div class="mb-5 pb-3 w-50 text-center"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary text-center">
                         <a href="{{route('add-services')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold" href="">Add Service</a>
                     </li> </div>
                     </div>

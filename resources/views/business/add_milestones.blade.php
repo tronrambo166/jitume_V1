@@ -175,7 +175,7 @@
             
     <table class="eq table" id="">
     <thead>
-        <tr>
+        <tr class="border">
             <th>Milestone Name </th>
             <th>Business </th>
             <th>Amount</th>

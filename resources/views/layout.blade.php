@@ -63,7 +63,7 @@
         <!-- Layout -->
 
 
-        <nav class="navbar navbar-expand-lg primary_bg">
+        <nav class="navbar navbar-expand-lg primary_bg py-1">
 
             <a href="./"><img class="img-fluid pb-0" width="170px" height="45px" src="images/logo.png" style="margin-left: 45px;"></a>
 
@@ -74,7 +74,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto text-white">
-                    <li class="nav-item py-1 active header_btn_width mr-2">
+                    <li class="nav-item py-1 active header_btn_width mr-md-2">
                         <router-link to="/home" class="py-1  pr-0 pl-1"> 
                             <div class="d-inline rounded-circle px-2 pb-2 pt-1 mr-1" style="background: #6d8b8291;">
                                <img width="14px" class="" src="images/home-Icon.png" />
@@ -84,7 +84,7 @@
                     </li>
 
                     <li class="border-none nav-item py-1 text-light header_btn_width ">
-                        <router-link to="/services" class="border-none text-light py-1 px-3 ">
+                        <router-link to="/services" class="border-none text-light py-1 px-md-3 ">
                            <div class="d-inline rounded-circle px-2 pb-2 pt-1 mr-1" style="background: #6d8b8291;">
                                <img width="14px" class="" src="images/service-icon.png" />
 
@@ -93,10 +93,11 @@
                     </li>
                 </ul>
 
-                <div class="my-2 my-lg-0">
+                <div class="clearfix"></div>
+                <div class="my-2 my-lg-0 right_bar">
                     <div class="py-1 px-md-3">
                         @if(Auth::check())
-                        <div class="ml-3 ml-md-0 d-flex">
+                        <div class="ml-3 ml-md-0 d-md-flex">
                             <div class="nav-item ">
                                 <a href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-bell"></i></a>
                             </div>
@@ -105,7 +106,7 @@
                                 <a href="{{route('service-messages')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-envelope"></i></a>
                             </div>
 
-                            <div class="nav-item mr-4">
+                            <div class="nav-item mr-md-4">
                                 <a style="color:#e1e2e3;" href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1 "><b>Dashboard</b></a>
                             </div>
 
@@ -135,19 +136,19 @@
 
                         @else
 
-                        <div class="ml-3 ml-md-0 d-flex">
+                        <div class="ml-3 ml-md-0">
 
-                            <div class="d-inline-block" id="call_to">
-                                <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="color:#e1e2e3;cursor: pointer; " class=" header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center"><span id="c_to_ac">
+                            <div class="" id="call_to">
+                                <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="color:#e1e2e3;cursor: pointer; " class="header_buttons px-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center"><span id="c_to_ac">
                                         Add Your Business</span></a>
                             </div>
 
 
-                            <div class="d-inline-block" id="create_investor">
-                                <a data-target="#loginmodal2" data-toggle="modal" style="color:#e1e2e3; cursor: pointer; " class="header_buttons  px-sm-3 my-1 px-1 py-1 mx-3 d-inline-block small text-center"><span id="c_to_ac">Create Investor Account</span></a>
+                            <div class="" id="create_investor">
+                                <a data-target="#loginmodal2" data-toggle="modal" style="color:#e1e2e3; cursor: pointer; " class="header_buttons px-3 my-1 px-1 py-1 mr-1 ml-3 d-inline-block small text-center"><span id="c_to_ac">Create Investor Account</span></a>
                             </div>
 
-                            <a data-target="#loginModal" data-toggle="modal" class=" sign_in_btn px-sm-3 my-1 mr-2 px-1 py-1 d-inline-block  text-center ml-md-3">Sign In</a>
+                            <a data-target="#loginModal" data-toggle="modal" class=" sign_in_btn px-3 my-1 mr-1 px-1 py-1 text-center ml-md-3">Sign In</a>
 
 
                         </div>
@@ -337,7 +338,7 @@
 
                    <ul class="foot_menu_ui px-5">
                        <li>
-                        <a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class=" " ><span id="c_to_ac">Sign Up as A Project Manager</a>
+                        <a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class=" " ><span id="c_to_ac">Sign Up/Sign In as A Project Manager</a>
                        </li>
 
                        <li>

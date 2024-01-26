@@ -82,12 +82,12 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
 <div class="container-fluid">
    
 
- <div  class="row px-0 shadow primary_bg" style="min-height: 74.5px;">
+ <div  class="row px-0 shadow primary_bg" style="min-height: 91.98px;">
 
     <div class="col-sm-3">
         <ul class="navbar-nav ">
         <li class="nav-item  px-3">
-            <a href="{{route('business')}}"><img class="img-fluid py-2" width="170px" height="45px" src="../images/logo.png" style="margin-left: 17px;"></a>
+            <a href="{{route('business')}}"><img class="img-fluid py-1" width="170px" height="45px" src="../images/logo.png" style="margin-left: 17px;"></a>
         </li> 
          
       </ul> 
@@ -219,7 +219,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                             <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf4E_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('business_bids')}}"><i class=" fe fe-layout"></i> <span>Business Bids</span>
                                     @if(count($new_bids) != 0)
-                                    <span class="new_msg2 small font-weight-bold px-1">New {{count($new_bids)}}</span>
+                                    <span class="new_msg2 small rounded px-1">New {{count($new_bids)}}</span>
                                     @endif
                             </a>
                             </li>
@@ -256,7 +256,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                                 <a class="navLink" href="{{route('service_booking')}}"><i class=" fe fe-layout"></i> <span>Service Booking</span>
 
                                 @if(count($new_books) != 0)
-                                    <span class="new_msg2 small font-weight-bold px-1">New {{count($new_books)}}</span>
+                                    <span class="new_msg2 small rounded px-1">New {{count($new_books)}}</span>
                                     @endif
                                 </a>
                             </li>
