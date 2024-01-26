@@ -27,7 +27,7 @@
 
               <div class=" mx-4 text-center row py-0 searchBar text-center">
 
-                 <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3 bg-white">
+                 <div style="border-radius: 35px 0 0 35px;" class="py-2 col-sm-3">
                               <input style="border: none;height: 42px;" class="bar bg-white form-control d-inline" type="text" name="listing_name" placeholder="What are you looking for?"></div>
 
                 <div class="col-12 col-sm-4 my-1 py-1 bg-white rounded">

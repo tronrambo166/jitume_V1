@@ -1118,8 +1118,11 @@
             text-align: right;
         }
 
-        #call_to a, #create_investor a, .sign_in_btn{
+        #call_to a, #create_investor a, .sign_in_btn, .header_buttons{
         font-size: 11px;
+        }
+        .header_buttons{
+            text-align: center;
         }
     }
 

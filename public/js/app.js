@@ -8381,7 +8381,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     if (this.projectManagers != null || this.projectManagers) this.$router.push("projectManagers/".concat(this.projectManagers));else if (this.milestoneS != null) this.$router.push("service-milestone/".concat(this.milestoneS)); //CALL ACTION
 
     $('#call_to').html('');
-    $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="color:#dbdbdd;" class="header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> ');
+    $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="color:#e1e2e3;" class="header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> ');
   },
   methods: (_methods = {
     search: function search() {
@@ -12477,7 +12477,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     replaceText: function replaceText() {
       if (this.$router.currentRoute.path == '/services' || this.$router.currentRoute.path == '/serviceResults') {
         $('#call_to').html('');
-        $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="color:#dbdbdd;" class="header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Service</span></a> ');
+        $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="color:#e1e2e3;" class="header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Service</span></a> ');
       }
     },
     initAutocomplete: function initAutocomplete() {
@@ -72513,7 +72513,7 @@ var staticRenderFns = [
         _c(
           "div",
           {
-            staticClass: "py-2 col-sm-3 bg-white",
+            staticClass: "py-2 col-sm-3",
             staticStyle: { "border-radius": "35px 0 0 35px" },
           },
           [

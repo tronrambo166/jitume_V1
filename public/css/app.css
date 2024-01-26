@@ -326,7 +326,7 @@ tfoot,
 tr,
 td,
 th {
-  border-color: white;
+  border-color: inherit;
   border-style: solid;
   border-width: 0;
 }
@@ -8196,7 +8196,7 @@ textarea.form-control-lg {
 }
 
 .bg-white {
-  --bs-bg-opacity: 0;
+  --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important;
 }
 

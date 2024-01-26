@@ -25,9 +25,24 @@
 </style>
       
     <div class="row m-auto">   
-    <h4 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold">Messages</h4>     
+    <h4 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold">Messages</h4>  
+
+
+    @if(count($results)==0)
+         <div class="p-3">
+             <h3 class="text-left my-0 pb-3 py-2 font-weight-bold"> My Services</h3> 
+
+             <div class="w-50 m-auto d-block">
+                 <img width="120px" src="../images/randomIcons/no_data.png">
+                 <p class="text-left ml-4 font-weight-bold">No Data Found!</p>
+             </div>
+          </div>
+         
+
+      @else
+
      <table class="eq table table-bordered " id="">
-    <thead class="table_head">
+     <thead class="table_head">
         <tr>
 
             <th class="ml-1">From </th>
@@ -38,8 +53,6 @@
         </tr>
 
     </thead>
-    
-
     
     <tbody>
         @foreach($results as $ev)
@@ -175,14 +188,13 @@
 <!-- Details MODAL -->
 
          @endforeach
-         @if(count($results)==0)
-         <td  > No data found! </td>
-         @endif
+         
     
     </tbody> 
     
     
 </table>
+@endif
  
 <!--  <div class="row ml-auto" style="width:35%;"> 
  <div class="col-sm-6 float-right"> </div>             
