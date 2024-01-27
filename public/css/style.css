@@ -1142,6 +1142,22 @@
        #call_to, #create_investor, .sign_in_btn {
             display: block;
             text-align: right;
+
+        }
+
+       #call_to a, #create_investor a, .sign_in_btn {
+            width: 149.55px;
+            float: right;
+        } 
+
+        .dash_menu{
+            display: block;
+            float: right;
+        }
+
+        .dash_menu .nav-item{
+            display: table-row;
+
         }
 
         #call_to a, #create_investor a, .sign_in_btn, .header_buttons{
@@ -1463,6 +1479,10 @@
 
         #call_to, #create_investor, .sign_in_btn {
             display: inline-block;
+        }
+
+        .dash_menu{
+            display: flex;
         }
 
         .sign_in_btn{ margin-right: 12px; }
