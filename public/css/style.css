@@ -733,7 +733,7 @@
 
     .sidebar li .navLink {
         color: black;
-        font-weight: 500;
+        font-weight: 600;
         font-family: Outfit-Regular;
         font-size: 14px;
     }
@@ -755,8 +755,8 @@
     }
 
      .sidebar {
-       background: aliceblue;
-       border-radius: 8px;
+       background: #E9FFEC;
+       border-radius: 12px;
     }
 
     .sidebar .active {
@@ -830,17 +830,24 @@
         cursor: pointer;
     }
 
-    .eq tr th {
-        font-size: 12px;
+    .eq tr td {
+        font-size: 13px;
+        padding-x: 0;
+        color: #000000b5;
+    }
+
+    .eq thead tr th {
+        font-size: 13px;
+        font-weight: 600;
         padding-x: 0;
         color: #000000b5;
     }
 
     .header_buttons {
 
-        color: white;
+        color: black;
         font-family: Outfit-Regular;
-        background:#13a15ff2;
+        background:#78BE3E;
         border-radius: 35px;
         cursor: pointer;
         font-size: 13px;
@@ -869,6 +876,25 @@
 
     .sign_in_btn:hover {
         background: #083608 !important;
+        color: white !important;
+    }
+
+    .mile_add_btn {
+        background: white;
+        color: #000000;
+        font-family: Outfit-Regular;
+        border: 2px solid white;
+        border-radius: 35px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: bold;
+        text-wrap: nowrap;
+        font-stretch: semi-expanded;
+        letter-spacing: 1px;
+    }
+
+    .mile_add_btn:hover {
+        background: #78BE3E !important;
         color: white !important;
     }
 
