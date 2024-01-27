@@ -326,7 +326,7 @@ tfoot,
 tr,
 td,
 th {
-  border-color: white;
+  border-color: inherit;
   border-style: solid;
   border-width: 0;
 }
