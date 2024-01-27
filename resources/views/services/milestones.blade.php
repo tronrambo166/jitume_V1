@@ -57,7 +57,7 @@
 
             
     <table class="eq table" id="">
-    <thead class="table_head">
+    <thead class="table_head border">
         <tr>
             <th>Milestone Name </th>
             <th>Service </th>

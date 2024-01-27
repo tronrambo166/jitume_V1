@@ -44,7 +44,7 @@
     <div class="col-sm-3">
         <ul class="navbar-nav ">
         <li class="nav-item  px-3">
-            <a href="{{route('services/index')}}"><img class="bg-dark" src="{{asset('images/logo.png')}}" width="150px" height="55px" style=";"></a>
+            <a href="{{route('services/index')}}"><img class="bg-dark" src="{{asset('images/logo.png')}}" width="150px" height="55px" style=""></a>
         </li> </ul> 
     </div>
 

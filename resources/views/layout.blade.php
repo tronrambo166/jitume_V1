@@ -65,7 +65,7 @@
 
         <nav class="navbar navbar-expand-lg primary_bg py-1">
 
-            <a href="./"><img class="img-fluid pb-0" width="170px" height="45px" src="images/logo.png" style="margin-left: 45px;"></a>
+            <a href="./"><img class="logo img-fluid pb-0" width="170px" height="45px" src="images/logo.png" ></a>
 
 
             <button class="navbar-toggler bg-white text-white mr-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,7 +107,7 @@
                             </div>
 
                             <div class="nav-item mr-md-4">
-                                <a style="color:#e1e2e3;" href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1 "><b>Dashboard</b></a>
+                                <a href="{{route('business')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1 "><b>Dashboard</b></a>
                             </div>
 
                             <div class="nav-item">
@@ -139,13 +139,13 @@
                         <div class="ml-3 ml-md-0">
 
                             <div class="" id="call_to">
-                                <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="color:#e1e2e3;cursor: pointer; " class="header_buttons px-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center"><span id="c_to_ac">
+                                <a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="color:black;cursor: pointer; " class="header_buttons px-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center"><span id="c_to_ac">
                                         Add Your Business</span></a>
                             </div>
 
 
                             <div class="" id="create_investor">
-                                <a data-target="#loginmodal2" data-toggle="modal" style="color:#e1e2e3; cursor: pointer; " class="header_buttons px-3 my-1 px-1 py-1 mr-1 ml-3 d-inline-block small text-center"><span id="c_to_ac">Create Investor Account</span></a>
+                                <a data-target="#loginmodal2" data-toggle="modal" style="color:black; cursor: pointer; " class="header_buttons px-3 my-1 px-1 py-1 mr-1 ml-3 d-inline-block small text-center"><span id="c_to_ac">Create Investor Account</span></a>
                             </div>
 
                             <a data-target="#loginModal" data-toggle="modal" class=" sign_in_btn px-3 my-1 mr-1 px-1 py-1 text-center ml-md-3">Sign In</a>

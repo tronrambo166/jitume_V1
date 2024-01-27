@@ -10,8 +10,8 @@
 <style>
 .btnUp3 {
   border: 1px solid black;
-  color: white;
-  background-color: #14a914;
+  color: black;
+  background-color: #78BE3E;
   padding: 5px ;
   border-radius: 5px;
   font-size: 10px;
@@ -46,11 +46,7 @@
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        </div>  @endif
-
-         <div class="card-header w-100 my-3">
-           <h5>Add Milestones</h5>
-        </div>       
+        </div>  @endif  
 
     
     
@@ -59,10 +55,10 @@
                                 @csrf
                                 
 
-                                <div class="row border border-dark pt-2" width="85%">
+                                <div class="row pt-2 mx-0" width="85%">
                                     <div class="col-sm-2 px-1">
                                         <div class=" ">
-                                            <input maxlength="255" required="" name="title" type="text" placeholder="Milestone Name(255 max)"  class="w-100 rounded border border-dark ">
+                                            <input maxlength="255" required="" name="title" type="text" placeholder="Milestone Name(255 max)"  class="w-100 border">
                                         </div>
                                     </div>
 
@@ -70,7 +66,7 @@
                                     <div class="col-sm-2 px-1 ">
                                         <div class="">
                                          
-                                            <input required=""  type="number"placeholder="Amount"  name="amount" class="w-100 rounded border border-dark " >
+                                            <input required=""  type="number"placeholder="Amount"  name="amount" class="w-100 border" >
                                         </div>
                                     </div>
 
@@ -78,16 +74,16 @@
                                      <div class="col-sm-2 px-1 ">
                                         <div class="">
 
-                                            <select style="width:65%;" class="d-inline py-1" name="time_type" required="">
+                                            <select style="width:65%;" class="border d-inline py-1" name="time_type" required="">
                                             <option value="Days" class="form-control" >Days</option>
                                             <option value="Weeks" class="form-control" >Weeks</option>
                                             <option value="Months" class="form-control" >Months</option>
                                             </select>
                                          
-                                            <select class="py-1" required=""  type="number" name="n_o_days" value="1" min="1" class="rounded" >
+                                            <select class="border py-1" required=""  type="number" name="n_o_days" value="1" min="1" class="" >
                                             
 
-                                            <option class="d-inlin form-control"  value="01">01</option>
+                                            <option class="border d-inline form-control"  value="01">01</option>
                                             <option class="form-control"  value="02">02</option>
                                             <option class="form-control"  value="03">03</option>
                                             <option class="form-control"  value="04">04</option>
@@ -126,51 +122,49 @@
                                     </div>
 
                         <div class="col-sm-3 px-1">
-                            <div class="upload-btn-wrapper w-100">
-                                <label for="file-upload" class="btnUp3 custom-file-upload">
+                            <div class="pload-btn-wrapper w-100">
+                                <label for="file-upload" class="border btnUp3 custom-file-upload">
                                 Upload Milestone Documentaion <i class="ml-2 fa fa-arrow-up"></i>
                               </label>
                               <input required="" id="file-upload" name='file' type="file" style="display:none;">
 
                               <p id="file_alert" class="text-danger text-center font-weight-bold bg-light"></p>
                                 </div>
-                            </div>
+                          </div>
 
 
 
-            <div class="col-sm-2 px-1">
-         <div class="form-group ">
-          <select onchange="active();" required  name="business_id" class="w-100 rounded border border-dark p-1 ">
+        <div class="col-sm-2 px-1">
+          <div class="form-group ">
+          <select onchange="active();" required  name="business_id" class="w-100 border p-1 ">
             <option hidden value="" class="form-control" >Select Business</option>
-
             @foreach($business as $b)
             <option value="{{$b->id}}" class="form-control" >{{$b->name}}</option> @endforeach
+          </select> 
+          </div>
+        </div>
 
-           </select> 
-                                        </div>
-                                    </div>
 
-
-                                    <div class="col-1 px-1">
-                                        <div class="form-group">
-                                        <input id="addBtn" onclick="file_check();" type="submit" class="disabled text-center p-0 btn py-1 sign_in_btn btn-block" value="Add" />
-                                    </div>
-                                </div>
+        <div class="col-1 px-1">
+            <div class="form-group">
+                <input id="addBtn" onclick="file_check();" type="submit" class="disabled text-center p-0 border btn py-1 mile_add_btn btn-block" value="Add" />
+            </div>
+        </div>
                            
-                                </div>
-                                
-                            </form>
+        </div>
+        
+    </form>
 
     </div>
 
       <!-- ADD MODAL -->
 
 
-<div class="card-header w-100 mt-5">
+<div class="card-header w-100 mt-4">
            <h5>Recently Added</h5>
         </div>
 
- <div class="row pt-4  m-auto">
+ <div class="row pt-4 px-0 m-auto">
 
             
     <table class="eq table" id="">

@@ -118,14 +118,14 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                 </ul>
 
                 <div class="my-2 my-lg-0">
-                    <div class="py-1 px-md-3">
-                        <div class="ml-3 ml-md-0 d-flex">
+                    <div class="pb-2 px-md-3" style="padding-top: 2px;">
+                        <div class="ml-3 ml-md-0 dash_menu">
                             <div class="nav-item ">
-                                <a style="color:#e1e2e3;" href="{{route('account')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-dollar-sign"></i></a>
+                                <a href="{{route('account')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-dollar-sign"></i></a>
                             </div>
                             <div class="nav-item bg">
 
-                                <a style="color:#e1e2e3;" href="{{route('service-messages')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-envelope"></i>
+                                <a href="{{route('service-messages')}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1"><i class="fa fa-envelope"></i>
                                     @if(count($messages) != 0)
                                     <span class="new_msg font-weight-bold px-1">{{count($messages)}}</span>
                                     @endif
@@ -133,7 +133,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                             </div>
 
                             <div class="nav-item mr-4">
-                                <a style="color:#e1e2e3;" href="{{route('business', ['url'=>'url'])}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1 "><b>Dashboard</b></a>
+                                <a href="{{route('business', ['url'=>'url'])}}" class="header_buttons px-sm-3 my-1 mr-2 px-1 py-1 "><b>Dashboard</b></a>
                             </div>
 
                             <div class="nav-item">
@@ -180,7 +180,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
 
 
     <div class="row">
-              <div class="py-4 bid_header col-sm-3 sidebar-inner slimscroll" style="min-height:600px">
+              <div class="py-4 bid_header col-md-3 sidebar-inner slimscroll" style="">
                     <div id="sidebar-menu" class="sidebar-menu">
                         <ul class="sidebar text-light px-2" style="color:white;">
                            
@@ -232,7 +232,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                         @if($service->count())
                          <hr class=""> 
 
-                         <ul class="sidebar text-light px-2" style="color:white;">
+                         <ul class="sidebar text-light px-0" style="color:white;">
                             <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf2F_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('add-services')}}"><i class=" fe fe-layout"></i> <span>Add Service</span></a>
                             </li>
@@ -265,7 +265,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                             @endif
 
                             @if($booking->count())
-                            <ul class="sidebar text-light px-2" style="color:white;">
+                            <ul class="sidebar text-light px-0" style="color:white;">
                             <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf6F_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('my_booking')}}"><i class=" fe fe-layout"></i> <span>My Booking</span></a>
                             </li>
@@ -276,17 +276,17 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                             </ul>
                             @endif
 
-                        <ul class="sidebar text-light px-2" style="color:white;">
+                        <!-- <ul class="sidebar text-light px-0" style="color:white;">
                             <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf_E_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('applyForShow')}}"><i class=" fe fe-layout"></i> <span>Apply For Show</span></a>
                             </li>
                             
-                        </ul>
+                        </ul> -->
                     </div>
 
                     @if($subscribed)
                     <div class=" mx-auto mt-5" style="width:95%;">
-                        <a onclick="return confirm('Are you sure?');" class="header_buttons seacrhListing sign_in_btn text-center" href="{{route('cancelSubscription', $subscribed->id)}}"><i class=" fe fe-layout"></i> <span>Cancel Subscription</span></a>
+                        <a onclick="return confirm('Are you sure?');" class="header_buttons seacrhListing px-5 sign_in_btn text-center" href="{{route('cancelSubscription', $subscribed->id)}}"><i class=" fe fe-layout"></i> <span>Cancel Subscription</span></a>
                     </div>
                     @endif
                 </div>
@@ -306,8 +306,13 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
      </div>
 
 
-        <div class=" border border-top-dark w-100">
-        <footer class="w-100">
+        <div class="clearfix bg-white py-5"></div>
+         <div class="clearfix bg-white py-5"></div>
+          <div class="clearfix bg-white py-5"></div>
+           <div class="clearfix bg-white py-1"></div>
+
+        <div class="bg-white h-50 w-100">
+        <footer class="border border-top-dark bg-light w-100 fixed-bottom">
             <div class="row py-2">
 
                  <div class="col-sm-6 m-auto text-center">

@@ -8381,7 +8381,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     if (this.projectManagers != null || this.projectManagers) this.$router.push("projectManagers/".concat(this.projectManagers));else if (this.milestoneS != null) this.$router.push("service-milestone/".concat(this.milestoneS)); //CALL ACTION
 
     $('#call_to').html('');
-    $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="color:#e1e2e3;" class="header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> ');
+    $('#call_to').html('<a onclick="c_to_action();" data-target="#loginModal" data-toggle="modal" style="color:black;" class="header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Business</span></a> ');
   },
   methods: (_methods = {
     search: function search() {
@@ -11710,7 +11710,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     replaceText: function replaceText() {
       $('#call_to').html('');
-      $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+      $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="color:black;" id="c_to_ac">Add Your Service</span></a> ');
     },
     serviceBook: function serviceBook() {
       var _this2 = this;
@@ -12132,7 +12132,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     },
     replaceText: function replaceText() {
       $('#call_to').html('');
-      $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="font-weight:bolder;" id="c_to_ac">Add Your Service</span></a> ');
+      $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span style="color:black;" id="c_to_ac">Add Your Service</span></a> ');
     },
     //MAP -- MAP
     success: function success(position) {
@@ -12430,7 +12430,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
     if (button != 0) document.getElementById('c_to_ac').innerHTML = 'Add Your Service';
     $('#call_to').html('');
-    $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons text-light px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span  id="c_to_ac">Add Your Service</span></a> ');
+    $('#call_to').html('<a style="color:black;" onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttonspx-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span  id="c_to_ac">Add Your Service</span></a> ');
   },
   methods: {
     search: function search() {
@@ -12477,7 +12477,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     replaceText: function replaceText() {
       if (this.$router.currentRoute.path == '/services' || this.$router.currentRoute.path == '/serviceResults') {
         $('#call_to').html('');
-        $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="color:#e1e2e3;" class="header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Service</span></a> ');
+        $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="color:black;" class="header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Service</span></a> ');
       }
     },
     initAutocomplete: function initAutocomplete() {

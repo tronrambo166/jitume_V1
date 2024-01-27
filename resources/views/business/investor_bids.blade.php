@@ -23,12 +23,22 @@
 }
 
 </style>
+
+@if(count($bids)==0)
+<div class="p-3"> 
+             <div class="w-50 m-auto d-block">
+                 <img width="120px" src="../images/randomIcons/no_data.png">
+                 <p class="text-left ml-2 font-weight-bold">No Data Found!</p>
+             </div>
+          </div>
+
+ @else
     
  <form action="{{route('bidsAccepted')}}" method="post">  @csrf  
-    <div class="row m-auto">  
-    <h3 class="bid_header text-left my-0 pb-3 py-2 font-weight-bold"> My Bids</h3>      
+    <div class="row m-auto px-3">  
+    <h3 class=" px-0 bid_header text-left my-0 pb-3 py-2 font-weight-bold"> My Bids</h3>      
      <table class="eq table" id="">
-    <thead class="table_head">
+    <thead class="table_head border">
         <tr>
             <th>Date </th>
             <th>Investor </th>
@@ -63,7 +73,7 @@
                         <td>{{$ev->amount }}</td>
                         <td>{{$ev->representation }}</td>
                         <td>
-                            <a class="btn-light rounded py-1 text-center small" href="{{route('remove_bids',$ev->id)}}" onclick="return confirm('Are you sure?');">Remove</a>
+                            <a onclick="return confirm('Are you sure?');" class="btn-light rounded py-1 text-center small" href="{{route('remove_bids',$ev->id)}}" >Remove</a>
                         </td>
    
         </tr>
@@ -233,9 +243,7 @@
 
 
          @endforeach
-         @if(count($bids)==0)
-         <td  > No data found! </td>
-         @endif
+      
     
     </tbody> 
     
@@ -245,7 +253,7 @@
 
 </div>
 </form>
-
+   @endif
 
 </div>
 

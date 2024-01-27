@@ -23,6 +23,16 @@
 }
 
 </style>
+
+@if(count($results)==0)
+<div class="p-3"> 
+             <div class="w-50 m-auto d-block">
+                 <img width="120px" src="../images/randomIcons/no_data.png">
+                 <p class="text-left ml-2 font-weight-bold">No Data Found!</p>
+             </div>
+</div>
+
+ @else
     
  <form action="{{route('bookingAccepted')}}" method="post">  @csrf  
     <div class="row m-auto">   
@@ -164,9 +174,6 @@
 <!-- Details MODAL -->
 
          @endforeach
-         @if(count($results)==0)
-         <td  > No data found! </td>
-         @endif
     
     </tbody> 
     
@@ -191,6 +198,7 @@
 </div>
 </form>
 
+@endif
 
 </div>
 

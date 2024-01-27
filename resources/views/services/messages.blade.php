@@ -29,12 +29,11 @@
 
 
     @if(count($results)==0)
-         <div class="p-3">
-             <h3 class="text-left my-0 pb-3 py-2 font-weight-bold"> My Services</h3> 
+         <div class="p-3"> 
 
              <div class="w-50 m-auto d-block">
                  <img width="120px" src="../images/randomIcons/no_data.png">
-                 <p class="text-left ml-4 font-weight-bold">No Data Found!</p>
+                 <p class="text-left ml-2 font-weight-bold">No Data Found!</p>
              </div>
           </div>
          

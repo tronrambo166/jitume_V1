@@ -104,8 +104,14 @@
 
        <div class="w-50 m-auto d-block">
            <img width="120px" src="../images/randomIcons/no-service.png">
-           <p class="text-left ml-4 font-weight-bold">No services</p>
+           <p class="text-left ml-4 font-weight-bold">No Services</p>
        </div>
+
+       <div class="mb-5 pb-3">
+        <li style="list-style-type: none;" class="w-50 nav-item py-1 mx-auto text-secondary ">
+                        <a href="{{route('add-services')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-3 ml-1 btn searchListing py-1" href="">Add Service</a>
+                    </li> 
+        </div>
     </div>
 
 
@@ -162,42 +168,16 @@
            <img width="120px" src="../images/randomIcons/no-listing.png">
            <p class="text-left ml-4 font-weight-bold">No Business</p>
        </div>
+
+       <div class="mb-5 pb-3">
+        <li style="list-style-type: none;" class="w-50 nav-item py-1 mx-auto text-secondary ">
+                        <a href="{{route('add-listing')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-3 ml-1 btn searchListing py-1" href="">Add Business</a>
+                    </li> 
+        </div>
+
     </div>
 @endif
 
-
-@if(!$business->count() && !$services->count())
-<hr>
-<div class="w-75 m-auto d-flex align-items-center justify-content-center">
-        <div class="mb-5 pb-3 w-50 text-center mx-auto"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary ">
-                        <a href="{{route('add-listing')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold py-1" href="">Add Business</a>
-                    </li> </div>
-
-                    <div class="mb-5 pb-3 w-50 text-center mx-auto"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary ">
-                        <a href="{{route('add-services')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold py-1" href="">Add Service</a>
-                    </li> </div>
-                    </div>
-
-
-
-@elseif(!$business->count())
-<hr>
-<div class="w-75 m-auto d-flex">
-        <div class="mb-5 pb-3 w-50 text-center"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary text-center">
-                        <a href="{{route('add-listing')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold" href="">Add Business</a>
-                    </li> </div>
-                    </div>
-
-
-@elseif(!$services->count())
-<hr>
-<div class="w-75 m-auto d-flex">
-                    <div class="mb-5 pb-3 w-50 text-center"><li style="list-style-type: none;" class="nav-item py-1 px-3 text-secondary text-center">
-                        <a href="{{route('add-services')}}" style="border-radius: 5px;border: 1px solid green;text-decoration: none;" class="px-5 btn btn-outline-success font-weight-bold" href="">Add Service</a>
-                    </li> </div>
-                    </div>
-
-@endif
 
 
 <!--   <div class="h-75 w-75 m-auto d-flex align-items-center justify-content-center">
@@ -211,7 +191,7 @@
     </div> -->
 
     @endif
-
+<div class="clearfix my-4"></div>
 
 
 

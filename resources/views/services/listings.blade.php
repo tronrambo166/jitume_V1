@@ -6,7 +6,7 @@
         
         
     <h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> My Services</h4>  
-    <div class="row mx-auto mb-0">
+    <div class="row mx-auto mb-0 px-3">
             
      <table class="eq table" id="">
     <thead class="table_head">

@@ -1111,6 +1111,9 @@
         .header_btn_width {
             /*width: 70% !important;*/
         }
+        .logo{
+            margin-left: 0;
+        }
 
         .searchBar {
             margin-left: 0rem !important;
@@ -1459,6 +1462,10 @@
 
     @media (min-width: 992px) {
 
+        .logo{
+            margin-left: 45px;
+        }
+        
         .search_results {
             display: none;width:30%;
              z-index: 1000;height:
