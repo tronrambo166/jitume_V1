@@ -24,8 +24,8 @@
 
 </style>
       
-    <div class="row m-auto">   
-    <h4 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold">Messages</h4>  
+    <div class="row m-auto px-3 ">   
+    <h3 class="px-0 bid_header my-0 text-left pb-3 py-2 font-weight-bold">Messages</h3>  
 
 
     @if(count($results)==0)
@@ -40,8 +40,8 @@
 
       @else
 
-     <table class="eq table table-bordered " id="">
-     <thead class="table_head">
+     <table class="eq table" id="">
+     <thead class="table_head border">
         <tr>
 
             <th class="ml-1">From </th>
@@ -68,12 +68,12 @@
                     
                 <td>
                         <form action="{{route('serviceReply')}}" method="post" class=""> @csrf
-                          <div class=" py-2 ">
+                          <div class=" py-1 ">
 
-                              <textarea placeholder="Enter message..." rows="1" cols="26" required name="msg" class="w-75 mt-1"></textarea>
+                              <textarea placeholder="Enter message..." rows="1" cols="26" required name="msg" class="w-75 border mt-0"></textarea>
 
                               <button type="submit" 
-                              class=" py-1 btn-success w-25 small btn header_buttons text-light float-right">Send
+                              class="py-0 mt-0  btn border w-25 small btn text-dark float-right">Send
                             </button>  
                             </div>
                             <input hidden type="number" name="service_id" value="{{$ev->service_id}}">
@@ -95,8 +95,8 @@
     <div class="modal-content detailModal">
       <div class="modal-header">
 
-         <div class="card-header w-100">
-           
+         <div class="card-header px-3 w-100">
+           <h4 class="text-left"> <b> Details </b> </h4>
         </div>
 
         </div>

@@ -253,13 +253,12 @@
     }
 
     .btnUp_listing {
-        border: 1px solid gray;
         color: #2a2929;
-        background-color: whitesmoke;
+        background-color: #d1d1d13b;
         padding: 0px 10px;
         border-radius: 4px;
-        font-size: 11px;
-        font-weight: bold;
+        font-size: 12px;
+        font-weight: 500;
     }
 
     .upload-btn-wrapper input {
@@ -961,7 +960,19 @@
 
     .primary_bg {
         background: #083608;
+        
         /*#001C30*/
+    }
+    
+    .primary_bg2 {
+        background: white;
+        border:1px solid #083608;
+        color: #083608;
+        /*#001C30*/
+    }
+    .primary_bg2:hover {
+        background: #083608;
+        color: white;
     }
 
     .secondary_bg {
@@ -1327,8 +1338,9 @@
     .custom-file-upload {
         border: 1px solid #ccc;
         display: inline-block;
-        padding: 6px 12px;
+        padding: 2px 12px;
         cursor: pointer;
+        font-size: 12px
     }
 
     table tr td .bid_btns {
@@ -1467,11 +1479,11 @@
         }
         
         .search_results {
-            display: none;width:30%;
+            display: none;width:22%;
              z-index: 1000;height:
               600px;position: absolute;
-               left: 185px;
-               top: 165px;
+               left: 494px;
+               top: 169px;
         }
 
         .search_resultsS {
@@ -1609,10 +1621,11 @@ display: block;
 }
 
 .new_msg{
-    background: #b6c5b9;
+    background: black;
     color: red;
     position: absolute;
     top: 14px;
+    border-radius:35px;
 }
 
 .new_msg2{
@@ -1634,4 +1647,8 @@ display: block;
 
 table.dataTable {
     border-collapse:collapse;
+}
+
+.cat_menu option{
+    font-size:12px;
 }

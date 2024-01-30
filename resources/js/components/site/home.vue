@@ -32,7 +32,7 @@
 
                 <div class="col-12 col-sm-4 my-1 py-1 bg-white rounded">
                   <i style="width: 6%;" class="d-inline fa fa-map-marker"></i>
-                  <input id="pac-input" style="width: 94%;border: none;height: 42px;"
+                  <input id="searchbox" onkeyup="suggest(this.value);" style="width: 94%;border: none;height: 42px;"
                     class="px-1 bar bg-white form-control d-inline ml-1 controls" type="text" name="search" value=""
                     placeholder="Location"> <!-- onkeyup="suggest(this.value);" -->
                 </div>
@@ -542,7 +542,7 @@ export default {
           thiss.$router.push({ name: 'listingResults', params: { results: btoa(ids),loc:response.loc } })
         },
         error: function (response) {
-          console.log(response);
+          //console.log(response);
         }
       });
     },
@@ -554,7 +554,7 @@ export default {
         for (const [key, value] of Object.entries(t.results)) {                   
                     value.id = btoa(value.id);
                     value.id = btoa(value.id);
-                    console.log(value.id);
+                   //console.log(value.id);
                 }
 
         //console.log(data);
@@ -565,30 +565,30 @@ export default {
       this.commit = sessionStorage.getItem('commit');
       if (this.commit != null)
         this.$router.push(`business-milestone/${this.commit}`);
-    },
-
-    initAutocomplete: function(){
-      const input = document.getElementById("pac-input");
-      const searchBox = new google.maps.places.SearchBox(input);
-      searchBox.addListener("places_changed", () => {
-      const places = searchBox.getPlaces();
-      if (places.length == 0) { return; }
-      const bounds = new google.maps.LatLngBounds();
-
-      places.forEach((place) => {
-        if (!place.geometry || !place.geometry.location) {
-        console.log("Returned place contains no geometry");return; }
-         console.log(place); 
-      const lat = document.getElementById('lat');
-      const lng = document.getElementById('lng');
-      //lat.value = place.geometry.viewport.mb.hi;
-      //lng.value = place.geometry.viewport.Oa.hi;
-
-      lat.value = place.geometry.location.lat();
-      lng.value = place.geometry.location.lng();
-
-       }); });
     }
+
+    // initAutocomplete: function(){
+    //   const input = document.getElementById("pac-input");
+    //   const searchBox = new google.maps.places.SearchBox(input);
+    //   searchBox.addListener("places_changed", () => {
+    //   const places = searchBox.getPlaces();
+    //   if (places.length == 0) { return; }
+    //   const bounds = new google.maps.LatLngBounds();
+
+    //   places.forEach((place) => {
+    //     if (!place.geometry || !place.geometry.location) {
+    //     console.log("Returned place contains no geometry");return; }
+    //      console.log(place); 
+    //   const lat = document.getElementById('lat');
+    //   const lng = document.getElementById('lng');
+    //   //lat.value = place.geometry.viewport.mb.hi;
+    //   //lng.value = place.geometry.viewport.Oa.hi;
+
+    //   lat.value = place.geometry.location.lat();
+    //   lng.value = place.geometry.location.lng();
+
+    //    }); });
+    // }
 
   },
 
@@ -597,14 +597,14 @@ export default {
     this.routerPush();
     
     //GOOGLE VAR
-    let initializeWhenGoogleIsAvailable = () => {
-      if (google) { // test if google is available
-        this.initAutocomplete(); // if it is, then initalize
-      } else {
-        setTimeout(initializeWhenGoogleIsAvailable, 2000) // if it isn't, wait a bit
-       }
-     };
-  initializeWhenGoogleIsAvailable();
+  //   let initializeWhenGoogleIsAvailable = () => {
+  //     if (google) { // test if google is available
+  //       this.initAutocomplete(); // if it is, then initalize
+  //     } else {
+  //       setTimeout(initializeWhenGoogleIsAvailable, 2000) // if it isn't, wait a bit
+  //      }
+  //    };
+  // initializeWhenGoogleIsAvailable();
    //GOOGLE VAR
 
     //this.initAutocomplete();

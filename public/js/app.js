@@ -8448,8 +8448,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         });
       },
-      error: function error(response) {
-        console.log(response);
+      error: function error(response) {//console.log(response);
       }
     });
   }), _defineProperty(_methods, "latBusiness", function latBusiness() {
@@ -8463,58 +8462,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             value = _Object$entries$_i[1];
 
         value.id = btoa(value.id);
-        value.id = btoa(value.id);
-        console.log(value.id);
+        value.id = btoa(value.id); //console.log(value.id);
       } //console.log(data);
 
     })["catch"](function (error) {});
   }), _defineProperty(_methods, "routerPush", function routerPush() {
     this.commit = sessionStorage.getItem('commit');
     if (this.commit != null) this.$router.push("business-milestone/".concat(this.commit));
-  }), _defineProperty(_methods, "initAutocomplete", function initAutocomplete() {
-    var input = document.getElementById("pac-input");
-    var searchBox = new google.maps.places.SearchBox(input);
-    searchBox.addListener("places_changed", function () {
-      var places = searchBox.getPlaces();
-
-      if (places.length == 0) {
-        return;
-      }
-
-      var bounds = new google.maps.LatLngBounds();
-      places.forEach(function (place) {
-        if (!place.geometry || !place.geometry.location) {
-          console.log("Returned place contains no geometry");
-          return;
-        }
-
-        console.log(place);
-        var lat = document.getElementById('lat');
-        var lng = document.getElementById('lng'); //lat.value = place.geometry.viewport.mb.hi;
-        //lng.value = place.geometry.viewport.Oa.hi;
-
-        lat.value = place.geometry.location.lat();
-        lng.value = place.geometry.location.lng();
-      });
-    });
   }), _methods),
   mounted: function mounted() {
-    var _this2 = this;
-
     this.latBusiness();
     this.routerPush(); //GOOGLE VAR
-
-    var initializeWhenGoogleIsAvailable = function initializeWhenGoogleIsAvailable() {
-      if (google) {
-        // test if google is available
-        _this2.initAutocomplete(); // if it is, then initalize
-
-      } else {
-        setTimeout(initializeWhenGoogleIsAvailable, 2000); // if it isn't, wait a bit
-      }
-    };
-
-    initializeWhenGoogleIsAvailable(); //GOOGLE VAR
+    //   let initializeWhenGoogleIsAvailable = () => {
+    //     if (google) { // test if google is available
+    //       this.initAutocomplete(); // if it is, then initalize
+    //     } else {
+    //       setTimeout(initializeWhenGoogleIsAvailable, 2000) // if it isn't, wait a bit
+    //      }
+    //    };
+    // initializeWhenGoogleIsAvailable();
+    //GOOGLE VAR
     //this.initAutocomplete();
   }
 });
@@ -72543,7 +72510,8 @@ var staticRenderFns = [
                 "px-1 bar bg-white form-control d-inline ml-1 controls",
               staticStyle: { width: "94%", border: "none", height: "42px" },
               attrs: {
-                id: "pac-input",
+                id: "searchbox",
+                onkeyup: "suggest(this.value);",
                 type: "text",
                 name: "search",
                 value: "",

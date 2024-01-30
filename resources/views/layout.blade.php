@@ -2,7 +2,7 @@
 
 <head>
     <script type="module" src="places.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnKB7p3g8iG6IGE9nXX4PqlZ6EPHNUo3w&callback=initAutocomplete&libraries=places&v=weekly" async ></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnKB7p3g8iG6IGE9nXX4PqlZ6EPHNUo3w&callback=initAutocomplete&libraries=places&v=weekly" async ></script> -->
 
     
 
@@ -456,27 +456,27 @@
             var searchText = search;
 
             $.ajax({
-                url: 'get_suggest/' + searchText,
+                url: 'https://photon.komoot.io/api/?q=' + encodeURIComponent(searchText),
                 method: 'get',
                 dataType: 'json',
                 success: function(response) {
-                    // console.log(response);
+                    //console.log(response.features[4]);
+                    var lat = response.features[4].geometry.coordinates[0];
+                    var lng = response.features[4].geometry.coordinates[0];
+                    console.log(lat,lng);
+                
+                    for (i = 0; i < 12; i++) { //console.log(response.features[i].name);
+                        var name = response.features[i].properties.name;
+                        var city = response.features[i].properties.city;
+                        var country = response.features[i].properties.country;
+                        $("#result_list").show();
 
-                    for (i = 0; i < 10; i++) {
-                        //console.log(response.data.length);
-                        if (response.data.length > i) {
-                            var name = response.data[i].name;
-                            var city = response.data[i].city;
-                            var country = response.data[i].country;
-                            $("#result_list").show();
-
-                            $("#result_list").append(' <div onclick="address(\'' + name + ',' + city + ',' + country + '\');" style="" data-id="' + response.data[i].name + '" class="address  py-0 my-0 border broder-dark bg-light shadow single_comms">  <h6 class="font-weight-bold text-dark d-inline" ><i class="fa fa-map-marker text-success" aria-hidden="true"></i> ' + name + '</h6> <p  class="d-inline text-dark"> Loc: <small>' + city + ', ' + country + '</small> </p> </div>');
+                            if(i<10)
+                            $("#result_list").append(' <div onclick="address(\'' + name + ',' + country + '\');" style="" data-id="' + name + '" class="address  py-1 px-1 my-0 border-top bg-white single_comms">  <p class="h6 text-dark d-inline" ><i class="fa fa-map-marker mr-1 text-dark" aria-hidden="true"></i> ' + name + '</p> <p  class="d-inline text-dark"><small>, ' + country + '</small> </p> </div>');
 
 
                         }
-                    }
-                    //document.getElementById('result_list').style.overflowY="scroll";   
-
+                        //document.getElementById('result_list').style.overflowY="scroll";                      
                 },
                 error: function(error) {
                     console.log(error);
@@ -502,7 +502,7 @@
     <script type="text/javascript">
         function address(place) {
             //var place = $(this).attr('data-id');
-            document.getElementById('pac-input').value = place;
+            document.getElementById('searchbox').value = place;
             //$("#result_list").html('');
             document.getElementById("result_list").style.display = 'none';
 
@@ -1782,11 +1782,6 @@
 <script src="sddjs/map.js"> </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnKB7p3g8iG6IGE9nXX4PqlZ6EPHNUo3w&callback=myMap" async ></script>
  GOOGLE MAP -->
-
- <!-- <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnKB7p3g8iG6IGE9nXX4PqlZ6EPHNUo3w&callback=initAutocomplete&libraries=places&v=weekly"
-      defer
-    ></script> -->
 
 
 <script type="text/javascript">

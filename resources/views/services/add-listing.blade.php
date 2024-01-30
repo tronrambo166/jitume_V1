@@ -20,7 +20,7 @@
         </div>  @endif
 
         
-        <h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Add Service</h4> 
+        <h4 class="bid_header px-5 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Add Service</h4> 
 
 
         @if($connected == 0)
@@ -34,7 +34,7 @@
 
         @else 
 
-        <div class="row w-75 mx-auto my-3">
+        <div class="row px-5 mx-auto my-3">
            
                 <div class="col-sm-12">
                   
@@ -44,21 +44,19 @@
                
                 <div class="row form-group">
                     
-                    <div class="col-sm-6"> 
+                    <div class="col-sm-4"> 
                         <div class="row">
                         
                     <div class="col-sm-12">
-                    <input required=""  class=" form-control border border-none rounded form-group" type="text" name="title" id="title" placeholder="Service Title"  /> 
+                    <input required=""  class=" border form-group" type="text" name="title" id="title" placeholder="Service Title"  /> 
                     </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-6"> 
-                        <div class="row">
-                            
-                    
+                    <div class="col-sm-4"> 
+                    <div class="row">                                      
                     <div class="col-sm-12"> 
-                    <input required="" type="number" class="form-control" placeholder="Price" name="price" value="">                     
+                    <input required="" type="number" class="border" placeholder="Price" name="price" value="">                     
                     </div>
                         </div>
                     </div>
@@ -68,29 +66,50 @@
 
             <div class="row form-group"> 
                                         
-            <div class="col-sm-6">
-            <select name="category" class="border-none form-control"><option hidden="hidden" class="form-control">Services</option> <option value="Business Planning" class="form-control">Business Planning</option> <option value="IT">IT</option> <option value="Legal Project Management">Legal Project Management</option> <option value="Branding and Design">Branding and Design </option> <option value="Auto">Auto</option> <option value="Finance, Accounting &amp; 
+            <div class="col-sm-4">
+              <div class="row">                                      
+              <div class="col-sm-12">
+            <select style="width: 66%;" name="category" class="cat_menu border py-1"><option hidden="hidden" class="">Services</option> <option value="Business Planning" class="form-control">Business Planning</option> <option value="IT">IT</option> <option value="Legal Project Management">Legal Project Management</option> <option value="Branding and Design">Branding and Design </option> <option value="Auto">Auto</option> <option value="Finance, Accounting &amp; 
                 Tax Marketing">Finance, Accounting &amp; 
                 Tax Marketing</option> <option value="Tax Marketing">Tax Marketing</option> <option value="Public Relations">Public Relations</option> 
-                <option value="0" class="form-control">Project Management – Business\Investor Relations & Asset Management</option>
+                <option value="0" class="">Project/Asset Management</option>
                 <option value="Other">Other</option></select>
-  </div>
+            </div>
+             </div>
+              </div>
 
-                 <div class="col-sm-6"> 
-                    <textarea class="form-control" required="" name="details" rows="1" cols="30" placeholder="Details"></textarea>
+                 <div class="col-sm-4"> 
+                   <div class="row">                                      
+                    <div class="col-sm-12">
+                      <input id="searchbox" onkeyup="suggest(this.value);" required="" style="height: 32px;" class=" border d-inline" type="text" name="location" value="" placeholder="Enter a location..."> <!-- onkeyup="suggest(this.value);"  -->
+                    <input type="text" name="lat" id="lat" hidden value="">
+                    <input type="text" name="lng" id="lng" hidden value="">
+                    
+                     </div>
+                      </div>
+                    </div>
+
+                    <div class="row" style="">
+                                <div id="result_list" class="" style="display: none;left: 280px;width:28%; z-index: 1000;height: 600px;position: absolute;">
+                                    
+                                </div>
                     </div>
                        
                     </div>
 
-                   <div class="row my-3 row form-group">
 
+
+                   <div class="row my-3 row form-group">
                     <div class="col-sm-12"> 
                         <div class="row">
-                           <div class="col-sm-2"><label class="h4" for="name">
-                                <strong>Cover</strong></label>
-                               </div>
+
+                    <div class="col-sm-5"> 
+                    <textarea class="border" required="" name="details" rows="2" cols="38" placeholder="Details"></textarea>
+                    </div>
+
                     
-                    <div class="col-sm-4"> 
+                    <div class="col-sm-2 ml-4"> 
+                   <div> <strong>Cover</strong></label> </div>
                     <div class="upload-btn-wrapper">
                       <label for="file-upload" class="btnUp2 custom-file-upload">
                                 Upload <i class="ml-2 fa fa-arrow-up"></i>
@@ -99,19 +118,7 @@
                     </div>
                     </div>
 
-                    <div class="col-sm-6"> 
-                    <input id="pac-input" required="" style="height: 32px;" class=" form-control d-inline" type="text" name="location" value="" placeholder="Enter a location..."> <!-- onkeyup="suggest(this.value);"  -->
-                    <input type="text" name="lat" id="lat" hidden value="">
-                    <input type="text" name="lng" id="lng" hidden value="">
                     </div>
-
-                         <div class="row" style="">
-                                <div id="result_list" class="" style="display: none;left: 382px;width:41%; z-index: 1000;height: 600px;position: absolute;">
-                                    
-                                </div>
-                            </div>
-
-                        </div>
                     </div> 
                 </div>
 
@@ -126,9 +133,9 @@
                                </div> 
                                </div>
                     
-                    <div class="col-sm-5"> 
+                    <div class="col-sm-3"> 
 
-                    <div class="upload-btn-wrapper">
+                    <div class="upload-btn-wrapper px-0">
                       
                       <label for="file-upload2" class="btnUp_listing">
                         Upload Company/Individual Pin *
@@ -140,13 +147,13 @@
                     </div>
 
 
-                    <div class="col-sm-7"> 
+                    <div class="col-sm-4"> 
 
-                    <div class="upload-btn-wrapper">
+                    <div class="upload-btn-wrapper px-1 text-center">
                       <label for="file-upload3" class="btnUp_listing"> Upload Directors Identification(Id/Passport)*
                       <img src="../images/up.svg" width="30px"> </label>
                       <input style="" id="file-upload3" required="" type="file" name="identification" />
-                      <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
+                      <span class="text-left docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
                     </div>
 
                     </div>
@@ -158,9 +165,24 @@
 
         <div class="row my-4 form-group">
 
-            <div class="col-sm-12 mx-auto"> 
+          <div class="col-sm-3"> 
 
-                    <div class="upload-btn-wrapper w-75  d-block">
+                    <div class="upload-btn-wrapper d-block">
+                     <label for="file-upload5" class="text-center w-100 bg-info btnUp_listing"> Upload supportive video*
+                      <img src="../images/up.svg" width="30px"> </label>
+                      <input style="display:none;" id="file-upload5" type="file" name="video" />
+                    </div>
+
+                    <div class="d-block"> <span class="my-3 d-block font-weight-bold text-center m-auto"> OR </span>
+          
+                     <input class="border w-100 d-blocks d-inline " placeholder="Embed video link" name="link" /> 
+                     </div>
+
+                    </div>
+
+
+                    <div class="col-sm-4"> 
+                    <div class="upload-btn-wrapper d-block">
                       <label for="file-upload4" class="text-center w-100 btnUp_listing">  Upload Supporting Business Documentation*
                       <img src="../images/up.svg" width="30px"> </label>
                       <input style="" id="file-upload4" required="" type="file" name="document" />
@@ -168,31 +190,15 @@
                     </div>
 
                     </div>
-
-
-                    <div class="col-sm-12 mt-3"> 
-
-                    <div class="upload-btn-wrapper w-75  d-block">
-                     <label for="file-upload5" class="text-center w-100 bg-info btnUp_listing"> Upload supportive video*
-                      <img src="../images/up.svg" width="30px"> </label>
-                      <input style="display:none;" id="file-upload5" type="file" name="video" />
-                    </div>
-
-                    </div>
-                    
-            <div class="col-sm-12 w-75  d-block"> <span class="my-3 d-block font-weight-bold text-center m-auto"> OR </span>
-
-          
-           <input class="w-100 d-blocks d-inline form-control" placeholder="Embed video link" name="link" /> 
-
-        </div>
+      
+            
           </div>
 
 
 
 
-                <div class="row my-5"> 
-                    <button style="width: 40%;background:green;border-radius: 2px;" class="m-auto btn text-white font-weight-bold">SAVE</button></div>
+                <div class="row w-50 text-center my-5"> 
+                    <button style="width: 40%;border-radius: 2px;" class="m-auto rounded primary_bg2 py-1">Save Service</button></div>
 
 
             </form>

@@ -35,10 +35,10 @@
  @else
     
  <form action="{{route('bookingAccepted')}}" method="post">  @csrf  
-    <div class="row m-auto">   
-    <h4 class="bid_header my-0 text-left pb-3 py-2 font-weight-bold">Service Bookings</h4>     
-     <table class="eq table table-bordered " id="">
-    <thead class="table_head">
+    <div class="row m-auto px-3">   
+    <h4 class="bid_header px-0 my-0 text-left pb-3 py-2 font-weight-bold">Service Bookings</h4>     
+     <table class="eq table" id="">
+     <thead class="table_head border">
         <tr>
             <th> </th>
             <th>Date </th>
