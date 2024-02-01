@@ -297,7 +297,6 @@ $listing_name = $request->listing_name;
 $location = $request->search;
 $lat = (float)$request->lat;
 $lng = (float)$request->lng;
-
 $category = $request->category;
 $results = array();
 

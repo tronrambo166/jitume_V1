@@ -49,7 +49,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
 
 </head>
 
@@ -439,7 +442,9 @@
 
 
 
-
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/openMap.js"> </script>
+    
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
 
@@ -460,19 +465,24 @@
                 method: 'get',
                 dataType: 'json',
                 success: function(response) {
-                    //console.log(response.features[4]);
-                    var lat = response.features[4].geometry.coordinates[0];
-                    var lng = response.features[4].geometry.coordinates[0];
-                    console.log(lat,lng);
+                    //console.log(response.features);
                 
                     for (i = 0; i < 12; i++) { //console.log(response.features[i].name);
                         var name = response.features[i].properties.name;
                         var city = response.features[i].properties.city;
+                        if(city == null || city == 'undefined')
+                        city = '';
                         var country = response.features[i].properties.country;
-                        $("#result_list").show();
+                        var lng = response.features[i].geometry.coordinates[0];
+                        var lat = response.features[i].geometry.coordinates[1];
 
+                        $("#result_list").show();
                             if(i<10)
-                            $("#result_list").append(' <div onclick="address(\'' + name + ',' + country + '\');" style="" data-id="' + name + '" class="address  py-1 px-1 my-0 border-top bg-white single_comms">  <p class="h6 text-dark d-inline" ><i class="fa fa-map-marker mr-1 text-dark" aria-hidden="true"></i> ' + name + '</p> <p  class="d-inline text-dark"><small>, ' + country + '</small> </p> </div>');
+
+                            if(city == '')
+                            $("#result_list").append(' <div onclick="address(\'' + name + ','  + country + '\', \'' + lat + '\', \'' + lng + '\');" style="" data-id="' + name + '" class="address  py-1 px-1 my-0 border-top bg-white single_comms">  <p class="h6 text-dark d-inline" ><i class="fa fa-map-marker mr-1 text-dark" aria-hidden="true"></i> ' + name + '</p> <p  class="d-inline text-dark"><small>, ' + country + '</small> </p> </div>');
+                            else
+                            $("#result_list").append(' <div onclick="address(\'' + name + ','+ city + ','  + country + '\', \'' + lat + '\', \'' + lng + '\');" style="" data-id="' + name + '" class="address  py-1 px-1 my-0 border-top bg-white single_comms">  <p class="h6 text-dark d-inline" ><i class="fa fa-map-marker mr-1 text-dark" aria-hidden="true"></i> ' + name + '</p> <p  class="d-inline text-dark"><small>, ' + city + ',' + country + '</small> </p> </div>');
 
 
                         }
@@ -500,11 +510,16 @@
 
 
     <script type="text/javascript">
-        function address(place) {
-            //var place = $(this).attr('data-id');
+        function address(place,lat2,lng2) {
             document.getElementById('searchbox').value = place;
             //$("#result_list").html('');
             document.getElementById("result_list").style.display = 'none';
+
+              const lat = document.getElementById('lat');
+              const lng = document.getElementById('lng');
+
+              lat.value = lat2;
+              lng.value = lng2;
 
         }
     </script>
@@ -604,8 +619,8 @@
                 <div id="header" class="modal-header">
 
                     <div class="card-header w-100">
-                        <button id="login" onclick="logins()" class="w-25 btn   px-1 mr-2">{{ __('Sign In') }}</button>
-                        <button id="register" onclick="registers()" class="w-50 btn  px-2">{{ __('Register') }}</button>
+                        <button id="login" onclick="logins()" class="w-25 btn font-weight-bold   px-1 mr-2">{{ __('Sign In') }}</button>
+                        <button id="register" onclick="registers()" class="w-50 btn  font-weight-bold  px-2">{{ __('Register') }}</button>
 
                         @if(Session::has('email')) <p class="text-danger ml-5">{{Session::get('email')}} @php Session::forget('email'); @endphp </p> @endif
                     </div>
@@ -1516,13 +1531,14 @@
 
 
     <script type="text/javascript">
-        $('#login').css({background:'#083608', color:'white'});
-        $('#logins').css({background:'#083608', color:'white'});
+        $('#login').css({borderBottom:'1px solid #083608', color:'#083608'});
+        $('#logins').css({borderBottom:'1px solid #083608', color:'#083608'});
         $('#business_reg').hide();
 
         function login() {
+            $('#register').css({border:'none', color:'black'})
             $('#registers').css({background:'none', color:'black'});
-            $('#logins').css({background:'#083608', color:'white'});
+            $('#logins').css({borderBottom:'1px solid #083608', color:'#083608'});
             $('#user_logs').show();
             $('#all_logins').show();
             $('#user_regs').hide();
@@ -1532,7 +1548,7 @@
         function register() {
             $('#logins').css({background:'none', color:'black'});
             $('#login').css('border', 'none');
-            $('#registers').css({background:'#083608', color:'white'});
+            $('#registers').css({borderBottom:'1px solid #083608', color:'#083608'});
 
             $('#user_logs').hide();
             $('#all_register').show();
@@ -1543,11 +1559,11 @@
 
         function logins() {
             $('#register').css({background:'none', color:'black'});
-            $('#login').css({background:'#083608', color:'white'});
+            $('#login').css({borderBottom:'1px solid #083608', color:'#083608'});
 
             $('#art_log').css('border-bottom', 'none');
             $('#service_log').css('border-bottom', 'none');
-            $('#usr_log').css('border-bottom', '2px solid #083608');
+            $('#usr_log').css({borderBottom:'1px solid #083608', color:'#083608'});
 
             $('#user_log').show();
             $('#artist_log').hide();
@@ -1559,7 +1575,7 @@
 
         function registers() {
             $('#login').css({background:'none', color:'black'});
-            $('#register').css({background:'#083608', color:'white'});
+            $('#register').css({borderBottom:'1px solid #083608', color:'#083608'});
 
             //$('#user_log').hide();
             $('#all_logins').hide();

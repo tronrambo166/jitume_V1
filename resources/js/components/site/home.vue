@@ -526,7 +526,7 @@ export default {
         dataType: 'json',
         data: form.serialize(),
         success: function (response) {
-          console.log(response);
+          //console.log(response);
 
           Object.entries(response.results).forEach(entry => {
             const [index, row] = entry;

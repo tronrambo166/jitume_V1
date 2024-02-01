@@ -107,7 +107,7 @@
 
             <div class="col-md-6">
                 <div class="m-auto map_style">
-                    <div id="googleMap" style="width:100%;height:95%;"></div>
+                     <div id="map" style="height: 95%;"></div> 
                 </div>
             </div>
 
@@ -160,7 +160,7 @@ export default {
                     
                     value.id = btoa(value.id);
                     value.id = btoa(value.id);
-                    console.log(value.id);
+                    //console.log(value.id);
                 }
 
                 t.count = data.data.count;
@@ -168,7 +168,7 @@ export default {
                 //Setting Curr LatLng
                 t.queryLat = data.data.data[0].lat;
                 t.queryLng = data.data.data[0].lng;
-                console.log(t.results);
+                //console.log(t.results);
             }).catch((error) => { })
         }
         },
@@ -251,17 +251,19 @@ export default {
              var myLong = position.coords.longitude;
         } 
 
-        var coords = new google.maps.LatLng(myLat,myLong);
+        
+
+        var coords = ([myLat,myLong]);
         var mapOptions = {
         zoom:8,
         center:coords,
         //center:new google.maps.LatLng(51.508742,-0.120850),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
         }
 
-        var div = $("#googleMap").length;
-        if(div)
-        var map = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+        //MAP CONTAINER
+        let map = new L.map('map' , mapOptions);
+        let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        map.addLayer(layer);
  
         //console.log(this.results);
         for (const [key, value] of Object.entries(this.results)) {
@@ -277,55 +279,41 @@ export default {
                 "</div>" +
                 "</div>";
 
-            const infowindow = new google.maps.InfoWindow({
-                content: contentString,
-                ariaLabel: value.name,
-              });
+            // const infowindow = new google.maps.InfoWindow({
+            //     content: contentString,
+            //     ariaLabel: value.name,
+            //   });
             //INFO
-            const investment_needed = (value.investment_needed/1000)+"K";
-              this.addMarker({lat:value.lat, lng:value.lng},map,value.name,investment_needed,infowindow);
+              const investment_needed = (value.investment_needed/1000)+"K";
+              //this.addMarker({lat:value.lat, lng:value.lng},map,value.name,investment_needed,infowindow);
+              var coord = ([value.lat,value.lng]);
+              //this.addMarker(coord,map);
             }
         
 
             this.addMarkerHome(coords,map);
         },
 
-        addMarker(coords,map,title,fee,infowindow){
+        addMarker(coords,map){
         const icon = {
             url: "images/map/other_business.png", // url
-            scaledSize: new google.maps.Size(60, 40), // scaled size
         };
-
-        var marker = new google.maps.Marker({
-        map:map,
-        position:coords,
-        title:title,
-        label:'$'+fee,
-        icon:icon
-        });
-
-        marker.addListener("click", () => {
-            infowindow.open({
-              anchor: marker,
-              map,
-            });
-            });
+        var marker = new L.Marker(coords);
+        marker.addTo(map);
         },
 
-         addMarkerHome(coords,map){
+        addMarkerHome(coords,map){
         const icon = {
             url: "images/map/myloc.png", // url
-            scaledSize: new google.maps.Size(30, 30), // scaled size
+            //scaledSize: new google.maps.Size(30, 30), // scaled size
         };
 
-        var marker = new google.maps.Marker({
-        map:map,
-        position:coords,
-        icon:icon
-        });
+        var marker = new L.Marker(coords);
+        marker.addTo(map);
+
         },
 
-         failure(){},
+        failure(){},
         //MAP -- MAP
 
     },
@@ -335,10 +323,8 @@ export default {
         this.setRes()
         this.range()
 
-        //MAP -- MAP
         var x = navigator.geolocation;
         setTimeout(() => x.getCurrentPosition(this.success, this.failure), 1000);
-        //MAP -- MAP
 
         //return this.$store.dispatch("fetchpro")
     }

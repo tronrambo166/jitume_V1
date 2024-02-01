@@ -8427,7 +8427,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       dataType: 'json',
       data: form.serialize(),
       success: function success(response) {
-        console.log(response);
+        //console.log(response);
         Object.entries(response.results).forEach(function (entry) {
           var _entry = _slicedToArray(entry, 2),
               index = _entry[0],
@@ -10073,15 +10073,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                 value = _Object$entries$_i[1];
 
             value.id = btoa(value.id);
-            value.id = btoa(value.id);
-            console.log(value.id);
+            value.id = btoa(value.id); //console.log(value.id);
           }
 
           t.count = data.data.count; //Setting Curr LatLng
 
           t.queryLat = data.data.data[0].lat;
-          t.queryLng = data.data.data[0].lng;
-          console.log(t.results);
+          t.queryLng = data.data.data[0].lng; //console.log(t.results);
         })["catch"](function (error) {});
       }
     },
@@ -10149,15 +10147,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         var myLong = position.coords.longitude;
       }
 
-      var coords = new google.maps.LatLng(myLat, myLong);
+      var coords = [myLat, myLong];
       var mapOptions = {
         zoom: 8,
-        center: coords,
-        //center:new google.maps.LatLng(51.508742,-0.120850),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-      var div = $("#googleMap").length;
-      if (div) var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions); //console.log(this.results);
+        center: coords //center:new google.maps.LatLng(51.508742,-0.120850),
+
+      }; //MAP CONTAINER
+
+      var map = new L.map('map', mapOptions);
+      var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+      map.addLayer(layer); //console.log(this.results);
 
       for (var _i3 = 0, _Object$entries3 = Object.entries(this.results); _i3 < _Object$entries3.length; _i3++) {
         var _Object$entries3$_i = _slicedToArray(_Object$entries3[_i3], 2),
@@ -10165,54 +10164,35 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             value = _Object$entries3$_i[1];
 
         //INFO
-        var contentString = '<div id="content">' + '<div id="siteNotice">' + "</div>" + '<h1 id="firstHeading" class="firstHeading">' + value.name + '</h1>' + '<div id="bodyContent">' + '<p><b>Location: </b>' + value.location + ', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="https://test.jitume.com/#/listingDetails/' + value.id + '">' + "View Business</a> " + "</div>" + "</div>";
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString,
-          ariaLabel: value.name
-        }); //INFO
+        var contentString = '<div id="content">' + '<div id="siteNotice">' + "</div>" + '<h1 id="firstHeading" class="firstHeading">' + value.name + '</h1>' + '<div id="bodyContent">' + '<p><b>Location: </b>' + value.location + ', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="https://test.jitume.com/#/listingDetails/' + value.id + '">' + "View Business</a> " + "</div>" + "</div>"; // const infowindow = new google.maps.InfoWindow({
+        //     content: contentString,
+        //     ariaLabel: value.name,
+        //   });
+        //INFO
 
-        var investment_needed = value.investment_needed / 1000 + "K";
-        this.addMarker({
-          lat: value.lat,
-          lng: value.lng
-        }, map, value.name, investment_needed, infowindow);
+        var investment_needed = value.investment_needed / 1000 + "K"; //this.addMarker({lat:value.lat, lng:value.lng},map,value.name,investment_needed,infowindow);
+
+        var coord = [value.lat, value.lng]; //this.addMarker(coord,map);
       }
 
       this.addMarkerHome(coords, map);
     },
-    addMarker: function addMarker(coords, map, title, fee, infowindow) {
+    addMarker: function addMarker(coords, map) {
       var icon = {
-        url: "images/map/other_business.png",
-        // url
-        scaledSize: new google.maps.Size(60, 40) // scaled size
+        url: "images/map/other_business.png" // url
 
       };
-      var marker = new google.maps.Marker({
-        map: map,
-        position: coords,
-        title: title,
-        label: '$' + fee,
-        icon: icon
-      });
-      marker.addListener("click", function () {
-        infowindow.open({
-          anchor: marker,
-          map: map
-        });
-      });
+      var marker = new L.Marker(coords);
+      marker.addTo(map);
     },
     addMarkerHome: function addMarkerHome(coords, map) {
       var icon = {
-        url: "images/map/myloc.png",
-        // url
-        scaledSize: new google.maps.Size(30, 30) // scaled size
+        url: "images/map/myloc.png" // url
+        //scaledSize: new google.maps.Size(30, 30), // scaled size
 
       };
-      var marker = new google.maps.Marker({
-        map: map,
-        position: coords,
-        icon: icon
-      });
+      var marker = new L.Marker(coords);
+      marker.addTo(map);
     },
     failure: function failure() {} //MAP -- MAP
 
@@ -10222,13 +10202,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
     this.loc = this.$route.params.loc;
     this.setRes();
-    this.range(); //MAP -- MAP
-
+    this.range();
     var x = navigator.geolocation;
     setTimeout(function () {
       return x.getCurrentPosition(_this.success, _this.failure);
-    }, 1000); //MAP -- MAP
-    //return this.$store.dispatch("fetchpro")
+    }, 1000); //return this.$store.dispatch("fetchpro")
   }
 });
 
@@ -74878,10 +74856,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-6" }, [
       _c("div", { staticClass: "m-auto map_style" }, [
-        _c("div", {
-          staticStyle: { width: "100%", height: "95%" },
-          attrs: { id: "googleMap" },
-        }),
+        _c("div", { staticStyle: { height: "95%" }, attrs: { id: "map" } }),
       ]),
     ])
   },

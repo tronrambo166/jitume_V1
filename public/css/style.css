@@ -69,6 +69,10 @@
     /*Calling Fonts*/
 
 
+    #map{
+    width: 100%;
+    /*height: 100vh;*/
+}
     .navbar ul li router-link {
         color: #f8f9fa;
         font-family: Outfit-Regular;
@@ -1652,3 +1656,6 @@ table.dataTable {
 .cat_menu option{
     font-size:12px;
 }
+
+#login,#register:hover{border:none;}
+#login,#register:focus{border:none;}
