@@ -615,15 +615,14 @@
     <!-- LOGIN MODAL -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="max-width: 620px;border-radius: 2px;">
-                <div id="header" class="modal-header">
+            <div class="modal-content" style="width: 560px;border-radius: 20px;">
+                <div id="header" class=" m-auto modal-header" style="width: 80%; border-bottom:1px solid #66666630;">
 
-                    <div class="card-header w-100">
-                        <button id="login" onclick="logins()" class="w-25 btn font-weight-bold   px-1 mr-2">{{ __('Sign In') }}</button>
-                        <button id="register" onclick="registers()" class="w-50 btn  font-weight-bold  px-2">{{ __('Register') }}</button>
-
-                        @if(Session::has('email')) <p class="text-danger ml-5">{{Session::get('email')}} @php Session::forget('email'); @endphp </p> @endif
+                    <div class="d-block mx-auto my-3 rounded-circle border-bottom text-center" style="background: #C4C4C4">
+                        <img class="rounded-circle p-2" src="images/randomIcons/mini_logo.png">
                     </div>
+
+                    
 
 
 
@@ -633,11 +632,42 @@
                 </div>
 
 
-                <div class="modal-body">
+                <div class="m-auto modal-body" style="width: 75%;">
 
-                    <div id="choose" class="px-0 collapse">
-                        <h5 class="text-secondary font-weight-bold text-center btn btn-light w-100 m-auto">Please choose the account type!</h5>
+                    <div class="card-header d-block w-50 m-auto">
+                        <div class="row">
+                            
+                        <div class="col-md-6">
+                            <button id="login" onclick="logins()" class=" pb-1 font-weight-bold   px-1 ">{{ __('Sign In') }}</button>
+                        </div>
+
+                        <div class="col-md-6">
+                             <button id="register" onclick="registers()" class=" pb-1  font-weight-bold  px-2">{{ __('Sign Up') }}</button>
+                        </div>              
+
+                        @if(Session::has('email')) <p class="text-danger ml-5">{{Session::get('email')}} @php Session::forget('email'); @endphp </p> @endif
+
+                        </div>
                     </div>
+
+
+                    <div class="card-header d-block w-50 mx-auto my-4">
+                        <div class="row">
+                            
+                        <div class="col-md-12 text-center sign_text">
+                            <h2 class="font-weight-bold">Sign In</h2>
+                            <h4>Enter details to log in</h4>
+                        </div>
+
+                        
+
+                        </div>
+                    </div>
+
+
+                   <!--  <div id="choose" class="px-0 collapse">
+                        <h5 class="text-secondary font-weight-bold text-center btn btn-light w-100 m-auto">Please choose the account type!</h5>
+                    </div> -->
 
 
                     <div class="hidden_currency ">
@@ -647,19 +677,9 @@
                                 <div class="card collapse" id="all_registers">
 
                                     <div class="text-center User-Artist-Select">
-                                        <div class="col-md-5"></div>
-
-                                        <!--  <div class="card-header w-100">
-            <button  id="user"onclick="user()" class="w-25 btn  font-weight-bold px-3 mr-2">{{ __('Investor') }}</button>
-            <button  id="business" onclick="business()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Business") }}</button>
-
-             <button  id="service" onclick="service()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Service") }}</button>
-            </div> -->
-
-                                        <div id="errors" class="w-100">
-
+                                     <div class="col-md-5"></div>
+                                      <div id="errors" class="w-100">
                                         </div>
-
                                         <p id="typeZero" class="font-weight-bold text-center">Register a new account or log in to Jitume</p>
                                     </div>
 
@@ -958,7 +978,7 @@
 
                                 <!-- HIDDEN login--> <!-- HIDDEN login--> <!-- HIDDEN login--> <!-- login-->
 
-                                <div class="card" id="all_logins">
+                                <div class="" id="all_logins">
 
                                     <!-- <div class="card-header w-100 text-center">
             <button  id="usr_log"onclick="user_log()" class="w-25 btn  font-weight-bold px-3 mr-2">{{ __('Investor') }}</button>
@@ -968,17 +988,29 @@
 
             </div> -->
 
-                                    <div id="user_log" class="card-body text-center py-0">
+                                    <div id="user_log" class="px-4 py-0">
 
                                         <form method="POST" class="" action="{{route('login')}}">
                                             @csrf
 
+
                                             <input type="text" hidden name="c_to_action_login" id="c_to_action_login" value="">
 
-                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" value="{{ old('email') }}" required />
+                                            <div id="form_fields">
+                                                <label class="mb-0"><p class="mb-0 d-block w-100 float-left small small_label">Email Address</p></label>
+                                           
+                                            <input class="border w-100 py-2 mr-1" type="email" name="email" placeholder="" id="inputEmailAddress" value="{{ old('email') }}" required />
+                                            </div>
 
-
-                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="Enter password" value="" required />
+                                            <div id="form_fields2" class="mt-3">
+                                                <label class="mb-0 w-100"><p class="mb-0 d-block w-50 float-left small small_label">Password</p>
+                                                    <span id="hideButton" onclick="passShow();" class="float-right p-0 w-50 text-right small_label px-2">
+                                                     <img width="15px" src="images/randomIcons/hide.png"> <span id="hide">Show</span>  
+                                                    </span>
+                                                </label>
+                                           
+                                            <input class="border w-100 py-2 mr-1" name="password" id="inputPassword" type="password" value="" required />
+                                            </div>
 
 
 
@@ -988,28 +1020,18 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                            @enderror -->
-
+                                           <div class="row">
+                                            <div class="col-sm-12 pr-1 text-center">
+                                                <a href="{{ route('forgot','email') }}" style="color:black;" class=" text-responsive font-weight-bold mx-auto my-2 d-inline-block py-0 small">Forgot Password?</a>
+                                            </div>
+                                        </div>
 
 
                                             @if (Route::has('forgetPass'))
                                             <a href="{{ route('password.request') }}" class="small text">Forgot password ?</a> @endif
 
-                                            <input type="submit" class=" d-block w-25 mx-auto my-2 btn btn-outline-success  font-weight-bold " href="" name="Log In" value="Login" />
+                                            <input type="submit" class=" d-block w-100 mx-auto my-2 py-1 proceed_btn text-light font-weight-bold " href="" name="Log In" value="Proceed" />
                                         </form>
-
-
-
-
-
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-12 pr-1">
-                                                <a href="{{ route('forgot','email') }}" class=" text-responsive font-weight-bold text-info mx-auto my-2 d-inline-block py-0 small">Forgot Password?</a>
-                                            </div>
-
-
-                                        </div>
-
 
                                     </div>
 
@@ -1531,14 +1553,15 @@
 
 
     <script type="text/javascript">
-        $('#login').css({borderBottom:'1px solid #083608', color:'#083608'});
-        $('#logins').css({borderBottom:'1px solid #083608', color:'#083608'});
+        $('#login').css({borderBottom:'1px solid #083608', color:'#014811', background:'white'});
+        $('#logins').css({borderBottom:'1px solid #083608', color:'#014811'});
+        $('#register').css({background:'white', border:'none', color:'grey'})
         $('#business_reg').hide();
 
         function login() {
             $('#register').css({border:'none', color:'black'})
-            $('#registers').css({background:'none', color:'black'});
-            $('#logins').css({borderBottom:'1px solid #083608', color:'#083608'});
+            $('#registers').css({border:'none', color:'black'});
+            $('#logins').css({borderBottom:'1px solid #083608', color:'#014811'});
             $('#user_logs').show();
             $('#all_logins').show();
             $('#user_regs').hide();
@@ -1547,8 +1570,8 @@
 
         function register() {
             $('#logins').css({background:'none', color:'black'});
-            $('#login').css('border', 'none');
-            $('#registers').css({borderBottom:'1px solid #083608', color:'#083608'});
+            $('#login').css({borderBottom:'1px solid white', color:'black'})
+            $('#registers').css({borderBottom:'1px solid #014811', color:'#014811'});
 
             $('#user_logs').hide();
             $('#all_register').show();
@@ -1558,8 +1581,8 @@
 
 
         function logins() {
-            $('#register').css({background:'none', color:'black'});
-            $('#login').css({borderBottom:'1px solid #083608', color:'#083608'});
+            $('#register').css({border:'none', color:'grey'});
+            $('#login').css({borderBottom:'1px solid #014811', color:'#014811'});
 
             $('#art_log').css('border-bottom', 'none');
             $('#service_log').css('border-bottom', 'none');
@@ -1574,7 +1597,7 @@
         }
 
         function registers() {
-            $('#login').css({background:'none', color:'black'});
+            $('#login').css({border:'none', color:'grey'});
             $('#register').css({borderBottom:'1px solid #083608', color:'#083608'});
 
             //$('#user_log').hide();
@@ -1781,6 +1804,17 @@
 
         function popupClose() {
             $('.success_message').css('display', 'none');
+        }
+
+        function passShow(){
+            $('#inputPassword').attr('type','text');
+            $('#hideButton').attr("onclick","passHide()");
+            document.getElementById("hide").innerHTML="Hide";
+        }
+        function passHide(){
+            $('#inputPassword').attr('type','password');
+            $('#hideButton').attr("onclick","passShow()");
+            document.getElementById("hide").innerHTML="Show";
         }
     </script>
 

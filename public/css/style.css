@@ -66,6 +66,11 @@
         src: url('font/static/Outfit-Thin.ttf') format('truetype');
     }
 
+    @font-face {
+        font-family: 'Outfit-Medium';
+        src: url('font/static/Outfit-Medium.ttf') format('truetype');
+    }
+
     /*Calling Fonts*/
 
 
@@ -1659,3 +1664,23 @@ table.dataTable {
 
 #login,#register:hover{border:none;}
 #login,#register:focus{border:none;}
+
+.sign_text h2{
+font-family: Outfit-Medium;
+color: black;
+filter: drop-shadow(2px 2px);
+}
+.sign_text h4{
+font-family: Outfit-Medium;
+color: black;
+}
+.small_label{color: #666666;font-size: 12px;}
+
+#form_fields input,#form_fields2 input{border-radius: 10px;}
+#form_fields input,#form_fields2 input:focus{outline: none;}
+
+.proceed_btn{
+    background:#01481140;
+    border-radius:35px;
+    border:none;
+}
