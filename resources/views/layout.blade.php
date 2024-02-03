@@ -615,24 +615,24 @@
     <!-- LOGIN MODAL -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="width: 560px;border-radius: 20px;">
-                <div id="header" class=" m-auto modal-header" style="width: 80%; border-bottom:1px solid #66666630;">
+            <div class="modal-content" style="width: 585px;border-radius: 20px;">
 
-                    <div class="d-block mx-auto my-3 rounded-circle border-bottom text-center" style="background: #C4C4C4">
-                        <img class="rounded-circle p-2" src="images/randomIcons/mini_logo.png">
-                    </div>
-
-                    
-
-
-
-                    <button type="button" class="m-0 close" data-dismiss="modal" aria-label="Close">
+                 <button type="button" class="m-0 close float-left text-left d-inline-block pt-2 pl-3 h3" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+
+                <div id="header" class="py-0 m-auto modal-header" style="width: 75%; border-bottom:1px solid #66666630;">
+
+                    <div class="d-block mx-auto my-3 rounded-circle border-bottom text-center" style="background: #C4C4C4">
+                        <div class="mini_logo rounded-circle p-2">
+                             <img class=" pl-1" src="images/randomIcons/mini_logo.png">
+                        </div>
+                       
+                    </div>
                 </div>
 
 
-                <div class="m-auto modal-body" style="width: 75%;">
+                <div class="m-auto modal-body text-center" style="width: 75%;">
 
                     <div class="card-header d-block w-50 m-auto">
                         <div class="row">
@@ -651,20 +651,6 @@
                     </div>
 
 
-                    <div class="card-header d-block w-50 mx-auto my-4">
-                        <div class="row">
-                            
-                        <div class="col-md-12 text-center sign_text">
-                            <h2 class="font-weight-bold">Sign In</h2>
-                            <h4>Enter details to log in</h4>
-                        </div>
-
-                        
-
-                        </div>
-                    </div>
-
-
                    <!--  <div id="choose" class="px-0 collapse">
                         <h5 class="text-secondary font-weight-bold text-center btn btn-light w-100 m-auto">Please choose the account type!</h5>
                     </div> -->
@@ -672,118 +658,183 @@
 
                     <div class="hidden_currency ">
 
-                        <div class="row justify-content-center py-3 mb-5">
-                            <div class="px-0 w-100 py-2">
-                                <div class="card collapse" id="all_registers">
+                        <div class="row justify-content-center py-2 mb-2">
+                            <div class="px-0 w-100 py-0">
+                                <div class="collapse" id="all_registers">
 
                                     <div class="text-center User-Artist-Select">
                                      <div class="col-md-5"></div>
                                       <div id="errors" class="w-100">
                                         </div>
-                                        <p id="typeZero" class="font-weight-bold text-center">Register a new account or log in to Jitume</p>
-                                    </div>
+                                        <div class="card-header d-block w-75 mx-auto mt-5 mb-4">
+                                            <div class="row">
+                                                
+                                            <div class="col-md-12 text-center sinup_text">
+                                                <h2 class="">Registration</h2>
+                                                <h4>Step 1 of 2</h4>
+                                            </div>
 
+                                            
 
-
-
-
-                                    <!-- HIDDEN Investor REG -->
-
-
-                                    <!-- TYPES -->
-                                    <input hidden type="number" value="" id="type" />
-                                    <div id="types" class="collapse card-header w-100 text-center">
-
-                                        <button id="user" onclick="user()" class="w-25 btn  font-weight-bold px-3 mr-2">{{ __('Investor') }}</button>
-
-
-
-                                        <button id="business" onclick="business()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Business") }}</button>
-
-                                        <button id="service" onclick="service()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Service") }}</button>
-                                    </div>
-
-
-                                    <div class="row collapse" id="skip">
-                                        <div class="col-md-12 ">
-                                            <p class="text-center mb-0 mt-2">Or
-                                            </p>
-                                        </div>
-
-                                        <div class="col-md-12 ">
-                                            <a href="{{route('home')}}" class="mt-0 w-25 d-block mx-auto btn px-2 py-1 create">
-                                                {{ __('Skip') }}
-                                            </a>
-                                        </div>
-
-                                        <div class="col-md-12 ">
-                                            <p class="text-center w-75 mx-auto my-2">To create regular Jitume account and donate/puchase business services
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <!-- TYPES -->
 
 
 
-                                    <div id="user_reg" class=" card-body">
+
+
+                                    <!-- User REG -->
+
+                                    <div id="user_reg" class="px-4 card-body">
                                         <!-- onsubmit="register_main(event);" -->
                                         <form method="POST" action="{{ route('register') }}" id="register_main" enctype="multipart/form-data">
                                             @csrf
 
                                             <input hidden id="c_to_action" type="text" class="form-control" name="c_to_action" value="">
 
+                                            <div class="row">
+                                            <div id="form_fields" class="col-md-6">
+                                            <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">First Name </p></label>
+                                           
+                                            <input class="border w-100 py-2 mr-1" type="text" name="fname" value="{{ old('fname') }}" id="name" required />
 
-                                            <div class="row mb-3">
-                                                <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('First Name') }} <span title="Required" class="text-danger">*</span></label>
+                                            <span id="er_email" class="collapse float-left text-danger small">Error: Invalid email</span>
+                                            </div>
 
-                                                <div class="col-md-6">
-                                                    <input id="name" type="text" class="form-control" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
+                                            <div id="form_fields" class="col-md-6">
+                                            <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Middle Name </p></label>
+                                           
+                                            <input class="border w-100 py-2 mr-1" type="text" name="mname" value="{{ old('mname') }}" id="name" required />
 
+                                            <span id="er_email" class="collapse float-left text-danger small">Error: Invalid email</span>
+                                            </div>
 
-                                                </div>
                                             </div>
 
 
-                                            <div class="row mb-3">
-                                                <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Middle Name') }} <span title="Required" class="text-danger"></span></label>
+                                            <div id="form_fields">
+                                            <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Last Name </p></label>
+                                           
+                                            <input onkeyup="email_ck(this.value);" class="border w-100 py-2 mr-1" type="text" name="lname" value="{{ old('lname') }}" id="name" required />
 
-                                                <div class="col-md-6">
-                                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="mname" value="{{ old('mname') }}" autocomplete="name" autofocus>
-
-
-                                                </div>
+                                            <span id="er_email" class="collapse float-left text-danger small">Error: Invalid email</span>
                                             </div>
 
 
-                                            <div class="row mb-3">
-                                                <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Last Name') }} <span title="Required" class="text-danger">*</span></label>
+                                           <div class="row my-2">
+                                            <div class="col-md-12">
+                                                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small">What's your gender? </p></label>
+                                            </div>
 
-                                                <div class="col-md-6">
-                                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus>
+                                            <div id="form_fields_black" class="col-md-4">
+                                            
+                                            <div class="row">
+                                            <div class="col-sm-1"><input class="" type="radio" name="gender" value="F" id="F" required />
+                                             </div>
+                                            <div class="col-sm-8">
+                                            <label class="mb-0 w-100">
+                                                <p class="mb-0 d-block w-100 float-left text-left small">Female
+                                            </p></label>                                 
+                                            </div>
+                                            </div>   
+                                            </div>
+
+                                            <div id="form_fields_black" class="col-md-4">
+                                            
+                                            <div class="row">
+                                            <div class="col-sm-1"><input class="" type="radio" name="gender" value="M" id="M" required />
+                                             </div>
+                                            <div class="col-sm-8">
+                                            <label class="mb-0 w-100">
+                                                <p class="mb-0 d-block w-100 float-left text-left small">Male
+                                            </p></label>                                 
+                                            </div>
+                                            </div>   
+                                            </div>
+
+                                            <div id="form_fields_black" class="col-md-4">
+                                            
+                                            <div class="row">
+                                            <div class="col-sm-1"><input class="" type="radio" name="gender" value="N/A" id="N/A" required />
+                                             </div>
+                                            <div class="col-sm-8">
+                                            <label class="mb-0 w-100">
+                                                <p class="mb-0 d-block w-100 float-left text-left small">Non-Binary
+                                            </p></label>                                 
+                                            </div>
+                                            </div>   
+                                            </div>
+
+                                            </div>
+                                
 
 
-                                                </div>
+                                                         <div class="row my-2">
+                                            <div class="col-md-12">
+                                                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small">What's your date of birth? </p></label>
+                                            </div>
+
+                                            <div id="form_fields_black" class="col-md-4">
+                                            
+                                            <div class="row">
+                                            <div class="col-sm-12">
+                                            <label class="mb-0 w-100">
+                                                <p class="mb-0 d-block w-100 float-left text-left py-1 small">Month
+                                            </p></label>                                 
+                                            </div>
+
+                                            <div class="col-sm-12">
+                                                <select name="month" class="text-center dob border w-100 ">
+                                                    <option value="jan">Jan</option>
+                                                </select>
+                                             </div>
+
+                                            </div>   
+                                            </div>
+
+                                            <div id="form_fields_black" class="col-md-4">
+                                            
+                                            <div class="row">
+                                            <div class="col-sm-12">
+                                            <label class="mb-0 w-100">
+                                                <p class="mb-0 d-block w-100 float-left text-left py-1 small">Day
+                                            </p></label>                                 
+                                            </div>
+
+                                            <div class="col-sm-12">
+                                                <select name="month" class="text-center dob border w-100 ">
+                                                    <option value="01">01</option>
+                                                </select>
+                                             </div>
+
+                                            </div>  
+                                            </div>
+
+                                            <div id="form_fields_black" class="col-md-4">
+                                            
+                                            <div class="row">
+                                            <div class="col-sm-12">
+                                            <label class="mb-0 w-100">
+                                                <p class="mb-0 d-block w-100 float-left text-left py-1 small">Year
+                                            </p></label>                                 
+                                            </div>
+
+                                            <div class="col-sm-12">
+                                                <select name="month" class="text-center dob border w-100 ">
+                                                    <option value="1950">1950</option>
+                                                </select>
+                                             </div>
+
+                                            </div>  
+                                            </div>
+
                                             </div>
 
 
-                                            <div class="row mb-3">
-                                                <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Gender') }} <span title="Required" class="text-danger">*</span></label>
+                                            <!-- PART - 2 
 
-                                                <div class="col-md-6">
-                                                    <select required name="gender" class="dropdown-toggle py-1 px-4">
-                                                        <option hidden value="">Select Gender</option>
-                                                        <option value="M">M</option>
-                                                        <option value="F">F</option>
-                                                        <option value="N/A">N/A</option>
-                                                    </select>
-
-
-                                                </div>
-                                            </div>
-
-
-
-                                            <div class="row mb-3">
+                                            <div class="row mb-3 collapse part-2">
                                                 <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('E-Mail') }} <span title="Required" class="text-danger">*</span></label>
 
                                                 <div class="col-md-6">
@@ -836,7 +887,7 @@
                                                 <div class="col-md-10">
                                                     <p style="font-family:system-ui;" class="small text-secondary ">I want to receive updates</p>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
 
 
@@ -881,89 +932,8 @@
 
                                     </div>
 
-                                    <!-- HIDDEN USER REG -->
-
-
-
-
-                                    <!-- HIDDEN Investor REG -->
-
-                                    <!-- HIDDEN Investor REG -->
-
-
-                                    <!-- HIDDEN Business REG -->
-
-                                    <div id="business_reg" class=" collapse card-body">
-                                        <form method="POST" action="{{route('registerB')}}" enctype="multipart/form-data">
-                                            @csrf
-
-
-                                            <div class="row mb-4">
-                                                <div class="col-md-12 ">
-                                                    <button type="submit" class="mt-3 w-25 d-block mx-auto btn px-2 create">
-                                                        {{ __('Create account') }}
-                                                    </button>
-                                                </div>
-
-                                                <div class="col-md-12 ">
-                                                    <p class="text-center mb-0 mt-2">Or
-                                                    </p>
-                                                </div>
-
-                                                <div class="col-md-12 ">
-                                                    <a href="{{route('home')}}" class="mt-0 w-25 d-block mx-auto btn px-2 py-1 create">
-                                                        {{ __('Skip') }}
-                                                    </a>
-                                                </div>
-
-                                                <div class="col-md-12 ">
-                                                    <p class="text-center w-75 mx-auto my-2">To create regular Jitume account and donate/puchase business services
-                                                    </p>
-                                                </div>
-
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <!-- HIDDEN Business REG -->
-
-
-                                    <!-- HIDDEN SERVICE REG -->
-
-                                    <div id="serv_reg" class=" collapse card-body">
-                                        <form method="POST" action="" enctype="multipart/form-data">
-                                            @csrf
-
-                                            <div class="row mb-4">
-                                                <div class="col-md-12 ">
-                                                    <button type="submit" class="mt-3 w-25 d-block mx-auto btn px-2 create">
-                                                        {{ __('Create account') }}
-                                                    </button>
-                                                </div>
-
-                                                <div class="col-md-12 ">
-                                                    <p class="text-center mb-0 mt-2">Or
-                                                    </p>
-                                                </div>
-
-                                                <div class="col-md-12 ">
-                                                    <a href="{{route('home')}}" class="mt-0 w-25 d-block mx-auto btn px-2 py-1 create">
-                                                        {{ __('Skip') }}
-                                                    </a>
-                                                </div>
-
-                                                <div class="col-md-12 ">
-                                                    <p class="text-center w-75 mx-auto my-2">To create regular Jitume account and donate/puchase business services
-                                                    </p>
-                                                </div>
-
-                                            </div>
-
-
-                                        </form>
-
-                                    </div>
-                                    <!-- HIDDEN SERVICE REG -->
-
+                                 <!-- HIDDEN USER REG -->
+                                    
                                 </div>
 
 
@@ -979,16 +949,20 @@
                                 <!-- HIDDEN login--> <!-- HIDDEN login--> <!-- HIDDEN login--> <!-- login-->
 
                                 <div class="" id="all_logins">
-
-                                    <!-- <div class="card-header w-100 text-center">
-            <button  id="usr_log"onclick="user_log()" class="w-25 btn  font-weight-bold px-3 mr-2">{{ __('Investor') }}</button>
-            <button  id="art_log" onclick="business_log()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Business") }}</button>
-
-             <button  id="service_log" onclick="service_log()" class="font-weight-bold w-25 btn px-3 mr-2">{{ __("Service") }}</button>
-
-            </div> -->
-
                                     <div id="user_log" class="px-4 py-0">
+
+                                        <div class="card-header d-block w-75 mx-auto mt-5 mb-4">
+                                            <div class="row">
+                                                
+                                            <div class="col-md-12 text-center sign_text">
+                                                <h2 class="font-weight-bold">Sign In</h2>
+                                                <h4>Enter details to log in</h4>
+                                            </div>
+
+                                            
+
+                                            </div>
+                                        </div>
 
                                         <form method="POST" class="" action="{{route('login')}}">
                                             @csrf
@@ -997,9 +971,11 @@
                                             <input type="text" hidden name="c_to_action_login" id="c_to_action_login" value="">
 
                                             <div id="form_fields">
-                                                <label class="mb-0"><p class="mb-0 d-block w-100 float-left small small_label">Email Address</p></label>
+                                                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Email Address</p></label>
                                            
-                                            <input class="border w-100 py-2 mr-1" type="email" name="email" placeholder="" id="inputEmailAddress" value="{{ old('email') }}" required />
+                                            <input onkeyup="email_ck(this.value);" class="border w-100 py-2 mr-1" type="email" name="email" placeholder="" id="inputEmailAddress" value="{{ old('email') }}" required />
+
+                                            <span id="er_email" class="collapse float-left text-danger small">Error: Invalid email</span>
                                             </div>
 
                                             <div id="form_fields2" class="mt-3">
@@ -1009,7 +985,7 @@
                                                     </span>
                                                 </label>
                                            
-                                            <input class="border w-100 py-2 mr-1" name="password" id="inputPassword" type="password" value="" required />
+                                            <input onkeyup="pass_ck(this.value);" class="border w-100 py-2 mr-1" name="password" id="inputPassword" type="password" value="" required />
                                             </div>
 
 
@@ -1030,111 +1006,10 @@
                                             @if (Route::has('forgetPass'))
                                             <a href="{{ route('password.request') }}" class="small text">Forgot password ?</a> @endif
 
-                                            <input type="submit" class=" d-block w-100 mx-auto my-2 py-1 proceed_btn text-light font-weight-bold " href="" name="Log In" value="Proceed" />
+                                            <button type="submit" style="width: 99%;" class="d-block mx-auto my-3 pt-2 proceed_btn text-light " disabled> Proceed </button>
                                         </form>
 
-                                    </div>
-
-
-
-
-                                    <!-- HIDDEN SERVICE LOG -->
-                                    <div id="serv_log" class="collapse card-body text-center py-0">
-
-                                        <form action="" method="POST" class="d-inline form-inline">
-                                            @csrf
-
-                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" value="" />
-
-
-                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="Enter password" value="" />
-
-
-
-
-                                            @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-
-
-
-                                            @if (Route::has('forgetPass'))
-                                            <a href="{{ route('password.request') }}" class="small text">Forgot password ?</a> @endif
-
-                                            <input type="submit" class=" d-block w-25 mx-auto my-2 btn btn-outline-success  font-weight-bold " href="" name="Log In" value="Login" />
-                                        </form>
-
-                                        @if(Session::has('reset'))<p class="text-light font-weight-bold">{{Session::get('reset')}} </p>
-                                        @php Session::forget('reset'); @endphp @endif
-
-                                        @if(Session::has('login_success'))
-                                        <p class="text-success ">{{Session::get('login_success')}}</p>@php Session::forget('login_success');
-                                        @endphp @endif
-
-                                        @if(Session::has('login_err'))
-                                        <p class="text-danger ">{{Session::get('login_err')}}</p>@php Session::forget('login_err');
-                                        @endphp @endif
-
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-12 pr-1">
-                                                <a href="{{ route('forgot','email') }}" class=" text-responsive font-weight-bold text-info mx-auto my-2 d-inline-block py-0 small">Forgot Password?</a>
-                                            </div>
-
-
-                                        </div>
-
-                                    </div>
-
-                                    <!-- ARTIST LOG -->
-                                    <div id="artist_log" class="collapse card-body text-center py-0">
-
-                                        <form action="{{route('loginB')}}" method="POST" class="d-inline form-inline">
-                                            @csrf
-
-                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" type="email" name="email" placeholder="Enter email" id="inputEmailAddress" value="" required />
-
-
-                                            <input class=" w-50 d-inline my-2 form-control my-1 px-2 py-1 mr-1" name="password" id="inputPassword" type="password" placeholder="Enter password" value="" required />
-
-
-
-
-                                            @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-
-
-
-                                            @if (Route::has('forgetPass'))
-                                            <a href="{{ route('password.request') }}" class="small text">Forgot password ?</a> @endif
-
-                                            <input type="submit" class=" d-block w-25 mx-auto my-2 btn btn-outline-success  font-weight-bold " href="" name="Log In" value="Login" />
-                                        </form>
-
-                                        @if(Session::has('reset'))<p class="text-light font-weight-bold">{{Session::get('reset')}} </p>
-                                        @php Session::forget('reset'); @endphp @endif
-
-
-                                        @if(Session::has('login_err'))
-                                        <p class="text-danger ">{{Session::get('login_err')}}</p>@php Session::forget('login_err');
-                                        @endphp @endif
-
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-12 pr-1">
-                                                <a href="{{ route('forgot','email') }}" class=" text-responsive font-weight-bold text-info mx-auto my-2 d-inline-block py-0 small">Forgot Password?</a>
-                                            </div>
-
-
-                                        </div>
-
-                                    </div>
-                                    <!-- ARTIST -->
+                                    </div>   
 
                                 </div>
                             </div>
@@ -1815,6 +1690,24 @@
             $('#inputPassword').attr('type','password');
             $('#hideButton').attr("onclick","passShow()");
             document.getElementById("hide").innerHTML="Show";
+        }
+
+        function email_ck(value) {
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if(regex.test(value) == true)
+                $('#er_email').addClass('collapse');
+            else
+                $('#er_email').removeClass('collapse');
+        }
+
+        function pass_ck(value) {
+            email = $('#inputEmailAddress').val().length;
+            pass = value.length;
+
+            if(email > 9 && pass > 7){
+            $('.proceed_btn').prop("disabled", false);
+            $('.proceed_btn').css('background','#014811');
+            }
         }
     </script>
 
