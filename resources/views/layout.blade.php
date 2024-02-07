@@ -865,7 +865,7 @@
                                             <div id="form_fields">
                                             <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Email Address</p></label>
                                            
-                                            <input onblur="fill(this.value);" onkeyup="email_ck2(this.value);" class="border w-100 py-2 mr-1" type="email" name="email" placeholder="" id="inputEmailAddress2" value="{{ old('email') }}" required />
+                                            <input onblur="fill(this.value);" onkeyup="email_ck2(this.value);" class="border w-100 py-2 mr-1" type="email" name="email" placeholder="" id="inputEmailAddress2" value="" required />
 
                                             <span id="er_email2" class="collapse float-left text-danger small">Error: Invalid email</span>
                                             </div>
@@ -1799,8 +1799,8 @@
             sessionStorage.setItem('pass1',value);
         }
         function pass_match2(value) {
-            var pass1 = sessionStorage.getItem('pass1');
-            if(pass1 =='')
+            //var pass1 = sessionStorage.getItem('pass1');
+            //if(pass1 =='')
             pass1 = $('#inputPassword3').val();
             var filled = $('#filled').val();
 
