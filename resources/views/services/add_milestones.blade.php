@@ -10,12 +10,12 @@
 <style>
 .btnUp3 {
   border: 1px solid black;
-  color: black;
-  background-color: #78BE3E;
+  color: ghostwhite;
+  background-color: #083608;
   padding: 5px ;
   border-radius: 5px;
   font-size: 10px;
-  font-weight: bold;
+  font-weight: 500;
   width: 100%;
   text-align: left;
 }

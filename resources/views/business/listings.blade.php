@@ -88,7 +88,7 @@
       <div class="modal-body">
         <form action="{{route('add_eqp')}}"  method="post" enctype="multipart/form-data">
                                 @csrf
-                                        <input  name="id" type="number" hidden value="{{$ev->id}}" class="form-control">
+                                        <input  name="id" id="id" type="number" hidden value="{{$ev->id}}" class="form-control">
 
                                 <div class="row ">
                                     <div class="col-12 col-sm-6">
@@ -205,7 +205,7 @@
            <option value="Other" >Other</option> 
 
            </select>
-  </div>
+           </div>
 
                  <div class="col-sm-4"> 
                     <label class="labels font-weight-bold">Details</label>
@@ -286,11 +286,11 @@
 
                     <div class="col-sm-6"> 
                         <label class="labels font-weight-bold">Location</label>
-                    <input id="searchbox" required="" onkeyup="suggest(this.value);" style="height: 32px;" class=" form-control d-inline" type="text" name="location" value="{{$ev->location}}">
+                    <input id="{{$ev->id}}" data-id="{{$ev->id}}" required="" onkeyup="suggest2(this.value,this.id);" style="height: 32px;" class=" form-control d-inline" type="text" name="location" value="{{$ev->location}}">
                     </div>
 
                          <div class="row" style="">
-                                <div id="result_list" class="" style="display: none;left: 312px;width:49%; z-index: 1000;height: 600px;position: absolute;">
+                                <div id="result_list{{$ev->id}}" class="" style="display: none;left: 312px;width:49%; z-index: 1000;height: 600px;position: absolute;">
                                     
                                 </div>
                             </div>
@@ -418,9 +418,66 @@
 </table>
                
 
-                </div>
+</div>
 
-                </div>
+</div>
+
+
+<script type="text/javascript">
+
+  function address2(place,lat2,lng2,list_id) {
+            document.getElementById(list_id).value = place;
+            //$("#result_list").html('');
+            document.getElementById("result_list"+list_id).style.display = 'none';
+
+              const lat = document.getElementById('lat');
+              const lng = document.getElementById('lng');
+
+              lat.value = lat2;
+              lng.value = lng2;
+
+        }
+
+          function suggest2(search,list_id) {
+            $("#result_list"+list_id).html('');
+            var searchText = search;
+
+            $.ajax({
+                url: 'https://photon.komoot.io/api/?q=' + encodeURIComponent(searchText),
+                method: 'get',
+                dataType: 'json',
+                success: function(response) {
+                    //console.log(response.features);
+                
+                    for (i = 0; i < 10; i++) { //console.log(response.features[i].name);
+                        var name = response.features[i].properties.name;
+                        var city = response.features[i].properties.city;
+                        if(city == null || city == 'undefined')
+                        city = '';
+                        var country = response.features[i].properties.country;
+                        var lng = response.features[i].geometry.coordinates[0];
+                        var lat = response.features[i].geometry.coordinates[1];
+
+                        $("#result_list"+list_id).show();
+                            if(i<10)
+
+                            if(city == '')
+                            $("#result_list"+list_id).append(' <div onclick="address2(\'' + name + ','  + country + '\', \'' + lat + '\', \'' + lng + '\',\'' + list_id + '\');" style="" data-id="' + name + '" class="address  py-1 px-1 my-0 border-top bg-white single_comms">  <p class="h6 text-dark d-inline" ><i class="fa fa-map-marker mr-1 text-dark" aria-hidden="true"></i> ' + name + '</p> <p  class="d-inline text-dark"><small>, ' + country + '</small> </p> </div>');
+                            else
+                            $("#result_list"+list_id).append(' <div onclick="address2(\'' + name + ','+ city + ','  + country + '\', \'' + lat + '\', \'' + lng + '\', \'' + list_id + '\');" style="" data-id="' + name + '" class="address  py-1 px-1 my-0 border-top bg-white single_comms">  <p class="h6 text-dark d-inline" ><i class="fa fa-map-marker mr-1 text-dark" aria-hidden="true"></i> ' + name + '</p> <p  class="d-inline text-dark"><small>, ' + city + ',' + country + '</small> </p> </div>');
+
+
+                        }
+                        //document.getElementById('result_list').style.overflowY="scroll";                      
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+
+            });
+
+        }
+</script>
 
                 
 

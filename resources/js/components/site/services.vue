@@ -28,7 +28,7 @@
 
                     <div style="" class="px-2 py-2 bg-white col-12 col-sm-4">
                         <i style="width: 6%;" class="d-inline fa fa-map-marker"></i>
-                        <input id="pac-input" style="width: 94%;border: none;height: 42px;"
+                        <input id="searchbox" onkeyup="suggest(this.value);" style="width: 94%;border: none;height: 42px;"
                             class="border-none bar bg-white form-control d-inline px-1" type="text" name="search" value=""
                             placeholder="Location">
 
@@ -42,7 +42,7 @@
                         <div class="w-100 row">
 
                             <div class="dropdown col-8 ">
-                                <select name="category" class="border-none form-control form-select">
+                                <select id="category" name="category" class="border-none">
                                     <option hidden value="" class="form-control">Services</option>
                                     <option class="form-control" value="Business Planning">Business Planning</option>
                                     <option value="IT">IT</option>
@@ -91,20 +91,20 @@
                         :index="index">
                         <!-- Loop -->
                         <div class="mx-auto mt-5">
-                            <router-link :to="`/serviceDetails/${result.id}`" class="shadow card border px-2">
+                            <router-link :to="`/serviceDetails/${result.id}`" class="shadow card border px-2 pt-3">
 
-                                <video v-if="result.file" controls style="width:92%; height:114px;" alt="">
+                                <video v-if="result.file" controls style="width:90%; height:114px;" alt="">
                                     <source :src="result.file" type="video/mp4">
                                 </video>
 
-                                <img v-else :src="result.image" style="width:92%; height:114px;" class="card-img-top"
+                                <img v-else :src="result.image" style="width:90%; height:114px;" class="card-img-top mx-auto"
                                     alt="" />
 
-                                <div class="p-1 pb-2">
+                                <div class="px-3 py-2">
 
                                     <h5 class="card_heading text-left mb-0 py-2">{{ result.name }} </h5>
 
-                                    <p class="card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{
+                                    <p class="loc_p card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{
                                         result.location }}</p>
 
                                 </div>
@@ -174,7 +174,7 @@ export default {
         document.getElementById('c_to_ac').innerHTML = 'Add Your Service';
 
         $('#call_to').html('');
-        $('#call_to').html('<a style="color:black;" onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttonspx-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span  id="c_to_ac">Add Your Service</span></a> ');
+        $('#call_to').html('<a style="color:black;" onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span  id="c_to_ac">Add Your Service</span></a> ');
 
 
 
@@ -224,26 +224,6 @@ export default {
             }
         },
 
-        initAutocomplete: function(){
-          const input = document.getElementById("pac-input");
-          const searchBox = new google.maps.places.SearchBox(input);
-          searchBox.addListener("places_changed", () => {
-          const places = searchBox.getPlaces();
-          if (places.length == 0) { return; }
-          const bounds = new google.maps.LatLngBounds();
-
-          places.forEach((place) => {
-            if (!place.geometry || !place.geometry.location) {
-            console.log("Returned place contains no geometry");return; }
-             //console.log(place); 
-          const lat = document.getElementById('lat');
-          const lng = document.getElementById('lng');
-          lat.value = place.geometry.location.lat();
-          lng.value = place.geometry.location.lng();
-
-           }); });
-        },
-
         latBusiness: function () {
             let t = this;
             axios.get('latServices').then((data) => {
@@ -262,17 +242,6 @@ export default {
     },
 
     mounted() {
-        //GOOGLE VAR
-        let initializeWhenGoogleIsAvailable = () => {
-        if (google) { // test if google is available
-          this.initAutocomplete(); // if it is, then initalize
-        } else {
-          setTimeout(initializeWhenGoogleIsAvailable, 1000) // if it isn't, wait a bit
-         }
-       };
-      initializeWhenGoogleIsAvailable();
-       //GOOGLE VAR
-
         //return this.$store.dispatch("fetchpro")
         this.replaceText();
         this.latBusiness();

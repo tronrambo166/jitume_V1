@@ -32,7 +32,7 @@
 
         <div class="mt-4 row flex-column-reverse flex-md-row">
 
-            <div class="col-md-6 ">
+            <div class="col-md-6 pr-4">
                 <!-- Price Filter -->
                 <div class="row">
 
@@ -88,7 +88,7 @@
                                 <p class="card_text pt-0 text-left"><b>Category:</b> {{ result.category
                                 }}</p>
 
-                                <p class="card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ result.location
+                                <p class="loc_p card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ result.location
                                 }}</p>
 
                                 <p class="card_text"><span class="rounded"><i class="mr-2 fa fa-phone"></i>{{ result.contact
@@ -268,47 +268,51 @@ export default {
         //console.log(this.results);
         for (const [key, value] of Object.entries(this.results)) {
             //INFO
-            const contentString =
-                '<div id="content">' +
-                '<div id="siteNotice">' +
-                "</div>" +
-                '<h1 id="firstHeading" class="firstHeading">'+value.name+'</h1>' +
-                '<div id="bodyContent">' +
-                '<p><b>Location: </b>'+value.location+', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="https://test.jitume.com/#/listingDetails/'+value.id+'">' +
-                "View Business</a> " +
-                "</div>" +
-                "</div>";
 
-            // const infowindow = new google.maps.InfoWindow({
-            //     content: contentString,
-            //     ariaLabel: value.name,
-            //   });
+                const contentString = '<a class="info_map py-0 font-weight-bold  text-center" target="_blank" href="https://test.jitume.com/#/listingDetails/'+value.id+'">'
+                +value.name+'</a>';
+
             //INFO
               const investment_needed = (value.investment_needed/1000)+"K";
               //this.addMarker({lat:value.lat, lng:value.lng},map,value.name,investment_needed,infowindow);
               var coord = ([value.lat,value.lng]);
-              //this.addMarker(coord,map);
+              this.addMarker(coord,map,contentString);
             }
         
 
             this.addMarkerHome(coords,map);
         },
 
-        addMarker(coords,map){
-        const icon = {
-            url: "images/map/other_business.png", // url
-        };
-        var marker = new L.Marker(coords);
+        addMarker(coords,map,contentString){
+        let customIcon = {
+         iconUrl:'images/map/other_business.png',
+         iconSize:[32,32]
+        }; let myIcon = L.icon(customIcon);
+
+        let iconOptions = {
+         title:'Spurs',
+         draggable:true,
+         icon:myIcon
+        }
+
+        var marker = new L.Marker(coords, iconOptions);
         marker.addTo(map);
+        marker.bindPopup(contentString).openPopup();
         },
 
         addMarkerHome(coords,map){
-        const icon = {
-            url: "images/map/myloc.png", // url
-            //scaledSize: new google.maps.Size(30, 30), // scaled size
-        };
+        let customIcon = {
+         iconUrl:'images/map/myloc.png',
+         iconSize:[32,32]
+        }; let myIcon = L.icon(customIcon);
 
-        var marker = new L.Marker(coords);
+        let iconOptions = {
+         title:'Spurs',
+         draggable:true,
+         icon:myIcon
+        }
+
+        var marker = new L.Marker(coords, iconOptions);
         marker.addTo(map);
 
         },

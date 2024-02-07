@@ -9569,25 +9569,31 @@ __webpack_require__.r(__webpack_exports__);
       document.getElementById('c_to_listing_reg').value = 'True';
     },
     hover: function hover() {
-      $('#convBtn1').css('background', '#72c537');
+      $('#convBtn1').css('background', '#083608'); //$('#convBtn1').css('color', '#ffffffe3');
     },
     hover2: function hover2() {
-      $('#convBtn2').css('background', '#72c537');
+      $('#convBtn2').css('background', '#083608');
+      $('#convBtn2').css('color', '#ffffffe3');
     },
     hover3: function hover3() {
-      $('#convBtn3').css('background', '#72c537');
+      $('#convBtn3').css('background', '#083608');
+      $('#convBtn3').css('color', '#ffffffe3');
     },
     hover4: function hover4() {
-      $('#convBtn4').css('background', '#72c537');
+      $('#convBtn4').css('background', '#083608');
+      $('#convBtn4').css('color', '#ffffffe3');
     },
     hover5: function hover5() {
-      $('#convBtn5').css('background', '#72c537');
+      $('#convBtn5').css('background', '#083608');
+      $('#convBtn5').css('color', '#ffffffe3');
     },
     hover6: function hover6() {
-      $('#convBtn6').css('background', '#72c537');
+      $('#convBtn6').css('background', '#083608');
+      $('#convBtn6').css('color', '#ffffffe3');
     },
     leave: function leave() {
       $('.convBtn').css('background', '');
+      $('.convBtn').css('color', '#333333');
     },
     download_business: function download_business() {
       var id = this.$route.params.id;
@@ -10164,34 +10170,43 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             value = _Object$entries3$_i[1];
 
         //INFO
-        var contentString = '<div id="content">' + '<div id="siteNotice">' + "</div>" + '<h1 id="firstHeading" class="firstHeading">' + value.name + '</h1>' + '<div id="bodyContent">' + '<p><b>Location: </b>' + value.location + ', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="https://test.jitume.com/#/listingDetails/' + value.id + '">' + "View Business</a> " + "</div>" + "</div>"; // const infowindow = new google.maps.InfoWindow({
-        //     content: contentString,
-        //     ariaLabel: value.name,
-        //   });
-        //INFO
+        var contentString = '<a class="info_map py-0 font-weight-bold  text-center" target="_blank" href="https://test.jitume.com/#/listingDetails/' + value.id + '">' + value.name + '</a>'; //INFO
 
         var investment_needed = value.investment_needed / 1000 + "K"; //this.addMarker({lat:value.lat, lng:value.lng},map,value.name,investment_needed,infowindow);
 
-        var coord = [value.lat, value.lng]; //this.addMarker(coord,map);
+        var coord = [value.lat, value.lng];
+        this.addMarker(coord, map, contentString);
       }
 
       this.addMarkerHome(coords, map);
     },
-    addMarker: function addMarker(coords, map) {
-      var icon = {
-        url: "images/map/other_business.png" // url
-
+    addMarker: function addMarker(coords, map, contentString) {
+      var customIcon = {
+        iconUrl: 'images/map/other_business.png',
+        iconSize: [32, 32]
       };
-      var marker = new L.Marker(coords);
+      var myIcon = L.icon(customIcon);
+      var iconOptions = {
+        title: 'Spurs',
+        draggable: true,
+        icon: myIcon
+      };
+      var marker = new L.Marker(coords, iconOptions);
       marker.addTo(map);
+      marker.bindPopup(contentString).openPopup();
     },
     addMarkerHome: function addMarkerHome(coords, map) {
-      var icon = {
-        url: "images/map/myloc.png" // url
-        //scaledSize: new google.maps.Size(30, 30), // scaled size
-
+      var customIcon = {
+        iconUrl: 'images/map/myloc.png',
+        iconSize: [32, 32]
       };
-      var marker = new L.Marker(coords);
+      var myIcon = L.icon(customIcon);
+      var iconOptions = {
+        title: 'Spurs',
+        draggable: true,
+        icon: myIcon
+      };
+      var marker = new L.Marker(coords, iconOptions);
       marker.addTo(map);
     },
     failure: function failure() {} //MAP -- MAP
@@ -12010,8 +12025,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                 value = _Object$entries$_i[1];
 
             value.id = btoa(value.id);
-            value.id = btoa(value.id);
-            console.log(value.id);
+            value.id = btoa(value.id); //console.log(value.id);
           } //console.log(data);
           //Setting Curr LatLng
 
@@ -12058,8 +12072,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                   value = _Object$entries2$_i[1];
 
               value.id = btoa(value.id);
-              value.id = btoa(value.id);
-              console.log(value.id);
+              value.id = btoa(value.id); //console.log(value.id);
             } //Setting Curr LatLng
 
 
@@ -12092,15 +12105,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         var myLong = position.coords.longitude;
       }
 
-      var coords = new google.maps.LatLng(myLat, myLong);
+      var coords = [myLat, myLong];
       var mapOptions = {
         zoom: 8,
-        center: coords,
-        //center:new google.maps.LatLng(51.508742,-0.120850),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-      var div = $("#googleMap").length;
-      if (div) var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions); //console.log(this.results);
+        center: coords //center:new google.maps.LatLng(51.508742,-0.120850),
+
+      }; //MAP CONTAINER
+
+      var map = new L.map('map', mapOptions);
+      var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+      map.addLayer(layer); //console.log(this.results);
 
       for (var _i3 = 0, _Object$entries3 = Object.entries(this.results); _i3 < _Object$entries3.length; _i3++) {
         var _Object$entries3$_i = _slicedToArray(_Object$entries3[_i3], 2),
@@ -12108,53 +12122,44 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             value = _Object$entries3$_i[1];
 
         //INFO
-        var contentString = '<div id="content">' + '<div id="siteNotice">' + "</div>" + '<h1 id="firstHeading" class="firstHeading">' + value.name + '</h1>' + '<div id="bodyContent">' + '<p><b>Location: </b>' + value.location + ', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="https://test.jitume.com/#/serviceDetails/' + value.id + '">' + "View Business</a> " + "</div>" + "</div>";
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString,
-          ariaLabel: value.name
-        }); //INFO
+        var contentString = '<a class="info_map py-0 font-weight-bold  text-center" target="_blank" href="https://test.jitume.com/#/serviceDetails/' + value.id + '">' + value.name + '</a>'; //INFO
 
-        this.addMarker({
-          lat: value.lat,
-          lng: value.lng
-        }, map, value.name, value.price, infowindow); //"lat": 48.353783,"lng": 11.79
+        var investment_needed = value.investment_needed / 1000 + "K"; //this.addMarker({lat:value.lat, lng:value.lng},map,value.name,investment_needed,infowindow);
+
+        var coord = [value.lat, value.lng];
+        this.addMarker(coord, map, contentString);
       }
 
       this.addMarkerHome(coords, map);
     },
-    addMarker: function addMarker(coords, map, title, fee, infowindow) {
-      var icon = {
-        url: "images/map/other_business.png",
-        // url
-        scaledSize: new google.maps.Size(55, 27) // scaled size
-
+    addMarker: function addMarker(coords, map, contentString) {
+      var customIcon = {
+        iconUrl: 'images/map/other_business.png',
+        iconSize: [32, 32]
       };
-      var marker = new google.maps.Marker({
-        map: map,
-        position: coords,
-        title: title,
-        label: '$' + fee,
-        icon: icon
-      });
-      marker.addListener("click", function () {
-        infowindow.open({
-          anchor: marker,
-          map: map
-        });
-      });
+      var myIcon = L.icon(customIcon);
+      var iconOptions = {
+        title: 'Spurs',
+        draggable: true,
+        icon: myIcon
+      };
+      var marker = new L.Marker(coords, iconOptions);
+      marker.addTo(map);
+      marker.bindPopup(contentString).openPopup();
     },
     addMarkerHome: function addMarkerHome(coords, map) {
-      var icon = {
-        url: "images/map/myloc.png",
-        // url
-        scaledSize: new google.maps.Size(40, 40) // scaled size
-
+      var customIcon = {
+        iconUrl: 'images/map/myloc.png',
+        iconSize: [32, 32]
       };
-      var marker = new google.maps.Marker({
-        map: map,
-        position: coords,
-        icon: icon
-      });
+      var myIcon = L.icon(customIcon);
+      var iconOptions = {
+        title: 'Spurs',
+        draggable: true,
+        icon: myIcon
+      };
+      var marker = new L.Marker(coords, iconOptions);
+      marker.addTo(map);
     },
     failure: function failure() {} //MAP -- MAP
 
@@ -12375,7 +12380,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
     if (button != 0) document.getElementById('c_to_ac').innerHTML = 'Add Your Service';
     $('#call_to').html('');
-    $('#call_to').html('<a style="color:black;" onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttonspx-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span  id="c_to_ac">Add Your Service</span></a> ');
+    $('#call_to').html('<a style="color:black;" onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" class="header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span  id="c_to_ac">Add Your Service</span></a> ');
   },
   methods: {
     search: function search() {
@@ -12425,31 +12430,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         $('#call_to').html('<a onclick="c_to_actionS();" data-target="#loginModal" data-toggle="modal" style="color:black;" class="header_buttons px-sm-3 my-1 px-1 py-1 mx-1 d-inline-block small text-center" ><span id="c_to_ac">Add Your Service</span></a> ');
       }
     },
-    initAutocomplete: function initAutocomplete() {
-      var input = document.getElementById("pac-input");
-      var searchBox = new google.maps.places.SearchBox(input);
-      searchBox.addListener("places_changed", function () {
-        var places = searchBox.getPlaces();
-
-        if (places.length == 0) {
-          return;
-        }
-
-        var bounds = new google.maps.LatLngBounds();
-        places.forEach(function (place) {
-          if (!place.geometry || !place.geometry.location) {
-            console.log("Returned place contains no geometry");
-            return;
-          } //console.log(place); 
-
-
-          var lat = document.getElementById('lat');
-          var lng = document.getElementById('lng');
-          lat.value = place.geometry.location.lat();
-          lng.value = place.geometry.location.lng();
-        });
-      });
-    },
     latBusiness: function latBusiness() {
       var t = this;
       axios.get('latServices').then(function (data) {
@@ -12469,22 +12449,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     }
   },
   mounted: function mounted() {
-    var _this = this;
-
-    //GOOGLE VAR
-    var initializeWhenGoogleIsAvailable = function initializeWhenGoogleIsAvailable() {
-      if (google) {
-        // test if google is available
-        _this.initAutocomplete(); // if it is, then initalize
-
-      } else {
-        setTimeout(initializeWhenGoogleIsAvailable, 1000); // if it isn't, wait a bit
-      }
-    };
-
-    initializeWhenGoogleIsAvailable(); //GOOGLE VAR
     //return this.$store.dispatch("fetchpro")
-
     this.replaceText();
     this.latBusiness();
   }
@@ -12676,8 +12641,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var id = this.$route.params.id;
     var t = this;
-    t.form.id = id;
-    document.getElementById('listing_id').value = id;
+    t.form.id = id; //document.getElementById('listing_id').value = id;
   },
   methods: {
     type: function type(event) {
@@ -72317,7 +72281,7 @@ var render = function () {
                             _c(
                               "router-link",
                               {
-                                staticClass: "shadow card border px-2",
+                                staticClass: "shadow card border px-2 pt-2",
                                 attrs: { to: "/listingDetails/" + result.id },
                               },
                               [
@@ -72361,7 +72325,10 @@ var render = function () {
                                   _vm._v(" "),
                                   _c(
                                     "p",
-                                    { staticClass: "card_text pt-1 text-left" },
+                                    {
+                                      staticClass:
+                                        "loc_p card_text pt-1 text-left",
+                                    },
                                     [
                                       _c("i", {
                                         staticClass: "mr-2 fa fa-map-marker",
@@ -72520,12 +72487,11 @@ var staticRenderFns = [
         }),
         _vm._v(" "),
         _c("div", { staticClass: "col-12 col-sm-3 my-1 pt-1 bg-white" }, [
-          _c("div", { staticClass: "dropdown pt-1" }, [
+          _c("div", { staticClass: "dropdown pt-1 text-left" }, [
             _c(
               "select",
               {
-                staticClass:
-                  "dropdown-toggle form-select border-white form-control home_category_listings",
+                staticClass: "border-white home_category_listings",
                 attrs: { id: "category", name: "category" },
               },
               [
@@ -73651,7 +73617,7 @@ var render = function () {
                         staticClass:
                           "business_btns py-2 text-center text-light buttonListing my-3",
                         attrs: {
-                          "data-target": "#loginmodal2",
+                          "data-target": "#loginModal",
                           "data-toggle": "modal",
                         },
                         on: {
@@ -73749,11 +73715,11 @@ var render = function () {
                             _vm._v(" "),
                             _c("div", { staticClass: "col-sm-12 px-1" }, [
                               _c("div", { staticClass: "row" }, [
-                                _c("div", { staticClass: "col-sm-4" }, [
+                                _c("div", { staticClass: "col-md-4" }, [
                                   _vm._v("Amount:$"),
                                 ]),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "col-sm-8" }, [
+                                _c("div", { staticClass: "col-md-8" }, [
                                   _c("input", {
                                     staticStyle: { height: "25px" },
                                     attrs: {
@@ -73805,11 +73771,11 @@ var render = function () {
                             _vm._v(" "),
                             _c("div", { staticClass: "col-sm-12 px-1" }, [
                               _c("div", { staticClass: "row" }, [
-                                _c("div", { staticClass: "col-sm-4" }, [
+                                _c("div", { staticClass: "col-md-4" }, [
                                   _vm._v("Amount:$"),
                                 ]),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "col-sm-8" }, [
+                                _c("div", { staticClass: "col-md-8" }, [
                                   _c("input", {
                                     staticStyle: { height: "25px" },
                                     attrs: {
@@ -74670,7 +74636,7 @@ var render = function () {
       _vm._m(1),
       _vm._v(" "),
       _c("div", { staticClass: "mt-4 row flex-column-reverse flex-md-row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "col-md-6 pr-4" }, [
           _vm._m(2),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
@@ -74723,10 +74689,14 @@ var render = function () {
                           _vm._v(" " + _vm._s(result.category)),
                         ]),
                         _vm._v(" "),
-                        _c("p", { staticClass: "card_text pt-1 text-left" }, [
-                          _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
-                          _vm._v(_vm._s(result.location)),
-                        ]),
+                        _c(
+                          "p",
+                          { staticClass: "loc_p card_text pt-1 text-left" },
+                          [
+                            _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
+                            _vm._v(_vm._s(result.location)),
+                          ]
+                        ),
                         _vm._v(" "),
                         _c("p", { staticClass: "card_text" }, [
                           _c("span", { staticClass: "rounded" }, [
@@ -75529,7 +75499,7 @@ var render = function () {
                             _c(
                               "div",
                               {
-                                staticClass: "row pt-2 my-auto mr-1 mr-md-0",
+                                staticClass: "row pt-2 my-auto px-2 mr-md-0",
                                 attrs: { width: "" },
                               },
                               [
@@ -75548,7 +75518,7 @@ var render = function () {
                                           },
                                         ],
                                         staticClass:
-                                          "placeH placeH_active w-100 py-1 border border-dark",
+                                          "placeH placeH_active w-100 py-1 border rounded",
                                         attrs: {
                                           readonly: "",
                                           required: "",
@@ -75588,7 +75558,7 @@ var render = function () {
                                           },
                                         ],
                                         staticClass:
-                                          "placeH placeH_active w-100 py-1 border border-dark",
+                                          "placeH placeH_active w-100 py-1 border rounded",
                                         attrs: {
                                           readonly: "",
                                           required: "",
@@ -75628,7 +75598,7 @@ var render = function () {
                                           "a",
                                           {
                                             staticClass:
-                                              "text-white placeH btnUp3 w-100 d-flex align-items-center",
+                                              "text-white placeH btnUp3 w-100 d-flex align-items-center border rounded",
                                             on: {
                                               click: function ($event) {
                                                 return _vm.download_milestone_doc(
@@ -75665,7 +75635,7 @@ var render = function () {
                                               "button",
                                               {
                                                 staticClass:
-                                                  "pay_btn placeH_active text-center border border-dark px-2 py-1 btn btn-light",
+                                                  "pay_btn placeH_active text-center border rounded px-2 py-1 btn btn-light",
                                                 attrs: { type: "submit" },
                                                 on: {
                                                   click: function ($event) {
@@ -75755,7 +75725,7 @@ var render = function () {
                                       "div",
                                       {
                                         staticClass:
-                                          "border border-dark px-2 d-inline-block d-flex align-items-center",
+                                          "border rounded px-2 d-inline-block d-flex align-items-center",
                                         staticStyle: { padding: "3px" },
                                       },
                                       [
@@ -75829,7 +75799,7 @@ var render = function () {
                                         },
                                       ],
                                       staticClass:
-                                        "placeH_done placeH_active w-100 py-1 border border-dark",
+                                        "placeH_done placeH_active w-100 py-1 border rounded",
                                       attrs: {
                                         readonly: "",
                                         required: "",
@@ -75868,7 +75838,7 @@ var render = function () {
                                           },
                                         ],
                                         staticClass:
-                                          "placeH_done placeH_active w-100 py-1 border border-dark",
+                                          "placeH_done placeH_active w-100 py-1 border rounded",
                                         attrs: {
                                           readonly: "",
                                           required: "",
@@ -75915,87 +75885,79 @@ var render = function () {
                           [
                             _c(
                               "div",
-                              { staticClass: "row pt-2 mr-1 mr-sm-0" },
+                              { staticClass: "row pt-2 px-2 mr-sm-0" },
                               [
-                                _c(
-                                  "div",
-                                  { staticClass: "col px-1 my-2 my-sm-0" },
-                                  [
-                                    _c("div", { staticClass: "" }, [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: result.title,
-                                            expression: "result.title",
-                                          },
-                                        ],
-                                        staticClass:
-                                          "placeH_inactive w-100 py-1 border border-dark",
-                                        attrs: {
-                                          readonly: "",
-                                          required: "",
-                                          name: "title",
-                                          type: "text",
+                                _c("div", { staticClass: "col my-2 my-sm-0" }, [
+                                  _c("div", { staticClass: "" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: result.title,
+                                          expression: "result.title",
                                         },
-                                        domProps: { value: result.title },
-                                        on: {
-                                          input: function ($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              result,
-                                              "title",
-                                              $event.target.value
-                                            )
-                                          },
+                                      ],
+                                      staticClass:
+                                        "placeH_inactive w-100 py-1 border rounded",
+                                      attrs: {
+                                        readonly: "",
+                                        required: "",
+                                        name: "title",
+                                        type: "text",
+                                      },
+                                      domProps: { value: result.title },
+                                      on: {
+                                        input: function ($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            result,
+                                            "title",
+                                            $event.target.value
+                                          )
                                         },
-                                      }),
-                                    ]),
-                                  ]
-                                ),
+                                      },
+                                    }),
+                                  ]),
+                                ]),
                                 _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "col px-0 my-2 my-sm-0" },
-                                  [
-                                    _c("div", {}, [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: result.amount,
-                                            expression: "result.amount",
-                                          },
-                                        ],
-                                        staticClass:
-                                          "placeH_inactive w-100 py-1 border border-dark",
-                                        attrs: {
-                                          readonly: "",
-                                          required: "",
-                                          type: "number",
-                                          name: "amount",
+                                _c("div", { staticClass: "col my-2 my-sm-0" }, [
+                                  _c("div", {}, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: result.amount,
+                                          expression: "result.amount",
                                         },
-                                        domProps: { value: result.amount },
-                                        on: {
-                                          input: function ($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              result,
-                                              "amount",
-                                              $event.target.value
-                                            )
-                                          },
+                                      ],
+                                      staticClass:
+                                        "placeH_inactive w-100 py-1 border rounded",
+                                      attrs: {
+                                        readonly: "",
+                                        required: "",
+                                        type: "number",
+                                        name: "amount",
+                                      },
+                                      domProps: { value: result.amount },
+                                      on: {
+                                        input: function ($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            result,
+                                            "amount",
+                                            $event.target.value
+                                          )
                                         },
-                                      }),
-                                    ]),
-                                  ]
-                                ),
+                                      },
+                                    }),
+                                  ]),
+                                ]),
                                 _vm._v(" "),
                                 _vm._m(4, true),
                                 _vm._v(" "),
@@ -76025,7 +75987,7 @@ var staticRenderFns = [
           "span",
           {
             staticClass:
-              "placeH_active status text-center border border-dark px-0 py-1 btn btn-success btn-block",
+              "placeH_active status text-center border rounded px-0 py-1 primary_bg text-light btn-block",
           },
           [_vm._v("In\n                                    Progress")]
         ),
@@ -76055,7 +76017,7 @@ var staticRenderFns = [
             "a",
             {
               staticClass:
-                "text-white disabled placeH_done btnUp_done w-100 d-flex align-items-center",
+                "text-white disabled placeH_done btnUp_done w-100 d-flex align-items-center border rounded",
             },
             [
               _vm._v(
@@ -76078,7 +76040,7 @@ var staticRenderFns = [
           "a",
           {
             staticClass:
-              "placeH_active text-center border border-dark px-2 py-1 btn btn-light btn-block",
+              "placeH_active text-center border rounded px-2 py-1 btn btn-light btn-block",
             attrs: { disabled: "" },
           },
           [_vm._v("PAID")]
@@ -76090,10 +76052,10 @@ var staticRenderFns = [
           "span",
           {
             staticClass:
-              "placeH_active status text-center border text-light border-dark px-2 py-1 btn-block",
+              "placeH_active status text-center border text-light rounded px-2 py-1 btn-block",
             staticStyle: { background: "black" },
           },
-          [_vm._v("DONE!")]
+          [_vm._v("DONE")]
         ),
       ]),
     ])
@@ -76102,12 +76064,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col px-1 my-2 my-sm-0" }, [
+    return _c("div", { staticClass: "col my-2 my-sm-0" }, [
       _c("div", { staticClass: "upload-btn-wrapper w-100" }, [
-        _c("a", { staticClass: "pl-4 disabled placeH_inactive btnUp4 w-100" }, [
-          _vm._v("Download Milestone Documentaion "),
-          _c("i", { staticClass: "ml-2 fa fa-arrow-down" }),
-        ]),
+        _c(
+          "a",
+          {
+            staticClass:
+              "pl-4 disabled placeH_inactive btnUp4 w-100 border rounded",
+          },
+          [
+            _vm._v("Download Milestone Documentaion "),
+            _c("i", { staticClass: "ml-2 fa fa-arrow-down" }),
+          ]
+        ),
       ]),
     ])
   },
@@ -76115,13 +76084,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col px-1" }, [
-      _c("div", { staticClass: "form-group" }, [
+    return _c("div", { staticClass: "col d-flex" }, [
+      _c("div", { staticClass: "form-group ml-1" }, [
         _c(
           "span",
           {
             staticClass:
-              "status text-center border border-dark px-2 py-1 btn-light placeH_inactive btn-block",
+              "status text-center border rounded px-2 py-1 btn-light placeH_inactive btn-block",
           },
           [_vm._v("To\n                                    Do")]
         ),
@@ -76268,8 +76237,7 @@ var render = function () {
                                     expression: "result.title",
                                   },
                                 ],
-                                staticClass:
-                                  "placeH w-100 border border-dark py-1",
+                                staticClass: "placeH w-100 border rounded py-1",
                                 attrs: {
                                   readonly: "",
                                   required: "",
@@ -76293,7 +76261,7 @@ var render = function () {
                             ]),
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col px-0 my-2 my-sm-0" }, [
+                          _c("div", { staticClass: "col px-1 my-2 my-sm-0" }, [
                             _c("div", {}, [
                               _c("input", {
                                 directives: [
@@ -76304,8 +76272,7 @@ var render = function () {
                                     expression: "result.amount",
                                   },
                                 ],
-                                staticClass:
-                                  "placeH w-100 border border-dark py-1",
+                                staticClass: "placeH w-100 border rounded py-1",
                                 attrs: {
                                   readonly: "",
                                   required: "",
@@ -76369,7 +76336,7 @@ var render = function () {
                                           "a",
                                           {
                                             staticClass:
-                                              "placeH_inactive pb-2 text-center border border-dark p-0 btn btn-secondary text-dark btn-block",
+                                              "placeH_inactive pb-2 text-center border rounded btn btn-secondary text-white btn-block",
                                           },
                                           [_vm._v("PAID")]
                                         )
@@ -76393,7 +76360,7 @@ var render = function () {
                                           "a",
                                           {
                                             staticClass:
-                                              "placeH_active status text-center border border-dark btn btn-light btn-block",
+                                              "placeH_active status text-center border rounded btn btn-light btn-block",
                                             attrs: { type: "submit" },
                                             on: {
                                               click: function ($event) {
@@ -76468,7 +76435,7 @@ var render = function () {
                                 "span",
                                 {
                                   staticClass:
-                                    "placeH_active status text-center border border-dark btn btn-success btn-block",
+                                    "placeH_active status text-center border rounded primary_bg text-light py-1 btn-block",
                                 },
                                 [_vm._v(_vm._s(result.status))]
                               ),
@@ -76549,7 +76516,7 @@ var render = function () {
                                     },
                                   ],
                                   staticClass:
-                                    "placeH_done w-100 border py-1 border-dark",
+                                    "placeH_done w-100 border rounded py-1",
                                   attrs: {
                                     readonly: "",
                                     required: "",
@@ -76575,7 +76542,7 @@ var render = function () {
                             _vm._v(" "),
                             _c(
                               "div",
-                              { staticClass: "col px-0 my-2 mt-sm-0" },
+                              { staticClass: "col px-1 my-2 mt-sm-0" },
                               [
                                 _c("div", {}, [
                                   _c("input", {
@@ -76588,7 +76555,7 @@ var render = function () {
                                       },
                                     ],
                                     staticClass:
-                                      "placeH_done w-100 border py-1 border-dark",
+                                      "placeH_done w-100 border py-1 rounded",
                                     attrs: {
                                       readonly: "",
                                       required: "",
@@ -76625,7 +76592,7 @@ var render = function () {
                                     "a",
                                     {
                                       staticClass:
-                                        "text-white disabled placeH_done btnUp_done w-100 d-flex align-items-center",
+                                        "text-white disabled placeH_done btnUp_done w-100 d-flex align-items-center border rounded",
                                       on: {
                                         click: function ($event) {
                                           return _vm.download_milestone_doc(
@@ -76658,7 +76625,7 @@ var render = function () {
                                         "span",
                                         {
                                           staticClass:
-                                            "placeH_active status text-center border text-light border-dark px-2 py-1 btn-block",
+                                            "placeH_active status text-center border text-light rounded px-2 py-1 btn-block",
                                           staticStyle: { background: "black" },
                                         },
                                         [_vm._v("Done!")]
@@ -76667,7 +76634,7 @@ var render = function () {
                                         "span",
                                         {
                                           staticClass:
-                                            "placeH_active status text-center border text-success border-dark px-2 py-1 btn-block",
+                                            "placeH_active status text-center border text-success rounded px-2 py-1 btn-block",
                                           staticStyle: { background: "black" },
                                         },
                                         [_vm._v("Being Completed")]
@@ -76705,7 +76672,7 @@ var render = function () {
                                   },
                                 ],
                                 staticClass:
-                                  "btn-secondary placeH_inactive w-100 py-1 border border-dark",
+                                  "btn-secondary placeH_inactive w-100 py-1 border rounded",
                                 attrs: {
                                   readonly: "",
                                   required: "",
@@ -76729,7 +76696,7 @@ var render = function () {
                             ]),
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col px-0 my-2 my-sm-0" }, [
+                          _c("div", { staticClass: "col px-1 my-2 my-sm-0" }, [
                             _c("div", {}, [
                               _c("input", {
                                 directives: [
@@ -76741,7 +76708,7 @@ var render = function () {
                                   },
                                 ],
                                 staticClass:
-                                  "btn-secondary placeH_inactive w-100 py-1 border border-dark",
+                                  "btn-secondary placeH_inactive w-100 py-1 border rounded",
                                 attrs: {
                                   readonly: "",
                                   required: "",
@@ -76814,7 +76781,7 @@ var staticRenderFns = [
           "a",
           {
             staticClass:
-              "placeH_inactive pb-2 text-center border border-dark p-0 btn btn-secondary btn-block",
+              "placeH_inactive pb-2 text-center border rounded p-0 btn btn-secondary btn-block",
             staticStyle: { color: "lightgray" },
             attrs: { disabled: "" },
           },
@@ -76833,7 +76800,7 @@ var staticRenderFns = [
           "span",
           {
             staticClass:
-              "placeH_inactive pb-2 status text-center border border-dark p-0 btn btn-secondary btn-block",
+              "placeH_inactive pb-2 status text-center border rounded p-0 btn btn-secondary btn-block",
           },
           [_vm._v("To Do")]
         ),
@@ -76962,226 +76929,239 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-4 col-lg-5" }, [
-            _c("div", { staticClass: "Overview", attrs: { id: "Overview" } }, [
-              _c("h4", { staticClass: "text-center secondary_heading" }, [
-                _vm._v("About"),
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "my-4 text-left h6" }, [
-                _vm._v(
-                  _vm._s(_vm.form.details) +
-                    " Lorem ipsum dolor. Lorem ipsum dolor.\n              Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. "
-                ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "cart text-center" }, [
-                _c("form", [
-                  _vm.auth_user
-                    ? _c(
-                        "a",
-                        {
-                          staticClass:
-                            "border border-dark w-50 text-center convBtn rounded",
-                          staticStyle: { cursor: "pointer" },
-                          on: {
-                            click: function ($event) {
-                              return _vm.service_milestones()
-                            },
-                          },
-                        },
-                        [
-                          _vm._v(
-                            "Service Milestone\n                  Breakdown"
-                          ),
-                        ]
-                      )
-                    : _c(
-                        "a",
-                        {
-                          staticClass:
-                            "border border-dark w-50 mx-auto text-center convBtn",
-                          staticStyle: { cursor: "pointer" },
-                          attrs: {
-                            "data-target": "#loginModal",
-                            "data-toggle": "modal",
-                          },
-                          on: {
-                            click: function ($event) {
-                              return _vm.make_session()
-                            },
-                          },
-                        },
-                        [_vm._v("Service Milestone Breakdown")]
-                      ),
-                  _vm._v(" "),
-                  _vm.auth_user
-                    ? _c(
-                        "a",
-                        {
-                          staticClass:
-                            "my-4 border border-dark w-50 text-center convBtn rounded",
-                          staticStyle: { cursor: "pointer", color: "#015601" },
-                          attrs: {
-                            "data-toggle": "collapse",
-                            href: "#collapseExample",
-                          },
-                        },
-                        [_vm._v("Contact Me")]
-                      )
-                    : _c(
-                        "a",
-                        {
-                          staticClass:
-                            "my-4 border border-dark w-50 mx-auto text-center convBtn",
-                          staticStyle: { cursor: "pointer", color: "#015601" },
-                          attrs: {
-                            "data-target": "#loginModal",
-                            "data-toggle": "modal",
-                          },
-                          on: {
-                            click: function ($event) {
-                              return _vm.make_session()
-                            },
-                          },
-                        },
-                        [_vm._v("Contact Me")]
-                      ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "collapse",
-                      attrs: { id: "collapseExample" },
-                    },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "card card-body py-2",
-                          staticStyle: { width: "90%" },
-                        },
-                        [
-                          _c("div", { staticClass: "p-0" }, [
-                            _c(
-                              "form",
-                              {
-                                staticClass: "p-3",
-                                on: {
-                                  submit: function ($event) {
-                                    $event.preventDefault()
-                                    return _vm.sendMessage.apply(
-                                      null,
-                                      arguments
-                                    )
-                                  },
-                                },
+            _c(
+              "div",
+              {
+                staticClass: "Overview text-center",
+                attrs: { id: "Overview" },
+              },
+              [
+                _c("h4", { staticClass: "text-center secondary_heading" }, [
+                  _vm._v("About"),
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "my-4 text-left h6 px-3" }, [
+                  _vm._v(
+                    _vm._s(_vm.form.details) +
+                      " Lorem ipsum dolor. Lorem ipsum dolor.\n              Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "cart text-center" }, [
+                  _c("form", { staticClass: "text-center" }, [
+                    _vm.auth_user
+                      ? _c(
+                          "a",
+                          {
+                            staticClass:
+                              "border border-dark w-50 mx-auto text-center convBtn rounded",
+                            staticStyle: { cursor: "pointer" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.service_milestones()
                               },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "d-flex p-2 justify-content-center",
-                                  },
-                                  [
-                                    _c("div", {}, [
-                                      _c("textarea", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.formMsg.msg,
-                                            expression: "formMsg.msg",
-                                          },
-                                        ],
-                                        staticClass: "rounded",
-                                        attrs: {
-                                          placeholder: "Enter message...",
-                                          rows: "2",
-                                          cols: "36",
-                                          required: "",
-                                          name: "msg",
-                                        },
-                                        domProps: { value: _vm.formMsg.msg },
-                                        on: {
-                                          input: function ($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              _vm.formMsg,
-                                              "msg",
-                                              $event.target.value
-                                            )
-                                          },
-                                        },
-                                      }),
-                                    ]),
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.formMsg.service_id,
-                                      expression: "formMsg.service_id",
-                                    },
-                                  ],
-                                  attrs: {
-                                    hidden: "",
-                                    type: "number",
-                                    name: "service_id",
-                                  },
-                                  domProps: { value: _vm.formMsg.service_id },
+                            },
+                          },
+                          [
+                            _vm._v(
+                              "Service Milestone\n                  Breakdown"
+                            ),
+                          ]
+                        )
+                      : _c(
+                          "a",
+                          {
+                            staticClass:
+                              "border border-dark w-50 mx-auto text-center convBtn",
+                            staticStyle: { cursor: "pointer" },
+                            attrs: {
+                              "data-target": "#loginModal",
+                              "data-toggle": "modal",
+                            },
+                            on: {
+                              click: function ($event) {
+                                return _vm.make_session()
+                              },
+                            },
+                          },
+                          [_vm._v("Service Milestone Breakdown")]
+                        ),
+                    _vm._v(" "),
+                    _vm.auth_user
+                      ? _c(
+                          "a",
+                          {
+                            staticClass:
+                              "my-4 border border-dark w-50 mx-auto text-center convBtn rounded",
+                            staticStyle: {
+                              cursor: "pointer",
+                              color: "#015601",
+                            },
+                            attrs: {
+                              "data-toggle": "collapse",
+                              href: "#collapseExample",
+                            },
+                          },
+                          [_vm._v("Contact Me")]
+                        )
+                      : _c(
+                          "a",
+                          {
+                            staticClass:
+                              "my-4 border border-dark w-50 mx-auto text-center convBtn",
+                            staticStyle: {
+                              cursor: "pointer",
+                              color: "#015601",
+                            },
+                            attrs: {
+                              "data-target": "#loginModal",
+                              "data-toggle": "modal",
+                            },
+                            on: {
+                              click: function ($event) {
+                                return _vm.make_session()
+                              },
+                            },
+                          },
+                          [_vm._v("Contact Me")]
+                        ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "collapse",
+                        attrs: { id: "collapseExample" },
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "card card-body py-2 mx-auto",
+                            staticStyle: { width: "90%" },
+                          },
+                          [
+                            _c("div", { staticClass: "p-0" }, [
+                              _c(
+                                "form",
+                                {
+                                  staticClass: "p-3",
                                   on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.formMsg,
-                                        "service_id",
-                                        $event.target.value
+                                    submit: function ($event) {
+                                      $event.preventDefault()
+                                      return _vm.sendMessage.apply(
+                                        null,
+                                        arguments
                                       )
                                     },
                                   },
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "p-0 d-flex justify-content-center",
-                                  },
-                                  [
-                                    _vm.auth_user
-                                      ? _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "my-3 py-1 btn-success w-50 btn header_buttons text-light float-right",
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "d-flex p-2 justify-content-center",
+                                    },
+                                    [
+                                      _c("div", {}, [
+                                        _c("textarea", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.formMsg.msg,
+                                              expression: "formMsg.msg",
+                                            },
+                                          ],
+                                          staticClass: "rounded",
+                                          attrs: {
+                                            placeholder: "Enter message...",
+                                            rows: "2",
+                                            cols: "36",
+                                            required: "",
+                                            name: "msg",
                                           },
-                                          [
-                                            _vm._v(
-                                              "Send\n                          "
-                                            ),
-                                          ]
+                                          domProps: { value: _vm.formMsg.msg },
+                                          on: {
+                                            input: function ($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.formMsg,
+                                                "msg",
+                                                $event.target.value
+                                              )
+                                            },
+                                          },
+                                        }),
+                                      ]),
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.formMsg.service_id,
+                                        expression: "formMsg.service_id",
+                                      },
+                                    ],
+                                    attrs: {
+                                      hidden: "",
+                                      type: "number",
+                                      name: "service_id",
+                                    },
+                                    domProps: { value: _vm.formMsg.service_id },
+                                    on: {
+                                      input: function ($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.formMsg,
+                                          "service_id",
+                                          $event.target.value
                                         )
-                                      : _vm._e(),
-                                  ]
-                                ),
-                              ]
-                            ),
-                          ]),
-                        ]
-                      ),
-                    ]
-                  ),
+                                      },
+                                    },
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "p-0 d-flex justify-content-center",
+                                    },
+                                    [
+                                      _vm.auth_user
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "my-3 py-1 primary_bg w-50 header_buttons text-light float-right",
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Send\n                          "
+                                              ),
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                            ]),
+                          ]
+                        ),
+                      ]
+                    ),
+                  ]),
                 ]),
-              ]),
-            ]),
+              ]
+            ),
           ]),
           _vm._v(" "),
           _c(
@@ -77342,7 +77322,7 @@ var render = function () {
                                   "button",
                                   {
                                     staticClass:
-                                      "my-3 py-1 btn-success w-50 btn header_buttons text-light float-right",
+                                      "my-3 py-1 primary_bg w-50 header_buttons text-light float-right",
                                   },
                                   [_vm._v("Book\n                ")]
                                 )
@@ -77350,7 +77330,7 @@ var render = function () {
                                   "a",
                                   {
                                     staticClass:
-                                      "my-3 py-1 btn-success w-50 btn header_buttons text-light float-right",
+                                      "my-3 py-1 primary_bg w-50 header_buttons text-light float-right",
                                     attrs: {
                                       "data-target": "#loginModal",
                                       "data-toggle": "modal",
@@ -77578,10 +77558,14 @@ var render = function () {
                             ]
                           ),
                           _vm._v(" "),
-                          _c("p", { staticClass: "card_text pt-1 text-left" }, [
-                            _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
-                            _vm._v(_vm._s(result.location)),
-                          ]),
+                          _c(
+                            "p",
+                            { staticClass: "loc_p card_text pt-1 text-left" },
+                            [
+                              _c("i", { staticClass: "mr-2 fa fa-map-marker" }),
+                              _vm._v(_vm._s(result.location)),
+                            ]
+                          ),
                           _vm._v(" "),
                           _c("p", [
                             _c("span", { staticClass: "mt-1 rounded small" }, [
@@ -77689,10 +77673,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-6" }, [
       _c("div", { staticClass: "map_style m-auto" }, [
-        _c("div", {
-          staticStyle: { width: "100%", height: "95%" },
-          attrs: { id: "googleMap" },
-        }),
+        _c("div", { staticStyle: { height: "95%" }, attrs: { id: "map" } }),
       ]),
     ])
   },
@@ -77796,7 +77777,7 @@ var render = function () {
                           _c(
                             "router-link",
                             {
-                              staticClass: "shadow card border px-2",
+                              staticClass: "shadow card border px-2 pt-3",
                               attrs: { to: "/serviceDetails/" + result.id },
                             },
                             [
@@ -77805,7 +77786,7 @@ var render = function () {
                                     "video",
                                     {
                                       staticStyle: {
-                                        width: "92%",
+                                        width: "90%",
                                         height: "114px",
                                       },
                                       attrs: { controls: "", alt: "" },
@@ -77820,15 +77801,15 @@ var render = function () {
                                     ]
                                   )
                                 : _c("img", {
-                                    staticClass: "card-img-top",
+                                    staticClass: "card-img-top mx-auto",
                                     staticStyle: {
-                                      width: "92%",
+                                      width: "90%",
                                       height: "114px",
                                     },
                                     attrs: { src: result.image, alt: "" },
                                   }),
                               _vm._v(" "),
-                              _c("div", { staticClass: "p-1 pb-2" }, [
+                              _c("div", { staticClass: "px-3 py-2" }, [
                                 _c(
                                   "h5",
                                   {
@@ -77840,7 +77821,10 @@ var render = function () {
                                 _vm._v(" "),
                                 _c(
                                   "p",
-                                  { staticClass: "card_text pt-1 text-left" },
+                                  {
+                                    staticClass:
+                                      "loc_p card_text pt-1 text-left",
+                                  },
                                   [
                                     _c("i", {
                                       staticClass: "mr-2 fa fa-map-marker",
@@ -77933,7 +77917,8 @@ var staticRenderFns = [
             staticClass: "border-none bar bg-white form-control d-inline px-1",
             staticStyle: { width: "94%", border: "none", height: "42px" },
             attrs: {
-              id: "pac-input",
+              id: "searchbox",
+              onkeyup: "suggest(this.value);",
               type: "text",
               name: "search",
               value: "",
@@ -77974,8 +77959,8 @@ var staticRenderFns = [
                 _c(
                   "select",
                   {
-                    staticClass: "border-none form-control form-select",
-                    attrs: { name: "category" },
+                    staticClass: "border-none",
+                    attrs: { id: "category", name: "category" },
                   },
                   [
                     _c(
@@ -78163,7 +78148,7 @@ var render = function () {
                 _vm._v("$9.99"),
               ]),
               _vm._v(" "),
-              _c("p", { staticClass: "text-center" }, [
+              _c("p", { staticClass: "text-center px-3" }, [
                 _vm._v(
                   '10 free "Start conversations" per month from any range.'
                 ),
@@ -78212,7 +78197,7 @@ var render = function () {
                 _vm._v("$29.99"),
               ]),
               _vm._v(" "),
-              _c("p", { staticClass: "text-center" }, [
+              _c("p", { staticClass: "text-center px-3" }, [
                 _vm._v("Silver + access to all data from one chosen range."),
               ]),
               _vm._v(" "),
@@ -78278,7 +78263,7 @@ var render = function () {
                 _vm._v("$69.99"),
               ]),
               _vm._v(" "),
-              _c("p", { staticClass: "text-center" }, [
+              _c("p", { staticClass: "text-center px-3" }, [
                 _vm._v("Silver access + Gold access to all data."),
               ]),
               _vm._v(" "),
@@ -78338,7 +78323,7 @@ var render = function () {
                   [_vm._v("$95.99")]
                 ),
                 _vm._v(" "),
-                _c("p", { staticClass: "text-center" }, [
+                _c("p", { staticClass: "text-center px-3" }, [
                   _vm._v(
                     '10 free "Start conversations" per month from any range.'
                   ),
@@ -78385,7 +78370,7 @@ var render = function () {
                   [_vm._v("$287.99")]
                 ),
                 _vm._v(" "),
-                _c("p", { staticClass: "text-center" }, [
+                _c("p", { staticClass: "text-center px-3" }, [
                   _vm._v("Silver + access to all data from one chosen range."),
                 ]),
                 _vm._v(" "),
@@ -78430,7 +78415,7 @@ var render = function () {
                   [_vm._v("$671.99")]
                 ),
                 _vm._v(" "),
-                _c("p", { staticClass: "text-center" }, [
+                _c("p", { staticClass: "text-center px-3" }, [
                   _vm._v("Silver access + Gold access to all data."),
                 ]),
                 _vm._v(" "),
@@ -78460,7 +78445,7 @@ var render = function () {
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "row w-75 mx-auto my-4" }, [
+      _c("div", { staticClass: "row w-75 mx-auto my-5" }, [
         _vm._m(2),
         _vm._v(" "),
         _c("div", { staticClass: "w-25 collapse", attrs: { id: "ranges" } }, [
@@ -78501,7 +78486,7 @@ var render = function () {
           ),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "w-50" }, [
+        _c("div", { staticClass: "w-75" }, [
           _c(
             "form",
             {
@@ -78564,7 +78549,7 @@ var render = function () {
                     "a",
                     {
                       staticClass:
-                        "buttonListing mr-2 text-light py-2 px-5 small",
+                        "buttonListing primary_bg mr-2 text-light py-2 px-5 small",
                       attrs: {
                         onclick: "alert('Please select a package!');",
                         type: "button",
@@ -78618,32 +78603,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-25" }, [
-      _c("h6", [_vm._v("Turnover ranges:")]),
+    return _c("div", { staticClass: "w-25 px-4" }, [
+      _c("h6", { staticClass: "text-left pl-5" }, [_vm._v("Turnover ranges:")]),
       _vm._v(" "),
-      _c("p", { staticClass: "small my-1" }, [
-        _c("span", { staticClass: "font-weight-bold" }, [_vm._v("-")]),
-        _vm._v(" $0-$10000"),
+      _c("p", { staticClass: "small_label2 my-2 py-1 text-left pl-5 border" }, [
+        _vm._v("  $0-$10000"),
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "small my-1" }, [
-        _c("span", { staticClass: "small" }, [_vm._v("-")]),
+      _c("p", { staticClass: "small_label2 my-2 py-1 text-left pl-5 border" }, [
         _vm._v(" $10000-$100000"),
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "smallsmall my-1" }, [
-        _c("span", { staticClass: "smallsmall" }, [_vm._v("-")]),
-        _vm._v(" $100000-$25000"),
+      _c("p", { staticClass: "small_label2 my-2 py-1 text-left pl-5 border" }, [
+        _vm._v("  $100000-$25000"),
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "smallsmall my-1" }, [
-        _c("span", { staticClass: "smallsmall" }, [_vm._v("-")]),
-        _vm._v(" $250000-$50000"),
+      _c("p", { staticClass: "small_label2 my-2 py-1 text-left pl-5 border" }, [
+        _vm._v("  $250000-$50000"),
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "smallsmall my-1" }, [
-        _c("span", { staticClass: "smallsmall" }, [_vm._v("-")]),
-        _vm._v(" $500000+"),
+      _c("p", { staticClass: "small_label2 my-2 py-1 text-left pl-5 border" }, [
+        _vm._v("  $500000+"),
       ]),
     ])
   },

@@ -86,7 +86,7 @@
 
     .navbar ul li .router-link-active {
         color: white;
-        background: #0f7a0fe8;
+        background: #0f7a0f45;
         border-radius: 35px;
         padding-left: 8px;
         padding-right: 8px;
@@ -254,19 +254,19 @@
     .btnUp2 {
         border: 2px solid gray;
         color: white;
-        background-color: green;
+        background-color:#083608;
         padding: 2px 10px;
         border-radius: 4px;
         font-size: 15px;
-        font-weight: bold;
+        font-weight: 500;
     }
 
     .btnUp_listing {
         color: #2a2929;
         background-color: #d1d1d13b;
-        padding: 0px 10px;
+        padding: 0px 5px;
         border-radius: 4px;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 500;
     }
 
@@ -547,6 +547,7 @@
         /* font-weight: bold; */
         width: 100%;
         text-align: left;
+        height: 33px;
         /* height: 27px; */
     }
 
@@ -554,8 +555,9 @@
         min-width: 60px;
         /* font-weight: bold; */
         color: aliceblue;
-        background: #14a914;
+        background: #083608;
         padding-left: 6px;
+        height: 33px;
     }
 
     .placeH_inactive {
@@ -564,7 +566,8 @@
         padding-left: 6px;
         font-size: 13px;
         border-radius: 2px;
-        color: lightgray;
+        color: #333333;
+        height: 33px;
     }
 
     .placeH_active {
@@ -573,6 +576,7 @@
         padding-left: 6px;
         font-size: 13px;
         border-radius: 2px;
+        height: 33px;
         /* height: 27px; */
     }
 
@@ -711,11 +715,14 @@
 
     .social_btn {
         font-family: Outfit-Regular;
-        background: #3B5998;
-        border-radius: 4px;
         text-align: center;
         text-decoration: none;
+    }
 
+    .social_btn img{
+         width: 32px;
+        height: 32px;
+        border-radius: 9px;
     }
 
     .social_btn2 {
@@ -902,7 +909,7 @@
     }
 
     .mile_add_btn:hover {
-        background: #78BE3E !important;
+        background: #083608 !important;
         color: white !important;
     }
 
@@ -1276,7 +1283,7 @@
     }
 
     .sidebar li {
-        background: aliceblue;
+        background: #E9FFEC;
         padding-left: 30px;
 
     }
@@ -1501,7 +1508,7 @@
              z-index: 1000;
              height: 600px;
              position: absolute; 
-             left: 476px;
+             left: 526px;
              top: 394px;
         }
 
@@ -1684,10 +1691,12 @@ font-weight: 500;
 }
 .sinup_text h4{
 font-family: Outfit-Medium;
-color: #666666;
+color: #333333;
 }
 
-.small_label{color: #666666;font-size: 12px;}
+.small_label{color: #666666;font-size: 12px;font-family:Outfit-Regular;}
+.small_label2{color: #333333;font-size: 12px;font-family:Outfit-Regular;}
+.small_label2 a{color: #111111 !important;text-decoration: underline;}
 
 #form_fields input,#form_fields2 input{border-radius: 10px;}
 #form_fields input,#form_fields2 input:focus{outline: none;}
@@ -1696,18 +1705,24 @@ color: #666666;
     background:#01481140;
     border-radius:35px;
     border:none;
-    padding-bottom: 12px;
+    padding-bottom: 13px;
     font-family: Outfit-Medium;
+    color:#FFFFFF !important;
 }
+
+.proceed_btn:hover{
+    color:#FFFFFF;
+    }
 
 .mini_logo{
     width: 48px;
     height: 48px;
 }
 
-#form_fields_black p{
+.form_fields_black p{
     color: black;
-    font-family: Outfit-Regular;
+    font-family: Outfit-Regular !important;;
+    filter: drop-shadow(0px 2px 1px #666666);
 }
 
 .dob
@@ -1715,3 +1730,30 @@ color: #666666;
     padding-top: 14px;
     padding-bottom: 14px;
 }
+
+.thick_border{
+    padding-top: 5px;
+    margin-top: 11px;
+    background: #66666645;
+    color: #66666645;
+    }
+
+    #rc-anchor-container, .rc-anchor-normal{
+    background: white !important;
+    border-radius: 10px;
+    }
+
+    .info_map, .leaflet-container a{
+        color: #111111 !important;
+        font-family: Outfit-Medium;
+    }
+
+    .leaflet-popup-content{width: 75px;}
+    .loc_p{min-height: 49px;}
+    #category{border: none;}
+    #category:focus{outline: none;}
+
+    #bid_amount,#bid_percent2,#bid_amount_eqp,#bid_percent2_eqp{
+        width: 100%;
+        display: block;
+    }

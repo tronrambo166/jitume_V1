@@ -90,7 +90,7 @@
                     </div>
 
                     <div class="row" style="">
-                                <div id="result_list" class="" style="display: none;left: 280px;width:28%; z-index: 1000;height: 600px;position: absolute;">
+                                <div id="result_list" class="" style="display: none;left: 339px;width:25%; z-index: 1000;height: 600px;position: absolute;">
                                     
                                 </div>
                     </div>
@@ -168,8 +168,8 @@
           <div class="col-sm-3"> 
 
                     <div class="upload-btn-wrapper d-block">
-                     <label for="file-upload5" class="text-center w-100 bg-info btnUp_listing"> Upload supportive video*
-                      <img src="../images/up.svg" width="30px"> </label>
+                     <label for="file-upload5" class="text-center px-2 primary_bg text-light btnUp_listing"> Upload supportive video*
+                      <img src="../images/up.svg" class="text-light" width="30px"> </label>
                       <input style="display:none;" id="file-upload5" type="file" name="video" />
                     </div>
 
@@ -183,7 +183,7 @@
 
                     <div class="col-sm-4"> 
                     <div class="upload-btn-wrapper d-block">
-                      <label for="file-upload4" class="text-center w-100 btnUp_listing">  Upload Supporting Business Documentation*
+                      <label for="file-upload4" class="text-center px-2 btnUp_listing">  Upload Supporting Business Documentation*
                       <img src="../images/up.svg" width="30px"> </label>
                       <input style="" id="file-upload4" required="" type="file" name="document" />
                       <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>

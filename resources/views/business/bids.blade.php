@@ -389,7 +389,7 @@
 <div class="col-sm-6">
     <a id="fakeBtn" onclick="accept();" type="submit" class="bid-accept text-center float-right border border-dark font-weight-bold btn text-mute py-1 w-100 mx-auto">Accept Bids</a>
 
-    <button style="background:green;" onclick="return confirm('Are you sure?');" id="realBtn" type="submit" class="bid-accept collapse float-right font-weight-bold btn text-light w-100 mx-auto">Accept Bids</button>
+    <button style="background:#083608;" onclick="return confirm('Are you sure?');" id="realBtn" type="submit" class="bid-accept collapse float-right font-weight-bold btn text-light w-100 mx-auto">Accept Bids</button>
 </div>
 
 <div class="col-sm-6">

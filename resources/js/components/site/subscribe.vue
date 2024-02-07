@@ -44,7 +44,7 @@
                 <div class="col-sm-4">
                     <div class=" card"  @click="select(9.99)" id="one" >
                         <p class="text-center font-weight-bold h5 pt-2">$9.99</p>
-                    <p class="text-center">10 free "Start conversations" per month from any range.</p>
+                    <p class="text-center px-3">10 free "Start conversations" per month from any range.</p>
 
                     <a @mouseleave="leave()" @mouseover="hover()"
                     @click="make_session(form.id);stripeFee(form.id, 0.00,'silver-trial',30);" style="border: 1px solid black;" id="convBtn1"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
@@ -54,7 +54,7 @@
                 <div class="col-sm-4 "    >
                     <div class=" card" @click="select(29.99)" id="two">
                         <p class="text-center font-weight-bold h5 pt-2">$29.99</p>
-                    <p class="text-center">Silver + access to all data from one chosen range.</p>
+                    <p class="text-center px-3">Silver + access to all data from one chosen range.</p>
 
                     <a v-if="form.range != 'all'" @mouseleave="leave()" @mouseover="hover2()"
                     @click="make_session(form.id);stripeFee(form.id, 0.00,'gold-trial',30);" style="border: 1px solid black;" id="convBtn2"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
@@ -66,7 +66,7 @@
                 <div class="col-sm-4 "  >
                     <div class=" card"  @click="select(69.99)" id="three">
                         <p class="text-center font-weight-bold h5 pt-2">$69.99</p>
-                    <p class="text-center">Silver access + Gold access to all data.</p> <br>
+                    <p class="text-center px-3">Silver access + Gold access to all data.</p> <br>
 
                     <a @mouseleave="leave()" @mouseover="hover3()"
                     @click="make_session(form.id);stripeFee(form.id, 0.00,'platinum-trial',30);" style="border: 1px solid black;" id="convBtn3"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2">Try free for 7 days</a>
@@ -81,36 +81,36 @@
                 <div class="col-sm-4">
                     <div class=" card"  @click="select(95.99)" id="four" >
                         <p class="text-center font-weight-bold h5 pt-2">$95.99</p>
-                    <p class="text-center">10 free "Start conversations" per month from any range.</p>
+                    <p class="text-center px-3">10 free "Start conversations" per month from any range.</p>
                     <a @mouseleave="leave()" @mouseover="hover4()" style="border: 1px solid black;" id="convBtn4"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2 disabled">Try free for 7 days</a>
                 </div> </div>
 
                 <div class="col-sm-4 ">
                     <div class=" card" @click="select(287.99)" id="five" >
                         <p class="text-center font-weight-bold h5 pt-2">$287.99</p>
-                    <p class="text-center">Silver + access to all data from one chosen range.</p>
+                    <p class="text-center px-3">Silver + access to all data from one chosen range.</p>
                     <a @mouseleave="leave()" @mouseover="hover5()" style="border: 1px solid black;" id="convBtn5"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2 disabled">Try free for 7 days</a>
                 </div> </div>
 
                 <div class="col-sm-4 ">
                     <div class=" card" @click="select(671.99)" id="six" >
                         <p class="text-center font-weight-bold h5 pt-2">$671.99</p>
-                    <p class="text-center">Silver access + Gold access to all data.</p> <br>
+                    <p class="text-center px-3">Silver access + Gold access to all data.</p> <br>
                     <a @mouseleave="leave()" @mouseover="hover6()" style="border: 1px solid black;" id="convBtn6"  class="d-block py-1 convBtn text-center mx-auto w-75 btn  px-2 my-2 disabled">Try free for 7 days</a> 
                 </div> </div>
 
             </div>
 
 
-            <div class="row w-75 mx-auto  my-4">
+            <div class="row w-75 mx-auto  my-5">
                 
-                <div class="w-25">
-                     <h6>Turnover ranges:</h6>
-                        <p class="small my-1"> <span class="font-weight-bold">-</span> $0-$10000</p>
-                        <p class="small my-1"> <span class="small">-</span> $10000-$100000</p>                    
-                        <p class="smallsmall my-1"> <span class="smallsmall">-</span> $100000-$25000</p>
-                        <p class="smallsmall my-1"> <span class="smallsmall">-</span> $250000-$50000</p>
-                        <p class="smallsmall my-1"> <span class="smallsmall">-</span> $500000+</p>   
+                <div class="w-25 px-4">
+                     <h6 class="text-left pl-5">Turnover ranges:</h6>
+                        <p class="small_label2 my-2 py-1 text-left pl-5 border">  $0-$10000</p>
+                        <p class="small_label2 my-2 py-1 text-left pl-5 border"> $10000-$100000</p>                    
+                        <p class="small_label2 my-2 py-1 text-left pl-5 border">  $100000-$25000</p>
+                        <p class="small_label2 my-2 py-1 text-left pl-5 border">  $250000-$50000</p>
+                        <p class="small_label2 my-2 py-1 text-left pl-5 border">  $500000+</p>   
                 </div>
 
                 <div class="w-25 collapse" id="ranges">
@@ -125,7 +125,7 @@
                 </div>
 
 
-                <div class="w-50">
+                <div class="w-75">
                 <form action="stripe" method="get" class="float-right mt-5">
                     <input type="text" hidden id="package" name="package" value="">
                  <input type="text" hidden id="price" name="price" value="">
@@ -134,7 +134,7 @@
                   Checkout
                 </a>
 
-                <a v-else onclick="alert('Please select a package!');" type="button" class=" buttonListing mr-2 text-light py-2 px-5 small " >
+                <a v-else onclick="alert('Please select a package!');" type="button" class=" buttonListing primary_bg mr-2 text-light py-2 px-5 small " >
                   Checkout
                 </a>
 
@@ -173,7 +173,7 @@
          var id=this.$route.params.id;
          let t=this;
          t.form.id = id;
-         document.getElementById('listing_id').value = id;
+         //document.getElementById('listing_id').value = id;
 
     },
     methods:{

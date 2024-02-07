@@ -232,7 +232,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                         @if($service->count())
                          <hr class=""> 
 
-                         <ul class="sidebar text-light px-0" style="color:white;">
+                         <ul class="sidebar text-light px-2" style="color:white;">
                             <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf2F_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('add-services')}}"><i class=" fe fe-layout"></i> <span>Add Service</span></a>
                             </li>
@@ -355,34 +355,37 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
   <!-- DATEPICKER -->
   
  <script type="text/javascript">
-       function suggest(search) {
+        function suggest(search) {
             $("#result_list").html('');
             var searchText = search;
 
             $.ajax({
-                url: '../get_suggest/' + searchText,
+                url: 'https://photon.komoot.io/api/?q=' + encodeURIComponent(searchText),
                 method: 'get',
                 dataType: 'json',
                 success: function(response) {
-                    // console.log(response);
+                    //console.log(response.features);
+                
+                    for (i = 0; i < 10; i++) { //console.log(response.features[i].name);
+                        var name = response.features[i].properties.name;
+                        var city = response.features[i].properties.city;
+                        if(city == null || city == 'undefined')
+                        city = '';
+                        var country = response.features[i].properties.country;
+                        var lng = response.features[i].geometry.coordinates[0];
+                        var lat = response.features[i].geometry.coordinates[1];
 
-                    for (i = 0; i < 10; i++) {
-                        //console.log(response.data.length);
-                        if (response.data.length > i) {
-                            var name = response.data[i].name;
-                            var city = response.data[i].city;
-                            var country = response.data[i].country;
-                            $("#result_list").show();
+                        $("#result_list").show();
+                            if(i<10)
 
-                            $("#result_list").append(' <div onclick="address(\'' + name + ',' + city + ',' + country + '\');" style="" data-id="' + response.data[i].name + '" class="address  py-0 my-0 border broder-dark bg-light shadow single_comms">  <h6 class="font-weight-bold text-dark d-inline" ><i class="fa fa-map-marker text-success" aria-hidden="true"></i> ' + name + '</h6> <p  class="d-inline text-dark"> Loc: <small>' + city + ', ' + country + '</small> </p> </div>');
+                            if(city == '')
+                            $("#result_list").append(' <div onclick="address(\'' + name + ','  + country + '\', \'' + lat + '\', \'' + lng + '\');" style="" data-id="' + name + '" class="address  py-1 px-1 my-0 border-top bg-white single_comms">  <p class="h6 text-dark d-inline" ><i class="fa fa-map-marker mr-1 text-dark" aria-hidden="true"></i> ' + name + '</p> <p  class="d-inline text-dark"><small>, ' + country + '</small> </p> </div>');
+                            else
+                            $("#result_list").append(' <div onclick="address(\'' + name + ','+ city + ','  + country + '\', \'' + lat + '\', \'' + lng + '\');" style="" data-id="' + name + '" class="address  py-1 px-1 my-0 border-top bg-white single_comms">  <p class="h6 text-dark d-inline" ><i class="fa fa-map-marker mr-1 text-dark" aria-hidden="true"></i> ' + name + '</p> <p  class="d-inline text-dark"><small>, ' + city + ',' + country + '</small> </p> </div>');
 
 
                         }
-                        else {$("#result_list").hide();$("#result_list2").hide(); }
-                    }
-
-                    //document.getElementById('result_list').style.overflowY="scroll";   
-
+                        //document.getElementById('result_list').style.overflowY="scroll";                      
                 },
                 error: function(error) {
                     console.log(error);
@@ -408,13 +411,18 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
 
 
 <script type="text/javascript">
-    function address(place){
-        //var place = $(this).attr('data-id');
-        document.getElementById('pac-input').value = place;
-        //$("#result_list").html('');
-       document.getElementById("result_list").style.display='none';
+    function address(place,lat2,lng2) {
+            document.getElementById('searchbox').value = place;
+            //$("#result_list").html('');
+            document.getElementById("result_list").style.display = 'none';
 
-}
+              const lat = document.getElementById('lat');
+              const lng = document.getElementById('lng');
+
+              lat.value = lat2;
+              lng.value = lng2;
+
+        }
 
 </script>
  

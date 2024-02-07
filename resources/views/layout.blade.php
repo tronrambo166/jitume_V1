@@ -360,7 +360,7 @@
                 </div>
             </div>
 
-                <div class="col-12 col-sm-4 d-flex justify-content-center">
+                <div class="col-12 col-sm-4 text-sm-center">
                 <div class="">
                    <ul class="foot_menu_ui px-5">
 
@@ -374,9 +374,9 @@
                    </div>
                 </div>
 
-            <div class="col-12 col-sm-4 pt-2 text-right">
+            <div class="col-12 col-sm-4 pt-2 text-sm-right">
                     <div class="py-0">
-                        <ul class="foot_menu_ui mb-1">
+                        <ul class="foot_menu_ui mb-1 px-5">
                         <li>
                               <a href="./policy" target="_blank" class="text-light font-weight-bold d-block">Privacy Policy</a>
                               </li>
@@ -388,8 +388,8 @@
                               </ul>
                     </div>
 
-                    <div class="d-flex flex-wrap pb-2 social">
-                    <a class="ml-auto" href="twitter.com" target="_black">
+                    <div class="px-5 d-flex flex-wrap pb-2 justify-content-end social">
+                    <a class="" href="twitter.com" target="_black">
                         <img width="31px" src="images/randomIcons/twitter.png" class="rounded p-1"></a>
 
                     <a href="twitter.com" target="_black">
@@ -467,7 +467,7 @@
                 success: function(response) {
                     //console.log(response.features);
                 
-                    for (i = 0; i < 12; i++) { //console.log(response.features[i].name);
+                    for (i = 0; i < 10; i++) { //console.log(response.features[i].name);
                         var name = response.features[i].properties.name;
                         var city = response.features[i].properties.city;
                         if(city == null || city == 'undefined')
@@ -625,7 +625,7 @@
 
                     <div class="d-block mx-auto my-3 rounded-circle border-bottom text-center" style="background: #C4C4C4">
                         <div class="mini_logo rounded-circle p-2">
-                             <img class=" pl-1" src="images/randomIcons/mini_logo.png">
+                             <img width="31px" class=" pl-1" src="images/randomIcons/mini_logo.png">
                         </div>
                        
                     </div>
@@ -660,8 +660,11 @@
 
                         <div class="row justify-content-center py-2 mb-2">
                             <div class="px-0 w-100 py-0">
+
+
                                 <div class="collapse" id="all_registers">
 
+                               
                                     <div class="text-center User-Artist-Select">
                                      <div class="col-md-5"></div>
                                       <div id="errors" class="w-100">
@@ -671,7 +674,7 @@
                                                 
                                             <div class="col-md-12 text-center sinup_text">
                                                 <h2 class="">Registration</h2>
-                                                <h4>Step 1 of 2</h4>
+                                                <h4 >Step <span id="steps">1 </span> of 2</h4>
                                             </div>
 
                                             
@@ -691,23 +694,25 @@
                                         <form method="POST" action="{{ route('register') }}" id="register_main" enctype="multipart/form-data">
                                             @csrf
 
+                                        <div class="" id="step_one">
+
                                             <input hidden id="c_to_action" type="text" class="form-control" name="c_to_action" value="">
 
                                             <div class="row">
                                             <div id="form_fields" class="col-md-6">
                                             <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">First Name </p></label>
                                            
-                                            <input class="border w-100 py-2 mr-1" type="text" name="fname" value="{{ old('fname') }}" id="name" required />
+                                            <input onblur="fill(this.value);" class="border w-100 py-2 mr-1" type="text" name="fname" value="{{ old('fname') }}" id="name" required />
 
-                                            <span id="er_email" class="collapse float-left text-danger small">Error: Invalid email</span>
+                                            <span id="er_fname" class="collapse float-left text-danger small">Error: Invalid email</span>
                                             </div>
 
                                             <div id="form_fields" class="col-md-6">
                                             <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Middle Name </p></label>
                                            
-                                            <input class="border w-100 py-2 mr-1" type="text" name="mname" value="{{ old('mname') }}" id="name" required />
+                                            <input onblur="fill(this.value);" class="border w-100 py-2 mr-1" type="text" name="mname" value="{{ old('mname') }}" id="name" required />
 
-                                            <span id="er_email" class="collapse float-left text-danger small">Error: Invalid email</span>
+                                            <span id="er_mname" class="collapse float-left text-danger small">Error: Invalid email</span>
                                             </div>
 
                                             </div>
@@ -716,21 +721,21 @@
                                             <div id="form_fields">
                                             <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Last Name </p></label>
                                            
-                                            <input onkeyup="email_ck(this.value);" class="border w-100 py-2 mr-1" type="text" name="lname" value="{{ old('lname') }}" id="name" required />
+                                            <input onblur="fill(this.value);" class="border w-100 py-2 mr-1" type="text" name="lname" value="{{ old('lname') }}" id="name" required />
 
-                                            <span id="er_email" class="collapse float-left text-danger small">Error: Invalid email</span>
+                                            <span id="er_lname" class="collapse float-left text-danger small">Error: Invalid email</span>
                                             </div>
 
 
-                                           <div class="row my-2">
+                                           <div class="row my-3 form_fields_black" style="width: 80%;">
                                             <div class="col-md-12">
-                                                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small">What's your gender? </p></label>
+                                                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left ">What's your gender?(optional) </p></label>
                                             </div>
 
-                                            <div id="form_fields_black" class="col-md-4">
+                                            <div id="" class="form_fields_black col-md-4">
                                             
                                             <div class="row">
-                                            <div class="col-sm-1"><input class="" type="radio" name="gender" value="F" id="F" required />
+                                            <div class="col-sm-1"><input class="" type="radio" name="gender" value="F" id="F" />
                                              </div>
                                             <div class="col-sm-8">
                                             <label class="mb-0 w-100">
@@ -740,10 +745,10 @@
                                             </div>   
                                             </div>
 
-                                            <div id="form_fields_black" class="col-md-4">
+                                            <div id="" class="form_fields_black col-md-3">
                                             
                                             <div class="row">
-                                            <div class="col-sm-1"><input class="" type="radio" name="gender" value="M" id="M" required />
+                                            <div class="col-sm-1"><input class="" type="radio" name="gender" value="M" id="M" />
                                              </div>
                                             <div class="col-sm-8">
                                             <label class="mb-0 w-100">
@@ -753,12 +758,12 @@
                                             </div>   
                                             </div>
 
-                                            <div id="form_fields_black" class="col-md-4">
+                                            <div id="" class="form_fields_black col-md-5">
                                             
                                             <div class="row">
-                                            <div class="col-sm-1"><input class="" type="radio" name="gender" value="N/A" id="N/A" required />
+                                            <div class="col-sm-1"><input class="" type="radio" name="gender" value="N/A" id="N/A" />
                                              </div>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-9">
                                             <label class="mb-0 w-100">
                                                 <p class="mb-0 d-block w-100 float-left text-left small">Non-Binary
                                             </p></label>                                 
@@ -770,9 +775,9 @@
                                 
 
 
-                                                         <div class="row my-2">
-                                            <div class="col-md-12">
-                                                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small">What's your date of birth? </p></label>
+                                            <div class="row my-2">
+                                            <div class="col-md-12 form_fields_black">
+                                                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left ">What's your date of birth? </p></label>
                                             </div>
 
                                             <div id="form_fields_black" class="col-md-4">
@@ -785,8 +790,9 @@
                                             </div>
 
                                             <div class="col-sm-12">
-                                                <select name="month" class="text-center dob border w-100 ">
+                                                <select  onchange="fill(this.value);" name="month" class="text-center dob border w-100 ">
                                                     <option value="jan">Jan</option>
+                                                    <option value="feb">Jan</option>
                                                 </select>
                                              </div>
 
@@ -803,8 +809,9 @@
                                             </div>
 
                                             <div class="col-sm-12">
-                                                <select name="month" class="text-center dob border w-100 ">
+                                                <select  onchange="fill(this.value);" name="month" class="text-center dob border w-100 ">
                                                     <option value="01">01</option>
+                                                    <option value="02">02</option>
                                                 </select>
                                              </div>
 
@@ -821,8 +828,9 @@
                                             </div>
 
                                             <div class="col-sm-12">
-                                                <select name="month" class="text-center dob border w-100 ">
+                                                <select  onchange="fill(this.value);" name="month" class="text-center dob border w-100 ">
                                                     <option value="1950">1950</option>
+                                                     <option value="1951">1950</option>
                                                 </select>
                                              </div>
 
@@ -830,66 +838,6 @@
                                             </div>
 
                                             </div>
-
-
-                                            <!-- PART - 2 
-
-                                            <div class="row mb-3 collapse part-2">
-                                                <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('E-Mail') }} <span title="Required" class="text-danger">*</span></label>
-
-                                                <div class="col-md-6">
-                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-3">
-                                                <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Password') }} <span title="Required" class="text-danger">*</span></label>
-
-                                                <div class="col-md-6">
-                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-
-                                                </div>
-                                            </div>
-
-
-                                            <div class="row mb-3">
-                                                <label for="password" class="col-md-4 col-form-label text-md-left">{{ __('Confirm Password') }}<span title="Required" class="text-danger">*</span></label>
-
-                                                <div class="col-md-6">
-                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">
-
-
-                                                </div>
-                                            </div>
-
-
-
-                                            <div class="row w-75 m-auto">
-                                                <div class="col-md-1">
-                                                    <input id="password" type="checkbox" class=" " name="terms" required>
-                                                </div>
-
-                                                <div class="col-md-10">
-                                                    <p style="font-family:system-ui;" class="text-secondary small mb-0">I have read and agree to the<a class="small d-inline" target="_black" href="terms">Terms of Use</a> and<a class="small d-inline" target="_black" href="privacy-policy">Privacy Policy</a></p>
-                                                </div>
-                                            </div>
-
-
-
-                                            <div class="row mb-1 w-75 m-auto">
-                                                <div class="col-md-1">
-                                                    <input id="password" type="checkbox" class=" " name="terms">
-                                                </div>
-
-                                                <div class="col-md-10">
-                                                    <p style="font-family:system-ui;" class="small text-secondary ">I want to receive updates</p>
-                                                </div>
-                                            </div> -->
-
-
 
                                             <div class="row mb-3 w-75 m-auto">
                                                 <!-- <div class="col-md-12">
@@ -900,32 +848,100 @@
                                 @endif
                             </div> -->
                                             </div>
+                                            <div class="row mb-4">
+                                                <div class="col-md-12 ">
+                                                    <button id="next_reg" onclick="next();" style="width: 99%;" class="d-block mx-auto my-3 pt-3 proceed_btn" disabled> Next </button>
+                                                </div>
+                                            </div>
 
+                                            </div>
+                                            <!-- Step 1 ENDS -->
+                                            <input type="number" hidden id="filled" value="">
+
+
+                    <!-- Step 2 -->
+                                            <div id="step_two" class="collapse">
+
+                                            <div id="form_fields">
+                                            <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Email Address</p></label>
+                                           
+                                            <input onblur="fill(this.value);" onkeyup="email_ck2(this.value);" class="border w-100 py-2 mr-1" type="email" name="email" placeholder="" id="inputEmailAddress2" value="{{ old('email') }}" required />
+
+                                            <span id="er_email2" class="collapse float-left text-danger small">Error: Invalid email</span>
+                                            </div>
+
+                                            <div id="form_fields2" class="mt-3">
+                                                <label class="mb-0 w-100"><p class="mb-0 d-block w-50 float-left small small_label">Password</p>
+                                                    <span id="hideButton3" onclick="passShow3();" class="float-right p-0 w-50 text-right small_label px-2">
+                                                     <img id="passIcon3" width="15px" src="images/randomIcons/see.png"> <span id="hide3">Show</span>  
+                                                    </span>
+                                                </label>
+                                           
+                                            <input onblur="fill(this.value);" onkeyup="pass_match1(this.value);" class="border w-100 py-2 mr-1" name="password" id="inputPassword3" type="password" value="" required />
+                                            </div>
+
+                                            <div id="form_fields2" class="my-3">
+                                                <label class="mb-0 w-100"><p class="mb-0 d-block w-50 float-left small small_label">Confirm Password</p>
+                                                    <span id="hideButton2" onclick="passShow2();" class="float-right p-0 w-50 text-right small_label px-2">
+                                                     <img id="passIcon2" width="15px" src="images/randomIcons/see.png"> <span id="hide2">Show</span>  
+                                                    </span>
+                                                </label>
+                                           
+                                            <input onblur="fill(this.value);" onkeyup="pass_match2(this.value);" class="border w-100 py-2 mr-1" name="password_confirmation" id="inputPassword2" type="password" value="" required />
+
+                                            <span id="er_pass" class="collapse float-left text-danger small">Error: Passwords do not match!</span>
+
+                                            </div>
+                                            
+
+                                            <div id="form_fields">
+                                            <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label2">By creating an account, you agree to the<a class="small d-inline" target="_black" href="terms">Terms of Use</a> and <a class="small d-inline" target="_black" href="privacy-policy">Privacy Policy</a></p></label>                                            
+                                            </div>
+
+
+                                            <div id="form_fields4">
+                                                <div class="col-md-12 px-0">
+                                                    @if(config('services.recaptcha.key'))
+                                                        <div class="g-recaptcha"
+                                                            data-sitekey="{{config('services.recaptcha.key')}}">
+                                                        </div>
+                                                    @endif
+                                                </div>                                       </div>
 
                                             <div class="row mb-4">
                                                 <div class="col-md-12 ">
-                                                    <button type="submit" class="w-25 d-block mx-auto btn btn-outline-success">
-                                                        {{ __('Register') }}
-                                                    </button>
+                                                    <button id="proceed_reg" type="submit" style="width: 99%;" class="d-block mx-auto my-3 pt-2 proceed_btn text-light " disabled> Register </button>
+
+
                                                 </div>
                                             </div>
-                                            <hr>
+
+                                        </div>
+                    <!-- Step 2 ENDS -->
 
                                         </form>
 
-
-                                        <div class="row mb-3 w-75 m-auto">
-                                            <div class="col-md-12">
-                                                <a href="{{route('login.facebook')}}" class="social_btn text-light w-100">
-                                                    <i class="fa fa-facebook-f mr-2 px-1" style="font-size:14px;background: white;color:#3B5998;"></i>Register with Facebook</a>
+                                        <div class="row">
+                                            <div class="col-md-4 px-0">
+                                                <hr class="thick_border">
+                                            </div>
+                                            <div class="mb-0 col-md-4 form_fields_black">
+                                                <p>Or continue with</p>
+                                            </div>
+                                            <div class="col-md-4 px-0">
+                                                <hr class="thick_border">
                                             </div>
                                         </div>
 
-
-                                        <div class="row mb-3 w-75 m-auto">
-                                            <div class="col-md-12">
-                                                <a href="{{route('login.google')}}" class="social_btn2 text-dark w-100">
-                                                    <i class="fab fa-google mr-2" style="font-size:15px;color:#3B5998;"></i>Register with Google</a>
+                                        <div class="row mb-3 w-50 px-4 m-auto">
+                                            <div class="col-md-6">
+                                                <a href="{{route('login.facebook')}}" class="social_btn text-light">
+                                                    <img class="shadow" src="images/randomIcons/fb.png"></a>
+                                            </div>
+                                        
+                                            <div class="col-md-6">
+                                                <a href="{{route('login.google')}}" class="social_btn text-dark">
+                                                    <img class="shadow" src="images/randomIcons/google.png"></a>
                                             </div>
                                         </div>
 
@@ -981,7 +997,7 @@
                                             <div id="form_fields2" class="mt-3">
                                                 <label class="mb-0 w-100"><p class="mb-0 d-block w-50 float-left small small_label">Password</p>
                                                     <span id="hideButton" onclick="passShow();" class="float-right p-0 w-50 text-right small_label px-2">
-                                                     <img width="15px" src="images/randomIcons/hide.png"> <span id="hide">Show</span>  
+                                                     <img id="passIcon" width="15px" src="images/randomIcons/see.png"> <span id="hide">Show</span>  
                                                     </span>
                                                 </label>
                                            
@@ -1685,12 +1701,15 @@
             $('#inputPassword').attr('type','text');
             $('#hideButton').attr("onclick","passHide()");
             document.getElementById("hide").innerHTML="Hide";
+            $('#passIcon').attr('src','images/randomIcons/hide.png');
         }
         function passHide(){
             $('#inputPassword').attr('type','password');
             $('#hideButton').attr("onclick","passShow()");
             document.getElementById("hide").innerHTML="Show";
+            $('#passIcon').attr('src','images/randomIcons/see.png');
         }
+
 
         function email_ck(value) {
             var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -1709,6 +1728,93 @@
             $('.proceed_btn').css('background','#014811');
             }
         }
+
+        function next() {
+            $('#step_one').addClass('collapse');
+            $('#step_two').removeClass('collapse');
+            document.getElementById('steps').innerHTML = '2';
+        }
+
+        //For Register
+        function passShow2(){
+            $('#inputPassword2').attr('type','text');
+            $('#hideButton2').attr("onclick","passHide2()");
+            document.getElementById("hide2").innerHTML="Hide";
+            $('#passIcon2').attr('src','images/randomIcons/hide.png');
+        }
+        function passHide2(){
+            $('#inputPassword2').attr('type','password');
+            $('#hideButton2').attr("onclick","passShow2()");
+            document.getElementById("hide2").innerHTML="Show";
+            $('#passIcon2').attr('src','images/randomIcons/see.png');
+        }
+
+         function passShow3(){
+            $('#inputPassword3').attr('type','text');
+            $('#hideButton3').attr("onclick","passHide3()");
+            document.getElementById("hide3").innerHTML="Hide";
+            $('#passIcon3').attr('src','images/randomIcons/hide.png');
+        }
+        function passHide3(){
+            $('#inputPassword3').attr('type','password');
+            $('#hideButton3').attr("onclick","passShow3()");
+            document.getElementById("hide3").innerHTML="Show";
+            $('#passIcon3').attr('src','images/randomIcons/see.png');
+        }
+
+        function email_ck2(value) {
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if(regex.test(value) == true)
+                $('#er_email2').addClass('collapse');
+            else
+                $('#er_email2').removeClass('collapse');
+        }
+
+        function fill(value) {            
+            var filled = $('#filled').val();
+            filled = filled;
+            if(value != ''){
+                document.getElementById('filled').value = Number(filled)+Number(1);
+                filled = Number(filled)+Number(1);
+            } 
+            else{
+                document.getElementById('filled').value = Number(filled)-Number(1);
+                filled = Number(filled)-Number(1);
+            } //console.log(filled)
+
+            if(filled >= 6){
+            $('#next_reg').prop("disabled", false);
+            $('#next_reg').css('background','#014811');
+            }
+            else{
+            $('#next_reg').prop("disabled", true);
+            $('#next_reg').css('background','#01481140');
+            }
+
+        }
+
+        function pass_match1(value) {
+            sessionStorage.setItem('pass1',value);
+        }
+        function pass_match2(value) {
+            var pass1 = sessionStorage.getItem('pass1');
+            var filled = $('#filled').val();
+
+            if(value == pass1 && filled >= 8){
+            $('#proceed_reg').prop("disabled", false);
+            $('#proceed_reg').css('background','#014811');
+            $('#er_pass').addClass('collapse');
+            }
+            else{
+            $('#proceed_reg').prop("disabled", true);
+            $('#proceed_reg').css('background','#01481140');
+            $('#er_pass').removeClass('collapse');
+            }
+        }
+
+        
+
+//For Register
     </script>
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -1743,6 +1849,19 @@
             document.body.scrollLeft = scroll.left;
         }
     }
+
+//To refresh the page if back button click after login
+    window.addEventListener( "pageshow", function ( event ) {
+          var historyTraversal = event.persisted || 
+                                 ( typeof window.performance != "undefined" && 
+                                      window.performance.navigation.type === 2 );
+          if ( historyTraversal ) {
+            // Handle page restore.
+            window.location.reload();
+          }
+    });
+//To refresh the page if back button click after login
+
 </script>
 
 </body>

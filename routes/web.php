@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\testController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +13,6 @@ use App\Http\Controllers\testController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 //ADMIN ROUTES
 

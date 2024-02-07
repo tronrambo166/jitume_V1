@@ -84,7 +84,7 @@
                                 <p class="my-1 text_color_p font-weight-bold"><i class="mr-2 fa fa-dollar"></i>{{
                                     result.price }}</p>
 
-                                <p class="card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ result.location
+                                <p class="loc_p card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ result.location
                                 }}</p>
 
                                 <p><span class="mt-1 rounded small"><i class="mr-2 fa fa-category"></i>Category:
@@ -98,7 +98,7 @@
 
             <div class="col-md-6">
                 <div class="map_style m-auto">
-                    <div id="googleMap" style="width:100%;height:95%;"></div>
+                    <div id="map" style="height: 95%;"></div> 
                 </div>
             </div>
 
@@ -139,7 +139,7 @@ export default {
                  for (const [key, value] of Object.entries(t.results)) {  
                     value.id = btoa(value.id);
                     value.id = btoa(value.id);
-                    console.log(value.id);
+                    //console.log(value.id);
                 }
                 //console.log(data);
                 //Setting Curr LatLng
@@ -188,7 +188,7 @@ export default {
                     for (const [key, value] of Object.entries(t.results)) {  
                     value.id = btoa(value.id);
                     value.id = btoa(value.id);
-                    console.log(value.id);
+                    //console.log(value.id);
                 }
 
                     //Setting Curr LatLng
@@ -232,83 +232,71 @@ export default {
              var myLong = position.coords.longitude;
         } 
 
-        var coords = new google.maps.LatLng(myLat,myLong);
+        
+
+        var coords = ([myLat,myLong]);
         var mapOptions = {
         zoom:8,
         center:coords,
         //center:new google.maps.LatLng(51.508742,-0.120850),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
         }
 
-        var div = $("#googleMap").length;
-        if(div)
-        var map = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+        //MAP CONTAINER
+        let map = new L.map('map' , mapOptions);
+        let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        map.addLayer(layer);
  
-
         //console.log(this.results);
         for (const [key, value] of Object.entries(this.results)) {
-
-            //INFO
-            const contentString =
-                '<div id="content">' +
-                '<div id="siteNotice">' +
-                "</div>" +
-                '<h1 id="firstHeading" class="firstHeading">'+value.name+'</h1>' +
-                '<div id="bodyContent">' +
-                '<p><b>Location: </b>'+value.location+', <a class="searchListing header_buttons font-weight-bold w-50 text-center my-3" target="_blank" href="https://test.jitume.com/#/serviceDetails/'+value.id+'">' +
-                "View Business</a> " +
-                "</div>" +
-                "</div>";
-
-            const infowindow = new google.maps.InfoWindow({
-                content: contentString,
-                ariaLabel: value.name,
-              });
             //INFO
 
-              this.addMarker({lat:value.lat, lng:value.lng},map,value.name,value.price,infowindow);
-              //"lat": 48.353783,"lng": 11.79
+                const contentString = '<a class="info_map py-0 font-weight-bold  text-center" target="_blank" href="https://test.jitume.com/#/serviceDetails/'+value.id+'">'
+                +value.name+'</a>';
+
+            //INFO
+              const investment_needed = (value.investment_needed/1000)+"K";
+              //this.addMarker({lat:value.lat, lng:value.lng},map,value.name,investment_needed,infowindow);
+              var coord = ([value.lat,value.lng]);
+              this.addMarker(coord,map,contentString);
             }
         
 
             this.addMarkerHome(coords,map);
         },
 
-        addMarker(coords,map,title,fee,infowindow){
-        const icon = {
-            url: "images/map/other_business.png", // url
-            scaledSize: new google.maps.Size(55, 27), // scaled size
-        };
+        addMarker(coords,map,contentString){
+        let customIcon = {
+         iconUrl:'images/map/other_business.png',
+         iconSize:[32,32]
+        }; let myIcon = L.icon(customIcon);
 
-        var marker = new google.maps.Marker({
-        map:map,
-        position:coords,
-        title:title,
-        label:'$'+fee,
-        icon:icon
-        });
+        let iconOptions = {
+         title:'Spurs',
+         draggable:true,
+         icon:myIcon
+        }
 
-        marker.addListener("click", () => {
-            infowindow.open({
-              anchor: marker,
-              map,
-            });
-            });
+        var marker = new L.Marker(coords, iconOptions);
+        marker.addTo(map);
+        marker.bindPopup(contentString).openPopup();
         },
 
-         addMarkerHome(coords,map){
-        const icon = {
-            url: "images/map/myloc.png", // url
-            scaledSize: new google.maps.Size(40, 40), // scaled size
-        };
+        addMarkerHome(coords,map){
+        let customIcon = {
+         iconUrl:'images/map/myloc.png',
+         iconSize:[32,32]
+        }; let myIcon = L.icon(customIcon);
 
-        var marker = new google.maps.Marker({
-        map:map,
-        position:coords,
-        icon:icon
-        });
+        let iconOptions = {
+         title:'Spurs',
+         draggable:true,
+         icon:myIcon
+        }
+
+        var marker = new L.Marker(coords, iconOptions);
+        marker.addTo(map);
+
         },
-
          failure(){},
         //MAP -- MAP
 

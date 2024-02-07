@@ -41,9 +41,9 @@
                 <input type="text" name="lng" id="lng" hidden value="">
 
                 <div class="col-12 col-sm-3 my-1 pt-1  bg-white">
-                  <div class="dropdown pt-1">
+                  <div class="dropdown pt-1 text-left">
 
-                    <select id="category" name="category" class="dropdown-toggle form-select border-white form-control home_category_listings">
+                    <select id="category" name="category" class=" border-white home_category_listings">
                       <option class="form-control small" value="">Category</option>
 
                       <option class="form-control" value="Agriculture">Agriculture</option>
@@ -292,7 +292,7 @@
             :index="index">
             <!-- Loop -->
             <div class="mx-auto mt-4">
-              <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2">
+              <router-link :to="`/listingDetails/${result.id}`" class="shadow card border px-2 pt-2">
 
                 <video v-if="result.file" controls style="width:95%; height:114px;" alt="">
                   <source :src="result.file" type="video/mp4">
@@ -304,7 +304,7 @@
 
                   <h5 class="card_heading text-left mb-0 py-2">{{ result.name }} </h5>
 
-                  <p class="card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ result.location }}</p>
+                  <p class="loc_p card_text pt-1 text-left"><i class="mr-2 fa fa-map-marker"></i>{{ result.location }}</p>
 
                   <p class="card_text"><span class="rounded"><i class="mr-2 fa fa-phone"></i>{{ result.contact }}</span>
                   </p>

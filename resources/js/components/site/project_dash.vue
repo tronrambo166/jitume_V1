@@ -28,11 +28,11 @@
 
 
 
-                        <div class="row pt-2 my-auto mr-1 mr-md-0" width="">
+                        <div class="row pt-2 my-auto px-2 mr-md-0" width="">
                             <div class="col px-1 my-2 my-sm-0">
                                 <div class=" ">
                                     <input readonly required="" name="title" type="text" v-model="result.title"
-                                        class="placeH placeH_active w-100 py-1 border border-dark ">
+                                        class="placeH placeH_active w-100 py-1 border rounded ">
                                 </div>
                             </div>
 
@@ -40,14 +40,14 @@
                             <div class="col px-0 my-2 my-sm-0">
                                 <div class="">
                                     <input readonly required="" type="number" v-model="result.amount" name="amount"
-                                        class="placeH placeH_active w-100 py-1 border border-dark ">
+                                        class="placeH placeH_active w-100 py-1 border rounded ">
                                 </div>
                             </div>
 
                             <div class="col px-1 mt-2 mt-sm-0">
                                 <div class="upload-btn-wrapper w-100 d-flex justify-content-start">
                                     <a @click="download_milestone_doc(result.id)"
-                                        class="text-white  placeH btnUp3 w-100 d-flex align-items-center">Download Milestone
+                                        class="text-white  placeH btnUp3 w-100 d-flex align-items-center border rounded">Download Milestone
                                         Documentaion <i class="ml-2 fa fa-arrow-down"></i></a>
 
                                 </div>
@@ -57,19 +57,19 @@
                             <div v-if="result.access && result.time_left != 'L A T E !'" class="col px-1 mt-2 mt-sm-0">
 
                                 <!-- <div v-if="result.with_equip" class="form-group">
-                                        <span  class="grey_btn pay_btn float-left diabled placeH_active text-center border border-dark px-2 py-1 btn btn-light" >PAY
+                                        <span  class="grey_btn pay_btn float-left diabled placeH_active text-center border rounded px-2 py-1 btn btn-light" >PAY
                                         </span> 
 
-                                        <a @click="milestoneInvestEQP(result.id,result.investor_id,result.user_id);" type="submit" class="pay_btn placeH_active text-center border border-dark px-2 py-1 btn btn-light" >EQUIP
+                                        <a @click="milestoneInvestEQP(result.id,result.investor_id,result.user_id);" type="submit" class="pay_btn placeH_active text-center border rounded px-2 py-1 btn btn-light" >EQUIP
                                         </a> 
                                          </div> -->
 
                                 <div class="form-group">
                                     <button @click="make_session(form.id);" type="submit"
-                                        class="pay_btn placeH_active text-center border border-dark px-2 py-1 btn btn-light">PAY
+                                        class="pay_btn placeH_active text-center border rounded px-2 py-1 btn btn-light">PAY
                                     </button>
 
-                                    <!--    <span  class="grey_btn pay_btn float-left diabled placeH_active text-center border border-dark px-2 py-1 btn btn-light" >EQUIP
+                                    <!--    <span  class="grey_btn pay_btn float-left diabled placeH_active text-center border rounded px-2 py-1 btn btn-light" >EQUIP
                                         </span> -->
                                 </div>
 
@@ -81,13 +81,13 @@
                             <div class="col px-1 mt-2 mt-sm-0">
                                 <div class="form-group">
                                     <span
-                                        class="placeH_active status text-center border border-dark px-0 py-1 btn btn-success btn-block">In
+                                        class="placeH_active status text-center border rounded px-0 py-1 primary_bg text-light btn-block">In
                                         Progress</span>
                                 </div>
                             </div>
 
                             <div class="col px-1 mt-2 mt-sm-0">
-                                <div class=" border border-dark px-2 d-inline-block d-flex align-items-center "
+                                <div class=" border rounded px-2 d-inline-block d-flex align-items-center "
                                     style="padding: 3px;">
                                     <div>
                                         <p class="placeH_active text-success due d-inline">Due in:
@@ -126,7 +126,7 @@
                             <div class="col mt-2 mt-sm-0">
                                 <div class="">
                                     <input readonly required="" name="title" type="text" v-model="result.title"
-                                        class="placeH_done placeH_active w-100 py-1 border border-dark">
+                                        class="placeH_done placeH_active w-100 py-1 border rounded">
                                 </div>
                             </div>
 
@@ -135,13 +135,13 @@
                                 <div class="">
 
                                     <input readonly required="" type="number" v-model="result.amount" name="amount"
-                                        class="placeH_done placeH_active w-100 py-1 border border-dark ">
+                                        class="placeH_done placeH_active w-100 py-1 border rounded ">
                                 </div>
                             </div>
 
                             <div class="col my-2 my-sm-0">
                                 <div class="upload-btn-wrapper d-flex justify-content-start">
-                                    <a class="text-white disabled placeH_done btnUp_done w-100 d-flex align-items-center ">Download
+                                    <a class="text-white disabled placeH_done btnUp_done w-100 d-flex align-items-center border rounded">Download
                                         Milestone Documentaion <i class=" ml-2 fa fa-arrow-down"></i>
                                     </a>
 
@@ -152,12 +152,12 @@
                             <div class="col d-flex">
                                 <div class="form-group mr-1">
                                     <a disabled
-                                        class="placeH_active text-center border border-dark px-2 py-1 btn btn-light btn-block">PAID</a>
+                                        class="placeH_active text-center border rounded px-2 py-1 btn btn-light btn-block">PAID</a>
                                 </div>
 
                                 <div class="form-group ml-1">
                                     <span style="background:black;"
-                                        class="placeH_active status text-center border text-light border-dark px-2 py-1 btn-block">DONE!</span>
+                                        class="placeH_active status text-center border text-light rounded px-2 py-1 btn-block">DONE</span>
                                 </div>
                             </div>
 
@@ -179,37 +179,37 @@
                     <form action="" method="post" enctype="multipart/form-data" class="vueform form-group form">
 
 
-                        <div class="row pt-2 mr-1 mr-sm-0">
+                        <div class="row pt-2 px-2  mr-sm-0">
 
 
-                            <div class="col px-1 my-2 my-sm-0">
+                            <div class="col my-2 my-sm-0">
                                 <div class=" ">
                                     <input readonly required="" name="title" type="text" v-model="result.title"
-                                        class="placeH_inactive w-100 py-1 border border-dark ">
+                                        class="placeH_inactive w-100 py-1 border rounded ">
                                 </div>
                             </div>
 
 
-                            <div class="col px-0 my-2 my-sm-0">
+                            <div class="col my-2 my-sm-0">
                                 <div class="">
 
                                     <input readonly required="" type="number" v-model="result.amount" name="amount"
-                                        class="placeH_inactive w-100 py-1 border border-dark ">
+                                        class="placeH_inactive w-100 py-1 border rounded ">
                                 </div>
                             </div>
 
-                            <div class="col px-1 my-2 my-sm-0">
+                            <div class="col my-2 my-sm-0">
                                 <div class="upload-btn-wrapper w-100">
-                                    <a class="pl-4 disabled placeH_inactive btnUp4 w-100">Download Milestone Documentaion <i
+                                    <a class="pl-4 disabled placeH_inactive btnUp4 w-100 border rounded">Download Milestone Documentaion <i
                                             class="ml-2 fa fa-arrow-down"></i></a>
 
                                 </div>
                             </div>
 
-                            <div class="col px-1">
-                                <div class="form-group">
+                            <div class="col d-flex">
+                                <div class="form-group ml-1">
                                     <span
-                                        class="status text-center border border-dark px-2 py-1 btn-light placeH_inactive btn-block">To
+                                        class="status text-center border rounded px-2 py-1 btn-light placeH_inactive btn-block">To
                                         Do</span>
                                 </div>
                             </div>

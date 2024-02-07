@@ -44,23 +44,23 @@
                             <div class="col px-1 my-2 my-sm-0">
                                 <div class=" ">
                                     <input readonly required="" name="title" type="text" v-model="result.title"
-                                        class="placeH w-100  border border-dark py-1">
+                                        class="placeH w-100 border rounded py-1">
                                 </div>
                             </div>
 
 
-                            <div class="col px-0 my-2 my-sm-0 ">
+                            <div class="col px-1 my-2 my-sm-0 ">
                                 <div class="">
 
                                     <input readonly required="" type="number" v-model="result.amount" name="amount"
-                                        class="placeH w-100  border border-dark py-1">
+                                        class="placeH w-100  border rounded py-1">
                                 </div>
                             </div>
 
                             <div class="col px-1 mt-2 mt-sm-0">
                                 <div class="upload-btn-wrapper w-100">
                                     <a @click="download_milestone_doc(result.mile_id)"
-                                        class="text-white  placeH btnUp3 w-100">Download Milestone Documentaion <i
+                                        class="text-white placeH btnUp3 w-100">Download Milestone Documentaion <i
                                             class="ml-2 fa fa-arrow-down pb-2"></i></a>
 
                                 </div>
@@ -70,14 +70,14 @@
                             <div v-if="booked" class="col px-1 mt-2 mt-sm-0">
                                 <div class="form-group">
 
-                                    <a v-if ="result.status == 'In Progress'" class="placeH_inactive pb-2 text-center border border-dark p-0 btn btn-secondary text-dark btn-block">PAID</a>
+                                    <a v-if ="result.status == 'In Progress'" class="placeH_inactive pb-2 text-center border rounded btn btn-secondary text-white btn-block">PAID</a>
 
                                     <a v-else-if="result.time_left == 'L A T E !'" @click="make_session(form.id);"
                                         
                                         class="placeH_active status text-center border border-dark btn btn-light btn-block disabled">PAY</a>
 
                                     <a v-else @click="make_session(form.id); pay_milestone(result.id,result.amount)" type="submit"
-                                        class="placeH_active status text-center border border-dark btn btn-light btn-block">PAY</a>
+                                        class="placeH_active status text-center border rounded btn btn-light btn-block">PAY</a>
                                 </div>
                             </div>
 
@@ -86,7 +86,7 @@
 
                             <div class="col px-1 mt-2 mt-sm-0">
                                 <div class="form-group">
-                                    <span class="placeH_active status text-center border border-dark btn btn-success btn-block">{{result.status}}</span>
+                                    <span class="placeH_active status text-center border rounded primary_bg text-light py-1 btn-block">{{result.status}}</span>
                                 </div>
                             </div>
 
@@ -122,23 +122,23 @@
                             <div class="col mt-2 mt-sm-0">
                                 <div class=" ">
                                     <input readonly required="" name="title" type="text" v-model="result.title"
-                                        class="placeH_done w-100 border py-1 border-dark ">
+                                        class="placeH_done w-100 border rounded py-1">
                                 </div>
                             </div>
 
 
-                            <div class="col px-0 my-2 mt-sm-0 ">
+                            <div class="col px-1 my-2 mt-sm-0 ">
                                 <div class="">
 
                                     <input readonly required="" type="number" v-model="result.amount" name="amount"
-                                        class="placeH_done w-100 border py-1 border-dark ">
+                                        class="placeH_done w-100 border py-1 rounded">
                                 </div>
                             </div>
 
                             <div class="col my-2 my-sm-0">
 
                                 <div class="upload-btn-wrapper d-flex justify-content-start">
-                                    <a @click="download_milestone_doc(result.mile_id)" class="text-white disabled placeH_done btnUp_done  w-100 d-flex align-items-center ">Download
+                                    <a @click="download_milestone_doc(result.mile_id)" class="text-white disabled placeH_done btnUp_done  w-100 d-flex align-items-center border rounded">Download
                                         Milestone
                                         Documentaion <i class="ml-2 fa fa-arrow-down  pb-2"></i></a>
 
@@ -155,10 +155,10 @@
 
                                 <div class="form-group ml-1">
                                     <span v-if="result.status == 'Done'" style="background:black;"
-                                        class="placeH_active status text-center border text-light border-dark px-2 py-1 btn-block">Done!</span>
+                                        class="placeH_active status text-center border text-light rounded px-2 py-1 btn-block">Done!</span>
 
                                         <span v-else style="background:black;"
-                                        class="placeH_active status text-center border text-success border-dark px-2 py-1 btn-block">Being Completed</span>
+                                        class="placeH_active status text-center border text-success rounded px-2 py-1 btn-block">Being Completed</span>
                                 </div>
                             </div>
 
@@ -186,16 +186,16 @@
                             <div class="col px-1 my-2 my-sm-0">
                                 <div class=" ">
                                     <input readonly required="" name="title" type="text" v-model="result.title"
-                                        class="btn-secondary placeH_inactive w-100 py-1 border border-dark ">
+                                        class="btn-secondary placeH_inactive w-100 py-1 border rounded ">
                                 </div>
                             </div>
 
 
-                            <div class="col px-0 my-2 my-sm-0 ">
+                            <div class="col px-1 my-2 my-sm-0 ">
                                 <div class="">
 
                                     <input readonly required="" type="number" v-model="result.amount" name="amount"
-                                        class="btn-secondary placeH_inactive w-100 py-1 border border-dark ">
+                                        class="btn-secondary placeH_inactive w-100 py-1 border rounded">
                                 </div>
                             </div>
 
@@ -210,13 +210,13 @@
 
                             <div class="col px-1 my-2 my-sm-0">
                                 <div class="form-group">
-                                    <a style="color:lightgray;" disabled class="placeH_inactive pb-2 text-center border border-dark p-0 btn btn-secondary btn-block">PAY</a>
+                                    <a style="color:lightgray;" disabled class="placeH_inactive pb-2 text-center border rounded p-0 btn btn-secondary btn-block">PAY</a>
                                 </div>
                             </div>
 
                             <div class="col px-0 my-2 my-sm-0">
                                 <div class="form-group">
-                                    <span class="placeH_inactive pb-2 status text-center border border-dark p-0 btn btn-secondary btn-block">To Do</span>
+                                    <span class="placeH_inactive pb-2 status text-center border rounded p-0 btn btn-secondary btn-block">To Do</span>
                                 </div>
                             </div>
 

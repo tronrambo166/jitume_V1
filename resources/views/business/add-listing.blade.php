@@ -165,14 +165,14 @@
                     </div>
 
                     <div class="col-sm-6"> 
-                    <input id="pac-input" required="" style="height: 32px;" class="controls form-control d-inline" type="text" name="location" value="" placeholder="Enter a location...">
+                    <input id="searchbox" onkeyup="suggest(this.value);" style="height: 32px;" class="controls form-control d-inline" type="text" name="location" value="" placeholder="Enter a location...">
                     <!-- onkeyup="suggest(this.value);" -->
                     <input type="text" name="lat" id="lat" hidden value="">
                     <input type="text" name="lng" id="lng" hidden value="">
                     </div>
 
                          <div class="row" style="">
-                                <div id="result_list" class="" style="display: none;left: 340px;width:41%; z-index: 1000;height: 600px;position: absolute;">
+                                <div id="result_list" class="" style="display: none;left: 340px;width:25%; z-index: 1000;height: 600px;position: absolute;">
                                     
                                 </div>
                             </div>
@@ -304,7 +304,7 @@
                     <div class="col-sm-12 mt-3"> 
 
                     <div class="upload-btn-wrapper w-75  d-block">
-                     <label for="file-upload5" class="text-center w-100 bg-info btnUp_listing"> Upload supportive video*
+                     <label for="file-upload5" class="text-center w-100 primary_bg text-light btnUp_listing"> Upload supportive video*
                       <img src="../images/up.svg" width="30px"> </label>
                       <input style="" id="file-upload5" type="file" name="video" />
                     </div>
@@ -335,9 +335,9 @@
 
 
                  <div class="row my-5 w-75"> 
-                    <a onclick="msg();" id="save" style="width:40%;background:green;border-radius: 30px;" class=" m-auto btn text-white font-weight-bold">SAVE</a>
+                    <a onclick="msg();" id="save" style="width:40%;border-radius: 30px;" class="primary_bg m-auto btn text-white font-weight-bold">SAVE</a>
 
-                 <button id="save1" style="width:40%;background:green;border-radius: 30px;" class=" m-auto btn text-white font-weight-bold collapse">SAVE</button>
+                 <button id="save1" style="width:40%;border-radius: 30px;" class="primary_bg m-auto btn text-white font-weight-bold collapse">SAVE</button>
                  </div>
 
 

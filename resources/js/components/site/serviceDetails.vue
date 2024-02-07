@@ -58,17 +58,17 @@
           <div class="col-md-4 col-lg-5">
 
 
-            <div class="Overview" id="Overview">
+            <div class="Overview text-center" id="Overview">
               <h4 class="text-center secondary_heading">About</h4>
-              <p class="my-4 text-left h6">{{ form.details }} Lorem ipsum dolor. Lorem ipsum dolor.
+              <p class="my-4 text-left h6 px-3">{{ form.details }} Lorem ipsum dolor. Lorem ipsum dolor.
                 Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. </p>
 
               <div class="cart text-center">
-                <form>
+                <form class="text-center">
                   <!--  <input id="qty" min="1" class="w-25 form-control d-inline" type="number" name="qty" value="1"> -->
 
                   <a style="cursor:pointer;" v-if="auth_user" @click="service_milestones()"
-                    class="border border-dark w-50 text-center convBtn rounded">Service Milestone
+                    class="border border-dark w-50 mx-auto text-center convBtn rounded">Service Milestone
                     Breakdown</a>
 
                   <a style="cursor:pointer;" v-else @click="make_session()"
@@ -77,14 +77,14 @@
 
                     <!-- Message -->
                     <a style="cursor:pointer;color:#015601;" v-if="auth_user"
-                    class="my-4 border border-dark w-50 text-center convBtn rounded" data-toggle="collapse" href="#collapseExample">Contact Me</a>
+                    class="my-4 border border-dark w-50 mx-auto text-center convBtn rounded" data-toggle="collapse" href="#collapseExample">Contact Me</a>
 
                   <a style="cursor:pointer;color:#015601;" v-else @click="make_session()"
                     class="my-4 border border-dark w-50 mx-auto text-center convBtn" data-target="#loginModal"
                     data-toggle="modal">Contact Me</a>
 
                   <div class="collapse" id="collapseExample">
-                    <div class="card card-body py-2" style="width: 90%;">
+                    <div class="card card-body py-2 mx-auto" style="width: 90%;">
                       <div  class="p-0">
                         <form @submit.prevent="sendMessage" class="p-3">
                           <div class="d-flex p-2 justify-content-center">
@@ -98,7 +98,7 @@
 
                           <div class="p-0 d-flex justify-content-center">
                             <button v-if="auth_user"
-                              class="my-3 py-1 btn-success w-50 btn header_buttons text-light float-right">Send
+                              class="my-3 py-1 primary_bg w-50 header_buttons text-light float-right">Send
                             </button>
                           </div>
 
@@ -144,11 +144,11 @@
 
                 <div class="p-2 d-flex justify-content-center justify-content-md-end">
                   <button v-if="auth_user"
-                    class="my-3 py-1 btn-success w-50 btn header_buttons text-light float-right">Book
+                    class="my-3 py-1 primary_bg w-50 header_buttons text-light float-right">Book
                   </button>
 
                   <a v-else @click="make_session()" data-target="#loginModal" data-toggle="modal"
-                    class="my-3 py-1 btn-success w-50 btn header_buttons text-light float-right">Book</a>
+                    class="my-3 py-1 primary_bg w-50 header_buttons text-light float-right">Book</a>
                 </div>
 
 

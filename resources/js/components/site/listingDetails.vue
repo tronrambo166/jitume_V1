@@ -181,7 +181,7 @@
 
 
           <div v-else class="eqp-invest">
-            <a @click="make_session(form.listing_id);" data-target="#loginmodal2" data-toggle="modal"
+            <a @click="make_session(form.listing_id);" data-target="#loginModal" data-toggle="modal"
               class="business_btns py-2 text-center text-light buttonListing my-3">Unlock More Business Information To
               Invest</a>
 
@@ -237,8 +237,8 @@
                 </div>
                 <div class="col-sm-12 px-1">
                   <div class="row">
-                    <div class="col-sm-4">Amount:$</div>
-                    <div class="col-sm-8">
+                    <div class="col-md-4">Amount:$</div>
+                    <div class="col-md-8">
                       <input v-on:keyup="calculate($event.target.value);" value="" id="bid_amount" style="height:25px;"
                         type="number" name="bid_amount">
                     </div>
@@ -265,8 +265,8 @@
                 </div>
                 <div class="col-sm-12 px-1">
                   <div class="row">
-                    <div class="col-sm-4">Amount:$</div>
-                    <div class="col-sm-8">
+                    <div class="col-md-4">Amount:$</div>
+                    <div class="col-md-8">
                       <input v-on:keyup="calculate2($event.target.value);" value="" id="bid_amount_eqp"
                         style="height:25px;" type="number" name="bid_amount_eqp">
                     </div>
@@ -671,25 +671,32 @@ export default {
     },
 
     hover() {
-      $('#convBtn1').css('background', '#72c537');
+      $('#convBtn1').css('background', '#083608');
+      //$('#convBtn1').css('color', '#ffffffe3');
     },
     hover2() {
-      $('#convBtn2').css('background', '#72c537');
+      $('#convBtn2').css('background', '#083608');
+      $('#convBtn2').css('color', '#ffffffe3');
     },
     hover3() {
-      $('#convBtn3').css('background', '#72c537');
+      $('#convBtn3').css('background', '#083608');
+      $('#convBtn3').css('color', '#ffffffe3');
     },
     hover4() {
-      $('#convBtn4').css('background', '#72c537');
+      $('#convBtn4').css('background', '#083608');
+      $('#convBtn4').css('color', '#ffffffe3');
     },
     hover5() {
-      $('#convBtn5').css('background', '#72c537');
+      $('#convBtn5').css('background', '#083608');
+      $('#convBtn5').css('color', '#ffffffe3');
     },
     hover6() {
-      $('#convBtn6').css('background', '#72c537');
+      $('#convBtn6').css('background', '#083608');
+      $('#convBtn6').css('color', '#ffffffe3');
     },
     leave() {
       $('.convBtn').css('background', '');
+      $('.convBtn').css('color', '#333333');
     },
 
     download_business() {
