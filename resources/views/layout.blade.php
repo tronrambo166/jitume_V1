@@ -1022,7 +1022,7 @@
                                             @if (Route::has('forgetPass'))
                                             <a href="{{ route('password.request') }}" class="small text">Forgot password ?</a> @endif
 
-                                            <button type="submit" style="width: 99%;" class="d-block mx-auto my-3 pt-2 proceed_btn text-light " disabled> Proceed </button>
+                                            <button id="login_btn" type="submit" style="width: 99%;" class="d-block mx-auto my-3 pt-2 proceed_btn text-light " disabled> Proceed </button>
                                         </form>
 
                                     </div>   
@@ -1719,13 +1719,14 @@
                 $('#er_email').removeClass('collapse');
         }
 
+
         function pass_ck(value) {
             email = $('#inputEmailAddress').val().length;
             pass = value.length;
 
             if(email > 9 && pass > 7){
-            $('.proceed_btn').prop("disabled", false);
-            $('.proceed_btn').css('background','#014811');
+            $('#login_btn').prop("disabled", false);
+            $('#login_btn').css('background','#014811');
             }
         }
 
@@ -1770,6 +1771,7 @@
                 $('#er_email2').removeClass('collapse');
         }
 
+        $('#next_reg').prop("disabled", true);
         function fill(value) {            
             var filled = $('#filled').val();
             filled = filled;
@@ -1780,7 +1782,7 @@
             else{
                 document.getElementById('filled').value = Number(filled)-Number(1);
                 filled = Number(filled)-Number(1);
-            } //console.log(filled)
+            } console.log(filled)
 
             if(filled >= 6){
             $('#next_reg').prop("disabled", false);
