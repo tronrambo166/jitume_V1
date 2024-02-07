@@ -908,7 +908,7 @@
                                                     @endif
                                                 </div>                                       </div>
 
-                                            <div class="row mb-4">
+                                            <div class="row my-4">
                                                 <div class="col-md-12 ">
                                                     <button id="proceed_reg" type="submit" style="width: 99%;" class="d-block mx-auto my-3 pt-2 proceed_btn text-light " disabled> Register </button>
 
@@ -1800,6 +1800,8 @@
         }
         function pass_match2(value) {
             var pass1 = sessionStorage.getItem('pass1');
+            if(pass1 =='')
+            pass1 = $('#inputPassword3').val();
             var filled = $('#filled').val();
 
             if(value == pass1 && filled >= 8){
@@ -1863,6 +1865,13 @@
           }
     });
 //To refresh the page if back button click after login
+
+window.addEventListener('load', () => {
+  const $recaptcha = document.querySelector('#g-recaptcha-response');
+  if ($recaptcha) {
+    $recaptcha.setAttribute('required', 'required');
+  }
+})
 
 </script>
 
