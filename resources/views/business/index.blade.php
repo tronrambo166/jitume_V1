@@ -31,7 +31,7 @@
 
     
     <tbody>
-        @foreach($results as $ev)
+        @foreach($results as $ev) @php $coded_id = base64_encode($ev->id); $coded_id = base64_encode($coded_id); @endphp
         <tr class="invest_heading" onclick="bg_change({{$ev->id}});" id="{{$ev->id}}">
             <td>{{$ev->name }}</td>
                 <td>{{$ev->category }}</td>
@@ -44,7 +44,7 @@
    
             <td class="text-center">
                 
-            <a style="border-radius: 4px;" href="./../#/business-milestone/{{$ev->id}}" class="btn btn-outline-success border border-dark small px-3 py-1  my-1 d-inline-block py-0">View Milestone</a >
+            <a style="border-radius: 4px;" href="./../#/business-milestone/{{$coded_id}}" class="btn btn-outline-success border border-dark small px-3 py-1  my-1 d-inline-block py-0">View Milestone</a >
             
 
             </td>
@@ -76,7 +76,7 @@
     </thead>
        
     <tbody>
-        @foreach($services as $ev)
+        @foreach($services as $ev) @php $coded_id = base64_encode($ev->id); $coded_id = base64_encode($coded_id); @endphp
         <tr onclick="bg_change({{$ev->id}});" id="{{$ev->id}}">
             <td>{{$ev->name }}</td>
                 <td>{{$ev->category }}</td>
@@ -87,7 +87,7 @@
    
             <td class="text-center">
 
-            <a style="border-radius: 4px;font-size: 12px;font-weight: 600; background: aliceblue;" href="./../#/service-milestone/{{$ev->id}}" class="btn border text-success small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
+            <a style="border-radius: 4px;font-size: 12px;font-weight: 600; background: aliceblue;" href="./../#/service-milestone/{{$coded_id}}" class="btn border text-success small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
             
 
             </td>
@@ -140,7 +140,7 @@
 
     
     <tbody>
-        @foreach($business as $ev)
+        @foreach($business as $ev) @php $coded_id = base64_encode($ev->id); $coded_id = base64_encode($coded_id); @endphp
         <tr onclick="bg_changeB({{$ev->id}});" id="b{{$ev->id}}">
             <td>{{$ev->name }}</td>
                 <td>{{$ev->category }}</td>
@@ -151,7 +151,7 @@
                         <td><img class="rounded" width="72px" height="40px" src="../{{$ev->image}}"></td>
    
             <td class="text-center">
-            <a style="border-radius: 4px;font-size: 12px;font-weight: 600;background: aliceblue;" href="./../#/business-milestone/{{$ev->id}}" class="text-success btn small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
+            <a style="border-radius: 4px;font-size: 12px;font-weight: 600;background: aliceblue;" href="./../#/business-milestone/{{$coded_id}}" class="text-success btn small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
             
             </td>
         </tr>

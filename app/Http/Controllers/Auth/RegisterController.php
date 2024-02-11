@@ -191,12 +191,15 @@ $inv_id = $user->id;
         else if($data['c_to_action'] == 'loginFromService')
             Session::put('c_to_action_Service', true);
 
+        $dob = $data['month'].'-'.$data['day'].'-'.$data['year'];
+
         return User::create([
             'fname' => $data['fname'],
             'mname' => $data['mname'],
             'lname' => $data['lname'],
             'email' => $data['email'],
             'gender' => $data['gender'],
+            'dob' => $dob,
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
         ]);
