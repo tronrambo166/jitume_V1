@@ -42,7 +42,7 @@
                         <div class="w-100 row">
 
                             <div class="dropdown col-8 ">
-                                <select id="category" name="category" class="border-none">
+                                <select id="category" name="category" class="py-2">
                                     <option hidden value="" class="form-control">Services</option>
                                     <option class="form-control" value="Business Planning">Business Planning</option>
                                     <option value="IT">IT</option>

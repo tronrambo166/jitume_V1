@@ -72491,7 +72491,7 @@ var staticRenderFns = [
             _c(
               "select",
               {
-                staticClass: "border-white home_category_listings",
+                staticClass: "py-2 home_category_listings",
                 attrs: { id: "category", name: "category" },
               },
               [
@@ -77959,7 +77959,7 @@ var staticRenderFns = [
                 _c(
                   "select",
                   {
-                    staticClass: "border-none",
+                    staticClass: "py-2",
                     attrs: { id: "category", name: "category" },
                   },
                   [

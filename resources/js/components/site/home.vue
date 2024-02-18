@@ -43,7 +43,7 @@
                 <div class="col-12 col-sm-3 my-1 pt-1  bg-white">
                   <div class="dropdown pt-1 text-left">
 
-                    <select id="category" name="category" class=" border-white home_category_listings">
+                    <select id="category" name="category" class="py-2 home_category_listings">
                       <option class="form-control small" value="">Category</option>
 
                       <option class="form-control" value="Agriculture">Agriculture</option>
