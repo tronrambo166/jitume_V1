@@ -7,23 +7,23 @@
         
 
 <div class="card-header w-100">
-<h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold">Milestones </h4> 
+<h3 class="bid_header px-5 w-100 text-left my-0 pb-3 py-2 font-weight-bold">Milestones </h3> 
 
  <div class="mx-5 my-4 my-2 ml-auto d-block">
 
                 <form action="{{route('findMilestones')}}" method="post">@csrf
-                <select name="service_id" required onchange="getBookers(this.value);" class="px-2 py-1 mx-1">
+                <select name="service_id" required onchange="getBookers(this.value);" class="border px-2 py-1 mx-1">
                     <option hidden value="">Select Service</option>
                     @foreach($business as $b)
                     <option class="form-control" value="{{$b->id}}">{{$b->name}}</option>
                     @endforeach
                 </select>
 
-                <select name="booker_id" id="bookers" required class="px-2 py-1 mx-1">
+                <select name="booker_id" id="bookers" required class="border px-2 py-1 mx-1">
                     <option value="">Select Customer</option>
                 </select>
 
-                <button style="font-weight:400;" type="submit" class="searchListing px-4 py-1">Find</button>
+                <button style="font-weight:400;" type="submit" class="mileFindBtn btn border px-4">Find</button>
             </form> 
 
 
@@ -122,10 +122,10 @@
             <td class="text-center">
             
             <div class="dropdown show d-inline-block">
-                  <a class="py-0 btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="py-0 btn border dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Action 
                   </a>
-                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                 <div class="dropdown-menu py-0" aria-labelledby="dropdownMenuLink">
 
             <a onclick="return confirm('Are you sure?');" href="{{route('delete_s_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light py-0 my-1">Delete</a>
             </div>  

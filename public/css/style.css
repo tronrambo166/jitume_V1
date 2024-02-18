@@ -246,7 +246,7 @@
         color: white;
         background-color: green;
         padding: 2px 10px;
-        border-radius: 4px;
+        border-radius: 5px;
         font-size: 15px;
         font-weight: bold;
     }
@@ -256,7 +256,7 @@
         color: white;
         background-color:#083608;
         padding: 2px 10px;
-        border-radius: 4px;
+        border-radius: 5px;
         font-size: 15px;
         font-weight: 500;
     }
@@ -265,7 +265,7 @@
         color: #2a2929;
         background-color: #d1d1d13b;
         padding: 0px 5px;
-        border-radius: 4px;
+        border-radius: 5px;
         font-size: 11px;
         font-weight: 500;
     }
@@ -414,12 +414,13 @@
     .buttonEq2 {
 
         font-size: 12px;
-        font-weight: 600;
+        font-weight: 500;
         outline: none;
-        background-color: aliceblue;
-        border: none;
+        background-color: white;
+        border: 1px solid #08360829;
         text-color: white;
         cursor: pointer;
+        border-radius: 5px;
     }
 
     .eq tr th {
@@ -430,7 +431,6 @@
 
     .eq tr td {
 
-        padding: 5px;
     }
 
     .myaccount li a {
@@ -758,11 +758,6 @@
         font-size: 11px;
     }
 
-    .mile {
-        border: 1px solid black;
-        border-radius: 3px;
-        font-size: 13px;
-    }
 
     .sidebar li {
         padding-left: 30px;
@@ -895,11 +890,10 @@
     }
 
     .mile_add_btn {
-        background: white;
-        color: #000000;
+        background: #ABC7AA;
+        color: #FFFFFF;
         font-family: Outfit-Regular;
         border: 2px solid white;
-        border-radius: 35px;
         cursor: pointer;
         font-size: 13px;
         font-weight: bold;
@@ -908,10 +902,10 @@
         letter-spacing: 1px;
     }
 
-    .mile_add_btn:hover {
+    /*.mile_add_btn:hover {
         background: #083608 !important;
         color: white !important;
-    }
+    }*/
 
 
     .navbar ul li .header_buttons {
@@ -982,7 +976,7 @@
     
     .primary_bg2 {
         background: white;
-        border:1px solid #083608;
+        border:1px solid #083608f7;
         color: #083608;
         /*#001C30*/
     }
@@ -1277,9 +1271,8 @@
     }
 
     .mile {
-        border: 1px solid black;
-        border-radius: 3px;
-        font-size: 13px;
+        border-radius: 5px;
+        font-size: 12px; box-shadow: 0px 2px 1px #e1e7ebc2;
     }
 
     .sidebar li {
@@ -1455,7 +1448,7 @@
     .bg_light{background: #e5eef5b8}
 
     .bid-accept {
-        border-radius: 35px;
+        border-radius: 5px;
     }
 
     .hooper-prev {
@@ -1766,3 +1759,16 @@ color: #333333;
   z-index: -999999;
   opacity: 0;
 }
+
+.container select, .container textarea, .container input, .card-header select, .inputs input, .inputs select, .dropdown select{border-radius: 5px;}
+.container select, .container input, .card-header select, .inputs input, .inputs select, .dropdown select:focus {outline: none;}
+.container select, .card-header select, .inputs select, .form-inline select, .dropdown select {font-size: 12px; box-shadow: 0px 2px 1px #e1e7ebc2;}
+
+.container select, .container textarea, .container input {padding-left: 7px;}
+#fakeBtn, #realBtn { font-size: 13px; }
+
+.mileFindBtn{padding:2px; background: #a9a9a938;}
+.mileFindBtn:hover{background:#083608; color: white; }
+
+textarea,input{padding-left: 10px;}
+table tr td{padding-left: 12px;}

@@ -20,12 +20,12 @@
         </div>  @endif
 
         
-        <h4 class="bid_header px-5 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Add Service</h4> 
+        <h3 class="bid_header px-5 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Add Service</h3> 
 
 
         @if($connected == 0)
-        <div class="row w-75 mx-auto my-3">
-         <div class="col-sm-12"> 
+        <div class="row w-75 px-5 my-3">
+         <div class="col-sm-12 px-0"> 
             <p class="text-center bg-light p-2 ">Before adding a business, you must onboard to Jitume Stripe platform to receive business milestone payments.</p>
                <a href="{{route('connect.stripe',['id'=>$user_id])}}" class="btn-light border border-dark w-25 m-auto rounded text-center py-1" >Connect to stripe</a>
 
@@ -34,7 +34,7 @@
 
         @else 
 
-        <div class="row px-5 mx-auto my-3">
+        <div class="row px-5 my-3">
            
                 <div class="col-sm-12">
                   
@@ -104,7 +104,7 @@
                         <div class="row">
 
                     <div class="col-sm-5"> 
-                    <textarea class="border" required="" name="details" rows="2" cols="38" placeholder="Details"></textarea>
+                    <textarea class="border" required="" name="details" rows="2" cols="38" placeholder="Details..."></textarea>
                     </div>
 
                     

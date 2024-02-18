@@ -34,7 +34,7 @@
 
 @else 
  <form action="{{route('bidsAccepted')}}" method="post">  @csrf  
-    <div class="row m-autopx-3">   
+    <div class="row m-auto px-5">   
     <h3 class="px-0 bid_header my-0 text-left pb-3 py-2 font-weight-bold">Investment Bids</h3>     
      <table class="eq table" id="">
     <thead class="table_head border">
@@ -387,15 +387,15 @@
  @if(count($bids) !=0 )
  <div class="row ml-auto" style="width:35%;">              
 <div class="col-sm-6">
-    <a id="fakeBtn" onclick="accept();" type="submit" class="bid-accept text-center float-right border border-dark font-weight-bold btn text-mute py-1 w-100 mx-auto">Accept Bids</a>
+    <a id="fakeBtn" onclick="accept();" type="submit" class="bid-accept text-center float-right border btn text-mute py-1 w-100 mx-auto">Accept Bids</a>
 
-    <button style="background:#083608;" onclick="return confirm('Are you sure?');" id="realBtn" type="submit" class="bid-accept collapse float-right font-weight-bold btn text-light w-100 mx-auto">Accept Bids</button>
+    <button style="background:#083608;" onclick="return confirm('Are you sure?');" id="realBtn" type="submit" class="bid-accept collapse float-right btn text-light w-100 mx-auto">Accept Bids</button>
 </div>
 
 <div class="col-sm-6">
-    <a id="fakeBtnR" onclick="accept();" type="submit" class="bid-accept text-center float-right border border-dark font-weight-bold btn text-mute py-1 w-100 mx-auto">Reject Bids</a>
+    <a id="fakeBtnR" onclick="accept();" type="submit" class="bid-accept text-center float-right border btn text-mute py-1 w-100 mx-auto">Reject Bids</a>
 
-    <button style="background:red;" onclick="return confirm('Are you sure?');" name="reject" value="1" onclick="return confirm('Are you sure?');" id="realBtnR" type="submit" class="bid-accept collapse float-right font-weight-bold btn text-light w-100 mx-auto">Reject Bids</button>
+    <button style="background:yellowgreen;" onclick="return confirm('Are you sure?');" name="reject" value="1" onclick="return confirm('Are you sure?');" id="realBtnR" type="submit" class="bid-accept collapse float-right btn text-light w-100 mx-auto">Reject Bids</button>
 </div>
 </div>
 @endif

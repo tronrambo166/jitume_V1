@@ -15,7 +15,7 @@
 
     @else   
         
-    <h4 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Milestones</h4>  
+    <h4 class="bid_header px-5 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Milestones</h4>  
     <div class="row mx-auto px-3 mb-0">
             
     <table class="eq table" id="">

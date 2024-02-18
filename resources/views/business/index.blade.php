@@ -87,7 +87,7 @@
    
             <td class="text-center">
 
-            <a style="border-radius: 4px;font-size: 12px;font-weight: 600; background: aliceblue;" href="./../#/service-milestone/{{$coded_id}}" class="btn border text-success small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
+            <a style="border-radius: 4px;font-size: 12px;font-weight: 500; background: white;" href="./../#/service-milestone/{{$coded_id}}" class="btn border text-success small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
             
 
             </td>
@@ -151,7 +151,7 @@
                         <td><img class="rounded" width="72px" height="40px" src="../{{$ev->image}}"></td>
    
             <td class="text-center">
-            <a style="border-radius: 4px;font-size: 12px;font-weight: 600;background: aliceblue;" href="./../#/business-milestone/{{$coded_id}}" class="text-success btn small px-3 py-1  my-1  d-inline-block py-0">View Milestone</a >
+            <a style="border-radius: 4px;font-size: 12px;font-weight: 500;background: white;" href="./../#/business-milestone/{{$coded_id}}" class="text-success btn small px-3 py-1  my-1  d-inline-block py-0 border">View Milestone</a >
             
             </td>
         </tr>

@@ -24,8 +24,8 @@
 
 </style>
         
-    <h3 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> My Businesses</h3>  
-    <div class="row mx-auto mb-0 px-3">
+    <h3 class="bid_header px-5 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> My Businesses</h3>  
+    <div class="row mx-auto mb-0 px-5">
             
      <table class="eq table" id="">
     <thead class="table_head border">

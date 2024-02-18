@@ -35,8 +35,8 @@
  @else
     
  <form action="{{route('bookingAccepted')}}" method="post">  @csrf  
-    <div class="row m-auto px-3">   
-    <h4 class="bid_header px-0 my-0 text-left pb-3 py-2 font-weight-bold">Service Bookings</h4>     
+    <div class="row m-auto px-5">   
+    <h3 class="bid_header px-0 my-0 text-left pb-3 py-2 font-weight-bold">Service Bookings</h3>     
      <table class="eq table" id="">
      <thead class="table_head border">
         <tr>
@@ -183,9 +183,9 @@
  <div class="row ml-auto" style="width:35%;"> 
  <div class="col-sm-6 float-right"> </div>             
 <div class="col-sm-6 float-right">
-    <a id="fakeBtn" onclick="accept();" type="submit" class="bid-accept text-center float-right border border-dark font-weight-bold btn text-mute py-1 w-100 mx-auto">Confirm</a>
+    <a id="fakeBtn" onclick="accept();" type="submit" class="bid-accept text-center float-right border btn text-mute py-1 w-100 mx-auto">Confirm</a>
 
-    <button onclick="return confirm('Are you sure?');" style="background:#083608;" id="realBtn" type="submit" class="bid-accept collapse float-right font-weight-bold btn text-light w-100 mx-auto">Confirm</button>
+    <button onclick="return confirm('Are you sure?');" style="background:#083608;" id="realBtn" type="submit" class="bid-accept collapse float-right btn text-light w-100 mx-auto">Confirm</button>
 </div>
 
 <!-- <div class="col-sm-6">

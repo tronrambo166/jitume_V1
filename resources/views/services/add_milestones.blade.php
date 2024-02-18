@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="container px-0" id="" >
         
-  <h3 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Add Service Milestones </h3>         
+  <h3 class="bid_header px-5 w-100 text-left my-0 pb-3 py-2 font-weight-bold"> Add Service Milestones </h3>         
 <div class="row mx-auto px-5">
 
 <style>
@@ -14,10 +14,10 @@
   background-color: #083608;
   padding: 5px ;
   border-radius: 5px;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
   width: 100%;
-  text-align: left;
+  text-align: center;
 }
 
 .col-sm-3,.col-sm-1,.col-sm-2{height: 40px;}
@@ -54,10 +54,10 @@
                                 @csrf
                                 
 
-                                <div class="row mx-0 pt-2" width="85%">
+                                <div class="row mx-0 pt-2 inputs" width="85%">
                                     <div class="col-sm-2 px-1">
                                         <div class=" ">
-                                            <input maxlength="255" required="" name="title" type="text" placeholder="Milestone Name(255 max)"  class="w-100 border">
+                                            <input maxlength="255" required="" name="title" type="text" placeholder="Milestone Name"  class="w-100 border">
                                         </div>
                                     </div>
 
@@ -148,7 +148,7 @@
 
                                     <div class="col-1 px-1">
                                         <div class="form-group">
-                                        <input id="addBtn" onclick="file_check();" type="submit" class="disabled text-center p-0 btn py-1 mile_add_btn btn-block border" value="Add" />
+                                        <input id="addBtn" onclick="file_check();" type="submit" class="disabled text-center p-0 rounded py-1 mile_add_btn btn-block border" value="Add" />
                                     </div>
                                 </div>
                            
@@ -226,10 +226,10 @@
             <td class="text-center">
             
             <div class="dropdown show d-inline-block">
-                  <a class=" py-0 btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class=" py-0 btn border dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Action 
                   </a>
-                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                 <div class="dropdown-menu p-0" aria-labelledby="dropdownMenuLink">
 
             <a onclick="return confirm('Are you sure?');" href="{{route('delete_s_milestone',$ev->id)}}" class="btn dropdown-item rounded btn-light my-1 py-0">Delete</a>
             </div>  
@@ -257,6 +257,7 @@
         <script type="text/javascript">
             function active(){
                 $('#addBtn').removeClass('disabled');
+                $('#addBtn').css('background', '#083608');
             }
 
            $('#file-upload').change(function() {

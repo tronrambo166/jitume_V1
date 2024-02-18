@@ -22,11 +22,11 @@
 
 
 
-        <h3 class="bid_header px-3 w-100 text-left my-0 pb-3 py-2 font-weight-bold">Add Business</h3>  
+        <h3 class="bid_header px-5 w-100 text-left my-0 pb-3 py-2 font-weight-bold">Add Business</h3>  
 
         @if($connected == 0)
-        <div class="row w-75 mx-auto my-3">
-         <div class="col-sm-12"> 
+        <div class="row w-75 px-5 my-3">
+         <div class="col-sm-12 px-0"> 
             <p class="text-center bg-light p-2 ">Before adding a business, you must onboard to Jitume Stripe platform to receive business milestone payments.</p>
                <a href="{{route('connect.stripe',['id'=>$user_id])}}" class="btn-light border border-dark w-25 m-auto rounded text-center py-1" >Connect to stripe</a>
 
@@ -35,7 +35,7 @@
 
         @else
 
-        <div class="row w-75 mx-auto my-3">
+        <div class="row px-5 w-75 my-3">
          <div class="col-sm-12">                
 
             <form id="add_listing" action="{{route('create-listing')}}"  method="post" enctype="multipart/form-data">
@@ -47,7 +47,7 @@
                         <div class="row">
                         
                     <div class="col-sm-12"> 
-                    <input required=""  class=" form-control border border-none rounded form-group" type="text" name="title" id="title" placeholder="Business Title"  /> 
+                    <input required=""  class="  border border-none rounded form-group" type="text" name="title" id="title" placeholder="Business Title"  /> 
                     </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                             
                     
                     <div class="col-sm-12"> 
-                    <input required="" type="text" class="form-control" placeholder="Contact/Phone" name="contact" value="">                     
+                    <input required="" type="text" class="border" placeholder="Contact/Phone" name="contact" value="">                     
                     </div>
                         </div>
                     </div>
@@ -68,9 +68,9 @@
         <div class="row form-group"> 
                                         
             <div class="col-sm-4">
-            <select  name="category" class="py-1 border-none form-control">
-            <option hidden class="form-control" >Select Category</option>
-            <option class="form-control" value="Agriculture" >Agriculture</option>
+            <select  name="category" class="py-1 border">
+            <option hidden class="" >Select Category</option>
+            <option class="" value="Agriculture" >Agriculture</option>
             <option value="Arts/Culture" >Arts/Culture </option>
             <option value="Auto" >Auto</option>
            <option value="Sports/Gaming" >Sports/Gaming</option>
@@ -94,11 +94,11 @@
   </div>
 
                  <div class="col-sm-4"> 
-                    <textarea class="form-control" required="" name="details" rows="1" cols="30" placeholder="Details"></textarea>
+                    <textarea class="border" required="" name="details" rows="1" cols="30" placeholder="Details"></textarea>
                     </div>
 
                      <div class="col-sm-4"> 
-                    <select required name="y_turnover" class="form-control">
+                    <select required name="y_turnover" class="border">
                         <option hidden >Choose Yearly Turnover</option>
                         <option value="0-10000">$0-$10000</option>
                         <option value="10000-100000">$10000-$100000</option>
@@ -118,7 +118,7 @@
                         <div class="row">
                     
                     <div class="col-sm-12"> 
-                    <input required=""  class=" form-control border border-none rounded form-group" type="number" max="1000000" name="investment_needed" id="title" placeholder="Investment Needed"  /> 
+                    <input required=""  class="  border border-none rounded form-group" type="number" max="1000000" name="investment_needed" id="title" placeholder="Investment Needed"  /> 
                     </div>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                            
                     
                     <div class="col-sm-12"> 
-                    <input required="" max="100" type="number" class="form-control" placeholder="Share (ex:0-100)" name="share" value="">                     
+                    <input required="" max="100" type="number" class="border" placeholder="Share (ex:0-100)" name="share" value="">                     
                     </div>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                            
                     
                     <div class="col-sm-12 "> 
-                    <input type="email" class="form-control" placeholder="Contact mail (optional)" name="contact_mail" value="">                     
+                    <input type="email" class="border" placeholder="Contact mail (optional)" name="contact_mail" value="">                     
                     </div>
                         </div>
                     </div>
@@ -165,7 +165,7 @@
                     </div>
 
                     <div class="col-sm-6"> 
-                    <input id="searchbox" onkeyup="suggest(this.value);" style="height: 32px;" class="controls form-control d-inline" type="text" name="location" value="" placeholder="Enter a location...">
+                    <input id="searchbox" onkeyup="suggest(this.value);" style="height: 32px;" class="controls  d-inline" type="text" name="location" value="" placeholder="Enter a location...">
                     <!-- onkeyup="suggest(this.value);" -->
                     <input type="text" name="lat" id="lat" hidden value="">
                     <input type="text" name="lng" id="lng" hidden value="">
@@ -189,7 +189,7 @@
                                 <p class="small text-left">Please enter a directors passport/Id no*</p></label>
                                </div>
                                <div class="col-sm-4">
-                                   <input class="text-left form-control" type="text" name="id_no">
+                                   <input class="text-left " type="text" name="id_no">
                                </div>
                                </div> 
                                </div>
@@ -200,7 +200,7 @@
                                 <p class="small text-left">Please enter your individual/company tax pin*</p></label>
                                </div>
                                <div class="col-sm-4">
-                                   <input class="form-control" type="text" name="tax_pin">
+                                   <input class="rounded" type="text" name="tax_pin">
                                </div>
                                </div> 
                                </div>
@@ -248,7 +248,6 @@
                     <div class="col-sm-5"> 
 
                     <div class="upload-btn-wrapper">
-                      
                       <label for="file-upload2" class="btnUp_listing">
                         Upload Company/Individual Pin *
                       <img src="../images/up.svg" width="30px"> </label>
@@ -314,7 +313,7 @@
             <div class="col-sm-12 w-75  d-block"> <span class="my-3 d-block font-weight-bold text-center m-auto"> OR </span>
 
           
-           <input class="w-100 d-blocks d-inline form-control" placeholder="Enter Video Link" name="link" /> 
+           <input class="w-100 d-blocks d-inline " placeholder="Enter Video Link" name="link" /> 
 
         </div>
 
@@ -324,7 +323,7 @@
                                </div>
 
                  <div class="col-sm-12 w-75  d-block"> 
-                    <textarea class="form-control" required="" name="reason" rows="2" cols="30" placeholder="Reason for funding..."></textarea>
+                    <textarea class="border" required="" name="reason" rows="2" cols="30" placeholder="Reason for funding..."></textarea>
                     </div>
 
 
@@ -429,7 +428,7 @@
 
     function showAmount(){
         if($.trim($("#amount_box").html())=='')
-            $('#amount_box').html('<input class="form-control" type="number"  id="investors_fee" required placeholder="amount" name="investors_fee" style="height:33px;" >');
+            $('#amount_box').html('<input class="" type="number"  id="investors_fee" required placeholder="amount" name="investors_fee" style="height:33px;" >');
         else $('#amount_box').html('');
 
     }
