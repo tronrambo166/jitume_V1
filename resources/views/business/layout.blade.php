@@ -265,7 +265,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
                             @endif
 
                             @if($booking->count())
-                            <ul class="sidebar text-light px-0" style="color:white;">
+                            <ul class="sidebar text-light px-2" style="color:white;">
                             <li  class="{{ Request::is('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf6F_') ? 'active' : '' }}"> 
                                 <a class="navLink" href="{{route('my_booking')}}"><i class=" fe fe-layout"></i> <span>My Booking</span></a>
                             </li>
@@ -286,7 +286,7 @@ $new_books = serviceBook::where('service_owner_id', $user_id)
 
                     @if($subscribed)
                     <div class=" mx-auto mt-5" style="width:95%;">
-                        <a onclick="return confirm('Are you sure?');" class="header_buttons seacrhListing px-5 sign_in_btn text-center" href="{{route('cancelSubscription', $subscribed->id)}}"><i class=" fe fe-layout"></i> <span>Cancel Subscription</span></a>
+                        <a onclick="return confirm('Are you sure?');" style="background: azure;" class="header_buttons seacrhListing px-5 sign_in_btn text-center" href="{{route('cancelSubscription', $subscribed->id)}}"><i class=" fe fe-layout"></i> <span>Cancel Subscription</span></a>
                     </div>
                     @endif
                 </div>

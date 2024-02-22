@@ -39,7 +39,7 @@
                 <div class="col-sm-12">
                   
 
-            <form action="{{route('create-service')}}"  method="post" enctype="multipart/form-data">
+            <form id="add_listing" action="{{route('create-service')}}"  method="post" enctype="multipart/form-data">
             @csrf   
                
                 <div class="row form-group">
@@ -48,6 +48,8 @@
                         <div class="row">
                         
                     <div class="col-sm-12">
+                      <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Service Title* </p></label>
+
                     <input required=""  class=" border form-group" type="text" name="title" id="title" placeholder="Service Title"  /> 
                     </div>
                         </div>
@@ -55,7 +57,9 @@
 
                     <div class="col-sm-4"> 
                     <div class="row">                                      
-                    <div class="col-sm-12"> 
+                    <div class="col-sm-12">
+                    <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Price* </p></label>
+
                     <input required="" type="number" class="border" placeholder="Price" name="price" value="">                     
                     </div>
                         </div>
@@ -69,7 +73,9 @@
             <div class="col-sm-4">
               <div class="row">                                      
               <div class="col-sm-12">
-            <select style="width: 66%;" name="category" class="cat_menu border py-1"><option hidden="hidden" class="">Services</option> <option value="Business Planning" class="form-control">Business Planning</option> <option value="IT">IT</option> <option value="Legal Project Management">Legal Project Management</option> <option value="Branding and Design">Branding and Design </option> <option value="Auto">Auto</option> <option value="Finance, Accounting &amp; 
+                 <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Services* </p></label>
+
+            <select style="width: 66%;" name="category" class="cat_menu border py-1"><option hidden="hidden" class=""></option> <option value="Business Planning" class="form-control">Business Planning</option> <option value="IT">IT</option> <option value="Legal Project Management">Legal Project Management</option> <option value="Branding and Design">Branding and Design </option> <option value="Auto">Auto</option> <option value="Finance, Accounting &amp; 
                 Tax Marketing">Finance, Accounting &amp; 
                 Tax Marketing</option> <option value="Tax Marketing">Tax Marketing</option> <option value="Public Relations">Public Relations</option> 
                 <option value="0" class="">Project/Asset Management</option>
@@ -81,7 +87,9 @@
                  <div class="col-sm-4"> 
                    <div class="row">                                      
                     <div class="col-sm-12">
-                      <input id="searchbox" onkeyup="suggest(this.value);" required="" style="height: 32px;" class=" border d-inline" type="text" name="location" value="" placeholder="Enter a location..."> <!-- onkeyup="suggest(this.value);"  -->
+                      <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Location* </p></label>
+
+                      <input id="searchbox" onkeyup="suggest(this.value);" required="" style="" class=" border d-inline" type="text" name="location" value="" placeholder="Enter a location..."> <!-- onkeyup="suggest(this.value);"  -->
                     <input type="text" name="lat" id="lat" hidden value="">
                     <input type="text" name="lng" id="lng" hidden value="">
                     
@@ -104,12 +112,15 @@
                         <div class="row">
 
                     <div class="col-sm-5"> 
+                      <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Details* </p></label>
+
                     <textarea class="border" required="" name="details" rows="2" cols="38" placeholder="Details..."></textarea>
                     </div>
 
                     
                     <div class="col-sm-2 ml-4"> 
-                   <div> <strong>Cover</strong></label> </div>
+                      <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Cover* </p></label>
+
                     <div class="upload-btn-wrapper">
                       <label for="file-upload" class="btnUp2 custom-file-upload">
                                 Upload <i class="ml-2 fa fa-arrow-up"></i>
@@ -135,11 +146,13 @@
                     
                     <div class="col-sm-3"> 
 
+                      <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Company/Individual Pin* </p></label>
+
                     <div class="upload-btn-wrapper px-0">
                       
                       <label for="file-upload2" class="btnUp_listing">
-                        Upload Company/Individual Pin *
-                      <img src="../images/up.svg" width="30px"> </label>
+                        Upload
+                      <img src="../images/up.png" width="17px"> </label>
                       <input style="" id="file-upload2" required="" type="file" name="pin" />
                       <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
                     </div>
@@ -149,9 +162,11 @@
 
                     <div class="col-sm-4"> 
 
-                    <div class="upload-btn-wrapper px-1 text-center">
-                      <label for="file-upload3" class="btnUp_listing"> Upload Directors Identification(Id/Passport)*
-                      <img src="../images/up.svg" width="30px"> </label>
+                    <div class="upload-btn-wrapper px-1">
+                       <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Directors Identification(Id/Passport)* </p></label>
+
+                      <label for="file-upload3" class="btnUp_listing"> Upload 
+                      <img src="../images/up.png" width="17px"> </label>
                       <input style="" id="file-upload3" required="" type="file" name="identification" />
                       <span class="text-left docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
                     </div>
@@ -168,8 +183,10 @@
           <div class="col-sm-3"> 
 
                     <div class="upload-btn-wrapper d-block">
-                     <label for="file-upload5" class="text-center px-2 primary_bg text-light btnUp_listing"> Upload supportive video*
-                      <img src="../images/up.svg" class="text-light" width="30px"> </label>
+                       <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Supportive video* </p></label>
+
+                     <label for="file-upload5" class="btnUp_listing"> Upload 
+                      <img src="../images/up.png" class="text-light" width="17px"> </label>
                       <input style="display:none;" id="file-upload5" type="file" name="video" />
                     </div>
 
@@ -182,9 +199,12 @@
 
 
                     <div class="col-sm-4"> 
+
                     <div class="upload-btn-wrapper d-block">
-                      <label for="file-upload4" class="text-center px-2 btnUp_listing">  Upload Supporting Business Documentation*
-                      <img src="../images/up.svg" width="30px"> </label>
+                      <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Supporting Business Documentation* </p></label>
+
+                      <label for="file-upload4" class="btnUp_listing">  Upload
+                      <img src="../images/up.png" width="17px"> </label>
                       <input style="" id="file-upload4" required="" type="file" name="document" />
                       <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
                     </div>
@@ -198,7 +218,8 @@
 
 
                 <div class="row w-50 text-center my-5"> 
-                    <button style="width: 40%;border-radius: 2px;" class="m-auto rounded primary_bg2 py-1">Save Service</button></div>
+                    <button id="save2" style="width:99%;background: #246424;" class="proceed_btn m-auto pt-3 btn text-white font-weight-bold">SAVE</button>
+                  </div>
 
 
             </form>

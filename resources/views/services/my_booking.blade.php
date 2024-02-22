@@ -35,7 +35,7 @@
 
     @else
   
-    <div class="row m-auto px-3">   
+    <div class="row m-auto px-5">   
     <h3 class="px-0 bid_header my-0 text-left pb-3 py-2 font-weight-bold">My Booking</h3>     
      <table class="eq table" id="">
     <thead class="table_head border">

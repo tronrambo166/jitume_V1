@@ -35,7 +35,7 @@
  @else
     
  <form action="{{route('bidsAccepted')}}" method="post">  @csrf  
-    <div class="row m-auto px-3">  
+    <div class="row m-auto px-5">  
     <h3 class=" px-0 bid_header text-left my-0 pb-3 py-2 font-weight-bold"> My Bids</h3>      
      <table class="eq table" id="">
     <thead class="table_head border">

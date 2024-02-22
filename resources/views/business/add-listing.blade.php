@@ -35,186 +35,161 @@
 
         @else
 
-        <div class="row px-5 w-75 my-3">
+        <div class="row px-5 w-75 my-3 add_form">
          <div class="col-sm-12">                
 
             <form id="add_listing" action="{{route('create-listing')}}"  method="post" enctype="multipart/form-data">
             @csrf   
-               
-                <div class="row form-group">
-                    
-                    <div class="col-sm-6"> 
-                        <div class="row">
-                        
-                    <div class="col-sm-12"> 
-                    <input required=""  class="  border border-none rounded form-group" type="text" name="title" id="title" placeholder="Business Title"  /> 
-                    </div>
-                        </div>
-                    </div>
 
-                    <div class="col-sm-6"> 
-                        <div class="row">
-                            
-                    
-                    <div class="col-sm-12"> 
-                    <input required="" type="text" class="border" placeholder="Contact/Phone" name="contact" value="">                     
-                    </div>
-                        </div>
-                    </div>
-                    
+                <div class="row">
+                <div id="" class="col-md-4">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Business Title* </p></label>
+               
+                <input onblur="fill(this.value);" class="border w-100  mr-1" type="text" name="title" id="title" required />
                 </div>
 
 
-        <div class="row form-group"> 
-                                        
-            <div class="col-sm-4">
-            <select  name="category" class="py-1 border">
-            <option hidden class="" >Select Category</option>
-            <option class="" value="Agriculture" >Agriculture</option>
-            <option value="Arts/Culture" >Arts/Culture </option>
-            <option value="Auto" >Auto</option>
-           <option value="Sports/Gaming" >Sports/Gaming</option>
-           <option value="Real State" >Real State</option>
-           <option value="Food" >Food </option>
-           <option value="Legal" >Legal </option>
-            <option value="Security" >Security </option>
-             <option value="Media/Internet" >Media/Internet </option>
-              
-               <option value="Fashion" >Fashion </option>
-                <option value="Technology/Communications" >Technology/Communications </option>
-                <option value="Renewable/Energy" >Renewable Energy </option>
-                 <option value="Retail" >Retail </option>
-           
-           <option value="Finance/Accounting" >Finance/Accounting</option>
-           <option value="Pets">Pets</option>
-           <option value="Domestic (Home Help etc)">Domestic (Home Help etc)</option>
-           <option value="Other" >Other</option>  
+                <div id="" class="col-md-4">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Contact* </p></label>
+               
+                <input onblur="fill(this.value);" class="border w-100  mr-1" type="text" name="contact" id="contact" required />
+                </div>
 
-           </select>
-  </div>
 
-                 <div class="col-sm-4"> 
-                    <textarea class="border" required="" name="details" rows="1" cols="30" placeholder="Details"></textarea>
-                    </div>
+                <div id="" class="col-md-4">
+                  <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Select Category* </p></label>
 
-                     <div class="col-sm-4"> 
-                    <select required name="y_turnover" class="border">
-                        <option hidden >Choose Yearly Turnover</option>
+                <select  name="category" class="py-1 border">
+                  <option hidden class="" ></option>
+                  <option class="" value="Agriculture" >Agriculture</option>
+                  <option value="Arts/Culture" >Arts/Culture </option>
+                  <option value="Auto" >Auto</option>
+                   <option value="Sports/Gaming" >Sports/Gaming</option>
+                   <option value="Real State" >Real State</option>
+                   <option value="Food" >Food </option>
+                   <option value="Legal" >Legal </option>
+                   <option value="Security" >Security </option>
+                   <option value="Media/Internet" >Media/Internet </option>
+                    
+                     <option value="Fashion" >Fashion </option>
+                     <option value="Technology/Communications" >Technology/Communications </option>
+                     <option value="Renewable/Energy" >Renewable Energy </option>
+                     <option value="Retail" >Retail </option>
+                 
+                 <option value="Finance/Accounting" >Finance/Accounting</option>
+                 <option value="Pets">Pets</option>
+                 <option value="Domestic (Home Help etc)">Domestic (Home Help etc)</option>
+                 <option value="Other" >Other</option>  
+
+                </select>
+                </div>
+
+              </div>
+
+
+
+              <div class="row my-3">
+                <div id="" class="col-md-4">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Details* </p></label>
+               
+                <textarea rows="2" cols="30"  class="border w-100  mr-1" type="text" name="details" id="details" required ></textarea>
+                </div>
+
+
+                <div id="" class="col-md-4">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Yearly Turnover* </p></label>
+               
+                <select required name="y_turnover" class="border">
+                        <option value="" ></option>
                         <option value="0-10000">$0-$10000</option>
                         <option value="10000-100000">$10000-$100000</option>
                         <option value="100000-250000">$100000-$250000</option>
                         <option value="250000-500000">$250000-$500000</option>
                         <option value="500000-">$500000+</option>
-                    </select>
-                    </div>
-
-                       
-                    </div>
-
-
-                <div class="row form-group">
-                    
-                    <div class="col-sm-4"> 
-                        <div class="row">
-                    
-                    <div class="col-sm-12"> 
-                    <input required=""  class="  border border-none rounded form-group" type="number" max="1000000" name="investment_needed" id="title" placeholder="Investment Needed"  /> 
-                    </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4"> 
-                        <div class="row">
-                           
-                    
-                    <div class="col-sm-12"> 
-                    <input required="" max="100" type="number" class="border" placeholder="Share (ex:0-100)" name="share" value="">                     
-                    </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 "> 
-                        <div class="row">
-                           
-                    
-                    <div class="col-sm-12 "> 
-                    <input type="email" class="border" placeholder="Contact mail (optional)" name="contact_mail" value="">                     
-                    </div>
-                        </div>
-                    </div>
-                    
+                </select>
                 </div>
 
 
+                <div id="" class="col-md-4">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Email </p></label>
+               
+                <input class="border w-100  mr-1" type="text" name="contact_mail" id="contact_mail" required />
+                </div>
 
-                   <div class="row my-3 row form-group">
+              </div>
 
-                    <div class="col-sm-12"> 
-                        <div class="row">
-                           <div class="col-sm-2"><label class="h5" for="name">
-                                <strong>Cover</strong></label>
-                               </div>
-                    
-                    <div class="col-sm-4"> 
-                    <div class="upload-btn-wrapper">
+              
+
+              <div class="row my-3">
+                <div id="" class="col-md-4">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Cover* </p></label>
+               
+                <div class="upload-btn-wrapper">
                       <label for="file-upload" class="btnUp2 custom-file-upload">
-                                Upload <i class="ml-2 fa fa-arrow-up"></i>
+                                Upload <img src="../images/up.png" width="17px">
                               </label>
                               <input id="file-upload" name='image' type="file" style="" required>
                     </div>
-                    </div>
+                </div>
 
-                    <div class="col-sm-6"> 
-                    <input id="searchbox" onkeyup="suggest(this.value);" style="height: 32px;" class="controls  d-inline" type="text" name="location" value="" placeholder="Enter a location...">
-                    <!-- onkeyup="suggest(this.value);" -->
+
+                <div id="" class="col-md-4">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Location* </p></label>
+               
+                <input id="searchbox" onkeyup="suggest(this.value);" class="border w-100  mr-1" type="text" name="location" required />
+
+                <!-- onkeyup="suggest(this.value);" -->
                     <input type="text" name="lat" id="lat" hidden value="">
                     <input type="text" name="lng" id="lng" hidden value="">
                     </div>
+                   
 
-                         <div class="row" style="">
-                                <div id="result_list" class="" style="display: none;left: 340px;width:25%; z-index: 1000;height: 600px;position: absolute;">
-                                    
-                                </div>
-                            </div>
+                <div id="" class="col-md-4">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Directors passport/Id No.* </p></label>
+               
+                <input class="border w-100  mr-1" type="text" name="id_no" id="id_no" required />
+                </div>
 
-                        </div>
-                    </div> 
+              </div>
+
+               <div class="row" style="">
+                          <div id="result_list" class="" style="display: none;left: 222px;width:35%; top: 230px; z-index: 1000;height: 600px;position: absolute;">
+                              
+                          </div>
+                      </div>
+
+
+
+              <div class="row">
+                <div id="" class="col-md-5">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Investment Needed </p></label>
+               
+                <input class="border w-100  mr-1" type="number" max="1000000" name="investment_needed" required />
                 </div>
 
 
-                <div class=" row form-group">
-                    <div class="col-sm-6"> 
-                        <div class="row">
-                           <div class="col-sm-8"><label for="name">
-                                <p class="small text-left">Please enter a directors passport/Id no*</p></label>
-                               </div>
-                               <div class="col-sm-4">
-                                   <input class="text-left " type="text" name="id_no">
-                               </div>
-                               </div> 
-                               </div>
+                <div id="" class="col-md-5">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Share </p></label>
+               
+                <input class="border w-100  mr-1" type="number" max="100" name="share" id="share" required />
+                </div>
+              </div>
 
-                        <div class="col-sm-6"> 
-                        <div class="row">
-                           <div class="col-sm-8"><label for="name">
-                                <p class="small text-left">Please enter your individual/company tax pin*</p></label>
-                               </div>
-                               <div class="col-sm-4">
-                                   <input class="rounded" type="text" name="tax_pin">
-                               </div>
-                               </div> 
-                               </div>
 
+
+
+              <div class="row my-3">
+                 <div id="" class="col-md-4">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">individual/company tax pin* </p></label>
+               
+                <input class="border w-100  mr-1" type="text" name="tax_pin" id="tax_pin" required />
                 </div>
 
-                
 
-                <div class=" row form-group">
-
-                    <div class="col-sm-12"> 
-                        <div class="row">
-                           <div class="col-sm-6"><label for="name">
-                                <p class="">Set fee for investor to view your full business data?</p></label>
+                <div id="" class="col-md-8">
+                <div class="row mt-3">
+                           <div class="col-sm-5"><label for="name">
+                                <p class="small_label">Set fee for investor to view your full business data?</p></label>
                                </div>
 
                                <div class="col-sm-1"> </div>
@@ -223,120 +198,118 @@
                                   <input onchange="showAmount();" class="toggole_bar form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
                                 </div>
 
-                                <div id="amount_box" class="col-sm-2">
+                                <div id="amount_box" class="col-sm-4">
                                   
                                 </div>
 
                                </div> 
-                               </div>
- 
-
                 </div>
 
+              </div>
 
 
-                <div class="row my-5 row form-group">
 
-                    <div class="col-sm-12"> 
+              <div class="row my-3">
+
+                <div class="col-sm-12"> 
                         <div class="row">
                            <div class="col-sm-12"><label class="h5" for="name">
                                 <p>Upload mandatory documents below to feature on the platform</p></label>
-                               </div>
-                               </div> 
-                               </div>
-                    
-                    <div class="col-sm-5"> 
+                               </div></div>
+                </div>
 
-                    <div class="upload-btn-wrapper">
-                      <label for="file-upload2" class="btnUp_listing">
-                        Upload Company/Individual Pin *
-                      <img src="../images/up.svg" width="30px"> </label>
+                <div id="" class="col-md-4">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Company/Individual Pin * </p></label>
+               
+                <div class="upload-btn-wrapper">
+                      <label for="file-upload2" class="btnUp_listing">  
+                      <img src="../images/up.png" width="17px">Upload </label>
                       <input style="" id="file-upload2" required type="file" name="pin" />
                         <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
                     </div>
+                </div>
 
-                    </div>
 
-
-                    <div class="col-sm-7"> 
-
-                    <div class="upload-btn-wrapper">
-                      <label for="file-upload3" class="btnUp_listing"> Upload Directors Identification(Id/Passport)*
-                      <img src="../images/up.svg" width="30px"> </label>
+                <div id="" class="col-md-4">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Directors Id/Passport* </p></label>
+               
+                <div class="upload-btn-wrapper">
+                      <label for="file-upload3" class="btnUp_listing"> Upload
+                      <img src="../images/up.png" width="17px"> </label>
                       <input style="" id="file-upload3" required="" type="file" name="identification" />
                       <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
                     </div>
+                </div>
 
+
+                <div id="" class="col-md-4">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">12 Months Financial Statements* </p></label>
+               
+               <div class="upload-btn-wrapper w-75  d-block">
+                      <label for="file-upload4" class="text-center w-100 btnUp_listing">  Upload 
+                      <img src="../images/up.png" width="17px"> </label>
+                      <input style="" id="file-upload4" required="" type="file" name="yeary_fin_statement" />
+                      <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
                     </div>
+                </div>
 
+                </div>
+
+
+                <div class="row my-3">
+                <div id="" class="col-md-5">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Supporting Business Documents *</p></label>
+               
+                <div class="upload-btn-wrapper w-75  d-block">
+                      <label for="file-upload1" class="text-center w-100 btnUp_listing">  Upload 
+                      <img src="../images/up.png" width="17px"> </label>
+                      <input style="" id="file-upload1" required="" type="file" name="document" />
+                      <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
+                    </div>
+                </div>
+
+                <div id="" class="col-md-5">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Reason for funding </p></label>
+               
+               <textarea rows="2" cols="30"  class="border w-100  mr-1" type="text" name="reason" id="reason" required ></textarea>
+                </div>
 
                 </div>
 
 
 
-        <div class="row my-4 form-group">
-
-              <div class="col-sm-12 mx-auto"> 
-
-                    <div class="upload-btn-wrapper w-75  d-block">
-                      <label for="file-upload4" class="text-center w-100 btnUp_listing">  Upload 12 Months Financial Statements (Bank/Mpesa etc)*
-                      <img src="../images/up.svg" width="30px"> </label>
-                      <input style="" id="file-upload4" required="" type="file" name="yeary_fin_statement" />
-                      <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
-                    </div>
-
-                    </div>
-
-
-            <div class="col-sm-12 mx-auto mt-3"> 
-
-                    <div class="upload-btn-wrapper w-75  d-block">
-                      <label for="file-upload1" class="text-center w-100 btnUp_listing">  Upload Supporting Business Documentation*
-                      <img src="../images/up.svg" width="30px"> </label>
-                      <input style="" id="file-upload1" required="" type="file" name="document" />
-                      <span class="docs_pdf ml-1 font-weight-bold d-block text-success" >Only docs & pdfs</span>
-                    </div>
-
-                    </div>
-
-
-                    <div class="col-sm-12 mt-3"> 
-
-                    <div class="upload-btn-wrapper w-75  d-block">
-                     <label for="file-upload5" class="text-center w-100 primary_bg text-light btnUp_listing"> Upload supportive video*
-                      <img src="../images/up.svg" width="30px"> </label>
+                <div class="row my-3">
+                <div id="" class="col-md-4">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Supporting Video *</p></label>
+               
+                <div class="upload-btn-wrapper">
+                      <label for="file-upload2" class="btnUp_listing">   Upload
+                      <img src="../images/up.png" width="17px"> </label>
                       <input style="" id="file-upload5" type="file" name="video" />
                     </div>
+                </div>
 
-                    </div>
+                <div id="" class="mt-3 col-md-1 text-center">
+                  OR
+                </div>
 
-            <div class="col-sm-12 w-75  d-block"> <span class="my-3 d-block font-weight-bold text-center m-auto"> OR </span>
+                <div id="" class="col-md-4">
+                <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Video Link </p></label>
+               <input class="border w-100  mr-1" type="text" name="link" id="link" required />
 
-          
-           <input class="w-100 d-blocks d-inline " placeholder="Enter Video Link" name="link" /> 
+                </div>
+               
+                </div>
 
-        </div>
-
-
-            <div class="col-sm-12 mt-5"><label class="h5 mb-0" for="name">
-                                <p>Business reason for funding</p></label>
-                               </div>
-
-                 <div class="col-sm-12 w-75  d-block"> 
-                    <textarea class="border" required="" name="reason" rows="2" cols="30" placeholder="Reason for funding..."></textarea>
-                    </div>
-
-
-          </div>
-
-
+                </div>
 
 
 
                  <div class="row my-5 w-75"> 
-                    <a onclick="msg();" id="save" style="width:40%;border-radius: 30px;" class="primary_bg m-auto btn text-white font-weight-bold">SAVE</a>
+                    <a onclick="msg();" id="save" style="width: 99%;" class="proceed_btn primary_bg  pt-3 m-auto btn text-white font-weight-bold">SAVE</a>
 
-                 <button id="save1" style="width:40%;border-radius: 30px;" class="primary_bg m-auto btn text-white font-weight-bold collapse">SAVE</button>
+                 <button id="save1" style="width:99%;background: #246424;" class="proceed_btn m-auto pt-3 btn text-white font-weight-bold collapse">SAVE</button>
+                
                  </div>
 
 
@@ -428,7 +401,7 @@
 
     function showAmount(){
         if($.trim($("#amount_box").html())=='')
-            $('#amount_box').html('<input class="" type="number"  id="investors_fee" required placeholder="amount" name="investors_fee" style="height:33px;" >');
+            $('#amount_box').html('<input class="border w-100  mr-1" type="number"  id="investors_fee" required placeholder="amount" name="investors_fee" style="height:32px;" >');
         else $('#amount_box').html('');
 
     }
