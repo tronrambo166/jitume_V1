@@ -17,8 +17,8 @@
                     
                     <div class="col-sm-2"> 
                         <div class="upload-btn-wrapper">
-                        <label for="file-upload2" class="btnUp_listing">                 
-                      <img src="images/up.svg" width="25px"> </label>
+                        <label for="file-upload2" class="btnUp_listing text-center">                 
+                      <img src="images/up.png" class="mx-auto" width="25px"> </label>
                       <input style="" id="file-upload2" required="" type="file" name="photos[]" @change="handleFile" multiple />
                   </div>
                     </div>
@@ -37,8 +37,8 @@
                     
                     <div class="col-sm-2"> 
                         <div class="upload-btn-wrapper">
-                        <label for="file-upload2" class="btnUp_listing">                 
-                      <img src="images/up.svg" width="25px"> </label>
+                        <label for="file-upload2" class="btnUp_listing text-center">                 
+                      <img src="images/up.png" class="mx-auto" width="25px"> </label>
                       <input required="" @change="handleFile2" style="" id="file-upload2"  type="file" name="legal_doc" />
                   </div>
                     </div>
@@ -72,8 +72,8 @@
                     
                     <div class="col-sm-2"> 
                         <div class="upload-btn-wrapper">
-                        <label for="file-upload2" class="btnUp_listing">                 
-                      <img src="images/up.svg" width="25px"> </label>
+                        <label for="file-upload2" class="btnUp_listing text-center">                 
+                      <img src="images/up.png" class="mx-auto" width="25px"> </label>
                       <input @change="handleFile3" style="" id="file-upload2" type="file" name="optional_doc" />
                   </div>
                     </div>

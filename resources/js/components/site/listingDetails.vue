@@ -666,6 +666,7 @@ export default {
       id = btoa(id); id = btoa(id);
       sessionStorage.setItem('invest', id);
       document.getElementById('c_to_action').value = 'loginFromService';
+      document.getElementById('c_to_action_login').value = 'loginFromService';
       document.getElementById('c_to_action_login2').value = 'loginFromService';
       document.getElementById('c_to_listing_reg').value = 'True';
     },

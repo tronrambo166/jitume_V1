@@ -9565,6 +9565,7 @@ __webpack_require__.r(__webpack_exports__);
       id = btoa(id);
       sessionStorage.setItem('invest', id);
       document.getElementById('c_to_action').value = 'loginFromService';
+      document.getElementById('c_to_action_login').value = 'loginFromService';
       document.getElementById('c_to_action_login2').value = 'loginFromService';
       document.getElementById('c_to_listing_reg').value = 'True';
     },
@@ -72974,8 +72975,16 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "label",
-      { staticClass: "btnUp_listing", attrs: { for: "file-upload2" } },
-      [_c("img", { attrs: { src: "images/up.svg", width: "25px" } })]
+      {
+        staticClass: "btnUp_listing text-center",
+        attrs: { for: "file-upload2" },
+      },
+      [
+        _c("img", {
+          staticClass: "mx-auto",
+          attrs: { src: "images/up.png", width: "25px" },
+        }),
+      ]
     )
   },
   function () {
@@ -73000,8 +73009,16 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "label",
-      { staticClass: "btnUp_listing", attrs: { for: "file-upload2" } },
-      [_c("img", { attrs: { src: "images/up.svg", width: "25px" } })]
+      {
+        staticClass: "btnUp_listing text-center",
+        attrs: { for: "file-upload2" },
+      },
+      [
+        _c("img", {
+          staticClass: "mx-auto",
+          attrs: { src: "images/up.png", width: "25px" },
+        }),
+      ]
     )
   },
   function () {
@@ -73039,8 +73056,16 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "label",
-      { staticClass: "btnUp_listing", attrs: { for: "file-upload2" } },
-      [_c("img", { attrs: { src: "images/up.svg", width: "25px" } })]
+      {
+        staticClass: "btnUp_listing text-center",
+        attrs: { for: "file-upload2" },
+      },
+      [
+        _c("img", {
+          staticClass: "mx-auto",
+          attrs: { src: "images/up.png", width: "25px" },
+        }),
+      ]
     )
   },
 ]
