@@ -1917,9 +1917,8 @@
             var captcha = $('#captcha').val();
 
             if(p1 != '' && p2 != '' && mname != '' && captcha != '' &&  p1 == p2)
-                filled = 1;  //console.log(filled)
+                filled = 1;  console.log(filled+'YES')
 
-            pass1 = $('#inputPassword3').val();
 
             if( filled == 1 ){
             $('#proceed_reg').prop("disabled", false);
