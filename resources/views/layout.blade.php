@@ -991,6 +991,7 @@
                                             </div>
 
 
+                                            <input type="text" id="captcha" hidden value="" name="">
                                             <div id="form_fields4">
                                                 <div class="col-md-12 px-0">
                                                     @if(config('services.recaptcha.key'))
@@ -1932,7 +1933,7 @@
             }
         }
 
-        function thecallback(){
+        function thecallback(){ alert('ok');
         document.getElementById('captcha').value = 'true';
         fill2('test');
         }
