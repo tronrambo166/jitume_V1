@@ -994,7 +994,7 @@
                                             <div id="form_fields4">
                                                 <div class="col-md-12 px-0">
                                                     @if(config('services.recaptcha.key'))
-                                                        <div class="g-recaptcha"
+                                                        <div class="g-recaptcha" data-callback="thecallback"
                                                             data-sitekey="{{config('services.recaptcha.key')}}">
                                                         </div>
                                                     @endif
@@ -1931,7 +1931,11 @@
             }
         }
 
-const checkbox = document.getElementById('g-recaptcha-response')
+function thecallback(){
+alert("Clicked");
+}
+
+const checkbox = document.getElementById('g-recaptcha-response');
 
 checkbox.addEventListener('change', (event) => {
   if (event.currentTarget.checked) {
@@ -1940,6 +1944,8 @@ checkbox.addEventListener('change', (event) => {
     alert('not checked');
   }
 })
+
+
 
         
 
