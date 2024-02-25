@@ -666,6 +666,9 @@
 
                                
                                     <div class="text-center User-Artist-Select">
+                                        <a style="cursor: pointer;" id="reg_back" class="float-left bg-light collapse" onclick="step_one();">
+                                            <i class="fa fa-arrow-left"></i> back</a>
+
                                      <div class="col-md-5"></div>
                                       <div id="errors" class="w-100">
                                         </div>
@@ -1826,7 +1829,15 @@
         function next() {
             $('#step_one').addClass('collapse');
             $('#step_two').removeClass('collapse');
+            $('#reg_back').removeClass('collapse');
             document.getElementById('steps').innerHTML = '2';
+        }
+
+        function step_one() {
+            $('#step_two').addClass('collapse');
+            $('#step_one').removeClass('collapse');
+            $('#reg_back').addClass('collapse');
+            document.getElementById('steps').innerHTML = '1';
         }
 
         //For Register
