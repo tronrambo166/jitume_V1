@@ -1910,16 +1910,17 @@
 
         function fill2(value) {  
             var filled = 0;
-            var fname = $('#inputPassword3').val();
-            var lname = $('#inputEmailAddress2').val();
+            var p1 = $('#inputPassword3').val();
+            var p2 = $('#inputEmailAddress2').val();
             var mname = $('#inputPassword2').val();
+            var captcha = $('#captcha').val();
 
-            if(fname != '' && lname != '' && mname != '')
+            if(p1 != '' && p2 != '' && mname != '' && captcha != '' &&  p1 == p2)
                 filled = 1;  //console.log(filled)
 
             pass1 = $('#inputPassword3').val();
 
-            if( filled == 1 &&  pass1 == value){
+            if( filled == 1 ){
             $('#proceed_reg').prop("disabled", false);
             $('#proceed_reg').css('background','#014811');
            
@@ -1931,19 +1932,11 @@
             }
         }
 
-function thecallback(){
-alert("Clicked");
-}
+        function thecallback(){
+        document.getElementById('captcha').value = 'true';
+        function fill2(value);
+        }
 
-const checkbox = document.getElementById('g-recaptcha-response');
-
-checkbox.addEventListener('change', (event) => {
-  if (event.currentTarget.checked) {
-    alert('checked');
-  } else {
-    alert('not checked');
-  }
-})
 
 
 
