@@ -702,7 +702,7 @@
                                             <div id="form_fields" class="col-md-6">
                                             <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">First Name </p></label>
                                            
-                                            <input onblur="fill(this.value);" class="border w-100 py-2 mr-1" type="text" name="fname" value="{{ old('fname') }}" id="name" required />
+                                            <input onkeyup="fill(this.value);" class="border w-100 py-2 mr-1" type="text" name="fname" value="{{ old('fname') }}" id="fname" required />
 
                                             <span id="er_fname" class="collapse float-left text-danger small">Error: Invalid email</span>
                                             </div>
@@ -710,7 +710,7 @@
                                             <div id="form_fields" class="col-md-6">
                                             <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Middle Name </p></label>
                                            
-                                            <input onblur="fill(this.value);" class="border w-100 py-2 mr-1" type="text" name="mname" value="{{ old('mname') }}" id="name" required />
+                                            <input onkeyup="fill(this.value);" class="border w-100 py-2 mr-1" type="text" name="mname" value="{{ old('mname') }}" id="mname" required />
 
                                             <span id="er_mname" class="collapse float-left text-danger small">Error: Invalid email</span>
                                             </div>
@@ -721,7 +721,7 @@
                                             <div id="form_fields">
                                             <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Last Name </p></label>
                                            
-                                            <input onblur="fill(this.value);" class="border w-100 py-2 mr-1" type="text" name="lname" value="{{ old('lname') }}" id="name" required />
+                                            <input onkeyup="fill(this.value);" class="border w-100 py-2 mr-1" type="text" name="lname" value="{{ old('lname') }}" id="lname" required />
 
                                             <span id="er_lname" class="collapse float-left text-danger small">Error: Invalid email</span>
                                             </div>
@@ -790,7 +790,7 @@
                                             </div>
 
                                             <div class="col-sm-12">
-                                                <select  onchange="fill(this.value);" name="month" class="text-center dob border w-100 ">
+                                                <select  onchange="fill(this.value);" name="month" id="month" class="text-center dob border w-100 ">
                                                     <option value="">Month</option>
                                                     <option value="01">January</option>
                                                     <option value="02">February</option>
@@ -820,7 +820,7 @@
                                             </div>
 
                                             <div class="col-sm-12">
-                                                <select  onchange="fill(this.value);" name="day" class="text-center dob border w-100 ">
+                                                <select  onchange="fill(this.value);" id="day" name="day" class="text-center dob border w-100 ">
                                                     <option value="">day</option>
                                                     <option value="01">01</option>
                                                     <option value="02">02</option>
@@ -870,7 +870,7 @@
                                             </div>
 
                                             <div class="col-sm-12">
-                                                <select  onchange="fill(this.value);" name="year" class="text-center dob border w-100 ">
+                                                <select  onchange="fill(this.value);" id="year" name="year" class="text-center dob border w-100 ">
                                                     <option value="">Year</option>
                                                     <option value="1960">1960</option>
                                                     <option value="1961">1961</option>
@@ -957,7 +957,7 @@
                                             <div id="form_fields">
                                             <label class="mb-0 w-100"><p class="mb-0 d-block w-100 float-left text-left small small_label">Email Address</p></label>
                                            
-                                            <input onblur="fill(this.value);" onkeyup="email_ck2(this.value);" class="border w-100 py-2 mr-1" type="email" name="email" placeholder="" id="inputEmailAddress2" value="" required />
+                                            <input onkeyup="fill2(this.value);" onkeyup="email_ck2(this.value);" class="border w-100 py-2 mr-1" type="email" name="email" placeholder="" id="inputEmailAddress2" value="" required />
 
                                             <span id="er_email2" class="collapse float-left text-danger small">Error: Invalid email</span>
                                             </div>
@@ -969,7 +969,7 @@
                                                     </span>
                                                 </label>
                                            
-                                            <input onblur="fill(this.value);" onkeyup="pass_match1(this.value);" class="border w-100 py-2 mr-1" name="password" id="inputPassword3" type="password" value="" required />
+                                            <input onkeyup="pass_match1(this.value); fill2(this.value);" class="border w-100 py-2 mr-1" name="password" id="inputPassword3" type="password" value="" required />
                                             </div>
 
                                             <div id="form_fields2" class="my-3">
@@ -979,7 +979,7 @@
                                                     </span>
                                                 </label>
                                            
-                                            <input onblur="fill(this.value);" onkeyup="pass_match2(this.value);" class="border w-100 py-2 mr-1" name="password_confirmation" id="inputPassword2" type="password" value="" required />
+                                            <input onkeyup="pass_match2(this.value); fill2(this.value);" class="border w-100 py-2 mr-1" name="password_confirmation" id="inputPassword2" type="password" value="" required />
 
                                             <span id="er_pass" class="collapse float-left text-danger small">Error: Passwords do not match!</span>
 
@@ -994,7 +994,7 @@
                                             <div id="form_fields4">
                                                 <div class="col-md-12 px-0">
                                                     @if(config('services.recaptcha.key'))
-                                                        <div class="g-recaptcha"
+                                                        <div class="g-recaptcha" data-callback="callback"
                                                             data-sitekey="{{config('services.recaptcha.key')}}">
                                                         </div>
                                                     @endif
@@ -1864,19 +1864,22 @@
         }
 
         $('#next_reg').prop("disabled", true);
-        function fill(value) {            
-            var filled = $('#filled').val();
-            filled = filled;
-            if(value != ''){
-                document.getElementById('filled').value = Number(filled)+Number(1);
-                filled = Number(filled)+Number(1);
-            } 
-            else{
-                document.getElementById('filled').value = Number(filled)-Number(1);
-                filled = Number(filled)-Number(1);
-            } console.log(filled)
 
-            if(filled >= 6){
+
+        function fill(value) {  
+            var filled = 0;
+            var fname = $('#fname').val();
+            var lname = $('#lname').val();
+            var mname = $('#mname').val();
+            var month = $('#month').val();
+            var day = $('#day').val();
+            var year = $('#year').val();
+
+            if(fname != '' && lname != '' && mname != '' && month != '' && day != ''
+             && year != '')
+                filled = 1;  //console.log(filled)
+
+            if(filled == 1){
             $('#next_reg').prop("disabled", false);
             $('#next_reg').css('background','#014811');
             }
@@ -1884,7 +1887,6 @@
             $('#next_reg').prop("disabled", true);
             $('#next_reg').css('background','#01481140');
             }
-
         }
 
         function pass_match1(value) {
@@ -1896,17 +1898,54 @@
             pass1 = $('#inputPassword3').val();
             var filled = $('#filled').val();
 
-            if(value == pass1 && filled >= 8){
+            if(value == pass1){
+                 $('#er_pass').addClass('collapse');
+            }
+            else{
+                $('#er_pass').removeClass('collapse');
+            }
+            
+        }
+
+
+        function fill2(value) {  
+            var filled = 0;
+            var fname = $('#inputPassword3').val();
+            var lname = $('#inputEmailAddress2').val();
+            var mname = $('#inputPassword2').val();
+
+            if(fname != '' && lname != '' && mname != '')
+                filled = 1;  //console.log(filled)
+
+            pass1 = $('#inputPassword3').val();
+
+            if( filled == 1 &&  pass1 == value){
             $('#proceed_reg').prop("disabled", false);
             $('#proceed_reg').css('background','#014811');
-            $('#er_pass').addClass('collapse');
+           
             }
             else{
             $('#proceed_reg').prop("disabled", true);
             $('#proceed_reg').css('background','#01481140');
-            $('#er_pass').removeClass('collapse');
+            
             }
         }
+
+        function callback(){
+alert("Clicked");
+}
+
+const checkbox = document.getElementById('g-recaptcha-response');
+
+checkbox.addEventListener('change', (event) => {
+  if (event.currentTarget.checked) {
+    alert('checked');
+  } else {
+    alert('not checked');
+  }
+})
+
+
 
         
 

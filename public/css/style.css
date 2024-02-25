@@ -1719,7 +1719,7 @@ color: #333333;
 .form_fields_black p{
     color: black;
     font-family: Outfit-Regular !important;;
-    filter: drop-shadow(0px 2px 1px #666666);
+    /*filter: drop-shadow(0px 2px 1px #666666);*/
 }
 
 .dob
