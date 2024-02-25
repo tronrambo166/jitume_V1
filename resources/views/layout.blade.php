@@ -1912,8 +1912,8 @@
         function fill2(value) {  
             var filled = 0;
             var p1 = $('#inputPassword3').val();
-            var p2 = $('#inputEmailAddress2').val();
-            var mname = $('#inputPassword2').val();
+            var mname = $('#inputEmailAddress2').val();
+            var p2 = $('#inputPassword2').val();
             var captcha = $('#captcha').val();
 
             if(p1 != '' && p2 != '' && mname != '' && captcha != '' &&  p1 == p2)
