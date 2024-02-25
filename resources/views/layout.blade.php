@@ -1934,7 +1934,7 @@
 
         function thecallback(){
         document.getElementById('captcha').value = 'true';
-        function fill2(value);
+        fill2('test');
         }
 
 
