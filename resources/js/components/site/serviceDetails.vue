@@ -287,8 +287,10 @@ export default {
       this.formBook.service_id = id; //this.$route.params.id;
       this.formMsg.service_id = id; //this.$route.params.id;
 
-      if(this.$route.params.business_bid_id)
+      if(this.$route.params.business_bid_id){
+        //id2 = atob(this.$route.params.business_bid_id); id2 = atob(id2);
         this.formBook.business_bid_id = this.$route.params.business_bid_id;
+      }
 
       var t = this;
       axios.get('ServiceResults/' + id).then((data) => {

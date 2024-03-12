@@ -40,7 +40,7 @@
 
              
                 <div v-for="( result, index ) in results" class="listing col-sm-4 my-5">
-                    <router-link :to="`/AssetServiceDetails/${result.id}/${bid_id}`" class="shadow card border px-3">
+                    <router-link :to="`/AssetServiceDetails/${s_id}/${bid_id}`" class="shadow card border px-3">
 
                      <img :src="result.image" style="max-width:332px; height:150px" alt=""/>
 
@@ -114,6 +114,7 @@ export default {
     results:[],
     services:[],
     bid_id:'',
+    s_id:'',
     empty:false
     }),
 
@@ -127,6 +128,12 @@ export default {
             axios.get('FindProjectManagers/'+t.bid_id).then( (data) =>{
                 //console.log(data.data);
                 t.results = data.data.services;
+                for (const [key, value] of Object.entries(t.results)) {
+                    
+                    t.s_id = btoa(value.id); t.s_id = btoa(t.s_id);
+                    //t.bid_id = btoa(t.bid_id); t.bid_id = btoa(t.bid_id);
+                }
+
                 if(data.data.data.length == 0 || data.data.data == false)
                     t.empty = true;;
               }).catch( (error) =>{})

@@ -36,7 +36,7 @@
                 <!-- Price Filter -->
                 <div class="row">
 
-                    <div class="col-sm-3"><span style="background:black;" class="btn text-light px-2 py-1 small rounded">Filter by
+                    <div class="col-sm-3"><span style="background:black;font-size: 11px;" class="btn text-light px-2 py-1 small rounded">Filter by
                             Turnover Range:</span>
                     </div>
 

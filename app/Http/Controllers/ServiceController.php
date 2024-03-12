@@ -818,10 +818,10 @@ $milestones = ServiceMileStatus::where('id',$request->id)
         ->where('booker_id',$mile->booker_id)->orderBy("id", "DESC")->delete();
  }
       catch(\Exception $e){
-      return redirect('business/s_milestones-all')->with('failed', $e->getMessage());
+      return redirect('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf4F_-all')->with('failed', $e->getMessage());
     }
 Session::put('success', 'Status Changed!');
-return redirect('business/s_milestones-all'); //->back();
+return redirect('business/bBQhdsfE_WWe4Q-_f7ieh7Hdhf4F_-all'); //->back();
 }
 
 

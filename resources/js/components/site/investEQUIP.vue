@@ -2,7 +2,7 @@
     <div class="container">
         
              
-        <div class="heading card row px-4 my-3 w-75 mx-auto"> 
+        <div class="heading card row px-4 my-3 w-50 mx-auto"> 
         
             <form @submit.prevent="bidCommitsEQP" method="post" enctype="multipart/form-data">             
 

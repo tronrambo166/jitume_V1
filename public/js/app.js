@@ -10486,6 +10486,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 //
 //
 //
@@ -10601,6 +10613,7 @@ __webpack_require__.r(__webpack_exports__);
       results: [],
       services: [],
       bid_id: '',
+      s_id: '',
       empty: false
     };
   },
@@ -10613,6 +10626,16 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('FindProjectManagers/' + t.bid_id).then(function (data) {
         //console.log(data.data);
         t.results = data.data.services;
+
+        for (var _i = 0, _Object$entries = Object.entries(t.results); _i < _Object$entries.length; _i++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+              key = _Object$entries$_i[0],
+              value = _Object$entries$_i[1];
+
+          t.s_id = btoa(value.id);
+          t.s_id = btoa(t.s_id); //t.bid_id = btoa(t.bid_id); t.bid_id = btoa(t.bid_id);
+        }
+
         if (data.data.data.length == 0 || data.data.data == false) t.empty = true;
         ;
       })["catch"](function (error) {});
@@ -11590,7 +11613,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       this.formMsg.service_id = id; //this.$route.params.id;
 
-      if (this.$route.params.business_bid_id) this.formBook.business_bid_id = this.$route.params.business_bid_id;
+      if (this.$route.params.business_bid_id) {
+        //id2 = atob(this.$route.params.business_bid_id); id2 = atob(id2);
+        this.formBook.business_bid_id = this.$route.params.business_bid_id;
+      }
+
       var t = this;
       axios.get('ServiceResults/' + id).then(function (data) {
         //t.details = data.data.data;
@@ -72801,7 +72828,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "heading card row px-4 my-3 w-75 mx-auto" }, [
+    _c("div", { staticClass: "heading card row px-4 my-3 w-50 mx-auto" }, [
       _c(
         "form",
         {
@@ -74816,7 +74843,7 @@ var staticRenderFns = [
           "span",
           {
             staticClass: "btn text-light px-2 py-1 small rounded",
-            staticStyle: { background: "black" },
+            staticStyle: { background: "black", "font-size": "11px" },
           },
           [_vm._v("Filter by\n                            Turnover Range:")]
         ),
@@ -75310,7 +75337,7 @@ var render = function () {
                         attrs: {
                           to:
                             "/AssetServiceDetails/" +
-                            result.id +
+                            _vm.s_id +
                             "/" +
                             _vm.bid_id,
                         },
