@@ -146,106 +146,7 @@
 
 
 
-    <!-- HOW IT WORKS 
-
-    <div class=" mt-4 border border-bottom-dark bg-white"></div>
-
-    <div class="container-xl row mx-auto my-5 bg-white pt-3">
-
-
-      <div class="col-md-5 elementor-top-column elementor-element elementor-element-ce6f4c7" data-id="ce6f4c7"
-        data-element_type="column">
-
-        <div class="elementor-column-wrap elementor-element-populated">
-
-          <div class="elementor-widget-wrap">
-
-
-            <div class="elementor-element elementor-element-ccc6233 elementor-widget elementor-widget-listeo-headline"
-              data-id="ccc6233" data-element_type="widget" data-widget_type="listeo-headline.default">
-
-              <div class="text-dark mb-md-3">
-                <h2 style="text-align:left;"
-                  class="pb-2 secondary_heading h2 headline  headline-aligned-to-left  headline-box "> How It Works? </h2>
-              </div>
-
-            </div>
-
-            <div class="elementor-element elementor-element-5df092b elementor-widget elementor-widget-listeo-iconbox"
-              data-id="5df092b" data-element_type="widget" data-widget_type="listeo-iconbox.default">
-              <div class="elementor-widget-container">
-
-                <div class="icon-box-v3 row">
-
-                  <div class="ibv3-icon col-sm-3">
-                    <img width="60px" src="images/CreateAccountGreen.svg">
-                  </div>
-
-
-                  <div class="ibv3-content col-sm-9">
-                    <h4>Create an Account</h4>
-                    <p>Create an Account as as Investor or Business Owner</p>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-
-            <div class="elementor-element elementor-element-9169400 elementor-widget elementor-widget-listeo-iconbox"
-              data-id="9169400" data-element_type="widget" data-widget_type="listeo-iconbox.default">
-              <div class="elementor-widget-container">
-
-                <div class="icon-box-v3 row">
-                  <div class="ibv3-icon col-sm-3">
-                    <img width="60px" src="images/AddInvestGreen.svg">
-                  </div>
-                  <div class="ibv3-content col-sm-9">
-                    <h4>Add/Invest in a Listing</h4>
-                    <p>Add a Listing( Your Business) or Invest in a listing</p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-
-            <div class="elementor-element elementor-element-b9196ce elementor-widget elementor-widget-listeo-iconbox"
-              data-id="b9196ce" data-element_type="widget" data-widget_type="listeo-iconbox.default">
-              <div class="elementor-widget-container">
-                <div class="icon-box-v3 row">
-                  <div class="ibv3-icon col-sm-3">
-                    <img width="60px" src="images/ApplyForJitumeGreen.svg">
-                  </div>
-
-                  <div class="ibv3-content col-sm-9">
-                    <h4>Apply For Jitume Show</h4>
-                    <p>You can a apply for a chance to get covered in the JITUME SHOW</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-          </div>
-
-        </div>
-
-
-      </div>
-
-
-      <div class="col-md-7 mt-5 mt-md-0 pl-md-5">
-        <div class="text-dark mb-md-3">
-          <h2 style="text-align:left;" class="secondary_heading h2 headline  headline-aligned-to-left  headline-box pb-2">
-            The Show </h2>
-        </div>
-        <video poster="images/video_preview.png" style="" class="video_player elementor-video" src="videos/Jitume.mp4"
-          controls="" controlslist="nodownload"></video>
-      </div>
-
-    </div>
-     How it works  -->
+    
 
     <div class="container-md-xl row mx-auto my-2 bg-white pt-3">
       <hr>
@@ -331,19 +232,19 @@
     </div>
 
 
-    <!-- HOW IT WORKS -->
+     <!-- HOW IT WORKS -->
 
     <div class=" mt-4 border border-bottom-dark bg-white"></div>
 
-    <div class="container-xl row mx-auto my-5 bg-white pt-3">
+    <div class="container-xl mx-auto my-5 bg-white pt-3">
 
 
-      <div class="elementor-top-column elementor-element elementor-element-ce6f4c7" data-id="ce6f4c7"
+      <div class="mx-auto" data-id="ce6f4c7"
         data-element_type="column">
 
         <div class=" elementor-column-wrap elementor-element-populated">
 
-          <div class="elementor-widget-wrap row">
+          <div class="elementor-widget-wrap">
 
             <div class=" elementor-element elementor-element-ccc6233 elementor-widget elementor-widget-listeo-headline"
               data-id="ccc6233" data-element_type="widget" data-widget_type="listeo-headline.default">

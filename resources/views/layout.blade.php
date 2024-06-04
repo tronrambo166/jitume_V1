@@ -32,8 +32,9 @@
     <!-- <link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Doppio+One' rel='stylesheet' type='text/css'> -->
 
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+      <!--  <link href="{{ asset('/css/app.css') }}" rel="stylesheet">-->
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet" />
+
 
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -423,7 +424,7 @@
 
                     <div class="col-sm-6 m-auto text-center">
 
-                        <p class="text-center pt-2">© JITUME - All Rights Reserved <h2 class="bg-slate-900"> Hello </h2>
+                        <p class="text-center pt-2">© JITUME - All Rights Reserved <h2 class="bg-zinc-900"> Hello </h2>
                         </p>
                     </div>
 
