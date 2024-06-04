@@ -14,7 +14,7 @@
               <h4 style="font-size:27px; font-weight: 500px;" class="text-dark ">
                 <!--  <marquee>Invest in Agriculture | Sports/Gaming | Real State | Entertainment | Auto | Finance/Accounting Security | Pets | Domestic Help | Other</marquee> -->
               </h4>
-              <h4 class="h3 text-center text_color_1 py-3 main_heading">Your platform to invest in local businesses</h4>
+              <h4 class="h3 text-center text_color_1 py-3 main_heading underline">Your platform to invest in local businesses</h4>
             </div>
 
         <!-- Search Test -->
