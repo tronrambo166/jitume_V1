@@ -730,7 +730,6 @@ public function bidCommitsForm($amount,$business_id,$percent)
 }
 
 public function bidCommits(Request $request){
- //return config('services.stripe.secret_key');
    if(Auth::check())
         $investor_id = Auth::id();
     else {

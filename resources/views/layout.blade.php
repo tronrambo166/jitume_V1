@@ -2,7 +2,7 @@
 
 <head>
     <script type="module" src="places.js"></script>
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnKB7p3g8iG6IGE9nXX4PqlZ6EPHNUo3w&callback=initAutocomplete&libraries=places&v=weekly" async ></script> -->
+    
 
     
 
